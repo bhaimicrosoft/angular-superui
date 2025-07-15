@@ -20,9 +20,9 @@ export async function initCommand() {
     }
 
     // Check if Angular SuperUI is already initialized
-    const componentsDir = './src/lib/components';
-    const utilsDir = './src/lib/utils';
-    const hasAngularSuperUI = await fs.pathExists(componentsDir) && await fs.pathExists(path.join(utilsDir, 'cn.ts'));
+    const componentsDirPath = './src/lib/components';
+    const utilsDirPath = './src/lib/utils';
+    const hasAngularSuperUI = await fs.pathExists(componentsDirPath) && await fs.pathExists(path.join(utilsDirPath, 'cn.ts'));
 
     let shouldInstallPackage = true;
     
@@ -63,8 +63,8 @@ export async function initCommand() {
     }
 
     // Create utils directory if it doesn't exist
-    const utilsDir = './src/lib/utils';
-    await fs.ensureDir(utilsDir);
+    const utilsDirectory = './src/lib/utils';
+    await fs.ensureDir(utilsDirectory);
 
     // Create cn utility function
     const cnUtilContent = `import { type ClassValue, clsx } from 'clsx';
@@ -74,11 +74,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`;
 
-    await fs.writeFile(path.join(utilsDir, 'cn.ts'), cnUtilContent);
+    await fs.writeFile(path.join(utilsDirectory, 'cn.ts'), cnUtilContent);
 
     // Create components directory
-    const componentsDir = './src/lib/components';
-    await fs.ensureDir(componentsDir);
+    const componentsDirectory = './src/lib/components';
+    await fs.ensureDir(componentsDirectory);
 
     // Read package.json to update dependencies
     const packageJson = await fs.readJson('./package.json');
@@ -192,7 +192,7 @@ export default config;
       }
     } catch (error) {
       console.log('');
-      console.log(chalk.bgYellow.black(' WARNING ') + ' ' + chalk.yellow(`Could not update tsconfig.json: ${error.message || error}`));
+      console.log(chalk.bgYellow.black(' WARNING ') + ' ' + chalk.yellow(`Could not update tsconfig.json: ${error instanceof Error ? error.message : String(error)}`));
       console.log(chalk.gray('You may need to manually add path aliases to your tsconfig.json'));
       console.log('');
     }
