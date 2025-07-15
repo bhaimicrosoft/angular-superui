@@ -1,0 +1,122 @@
+<div class="p-4">
+  <h1 class="text-2xl font-bold mb-4">Angular SuperUI Showcase</h1>
+
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Buttons</h2>
+    <div class="flex gap-4 items-center">
+      <lib-button>Default</lib-button>
+      <lib-button variant="secondary">Secondary</lib-button>
+      <lib-button variant="destructive">Destructive</lib-button>
+      <lib-button variant="outline">Outline</lib-button>
+      <lib-button variant="ghost">Ghost</lib-button>
+      <lib-button variant="link">Link</lib-button>
+      <lib-button size="sm">Small</lib-button>
+      <lib-button size="lg">Large</lib-button>
+      <lib-button size="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-plus"
+        >
+          <path d="M5 12h14" />
+          <path d="M12 5v14" />
+        </svg>
+      </lib-button>
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Inputs</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <lib-input type="text" placeholder="Text Input"></lib-input>
+      <lib-input type="password" placeholder="Password Input"></lib-input>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-xl font-semibold mb-2">Alerts</h2>
+    <div class="space-y-4">
+      <lib-alert variant="success">
+        <h5 class="mb-1 font-medium leading-none tracking-tight">Heads up!</h5>
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z"
+          />
+        </svg>
+        <div class="text-sm [&_p]:leading-relaxed">
+          You can add components to your app using the cli.
+        </div>
+      </lib-alert>
+      <lib-alert variant="warning">
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z"
+          />
+        </svg>
+        <h5 class="mb-1 font-medium leading-none tracking-tight">Heads up!</h5>
+        <div class="text-sm [&_p]:leading-relaxed">
+          You can add components to your app using the cli.
+        </div>
+      </lib-alert>
+      <lib-alert>
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z"
+          />
+        </svg>
+        <h5 class="mb-1 font-medium leading-none tracking-tight">Heads up!</h5>
+        <div class="text-sm [&_p]:leading-relaxed">
+          You can add components to your app using the cli.
+        </div>
+      </lib-alert>
+      <lib-alert variant="destructive">
+        <svg
+          class="w-6 h-6 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M10.83 5a3.001 3.001 0 0 0-5.66 0H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17ZM4 11h9.17a3.001 3.001 0 0 1 5.66 0H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2Zm1.17 6H4a1 1 0 1 0 0 2h1.17a3.001 3.001 0 0 0 5.66 0H20a1 1 0 1 0 0-2h-9.17a3.001 3.001 0 0 0-5.66 0Z"
+          />
+        </svg>
+
+        <h5 class="mb-1 font-medium leading-none tracking-tight">Error</h5>
+        <div class="text-sm [&_p]:leading-relaxed">
+          Your session has expired. Please log in again.
+        </div>
+      </lib-alert>
+    </div>
+  </section>
+</div>

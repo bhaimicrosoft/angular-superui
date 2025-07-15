@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SchematicsAngularSuperUIAdd",
+  "title": "Angular SuperUI Add Options Schema",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "skipPackageJson": {
+      "type": "boolean",
+      "default": false,
+      "description": "Do not add dependencies to package.json."
+    },
+    "theme": {
+      "type": "string",
+      "description": "The theme to be used.",
+      "default": "default",
+      "enum": ["default", "dark"]
+    },
+    "includeTailwind": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to set up Tailwind CSS automatically."
+    }
+  },
+  "required": []
+}
