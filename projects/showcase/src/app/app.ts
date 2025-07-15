@@ -40,6 +40,7 @@ export class App {
   openDialog = false;
   currentTheme = 'default';
   selectedDate = new Date();
+  isDarkMode = false;
 
   // Breadcrumb items for demonstration
   breadcrumbItems = [
@@ -62,29 +63,45 @@ export class App {
     { value: 'option3', label: 'Option 3' },
   ];
 
-  constructor(private toastService: ToastService) {}
+  constructor(private toastService: ToastService) {
+    // Initialize theme from localStorage or system preference
+    this.initializeTheme();
+  }
+
+  initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      this.currentTheme = savedTheme;
+      this.isDarkMode = savedTheme === 'dark';
+    } else {
+      // Check system preference
+      this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.currentTheme = this.isDarkMode ? 'dark' : 'light';
+    }
+    this.applyTheme();
+  }
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    this.currentTheme = this.isDarkMode ? 'dark' : 'light';
+    this.applyTheme();
+    localStorage.setItem('theme', this.currentTheme);
+  }
+
+  applyTheme() {
+    const html = document.documentElement;
+    if (this.isDarkMode) {
+      html.classList.add('dark');
+    } else {
+      html.classList.remove('dark');
+    }
+  }
 
   onThemeChange(theme: string) {
     this.currentTheme = theme;
-    // Apply theme to document body for global effect
-    const body = document.body;
-    // Remove all existing theme classes
-    body.classList.remove(
-      'theme-blue',
-      'theme-green',
-      'theme-purple',
-      'theme-pink',
-      'theme-orange',
-      'theme-teal',
-      'theme-red',
-      'theme-yellow',
-      'theme-indigo',
-      'theme-cyan'
-    );
-    // Add new theme class if not default
-    if (theme !== 'default') {
-      body.classList.add(theme);
-    }
+    this.isDarkMode = theme === 'dark';
+    this.applyTheme();
+    localStorage.setItem('theme', theme);
   }
 
   showToast(type: 'success' | 'error' | 'warning') {

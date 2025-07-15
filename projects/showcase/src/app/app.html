@@ -1,8 +1,29 @@
 <div class="min-h-screen bg-background text-foreground p-8">
-  <!-- Header -->
-  <div class="mb-8">
-    <h1 class="text-4xl font-bold mb-2">Angular SuperUI v0.3.0 Showcase</h1>
-    <p class="text-muted-foreground">Demonstrating all color variants and new components</p>
+  <!-- Header with Dark Mode Toggle -->
+  <div class="mb-8 flex justify-between items-start">
+    <div>
+      <h1 class="text-4xl font-bold mb-2">Angular SuperUI v0.3.0 Showcase</h1>
+      <p class="text-muted-foreground">Demonstrating all color variants and new components</p>
+    </div>
+    
+    <!-- Theme Controls -->
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-sm">Dark Mode:</span>
+        <button 
+          (click)="toggleDarkMode()" 
+          class="relative inline-flex h-6 w-11 items-center rounded-full"
+          [class]="isDarkMode ? 'bg-blue-600' : 'bg-gray-200'"
+        >
+          <span class="sr-only">Toggle dark mode</span>
+          <span 
+            class="inline-block h-4 w-4 transform rounded-full bg-white transition"
+            [class]="isDarkMode ? 'translate-x-6' : 'translate-x-1'"
+          ></span>
+        </button>
+      </div>
+      <lib-theme-selector />
+    </div>
   </div>
 
   <!-- Color Variants Demo -->
@@ -163,10 +184,5 @@
         <lib-breadcrumb-complete [items]="breadcrumbItems" [maxItems]="3" />
       </div>
     </section>
-
-    <!-- Theme Selector -->
-    <div class="fixed top-4 right-4">
-      <lib-theme-selector />
-    </div>
   </div>
 </div>

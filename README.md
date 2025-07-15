@@ -35,28 +35,56 @@ A modern, beautiful, and accessible Angular UI component library built with **Ta
 - 🎨 **Beautiful Design** - Modern, clean components with Tailwind CSS
 - 🌈 **15+ Color Variants** - Extended color palette for all component variants
 - 🎭 **11 Theme Options** - Dynamic theme switching with ThemeSelector component
-- 🔧 **TypeScript First** - Full type safety with Class Variance Authority
+- 🌙 **Enhanced Dark Mode** - System detection, persistent storage, and seamless switching
+- �️ **CLI Tool** - Selective component installation like shadcn/ui (`angular-superui-cli`)
+- �🔧 **TypeScript First** - Full type safety with Class Variance Authority
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant, WCAG AA)
-- 🎯 **Tree Shakable** - Import only what you need
+- 🎯 **Tree Shakable** - Import only what you need (especially with CLI)
 - 🚀 **Angular 20+** - Built for the latest Angular features
 - 📱 **Responsive** - Mobile-first design approach
 - 🖼️ **Enhanced Avatar** - Image support with automatic fallbacks and error handling
 - 📦 **Zero Dependencies** - No external UI dependencies
 - 🔄 **Form Integration** - Full Angular Forms support with ControlValueAccessor
-- 🌙 **Dark Mode** - Automatic dark mode support for all colors
 - 🎯 **Command Palette** - VS Code-style command interface
 - 📅 **Date Picker** - Full calendar integration with form support
 - 📱 **Responsive Panels** - Sheet/drawer components for mobile-first design
+- ✅ **Fixed Tailwind Classes** - All color variants now use proper numeric values (e.g., `bg-lime-500`)
 
 ## 📦 Installation
 
-### Using npm
+### 🚀 Using CLI (Recommended - New!)
+
+Install the CLI for selective component installation:
+
+```bash
+npm install -g angular-superui-cli
+```
+
+Initialize in your Angular project:
+
+```bash
+angular-superui init
+```
+
+Add specific components:
+
+```bash
+# Add individual components
+angular-superui add button
+angular-superui add calendar
+angular-superui add dialog
+
+# List all available components
+angular-superui list
+```
+
+### Using npm (Full Library)
 
 ```bash
 npm install angular-superui
 ```
 
-### Using Angular CLI (Recommended)
+### Using Angular CLI
 
 ```bash
 ng add angular-superui
@@ -120,6 +148,40 @@ module.exports = {
     --primary-foreground: hsl(210 40% 98%);
     /* ... other CSS variables */
   }
+  
+  .dark {
+    --background: hsl(224 71% 4%);
+    --foreground: hsl(213 31% 91%);
+    --primary: hsl(210 40% 98%);
+    --primary-foreground: hsl(222.2 47.4% 1.2%);
+    /* ... dark mode CSS variables */
+  }
+}
+```
+
+### 🌙 Dark Mode Setup
+
+Enable dark mode in your `tailwind.config.js`:
+
+```javascript
+module.exports = {
+  darkMode: 'class', // Enable class-based dark mode
+  content: [
+    "./src/**/*.{html,ts}",
+    "./node_modules/angular-superui/**/*.{js,ts}"
+  ],
+  // ... rest of config
+}
+```
+
+Add dark mode toggle to your app:
+
+```typescript
+// In your component
+toggleDarkMode() {
+  const html = document.documentElement;
+  html.classList.toggle('dark');
+  localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
 }
 ```
 
@@ -430,7 +492,33 @@ All Badge, Alert, and Progress components support the same 15+ color variants!
 - **ThemeSelector** - Enhanced theme switching with light/dark/system modes and persistence
 - **Separator** - Visual dividers for content sections
 
-## 📚 Component Examples
+## �️ CLI Usage
+
+After installation, you can use the CLI to manage components:
+
+### Initialize a new project
+```bash
+npx angular-superui init
+```
+
+### Add specific components
+```bash
+# Add a single component
+npx angular-superui add button
+
+# Add multiple components
+npx angular-superui add button card badge
+
+# Interactive selection
+npx angular-superui add
+```
+
+### List available components
+```bash
+npx angular-superui list
+```
+
+## �📚 Component Examples
 
 ### Advanced Form Example
 

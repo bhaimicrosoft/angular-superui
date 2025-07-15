@@ -1,0 +1,48 @@
+{
+  "name": "angular-superui-cli",
+  "version": "0.4.0",
+  "description": "CLI tool for selective Angular SuperUI component installation",
+  "main": "dist/index.js",
+  "bin": {
+    "angular-superui": "dist/cli.js",
+    "superui": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "angular",
+    "ui",
+    "components",
+    "cli",
+    "tailwind",
+    "shadcn"
+  ],
+  "author": "Indranil Mukherjee <bhaikaju@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.4",
+    "fs-extra": "^11.1.1",
+    "axios": "^1.4.0",
+    "ora": "^6.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/inquirer": "^9.0.0",
+    "@types/fs-extra": "^11.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bhaimicrosoft/angular-superui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/bhaimicrosoft/angular-superui#readme",
+  "bugs": {
+    "url": "https://github.com/bhaimicrosoft/angular-superui/issues"
+  }
+}
