@@ -233,6 +233,8 @@ export async function addCommand(componentNames: string | string[], options: { f
         const componentExists = await fs.pathExists(path.join(componentDir, component.files[0]));
         if (componentExists && !options.force && !options.all) {
           spinner.stop();
+          console.log(''); // Add blank line for better formatting
+          
           const { overwrite } = await inquirer.prompt([
             {
               type: 'confirm',
@@ -241,11 +243,12 @@ export async function addCommand(componentNames: string | string[], options: { f
               default: false
             }
           ]);
-          spinner.start(`Adding ${componentsToAdd.length} component(s)...`);
           
           if (!overwrite) {
-            spinner.text = `Skipping ${componentName}...`;
+            console.log(chalk.yellow(`⏭️  Skipping ${componentName}...`));
             continue;
+          } else {
+            spinner.start(`Adding ${componentsToAdd.length} component(s)...`);
           }
         }
 

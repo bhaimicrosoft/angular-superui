@@ -28,6 +28,7 @@ export async function initCommand() {
     
     if (hasAngularSuperUI) {
       spinner.stop();
+      console.log(''); // Add blank line for better formatting
       const { reinstall } = await inquirer.prompt([
         {
           type: 'confirm',
@@ -36,7 +37,12 @@ export async function initCommand() {
           default: false
         }
       ]);
-      spinner.start('Initializing Angular SuperUI...');
+      
+      if (reinstall) {
+        spinner.start('Reinstalling Angular SuperUI...');
+      } else {
+        spinner.start('Updating configuration...');
+      }
       shouldInstallPackage = reinstall;
     }
 
@@ -181,7 +187,9 @@ export default config;
         spinner.text = 'Updated tsconfig.json with path aliases...';
       }
     } catch (error) {
-      console.warn(chalk.yellow('Warning: Could not update tsconfig.json'));
+      console.log('');
+      console.log(chalk.bgYellow.black(' WARNING ') + ' ' + chalk.yellow('Could not update tsconfig.json'));
+      console.log('');
     }
 
     // Create or update styles.scss/styles.css

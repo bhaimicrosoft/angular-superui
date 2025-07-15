@@ -226,6 +226,7 @@ async function addCommand(componentNames, options) {
                 const componentExists = await fs_extra_1.default.pathExists(path_1.default.join(componentDir, component.files[0]));
                 if (componentExists && !options.force && !options.all) {
                     spinner.stop();
+                    console.log(''); // Add blank line for better formatting
                     const { overwrite } = await inquirer_1.default.prompt([
                         {
                             type: 'confirm',
@@ -234,10 +235,12 @@ async function addCommand(componentNames, options) {
                             default: false
                         }
                     ]);
-                    spinner.start(`Adding ${componentsToAdd.length} component(s)...`);
                     if (!overwrite) {
-                        spinner.text = `Skipping ${componentName}...`;
+                        console.log(chalk_1.default.yellow(`⏭️  Skipping ${componentName}...`));
                         continue;
+                    }
+                    else {
+                        spinner.start(`Adding ${componentsToAdd.length} component(s)...`);
                     }
                 }
                 spinner.text = `Downloading ${componentName} files...`;
