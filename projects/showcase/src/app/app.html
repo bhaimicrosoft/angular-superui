@@ -1,45 +1,17 @@
-<div class="p-8 space-y-8 max-w-6xl mx-auto" [class]="currentTheme">
-  <div class="text-center space-y-4">
-    <h1 class="text-4xl font-bold">Angular SuperUI Showcase</h1>
-    <p class="text-muted-foreground">A comprehensive collection of 25+ beautiful, accessible components built with Tailwind CSS</p>
-    
-    <!-- Theme Selector -->
-    <div class="flex justify-center mt-6">
-      <lib-theme-selector 
-        [currentTheme]="currentTheme" 
-        (themeChange)="onThemeChange($event)">
-      </lib-theme-selector>
-    </div>
+<div class="min-h-screen bg-background text-foreground p-8">
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold mb-2">Angular SuperUI v0.3.0 Showcase</h1>
+    <p class="text-muted-foreground">Demonstrating all color variants and new components</p>
   </div>
 
-  <lib-separator></lib-separator>
-
-  <!-- Basic Components -->
-  <section class="space-y-4">
-    <h2 class="text-2xl font-semibold">Basic Components</h2>
-    <div class="space-y-4">
-      <lib-alert variant="destructive">
-        <h4 class="font-medium">Alert Component</h4>
-        <p class="text-sm">This is a destructive alert message.</p>
-      </lib-alert>
-
-      <div class="flex flex-wrap gap-4">
-        <lib-button variant="destructive">Destructive</lib-button>
-        <lib-button variant="secondary">Secondary</lib-button>
-        <lib-button variant="outline">Outline</lib-button>
-        <lib-badge variant="default">New Badge</lib-badge>
-      </div>
-    </div>
-  </section>
-
-  <!-- Color Palette Showcase -->
-  <section class="space-y-6">
-    <h2 class="text-2xl font-semibold">🎨 Complete Color Palette (15+ Colors)</h2>
+  <!-- Color Variants Demo -->
+  <div class="space-y-8">
     
-    <!-- Button Color Variants -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Button Variants</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+    <!-- Button Variants -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Button Color Variants</h2>
+      <div class="flex flex-wrap gap-2 mb-4">
         <lib-button variant="default">Default</lib-button>
         <lib-button variant="success">Success</lib-button>
         <lib-button variant="warning">Warning</lib-button>
@@ -58,10 +30,8 @@
         <lib-button variant="sky">Sky</lib-button>
       </div>
       
-      <!-- Outline Button Variants -->
-      <h4 class="text-md font-medium mt-4">Outline Variants</h4>
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-        <lib-button variant="outline">Default</lib-button>
+      <h3 class="text-lg font-medium mb-2">Outline Variants</h3>
+      <div class="flex flex-wrap gap-2">
         <lib-button variant="outline-success">Success</lib-button>
         <lib-button variant="outline-warning">Warning</lib-button>
         <lib-button variant="outline-info">Info</lib-button>
@@ -78,12 +48,12 @@
         <lib-button variant="outline-violet">Violet</lib-button>
         <lib-button variant="outline-sky">Sky</lib-button>
       </div>
-    </div>
+    </section>
 
-    <!-- Badge Color Variants -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Badge Variants</h3>
-      <div class="flex flex-wrap gap-2">
+    <!-- Badge Variants -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Badge Color Variants</h2>
+      <div class="flex flex-wrap gap-2 mb-4">
         <lib-badge variant="default">Default</lib-badge>
         <lib-badge variant="success">Success</lib-badge>
         <lib-badge variant="warning">Warning</lib-badge>
@@ -102,10 +72,8 @@
         <lib-badge variant="sky">Sky</lib-badge>
       </div>
       
-      <!-- Outline Badge Variants -->
-      <h4 class="text-md font-medium">Outline Badge Variants</h4>
+      <h3 class="text-lg font-medium mb-2">Outline Badge Variants</h3>
       <div class="flex flex-wrap gap-2">
-        <lib-badge variant="outline">Default</lib-badge>
         <lib-badge variant="outline-success">Success</lib-badge>
         <lib-badge variant="outline-warning">Warning</lib-badge>
         <lib-badge variant="outline-info">Info</lib-badge>
@@ -122,317 +90,83 @@
         <lib-badge variant="outline-violet">Violet</lib-badge>
         <lib-badge variant="outline-sky">Sky</lib-badge>
       </div>
-    </div>
+    </section>
 
-    <!-- Alert Color Variants -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Alert Variants</h3>
-      <div class="grid gap-3">
-        <lib-alert variant="default">
-          <h4 class="font-medium">Default Alert</h4>
-          <p class="text-sm">This is a default alert with standard styling.</p>
-        </lib-alert>
-        <lib-alert variant="success">
-          <h4 class="font-medium">Success Alert</h4>
-          <p class="text-sm">This indicates a successful operation or positive message.</p>
-        </lib-alert>
-        <lib-alert variant="warning">
-          <h4 class="font-medium">Warning Alert</h4>
-          <p class="text-sm">This indicates caution or important information to note.</p>
-        </lib-alert>
-        <lib-alert variant="info">
-          <h4 class="font-medium">Info Alert</h4>
-          <p class="text-sm">This provides additional informational context.</p>
-        </lib-alert>
-        <lib-alert variant="purple">
-          <h4 class="font-medium">Purple Alert</h4>
-          <p class="text-sm">This is a purple-themed alert for creative messaging.</p>
-        </lib-alert>
-        <lib-alert variant="orange">
-          <h4 class="font-medium">Orange Alert</h4>
-          <p class="text-sm">This is an orange-themed alert for energetic messaging.</p>
-        </lib-alert>
-        <lib-alert variant="teal">
-          <h4 class="font-medium">Teal Alert</h4>
-          <p class="text-sm">This is a teal-themed alert for calm, professional messaging.</p>
-        </lib-alert>
-      </div>
-    </div>
-
-    <!-- Progress Color Variants -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Progress Bar Variants</h3>
-      <div class="space-y-3 max-w-md">
-        <div class="space-y-1">
-          <label class="text-sm font-medium">Default (75%)</label>
-          <lib-progress [value]="75" variant="default"></lib-progress>
-        </div>
-        <div class="space-y-1">
-          <label class="text-sm font-medium">Success (90%)</label>
-          <lib-progress [value]="90" variant="success"></lib-progress>
-        </div>
-        <div class="space-y-1">
-          <label class="text-sm font-medium">Warning (60%)</label>
-          <lib-progress [value]="60" variant="warning"></lib-progress>
-        </div>
-        <div class="space-y-1">
-          <label class="text-sm font-medium">Info (45%)</label>
-          <lib-progress [value]="45" variant="info"></lib-progress>
-        </div>
-        <div class="space-y-1">
-          <label class="text-sm font-medium">Purple (80%)</label>
-          <lib-progress [value]="80" variant="purple"></lib-progress>
-        </div>
-        <div class="space-y-1">
-          <label class="text-sm font-medium">Orange (55%)</label>
-          <lib-progress [value]="55" variant="orange"></lib-progress>
-        </div>
-        <div class="space-y-1">
-          <label class="text-sm font-medium">Teal (85%)</label>
-          <lib-progress [value]="85" variant="teal"></lib-progress>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Form Components -->
-  <section class="space-y-4">
-    <h2 class="text-2xl font-semibold">Form Components</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Input -->
+    <!-- Alert Variants -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Alert Color Variants</h2>
       <div class="space-y-2">
-        <lib-label>Input Field</lib-label>
-        <lib-input
-          type="text"
-          placeholder="Enter your text..."
-          class="w-full"
-        />
+        <lib-alert variant="default">Default alert message</lib-alert>
+        <lib-alert variant="success">Success alert - Operation completed successfully!</lib-alert>
+        <lib-alert variant="warning">Warning alert - Please check your input</lib-alert>
+        <lib-alert variant="info">Info alert - Here's some helpful information</lib-alert>
+        <lib-alert variant="purple">Purple alert - Premium feature available</lib-alert>
+        <lib-alert variant="pink">Pink alert - Special announcement</lib-alert>
+        <lib-alert variant="orange">Orange alert - Important update</lib-alert>
+        <lib-alert variant="teal">Teal alert - System status update</lib-alert>
+        <lib-alert variant="indigo">Indigo alert - Deep insights available</lib-alert>
+        <lib-alert variant="cyan">Cyan alert - Cool notification</lib-alert>
+        <lib-alert variant="rose">Rose alert - Valentine's special</lib-alert>
+        <lib-alert variant="emerald">Emerald alert - Eco-friendly option</lib-alert>
+        <lib-alert variant="amber">Amber alert - Attention required</lib-alert>
+        <lib-alert variant="lime">Lime alert - Fresh updates available</lib-alert>
+        <lib-alert variant="violet">Violet alert - Creative mode enabled</lib-alert>
+        <lib-alert variant="sky">Sky alert - Weather update</lib-alert>
       </div>
+    </section>
 
-      <!-- Textarea -->
-      <div class="space-y-2">
-        <lib-label>Textarea</lib-label>
-        <lib-textarea
-          placeholder="Enter your message..."
-          [content]="'Sample content'"
-          class="w-full"
-        />
-      </div>
-
-      <!-- Select -->
-      <div class="space-y-2">
-        <lib-label>Select Dropdown</lib-label>
-        <lib-select
-          [options]="selectOptions"
-          placeholder="Choose an option..."
-          class="w-full"
-        />
-      </div>
-
-      <!-- Radio Group -->
-      <div class="space-y-2">
-        <lib-label>Radio Group</lib-label>
-        <lib-radio-group
-          [options]="radioOptions"
-          value="option1"
-          class="space-y-2"
-        />
-      </div>
-
-      <!-- Checkbox & Switch -->
+    <!-- Progress Variants -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">Progress Color Variants</h2>
       <div class="space-y-4">
-        <div class="flex items-center space-x-2">
-          <lib-checkbox id="terms" />
-          <lib-label htmlFor="terms">Accept terms</lib-label>
+        <div>
+          <p class="mb-2">Default Progress (67%)</p>
+          <lib-progress [value]="progressValue" variant="default" />
         </div>
-        <div class="flex items-center space-x-2">
-          <lib-switch id="notifications" />
-          <lib-label htmlFor="notifications">Enable notifications</lib-label>
+        <div>
+          <p class="mb-2">Success Progress (85%)</p>
+          <lib-progress [value]="85" variant="success" />
         </div>
-      </div>
-
-      <!-- Toggle & Slider -->
-      <div class="space-y-4">
-        <div class="space-y-2">
-          <lib-label>Toggle Button</lib-label>
-          <lib-toggle>Toggle Me</lib-toggle>
+        <div>
+          <p class="mb-2">Warning Progress (45%)</p>
+          <lib-progress [value]="45" variant="warning" />
         </div>
-        <div class="space-y-2">
-          <lib-label>Slider (0-100)</lib-label>
-          <lib-slider [min]="0" [max]="100" [value]="50" class="w-full" />
+        <div>
+          <p class="mb-2">Info Progress (72%)</p>
+          <lib-progress [value]="72" variant="info" />
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Layout Components -->
-  <section class="space-y-4">
-    <h2 class="text-2xl font-semibold">Layout Components</h2>
-    
-    <!-- Tabs -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Tabs</h3>
-      <lib-tabs value="tab1">
-        <lib-tabs-list>
-          <lib-tabs-trigger value="tab1" [isActive]="true">Account</lib-tabs-trigger>
-          <lib-tabs-trigger value="tab2">Password</lib-tabs-trigger>
-          <lib-tabs-trigger value="tab3">Settings</lib-tabs-trigger>
-        </lib-tabs-list>
-        <lib-tabs-content value="tab1" [isActive]="true">
-          <p class="mt-4">Manage your account settings and preferences.</p>
-        </lib-tabs-content>
-      </lib-tabs>
-    </div>
-
-    <!-- Card -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Card Component</h3>
-      <lib-card class="w-96">
-        <lib-card-header>
-          <lib-card-title>Card Title</lib-card-title>
-          <lib-card-description>This is a card description.</lib-card-description>
-        </lib-card-header>
-        <lib-card-content>
-          <p>Card content goes here. You can put any content inside this area.</p>
-        </lib-card-content>
-        <lib-card-footer>
-          <lib-button>Action</lib-button>
-        </lib-card-footer>
-      </lib-card>
-    </div>
-
-    <!-- Accordion -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Accordion</h3>
-      <lib-accordion value="item-1" class="w-96">
-        <lib-accordion-item value="item-1">
-          <lib-accordion-trigger [isOpen]="true">Is it accessible?</lib-accordion-trigger>
-          <lib-accordion-content [isOpen]="true">
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </lib-accordion-content>
-        </lib-accordion-item>
-        <lib-accordion-item value="item-2">
-          <lib-accordion-trigger>Is it styled?</lib-accordion-trigger>
-          <lib-accordion-content>
-            Yes. It comes with default styles that match the other components.
-          </lib-accordion-content>
-        </lib-accordion-item>
-      </lib-accordion>
-    </div>
-  </section>
-
-  <!-- Display Components -->
-  <section class="space-y-4">
-    <h2 class="text-2xl font-semibold">Display Components</h2>
-    
-    <!-- Avatar -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Avatars</h3>
-      <div class="flex space-x-4">
-        <lib-avatar size="sm" [src]="'https://github.com/shadcn.png'"></lib-avatar>
-        <lib-avatar size="default" [src]="'https://github.com/shadcn.png'"></lib-avatar>
-        <lib-avatar size="lg" [src]="'https://github.com/shadcn.png'"></lib-avatar>
-      </div>
-    </div>
-
-    <!-- Progress & Skeleton -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Progress & Loading</h3>
-      <div class="space-y-4 w-96">
-        <lib-progress [value]="75"></lib-progress>
-        <div class="space-y-2">
-          <lib-skeleton class="h-4 w-3/4"></lib-skeleton>
-          <lib-skeleton class="h-4 w-1/2"></lib-skeleton>
-          <lib-skeleton class="h-4 w-5/6"></lib-skeleton>
+        <div>
+          <p class="mb-2">Purple Progress (58%)</p>
+          <lib-progress [value]="58" variant="purple" />
+        </div>
+        <div>
+          <p class="mb-2">Lime Progress (92%)</p>
+          <lib-progress [value]="92" variant="lime" />
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Table -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Table</h3>
-      <lib-table class="w-full">
-        <lib-table-caption>A list of recent invoices.</lib-table-caption>
-        <lib-table-header>
-          <lib-table-row>
-            <lib-table-head>Invoice</lib-table-head>
-            <lib-table-head>Status</lib-table-head>
-            <lib-table-head>Method</lib-table-head>
-            <lib-table-head class="text-right">Amount</lib-table-head>
-          </lib-table-row>
-        </lib-table-header>
-        <lib-table-body>
-          <lib-table-row>
-            <lib-table-cell class="font-medium">INV001</lib-table-cell>
-            <lib-table-cell>Paid</lib-table-cell>
-            <lib-table-cell>Credit Card</lib-table-cell>
-            <lib-table-cell class="text-right">$250.00</lib-table-cell>
-          </lib-table-row>
-          <lib-table-row>
-            <lib-table-cell class="font-medium">INV002</lib-table-cell>
-            <lib-table-cell>Pending</lib-table-cell>
-            <lib-table-cell>PayPal</lib-table-cell>
-            <lib-table-cell class="text-right">$150.00</lib-table-cell>
-          </lib-table-row>
-        </lib-table-body>
-      </lib-table>
-    </div>
-  </section>
-
-  <!-- Interactive Components -->
-  <section class="space-y-4">
-    <h2 class="text-2xl font-semibold">Interactive Components</h2>
-    
-    <!-- Tooltip -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Tooltip</h3>
-      <lib-tooltip content="This is a helpful tooltip" placement="top">
-        <lib-button variant="outline">Hover me</lib-button>
-      </lib-tooltip>
-    </div>
-
-    <!-- Dialog Trigger -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Dialog</h3>
-      <lib-button (click)="openDialog = true">Open Dialog</lib-button>
+    <!-- New Components Demo -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-4">New Components v0.3.0</h2>
       
-      <lib-dialog [open]="openDialog" (openChange)="openDialog = $event">
-        <lib-dialog-content>
-          <lib-dialog-header>
-            <lib-dialog-title>Edit Profile</lib-dialog-title>
-            <lib-dialog-description>
-              Make changes to your profile here. Click save when you're done.
-            </lib-dialog-description>
-          </lib-dialog-header>
-          <div class="space-y-4">
-            <div class="space-y-2">
-              <lib-label>Name</lib-label>
-              <lib-input placeholder="Enter your name" />
-            </div>
-            <div class="space-y-2">
-              <lib-label>Email</lib-label>
-              <lib-input type="email" placeholder="Enter your email" />
-            </div>
-          </div>
-          <lib-dialog-footer>
-            <lib-button variant="outline" (click)="openDialog = false">Cancel</lib-button>
-            <lib-button (click)="openDialog = false">Save changes</lib-button>
-          </lib-dialog-footer>
-        </lib-dialog-content>
-      </lib-dialog>
-    </div>
-
-    <!-- Toast -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium">Toast Notifications</h3>
-      <div class="flex gap-2">
-        <lib-button (click)="showToast('success')">Success Toast</lib-button>
-        <lib-button (click)="showToast('error')" variant="destructive">Error Toast</lib-button>
-        <lib-button (click)="showToast('warning')" variant="outline">Warning Toast</lib-button>
+      <!-- Date Picker -->
+      <div class="mb-6">
+        <h3 class="text-lg font-medium mb-2">Date Picker</h3>
+        <lib-date-picker [(ngModel)]="selectedDate" placeholder="Select a date" />
+        <p class="mt-2 text-sm text-muted-foreground">Selected: {{ selectedDate | date:'fullDate' }}</p>
       </div>
-    </div>
-  </section>
 
-  <!-- Toast Container -->
-  <lib-toast-container></lib-toast-container>
+      <!-- Breadcrumb -->
+      <div class="mb-6">
+        <h3 class="text-lg font-medium mb-2">Breadcrumb Navigation</h3>
+        <lib-breadcrumb-complete [items]="breadcrumbItems" [maxItems]="3" />
+      </div>
+    </section>
+
+    <!-- Theme Selector -->
+    <div class="fixed top-4 right-4">
+      <lib-theme-selector />
+    </div>
+  </div>
 </div>

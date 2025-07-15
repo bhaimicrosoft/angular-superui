@@ -1,87 +1,36 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {
+import { DatePipe } from '@angular/common';
+import { 
   Alert,
-  Separator,
-  Button,
-  InputComponent,
-  Textarea,
   Badge,
-  Label,
+  Button, 
   Progress,
-  Avatar,
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-  Switch,
-  Checkbox,
-  Skeleton,
-  // New components
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  Select,
-  RadioGroup,
-  Toggle,
-  Slider,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  Tooltip,
-  ToastContainer,
-  ToastService,
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-  TableCaption,
-  ThemeSelector,
-  // Latest new components
-  Command,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandSeparator,
-  CommandShortcut,
-  CommandDialog,
-  Calendar,
   DatePicker,
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetFooter,
-  SheetTrigger,
-  SheetClose,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverSimple,
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-  BreadcrumbEllipsis,
   BreadcrumbComplete,
-} from "../../../lib/src/public-api";
+  ThemeSelector,
+  ToastService 
+} from '../../../../dist/lib';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    FormsModule, 
+    DatePipe,
+    Alert, 
+    Badge, 
+    Button, 
+    Progress, 
+    DatePicker, 
+    BreadcrumbComplete, 
+    ThemeSelector
+  ],
+  templateUrl: './app.html',
+  styleUrls: ['./app.scss'],
+})
+export class App {
+  title = 'Angular SuperUI Showcase';
   email = '';
   password = '';
   message = '';
@@ -90,6 +39,14 @@ import {
   progressValue = 67;
   openDialog = false;
   currentTheme = 'default';
+  selectedDate = new Date();
+
+  // Breadcrumb items for demonstration
+  breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Components', href: '/components' },
+    { label: 'Showcase' },
+  ];
 
   // Select options
   selectOptions = [
@@ -112,7 +69,18 @@ import {
     // Apply theme to document body for global effect
     const body = document.body;
     // Remove all existing theme classes
-    body.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-pink', 'theme-orange', 'theme-teal', 'theme-red', 'theme-yellow', 'theme-indigo', 'theme-cyan');
+    body.classList.remove(
+      'theme-blue',
+      'theme-green',
+      'theme-purple',
+      'theme-pink',
+      'theme-orange',
+      'theme-teal',
+      'theme-red',
+      'theme-yellow',
+      'theme-indigo',
+      'theme-cyan'
+    );
     // Add new theme class if not default
     if (theme !== 'default') {
       body.classList.add(theme);
@@ -122,7 +90,10 @@ import {
   showToast(type: 'success' | 'error' | 'warning') {
     switch (type) {
       case 'success':
-        this.toastService.success('Success!', 'Operation completed successfully.');
+        this.toastService.success(
+          'Success!',
+          'Operation completed successfully.'
+        );
         break;
       case 'error':
         this.toastService.error('Error!', 'Something went wrong.');

@@ -204,7 +204,62 @@ export class ExampleComponent {
 }
 ```
 
-## 🎨 Color System & Theming (NEW!)
+## 🎨 Color System & Theming (FIXED!)
+
+Angular SuperUI now provides **proper Tailwind CSS classes** for all color variants:
+
+### ✅ **Fixed Color Variants**
+All components now use correct Tailwind CSS classes with numeric values:
+- **Buttons**: `bg-lime-500 text-white hover:bg-lime-600`
+- **Badges**: `bg-purple-500 text-white hover:bg-purple-600` 
+- **Alerts**: `border-green-200 bg-green-50 text-green-800`
+- **Progress**: `bg-blue-500`, `bg-teal-500`, etc.
+
+### 🎯 **15+ Color Variants Available**
+```html
+<!-- Solid Button Variants -->
+<lib-button variant="success">Success</lib-button>
+<lib-button variant="warning">Warning</lib-button>
+<lib-button variant="info">Info</lib-button>
+<lib-button variant="purple">Purple</lib-button>
+<lib-button variant="pink">Pink</lib-button>
+<lib-button variant="orange">Orange</lib-button>
+<lib-button variant="teal">Teal</lib-button>
+<lib-button variant="indigo">Indigo</lib-button>
+<lib-button variant="cyan">Cyan</lib-button>
+<lib-button variant="rose">Rose</lib-button>
+<lib-button variant="emerald">Emerald</lib-button>
+<lib-button variant="amber">Amber</lib-button>
+<lib-button variant="lime">Lime</lib-button>
+<lib-button variant="violet">Violet</lib-button>
+<lib-button variant="sky">Sky</lib-button>
+
+<!-- Outline Button Variants -->
+<lib-button variant="outline-success">Outline Success</lib-button>
+<lib-button variant="outline-purple">Outline Purple</lib-button>
+<lib-button variant="outline-lime">Outline Lime</lib-button>
+```
+
+### 🌈 **Badge Color Examples**
+```html
+<lib-badge variant="success">Success Badge</lib-badge>
+<lib-badge variant="purple">Purple Badge</lib-badge>
+<lib-badge variant="outline-lime">Outline Lime</lib-badge>
+```
+
+### 📢 **Alert Color Examples**  
+```html
+<lib-alert variant="success">Success message with proper green colors!</lib-alert>
+<lib-alert variant="purple">Purple alert with proper colors!</lib-alert>
+<lib-alert variant="lime">Lime alert - now properly styled!</lib-alert>
+```
+
+### 📊 **Progress Color Examples**
+```html
+<lib-progress [value]="75" variant="success" />
+<lib-progress [value]="60" variant="purple" />
+<lib-progress [value]="90" variant="lime" />
+```
 
 ### 🌈 15+ Beautiful Color Variants
 
