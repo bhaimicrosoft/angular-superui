@@ -5,6 +5,7 @@
 /* You can add global styles to this file, and also import other style files */
 @layer base {
   :root {
+    /* Base Theme Variables */
     --background: hsl(0 0% 100%);
     --foreground: hsl(222.2 84% 4.9%);
     --card: hsl(0 0% 100%);
@@ -25,6 +26,38 @@
     --input: hsl(214.3 31.8% 91.4%);
     --ring: hsl(222.2 84% 4.9%);
     --radius: 0.5rem;
+
+    /* Extended Color Palette */
+    --success: hsl(142 76% 36%);
+    --success-foreground: hsl(355 7% 97%);
+    --warning: hsl(43 89% 38%);
+    --warning-foreground: hsl(355 7% 97%);
+    --info: hsl(217 91% 60%);
+    --info-foreground: hsl(355 7% 97%);
+    --purple: hsl(262 83% 58%);
+    --purple-foreground: hsl(355 7% 97%);
+    --pink: hsl(336 84% 57%);
+    --pink-foreground: hsl(355 7% 97%);
+    --orange: hsl(25 95% 53%);
+    --orange-foreground: hsl(355 7% 97%);
+    --teal: hsl(173 58% 39%);
+    --teal-foreground: hsl(355 7% 97%);
+    --indigo: hsl(234 89% 74%);
+    --indigo-foreground: hsl(355 7% 97%);
+    --cyan: hsl(188 94% 43%);
+    --cyan-foreground: hsl(355 7% 97%);
+    --rose: hsl(351 83% 61%);
+    --rose-foreground: hsl(355 7% 97%);
+    --emerald: hsl(160 84% 39%);
+    --emerald-foreground: hsl(355 7% 97%);
+    --amber: hsl(43 96% 56%);
+    --amber-foreground: hsl(26 83% 14%);
+    --lime: hsl(84 81% 44%);
+    --lime-foreground: hsl(20 14% 4%);
+    --violet: hsl(258 90% 66%);
+    --violet-foreground: hsl(355 7% 97%);
+    --sky: hsl(199 89% 48%);
+    --sky-foreground: hsl(355 7% 97%);
   }
 
   .dark {
@@ -47,5 +80,88 @@
     --border: hsl(217.2 32.6% 17.5%);
     --input: hsl(217.2 32.6% 17.5%);
     --ring: hsl(212.7 26.8% 83.9%);
+
+    /* Dark Mode Extended Colors */
+    --success: hsl(142 69% 58%);
+    --success-foreground: hsl(144 61% 20%);
+    --warning: hsl(43 89% 70%);
+    --warning-foreground: hsl(43 100% 11%);
+    --info: hsl(217 91% 60%);
+    --info-foreground: hsl(215 25% 27%);
+    --purple: hsl(262 83% 70%);
+    --purple-foreground: hsl(263 69% 12%);
+    --pink: hsl(336 84% 70%);
+    --pink-foreground: hsl(336 69% 14%);
+    --orange: hsl(25 95% 65%);
+    --orange-foreground: hsl(25 100% 6%);
+    --teal: hsl(173 58% 55%);
+    --teal-foreground: hsl(173 100% 11%);
+    --indigo: hsl(234 89% 74%);
+    --indigo-foreground: hsl(234 100% 9%);
+    --cyan: hsl(188 94% 60%);
+    --cyan-foreground: hsl(188 100% 9%);
+    --rose: hsl(351 83% 70%);
+    --rose-foreground: hsl(351 100% 14%);
+    --emerald: hsl(160 84% 55%);
+    --emerald-foreground: hsl(160 100% 9%);
+    --amber: hsl(43 96% 70%);
+    --amber-foreground: hsl(43 100% 11%);
+    --lime: hsl(84 81% 60%);
+    --lime-foreground: hsl(84 100% 10%);
+    --violet: hsl(258 90% 75%);
+    --violet-foreground: hsl(258 100% 10%);
+    --sky: hsl(199 89% 65%);
+    --sky-foreground: hsl(199 100% 6%);
+  }
+
+  /* Theme Color Classes */
+  .theme-blue {
+    --primary: hsl(217 91% 60%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-green {
+    --primary: hsl(142 76% 36%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-purple {
+    --primary: hsl(262 83% 58%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-pink {
+    --primary: hsl(336 84% 57%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-orange {
+    --primary: hsl(25 95% 53%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-teal {
+    --primary: hsl(173 58% 39%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-red {
+    --primary: hsl(0 84% 60%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-yellow {
+    --primary: hsl(43 96% 56%);
+    --primary-foreground: hsl(26 83% 14%);
+  }
+
+  .theme-indigo {
+    --primary: hsl(234 89% 74%);
+    --primary-foreground: hsl(355 7% 97%);
+  }
+
+  .theme-cyan {
+    --primary: hsl(188 94% 43%);
+    --primary-foreground: hsl(355 7% 97%);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterContentInit } from '@angular/core';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
@@ -23,14 +23,66 @@ const avatarVariants = cva(
   selector: 'lib-avatar',
   standalone: true,
   imports: [],
-  template: `<div [class]="avatarClass"><ng-content></ng-content></div>`
+  template: `
+    <div [class]="avatarClass">
+      @if (src && !imageError) {
+        <img 
+          [class]="imageClass" 
+          [src]="src" 
+          [alt]="alt || 'Avatar'" 
+          (error)="onImageError()"
+        />
+      } @else {
+        <div [class]="fallbackClass">
+          <ng-content>
+            @if (!hasContent) {
+              <span>{{ initials }}</span>
+            }
+          </ng-content>
+        </div>
+      }
+    </div>
+  `
 })
 export class Avatar {
   @Input() class = '';
   @Input() size: VariantProps<typeof avatarVariants>['size'] = 'default';
+  @Input() src = '';
+  @Input() alt = '';
+  @Input() fallback = '';
+
+  imageError = false;
+  hasContent = false;
+
+  onImageError() {
+    this.imageError = true;
+  }
 
   public get avatarClass(): string {
     return cn(avatarVariants({ size: this.size }), this.class);
+  }
+
+  public get imageClass(): string {
+    return cn('aspect-square h-full w-full object-cover');
+  }
+
+  public get fallbackClass(): string {
+    return cn(
+      'flex h-full w-full items-center justify-center rounded-full bg-muted text-muted-foreground font-semibold text-sm'
+    );
+  }
+
+  public get initials(): string {
+    if (this.fallback) return this.fallback;
+    if (this.alt) {
+      return this.alt
+        .split(' ')
+        .map(name => name.charAt(0))
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
+    }
+    return 'U';
   }
 }
 

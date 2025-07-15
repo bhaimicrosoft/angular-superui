@@ -37,3 +37,6 @@ export * from './lib/skeleton/skeleton';
 
 // Display Components
 export * from './lib/avatar/avatar';
+
+// Utility Components
+export * from './lib/theme-selector/theme-selector';

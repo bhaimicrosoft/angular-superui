@@ -19,15 +19,28 @@ const progressVariants = cva(
 );
 
 const progressIndicatorVariants = cva(
-  'h-full w-full flex-1 bg-primary transition-all duration-300 ease-in-out',
+  'h-full w-full flex-1 transition-all duration-300 ease-in-out',
   {
     variants: {
       variant: {
         default: 'bg-primary',
         secondary: 'bg-secondary',
         destructive: 'bg-destructive',
-        success: 'bg-green-500',
-        warning: 'bg-yellow-500',
+        success: 'bg-success',
+        warning: 'bg-warning',
+        info: 'bg-info',
+        purple: 'bg-purple',
+        pink: 'bg-pink',
+        orange: 'bg-orange',
+        teal: 'bg-teal',
+        indigo: 'bg-indigo',
+        cyan: 'bg-cyan',
+        rose: 'bg-rose',
+        emerald: 'bg-emerald',
+        amber: 'bg-amber',
+        lime: 'bg-lime',
+        violet: 'bg-violet',
+        sky: 'bg-sky',
       },
     },
     defaultVariants: {

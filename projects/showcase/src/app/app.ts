@@ -54,7 +54,9 @@ import {
   TableHead,
   TableCell,
   TableCaption,
+  ThemeSelector,
 } from "../../../lib/src/public-api";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -112,6 +114,8 @@ import {
     TableHead,
     TableCell,
     TableCaption,
+    ThemeSelector,
+    CommonModule
 ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -124,6 +128,7 @@ export class App {
   notifications = true;
   progressValue = 67;
   openDialog = false;
+  currentTheme = 'default';
 
   // Select options
   selectOptions = [
@@ -140,6 +145,18 @@ export class App {
   ];
 
   constructor(private toastService: ToastService) {}
+
+  onThemeChange(theme: string) {
+    this.currentTheme = theme;
+    // Apply theme to document body for global effect
+    const body = document.body;
+    // Remove all existing theme classes
+    body.classList.remove('theme-blue', 'theme-green', 'theme-purple', 'theme-pink', 'theme-orange', 'theme-teal', 'theme-red', 'theme-yellow', 'theme-indigo', 'theme-cyan');
+    // Add new theme class if not default
+    if (theme !== 'default') {
+      body.classList.add(theme);
+    }
+  }
 
   showToast(type: 'success' | 'error' | 'warning') {
     switch (type) {

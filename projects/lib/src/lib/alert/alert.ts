@@ -7,11 +7,23 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-gray-100 text-foreground',
-        destructive:
-          'border-destructive bg-red-100 text-destructive dark:border-destructive',
-        success: 'border-green-600 bg-green-100 text-green-600 dark:border-green-600',
-        warning: 'border-yellow-600 bg-yellow-100 text-yellow-600 dark:border-yellow-600',
+        default: 'bg-background text-foreground border-border',
+        destructive: 'border-destructive/50 bg-destructive/10 text-destructive dark:border-destructive',
+        success: 'border-success/50 bg-success/10 text-success dark:border-success',
+        warning: 'border-warning/50 bg-warning/10 text-warning dark:border-warning',
+        info: 'border-info/50 bg-info/10 text-info dark:border-info',
+        purple: 'border-purple/50 bg-purple/10 text-purple dark:border-purple',
+        pink: 'border-pink/50 bg-pink/10 text-pink dark:border-pink',
+        orange: 'border-orange/50 bg-orange/10 text-orange dark:border-orange',
+        teal: 'border-teal/50 bg-teal/10 text-teal dark:border-teal',
+        indigo: 'border-indigo/50 bg-indigo/10 text-indigo dark:border-indigo',
+        cyan: 'border-cyan/50 bg-cyan/10 text-cyan dark:border-cyan',
+        rose: 'border-rose/50 bg-rose/10 text-rose dark:border-rose',
+        emerald: 'border-emerald/50 bg-emerald/10 text-emerald dark:border-emerald',
+        amber: 'border-amber/50 bg-amber/10 text-amber dark:border-amber',
+        lime: 'border-lime/50 bg-lime/10 text-lime dark:border-lime',
+        violet: 'border-violet/50 bg-violet/10 text-violet dark:border-violet',
+        sky: 'border-sky/50 bg-sky/10 text-sky dark:border-sky',
       },
     },
     defaultVariants: {

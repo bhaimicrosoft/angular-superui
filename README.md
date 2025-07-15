@@ -5,19 +5,31 @@
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **25+ reusable components** that follow modern design principles and accessibility best practices.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **25+ reusable components** with **15+ color variants** and **11 theme options** that follow modern design principles and accessibility best practices.
+
+## 🎨 **NEW v0.2.1: Complete Color System & Theme Support**
+
+- **🌈 15+ Color Variants**: Extended palette with success, warning, info, purple, pink, orange, teal, indigo, cyan, rose, emerald, amber, lime, violet, and sky
+- **🎯 Enhanced Avatar Component**: Full image support with automatic fallbacks and error handling
+- **🎭 11 Theme Options**: Dynamic theme switching with beautiful color combinations
+- **🔧 30+ Button Variants**: Solid and outline variants for every color
+- **📊 Complete Component Coverage**: All components now support the extended color system
+- **♿ WCAG AA Compliant**: All color combinations meet accessibility standards
 
 ## ✨ Features
 
 - 🎨 **Beautiful Design** - Modern, clean components with Tailwind CSS
+- 🌈 **15+ Color Variants** - Extended color palette for all component variants
+- 🎭 **11 Theme Options** - Dynamic theme switching with ThemeSelector component
 - 🔧 **TypeScript First** - Full type safety with Class Variance Authority
-- ♿ **Accessible** - Built with accessibility in mind (ARIA compliant)
+- ♿ **Accessible** - Built with accessibility in mind (ARIA compliant, WCAG AA)
 - 🎯 **Tree Shakable** - Import only what you need
 - 🚀 **Angular 20+** - Built for the latest Angular features
 - 📱 **Responsive** - Mobile-first design approach
-- 🎭 **Customizable** - Easy theming with CSS custom properties
+- 🖼️ **Enhanced Avatar** - Image support with automatic fallbacks and error handling
 - 📦 **Zero Dependencies** - No external UI dependencies
 - 🔄 **Form Integration** - Full Angular Forms support with ControlValueAccessor
+- 🌙 **Dark Mode** - Automatic dark mode support for all colors
 
 ## 📦 Installation
 
@@ -126,6 +138,106 @@ import { Button, Alert, Card, CardHeader, CardTitle, CardContent } from 'angular
 export class ExampleComponent {}
 ```
 
+## 🎨 Color System & Theming (NEW!)
+
+### 🌈 15+ Beautiful Color Variants
+
+Angular SuperUI now includes a comprehensive color system with **15+ gorgeous color variants** available across all components:
+
+#### Core Colors
+- **Default** - Primary brand color (slate/gray)
+- **Secondary** - Secondary brand color  
+- **Destructive** - Error/danger states (red)
+
+#### Semantic Colors
+- **Success** - Success states, confirmations (green)
+- **Warning** - Caution, important notices (yellow/amber)
+- **Info** - Informational content (blue)
+
+#### Extended Creative Palette
+- **Purple** - Creative, premium features
+- **Pink** - Playful, feminine designs
+- **Orange** - Energetic, call-to-action
+- **Teal** - Professional, calm
+- **Indigo** - Deep, sophisticated
+- **Cyan** - Fresh, modern
+- **Rose** - Romantic, gentle
+- **Emerald** - Natural, growth
+- **Amber** - Warm, inviting
+- **Lime** - Fresh, vibrant
+- **Violet** - Luxurious, artistic
+- **Sky** - Open, peaceful
+
+### 🎭 Dynamic Theme Switching
+
+Use the new `ThemeSelector` component for beautiful theme switching:
+
+```typescript
+import { ThemeSelector } from 'angular-superui';
+
+@Component({
+  imports: [ThemeSelector],
+  template: `
+    <lib-theme-selector 
+      [currentTheme]="currentTheme" 
+      (themeChange)="onThemeChange($event)">
+    </lib-theme-selector>
+  `
+})
+export class MyComponent {
+  currentTheme = 'default';
+
+  onThemeChange(theme: string) {
+    this.currentTheme = theme;
+    document.body.className = theme;
+  }
+}
+```
+
+**Available Themes**: Default, Blue, Green, Purple, Pink, Orange, Teal, Red, Yellow, Indigo, Cyan
+
+### 🖼️ Enhanced Avatar Component
+
+The Avatar component now supports image sources with automatic fallback:
+
+```typescript
+import { Avatar } from 'angular-superui';
+
+@Component({
+  imports: [Avatar],
+  template: `
+    <!-- With image source -->
+    <lib-avatar 
+      size="lg" 
+      [src]="'https://github.com/shadcn.png'"
+      [alt]="'User Avatar'">
+    </lib-avatar>
+    
+    <!-- With fallback text -->
+    <lib-avatar size="default" [fallback]="'JD'"></lib-avatar>
+    
+    <!-- Auto-generated initials -->
+    <lib-avatar [alt]="'John Doe'"></lib-avatar>
+  `
+})
+```
+
+### 🔧 30+ Button Variants
+
+```typescript
+// Solid color variants (15+ colors)
+<lib-button variant="success">Success</lib-button>
+<lib-button variant="purple">Purple</lib-button>
+<lib-button variant="emerald">Emerald</lib-button>
+
+// Outline variants (15+ colors)  
+<lib-button variant="outline-info">Info Outline</lib-button>
+<lib-button variant="outline-pink">Pink Outline</lib-button>
+<lib-button variant="outline-teal">Teal Outline</lib-button>
+```
+
+All Badge, Alert, and Progress components support the same 15+ color variants!
+
 ## 🧩 Available Components (25+)
 
 ### Form Components
@@ -170,8 +282,17 @@ export class ExampleComponent {}
 
 ### Display Components
 
-- **Avatar** - User profile pictures with fallbacks
-  - AvatarImage, AvatarFallback
+- **Avatar** - Enhanced user profile pictures with image source support, automatic fallbacks, and error handling
+  - Full image URL support with `src` property
+  - Automatic initials generation from `alt` text
+  - Custom fallback text with `fallback` property
+  - Error handling for failed image loads
+  - Multiple size variants: sm, default, lg, xl
+
+### Utility Components
+
+- **ThemeSelector** - Dynamic theme switching component with 11 beautiful themes
+- **Separator** - Visual dividers for content sections
 
 ## 📚 Component Examples
 

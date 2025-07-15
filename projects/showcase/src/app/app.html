@@ -1,7 +1,15 @@
-<div class="p-8 space-y-8 max-w-6xl mx-auto">
+<div class="p-8 space-y-8 max-w-6xl mx-auto" [class]="currentTheme">
   <div class="text-center space-y-4">
     <h1 class="text-4xl font-bold">Angular SuperUI Showcase</h1>
     <p class="text-muted-foreground">A comprehensive collection of 25+ beautiful, accessible components built with Tailwind CSS</p>
+    
+    <!-- Theme Selector -->
+    <div class="flex justify-center mt-6">
+      <lib-theme-selector 
+        [currentTheme]="currentTheme" 
+        (themeChange)="onThemeChange($event)">
+      </lib-theme-selector>
+    </div>
   </div>
 
   <lib-separator></lib-separator>
@@ -20,6 +28,169 @@
         <lib-button variant="secondary">Secondary</lib-button>
         <lib-button variant="outline">Outline</lib-button>
         <lib-badge variant="default">New Badge</lib-badge>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color Palette Showcase -->
+  <section class="space-y-6">
+    <h2 class="text-2xl font-semibold">🎨 Complete Color Palette (15+ Colors)</h2>
+    
+    <!-- Button Color Variants -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Button Variants</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        <lib-button variant="default">Default</lib-button>
+        <lib-button variant="success">Success</lib-button>
+        <lib-button variant="warning">Warning</lib-button>
+        <lib-button variant="info">Info</lib-button>
+        <lib-button variant="purple">Purple</lib-button>
+        <lib-button variant="pink">Pink</lib-button>
+        <lib-button variant="orange">Orange</lib-button>
+        <lib-button variant="teal">Teal</lib-button>
+        <lib-button variant="indigo">Indigo</lib-button>
+        <lib-button variant="cyan">Cyan</lib-button>
+        <lib-button variant="rose">Rose</lib-button>
+        <lib-button variant="emerald">Emerald</lib-button>
+        <lib-button variant="amber">Amber</lib-button>
+        <lib-button variant="lime">Lime</lib-button>
+        <lib-button variant="violet">Violet</lib-button>
+        <lib-button variant="sky">Sky</lib-button>
+      </div>
+      
+      <!-- Outline Button Variants -->
+      <h4 class="text-md font-medium mt-4">Outline Variants</h4>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        <lib-button variant="outline">Default</lib-button>
+        <lib-button variant="outline-success">Success</lib-button>
+        <lib-button variant="outline-warning">Warning</lib-button>
+        <lib-button variant="outline-info">Info</lib-button>
+        <lib-button variant="outline-purple">Purple</lib-button>
+        <lib-button variant="outline-pink">Pink</lib-button>
+        <lib-button variant="outline-orange">Orange</lib-button>
+        <lib-button variant="outline-teal">Teal</lib-button>
+        <lib-button variant="outline-indigo">Indigo</lib-button>
+        <lib-button variant="outline-cyan">Cyan</lib-button>
+        <lib-button variant="outline-rose">Rose</lib-button>
+        <lib-button variant="outline-emerald">Emerald</lib-button>
+        <lib-button variant="outline-amber">Amber</lib-button>
+        <lib-button variant="outline-lime">Lime</lib-button>
+        <lib-button variant="outline-violet">Violet</lib-button>
+        <lib-button variant="outline-sky">Sky</lib-button>
+      </div>
+    </div>
+
+    <!-- Badge Color Variants -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Badge Variants</h3>
+      <div class="flex flex-wrap gap-2">
+        <lib-badge variant="default">Default</lib-badge>
+        <lib-badge variant="success">Success</lib-badge>
+        <lib-badge variant="warning">Warning</lib-badge>
+        <lib-badge variant="info">Info</lib-badge>
+        <lib-badge variant="purple">Purple</lib-badge>
+        <lib-badge variant="pink">Pink</lib-badge>
+        <lib-badge variant="orange">Orange</lib-badge>
+        <lib-badge variant="teal">Teal</lib-badge>
+        <lib-badge variant="indigo">Indigo</lib-badge>
+        <lib-badge variant="cyan">Cyan</lib-badge>
+        <lib-badge variant="rose">Rose</lib-badge>
+        <lib-badge variant="emerald">Emerald</lib-badge>
+        <lib-badge variant="amber">Amber</lib-badge>
+        <lib-badge variant="lime">Lime</lib-badge>
+        <lib-badge variant="violet">Violet</lib-badge>
+        <lib-badge variant="sky">Sky</lib-badge>
+      </div>
+      
+      <!-- Outline Badge Variants -->
+      <h4 class="text-md font-medium">Outline Badge Variants</h4>
+      <div class="flex flex-wrap gap-2">
+        <lib-badge variant="outline">Default</lib-badge>
+        <lib-badge variant="outline-success">Success</lib-badge>
+        <lib-badge variant="outline-warning">Warning</lib-badge>
+        <lib-badge variant="outline-info">Info</lib-badge>
+        <lib-badge variant="outline-purple">Purple</lib-badge>
+        <lib-badge variant="outline-pink">Pink</lib-badge>
+        <lib-badge variant="outline-orange">Orange</lib-badge>
+        <lib-badge variant="outline-teal">Teal</lib-badge>
+        <lib-badge variant="outline-indigo">Indigo</lib-badge>
+        <lib-badge variant="outline-cyan">Cyan</lib-badge>
+        <lib-badge variant="outline-rose">Rose</lib-badge>
+        <lib-badge variant="outline-emerald">Emerald</lib-badge>
+        <lib-badge variant="outline-amber">Amber</lib-badge>
+        <lib-badge variant="outline-lime">Lime</lib-badge>
+        <lib-badge variant="outline-violet">Violet</lib-badge>
+        <lib-badge variant="outline-sky">Sky</lib-badge>
+      </div>
+    </div>
+
+    <!-- Alert Color Variants -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Alert Variants</h3>
+      <div class="grid gap-3">
+        <lib-alert variant="default">
+          <h4 class="font-medium">Default Alert</h4>
+          <p class="text-sm">This is a default alert with standard styling.</p>
+        </lib-alert>
+        <lib-alert variant="success">
+          <h4 class="font-medium">Success Alert</h4>
+          <p class="text-sm">This indicates a successful operation or positive message.</p>
+        </lib-alert>
+        <lib-alert variant="warning">
+          <h4 class="font-medium">Warning Alert</h4>
+          <p class="text-sm">This indicates caution or important information to note.</p>
+        </lib-alert>
+        <lib-alert variant="info">
+          <h4 class="font-medium">Info Alert</h4>
+          <p class="text-sm">This provides additional informational context.</p>
+        </lib-alert>
+        <lib-alert variant="purple">
+          <h4 class="font-medium">Purple Alert</h4>
+          <p class="text-sm">This is a purple-themed alert for creative messaging.</p>
+        </lib-alert>
+        <lib-alert variant="orange">
+          <h4 class="font-medium">Orange Alert</h4>
+          <p class="text-sm">This is an orange-themed alert for energetic messaging.</p>
+        </lib-alert>
+        <lib-alert variant="teal">
+          <h4 class="font-medium">Teal Alert</h4>
+          <p class="text-sm">This is a teal-themed alert for calm, professional messaging.</p>
+        </lib-alert>
+      </div>
+    </div>
+
+    <!-- Progress Color Variants -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Progress Bar Variants</h3>
+      <div class="space-y-3 max-w-md">
+        <div class="space-y-1">
+          <label class="text-sm font-medium">Default (75%)</label>
+          <lib-progress [value]="75" variant="default"></lib-progress>
+        </div>
+        <div class="space-y-1">
+          <label class="text-sm font-medium">Success (90%)</label>
+          <lib-progress [value]="90" variant="success"></lib-progress>
+        </div>
+        <div class="space-y-1">
+          <label class="text-sm font-medium">Warning (60%)</label>
+          <lib-progress [value]="60" variant="warning"></lib-progress>
+        </div>
+        <div class="space-y-1">
+          <label class="text-sm font-medium">Info (45%)</label>
+          <lib-progress [value]="45" variant="info"></lib-progress>
+        </div>
+        <div class="space-y-1">
+          <label class="text-sm font-medium">Purple (80%)</label>
+          <lib-progress [value]="80" variant="purple"></lib-progress>
+        </div>
+        <div class="space-y-1">
+          <label class="text-sm font-medium">Orange (55%)</label>
+          <lib-progress [value]="55" variant="orange"></lib-progress>
+        </div>
+        <div class="space-y-1">
+          <label class="text-sm font-medium">Teal (85%)</label>
+          <lib-progress [value]="85" variant="teal"></lib-progress>
+        </div>
       </div>
     </div>
   </section>
