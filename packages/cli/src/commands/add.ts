@@ -232,6 +232,7 @@ export async function addCommand(componentNames: string | string[], options: { f
         // Check if component already exists
         const componentExists = await fs.pathExists(path.join(componentDir, component.files[0]));
         if (componentExists && !options.force && !options.all) {
+          spinner.stop();
           const { overwrite } = await inquirer.prompt([
             {
               type: 'confirm',
@@ -240,6 +241,7 @@ export async function addCommand(componentNames: string | string[], options: { f
               default: false
             }
           ]);
+          spinner.start(`Adding ${componentsToAdd.length} component(s)...`);
           
           if (!overwrite) {
             spinner.text = `Skipping ${componentName}...`;
@@ -255,7 +257,15 @@ export async function addCommand(componentNames: string | string[], options: { f
         for (const file of component.files) {
           try {
             const response = await axios.get(`${baseUrl}/${componentName}/${file}`);
-            await fs.writeFile(path.join(componentDir, file), response.data);
+            let fileContent = response.data;
+            
+            // Fix import paths for cn utility
+            fileContent = fileContent.replace(
+              /import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g,
+              "import { cn } from '../../utils/cn';"
+            );
+            
+            await fs.writeFile(path.join(componentDir, file), fileContent);
           } catch (error) {
             console.warn(chalk.yellow(`Warning: Could not download ${file} for ${componentName}`));
           }

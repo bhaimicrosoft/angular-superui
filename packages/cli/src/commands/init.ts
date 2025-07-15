@@ -27,6 +27,7 @@ export async function initCommand() {
     let shouldInstallPackage = true;
     
     if (hasAngularSuperUI) {
+      spinner.stop();
       const { reinstall } = await inquirer.prompt([
         {
           type: 'confirm',
@@ -35,6 +36,7 @@ export async function initCommand() {
           default: false
         }
       ]);
+      spinner.start('Initializing Angular SuperUI...');
       shouldInstallPackage = reinstall;
     }
 
@@ -155,6 +157,32 @@ export default config;
 `;
 
     await fs.writeFile('./tailwind.config.ts', tailwindConfig);
+
+    // Update tsconfig.json with path aliases
+    try {
+      const tsconfigPath = './tsconfig.json';
+      if (await fs.pathExists(tsconfigPath)) {
+        const tsconfig = await fs.readJson(tsconfigPath);
+        
+        // Ensure compilerOptions exists
+        if (!tsconfig.compilerOptions) {
+          tsconfig.compilerOptions = {};
+        }
+        
+        // Add baseUrl and paths
+        tsconfig.compilerOptions.baseUrl = "./src";
+        tsconfig.compilerOptions.paths = {
+          "@utils/*": ["lib/utils/*"],
+          "@components/*": ["lib/components/*"],
+          ...(tsconfig.compilerOptions.paths || {})
+        };
+        
+        await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 });
+        spinner.text = 'Updated tsconfig.json with path aliases...';
+      }
+    } catch (error) {
+      console.warn(chalk.yellow('Warning: Could not update tsconfig.json'));
+    }
 
     // Create or update styles.scss/styles.css
     const globalStyles = `@tailwind base;

@@ -11,12 +11,12 @@ const program = new Command();
 program
   .name('angular-superui')
   .description('CLI tool for Angular SuperUI components')
-  .version('0.4.3');
+  .version('0.4.4');
 
 // ASCII Art Banner
 console.log(chalk.cyan(`
 ╔═══════════════════════════════════════╗
-║       Angular SuperUI CLI v0.4.3     ║
+║       Angular SuperUI CLI v0.4.4     ║
 ║    Selective Component Installation   ║
 ╚═══════════════════════════════════════╝
 `));
