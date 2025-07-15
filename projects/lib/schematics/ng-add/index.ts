@@ -95,7 +95,7 @@ function setupTailwindCSS(options: Schema): Rule {
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
-    "./node_modules/@bhaimicrosoft/angular-superui/**/*.{html,js}"
+    "./node_modules/angular-superui/**/*.{html,js}"
   ],
   theme: {
     extend: {
@@ -246,7 +246,7 @@ function addModuleImports(options: Schema): Rule {
     context.logger.info('');
     context.logger.info('Next steps:');
     context.logger.info('1. Import components in your modules or standalone components:');
-    context.logger.info('   import { Alert, Button, Input } from "@bhaimicrosoft/angular-superui";');
+    context.logger.info('   import { Alert, Button, Input } from "angular-superui";');
     context.logger.info('');
     context.logger.info('2. Use the components in your templates:');
     context.logger.info('   <lib-button variant="primary">Click me</lib-button>');

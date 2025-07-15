@@ -5,7 +5,7 @@ A modern Angular UI component library built with Tailwind CSS and TypeScript.
 ## 🚀 Installation
 
 ```bash
-npm install @bhaimicrosoft/angular-superui
+npm install angular-superui
 ```
 
 ## 📦 Peer Dependencies
@@ -21,7 +21,7 @@ npm install @angular/common @angular/core class-variance-authority clsx tailwind
 1. **Import the components** in your Angular module or standalone component:
 
 ```typescript
-import { Alert, Button, Input } from '@bhaimicrosoft/angular-superui';
+import { Alert, Button, Input } from 'angular-superui';
 
 @Component({
   standalone: true,
