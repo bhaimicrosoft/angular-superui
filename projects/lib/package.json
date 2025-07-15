@@ -1,6 +1,6 @@
 {
   "name": "angular-superui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A modern Angular UI component library with Tailwind CSS",
   "keywords": ["angular", "ui", "components", "tailwind", "typescript"],
   "author": "Indranil Mukherjee <bhaikaju@gmail.com>",

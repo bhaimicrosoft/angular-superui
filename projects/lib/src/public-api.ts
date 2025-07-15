@@ -12,10 +12,22 @@ export * from './lib/textarea/textarea';
 export * from './lib/label/label';
 export * from './lib/checkbox/checkbox';
 export * from './lib/switch/switch';
+export * from './lib/select/select';
+export * from './lib/radio-group/radio-group';
+export * from './lib/toggle/toggle';
+export * from './lib/slider/slider';
 
 // Layout Components
 export * from './lib/card/card';
 export * from './lib/separator/separator';
+export * from './lib/tabs/tabs';
+export * from './lib/accordion/accordion';
+export * from './lib/table/table';
+
+// Overlay Components
+export * from './lib/dialog/dialog';
+export * from './lib/tooltip/tooltip';
+export * from './lib/toast/toast';
 
 // Feedback Components
 export * from './lib/alert/alert';

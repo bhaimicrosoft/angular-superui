@@ -9,11 +9,15 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-primary text-primary-foreground hover:bg-primary/90',
         destructive:
-          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+          'bg-destructive text-destructive-foreground hover:bg-red-600',
         outline:
           'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
         secondary:
-          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+          'bg-secondary text-secondary-foreground hover:bg-gray-300',
+        success:
+          'bg-green-300 text-green-600 hover:bg-green-500 hover:text-green-800',
+          warning:
+          'bg-yellow-300 text-yellow-600 hover:bg-yellow-500 hover:text-yellow-800',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
       },
@@ -35,7 +39,7 @@ const buttonVariants = cva(
   selector: 'lib-button',
   standalone: true,
   imports: [],
-  templateUrl: './button.html'
+  templateUrl: './button.html',
 })
 export class Button {
   @Input() class = '';
@@ -43,6 +47,9 @@ export class Button {
   @Input() size: VariantProps<typeof buttonVariants>['size'] = 'default';
 
   public get buttonClass(): string {
-    return cn(buttonVariants({ variant: this.variant, size: this.size }), this.class);
+    return cn(
+      buttonVariants({ variant: this.variant, size: this.size }),
+      this.class
+    );
   }
 }

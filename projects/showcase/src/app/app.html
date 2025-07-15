@@ -1,4 +1,267 @@
-<lib-alert variant="destructive">
-  Your alert is working
-</lib-alert>
-<lib-button>Click Me</lib-button>
+<div class="p-8 space-y-8 max-w-6xl mx-auto">
+  <div class="text-center space-y-4">
+    <h1 class="text-4xl font-bold">Angular SuperUI Showcase</h1>
+    <p class="text-muted-foreground">A comprehensive collection of 25+ beautiful, accessible components built with Tailwind CSS</p>
+  </div>
+
+  <lib-separator></lib-separator>
+
+  <!-- Basic Components -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold">Basic Components</h2>
+    <div class="space-y-4">
+      <lib-alert variant="destructive">
+        <h4 class="font-medium">Alert Component</h4>
+        <p class="text-sm">This is a destructive alert message.</p>
+      </lib-alert>
+
+      <div class="flex flex-wrap gap-4">
+        <lib-button variant="destructive">Destructive</lib-button>
+        <lib-button variant="secondary">Secondary</lib-button>
+        <lib-button variant="outline">Outline</lib-button>
+        <lib-badge variant="default">New Badge</lib-badge>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Components -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold">Form Components</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Input -->
+      <div class="space-y-2">
+        <lib-label>Input Field</lib-label>
+        <lib-input
+          type="text"
+          placeholder="Enter your text..."
+          class="w-full"
+        />
+      </div>
+
+      <!-- Textarea -->
+      <div class="space-y-2">
+        <lib-label>Textarea</lib-label>
+        <lib-textarea
+          placeholder="Enter your message..."
+          [content]="'Sample content'"
+          class="w-full"
+        />
+      </div>
+
+      <!-- Select -->
+      <div class="space-y-2">
+        <lib-label>Select Dropdown</lib-label>
+        <lib-select
+          [options]="selectOptions"
+          placeholder="Choose an option..."
+          class="w-full"
+        />
+      </div>
+
+      <!-- Radio Group -->
+      <div class="space-y-2">
+        <lib-label>Radio Group</lib-label>
+        <lib-radio-group
+          [options]="radioOptions"
+          value="option1"
+          class="space-y-2"
+        />
+      </div>
+
+      <!-- Checkbox & Switch -->
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <lib-checkbox id="terms" />
+          <lib-label htmlFor="terms">Accept terms</lib-label>
+        </div>
+        <div class="flex items-center space-x-2">
+          <lib-switch id="notifications" />
+          <lib-label htmlFor="notifications">Enable notifications</lib-label>
+        </div>
+      </div>
+
+      <!-- Toggle & Slider -->
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <lib-label>Toggle Button</lib-label>
+          <lib-toggle>Toggle Me</lib-toggle>
+        </div>
+        <div class="space-y-2">
+          <lib-label>Slider (0-100)</lib-label>
+          <lib-slider [min]="0" [max]="100" [value]="50" class="w-full" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layout Components -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold">Layout Components</h2>
+    
+    <!-- Tabs -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Tabs</h3>
+      <lib-tabs value="tab1">
+        <lib-tabs-list>
+          <lib-tabs-trigger value="tab1" [isActive]="true">Account</lib-tabs-trigger>
+          <lib-tabs-trigger value="tab2">Password</lib-tabs-trigger>
+          <lib-tabs-trigger value="tab3">Settings</lib-tabs-trigger>
+        </lib-tabs-list>
+        <lib-tabs-content value="tab1" [isActive]="true">
+          <p class="mt-4">Manage your account settings and preferences.</p>
+        </lib-tabs-content>
+      </lib-tabs>
+    </div>
+
+    <!-- Card -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Card Component</h3>
+      <lib-card class="w-96">
+        <lib-card-header>
+          <lib-card-title>Card Title</lib-card-title>
+          <lib-card-description>This is a card description.</lib-card-description>
+        </lib-card-header>
+        <lib-card-content>
+          <p>Card content goes here. You can put any content inside this area.</p>
+        </lib-card-content>
+        <lib-card-footer>
+          <lib-button>Action</lib-button>
+        </lib-card-footer>
+      </lib-card>
+    </div>
+
+    <!-- Accordion -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Accordion</h3>
+      <lib-accordion value="item-1" class="w-96">
+        <lib-accordion-item value="item-1">
+          <lib-accordion-trigger [isOpen]="true">Is it accessible?</lib-accordion-trigger>
+          <lib-accordion-content [isOpen]="true">
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </lib-accordion-content>
+        </lib-accordion-item>
+        <lib-accordion-item value="item-2">
+          <lib-accordion-trigger>Is it styled?</lib-accordion-trigger>
+          <lib-accordion-content>
+            Yes. It comes with default styles that match the other components.
+          </lib-accordion-content>
+        </lib-accordion-item>
+      </lib-accordion>
+    </div>
+  </section>
+
+  <!-- Display Components -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold">Display Components</h2>
+    
+    <!-- Avatar -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Avatars</h3>
+      <div class="flex space-x-4">
+        <lib-avatar size="sm" [src]="'https://github.com/shadcn.png'"></lib-avatar>
+        <lib-avatar size="default" [src]="'https://github.com/shadcn.png'"></lib-avatar>
+        <lib-avatar size="lg" [src]="'https://github.com/shadcn.png'"></lib-avatar>
+      </div>
+    </div>
+
+    <!-- Progress & Skeleton -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Progress & Loading</h3>
+      <div class="space-y-4 w-96">
+        <lib-progress [value]="75"></lib-progress>
+        <div class="space-y-2">
+          <lib-skeleton class="h-4 w-3/4"></lib-skeleton>
+          <lib-skeleton class="h-4 w-1/2"></lib-skeleton>
+          <lib-skeleton class="h-4 w-5/6"></lib-skeleton>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Table</h3>
+      <lib-table class="w-full">
+        <lib-table-caption>A list of recent invoices.</lib-table-caption>
+        <lib-table-header>
+          <lib-table-row>
+            <lib-table-head>Invoice</lib-table-head>
+            <lib-table-head>Status</lib-table-head>
+            <lib-table-head>Method</lib-table-head>
+            <lib-table-head class="text-right">Amount</lib-table-head>
+          </lib-table-row>
+        </lib-table-header>
+        <lib-table-body>
+          <lib-table-row>
+            <lib-table-cell class="font-medium">INV001</lib-table-cell>
+            <lib-table-cell>Paid</lib-table-cell>
+            <lib-table-cell>Credit Card</lib-table-cell>
+            <lib-table-cell class="text-right">$250.00</lib-table-cell>
+          </lib-table-row>
+          <lib-table-row>
+            <lib-table-cell class="font-medium">INV002</lib-table-cell>
+            <lib-table-cell>Pending</lib-table-cell>
+            <lib-table-cell>PayPal</lib-table-cell>
+            <lib-table-cell class="text-right">$150.00</lib-table-cell>
+          </lib-table-row>
+        </lib-table-body>
+      </lib-table>
+    </div>
+  </section>
+
+  <!-- Interactive Components -->
+  <section class="space-y-4">
+    <h2 class="text-2xl font-semibold">Interactive Components</h2>
+    
+    <!-- Tooltip -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Tooltip</h3>
+      <lib-tooltip content="This is a helpful tooltip" placement="top">
+        <lib-button variant="outline">Hover me</lib-button>
+      </lib-tooltip>
+    </div>
+
+    <!-- Dialog Trigger -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Dialog</h3>
+      <lib-button (click)="openDialog = true">Open Dialog</lib-button>
+      
+      <lib-dialog [open]="openDialog" (openChange)="openDialog = $event">
+        <lib-dialog-content>
+          <lib-dialog-header>
+            <lib-dialog-title>Edit Profile</lib-dialog-title>
+            <lib-dialog-description>
+              Make changes to your profile here. Click save when you're done.
+            </lib-dialog-description>
+          </lib-dialog-header>
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <lib-label>Name</lib-label>
+              <lib-input placeholder="Enter your name" />
+            </div>
+            <div class="space-y-2">
+              <lib-label>Email</lib-label>
+              <lib-input type="email" placeholder="Enter your email" />
+            </div>
+          </div>
+          <lib-dialog-footer>
+            <lib-button variant="outline" (click)="openDialog = false">Cancel</lib-button>
+            <lib-button (click)="openDialog = false">Save changes</lib-button>
+          </lib-dialog-footer>
+        </lib-dialog-content>
+      </lib-dialog>
+    </div>
+
+    <!-- Toast -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium">Toast Notifications</h3>
+      <div class="flex gap-2">
+        <lib-button (click)="showToast('success')">Success Toast</lib-button>
+        <lib-button (click)="showToast('error')" variant="destructive">Error Toast</lib-button>
+        <lib-button (click)="showToast('warning')" variant="outline">Warning Toast</lib-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Container -->
+  <lib-toast-container></lib-toast-container>
+</div>
