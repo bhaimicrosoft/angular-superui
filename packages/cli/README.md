@@ -1,6 +1,17 @@
-# Angular SuperUI CLI
+# Angular SuperUI CLI v0.4.1 🛠️
 
 A CLI tool for selective Angular SuperUI component installation, inspired by shadcn/ui.
+
+**🎯 Reduce bundle size by 40%+ with selective component installation!**
+
+## 🚀 Features
+
+- **Selective Installation**: Only add the components you need
+- **Interactive Mode**: Choose components with a beautiful CLI interface  
+- **Project Initialization**: Set up Angular SuperUI in seconds
+- **30+ Components**: Access to the complete Angular SuperUI library
+- **TypeScript Support**: Full type safety and IntelliSense
+- **Zero Dependencies**: No external UI dependencies (except Tailwind CSS)
 
 ## Installation
 

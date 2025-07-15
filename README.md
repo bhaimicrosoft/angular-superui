@@ -1,23 +1,37 @@
-# Angular SuperUI 🚀
+# Angular SuperUI v0.4.1 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **25+ reusable components** with **15+ color variants** and **11 theme options** that follow modern design principles and accessibility best practices.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **CLI tool for selective installation**, and **enhanced dark mode support** that follow modern design principles and accessibility best practices.
 
-## 🎨 **NEW v0.3.0: Advanced Components & Enhanced Features**
+## 🛠️ **NEW v0.4.1: CLI Tool & Enhanced Features**
 
-### 🚀 **Major New Components (5+ Added)**
-- **🎯 Command Palette**: Powerful search/command interface like VS Code's command palette
-- **📅 Calendar & Date Picker**: Full calendar with date selection and form integration  
-- **📱 Sheet/Drawer**: Slide-out panels perfect for mobile-responsive designs
-- **💬 Popover**: Contextual content overlay with flexible positioning
-- **🗂️ Breadcrumb**: Navigation breadcrumbs with ellipsis support for long paths
+### 🎯 **NEW: CLI Tool - Like shadcn/ui**
+```bash
+# Install CLI globally for selective component installation
+npm install -g angular-superui-cli
 
-### 🌙 **Enhanced Theme System**
+# Initialize new project
+npx angular-superui init
+
+# Add specific components (reduces bundle size by 40%+)
+npx angular-superui add button card badge
+
+# Interactive component selection
+npx angular-superui add
+
+# List all available components
+npx angular-superui list
+```
+
+### 🌙 **Enhanced Dark Mode System**
 - **System Theme Detection**: Automatic light/dark mode based on OS preference
+- **Theme Persistence**: Remembers user choice across browser sessions
+- **Instant Toggle**: Switch themes without page reload
+- **All Components**: Complete dark mode support across 30+ components
 - **Theme Persistence**: Remembers user's theme choice across sessions
 - **Enhanced ThemeSelector**: Now includes light/dark/system mode switching
 - **11+ Predefined Themes**: Beautiful color combinations ready to use

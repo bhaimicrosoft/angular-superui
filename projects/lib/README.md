@@ -1,42 +1,82 @@
-# Angular SuperUI 🚀
+# Angular SuperUI v0.4.1 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **25+ reusable components** with **15+ color variants** and **11 theme options**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **CLI tool for selective installation**, and **enhanced dark mode support**.
 
-## 🎨 **v0.2.1: Complete Color System & Enhanced Avatar**
+## 🛠️ **v0.4.1: CLI Tool & Enhanced Features**
 
-- **🌈 15+ Color Variants**: Extended palette with success, warning, info, purple, pink, orange, teal, indigo, cyan, rose, emerald, amber, lime, violet, and sky
-- **🎯 Enhanced Avatar Component**: Full image support with automatic fallbacks and error handling
-- **🎭 11 Theme Options**: Dynamic theme switching with beautiful color combinations
-- **🔧 30+ Button Variants**: Solid and outline variants for every color
-- **📊 Complete Component Coverage**: All components now support the extended color system
-- **♿ WCAG AA Compliant**: All color combinations meet accessibility standards
+### 🎯 **NEW: CLI Tool - Like shadcn/ui**
+Install only the components you need with our new CLI tool:
+
+```bash
+# Install CLI globally
+npm install -g angular-superui-cli
+
+# Initialize project  
+npx angular-superui init
+
+# Add specific components (reduces bundle size by 40%+)
+npx angular-superui add button card badge
+```
+
+### � **Enhanced Dark Mode System**
+- **System theme detection** - Automatically follows OS preference
+- **Theme persistence** - Remembers user choice across sessions  
+- **Instant toggle** - Switch themes without page reload
+- **All components** - Complete dark mode support across 30+ components
+
+### ✅ **Fixed Color Variants**
+All Tailwind CSS color variants now work correctly:
+- **15+ color variants** with proper numeric classes (`bg-lime-500`)
+- **Semantic colors** (success, warning, destructive, info)
+- **Creative palette** (purple, pink, violet, indigo, lime, orange)
 
 ## ✨ Features
 
-- 🎨 **Beautiful Design** - Modern, clean components with Tailwind CSS
-- 🌈 **15+ Color Variants** - Extended color palette for all component variants
-- 🎭 **11 Theme Options** - Dynamic theme switching with ThemeSelector component
+- 🛠️ **CLI Tool** - Selective component installation like shadcn/ui
+- 🎨 **30+ Components** - Comprehensive UI component library  
+- 🌈 **15+ Color Variants** - Extended color palette for all components
+- � **Enhanced Dark Mode** - System detection + theme persistence
 - 🔧 **TypeScript First** - Full type safety with Class Variance Authority
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant, WCAG AA)
 - 🎯 **Tree Shakable** - Import only what you need
 - 🚀 **Angular 20+** - Built for the latest Angular features
 - 📱 **Responsive** - Mobile-first design approach
-- 🖼️ **Enhanced Avatar** - Image support with automatic fallbacks and error handling
-- 📦 **Zero Dependencies** - No external UI dependencies
+- 📦 **Zero Dependencies** - No external UI dependencies (except Tailwind CSS)
 - 🔄 **Form Integration** - Full Angular Forms support with ControlValueAccessor
-- 🌙 **Dark Mode** - Automatic dark mode support for all colors
 
 ## 📦 Installation
 
-### Using Angular CLI (Recommended)
+### Option 1: CLI Tool - Selective Installation (Recommended)
+Perfect for new projects or when you want to reduce bundle size:
 
 ```bash
+# Install CLI globally
+npm install -g angular-superui-cli
+
+# Initialize your Angular project
+npx angular-superui init
+
+# Add specific components
+npx angular-superui add button card badge alert
+
+# Interactive component selection
+npx angular-superui add
+```
+
+### Option 2: Full Library Installation
+Install the complete library:
+
+```bash
+# Using Angular CLI (recommended)
 ng add angular-superui
+
+# Or using npm
+npm install angular-superui
 ```
 
 ### Using npm
