@@ -3,14 +3,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
 const cardVariants = cva(
-  'rounded-lg border bg-card text-card-foreground shadow-sm',
+  'rounded-lg border bg-white text-gray-900 shadow-sm',
   {
     variants: {
       variant: {
-        default: 'bg-background border-border',
-        outlined: 'border-2 border-border bg-background',
-        elevated: 'bg-background border-border shadow-lg',
-        filled: 'bg-muted border-transparent',
+        default: 'bg-white border-gray-200',
+        outlined: 'border-2 border-gray-200 bg-white',
+        elevated: 'bg-white border-gray-200 shadow-lg',
+        filled: 'bg-gray-100 border-transparent',
       },
     },
     defaultVariants: {
@@ -23,7 +23,7 @@ const cardVariants = cva(
   selector: 'lib-card',
   standalone: true,
   imports: [],
-  templateUrl: './card.html'
+  template: `<div [class]="cardClass"><ng-content></ng-content></div>`
 })
 export class Card {
   @Input() class = '';
@@ -72,7 +72,7 @@ export class CardDescription {
   @Input() class = '';
 
   public get descriptionClass(): string {
-    return cn('text-sm text-muted-foreground', this.class);
+    return cn('text-sm text-gray-600', this.class);
   }
 }
 

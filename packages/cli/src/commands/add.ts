@@ -24,19 +24,19 @@ export const COMPONENTS = {
     name: 'Alert',
     description: 'Displays a callout for user attention.',
     dependencies: ['cn'],
-    files: ['alert.ts', 'alert.html']
+    files: ['alert.ts']
   },
   'card': {
     name: 'Card',
     description: 'Displays a card with header, content, and footer.',
     dependencies: ['cn'],
-    files: ['card.ts', 'card.html']
+    files: ['card.ts']
   },
   'input': {
     name: 'Input',
     description: 'Displays a form input field.',
     dependencies: ['cn'],
-    files: ['input.component.ts', 'input.component.html']
+    files: ['input.component.ts']
   },
   'progress': {
     name: 'Progress',

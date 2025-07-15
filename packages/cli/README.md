@@ -1,4 +1,6 @@
-# Angular SuperUI CLI v0.4.1 🛠️
+# Angular SuperUI CLI v0.4.2 🛠️
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
 A CLI tool for selective Angular SuperUI component installation, inspired by shadcn/ui.
 

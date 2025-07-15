@@ -1,5 +1,7 @@
 # Angular SuperUI Documentation
 
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
+
 A comprehensive Angular UI component library built with Tailwind CSS and TypeScript. Featuring **25+ beautiful components** that follow modern design principles and accessibility best practices.
 
 ## 🚀 Features

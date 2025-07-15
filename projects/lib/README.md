@@ -1,13 +1,15 @@
-# Angular SuperUI v0.4.1 🚀
+# Angular SuperUI v0.4.2 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
 
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
+
 A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **CLI tool for selective installation**, and **enhanced dark mode support**.
 
-## 🛠️ **v0.4.1: CLI Tool & Enhanced Features**
+## 🛠️ **v0.4.2: CLI Tool & Enhanced Features**
 
 ### 🎯 **NEW: CLI Tool - Like shadcn/ui**
 Install only the components you need with our new CLI tool:

@@ -7,7 +7,7 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-background text-foreground border-border',
+        default: 'bg-gray-50 text-gray-700 border-gray-200',
         destructive: 'border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200',
         success: 'border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200',
         warning: 'border-yellow-200 bg-yellow-50 text-yellow-800 dark:border-yellow-800 dark:bg-yellow-950 dark:text-yellow-200',
@@ -36,7 +36,11 @@ const alertVariants = cva(
   selector: 'lib-alert',
   standalone: true,
   imports: [],
-  templateUrl: './alert.html',
+  template: `
+    <div role="alert" [class]="alertClass">
+      <ng-content></ng-content>
+    </div>
+  `,
   styles: [`
     ::ng-deep .alert-container > svg {
       position: absolute;
@@ -50,18 +54,6 @@ const alertVariants = cva(
     }
     .alert-container svg + div {
       transform: translateY(-3px);
-    }
-    .alert-container.alert-default svg {
-      color: var(--foreground);
-    }
-    .alert-container.alert-destructive svg {
-      color: var(----destructive);
-    }
-    .alert-container.alert-success svg {
-      color: var(--foreground);
-    }
-    .alert-container.alert-warning svg {
-      color: var(--background);
     }
   `]
 })
