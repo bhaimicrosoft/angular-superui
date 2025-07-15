@@ -28,6 +28,8 @@ export * from './lib/table/table';
 export * from './lib/dialog/dialog';
 export * from './lib/tooltip/tooltip';
 export * from './lib/toast/toast';
+export * from './lib/popover/popover';
+export * from './lib/sheet/sheet';
 
 // Feedback Components
 export * from './lib/alert/alert';
@@ -37,6 +39,11 @@ export * from './lib/skeleton/skeleton';
 
 // Display Components
 export * from './lib/avatar/avatar';
+export * from './lib/calendar/calendar';
+
+// Navigation Components
+export * from './lib/breadcrumb/breadcrumb';
+export * from './lib/command/command';
 
 // Utility Components
 export * from './lib/theme-selector/theme-selector';

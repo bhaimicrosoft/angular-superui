@@ -7,8 +7,22 @@
 
 A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **25+ reusable components** with **15+ color variants** and **11 theme options** that follow modern design principles and accessibility best practices.
 
-## 🎨 **NEW v0.2.1: Complete Color System & Theme Support**
+## 🎨 **NEW v0.3.0: Advanced Components & Enhanced Features**
 
+### 🚀 **Major New Components (5+ Added)**
+- **🎯 Command Palette**: Powerful search/command interface like VS Code's command palette
+- **📅 Calendar & Date Picker**: Full calendar with date selection and form integration  
+- **📱 Sheet/Drawer**: Slide-out panels perfect for mobile-responsive designs
+- **💬 Popover**: Contextual content overlay with flexible positioning
+- **🗂️ Breadcrumb**: Navigation breadcrumbs with ellipsis support for long paths
+
+### 🌙 **Enhanced Theme System**
+- **System Theme Detection**: Automatic light/dark mode based on OS preference
+- **Theme Persistence**: Remembers user's theme choice across sessions
+- **Enhanced ThemeSelector**: Now includes light/dark/system mode switching
+- **11+ Predefined Themes**: Beautiful color combinations ready to use
+
+### 📊 **Previous v0.2.1 Features**
 - **🌈 15+ Color Variants**: Extended palette with success, warning, info, purple, pink, orange, teal, indigo, cyan, rose, emerald, amber, lime, violet, and sky
 - **🎯 Enhanced Avatar Component**: Full image support with automatic fallbacks and error handling
 - **🎭 11 Theme Options**: Dynamic theme switching with beautiful color combinations
@@ -30,6 +44,9 @@ A modern, beautiful, and accessible Angular UI component library built with **Ta
 - 📦 **Zero Dependencies** - No external UI dependencies
 - 🔄 **Form Integration** - Full Angular Forms support with ControlValueAccessor
 - 🌙 **Dark Mode** - Automatic dark mode support for all colors
+- 🎯 **Command Palette** - VS Code-style command interface
+- 📅 **Date Picker** - Full calendar integration with form support
+- 📱 **Responsive Panels** - Sheet/drawer components for mobile-first design
 
 ## 📦 Installation
 
@@ -112,22 +129,64 @@ Import components in your Angular component:
 
 ```typescript
 import { Component } from '@angular/core';
-import { Button, Alert, Card, CardHeader, CardTitle, CardContent } from 'angular-superui';
+import { 
+  Button, 
+  Alert, 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardContent,
+  ThemeSelector,
+  Calendar,
+  DatePicker,
+  Command,
+  Breadcrumb
+} from 'angular-superui';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [Button, Alert, Card, CardHeader, CardTitle, CardContent],
+  imports: [
+    Button, 
+    Alert, 
+    Card, 
+    CardHeader, 
+    CardTitle, 
+    CardContent,
+    ThemeSelector,
+    Calendar,
+    DatePicker,
+    Command,
+    Breadcrumb
+  ],
   template: `
+    <!-- Theme Selector -->
+    <lib-theme-selector class="fixed top-4 right-4" />
+    
+    <!-- Breadcrumb Navigation -->
+    <lib-breadcrumb 
+      [items]="breadcrumbItems" 
+      class="mb-6"
+      maxItems="3">
+    </lib-breadcrumb>
+    
+    <!-- Main Content Card -->
     <lib-card class="w-96">
       <lib-card-header>
-        <lib-card-title>Welcome to Angular SuperUI</lib-card-title>
+        <lib-card-title>Welcome to Angular SuperUI v0.3.0</lib-card-title>
       </lib-card-header>
       <lib-card-content>
         <lib-alert variant="success" class="mb-4">
-          <h4 class="font-medium">Success!</h4>
-          <p class="text-sm">Your component library is ready to use.</p>
+          <h4 class="font-medium">New Features Added!</h4>
+          <p class="text-sm">Calendar, Command Palette, Sheet, Popover, and Breadcrumb components.</p>
         </lib-alert>
+        
+        <!-- Date Picker -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Select Date:</label>
+          <lib-date-picker [(ngModel)]="selectedDate" />
+        </div>
+        
         <lib-button variant="default" size="lg">
           Get Started
         </lib-button>
@@ -135,7 +194,14 @@ import { Button, Alert, Card, CardHeader, CardTitle, CardContent } from 'angular
     </lib-card>
   `
 })
-export class ExampleComponent {}
+export class ExampleComponent {
+  selectedDate = new Date();
+  breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Components', href: '/components' },
+    { label: 'Getting Started' }
+  ];
+}
 ```
 
 ## 🎨 Color System & Theming (NEW!)
@@ -238,7 +304,7 @@ import { Avatar } from 'angular-superui';
 
 All Badge, Alert, and Progress components support the same 15+ color variants!
 
-## 🧩 Available Components (25+)
+## 🧩 Available Components (30+)
 
 ### Form Components
 
@@ -272,6 +338,10 @@ All Badge, Alert, and Progress components support the same 15+ color variants!
 - **Tooltip** - Contextual information popups
 - **Toast** - Notification messages with service integration
   - ToastContainer, ToastService
+- **Popover** - Contextual content overlay with flexible positioning
+  - PopoverTrigger, PopoverContent, PopoverSimple
+- **Sheet/Drawer** - Slide-out panels for mobile-responsive designs
+  - SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetTrigger, SheetClose
 
 ### Feedback Components
 
@@ -288,10 +358,21 @@ All Badge, Alert, and Progress components support the same 15+ color variants!
   - Custom fallback text with `fallback` property
   - Error handling for failed image loads
   - Multiple size variants: sm, default, lg, xl
+- **Calendar & Date Picker** - Full calendar with date selection and form integration
+  - Calendar component with month navigation
+  - DatePicker with popover integration
+  - Form support with ControlValueAccessor
+
+### Navigation Components
+
+- **Breadcrumb** - Navigation breadcrumbs with ellipsis support
+  - BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis
+- **Command Palette** - VS Code-style command/search interface
+  - CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut, CommandDialog
 
 ### Utility Components
 
-- **ThemeSelector** - Dynamic theme switching component with 11 beautiful themes
+- **ThemeSelector** - Enhanced theme switching with light/dark/system modes and persistence
 - **Separator** - Visual dividers for content sections
 
 ## 📚 Component Examples

@@ -5,6 +5,49 @@ All notable changes to Angular SuperUI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-07-15
+
+### 🚀 Major Component Expansion - 5 New Component Families
+
+#### New Components Added
+
+##### 🎯 Command Palette
+- **Command** - VS Code-style command interface with search functionality
+- **CommandInput** - Auto-focus search input with keyboard navigation
+- **CommandList** - Organized command results display
+- **CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut, CommandDialog**
+
+##### 📅 Calendar & Date Picker
+- **Calendar** - Full calendar component with month navigation
+- **DatePicker** - Popover-integrated date selection with form support
+- Form integration with `ControlValueAccessor` and two-way binding
+
+##### 📋 Sheet/Drawer Components
+- **Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetTrigger, SheetClose**
+- Support for all slide directions: top, bottom, left, right
+- Backdrop management and click-outside detection
+
+##### 🎈 Popover Components
+- **Popover, PopoverTrigger, PopoverContent, PopoverSimple**
+- Flexible positioning and alignment system
+- Click-outside detection and backdrop management
+
+##### 🍞 Breadcrumb Navigation
+- **Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis**
+- **BreadcrumbComplete** - All-in-one simplified component
+- Automatic ellipsis with `maxItems` support
+
+#### Enhanced Features
+- **ThemeSelector Improvements**: System theme detection, persistent storage, media query watching
+- **Total Components**: 30+ (up from 25+)
+- **Form Integration**: All new components implement `ControlValueAccessor`
+- **Accessibility**: Keyboard navigation, ARIA labels, focus management
+
+#### Technical Improvements
+- Optimized component rendering and change detection
+- Enhanced TypeScript type definitions
+- Improved build stability and export structure
+
 ## [0.2.1] - 2025-07-15
 
 ### 🎨 Added - Color System & Avatar Enhancement

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
@@ -31,46 +32,161 @@ export interface ThemeOption {
   };
 }
 
+export type ThemeMode = 'light' | 'dark' | 'system';
+
 @Component({
   selector: 'lib-theme-selector',
   standalone: true,
   imports: [],
   template: `
-    <div class="flex flex-wrap gap-2">
-      <span class="text-sm font-medium mr-2">Theme:</span>
-      @for (theme of themes; track theme.value) {
-        <button
-          [class]="getButtonClass(theme.value)"
-          (click)="selectTheme(theme.value)"
-          [attr.aria-pressed]="currentTheme === theme.value"
-        >
-          <div class="flex items-center gap-2">
-            <div class="flex gap-1">
-              <div 
-                class="w-3 h-3 rounded-full border border-gray-300"
-                [style.background-color]="theme.colors.primary"
-              ></div>
-              <div 
-                class="w-3 h-3 rounded-full border border-gray-300"
-                [style.background-color]="theme.colors.secondary"
-              ></div>
-              @if (theme.colors.accent) {
-                <div 
-                  class="w-3 h-3 rounded-full border border-gray-300"
-                  [style.background-color]="theme.colors.accent"
-                ></div>
-              }
-            </div>
-            <span>{{ theme.name }}</span>
-          </div>
-        </button>
-      }
+    <div class="flex flex-wrap gap-4 items-center">
+      <!-- Theme Mode Selector (Light/Dark/System) -->
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium">Mode:</span>
+        <div class="flex rounded-lg border p-1">
+          @for (mode of themeModes; track mode.value) {
+            <button
+              [class]="getModeButtonClass(mode.value)"
+              (click)="selectMode(mode.value)"
+              [title]="mode.name"
+            >
+              <div [innerHTML]="mode.icon"></div>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Theme Color Selector -->
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium">Theme:</span>
+        <div class="flex flex-wrap gap-2">
+          @for (theme of themes; track theme.value) {
+            <button
+              [class]="getButtonClass(theme.value)"
+              (click)="selectTheme(theme.value)"
+              [attr.aria-pressed]="currentTheme === theme.value"
+              [title]="theme.name"
+            >
+              <div class="flex items-center gap-2">
+                <div class="flex gap-1">
+                  <div 
+                    class="w-3 h-3 rounded-full border border-gray-300"
+                    [style.background-color]="theme.colors.primary"
+                  ></div>
+                  <div 
+                    class="w-3 h-3 rounded-full border border-gray-300"
+                    [style.background-color]="theme.colors.secondary"
+                  ></div>
+                  @if (theme.colors.accent) {
+                    <div 
+                      class="w-3 h-3 rounded-full border border-gray-300"
+                      [style.background-color]="theme.colors.accent"
+                    ></div>
+                  }
+                </div>
+                <span>{{ theme.name }}</span>
+              </div>
+            </button>
+          }
+        </div>
+      </div>
     </div>
   `
 })
-export class ThemeSelector {
+export class ThemeSelector implements OnInit {
   @Input() currentTheme = 'default';
+  @Input() currentMode: ThemeMode = 'system';
+  @Input() enablePersistence = true;
   @Output() themeChange = new EventEmitter<string>();
+  @Output() modeChange = new EventEmitter<ThemeMode>();
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  themeModes = [
+    {
+      name: 'Light',
+      value: 'light' as ThemeMode,
+      icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+    },
+    {
+      name: 'Dark',
+      value: 'dark' as ThemeMode,
+      icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+    },
+    {
+      name: 'System',
+      value: 'system' as ThemeMode,
+      icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="10" y1="16" x2="14" y2="16"/><line x1="12" y1="12" x2="12" y2="16"/></svg>'
+    }
+  ];
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadSavedSettings();
+      this.applySystemTheme();
+      this.watchSystemTheme();
+    }
+  }
+
+  private loadSavedSettings() {
+    if (!this.enablePersistence) return;
+    
+    const savedTheme = localStorage.getItem('angular-superui-theme');
+    const savedMode = localStorage.getItem('angular-superui-mode') as ThemeMode;
+    
+    if (savedTheme) {
+      this.currentTheme = savedTheme;
+    }
+    if (savedMode) {
+      this.currentMode = savedMode;
+    }
+  }
+
+  private saveSettings() {
+    if (!this.enablePersistence || !isPlatformBrowser(this.platformId)) return;
+    
+    localStorage.setItem('angular-superui-theme', this.currentTheme);
+    localStorage.setItem('angular-superui-mode', this.currentMode);
+  }
+
+  private applySystemTheme() {
+    if (this.currentMode === 'system' && isPlatformBrowser(this.platformId)) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark', prefersDark);
+    } else if (this.currentMode === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  private watchSystemTheme() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', () => {
+      if (this.currentMode === 'system') {
+        this.applySystemTheme();
+      }
+    });
+  }
+
+  selectMode(mode: ThemeMode) {
+    this.currentMode = mode;
+    this.applySystemTheme();
+    this.saveSettings();
+    this.modeChange.emit(mode);
+  }
+
+  getModeButtonClass(mode: ThemeMode): string {
+    const isSelected = this.currentMode === mode;
+    return cn(
+      'px-3 py-1 text-sm rounded-md transition-colors',
+      isSelected 
+        ? 'bg-primary text-primary-foreground' 
+        : 'hover:bg-muted'
+    );
+  }
 
   themes: ThemeOption[] = [
     {
@@ -132,6 +248,7 @@ export class ThemeSelector {
 
   selectTheme(theme: string) {
     this.currentTheme = theme;
+    this.saveSettings();
     this.themeChange.emit(theme);
   }
 
