@@ -40,11 +40,16 @@ This will:
 # Add a single component
 angular-superui add button
 
-# Add multiple components
+# Add multiple components at once (New in v0.4.3!)
 angular-superui add button card alert
+angular-superui add dialog tooltip popover sheet
+
+# Install ALL components at once (New in v0.4.3!)
+angular-superui add --all
 
 # Force overwrite existing components
 angular-superui add button --force
+angular-superui add --all --force
 ```
 
 ### List available components

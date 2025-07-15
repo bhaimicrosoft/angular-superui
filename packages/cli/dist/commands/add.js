@@ -196,60 +196,97 @@ exports.COMPONENTS = {
         files: ['label.ts']
     }
 };
-async function addCommand(componentName, options) {
-    const spinner = (0, ora_1.default)(`Adding ${componentName} component...`).start();
+async function addCommand(componentNames, options) {
+    let componentsToAdd = [];
+    // Handle --all flag
+    if (options.all) {
+        componentsToAdd = Object.keys(exports.COMPONENTS);
+        console.log(chalk_1.default.cyan('🚀 Installing all Angular SuperUI components...'));
+    }
+    else {
+        // Handle single component or multiple components
+        componentsToAdd = Array.isArray(componentNames) ? componentNames : [componentNames];
+    }
+    const spinner = (0, ora_1.default)(`Adding ${componentsToAdd.length} component(s)...`).start();
     try {
-        // Check if component exists
-        const component = exports.COMPONENTS[componentName];
-        if (!component) {
-            spinner.fail(`Component "${componentName}" not found.`);
-            console.log(chalk_1.default.yellow('\\nAvailable components:'));
-            Object.keys(exports.COMPONENTS).forEach(key => {
-                const comp = exports.COMPONENTS[key];
-                console.log(chalk_1.default.cyan(`  ${key}`) + chalk_1.default.gray(` - ${comp.description}`));
-            });
-            return;
-        }
-        // Create component directory
-        const componentDir = `./src/lib/components/${componentName}`;
-        await fs_extra_1.default.ensureDir(componentDir);
-        // Check if component already exists
-        const componentExists = await fs_extra_1.default.pathExists(path_1.default.join(componentDir, component.files[0]));
-        if (componentExists && !options.force) {
-            const { overwrite } = await inquirer_1.default.prompt([
-                {
-                    type: 'confirm',
-                    name: 'overwrite',
-                    message: `Component "${componentName}" already exists. Overwrite?`,
-                    default: false
-                }
-            ]);
-            if (!overwrite) {
-                spinner.info('Component installation cancelled.');
-                return;
-            }
-        }
-        spinner.text = `Downloading ${componentName} files...`;
-        // Download component files from GitHub repository
-        const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
-        for (const file of component.files) {
+        const results = [];
+        const errors = [];
+        for (const componentName of componentsToAdd) {
             try {
-                const response = await axios_1.default.get(`${baseUrl}/${componentName}/${file}`);
-                await fs_extra_1.default.writeFile(path_1.default.join(componentDir, file), response.data);
+                // Check if component exists
+                const component = exports.COMPONENTS[componentName];
+                if (!component) {
+                    errors.push(`Component "${componentName}" not found.`);
+                    continue;
+                }
+                // Create component directory
+                const componentDir = `./src/lib/components/${componentName}`;
+                await fs_extra_1.default.ensureDir(componentDir);
+                // Check if component already exists
+                const componentExists = await fs_extra_1.default.pathExists(path_1.default.join(componentDir, component.files[0]));
+                if (componentExists && !options.force && !options.all) {
+                    const { overwrite } = await inquirer_1.default.prompt([
+                        {
+                            type: 'confirm',
+                            name: 'overwrite',
+                            message: `Component "${componentName}" already exists. Overwrite?`,
+                            default: false
+                        }
+                    ]);
+                    if (!overwrite) {
+                        spinner.text = `Skipping ${componentName}...`;
+                        continue;
+                    }
+                }
+                spinner.text = `Downloading ${componentName} files...`;
+                // Download component files from GitHub repository
+                const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
+                for (const file of component.files) {
+                    try {
+                        const response = await axios_1.default.get(`${baseUrl}/${componentName}/${file}`);
+                        await fs_extra_1.default.writeFile(path_1.default.join(componentDir, file), response.data);
+                    }
+                    catch (error) {
+                        console.warn(chalk_1.default.yellow(`Warning: Could not download ${file} for ${componentName}`));
+                    }
+                }
+                // Update component exports
+                await updateComponentExports(componentName, component);
+                results.push({ name: componentName, component });
             }
             catch (error) {
-                console.warn(chalk_1.default.yellow(`Warning: Could not download ${file}`));
+                errors.push(`Failed to add ${componentName}: ${error}`);
             }
         }
-        // Update component exports if needed
-        await updateComponentExports(componentName, component);
-        spinner.succeed(`Successfully added ${component.name} component!`);
-        console.log(chalk_1.default.green('\\n✅ Component added successfully!'));
-        console.log(chalk_1.default.cyan('\\nUsage:'));
-        console.log(chalk_1.default.white(`import { ${component.name} } from './lib/components/${componentName}/${component.files[0].replace('.ts', '')}';`));
+        if (results.length > 0) {
+            spinner.succeed(`Successfully added ${results.length} component(s)!`);
+            console.log(chalk_1.default.green('✅ Components added successfully:'));
+            results.forEach(({ name, component }) => {
+                console.log(chalk_1.default.cyan(`  • ${component.name} (${name})`));
+            });
+            console.log(chalk_1.default.cyan('\n📖 Usage examples:'));
+            results.slice(0, 3).forEach(({ name, component }) => {
+                console.log(chalk_1.default.white(`import { ${component.name} } from './lib/components/${name}/${component.files[0].replace('.ts', '')}';`));
+            });
+            if (results.length > 3) {
+                console.log(chalk_1.default.gray(`  ... and ${results.length - 3} more components`));
+            }
+        }
+        if (errors.length > 0) {
+            console.log(chalk_1.default.red('\n❌ Errors encountered:'));
+            errors.forEach(error => console.log(chalk_1.default.red(`  • ${error}`)));
+            if (results.length === 0) {
+                spinner.fail('No components were added');
+                console.log(chalk_1.default.yellow('\nAvailable components:'));
+                Object.keys(exports.COMPONENTS).forEach(key => {
+                    const comp = exports.COMPONENTS[key];
+                    console.log(chalk_1.default.cyan(`  ${key}`) + chalk_1.default.gray(` - ${comp.description}`));
+                });
+            }
+        }
     }
     catch (error) {
-        spinner.fail(`Failed to add ${componentName} component`);
+        spinner.fail(`Failed to add components`);
         console.error(chalk_1.default.red(error));
     }
 }
@@ -262,7 +299,11 @@ async function updateComponentExports(componentName, component) {
         }
         const exportLine = `export * from './${componentName}/${component.files[0].replace('.ts', '')}';`;
         if (!indexContent.includes(exportLine)) {
-            indexContent += `\\n${exportLine}`;
+            // Add proper newline formatting
+            if (indexContent && !indexContent.endsWith('\n')) {
+                indexContent += '\n';
+            }
+            indexContent += `${exportLine}\n`;
             await fs_extra_1.default.writeFile(indexPath, indexContent);
         }
     }

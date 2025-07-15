@@ -198,69 +198,112 @@ export const COMPONENTS = {
   }
 };
 
-export async function addCommand(componentName: string, options: { force?: boolean }) {
-  const spinner = ora(`Adding ${componentName} component...`).start();
+export async function addCommand(componentNames: string | string[], options: { force?: boolean; all?: boolean }) {
+  let componentsToAdd: string[] = [];
+  
+  // Handle --all flag
+  if (options.all) {
+    componentsToAdd = Object.keys(COMPONENTS);
+    console.log(chalk.cyan('🚀 Installing all Angular SuperUI components...'));
+  } else {
+    // Handle single component or multiple components
+    componentsToAdd = Array.isArray(componentNames) ? componentNames : [componentNames];
+  }
+
+  const spinner = ora(`Adding ${componentsToAdd.length} component(s)...`).start();
   
   try {
-    // Check if component exists
-    const component = COMPONENTS[componentName as keyof typeof COMPONENTS];
-    if (!component) {
-      spinner.fail(`Component "${componentName}" not found.`);
-      console.log(chalk.yellow('\\nAvailable components:'));
-      Object.keys(COMPONENTS).forEach(key => {
-        const comp = COMPONENTS[key as keyof typeof COMPONENTS];
-        console.log(chalk.cyan(`  ${key}`) + chalk.gray(` - ${comp.description}`));
-      });
-      return;
-    }
+    const results = [];
+    const errors = [];
 
-    // Create component directory
-    const componentDir = `./src/lib/components/${componentName}`;
-    await fs.ensureDir(componentDir);
-
-    // Check if component already exists
-    const componentExists = await fs.pathExists(path.join(componentDir, component.files[0]));
-    if (componentExists && !options.force) {
-      const { overwrite } = await inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'overwrite',
-          message: `Component "${componentName}" already exists. Overwrite?`,
-          default: false
-        }
-      ]);
-      
-      if (!overwrite) {
-        spinner.info('Component installation cancelled.');
-        return;
-      }
-    }
-
-    spinner.text = `Downloading ${componentName} files...`;
-
-    // Download component files from GitHub repository
-    const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
-    
-    for (const file of component.files) {
+    for (const componentName of componentsToAdd) {
       try {
-        const response = await axios.get(`${baseUrl}/${componentName}/${file}`);
-        await fs.writeFile(path.join(componentDir, file), response.data);
+        // Check if component exists
+        const component = COMPONENTS[componentName as keyof typeof COMPONENTS];
+        if (!component) {
+          errors.push(`Component "${componentName}" not found.`);
+          continue;
+        }
+
+        // Create component directory
+        const componentDir = `./src/lib/components/${componentName}`;
+        await fs.ensureDir(componentDir);
+
+        // Check if component already exists
+        const componentExists = await fs.pathExists(path.join(componentDir, component.files[0]));
+        if (componentExists && !options.force && !options.all) {
+          const { overwrite } = await inquirer.prompt([
+            {
+              type: 'confirm',
+              name: 'overwrite',
+              message: `Component "${componentName}" already exists. Overwrite?`,
+              default: false
+            }
+          ]);
+          
+          if (!overwrite) {
+            spinner.text = `Skipping ${componentName}...`;
+            continue;
+          }
+        }
+
+        spinner.text = `Downloading ${componentName} files...`;
+
+        // Download component files from GitHub repository
+        const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
+        
+        for (const file of component.files) {
+          try {
+            const response = await axios.get(`${baseUrl}/${componentName}/${file}`);
+            await fs.writeFile(path.join(componentDir, file), response.data);
+          } catch (error) {
+            console.warn(chalk.yellow(`Warning: Could not download ${file} for ${componentName}`));
+          }
+        }
+
+        // Update component exports
+        await updateComponentExports(componentName, component);
+        results.push({ name: componentName, component });
+        
       } catch (error) {
-        console.warn(chalk.yellow(`Warning: Could not download ${file}`));
+        errors.push(`Failed to add ${componentName}: ${error}`);
       }
     }
 
-    // Update component exports if needed
-    await updateComponentExports(componentName, component);
+    if (results.length > 0) {
+      spinner.succeed(`Successfully added ${results.length} component(s)!`);
+      
+      console.log(chalk.green('✅ Components added successfully:'));
+      results.forEach(({ name, component }) => {
+        console.log(chalk.cyan(`  • ${component.name} (${name})`));
+      });
+      
+      console.log(chalk.cyan('\n📖 Usage examples:'));
+      results.slice(0, 3).forEach(({ name, component }) => {
+        console.log(chalk.white(`import { ${component.name} } from './lib/components/${name}/${component.files[0].replace('.ts', '')}';`));
+      });
+      
+      if (results.length > 3) {
+        console.log(chalk.gray(`  ... and ${results.length - 3} more components`));
+      }
+    }
 
-    spinner.succeed(`Successfully added ${component.name} component!`);
-    
-    console.log(chalk.green('\\n✅ Component added successfully!'));
-    console.log(chalk.cyan('\\nUsage:'));
-    console.log(chalk.white(`import { ${component.name} } from './lib/components/${componentName}/${component.files[0].replace('.ts', '')}';`));
+    if (errors.length > 0) {
+      console.log(chalk.red('\n❌ Errors encountered:'));
+      errors.forEach(error => console.log(chalk.red(`  • ${error}`)));
+      
+      if (results.length === 0) {
+        spinner.fail('No components were added');
+        console.log(chalk.yellow('\nAvailable components:'));
+        Object.keys(COMPONENTS).forEach(key => {
+          const comp = COMPONENTS[key as keyof typeof COMPONENTS];
+          console.log(chalk.cyan(`  ${key}`) + chalk.gray(` - ${comp.description}`));
+        });
+      }
+    }
     
   } catch (error) {
-    spinner.fail(`Failed to add ${componentName} component`);
+    spinner.fail(`Failed to add components`);
     console.error(chalk.red(error));
   }
 }
@@ -277,7 +320,11 @@ async function updateComponentExports(componentName: string, component: any) {
     const exportLine = `export * from './${componentName}/${component.files[0].replace('.ts', '')}';`;
     
     if (!indexContent.includes(exportLine)) {
-      indexContent += `\\n${exportLine}`;
+      // Add proper newline formatting
+      if (indexContent && !indexContent.endsWith('\n')) {
+        indexContent += '\n';
+      }
+      indexContent += `${exportLine}\n`;
       await fs.writeFile(indexPath, indexContent);
     }
   } catch (error) {

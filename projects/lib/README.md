@@ -66,6 +66,12 @@ npx angular-superui init
 # Add specific components
 npx angular-superui add button card badge alert
 
+# Add multiple components at once (New in v0.4.3!)
+npx angular-superui add button alert card dialog
+
+# Install ALL components at once (New in v0.4.3!)
+npx angular-superui add --all
+
 # Interactive component selection
 npx angular-superui add
 ```

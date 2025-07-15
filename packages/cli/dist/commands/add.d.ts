@@ -174,7 +174,8 @@ export declare const COMPONENTS: {
         files: string[];
     };
 };
-export declare function addCommand(componentName: string, options: {
+export declare function addCommand(componentNames: string | string[], options: {
     force?: boolean;
+    all?: boolean;
 }): Promise<void>;
 //# sourceMappingURL=add.d.ts.map

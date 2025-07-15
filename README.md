@@ -90,6 +90,16 @@ angular-superui add button
 angular-superui add calendar
 angular-superui add dialog
 
+# Add multiple components at once (New in v0.4.3!)
+angular-superui add button alert card
+angular-superui add dialog tooltip popover
+
+# Install ALL components at once (New in v0.4.3!)
+angular-superui add --all
+
+# Force overwrite existing components
+angular-superui add button --force
+
 # List all available components
 angular-superui list
 ```

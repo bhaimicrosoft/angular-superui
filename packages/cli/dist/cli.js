@@ -13,11 +13,11 @@ const program = new commander_1.Command();
 program
     .name('angular-superui')
     .description('CLI tool for Angular SuperUI components')
-    .version('0.3.0');
+    .version('0.4.3');
 // ASCII Art Banner
 console.log(chalk_1.default.cyan(`
 ╔═══════════════════════════════════════╗
-║       Angular SuperUI CLI v0.3.0     ║
+║       Angular SuperUI CLI v0.4.3     ║
 ║    Selective Component Installation   ║
 ╚═══════════════════════════════════════╝
 `));
@@ -27,10 +27,26 @@ program
     .description('Initialize Angular SuperUI in your project')
     .action(init_1.initCommand);
 program
-    .command('add <component>')
-    .description('Add a specific component to your project')
-    .option('-f, --force', 'Overwrite existing files')
-    .action(add_1.addCommand);
+    .command('add [components...]')
+    .description('Add one or more components to your project')
+    .option('-f, --force', 'Overwrite existing files without prompting')
+    .option('--all', 'Install all available components')
+    .action((components, options) => {
+    if (options.all) {
+        (0, add_1.addCommand)([], { ...options, all: true });
+    }
+    else if (components && components.length > 0) {
+        (0, add_1.addCommand)(components, options);
+    }
+    else {
+        console.log(chalk_1.default.red('❌ Please specify component name(s) or use --all flag'));
+        console.log(chalk_1.default.cyan('Examples:'));
+        console.log(chalk_1.default.white('  angular-superui add button'));
+        console.log(chalk_1.default.white('  angular-superui add button alert card'));
+        console.log(chalk_1.default.white('  angular-superui add --all'));
+        console.log(chalk_1.default.gray('\nUse "angular-superui list" to see available components'));
+    }
+});
 program
     .command('list')
     .description('List all available components')
