@@ -5,6 +5,56 @@ All notable changes to Angular SuperUI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2025-07-15
+
+### 🎨 Added - Color System & Avatar Enhancement
+
+#### Major Features
+- **15+ Color Variants**: Extended palette (success, warning, info, purple, pink, orange, teal, indigo, cyan, rose, emerald, amber, lime, violet, sky)
+- **30+ Button Variants**: Solid and outline variants for every color
+- **30+ Badge Variants**: Solid and outline variants for every color
+- **Enhanced Avatar Component**: Image source support with automatic fallbacks
+- **ThemeSelector Component**: Dynamic theme switching with 11 beautiful themes
+- **Complete Color System**: CSS custom properties with dark mode support
+
+#### Avatar Component Enhancements
+- `src` property for image URLs
+- `alt` property for accessibility and initials generation
+- `fallback` property for custom fallback text
+- Automatic error handling for failed image loads
+- Modern Angular 18+ control flow syntax (`@if/@else`)
+- Multiple size variants: sm (32px), default (40px), lg (48px), xl (64px)
+
+#### Color System Features
+- CSS custom properties for all colors
+- WCAG AA compliant color combinations
+- Automatic dark mode adaptation
+- Tailwind CSS integration
+- Theme switching capabilities
+
+#### Theme System
+- 11 predefined themes with visual previews
+- Global theme application support
+- ThemeSelector component with color dot previews
+- Event-driven theme change handling
+
+### 📚 Updated
+- Comprehensive README.md with color system documentation
+- Enhanced showcase application with all new features
+- New COLOR_SYSTEM.md documentation guide
+- Package version bumped to 0.2.1
+
+### 🔧 Technical Improvements
+- Extended Tailwind configuration with all color variants
+- Enhanced TypeScript definitions
+- Optimized bundle size despite feature additions
+- Tree-shakable component architecture
+
+### 🔄 Migration
+- 100% backward compatible with existing code
+- All new features are opt-in enhancements
+- No breaking changes in this release
+
 ## [0.2.0] - 2025-01-03
 
 ### Added
