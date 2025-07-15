@@ -1,29 +1,75 @@
-# Installation Guide
+# Installation Guide (v0.5.0)
 
 Complete guide to installing and setting up Angular SuperUI in your project.
 
-## Quick Installation
+## 🚀 **Recommended: CLI Installation (Local Components)**
 
-The fastest way to get started is using our automatic installer:
+The recommended way to get started with Angular SuperUI v0.5.0 is using our CLI for local component installation:
 
 ```bash
-ng add angular-superui
+# Install CLI globally
+npm install -g angular-superui-cli@0.5.0
+
+# Initialize in your Angular project
+angular-superui init
+
+# Add specific components locally
+angular-superui add button card alert
 ```
 
-This command will:
-- ✅ Install the package and peer dependencies
-- ✅ Configure Tailwind CSS automatically
-- ✅ Set up base styles and CSS variables
-- ✅ Add the package to your Tailwind content paths
+**Benefits of CLI Installation:**
+- ✅ **Zero NPM Dependencies** - No angular-superui package required
+- ✅ **Local Components** - Installed directly in `./src/lib/components/`
+- ✅ **50%+ Smaller Bundle** - Only the components you use
+- ✅ **Full Control** - Modify components freely
+- ✅ **TypeScript Path Aliases** - Automatic @components/* setup
 
-## Manual Installation
+## 📦 **Alternative: NPM Package (Deprecated)**
 
-If you prefer to set things up manually, follow these steps:
+> ⚠️ **Note**: NPM package installation is deprecated in v0.5.0. Use CLI for better performance and control.
 
-### Step 1: Install the Package
+### Automatic Installation (Deprecated)
 
 ```bash
-npm install angular-superui
+ng add angular-superui@0.5.0
+```
+
+### Manual Installation (Deprecated)
+
+```bash
+npm install angular-superui@0.5.0
+```
+
+## CLI Installation Details
+
+### What `angular-superui init` does:
+
+1. **Creates Local Structure**:
+   - `./src/lib/components/` - Component installation directory
+   - `./src/lib/utils/` - Utility functions (cn, etc.)
+
+2. **Installs Dependencies**:
+   - `class-variance-authority`
+   - `clsx` 
+   - `tailwind-merge`
+   - `tailwindcss` (if not present)
+
+3. **Configures TypeScript**:
+   - Adds path aliases: `@components/*`, `@utils/*`
+   - Updates `tsconfig.json` automatically
+
+4. **Sets Up Tailwind**:
+   - Configures `tailwind.config.js`
+   - Adds required CSS variables
+
+## Manual Setup (Deprecated - NPM Package)
+
+> ⚠️ **Note**: This method is deprecated. Use the CLI for better performance.
+
+### Step 1: Install the Package (Deprecated)
+
+```bash
+npm install angular-superui@0.5.0
 ```
 
 ### Step 2: Install Peer Dependencies
@@ -39,7 +85,7 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
 
-### Step 4: Configure Tailwind CSS
+### Step 4: Configure Tailwind CSS (Deprecated Method)
 
 Update your `tailwind.config.js`:
 

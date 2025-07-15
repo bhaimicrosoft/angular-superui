@@ -19,10 +19,10 @@ export async function initCommand() {
       return;
     }
 
-    // Check if Angular SuperUI is already installed
-    const packageJson = await fs.readJson('./package.json');
-    const hasAngularSuperUI = packageJson.dependencies?.['angular-superui'] || 
-                              packageJson.devDependencies?.['angular-superui'];
+    // Check if Angular SuperUI is already initialized
+    const componentsDir = './src/lib/components';
+    const utilsDir = './src/lib/utils';
+    const hasAngularSuperUI = await fs.pathExists(componentsDir) && await fs.pathExists(path.join(utilsDir, 'cn.ts'));
 
     let shouldInstallPackage = true;
     
@@ -33,13 +33,13 @@ export async function initCommand() {
         {
           type: 'confirm',
           name: 'reinstall',
-          message: 'Angular SuperUI is already installed. Do you want to reinstall?',
+          message: 'Angular SuperUI is already initialized. Do you want to reinitialize?',
           default: false
         }
       ]);
       
       if (reinstall) {
-        spinner.start('Reinstalling Angular SuperUI...');
+        spinner.start('Reinitializing Angular SuperUI...');
       } else {
         spinner.start('Updating configuration...');
       }
@@ -47,12 +47,7 @@ export async function initCommand() {
     }
 
     if (shouldInstallPackage) {
-      spinner.text = 'Installing Angular SuperUI package...';
-      
       try {
-        // Install Angular SuperUI
-        execSync('npm install angular-superui --legacy-peer-deps', { stdio: 'inherit' });
-        
         // Install TailwindCSS 3.x with legacy peer deps
         spinner.text = 'Installing TailwindCSS 3.x...';
         execSync('npm install tailwindcss@3 --legacy-peer-deps', { stdio: 'inherit' });
@@ -85,12 +80,14 @@ export function cn(...inputs: ClassValue[]) {
     const componentsDir = './src/lib/components';
     await fs.ensureDir(componentsDir);
 
+    // Read package.json to update dependencies
+    const packageJson = await fs.readJson('./package.json');
+
     // Update package.json with required dependencies
     const updatedPackageJson = {
       ...packageJson,
       dependencies: {
         ...packageJson.dependencies,
-        'angular-superui': '^0.4.2',
         'class-variance-authority': '^0.7.0',
         'clsx': '^2.0.0',
         'tailwind-merge': '^1.14.0'
@@ -168,6 +165,8 @@ export default config;
     try {
       const tsconfigPath = './tsconfig.json';
       if (await fs.pathExists(tsconfigPath)) {
+        spinner.text = 'Updating tsconfig.json with path aliases...';
+        
         const tsconfig = await fs.readJson(tsconfigPath);
         
         // Ensure compilerOptions exists
@@ -184,11 +183,17 @@ export default config;
         };
         
         await fs.writeJson(tsconfigPath, tsconfig, { spaces: 2 });
-        spinner.text = 'Updated tsconfig.json with path aliases...';
+        spinner.text = 'Successfully updated tsconfig.json with path aliases!';
+        
+        // Small delay to show success message
+        await new Promise(resolve => setTimeout(resolve, 500));
+      } else {
+        spinner.text = 'No tsconfig.json found, skipping path aliases...';
       }
     } catch (error) {
       console.log('');
-      console.log(chalk.bgYellow.black(' WARNING ') + ' ' + chalk.yellow('Could not update tsconfig.json'));
+      console.log(chalk.bgYellow.black(' WARNING ') + ' ' + chalk.yellow(`Could not update tsconfig.json: ${error.message || error}`));
+      console.log(chalk.gray('You may need to manually add path aliases to your tsconfig.json'));
       console.log('');
     }
 
@@ -267,11 +272,16 @@ export default config;
     spinner.succeed('Angular SuperUI initialized successfully!');
     
     console.log(chalk.green('✅ Setup complete!'));
-    console.log(chalk.cyan('Next steps:'));
-    console.log(chalk.white('1. Run: npm install --legacy-peer-deps'));
-    console.log(chalk.white('2. Add components: angular-superui add button'));
-    console.log(chalk.white('3. List available components: angular-superui list'));
-    console.log(chalk.white('4. Tailwind config and styles have been updated!'));
+    console.log('');
+    console.log(chalk.bgBlue.white(' 🚀 NEXT STEPS '));
+    console.log('');
+    console.log(chalk.cyan('1.') + chalk.white(' Install dependencies: ') + chalk.yellow('npm install --legacy-peer-deps'));
+    console.log(chalk.cyan('2.') + chalk.white(' Add your first component: ') + chalk.yellow('angular-superui add button'));
+    console.log(chalk.cyan('3.') + chalk.white(' Browse all components: ') + chalk.yellow('angular-superui list'));
+    console.log('');
+    console.log(chalk.green('🎨 Tailwind config and global styles have been configured!'));
+    console.log(chalk.gray('💡 Components are installed locally in ./src/lib/components/'));
+    console.log('');
     
   } catch (error) {
     spinner.fail('Failed to initialize Angular SuperUI');

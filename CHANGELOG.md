@@ -5,6 +5,41 @@ All notable changes to Angular SuperUI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-01-28
+
+### 🏠 **Major: Local-First Architecture**
+
+#### Breaking Changes
+- **CLI Installation Recommended**: NPM package installation is now deprecated
+- **Zero NPM Dependencies**: Components installed locally in project structure
+- **Local Component Installation**: Components installed in `./src/lib/components/`
+
+#### New Features
+- **🏠 Local-First Architecture**: Components installed directly in your project
+- **📦 Zero External Dependencies**: No angular-superui package dependency required with CLI
+- **⚡ 50%+ Performance Improvement**: Smaller bundle sizes with local components
+- **🔧 Full Component Control**: Modify components freely after installation
+- **💾 Version Control Friendly**: Components versioned with your code
+- **🚀 TypeScript Path Aliases**: Automatic @components/* and @utils/* setup
+
+#### CLI Improvements
+- **Removed NPM Package Installation**: CLI no longer installs angular-superui package
+- **Enhanced Local Structure**: Improved component directory organization
+- **Better TypeScript Support**: Automatic path alias configuration
+- **Improved Error Handling**: Better messages for tsconfig.json modifications
+- **Enhanced User Experience**: Clearer success messages and warnings
+
+#### Bug Fixes
+- **Fixed CN Import Paths**: Corrected utility import paths to `../../lib/utils/cn`
+- **Fixed TypeScript Configuration**: Improved tsconfig.json modification reliability
+- **Enhanced Package Management**: Better dependency handling for local installations
+
+#### Documentation Updates
+- **Updated Installation Guide**: Prioritizes CLI installation over NPM package
+- **Enhanced CLI Documentation**: Comprehensive guide for local-first approach
+- **Version Consistency**: All packages updated to v0.5.0
+- **Architecture Benefits**: Documentation of local-first advantages
+
 ## [0.3.0] - 2025-07-15
 
 ### 🚀 Major Component Expansion - 5 New Component Families

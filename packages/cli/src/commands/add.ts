@@ -262,10 +262,14 @@ export async function addCommand(componentNames: string | string[], options: { f
             const response = await axios.get(`${baseUrl}/${componentName}/${file}`);
             let fileContent = response.data;
             
-            // Fix import paths for cn utility
+            // Fix import paths for cn utility - handle both possible patterns
             fileContent = fileContent.replace(
               /import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g,
               "import { cn } from '../../utils/cn';"
+            );
+            fileContent = fileContent.replace(
+              /import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g,
+              "import { cn } from '../../lib/utils/cn';"
             );
             
             await fs.writeFile(path.join(componentDir, file), fileContent);
@@ -291,7 +295,7 @@ export async function addCommand(componentNames: string | string[], options: { f
         console.log(chalk.cyan(`  • ${component.name} (${name})`));
       });
       
-      console.log(chalk.cyan('\n📖 Usage examples:'));
+      console.log(chalk.cyan('📖 Usage examples:'));
       results.slice(0, 3).forEach(({ name, component }) => {
         console.log(chalk.white(`import { ${component.name} } from './lib/components/${name}/${component.files[0].replace('.ts', '')}';`));
       });
@@ -302,12 +306,12 @@ export async function addCommand(componentNames: string | string[], options: { f
     }
 
     if (errors.length > 0) {
-      console.log(chalk.red('\n❌ Errors encountered:'));
+      console.log(chalk.red('❌ Errors encountered:'));
       errors.forEach(error => console.log(chalk.red(`  • ${error}`)));
       
       if (results.length === 0) {
         spinner.fail('No components were added');
-        console.log(chalk.yellow('\nAvailable components:'));
+        console.log(chalk.yellow('Available components:'));
         Object.keys(COMPONENTS).forEach(key => {
           const comp = COMPONENTS[key as keyof typeof COMPONENTS];
           console.log(chalk.cyan(`  ${key}`) + chalk.gray(` - ${comp.description}`));

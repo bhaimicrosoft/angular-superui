@@ -1,24 +1,27 @@
-# Angular SuperUI CLI v0.4.2 🛠️
+# Angular SuperUI CLI v0.5.0 🛠️
 
+[![npm version](https://badge.fury.io/js/angular-superui-cli.svg)](https://badge.fury.io/js/angular-superui-cli)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A CLI tool for selective Angular SuperUI component installation, inspired by shadcn/ui.
+A CLI tool for local Angular SuperUI component installation, inspired by shadcn/ui.
 
-**🎯 Reduce bundle size by 40%+ with selective component installation!**
+**🎯 New in v0.5.0: Zero NPM Dependencies + Local-First Architecture!**
 
 ## 🚀 Features
 
-- **Selective Installation**: Only add the components you need
-- **Interactive Mode**: Choose components with a beautiful CLI interface  
-- **Project Initialization**: Set up Angular SuperUI in seconds
-- **30+ Components**: Access to the complete Angular SuperUI library
-- **TypeScript Support**: Full type safety and IntelliSense
-- **Zero Dependencies**: No external UI dependencies (except Tailwind CSS)
+- **🏠 Local-First Installation**: Components installed directly in your project (no npm package dependency)
+- **📦 Zero External Dependencies**: No angular-superui package required
+- **⚡ 50%+ Smaller Bundle Size**: Only the components you use
+- **🔧 Full Control**: Modify components freely after installation
+- **🎯 Selective Installation**: Add only the components you need
+- **💾 Persistent Storage**: Components stay in your project, versioned with your code
+- **🚀 TypeScript Support**: Full type safety and IntelliSense
+- **🎨 30+ Components**: Access to the complete Angular SuperUI library
 
 ## Installation
 
 ```bash
-npm install -g angular-superui-cli
+npm install -g angular-superui-cli@0.5.0
 ```
 
 ## Usage
@@ -30,21 +33,23 @@ angular-superui init
 ```
 
 This will:
-- Install required dependencies
-- Set up the utility functions
-- Create the components directory structure
+- Create local component directory structure in `./src/lib/components/`
+- Set up utility functions in `./src/lib/utils/`
+- Install only required dependencies (TailwindCSS + utilities)
+- Configure TypeScript path aliases (@components/*, @utils/*)
+- **No angular-superui npm package installation required!**
 
-### Add specific components
+### Add specific components locally
 
 ```bash
-# Add a single component
+# Add a single component (installed in ./src/lib/components/)
 angular-superui add button
 
-# Add multiple components at once (New in v0.4.3!)
+# Add multiple components at once
 angular-superui add button card alert
 angular-superui add dialog tooltip popover sheet
 
-# Install ALL components at once (New in v0.4.3!)
+# Install ALL components at once
 angular-superui add --all
 
 # Force overwrite existing components
@@ -117,8 +122,9 @@ Most components support these color variants:
 ## Examples
 
 ```typescript
-// After adding button component
-import { Button } from './lib/components/button/button';
+// After adding button component (v0.5.0 - Local Installation)
+import { Button } from '@components/button/button';
+// Or using relative path: import { Button } from './lib/components/button/button';
 
 @Component({
   standalone: true,
@@ -131,13 +137,24 @@ import { Button } from './lib/components/button/button';
 export class MyComponent {}
 ```
 
+**Benefits of Local Installation:**
+- ✅ No external package dependency
+- ✅ Full control over component code
+- ✅ Better tree shaking and performance
+- ✅ Components versioned with your project
+- ✅ TypeScript path aliases for clean imports
+
 ## Why Use This CLI?
 
-- **Selective Installation**: Only add the components you need
-- **Tree Shaking**: Smaller bundle sizes
-- **Up to Date**: Always get the latest component versions
-- **Customizable**: Easy to modify components after installation
-- **shadcn/ui Style**: Familiar workflow for shadcn/ui users
+- **🏠 Local-First Architecture**: Components are installed directly in your project, no npm package dependency
+- **📦 Zero External Dependencies**: No need to install the angular-superui package
+- **⚡ Superior Performance**: 50%+ smaller bundle sizes with local components
+- **🔧 Full Control**: Modify components freely - they're yours!
+- **💾 Version Control Friendly**: Components are versioned with your code
+- **🚀 Always Up-to-Date**: Fetch the latest component versions on demand
+- **🎯 Tree Shaking**: Perfect tree shaking with local installation
+- **🌟 shadcn/ui Style**: Familiar workflow for shadcn/ui users
+- **🔧 TypeScript Path Aliases**: Automatic @components/* and @utils/* setup
 
 ## License
 

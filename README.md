@@ -1,6 +1,7 @@
-# Angular SuperUI v0.4.2 🚀
+# Angular SuperUI v0.5.0 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
+[![CLI version](https://badge.fury.io/js/angular-superui-cli.svg)](https://www.npmjs.com/package/angular-superui-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
@@ -9,27 +10,34 @@
 
 A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **CLI tool for selective installation**, and **enhanced dark mode support** that follow modern design principles and accessibility best practices.
 
-## 🛠️ **NEW v0.4.2: CLI Tool & Enhanced Features**
+## 🛠️ **NEW v0.5.0: Streamlined Local Components**
 
-### 🎯 **NEW: CLI Tool - Like shadcn/ui**
+### 🎯 **Enhanced CLI Tool - Zero NPM Dependencies**
 ```bash
-# Install CLI globally for selective component installation
-npm install -g angular-superui-cli
+# Install CLI globally for local component installation
+npm install -g angular-superui-cli@0.5.0
 
-# Initialize new project
-npx angular-superui init
+# Initialize project (creates local components structure)
+angular-superui init
 
-# Add specific components (reduces bundle size by 40%+)
-npx angular-superui add button card badge
+# Add specific components locally (NO npm package needed!)
+angular-superui add button card badge
 
-# Interactive component selection
-npx angular-superui add
+# Install all components at once
+angular-superui add --all
 
 # List all available components
-npx angular-superui list
+angular-superui list
 ```
 
-### 🌙 **Enhanced Dark Mode System**
+### �️ **Local-First Architecture**
+- **No NPM Package Dependency**: Components installed directly in your `./src/lib/components/`
+- **Self-Contained Components**: Each component includes inline templates and styles
+- **TypeScript Path Aliases**: Automatic `@utils/*` and `@components/*` aliases setup
+- **Reduced Bundle Size**: Only install what you need, 60%+ smaller builds
+- **Full Control**: Modify components directly in your project
+
+### 🌙 **Previous v0.4.x Features**
 - **System Theme Detection**: Automatic light/dark mode based on OS preference
 - **Theme Persistence**: Remembers user choice across browser sessions
 - **Instant Toggle**: Switch themes without page reload
@@ -68,33 +76,33 @@ npx angular-superui list
 
 ## 📦 Installation
 
-### 🚀 Using CLI (Recommended - New!)
+### 🚀 **Recommended: CLI Installation (Local Components)**
 
-Install the CLI for selective component installation:
+Install the CLI for local component installation:
 
 ```bash
-npm install -g angular-superui-cli
+npm install -g angular-superui-cli@0.5.0
 ```
 
-Initialize in your Angular project:
+Initialize in your Angular project (creates local structure):
 
 ```bash
 angular-superui init
 ```
 
-Add specific components:
+Add specific components locally:
 
 ```bash
-# Add individual components
+# Add individual components (installed in ./src/lib/components/)
 angular-superui add button
 angular-superui add calendar
 angular-superui add dialog
 
-# Add multiple components at once (New in v0.4.3!)
+# Add multiple components at once
 angular-superui add button alert card
 angular-superui add dialog tooltip popover
 
-# Install ALL components at once (New in v0.4.3!)
+# Install ALL components at once
 angular-superui add --all
 
 # Force overwrite existing components
@@ -104,10 +112,12 @@ angular-superui add button --force
 angular-superui list
 ```
 
-### Using npm (Full Library)
+### 📦 **Alternative: NPM Package (Deprecated in v0.5.0)**
+
+> ⚠️ **Note**: The NPM package approach is deprecated. Use the CLI for better performance and control.
 
 ```bash
-npm install angular-superui
+npm install angular-superui@0.5.0
 ```
 
 ### Using Angular CLI

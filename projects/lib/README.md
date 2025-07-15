@@ -1,29 +1,43 @@
-# Angular SuperUI v0.4.2 🚀
+# Angular SuperUI v0.5.0 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
+[![CLI version](https://badge.fury.io/js/angular-superui-cli.svg)](https://badge.fury.io/js/angular-superui-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **CLI tool for selective installation**, and **enhanced dark mode support**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **local-first CLI installation**, and **enhanced dark mode support**.
 
-## 🛠️ **v0.4.2: CLI Tool & Enhanced Features**
+## 🛠️ **v0.5.0: Local-First Architecture**
 
-### 🎯 **NEW: CLI Tool - Like shadcn/ui**
-Install only the components you need with our new CLI tool:
+### � **NEW: Zero NPM Dependencies (CLI Recommended)**
+Install components directly in your project with no package dependency:
 
 ```bash
 # Install CLI globally
-npm install -g angular-superui-cli
+npm install -g angular-superui-cli@0.5.0
 
-# Initialize project  
+# Initialize project (creates local structure)
 npx angular-superui init
 
-# Add specific components (reduces bundle size by 40%+)
+# Add components locally (reduces bundle size by 50%+)
 npx angular-superui add button card badge
 ```
+
+### 📦 **Deprecated: NPM Package Installation**
+> ⚠️ **Note**: NPM package installation is deprecated in v0.5.0. Use CLI for better performance.
+
+```bash
+npm install angular-superui@0.5.0
+```
+
+### 🌟 **Local-First Benefits**
+- **Zero External Dependencies** - No npm package required with CLI
+- **Full Control** - Modify components freely in your project
+- **Better Performance** - 50%+ smaller bundle sizes
+- **Version Control Friendly** - Components versioned with your code
 
 ### � **Enhanced Dark Mode System**
 - **System theme detection** - Automatically follows OS preference
