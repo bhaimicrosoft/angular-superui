@@ -1,7 +1,7 @@
 # Angular SuperUI v0.6.0 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
-[![CLI version](https://badge.fury.io/js/@ngsui/cli.svg)](https://badge.fury.io/js/@ngsui/cli)
+[![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
@@ -20,13 +20,13 @@ Install components directly in your project with no package dependency:
 
 ```bash
 # Install CLI globally
-npm install -g @ngsui/cli@0.6.0
+npm install -g ngsui-cli@0.6.1
 
 # Initialize project (creates local structure)
-@ngsui/cli init
+ngsui-cli init
 
 # Add components locally (reduces bundle size by 50%+)
-@ngsui/cli add button card badge
+ngsui-cli add button card badge
 ```
 
 ### 📦 **Deprecated: NPM Package Installation**
@@ -80,22 +80,22 @@ Perfect for new projects or when you want to reduce bundle size:
 
 ```bash
 # Install CLI globally
-npm install -g @ngsui/cli
+npm install -g ngsui-cli
 
 # Initialize your Angular project
-@ngsui/cli init
+ngsui-cli init
 
 # Add specific components
-@ngsui/cli add button card badge alert
+ngsui-cli add button card badge alert
 
 # Add multiple components at once (New in v0.6.0!)
-@ngsui/cli add button alert card dialog
+ngsui-cli add button alert card dialog
 
 # Install ALL components at once (New in v0.6.0!)
-@ngsui/cli add --all
+ngsui-cli add --all
 
 # Interactive component selection
-@ngsui/cli add
+ngsui-cli add
 ```
 
 ### Option 2: Full Library Installation

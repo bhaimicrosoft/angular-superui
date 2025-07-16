@@ -7,19 +7,19 @@ Now you can install only the components you need, just like shadcn/ui!
 
 ```bash
 # Install CLI globally
-npm install -g @ngsui/cli
+npm install -g ngsui-cli
 
 # Initialize a new project
-npx @ngsui/cli init
+npx ngsui-cli init
 
 # Add specific components
-npx @ngsui/cli add button card badge
+npx ngsui-cli add button card badge
 
 # Interactive component selection
-npx @ngsui/cli add
+npx ngsui-cli add
 
 # List all available components
-npx @ngsui/cli list
+npx ngsui-cli list
 ```
 
 **Benefits:**

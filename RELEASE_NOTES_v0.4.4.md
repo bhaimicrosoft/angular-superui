@@ -44,7 +44,7 @@
 
 ```bash
 # Update global CLI
-npm install -g @ngsui/cli@0.4.4
+npm install -g ngsui-cli@0.4.4
 
 # Update library (if using manual installation)
 npm install angular-superui@0.4.4

@@ -1,10 +1,10 @@
 {
   "name": "ngsui-cli",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "CLI tool for selective Angular SuperUI component installation",
   "main": "dist/index.js",
   "bin": {
-    "ngsui": "dist/cli.js"
+    "ngsui-cli": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",

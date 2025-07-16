@@ -21,19 +21,19 @@
 
 ### **Installation**
 ```bash
-npm install -g @ngsui/cli@0.4.5
+npm install -g ngsui-cli@0.4.5
 ```
 
 ### **Quick Start**
 ```bash
 # Initialize Angular SuperUI in your project
-angular-superui init
+ngsui-cli init
 
 # Add components with improved UX
-angular-superui add button alert
+ngsui-cli add button alert
 
 # Install all components
-angular-superui add --all
+ngsui-cli add --all
 ```
 
 ---

@@ -24,19 +24,19 @@ Components now use clean, simple selectors:
 ### 🚀 **Enhanced CLI Experience**
 ```bash
 # Install the new simplified CLI
-npm install -g @ngsui/cli@0.6.0
+npm install -g ngsui-cli@0.6.1
 
 # Initialize project with beautiful graphics
-@ngsui/cli init
+ngsui-cli init
 
 # Add components with improved UX
-@ngsui/cli add button card badge
+ngsui-cli add button card badge
 
 # Install all components at once
-@ngsui/cli add --all
+ngsui-cli add --all
 
 # List all available components with better formatting
-@ngsui/cli list
+ngsui-cli list
 ```
 
 ### �️ **Local-First Architecture**
@@ -91,7 +91,7 @@ npm install -g @ngsui/cli@0.6.0
 - 🌈 **15+ Color Variants** - Extended color palette for all component variants
 - 🎭 **11 Theme Options** - Dynamic theme switching with ThemeSelector component
 - 🌙 **Enhanced Dark Mode** - System detection, persistent storage, and seamless switching
-- �️ **CLI Tool** - Selective component installation like shadcn/ui (`@ngsui/cli`)
+- �️ **CLI Tool** - Selective component installation like shadcn/ui (`ngsui-cli`)
 - �🔧 **TypeScript First** - Full type safety with Class Variance Authority
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant, WCAG AA)
 - 🎯 **Tree Shakable** - Import only what you need (especially with CLI)
@@ -112,35 +112,35 @@ npm install -g @ngsui/cli@0.6.0
 Install the CLI for local component installation:
 
 ```bash
-npm install -g ngsui-cli@0.6.0
+npm install -g ngsui-cli@0.6.1
 ```
 
 Initialize in your Angular project (creates local structure):
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add specific components locally:
 
 ```bash
 # Add individual components (installed in ./src/lib/components/)
-@ngsui/cli add button
-@ngsui/cli add calendar
-@ngsui/cli add dialog
+ngsui-cli add button
+ngsui-cli add calendar
+ngsui-cli add dialog
 
 # Add multiple components at once
-@ngsui/cli add button alert card
-@ngsui/cli add dialog tooltip popover
+ngsui-cli add button alert card
+ngsui-cli add dialog tooltip popover
 
 # Install ALL components at once
-@ngsui/cli add --all
+ngsui-cli add --all
 
 # Force overwrite existing components
-@ngsui/cli add button --force
+ngsui-cli add button --force
 
 # List all available components
-@ngsui/cli list
+ngsui-cli list
 ```
 
 ### 📦 **Alternative: NPM Package (Deprecated in v0.6.0)**
@@ -672,24 +672,24 @@ After installation, you can use the CLI to manage components:
 
 ### Initialize a new project
 ```bash
-@ngsui/cli init
+ngsui-cli init
 ```
 
 ### Add specific components
 ```bash
 # Add a single component
-@ngsui/cli add button
+ngsui-cli add button
 
 # Add multiple components
-@ngsui/cli add button card badge
+ngsui-cli add button card badge
 
 # Interactive selection
-@ngsui/cli add
+ngsui-cli add
 ```
 
 ### List available components
 ```bash
-@ngsui/cli list
+ngsui-cli list
 ```
 
 ## �📚 Component Examples

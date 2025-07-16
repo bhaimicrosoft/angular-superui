@@ -1,6 +1,6 @@
-# ngsui-cli v0.6.0 🛠️
+# ngsui-cli v0.6.1 🛠️
 
-[![npm version](https://badge.fury.io/js/@ngsui/cli.svg)](https://badge.fury.io/js/@ngsui/cli)
+[![npm version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
 A CLI tool for local Angular SuperUI component installation, inspired by shadcn/ui.
@@ -25,7 +25,7 @@ A CLI tool for local Angular SuperUI component installation, inspired by shadcn/
 ## Installation
 
 ```bash
-npm install -g ngsui-cli@0.6.0
+npm install -g ngsui-cli@0.6.1
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ npm install -g ngsui-cli@0.6.0
 ### Initialize Angular SuperUI in your project
 
 ```bash
-@ngsui/cli init
+ngsui-cli init
 ```
 
 This will:
@@ -47,24 +47,24 @@ This will:
 
 ```bash
 # Add a single component (installed in ./src/lib/components/)
-@ngsui/cli add button
+ngsui-cli add button
 
 # Add multiple components at once
-@ngsui/cli add button card alert
-@ngsui/cli add dialog tooltip popover sheet
+ngsui-cli add button card alert
+ngsui-cli add dialog tooltip popover sheet
 
 # Install ALL components at once
-@ngsui/cli add --all
+ngsui-cli add --all
 
 # Force overwrite existing components
-@ngsui/cli add button --force
-@ngsui/cli add --all --force
+ngsui-cli add button --force
+ngsui-cli add --all --force
 ```
 
 ### List available components
 
 ```bash
-@ngsui/cli list
+ngsui-cli list
 ```
 
 ## Available Components
