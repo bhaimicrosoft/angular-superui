@@ -5,7 +5,7 @@
 
 A CLI tool for local Angular SuperUI component installation, inspired by shadcn/ui.
 
-**🎯 New in v0.6.0: Simplified Names + Enhanced UX!**
+**🎯 New in v0.6.1: Simplified Names + Enhanced UX!**
 
 ## 📚 **[📖 Complete Component Demos & Examples →](../../docs/demo.md)**
 > 🎨 **Step-by-step guides** for all 30+ components with **practical examples** and **usage instructions**!
@@ -99,7 +99,7 @@ ngsui-cli list
 - `popover` - Displays rich content in a portal, triggered by a button
 - `sheet` - Extends the Dialog component to display content that complements the main content
 
-### New Components (v0.6.0)
+### New Components (v0.6.1)
 - `calendar` - A date field component that allows users to enter and edit date
 - `command` - Fast, composable, unstyled command menu for Angular
 
@@ -126,7 +126,7 @@ Most components support these color variants:
 ## Examples
 
 ```typescript
-// After adding button component (v0.6.0 - Local Installation)
+// After adding button component (v0.6.1 - Local Installation)
 import { Button } from '@components/button';
 // Or using relative path: import { Button } from './lib/components/button';
 

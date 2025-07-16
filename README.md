@@ -1,4 +1,4 @@
-# Angular SuperUI v0.6.0 🚀
+# Angular SuperUI v0.6.1 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://www.npmjs.com/package/ngsui-cli)
@@ -13,7 +13,7 @@ A modern, beautiful, and accessible Angular UI component library built with **Ta
 ## � **[🎨 Complete Component Demos & Examples →](./docs/demo.md)**
 > 🚀 **Step-by-step guides** for all 30+ components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## �🛠️ **NEW v0.6.0: Simplified & Enhanced**
+## 🛠️ **NEW v0.6.1: Enhanced Button Component**
 
 ### 🎯 **Simplified Component Names - No More Prefixes!**
 Components now use clean, simple selectors:
@@ -148,7 +148,7 @@ ngsui-cli list
 > ⚠️ **Note**: The NPM package approach is deprecated. Use the CLI for better performance and control.
 
 ```bash
-npm install angular-superui@0.6.0
+npm install angular-superui@0.6.1
 ```
 
 ### Using Angular CLI
@@ -409,7 +409,7 @@ import {
     <!-- Main Content Card -->
     <card class="w-96">
       <card-header>
-        <card-title>Welcome to Angular SuperUI v0.6.0</card-title>
+        <card-title>Welcome to Angular SuperUI v0.6.1</card-title>
       </card-header>
       <card-content>
         <alert variant="success" class="mb-4">

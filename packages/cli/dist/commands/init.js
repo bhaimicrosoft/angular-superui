@@ -58,9 +58,9 @@ async function initCommand() {
         }
         if (shouldInstallPackage) {
             try {
-                // Install TailwindCSS 3.x with legacy peer deps
-                spinner.text = 'Installing TailwindCSS 3.x...';
-                (0, child_process_1.execSync)('npm install tailwindcss@3 --legacy-peer-deps', { stdio: 'inherit' });
+                // Install TailwindCSS 3.x with PostCSS dependencies
+                spinner.text = 'Installing TailwindCSS 3.x and PostCSS...';
+                (0, child_process_1.execSync)('npm install --save-dev tailwindcss@3 postcss autoprefixer --legacy-peer-deps', { stdio: 'inherit' });
                 // Install required dependencies
                 spinner.text = 'Installing required dependencies...';
                 (0, child_process_1.execSync)('npm install class-variance-authority clsx tailwind-merge --legacy-peer-deps', { stdio: 'inherit' });
@@ -98,7 +98,9 @@ export function cn(...inputs: ClassValue[]) {
             },
             devDependencies: {
                 ...packageJson.devDependencies,
-                'tailwindcss': '^3.4.0'
+                'tailwindcss': '^3.4.0',
+                'postcss': '^8.4.0',
+                'autoprefixer': '^10.4.0'
             }
         };
         await fs_extra_1.default.writeJson('./package.json', updatedPackageJson, { spaces: 2 });
@@ -161,6 +163,15 @@ const config: Config = {
 export default config;
 `;
         await fs_extra_1.default.writeFile('./tailwind.config.ts', tailwindConfig);
+        // Create postcss.config.js for TailwindCSS 3.x
+        const postcssConfig = `module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+`;
+        await fs_extra_1.default.writeFile('./postcss.config.js', postcssConfig);
         // Update tsconfig.json with path aliases
         try {
             const tsconfigPath = './tsconfig.json';
@@ -279,14 +290,16 @@ export default config;
         console.log('');
         console.log(chalk_1.default.bgBlue.white(' 🚀 NEXT STEPS '));
         console.log('');
-        console.log(chalk_1.default.cyan('1.') + chalk_1.default.white(' Install dependencies: ') + chalk_1.default.yellow('@ngsui/cli add button'));
-        console.log(chalk_1.default.cyan('2.') + chalk_1.default.white(' Add your first component: ') + chalk_1.default.yellow('@ngsui/cli add card'));
-        console.log(chalk_1.default.cyan('3.') + chalk_1.default.white(' Browse all components: ') + chalk_1.default.yellow('@ngsui/cli list'));
+        console.log(chalk_1.default.cyan('1.') + chalk_1.default.white(' Add your first component: ') + chalk_1.default.yellow('ngsui-cli add button'));
+        console.log(chalk_1.default.cyan('2.') + chalk_1.default.white(' Add another component: ') + chalk_1.default.yellow('ngsui-cli add card'));
+        console.log(chalk_1.default.cyan('3.') + chalk_1.default.white(' Browse all components: ') + chalk_1.default.yellow('ngsui-cli list'));
         console.log('');
         console.log(chalk_1.default.green('🎨 Features configured:'));
         console.log(chalk_1.default.white('   • ') + chalk_1.default.gray('Local component structure in ./src/lib/components/'));
         console.log(chalk_1.default.white('   • ') + chalk_1.default.gray('TypeScript path aliases (@components/*, @utils/*)'));
-        console.log(chalk_1.default.white('   • ') + chalk_1.default.gray('Tailwind CSS with Angular SuperUI styles'));
+        console.log(chalk_1.default.white('   • ') + chalk_1.default.gray('Tailwind CSS v3.x with PostCSS configuration'));
+        console.log(chalk_1.default.white('   • ') + chalk_1.default.gray('Complete TailwindCSS + PostCSS + Autoprefixer setup'));
+        console.log(chalk_1.default.white('   • ') + chalk_1.default.gray('Angular SuperUI theme variables and styles'));
         console.log(chalk_1.default.white('   • ') + chalk_1.default.gray('Zero external NPM dependencies'));
         console.log('');
         console.log(chalk_1.default.magenta('💜 Happy coding with Angular SuperUI!'));

@@ -61,9 +61,9 @@ export async function initCommand() {
 
     if (shouldInstallPackage) {
       try {
-        // Install TailwindCSS 3.x with legacy peer deps
-        spinner.text = 'Installing TailwindCSS 3.x...';
-        execSync('npm install tailwindcss@3 --legacy-peer-deps', { stdio: 'inherit' });
+        // Install TailwindCSS 3.x with PostCSS dependencies
+        spinner.text = 'Installing TailwindCSS 3.x and PostCSS...';
+        execSync('npm install --save-dev tailwindcss@3 postcss autoprefixer --legacy-peer-deps', { stdio: 'inherit' });
         
         // Install required dependencies
         spinner.text = 'Installing required dependencies...';
@@ -107,7 +107,9 @@ export function cn(...inputs: ClassValue[]) {
       },
       devDependencies: {
         ...packageJson.devDependencies,
-        'tailwindcss': '^3.4.0'
+        'tailwindcss': '^3.4.0',
+        'postcss': '^8.4.0',
+        'autoprefixer': '^10.4.0'
       }
     };
 
@@ -173,6 +175,17 @@ export default config;
 `;
 
     await fs.writeFile('./tailwind.config.ts', tailwindConfig);
+
+    // Create postcss.config.js for TailwindCSS 3.x
+    const postcssConfig = `module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+`;
+
+    await fs.writeFile('./postcss.config.js', postcssConfig);
 
     // Update tsconfig.json with path aliases
     try {
@@ -303,14 +316,16 @@ export default config;
     console.log('');
     console.log(chalk.bgBlue.white(' 🚀 NEXT STEPS '));
     console.log('');
-    console.log(chalk.cyan('1.') + chalk.white(' Install dependencies: ') + chalk.yellow('@ngsui/cli add button'));
-    console.log(chalk.cyan('2.') + chalk.white(' Add your first component: ') + chalk.yellow('@ngsui/cli add card'));
-    console.log(chalk.cyan('3.') + chalk.white(' Browse all components: ') + chalk.yellow('@ngsui/cli list'));
+    console.log(chalk.cyan('1.') + chalk.white(' Add your first component: ') + chalk.yellow('ngsui-cli add button'));
+    console.log(chalk.cyan('2.') + chalk.white(' Add another component: ') + chalk.yellow('ngsui-cli add card'));
+    console.log(chalk.cyan('3.') + chalk.white(' Browse all components: ') + chalk.yellow('ngsui-cli list'));
     console.log('');
     console.log(chalk.green('🎨 Features configured:'));
     console.log(chalk.white('   • ') + chalk.gray('Local component structure in ./src/lib/components/'));
     console.log(chalk.white('   • ') + chalk.gray('TypeScript path aliases (@components/*, @utils/*)'));
-    console.log(chalk.white('   • ') + chalk.gray('Tailwind CSS with Angular SuperUI styles'));
+    console.log(chalk.white('   • ') + chalk.gray('Tailwind CSS v3.x with PostCSS configuration'));
+    console.log(chalk.white('   • ') + chalk.gray('Complete TailwindCSS + PostCSS + Autoprefixer setup'));
+    console.log(chalk.white('   • ') + chalk.gray('Angular SuperUI theme variables and styles'));
     console.log(chalk.white('   • ') + chalk.gray('Zero external NPM dependencies'));
     console.log('');
     console.log(chalk.magenta('💜 Happy coding with Angular SuperUI!'));

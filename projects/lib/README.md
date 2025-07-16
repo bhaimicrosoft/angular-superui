@@ -1,4 +1,4 @@
-# Angular SuperUI v0.6.0 🚀
+# Angular SuperUI v0.6.1 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
@@ -13,7 +13,7 @@ A modern, beautiful, and accessible Angular UI component library built with **Ta
 ## � **[🎨 Complete Component Demos & Examples →](../../docs/demo.md)**
 > 🚀 **Step-by-step guides** for all 30+ components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v0.6.0: Simplified & Enhanced**
+## 🛠️ **v0.6.1: Enhanced Button Component**
 
 ### 🚀 **NEW: Zero NPM Dependencies (CLI Recommended)**
 Install components directly in your project with no package dependency:
@@ -30,10 +30,10 @@ ngsui-cli add button card badge
 ```
 
 ### 📦 **Deprecated: NPM Package Installation**
-> ⚠️ **Note**: NPM package installation is deprecated in v0.6.0. Use CLI for better performance.
+> ⚠️ **Note**: NPM package installation is deprecated in v0.6.1. Use CLI for better performance.
 
 ```bash
-npm install angular-superui@0.6.0
+npm install angular-superui@0.6.1
 ```
 
 ### 🌟 **Local-First Benefits**
@@ -88,10 +88,10 @@ ngsui-cli init
 # Add specific components
 ngsui-cli add button card badge alert
 
-# Add multiple components at once (New in v0.6.0!)
+# Add multiple components at once (New in v0.6.1!)
 ngsui-cli add button alert card dialog
 
-# Install ALL components at once (New in v0.6.0!)
+# Install ALL components at once (New in v0.6.1!)
 ngsui-cli add --all
 
 # Interactive component selection
