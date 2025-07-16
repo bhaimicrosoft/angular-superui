@@ -7,19 +7,19 @@ Now you can install only the components you need, just like shadcn/ui!
 
 ```bash
 # Install CLI globally
-npm install -g angular-superui
+npm install -g @ngsui/cli
 
 # Initialize a new project
-npx angular-superui init
+npx @ngsui/cli init
 
 # Add specific components
-npx angular-superui add button card badge
+npx @ngsui/cli add button card badge
 
 # Interactive component selection
-npx angular-superui add
+npx @ngsui/cli add
 
 # List all available components
-npx angular-superui list
+npx @ngsui/cli list
 ```
 
 **Benefits:**

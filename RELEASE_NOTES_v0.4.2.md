@@ -61,7 +61,7 @@
 ### From v0.4.1 to v0.4.2
 If you're using the CLI:
 ```bash
-npm update angular-superui-cli -g
+npm update @ngsui/cli -g
 angular-superui init  # Re-run to get updated config
 ```
 
@@ -78,7 +78,7 @@ npm update angular-superui
 ## 📦 **Package Updates**
 
 - **angular-superui**: `0.4.1` → `0.4.2`
-- **angular-superui-cli**: `0.4.1` → `0.4.2`
+- **@ngsui/cli**: `0.4.1` → `0.4.2`
 
 ## 🎯 **Next Release Preview (v0.5.0)**
 

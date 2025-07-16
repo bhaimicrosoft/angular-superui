@@ -1,7 +1,7 @@
 # Angular SuperUI v0.6.0 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
-[![CLI version](https://badge.fury.io/js/@ngsui/cli.svg)](https://www.npmjs.com/package/@ngsui/cli)
+[![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://www.npmjs.com/package/ngsui-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
@@ -24,13 +24,13 @@ Components now use clean, simple selectors:
 ### 🚀 **Enhanced CLI Experience**
 ```bash
 # Install the new simplified CLI
-npm install -g angular-superui-cli@0.6.0
+npm install -g @ngsui/cli@0.6.0
 
 # Initialize project with beautiful graphics
-angular-superui-cli init
+@ngsui/cli init
 
 # Add components with improved UX
-angular-superui-cli add button card badge
+@ngsui/cli add button card badge
 
 # Install all components at once
 @ngsui/cli add --all
@@ -112,13 +112,13 @@ angular-superui-cli add button card badge
 Install the CLI for local component installation:
 
 ```bash
-npm install -g angular-superui-cli@0.6.0
+npm install -g ngsui-cli@0.6.0
 ```
 
 Initialize in your Angular project (creates local structure):
 
 ```bash
-angular-superui-cli init
+ngsui init
 ```
 
 Add specific components locally:

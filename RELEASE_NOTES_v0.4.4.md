@@ -38,13 +38,13 @@
 ## 📦 Package Updates
 
 - **angular-superui**: v0.4.3 → v0.4.4
-- **angular-superui-cli**: v0.4.3 → v0.4.4
+- **@ngsui/cli**: v0.4.3 → v0.4.4
 
 ## 📈 Installation
 
 ```bash
 # Update global CLI
-npm install -g angular-superui-cli@0.4.4
+npm install -g @ngsui/cli@0.4.4
 
 # Update library (if using manual installation)
 npm install angular-superui@0.4.4

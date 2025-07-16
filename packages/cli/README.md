@@ -1,4 +1,4 @@
-# angular-superui-cli v0.6.0 🛠️
+# ngsui-cli v0.6.0 🛠️
 
 [![npm version](https://badge.fury.io/js/@ngsui/cli.svg)](https://badge.fury.io/js/@ngsui/cli)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
@@ -25,7 +25,7 @@ A CLI tool for local Angular SuperUI component installation, inspired by shadcn/
 ## Installation
 
 ```bash
-npm install -g angular-superui-cli@0.6.0
+npm install -g ngsui-cli@0.6.0
 ```
 
 ## Usage

@@ -20,7 +20,7 @@ Install components directly in your project with no package dependency:
 
 ```bash
 # Install CLI globally
-npm install -g angular-superui-cli@0.6.0
+npm install -g @ngsui/cli@0.6.0
 
 # Initialize project (creates local structure)
 @ngsui/cli init

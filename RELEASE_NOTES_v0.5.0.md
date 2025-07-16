@@ -36,7 +36,7 @@ Angular SuperUI v0.5.0 introduces a **revolutionary local-first architecture** t
 
 #### 1. **Install CLI**
 ```bash
-npm install -g angular-superui-cli@0.5.0
+npm install -g @ngsui/cli@0.5.0
 ```
 
 #### 2. **Uninstall Old Package** (Optional)

@@ -21,7 +21,7 @@
 
 ### **Installation**
 ```bash
-npm install -g angular-superui-cli@0.4.5
+npm install -g @ngsui/cli@0.4.5
 ```
 
 ### **Quick Start**
