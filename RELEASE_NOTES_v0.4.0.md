@@ -125,17 +125,17 @@ The demo application now includes:
 ```html
 <!-- Button Color Variants -->
 <div class="flex flex-wrap gap-2">
-  <lib-button variant="default">Default</lib-button>
-  <lib-button variant="primary">Primary</lib-button>
-  <lib-button variant="success">Success</lib-button>
+  <button variant="default">Default</button>
+  <button variant="primary">Primary</button>
+  <button variant="success">Success</button>
   <!-- ... all 15+ variants -->
 </div>
 
 <!-- Badge Color Variants -->
 <div class="flex flex-wrap gap-2">
-  <lib-badge variant="success">Success</lib-badge>
-  <lib-badge variant="warning">Warning</lib-badge>
-  <lib-badge variant="purple">Purple</lib-badge>
+  <badge variant="success">Success</badge>
+  <badge variant="warning">Warning</badge>
+  <badge variant="purple">Purple</badge>
   <!-- ... all variants -->
 </div>
 ```

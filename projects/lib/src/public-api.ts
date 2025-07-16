@@ -6,44 +6,44 @@ export * from './lib/lib';
 export * from './lib/utils/cn';
 
 // Form Components
-export * from './lib/button/button';
-export * from './lib/input/input.component';
-export * from './lib/textarea/textarea';
-export * from './lib/label/label';
-export * from './lib/checkbox/checkbox';
-export * from './lib/switch/switch';
-export * from './lib/select/select';
-export * from './lib/radio-group/radio-group';
-export * from './lib/toggle/toggle';
-export * from './lib/slider/slider';
+export * from './lib/button';
+export * from './lib/input';
+export * from './lib/textarea';
+export * from './lib/label';
+export * from './lib/checkbox';
+export * from './lib/switch';
+export * from './lib/select';
+export * from './lib/radio-group';
+export * from './lib/toggle';
+export * from './lib/slider';
 
 // Layout Components
-export * from './lib/card/card';
-export * from './lib/separator/separator';
-export * from './lib/tabs/tabs';
-export * from './lib/accordion/accordion';
-export * from './lib/table/table';
+export * from './lib/card';
+export * from './lib/separator';
+export * from './lib/tabs';
+export * from './lib/accordion';
+export * from './lib/table';
 
 // Overlay Components
-export * from './lib/dialog/dialog';
-export * from './lib/tooltip/tooltip';
-export * from './lib/toast/toast';
-export * from './lib/popover/popover';
-export * from './lib/sheet/sheet';
+export * from './lib/dialog';
+export * from './lib/tooltip';
+export * from './lib/toast';
+export * from './lib/popover';
+export * from './lib/sheet';
 
 // Feedback Components
-export * from './lib/alert/alert';
-export * from './lib/badge/badge';
-export * from './lib/progress/progress';
-export * from './lib/skeleton/skeleton';
+export * from './lib/alert';
+export * from './lib/badge';
+export * from './lib/progress';
+export * from './lib/skeleton';
 
 // Display Components
-export * from './lib/avatar/avatar';
-export * from './lib/calendar/calendar';
+export * from './lib/avatar';
+export * from './lib/calendar';
 
 // Navigation Components
-export * from './lib/breadcrumb/breadcrumb';
-export * from './lib/command/command';
+export * from './lib/breadcrumb';
+export * from './lib/command';
 
 // Utility Components
-export * from './lib/theme-selector/theme-selector';
+export * from './lib/theme-selector';

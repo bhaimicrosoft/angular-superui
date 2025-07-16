@@ -12,9 +12,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-basic-alert',
   template: `
-    <lib-alert>
+    <alert>
       Your message has been sent successfully!
-    </lib-alert>
+    </alert>
   `
 })
 export class BasicAlertComponent {}
@@ -28,7 +28,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-custom-alert',
   template: `
-    <lib-alert variant="success">
+    <alert variant="success">
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
       </svg>
@@ -36,7 +36,7 @@ import { Component } from '@angular/core';
         <h4 class="font-medium">Success!</h4>
         <p class="text-sm">Your operation completed successfully.</p>
       </div>
-    </lib-alert>
+    </alert>
   `
 })
 export class CustomAlertComponent {}
@@ -51,12 +51,12 @@ import { Component } from '@angular/core';
   selector: 'app-button-showcase',
   template: `
     <div class="flex flex-wrap gap-4">
-      <lib-button>Default</lib-button>
-      <lib-button variant="destructive">Delete</lib-button>
-      <lib-button variant="outline">Cancel</lib-button>
-      <lib-button variant="secondary">Secondary</lib-button>
-      <lib-button variant="ghost">Ghost</lib-button>
-      <lib-button variant="link">Link</lib-button>
+      <button>Default</button>
+      <button variant="destructive">Delete</button>
+      <button variant="outline">Cancel</button>
+      <button variant="secondary">Secondary</button>
+      <button variant="ghost">Ghost</button>
+      <button variant="link">Link</button>
     </div>
   `
 })
@@ -73,12 +73,12 @@ import { Component } from '@angular/core';
   template: `
     <div class="space-y-2">
       <label for="email" class="text-sm font-medium">Email</label>
-      <lib-input
+      <input
         id="email"
         type="email"
         placeholder="Enter your email"
         (input)="handleInput($event)">
-      </lib-input>
+      </input>
       <div *ngIf="showError" class="text-sm text-red-600">
         Please enter a valid email address
       </div>
@@ -114,19 +114,19 @@ export interface AlertData {
     <div class="space-y-4">
       <!-- Control buttons -->
       <div class="space-x-2">
-        <lib-button (click)="showSuccess()">Success</lib-button>
-        <lib-button (click)="showError()" variant="destructive">Error</lib-button>
-        <lib-button (click)="showWarning()">Warning</lib-button>
-        <lib-button (click)="clearAlerts()" variant="outline">Clear All</lib-button>
+        <button (click)="showSuccess()">Success</button>
+        <button (click)="showError()" variant="destructive">Error</button>
+        <button (click)="showWarning()">Warning</button>
+        <button (click)="clearAlerts()" variant="outline">Clear All</button>
       </div>
 
       <!-- Alert display -->
       <div class="space-y-2">
-        <lib-alert
+        <alert
           *ngFor="let alert of alerts"
           [variant]="alert.variant">
           {{ alert.message }}
-        </lib-alert>
+        </alert>
       </div>
     </div>
   `
@@ -180,12 +180,12 @@ import { Component } from '@angular/core';
     <form (ngSubmit)="onSubmit()" class="space-y-6 max-w-md">
       <div class="space-y-2">
         <label for="name" class="text-sm font-medium">Name</label>
-        <lib-input
+        <input
           id="name"
           placeholder="Your full name"
           [(ngModel)]="formData.name"
           name="name">
-        </lib-input>
+        </input>
         <div *ngIf="errors.name" class="text-sm text-red-600">
           {{ errors.name }}
         </div>
@@ -193,13 +193,13 @@ import { Component } from '@angular/core';
 
       <div class="space-y-2">
         <label for="email" class="text-sm font-medium">Email</label>
-        <lib-input
+        <input
           id="email"
           type="email"
           placeholder="your@email.com"
           [(ngModel)]="formData.email"
           name="email">
-        </lib-input>
+        </input>
         <div *ngIf="errors.email" class="text-sm text-red-600">
           {{ errors.email }}
         </div>
@@ -220,25 +220,25 @@ import { Component } from '@angular/core';
       </div>
 
       <div class="flex space-x-4">
-        <lib-button type="submit">
+        <button type="submit">
           Send Message
-        </lib-button>
-        <lib-button type="button" variant="outline" (click)="resetForm()">
+        </button>
+        <button type="button" variant="outline" (click)="resetForm()">
           Reset
-        </lib-button>
+        </button>
       </div>
 
-      <lib-alert 
+      <alert 
         *ngIf="submitStatus === 'success'"
         variant="success">
         Message sent successfully!
-      </lib-alert>
+      </alert>
 
-      <lib-alert 
+      <alert 
         *ngIf="submitStatus === 'error'"
         variant="destructive">
         Failed to send message. Please try again.
-      </lib-alert>
+      </alert>
     </form>
   `
 })
@@ -288,26 +288,26 @@ import { Component } from '@angular/core';
   selector: 'app-button-states',
   template: `
     <div class="space-y-4">
-      <lib-button (click)="toggleLoading()">
+      <button (click)="toggleLoading()">
         {{ isLoading ? 'Loading...' : 'Start Process' }}
-      </lib-button>
+      </button>
 
-      <lib-input 
+      <input 
         placeholder="Enter data..."
         [disabled]="isLoading">
-      </lib-input>
+      </input>
 
-      <lib-alert 
+      <alert 
         *ngIf="isLoading"
         variant="default">
         Processing your request, please wait...
-      </lib-alert>
+      </alert>
       
-      <lib-alert 
+      <alert 
         *ngIf="completed"
         variant="success">
         Process completed successfully!
-      </lib-alert>
+      </alert>
     </div>
   `
 })
@@ -346,13 +346,13 @@ import { throwError } from 'rxjs';
   selector: 'app-error-handling',
   template: `
     <div class="space-y-4">
-      <lib-button (click)="fetchData()">Fetch Data</lib-button>
+      <button (click)="fetchData()">Fetch Data</button>
 
-      <lib-alert 
+      <alert 
         *ngIf="error"
         variant="destructive">
         <strong>Error:</strong> {{ error }}
-      </lib-alert>
+      </alert>
 
       <div *ngIf="data" class="p-4 border rounded-md">
         <pre>{{ data | json }}</pre>
@@ -412,9 +412,9 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'app-hybrid-example',
   template: `
     <div class="space-y-4">
-      <lib-button (click)="openDialog()">
+      <button (click)="openDialog()">
         Open Material Dialog
-      </lib-button>
+      </button>
       
       <!-- Using SuperUI components inside Material layout -->
       <mat-card>
@@ -423,16 +423,16 @@ import { MatDialog } from '@angular/material/dialog';
         </mat-card-header>
         <mat-card-content>
           <div class="space-y-4">
-            <lib-input placeholder="Full Name"></lib-input>
-            <lib-input type="email" placeholder="Email"></lib-input>
-            <lib-alert>
+            <input placeholder="Full Name"></input>
+            <input type="email" placeholder="Email"></input>
+            <alert>
               Please verify your email address
-            </lib-alert>
+            </alert>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <lib-button>Save</lib-button>
-          <lib-button variant="outline">Cancel</lib-button>
+          <button>Save</button>
+          <button variant="outline">Cancel</button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -450,14 +450,14 @@ export class HybridExampleComponent {
   template: `
     <h2 mat-dialog-title>Confirm Action</h2>
     <mat-dialog-content>
-      <lib-alert variant="warning" class="mb-4">
+      <alert variant="warning" class="mb-4">
         This action cannot be undone.
-      </lib-alert>
+      </alert>
       <p>Are you sure you want to proceed?</p>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <lib-button variant="outline" (click)="close()">Cancel</lib-button>
-      <lib-button variant="destructive" (click)="confirm()">Delete</lib-button>
+      <button variant="outline" (click)="close()">Cancel</button>
+      <button variant="destructive" (click)="confirm()">Delete</button>
     </mat-dialog-actions>
   `
 })
@@ -487,7 +487,7 @@ import { Component } from '@angular/core';
       <div class="space-y-4">
         <div class="field">
           <label for="username">Username</label>
-          <lib-input id="username" placeholder="Enter username"></lib-input>
+          <input id="username" placeholder="Enter username"></input>
         </div>
         
         <div class="field">
@@ -495,13 +495,13 @@ import { Component } from '@angular/core';
           <p-inputSwitch [(ngModel)]="notifications"></p-inputSwitch>
         </div>
         
-        <lib-alert *ngIf="notifications" variant="success">
+        <alert *ngIf="notifications" variant="success">
           Notifications are enabled
-        </lib-alert>
+        </alert>
         
         <div class="flex justify-end space-x-2">
-          <lib-button variant="outline">Reset</lib-button>
-          <lib-button>Save Settings</lib-button>
+          <button variant="outline">Reset</button>
+          <button>Save Settings</button>
         </div>
       </div>
     </p-panel>
@@ -523,10 +523,10 @@ import { Component } from '@angular/core';
   selector: 'app-searchable-list',
   template: `
     <div class="space-y-2">
-      <lib-input 
+      <input 
         placeholder="Search..."
         (input)="onSearch($event)">
-      </lib-input>
+      </input>
       
       <div class="space-y-2 max-h-96 overflow-y-auto">
         <div 
@@ -536,12 +536,12 @@ import { Component } from '@angular/core';
         </div>
       </div>
       
-      <lib-button 
+      <button 
         *ngIf="hasMore"
         (click)="loadMore()"
         variant="outline">
         Load More ({{ remainingCount }} remaining)
-      </lib-button>
+      </button>
     </div>
   `
 })

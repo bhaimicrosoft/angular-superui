@@ -333,7 +333,7 @@ This release adds many new components but maintains backward compatibility:
      imports: [ToastContainer],
      template: `
        <!-- Your app content -->
-       <lib-toast-container></lib-toast-container>
+       <toast-container></lib-toast-container>
      `
    })
    ```

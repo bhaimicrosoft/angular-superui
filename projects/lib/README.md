@@ -1,7 +1,7 @@
-# Angular SuperUI v0.5.0 🚀
+# Angular SuperUI v0.6.0 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
-[![CLI version](https://badge.fury.io/js/angular-superui-cli.svg)](https://badge.fury.io/js/angular-superui-cli)
+[![CLI version](https://badge.fury.io/js/@ngsui/cli.svg)](https://badge.fury.io/js/@ngsui/cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
@@ -10,27 +10,30 @@
 
 A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **local-first CLI installation**, and **enhanced dark mode support**.
 
-## 🛠️ **v0.5.0: Local-First Architecture**
+## � **[🎨 Complete Component Demos & Examples →](../../docs/demo.md)**
+> 🚀 **Step-by-step guides** for all 30+ components with **practical examples**, **usage instructions**, and **styling tips**!
 
-### � **NEW: Zero NPM Dependencies (CLI Recommended)**
+## 🛠️ **v0.6.0: Simplified & Enhanced**
+
+### 🚀 **NEW: Zero NPM Dependencies (CLI Recommended)**
 Install components directly in your project with no package dependency:
 
 ```bash
 # Install CLI globally
-npm install -g angular-superui-cli@0.5.0
+npm install -g @ngsui/cli@0.6.0
 
 # Initialize project (creates local structure)
-npx angular-superui init
+@ngsui/cli init
 
 # Add components locally (reduces bundle size by 50%+)
-npx angular-superui add button card badge
+@ngsui/cli add button card badge
 ```
 
 ### 📦 **Deprecated: NPM Package Installation**
-> ⚠️ **Note**: NPM package installation is deprecated in v0.5.0. Use CLI for better performance.
+> ⚠️ **Note**: NPM package installation is deprecated in v0.6.0. Use CLI for better performance.
 
 ```bash
-npm install angular-superui@0.5.0
+npm install angular-superui@0.6.0
 ```
 
 ### 🌟 **Local-First Benefits**
@@ -50,6 +53,11 @@ All Tailwind CSS color variants now work correctly:
 - **15+ color variants** with proper numeric classes (`bg-lime-500`)
 - **Semantic colors** (success, warning, destructive, info)
 - **Creative palette** (purple, pink, violet, indigo, lime, orange)
+
+## 📚 **Quick Links**
+- 🎨 **[Complete Component Demos →](../../docs/demo.md)** - Step-by-step examples for all components
+- 📖 **[Installation Guide →](../../docs/installation.md)** - Detailed setup instructions  
+- 🔧 **[GitHub Repository →](https://github.com/bhaimicrosoft/angular-superui)** - Source code and issues
 
 ## ✨ Features
 
@@ -72,22 +80,22 @@ Perfect for new projects or when you want to reduce bundle size:
 
 ```bash
 # Install CLI globally
-npm install -g angular-superui-cli
+npm install -g @ngsui/cli
 
 # Initialize your Angular project
-npx angular-superui init
+@ngsui/cli init
 
 # Add specific components
-npx angular-superui add button card badge alert
+@ngsui/cli add button card badge alert
 
-# Add multiple components at once (New in v0.4.3!)
-npx angular-superui add button alert card dialog
+# Add multiple components at once (New in v0.6.0!)
+@ngsui/cli add button alert card dialog
 
-# Install ALL components at once (New in v0.4.3!)
-npx angular-superui add --all
+# Install ALL components at once (New in v0.6.0!)
+@ngsui/cli add --all
 
 # Interactive component selection
-npx angular-superui add
+@ngsui/cli add
 ```
 
 ### Option 2: Full Library Installation
@@ -216,45 +224,45 @@ import {
   imports: [Button, Avatar, ThemeSelector, Alert, Badge, Card, CardHeader, CardTitle, CardContent],
   template: `
     <!-- Theme Selector -->
-    <lib-theme-selector 
+    <theme-selector 
       [currentTheme]="currentTheme" 
       (themeChange)="onThemeChange($event)">
-    </lib-theme-selector>
+    </theme-selector>
 
-    <lib-card class="w-96">
-      <lib-card-header>
-        <lib-card-title>Welcome to Angular SuperUI</lib-card-title>
-      </lib-card-header>
-      <lib-card-content>
+    <card class="w-96">
+      <card-header>
+        <card-title>Welcome to Angular SuperUI</card-title>
+      </card-header>
+      <card-content>
         <!-- Enhanced Avatar -->
-        <lib-avatar 
+        <avatar 
           size="lg" 
           [src]="'https://github.com/shadcn.png'"
           [alt]="'User Avatar'"
           class="mb-4">
-        </lib-avatar>
+        </avatar>
 
         <!-- Colorful Alerts -->
-        <lib-alert variant="success" class="mb-4">
+        <alert variant="success" class="mb-4">
           <h4 class="font-medium">Success!</h4>
           <p class="text-sm">Your component library is ready to use.</p>
-        </lib-alert>
+        </alert>
 
         <!-- Colorful Buttons -->
         <div class="flex gap-2">
-          <lib-button variant="success">Success</lib-button>
-          <lib-button variant="purple">Purple</lib-button>
-          <lib-button variant="outline-info">Info Outline</lib-button>
+          <button variant="success">Success</button>
+          <button variant="purple">Purple</button>
+          <button variant="outline-info">Info Outline</button>
         </div>
 
         <!-- Colorful Badges -->
         <div class="flex gap-2 mt-4">
-          <lib-badge variant="emerald">Active</lib-badge>
-          <lib-badge variant="amber">Pending</lib-badge>
-          <lib-badge variant="outline-rose">Featured</lib-badge>
+          <badge variant="emerald">Active</badge>
+          <badge variant="amber">Pending</badge>
+          <badge variant="outline-rose">Featured</badge>
         </div>
-      </lib-card-content>
-    </lib-card>
+      </card-content>
+    </card>
   `
 })
 export class ExampleComponent {
@@ -279,21 +287,21 @@ Available across Button, Badge, Alert, and Progress components:
 
 ```typescript
 // Button variants (30+ total)
-<lib-button variant="success">Success</lib-button>
-<lib-button variant="purple">Purple</lib-button>
-<lib-button variant="outline-emerald">Emerald Outline</lib-button>
+<button variant="success">Success</button>
+<button variant="purple">Purple</button>
+<button variant="outline-emerald">Emerald Outline</button>
 
 // Badge variants (30+ total)
-<lib-badge variant="info">Info</lib-badge>
-<lib-badge variant="outline-pink">Pink Outline</lib-badge>
+<badge variant="info">Info</badge>
+<badge variant="outline-pink">Pink Outline</badge>
 
 // Alert variants (15+ total)
-<lib-alert variant="warning">Warning Alert</lib-alert>
-<lib-alert variant="purple">Purple Alert</lib-alert>
+<alert variant="warning">Warning Alert</alert>
+<alert variant="purple">Purple Alert</alert>
 
 // Progress variants (15+ total)
-<lib-progress [value]="75" variant="success"></lib-progress>
-<lib-progress [value]="60" variant="purple"></lib-progress>
+<progress [value]="75" variant="success"></progress>
+<progress [value]="60" variant="purple"></progress>
 ```
 
 ### 🎭 Theme Switching
@@ -301,10 +309,10 @@ Available across Button, Badge, Alert, and Progress components:
 11 beautiful themes with the ThemeSelector component:
 
 ```typescript
-<lib-theme-selector 
+<theme-selector 
   [currentTheme]="currentTheme" 
   (themeChange)="onThemeChange($event)">
-</lib-theme-selector>
+</theme-selector>
 ```
 
 **Available Themes**: Default, Blue, Green, Purple, Pink, Orange, Teal, Red, Yellow, Indigo, Cyan
@@ -354,23 +362,23 @@ The Avatar component now supports full image functionality:
 
 ```typescript
 // Image source with automatic fallback
-<lib-avatar 
+<avatar 
   size="lg" 
   [src]="'https://github.com/shadcn.png'"
   [alt]="'User Avatar'">
-</lib-avatar>
+</avatar>
 
 // Custom fallback text
-<lib-avatar [fallback]="'JD'"></lib-avatar>
+<avatar [fallback]="'JD'"></avatar>
 
 // Auto-generated initials from alt text
-<lib-avatar [alt]="'John Doe'"></lib-avatar>
+<avatar [alt]="'John Doe'"></avatar>
 
 // Multiple sizes
-<lib-avatar size="sm"></lib-avatar>    <!-- 32px -->
-<lib-avatar size="default"></lib-avatar> <!-- 40px -->
-<lib-avatar size="lg"></lib-avatar>    <!-- 48px -->
-<lib-avatar size="xl"></lib-avatar>    <!-- 64px -->
+<avatar size="sm"></avatar>    <!-- 32px -->
+<avatar size="default"></avatar> <!-- 40px -->
+<avatar size="lg"></avatar>    <!-- 48px -->
+<avatar size="xl"></avatar>    <!-- 64px -->
 ```
 
 **Features**:
@@ -390,66 +398,66 @@ The Avatar component now supports full image functionality:
   template: `
     <div class="p-6 space-y-6">
       <!-- Theme Selector -->
-      <lib-theme-selector 
+      <theme-selector 
         [currentTheme]="currentTheme" 
         (themeChange)="onThemeChange($event)">
-      </lib-theme-selector>
+      </theme-selector>
 
       <!-- Action Buttons -->
       <div class="flex gap-2">
-        <lib-button variant="success">Save</lib-button>
-        <lib-button variant="info">Preview</lib-button>
-        <lib-button variant="warning">Draft</lib-button>
-        <lib-button variant="destructive">Delete</lib-button>
+        <button variant="success">Save</button>
+        <button variant="info">Preview</button>
+        <button variant="warning">Draft</button>
+        <button variant="destructive">Delete</button>
       </div>
 
       <!-- Status Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <lib-card>
-          <lib-card-header>
-            <lib-card-title>Sales</lib-card-title>
-          </lib-card-header>
-          <lib-card-content>
-            <lib-progress [value]="85" variant="success"></lib-progress>
-            <lib-badge variant="success" class="mt-2">+12%</lib-badge>
-          </lib-card-content>
-        </lib-card>
+        <card>
+          <card-header>
+            <card-title>Sales</card-title>
+          </card-header>
+          <card-content>
+            <progress [value]="85" variant="success"></progress>
+            <badge variant="success" class="mt-2">+12%</badge>
+          </card-content>
+        </card>
         
-        <lib-card>
-          <lib-card-header>
-            <lib-card-title>Traffic</lib-card-title>
-          </lib-card-header>
-          <lib-card-content>
-            <lib-progress [value]="65" variant="info"></lib-progress>
-            <lib-badge variant="info" class="mt-2">+8%</lib-badge>
-          </lib-card-content>
-        </lib-card>
+        <card>
+          <card-header>
+            <card-title>Traffic</card-title>
+          </card-header>
+          <card-content>
+            <progress [value]="65" variant="info"></progress>
+            <badge variant="info" class="mt-2">+8%</badge>
+          </card-content>
+        </card>
         
-        <lib-card>
-          <lib-card-header>
-            <lib-card-title>Conversion</lib-card-title>
-          </lib-card-header>
-          <lib-card-content>
-            <lib-progress [value]="42" variant="warning"></lib-progress>
-            <lib-badge variant="warning" class="mt-2">-3%</lib-badge>
-          </lib-card-content>
-        </lib-card>
+        <card>
+          <card-header>
+            <card-title>Conversion</card-title>
+          </card-header>
+          <card-content>
+            <progress [value]="42" variant="warning"></progress>
+            <badge variant="warning" class="mt-2">-3%</badge>
+          </card-content>
+        </card>
       </div>
 
       <!-- Enhanced Avatars -->
       <div class="flex gap-4">
-        <lib-avatar 
+        <avatar 
           size="sm" 
           [src]="'https://github.com/shadcn.png'">
-        </lib-avatar>
-        <lib-avatar 
+        </avatar>
+        <avatar 
           size="default" 
           [alt]="'John Doe'">
-        </lib-avatar>
-        <lib-avatar 
+        </avatar>
+        <avatar 
           size="lg" 
           [fallback]="'AD'">
-        </lib-avatar>
+        </avatar>
       </div>
     </div>
   `

@@ -1,20 +1,23 @@
-# Installation Guide (v0.5.0)
+# Installation Guide (v0.6.0)
 
 Complete guide to installing and setting up Angular SuperUI in your project.
 
+## 📚 **[🎨 Complete Component Demos & Examples →](./demo.md)**
+> 🚀 **Step-by-step guides** for all 30+ components with **practical examples** and **usage instructions**!
+
 ## 🚀 **Recommended: CLI Installation (Local Components)**
 
-The recommended way to get started with Angular SuperUI v0.5.0 is using our CLI for local component installation:
+The recommended way to get started with Angular SuperUI v0.6.0 is using our CLI for local component installation:
 
 ```bash
 # Install CLI globally
-npm install -g angular-superui-cli@0.5.0
+npm install -g @ngsui/cli@0.6.0
 
 # Initialize in your Angular project
-angular-superui init
+@ngsui/cli init
 
 # Add specific components locally
-angular-superui add button card alert
+@ngsui/cli add button card alert
 ```
 
 **Benefits of CLI Installation:**
@@ -23,26 +26,27 @@ angular-superui add button card alert
 - ✅ **50%+ Smaller Bundle** - Only the components you use
 - ✅ **Full Control** - Modify components freely
 - ✅ **TypeScript Path Aliases** - Automatic @components/* setup
+- ✅ **Simplified Component Names** - No more `lib-` prefixes!
 
 ## 📦 **Alternative: NPM Package (Deprecated)**
 
-> ⚠️ **Note**: NPM package installation is deprecated in v0.5.0. Use CLI for better performance and control.
+> ⚠️ **Note**: NPM package installation is deprecated in v0.6.0. Use CLI for better performance and control.
 
 ### Automatic Installation (Deprecated)
 
 ```bash
-ng add angular-superui@0.5.0
+ng add angular-superui@0.6.0
 ```
 
 ### Manual Installation (Deprecated)
 
 ```bash
-npm install angular-superui@0.5.0
+npm install angular-superui@0.6.0
 ```
 
 ## CLI Installation Details
 
-### What `angular-superui init` does:
+### What `@ngsui/cli init` does:
 
 1. **Creates Local Structure**:
    - `./src/lib/components/` - Component installation directory
@@ -69,7 +73,7 @@ npm install angular-superui@0.5.0
 ### Step 1: Install the Package (Deprecated)
 
 ```bash
-npm install angular-superui@0.5.0
+npm install angular-superui@0.6.0
 ```
 
 ### Step 2: Install Peer Dependencies
@@ -221,14 +225,14 @@ import { Alert, Button, Input } from 'angular-superui';
   imports: [Alert, Button, Input],
   template: `
     <div class="p-6 space-y-4">
-      <lib-button variant="primary">Primary Button</lib-button>
+      <button variant="primary">Primary Button</button>
       
-      <lib-alert variant="success">
+      <alert variant="success">
         <h5>Success!</h5>
         <div>Your setup is complete!</div>
-      </lib-alert>
+      </alert>
       
-      <lib-input type="text" placeholder="Try typing here..."></lib-input>
+      <input type="text" placeholder="Try typing here..."></input>
     </div>
   `
 })

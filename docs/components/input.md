@@ -13,32 +13,32 @@ import { Input } from 'angular-superui';
 ### Basic Input
 
 ```html
-<lib-input type="text" placeholder="Enter your name"></lib-input>
+<input type="text" placeholder="Enter your name"></input>
 ```
 
 ### Input Types
 
 ```html
 <!-- Text input -->
-<lib-input type="text" placeholder="Enter text"></lib-input>
+<input type="text" placeholder="Enter text"></input>
 
 <!-- Email input -->
-<lib-input type="email" placeholder="Enter your email"></lib-input>
+<input type="email" placeholder="Enter your email"></input>
 
 <!-- Password input -->
-<lib-input type="password" placeholder="Enter your password"></lib-input>
+<input type="password" placeholder="Enter your password"></input>
 
 <!-- Number input -->
-<lib-input type="number" placeholder="Enter a number"></lib-input>
+<input type="number" placeholder="Enter a number"></input>
 
 <!-- Search input -->
-<lib-input type="search" placeholder="Search..."></lib-input>
+<input type="search" placeholder="Search..."></input>
 
 <!-- URL input -->
-<lib-input type="url" placeholder="Enter URL"></lib-input>
+<input type="url" placeholder="Enter URL"></input>
 
 <!-- Tel input -->
-<lib-input type="tel" placeholder="Enter phone number"></lib-input>
+<input type="tel" placeholder="Enter phone number"></input>
 ```
 
 ## API Reference
@@ -67,12 +67,12 @@ import { Input } from 'angular-superui';
   <label for="username" class="text-sm font-medium leading-none">
     Username
   </label>
-  <lib-input 
+  <input 
     id="username"
     type="text" 
     placeholder="Enter your username"
     required>
-  </lib-input>
+  </input>
 </div>
 ```
 
@@ -83,13 +83,13 @@ import { Input } from 'angular-superui';
   <label for="email" class="text-sm font-medium leading-none">
     Email
   </label>
-  <lib-input 
+  <input 
     id="email"
     type="email" 
     placeholder="Enter your email"
     class="border-red-500 focus:border-red-500"
     [class.border-red-500]="hasError">
-  </lib-input>
+  </input>
   <p *ngIf="hasError" class="text-sm text-red-600">
     Please enter a valid email address.
   </p>
@@ -99,22 +99,22 @@ import { Input } from 'angular-superui';
 ### Disabled Input
 
 ```html
-<lib-input 
+<input 
   type="text" 
   placeholder="This input is disabled"
   disabled>
-</lib-input>
+</input>
 ```
 
 ### Input with Icon
 
 ```html
 <div class="relative">
-  <lib-input 
+  <input 
     type="search" 
     placeholder="Search..."
     class="pl-10">
-  </lib-input>
+  </input>
   <svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" 
        viewBox="0 0 24 24" fill="none" stroke="currentColor">
     <circle cx="11" cy="11" r="8"/>
@@ -138,13 +138,13 @@ import { Input } from 'angular-superui';
       <div class="space-y-4">
         <div class="space-y-2">
           <label for="name" class="text-sm font-medium">Name</label>
-          <lib-input 
+          <input 
             id="name"
             type="text" 
             placeholder="Enter your name"
             formControlName="name"
             [class.border-red-500]="isFieldInvalid('name')">
-          </lib-input>
+          </input>
           <p *ngIf="isFieldInvalid('name')" class="text-sm text-red-600">
             Name is required.
           </p>
@@ -152,13 +152,13 @@ import { Input } from 'angular-superui';
         
         <div class="space-y-2">
           <label for="email" class="text-sm font-medium">Email</label>
-          <lib-input 
+          <input 
             id="email"
             type="email" 
             placeholder="Enter your email"
             formControlName="email"
             [class.border-red-500]="isFieldInvalid('email')">
-          </lib-input>
+          </input>
           <p *ngIf="isFieldInvalid('email')" class="text-sm text-red-600">
             Please enter a valid email address.
           </p>
@@ -231,9 +231,9 @@ The input component uses standard HTML input styling enhanced with Tailwind CSS 
 Extend the input with additional classes:
 
 ```html
-<lib-input 
+<input 
   type="text" 
   placeholder="Custom styled input"
   class="border-2 border-blue-300 focus:border-blue-500 bg-blue-50">
-</lib-input>
+</input>
 ```

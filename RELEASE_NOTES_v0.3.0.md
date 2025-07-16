@@ -112,52 +112,52 @@ import {
 
 #### Command Palette
 ```html
-<lib-command>
-  <lib-command-input placeholder="Search commands..." />
-  <lib-command-list>
-    <lib-command-group heading="File">
-      <lib-command-item>New File</lib-command-item>
-      <lib-command-item>Open File</lib-command-item>
-    </lib-command-group>
-  </lib-command-list>
-</lib-command>
+<command>
+  <command-input placeholder="Search commands..." />
+  <command-list>
+    <command-group heading="File">
+      <command-item>New File</command-item>
+      <command-item>Open File</command-item>
+    </command-group>
+  </command-list>
+</command>
 ```
 
 #### Date Picker
 ```html
-<lib-date-picker 
+<calendar 
   [(ngModel)]="selectedDate" 
   placeholder="Select a date">
-</lib-date-picker>
+</calendar>
 ```
 
 #### Sheet/Drawer
 ```html
-<lib-sheet>
-  <lib-sheet-trigger>
-    <lib-button>Open Sheet</lib-button>
+<sheet>
+  <sheet-trigger>
+    <button>Open Sheet</button>
   </lib-sheet-trigger>
-  <lib-sheet-content side="right">
-    <lib-sheet-header>
-      <lib-sheet-title>Sheet Title</lib-sheet-title>
-      <lib-sheet-description>Sheet description</lib-sheet-description>
+  <sheet-content side="right">
+    <sheet-header>
+      <sheet-title>Sheet Title</lib-sheet-title>
+      <sheet-description>Sheet description</lib-sheet-description>
     </lib-sheet-header>
     <!-- Content -->
   </lib-sheet-content>
-</lib-sheet>
+</sheet>
 ```
 
 #### Breadcrumb
 ```html
-<lib-breadcrumb [items]="breadcrumbItems" maxItems="3" />
+<breadcrumb [items]="breadcrumbItems" maxItems="3" />
 ```
 
 #### Enhanced Theme Selector
 ```html
-<lib-theme-selector 
+<theme-selector 
   [includeSystemOption]="true"
   [persistTheme]="true">
-</lib-theme-selector>
+</theme-selector>
 ```
 
 ## 🐛 Bug Fixes
@@ -192,10 +192,10 @@ If you're using `ThemeSelector`, you can now enable system theme detection:
 
 ```html
 <!-- Before -->
-<lib-theme-selector />
+<theme-selector />
 
 <!-- After (with system detection) -->
-<lib-theme-selector [includeSystemOption]="true" [persistTheme]="true" />
+<theme-selector [includeSystemOption]="true" [persistTheme]="true" />
 ```
 
 ## 🎯 What's Next

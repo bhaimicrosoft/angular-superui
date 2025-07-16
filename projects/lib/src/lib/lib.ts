@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-lib',
+  selector: 'lib',
   imports: [],
   template: `
     <p>

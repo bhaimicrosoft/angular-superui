@@ -1,11 +1,11 @@
 {
-  "name": "angular-superui-cli",
-  "version": "0.5.0",
+  "name": "@ngsui/cli",
+  "version": "0.6.0",
   "description": "CLI tool for selective Angular SuperUI component installation",
   "main": "dist/index.js",
   "bin": {
-    "angular-superui": "dist/cli.js",
-    "superui": "dist/cli.js"
+    "@ngsui/cli": "dist/cli.js",
+    "ngsui": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
@@ -38,7 +38,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bhaimicrosoft/angular-superui.git",
+    "url": "git+https://github.com/bhaimicrosoft/angular-superui.git",
     "directory": "packages/cli"
   },
   "homepage": "https://github.com/bhaimicrosoft/angular-superui#readme",

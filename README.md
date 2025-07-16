@@ -1,33 +1,42 @@
-# Angular SuperUI v0.5.0 🚀
+# Angular SuperUI v0.6.0 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
-[![CLI version](https://badge.fury.io/js/angular-superui-cli.svg)](https://www.npmjs.com/package/angular-superui-cli)
+[![CLI version](https://badge.fury.io/js/@ngsui/cli.svg)](https://www.npmjs.com/package/@ngsui/cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **CLI tool for selective installation**, and **enhanced dark mode support** that follow modern design principles and accessibility best practices.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **simplified component selectors**, and **enhanced CLI experience**.
 
-## 🛠️ **NEW v0.5.0: Streamlined Local Components**
+## � **[🎨 Complete Component Demos & Examples →](./docs/demo.md)**
+> 🚀 **Step-by-step guides** for all 30+ components with **practical examples**, **usage instructions**, and **styling tips**!
 
-### 🎯 **Enhanced CLI Tool - Zero NPM Dependencies**
+## �🛠️ **NEW v0.6.0: Simplified & Enhanced**
+
+### 🎯 **Simplified Component Names - No More Prefixes!**
+Components now use clean, simple selectors:
+- ✅ `<button>` instead of `<button>`
+- ✅ `<card>` instead of `<card>`  
+- ✅ `<dialog>` instead of `<dialog>`
+
+### 🚀 **Enhanced CLI Experience**
 ```bash
-# Install CLI globally for local component installation
-npm install -g angular-superui-cli@0.5.0
+# Install the new simplified CLI
+npm install -g @ngsui/cli@0.6.0
 
-# Initialize project (creates local components structure)
-angular-superui init
+# Initialize project with beautiful graphics
+@ngsui/cli init
 
-# Add specific components locally (NO npm package needed!)
-angular-superui add button card badge
+# Add components with improved UX
+@ngsui/cli add button card badge
 
 # Install all components at once
-angular-superui add --all
+@ngsui/cli add --all
 
-# List all available components
-angular-superui list
+# List all available components with better formatting
+@ngsui/cli list
 ```
 
 ### �️ **Local-First Architecture**
@@ -54,13 +63,35 @@ angular-superui list
 - **📊 Complete Component Coverage**: All components now support the extended color system
 - **♿ WCAG AA Compliant**: All color combinations meet accessibility standards
 
+## 📚 **Quick Links**
+
+<table>
+<tr>
+<td align="center">
+<h3>🎨 Component Demos</h3>
+<p><strong><a href="./docs/demo.md">→ Complete Examples</a></strong></p>
+<p>Step-by-step guides for all 30+ components</p>
+</td>
+<td align="center">
+<h3>📖 Installation Guide</h3>
+<p><strong><a href="./docs/installation.md">→ Setup Instructions</a></strong></p>
+<p>Detailed installation and configuration</p>
+</td>
+<td align="center">
+<h3>🔧 GitHub Repository</h3>
+<p><strong><a href="https://github.com/bhaimicrosoft/angular-superui">→ Source Code</a></strong></p>
+<p>Issues, discussions, and contributions</p>
+</td>
+</tr>
+</table>
+
 ## ✨ Features
 
 - 🎨 **Beautiful Design** - Modern, clean components with Tailwind CSS
 - 🌈 **15+ Color Variants** - Extended color palette for all component variants
 - 🎭 **11 Theme Options** - Dynamic theme switching with ThemeSelector component
 - 🌙 **Enhanced Dark Mode** - System detection, persistent storage, and seamless switching
-- �️ **CLI Tool** - Selective component installation like shadcn/ui (`angular-superui-cli`)
+- �️ **CLI Tool** - Selective component installation like shadcn/ui (`@ngsui/cli`)
 - �🔧 **TypeScript First** - Full type safety with Class Variance Authority
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant, WCAG AA)
 - 🎯 **Tree Shakable** - Import only what you need (especially with CLI)
@@ -81,43 +112,43 @@ angular-superui list
 Install the CLI for local component installation:
 
 ```bash
-npm install -g angular-superui-cli@0.5.0
+npm install -g @ngsui/cli@0.6.0
 ```
 
 Initialize in your Angular project (creates local structure):
 
 ```bash
-angular-superui init
+@ngsui/cli init
 ```
 
 Add specific components locally:
 
 ```bash
 # Add individual components (installed in ./src/lib/components/)
-angular-superui add button
-angular-superui add calendar
-angular-superui add dialog
+@ngsui/cli add button
+@ngsui/cli add calendar
+@ngsui/cli add dialog
 
 # Add multiple components at once
-angular-superui add button alert card
-angular-superui add dialog tooltip popover
+@ngsui/cli add button alert card
+@ngsui/cli add dialog tooltip popover
 
 # Install ALL components at once
-angular-superui add --all
+@ngsui/cli add --all
 
 # Force overwrite existing components
-angular-superui add button --force
+@ngsui/cli add button --force
 
 # List all available components
-angular-superui list
+@ngsui/cli list
 ```
 
-### 📦 **Alternative: NPM Package (Deprecated in v0.5.0)**
+### 📦 **Alternative: NPM Package (Deprecated in v0.6.0)**
 
 > ⚠️ **Note**: The NPM package approach is deprecated. Use the CLI for better performance and control.
 
 ```bash
-npm install angular-superui@0.5.0
+npm install angular-superui@0.6.0
 ```
 
 ### Using Angular CLI
@@ -366,37 +397,37 @@ import {
   ],
   template: `
     <!-- Theme Selector -->
-    <lib-theme-selector class="fixed top-4 right-4" />
+    <theme-selector class="fixed top-4 right-4" />
     
     <!-- Breadcrumb Navigation -->
-    <lib-breadcrumb 
+    <breadcrumb 
       [items]="breadcrumbItems" 
       class="mb-6"
       maxItems="3">
-    </lib-breadcrumb>
+    </breadcrumb>
     
     <!-- Main Content Card -->
-    <lib-card class="w-96">
-      <lib-card-header>
-        <lib-card-title>Welcome to Angular SuperUI v0.3.0</lib-card-title>
-      </lib-card-header>
-      <lib-card-content>
-        <lib-alert variant="success" class="mb-4">
+    <card class="w-96">
+      <card-header>
+        <card-title>Welcome to Angular SuperUI v0.6.0</card-title>
+      </card-header>
+      <card-content>
+        <alert variant="success" class="mb-4">
           <h4 class="font-medium">New Features Added!</h4>
           <p class="text-sm">Calendar, Command Palette, Sheet, Popover, and Breadcrumb components.</p>
-        </lib-alert>
+        </alert>
         
         <!-- Date Picker -->
         <div class="mb-4">
           <label class="block text-sm font-medium mb-2">Select Date:</label>
-          <lib-date-picker [(ngModel)]="selectedDate" />
+          <calendar [(ngModel)]="selectedDate" />
         </div>
         
-        <lib-button variant="default" size="lg">
+        <button variant="default" size="lg">
           Get Started
-        </lib-button>
-      </lib-card-content>
-    </lib-card>
+        </button>
+      </card-content>
+    </card>
   `
 })
 export class ExampleComponent {
@@ -423,47 +454,47 @@ All components now use correct Tailwind CSS classes with numeric values:
 ### 🎯 **15+ Color Variants Available**
 ```html
 <!-- Solid Button Variants -->
-<lib-button variant="success">Success</lib-button>
-<lib-button variant="warning">Warning</lib-button>
-<lib-button variant="info">Info</lib-button>
-<lib-button variant="purple">Purple</lib-button>
-<lib-button variant="pink">Pink</lib-button>
-<lib-button variant="orange">Orange</lib-button>
-<lib-button variant="teal">Teal</lib-button>
-<lib-button variant="indigo">Indigo</lib-button>
-<lib-button variant="cyan">Cyan</lib-button>
-<lib-button variant="rose">Rose</lib-button>
-<lib-button variant="emerald">Emerald</lib-button>
-<lib-button variant="amber">Amber</lib-button>
-<lib-button variant="lime">Lime</lib-button>
-<lib-button variant="violet">Violet</lib-button>
-<lib-button variant="sky">Sky</lib-button>
+<button variant="success">Success</button>
+<button variant="warning">Warning</button>
+<button variant="info">Info</button>
+<button variant="purple">Purple</button>
+<button variant="pink">Pink</button>
+<button variant="orange">Orange</button>
+<button variant="teal">Teal</button>
+<button variant="indigo">Indigo</button>
+<button variant="cyan">Cyan</button>
+<button variant="rose">Rose</button>
+<button variant="emerald">Emerald</button>
+<button variant="amber">Amber</button>
+<button variant="lime">Lime</button>
+<button variant="violet">Violet</button>
+<button variant="sky">Sky</button>
 
 <!-- Outline Button Variants -->
-<lib-button variant="outline-success">Outline Success</lib-button>
-<lib-button variant="outline-purple">Outline Purple</lib-button>
-<lib-button variant="outline-lime">Outline Lime</lib-button>
+<button variant="outline-success">Outline Success</button>
+<button variant="outline-purple">Outline Purple</button>
+<button variant="outline-lime">Outline Lime</button>
 ```
 
 ### 🌈 **Badge Color Examples**
 ```html
-<lib-badge variant="success">Success Badge</lib-badge>
-<lib-badge variant="purple">Purple Badge</lib-badge>
-<lib-badge variant="outline-lime">Outline Lime</lib-badge>
+<badge variant="success">Success Badge</badge>
+<badge variant="purple">Purple Badge</badge>
+<badge variant="outline-lime">Outline Lime</badge>
 ```
 
 ### 📢 **Alert Color Examples**  
 ```html
-<lib-alert variant="success">Success message with proper green colors!</lib-alert>
-<lib-alert variant="purple">Purple alert with proper colors!</lib-alert>
-<lib-alert variant="lime">Lime alert - now properly styled!</lib-alert>
+<alert variant="success">Success message with proper green colors!</alert>
+<alert variant="purple">Purple alert with proper colors!</alert>
+<alert variant="lime">Lime alert - now properly styled!</alert>
 ```
 
 ### 📊 **Progress Color Examples**
 ```html
-<lib-progress [value]="75" variant="success" />
-<lib-progress [value]="60" variant="purple" />
-<lib-progress [value]="90" variant="lime" />
+<progress [value]="75" variant="success" />
+<progress [value]="60" variant="purple" />
+<progress [value]="90" variant="lime" />
 ```
 
 ### 🌈 15+ Beautiful Color Variants
@@ -504,10 +535,10 @@ import { ThemeSelector } from 'angular-superui';
 @Component({
   imports: [ThemeSelector],
   template: `
-    <lib-theme-selector 
+    <theme-selector 
       [currentTheme]="currentTheme" 
       (themeChange)="onThemeChange($event)">
-    </lib-theme-selector>
+    </theme-selector>
   `
 })
 export class MyComponent {
@@ -533,17 +564,17 @@ import { Avatar } from 'angular-superui';
   imports: [Avatar],
   template: `
     <!-- With image source -->
-    <lib-avatar 
+    <avatar 
       size="lg" 
       [src]="'https://github.com/shadcn.png'"
       [alt]="'User Avatar'">
-    </lib-avatar>
+    </avatar>
     
     <!-- With fallback text -->
-    <lib-avatar size="default" [fallback]="'JD'"></lib-avatar>
+    <avatar size="default" [fallback]="'JD'"></avatar>
     
     <!-- Auto-generated initials -->
-    <lib-avatar [alt]="'John Doe'"></lib-avatar>
+    <avatar [alt]="'John Doe'"></avatar>
   `
 })
 ```
@@ -552,14 +583,14 @@ import { Avatar } from 'angular-superui';
 
 ```typescript
 // Solid color variants (15+ colors)
-<lib-button variant="success">Success</lib-button>
-<lib-button variant="purple">Purple</lib-button>
-<lib-button variant="emerald">Emerald</lib-button>
+<button variant="success">Success</button>
+<button variant="purple">Purple</button>
+<button variant="emerald">Emerald</button>
 
 // Outline variants (15+ colors)  
-<lib-button variant="outline-info">Info Outline</lib-button>
-<lib-button variant="outline-pink">Pink Outline</lib-button>
-<lib-button variant="outline-teal">Teal Outline</lib-button>
+<button variant="outline-info">Info Outline</button>
+<button variant="outline-pink">Pink Outline</button>
+<button variant="outline-teal">Teal Outline</button>
 ```
 
 All Badge, Alert, and Progress components support the same 15+ color variants!
@@ -641,24 +672,24 @@ After installation, you can use the CLI to manage components:
 
 ### Initialize a new project
 ```bash
-npx angular-superui init
+@ngsui/cli init
 ```
 
 ### Add specific components
 ```bash
 # Add a single component
-npx angular-superui add button
+@ngsui/cli add button
 
 # Add multiple components
-npx angular-superui add button card badge
+@ngsui/cli add button card badge
 
 # Interactive selection
-npx angular-superui add
+@ngsui/cli add
 ```
 
 ### List available components
 ```bash
-npx angular-superui list
+@ngsui/cli list
 ```
 
 ## �📚 Component Examples
@@ -677,65 +708,65 @@ import {
 @Component({
   imports: [FormsModule, Card, CardHeader, CardTitle, CardContent, Input, Label, Select, RadioGroup, Checkbox, Switch, Slider, Button],
   template: `
-    <lib-card class="max-w-md">
-      <lib-card-header>
-        <lib-card-title>User Preferences</lib-card-title>
-      </lib-card-header>
-      <lib-card-content class="space-y-6">
+    <card class="max-w-md">
+      <card-header>
+        <card-title>User Preferences</card-title>
+      </card-header>
+      <card-content class="space-y-6">
         <!-- Text Input -->
         <div class="space-y-2">
-          <lib-label>Full Name</lib-label>
-          <lib-input 
+          <label>Full Name</label>
+          <input 
             placeholder="Enter your name"
             [(ngModel)]="formData.name">
-          </lib-input>
+          </input>
         </div>
 
         <!-- Select Dropdown -->
         <div class="space-y-2">
-          <lib-label>Country</lib-label>
-          <lib-select 
+          <label>Country</label>
+          <select 
             [options]="countries"
             [(ngModel)]="formData.country">
-          </lib-select>
+          </select>
         </div>
 
         <!-- Radio Group -->
         <div class="space-y-2">
-          <lib-label>Theme Preference</lib-label>
-          <lib-radio-group 
+          <label>Theme Preference</label>
+          <radio-group 
             [options]="themes"
             [(ngModel)]="formData.theme">
-          </lib-radio-group>
+          </radio-group>
         </div>
 
         <!-- Checkboxes -->
         <div class="space-y-2">
-          <lib-checkbox 
+          <checkbox 
             [(ngModel)]="formData.newsletter">
-          </lib-checkbox>
-          <lib-label>Subscribe to newsletter</lib-label>
+          </checkbox>
+          <label>Subscribe to newsletter</label>
         </div>
 
         <!-- Switch -->
         <div class="flex items-center space-x-2">
-          <lib-switch [(ngModel)]="formData.notifications"></lib-switch>
-          <lib-label>Enable notifications</lib-label>
+          <switch [(ngModel)]="formData.notifications"></switch>
+          <label>Enable notifications</label>
         </div>
 
         <!-- Slider -->
         <div class="space-y-2">
-          <lib-label>Volume: {{formData.volume}}%</lib-label>
-          <lib-slider 
+          <label>Volume: {{formData.volume}}%</label>
+          <slider 
             [min]="0" 
             [max]="100" 
             [(ngModel)]="formData.volume">
-          </lib-slider>
+          </slider>
         </div>
 
-        <lib-button class="w-full">Save Preferences</lib-button>
-      </lib-card-content>
-    </lib-card>
+        <button class="w-full">Save Preferences</button>
+      </card-content>
+    </card>
   `
 })
 export class AdvancedFormComponent {
@@ -777,56 +808,56 @@ import {
   imports: [Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, Tabs, TabsList, TabsTrigger, TabsContent, Accordion, AccordionItem, AccordionTrigger, AccordionContent, Tooltip, Button],
   template: `
     <!-- Tabs -->
-    <lib-tabs value="profile">
-      <lib-tabs-list>
-        <lib-tabs-trigger value="profile">Profile</lib-tabs-trigger>
-        <lib-tabs-trigger value="account">Account</lib-tabs-trigger>
-        <lib-tabs-trigger value="settings">Settings</lib-tabs-trigger>
+    <tabs value="profile">
+      <tabs-list>
+        <tabs-trigger value="profile">Profile</lib-tabs-trigger>
+        <tabs-trigger value="account">Account</lib-tabs-trigger>
+        <tabs-trigger value="settings">Settings</lib-tabs-trigger>
       </lib-tabs-list>
       
-      <lib-tabs-content value="profile">
+      <tabs-content value="profile">
         <p>Manage your profile information here.</p>
       </lib-tabs-content>
-    </lib-tabs>
+    </tabs>
 
     <!-- Accordion -->
-    <lib-accordion type="single" collapsible>
-      <lib-accordion-item value="item-1">
-        <lib-accordion-trigger>Is it accessible?</lib-accordion-trigger>
-        <lib-accordion-content>
+    <accordion type="single" collapsible>
+      <accordion-item value="item-1">
+        <accordion-trigger>Is it accessible?</lib-accordion-trigger>
+        <accordion-content>
           Yes. It adheres to the WAI-ARIA design pattern.
         </lib-accordion-content>
       </lib-accordion-item>
-    </lib-accordion>
+    </accordion>
 
     <!-- Dialog -->
-    <lib-button (click)="showDialog = true">Open Dialog</lib-button>
-    <lib-dialog [open]="showDialog" (openChange)="showDialog = $event">
-      <lib-dialog-content>
-        <lib-dialog-header>
-          <lib-dialog-title>Are you sure?</lib-dialog-title>
-          <lib-dialog-description>
+    <button (click)="showDialog = true">Open Dialog</button>
+    <dialog [open]="showDialog" (openChange)="showDialog = $event">
+      <dialog-content>
+        <dialog-header>
+          <dialog-title>Are you sure?</lib-dialog-title>
+          <dialog-description>
             This action cannot be undone.
           </lib-dialog-description>
         </lib-dialog-header>
-        <lib-dialog-footer>
-          <lib-button variant="outline" (click)="showDialog = false">
+        <dialog-footer>
+          <button variant="outline" (click)="showDialog = false">
             Cancel
-          </lib-button>
-          <lib-button (click)="confirmAction()">Continue</lib-button>
+          </button>
+          <button (click)="confirmAction()">Continue</button>
         </lib-dialog-footer>
       </lib-dialog-content>
-    </lib-dialog>
+    </dialog>
 
     <!-- Tooltip -->
-    <lib-tooltip content="This is a helpful tooltip" placement="top">
-      <lib-button variant="outline">Hover me</lib-button>
-    </lib-tooltip>
+    <tooltip content="This is a helpful tooltip" placement="top">
+      <button variant="outline">Hover me</button>
+    </tooltip>
 
     <!-- Toast Triggers -->
     <div class="space-x-2">
-      <lib-button (click)="showSuccessToast()">Success</lib-button>
-      <lib-button (click)="showErrorToast()" variant="destructive">Error</lib-button>
+      <button (click)="showSuccessToast()">Success</button>
+      <button (click)="showErrorToast()" variant="destructive">Error</button>
     </div>
   `
 })
@@ -863,35 +894,35 @@ import {
 @Component({
   imports: [Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption, Badge, Button],
   template: `
-    <lib-table>
-      <lib-table-caption>Recent transactions</lib-table-caption>
-      <lib-table-header>
-        <lib-table-row>
-          <lib-table-head>ID</lib-table-head>
-          <lib-table-head>Description</lib-table-head>
-          <lib-table-head>Status</lib-table-head>
-          <lib-table-head class="text-right">Amount</lib-table-head>
-          <lib-table-head>Actions</lib-table-head>
-        </lib-table-row>
-      </lib-table-header>
-      <lib-table-body>
-        <lib-table-row *ngFor="let transaction of transactions">
-          <lib-table-cell>{{transaction.id}}</lib-table-cell>
-          <lib-table-cell>{{transaction.description}}</lib-table-cell>
-          <lib-table-cell>
-            <lib-badge [variant]="getBadgeVariant(transaction.status)">
+    <table>
+      <table-caption>Recent transactions</table-caption>
+      <table-header>
+        <table-row>
+          <table-head>ID</table-head>
+          <table-head>Description</table-head>
+          <table-head>Status</table-head>
+          <table-head class="text-right">Amount</table-head>
+          <table-head>Actions</table-head>
+        </table-row>
+      </table-header>
+      <table-body>
+        <table-row *ngFor="let transaction of transactions">
+          <table-cell>{{transaction.id}}</table-cell>
+          <table-cell>{{transaction.description}}</table-cell>
+          <table-cell>
+            <badge [variant]="getBadgeVariant(transaction.status)">
               {{transaction.status}}
-            </lib-badge>
-          </lib-table-cell>
-          <lib-table-cell class="text-right">
+            </badge>
+          </table-cell>
+          <table-cell class="text-right">
             {{transaction.amount | currency}}
-          </lib-table-cell>
-          <lib-table-cell>
-            <lib-button size="sm" variant="outline">View</lib-button>
-          </lib-table-cell>
-        </lib-table-row>
-      </lib-table-body>
-    </lib-table>
+          </table-cell>
+          <table-cell>
+            <button size="sm" variant="outline">View</button>
+          </table-cell>
+        </table-row>
+      </table-body>
+    </table>
   `
 })
 export class DataTableComponent {
@@ -991,7 +1022,7 @@ import { ToastContainer } from 'angular-superui';
   imports: [ToastContainer],
   template: `
     <!-- Your app content -->
-    <lib-toast-container></lib-toast-container>
+    <toast-container></lib-toast-container>
   `
 })
 export class AppComponent {}

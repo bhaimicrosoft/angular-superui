@@ -13,18 +13,18 @@ import { Badge } from 'angular-superui';
 ### Basic Badge
 
 ```html
-<lib-badge>New</lib-badge>
+<badge>New</badge>
 ```
 
 ### Badge Variants
 
 ```html
-<lib-badge variant="default">Default</lib-badge>
-<lib-badge variant="secondary">Secondary</lib-badge>
-<lib-badge variant="destructive">Error</lib-badge>
-<lib-badge variant="outline">Outline</lib-badge>
-<lib-badge variant="success">Success</lib-badge>
-<lib-badge variant="warning">Warning</lib-badge>
+<badge variant="default">Default</badge>
+<badge variant="secondary">Secondary</badge>
+<badge variant="destructive">Error</badge>
+<badge variant="outline">Outline</badge>
+<badge variant="success">Success</badge>
+<badge variant="warning">Warning</badge>
 ```
 
 ## API Reference
@@ -40,9 +40,9 @@ import { Badge } from 'angular-superui';
 
 ```html
 <div class="flex gap-2">
-  <lib-badge variant="success">Active</lib-badge>
-  <lib-badge variant="warning">Pending</lib-badge>
-  <lib-badge variant="destructive">Inactive</lib-badge>
+  <badge variant="success">Active</badge>
+  <badge variant="warning">Pending</badge>
+  <badge variant="destructive">Inactive</badge>
 </div>
 ```
 
@@ -50,8 +50,8 @@ import { Badge } from 'angular-superui';
 
 ```html
 <div class="relative inline-flex">
-  <lib-button variant="outline">Messages</lib-button>
-  <lib-badge class="absolute -top-2 -right-2 px-2 py-1 text-xs">3</lib-badge>
+  <button variant="outline">Messages</button>
+  <badge class="absolute -top-2 -right-2 px-2 py-1 text-xs">3</badge>
 </div>
 ```
 
@@ -59,8 +59,8 @@ import { Badge } from 'angular-superui';
 
 ```html
 <div class="flex flex-wrap gap-2">
-  <lib-badge variant="outline">React</lib-badge>
-  <lib-badge variant="outline">TypeScript</lib-badge>
-  <lib-badge variant="outline">Angular</lib-badge>
+  <badge variant="outline">React</badge>
+  <badge variant="outline">TypeScript</badge>
+  <badge variant="outline">Angular</badge>
 </div>
 ```

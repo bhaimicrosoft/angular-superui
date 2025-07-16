@@ -33,77 +33,77 @@ A comprehensive color palette system with **15+ beautiful color variants** for a
 ### Button Component
 ```typescript
 // Solid variants
-<lib-button variant="success">Success</lib-button>
-<lib-button variant="warning">Warning</lib-button>
-<lib-button variant="info">Info</lib-button>
-<lib-button variant="purple">Purple</lib-button>
-<lib-button variant="pink">Pink</lib-button>
-<lib-button variant="orange">Orange</lib-button>
-<lib-button variant="teal">Teal</lib-button>
-<lib-button variant="indigo">Indigo</lib-button>
-<lib-button variant="cyan">Cyan</lib-button>
-<lib-button variant="rose">Rose</lib-button>
-<lib-button variant="emerald">Emerald</lib-button>
-<lib-button variant="amber">Amber</lib-button>
-<lib-button variant="lime">Lime</lib-button>
-<lib-button variant="violet">Violet</lib-button>
-<lib-button variant="sky">Sky</lib-button>
+<button variant="success">Success</button>
+<button variant="warning">Warning</button>
+<button variant="info">Info</button>
+<button variant="purple">Purple</button>
+<button variant="pink">Pink</button>
+<button variant="orange">Orange</button>
+<button variant="teal">Teal</button>
+<button variant="indigo">Indigo</button>
+<button variant="cyan">Cyan</button>
+<button variant="rose">Rose</button>
+<button variant="emerald">Emerald</button>
+<button variant="amber">Amber</button>
+<button variant="lime">Lime</button>
+<button variant="violet">Violet</button>
+<button variant="sky">Sky</button>
 
 // Outline variants
-<lib-button variant="outline-success">Success</lib-button>
-<lib-button variant="outline-warning">Warning</lib-button>
-<lib-button variant="outline-info">Info</lib-button>
+<button variant="outline-success">Success</button>
+<button variant="outline-warning">Warning</button>
+<button variant="outline-info">Info</button>
 // ... all colors available as outline variants
 ```
 
 ### Badge Component
 ```typescript
 // Solid variants
-<lib-badge variant="success">Success</lib-badge>
-<lib-badge variant="warning">Warning</lib-badge>
-<lib-badge variant="info">Info</lib-badge>
-<lib-badge variant="purple">Purple</lib-badge>
-<lib-badge variant="pink">Pink</lib-badge>
+<badge variant="success">Success</badge>
+<badge variant="warning">Warning</badge>
+<badge variant="info">Info</badge>
+<badge variant="purple">Purple</badge>
+<badge variant="pink">Pink</badge>
 // ... all 15+ colors available
 
 // Outline variants
-<lib-badge variant="outline-success">Success</lib-badge>
-<lib-badge variant="outline-warning">Warning</lib-badge>
+<badge variant="outline-success">Success</badge>
+<badge variant="outline-warning">Warning</badge>
 // ... all colors available as outline variants
 ```
 
 ### Alert Component
 ```typescript
-<lib-alert variant="success">
+<alert variant="success">
   <h4>Success Alert</h4>
   <p>Operation completed successfully.</p>
-</lib-alert>
+</alert>
 
-<lib-alert variant="warning">
+<alert variant="warning">
   <h4>Warning Alert</h4>
   <p>Please review your input.</p>
-</lib-alert>
+</alert>
 
-<lib-alert variant="info">
+<alert variant="info">
   <h4>Info Alert</h4>
   <p>Here's some helpful information.</p>
-</lib-alert>
+</alert>
 
-<lib-alert variant="purple">
+<alert variant="purple">
   <h4>Purple Alert</h4>
   <p>Creative messaging with purple theme.</p>
-</lib-alert>
+</alert>
 
 // Available for all 15+ colors
 ```
 
 ### Progress Component
 ```typescript
-<lib-progress [value]="75" variant="success"></lib-progress>
-<lib-progress [value]="60" variant="warning"></lib-progress>
-<lib-progress [value]="45" variant="info"></lib-progress>
-<lib-progress [value]="80" variant="purple"></lib-progress>
-<lib-progress [value]="90" variant="emerald"></lib-progress>
+<progress [value]="75" variant="success"></progress>
+<progress [value]="60" variant="warning"></progress>
+<progress [value]="45" variant="info"></progress>
+<progress [value]="80" variant="purple"></progress>
+<progress [value]="90" variant="emerald"></progress>
 
 // Available for all 15+ colors
 ```
@@ -184,10 +184,10 @@ import { ThemeSelector } from 'angular-superui';
 @Component({
   imports: [ThemeSelector],
   template: `
-    <lib-theme-selector 
+    <theme-selector 
       [currentTheme]="currentTheme" 
       (themeChange)="onThemeChange($event)">
-    </lib-theme-selector>
+    </theme-selector>
   `
 })
 export class MyComponent {
@@ -266,10 +266,10 @@ All color combinations meet WCAG AA contrast requirements:
 @Component({
   template: `
     <div class="flex flex-wrap gap-2">
-      <lib-button variant="success">Save</lib-button>
-      <lib-button variant="warning">Draft</lib-button>
-      <lib-button variant="info">Preview</lib-button>
-      <lib-button variant="destructive">Delete</lib-button>
+      <button variant="success">Save</button>
+      <button variant="warning">Draft</button>
+      <button variant="info">Preview</button>
+      <button variant="destructive">Delete</button>
     </div>
   `
 })
@@ -280,11 +280,11 @@ All color combinations meet WCAG AA contrast requirements:
 @Component({
   template: `
     <div class="space-y-2">
-      <lib-badge variant="success">Active</lib-badge>
-      <lib-badge variant="warning">Pending</lib-badge>
-      <lib-badge variant="info">Processing</lib-badge>
-      <lib-badge variant="purple">Premium</lib-badge>
-      <lib-badge variant="destructive">Inactive</lib-badge>
+      <badge variant="success">Active</badge>
+      <badge variant="warning">Pending</badge>
+      <badge variant="info">Processing</badge>
+      <badge variant="purple">Premium</badge>
+      <badge variant="destructive">Inactive</badge>
     </div>
   `
 })
@@ -297,15 +297,15 @@ All color combinations meet WCAG AA contrast requirements:
     <div class="space-y-4">
       <div>
         <label>Health: 85%</label>
-        <lib-progress [value]="85" variant="success"></lib-progress>
+        <progress [value]="85" variant="success"></progress>
       </div>
       <div>
         <label>Loading: 45%</label>
-        <lib-progress [value]="45" variant="info"></lib-progress>
+        <progress [value]="45" variant="info"></progress>
       </div>
       <div>
         <label>Warning: 25%</label>
-        <lib-progress [value]="25" variant="warning"></lib-progress>
+        <progress [value]="25" variant="warning"></progress>
       </div>
     </div>
   `

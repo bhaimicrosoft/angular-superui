@@ -1,6 +1,6 @@
 {
   "name": "angular-superui",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -35,8 +35,7 @@
     "rxjs": "~7.8.0",
     "tailwind-merge": "^1.14.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0",
-    "angular-superui": "^0.3.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular/build": "^20.1.0",

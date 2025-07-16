@@ -9,17 +9,21 @@ const init_1 = require("./commands/init");
 const add_1 = require("./commands/add");
 const list_1 = require("./commands/list");
 const chalk_1 = __importDefault(require("chalk"));
+// Get version from package.json
+const packageJson = require('../package.json');
+const CLI_VERSION = packageJson.version;
 const program = new commander_1.Command();
 program
-    .name('angular-superui')
-    .description('CLI tool for Angular SuperUI components')
-    .version('0.4.4');
-// ASCII Art Banner
+    .name('@ngsui/cli')
+    .description('🎨 Angular SuperUI CLI - Local-First Component Library')
+    .version(CLI_VERSION);
+// Beautiful ASCII Art Banner
 console.log(chalk_1.default.cyan(`
-╔═══════════════════════════════════════╗
-║       Angular SuperUI CLI v0.4.4     ║
-║    Selective Component Installation   ║
-╚═══════════════════════════════════════╝
+┌─────────────────────────────────────────────────────────────┐
+│`) + chalk_1.default.bold.magenta(`              🎨 Angular SuperUI CLI              `) + chalk_1.default.cyan(`│
+│`) + chalk_1.default.gray(`              Local-First Components              `) + chalk_1.default.cyan(`│
+│`) + chalk_1.default.yellow(`                     v${CLI_VERSION}                      `) + chalk_1.default.cyan(`│
+└─────────────────────────────────────────────────────────────┘
 `));
 // Commands
 program

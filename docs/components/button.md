@@ -13,49 +13,49 @@ import { Button } from 'angular-superui';
 ### Basic Button
 
 ```html
-<lib-button>Click me</lib-button>
+<button>Click me</button>
 ```
 
 ### Button Variants
 
 ```html
 <!-- Primary button (default) -->
-<lib-button variant="default">Default</lib-button>
+<button variant="default">Default</button>
 
 <!-- Secondary button -->
-<lib-button variant="secondary">Secondary</lib-button>
+<button variant="secondary">Secondary</button>
 
 <!-- Destructive button -->
-<lib-button variant="destructive">Destructive</lib-button>
+<button variant="destructive">Destructive</button>
 
 <!-- Outline button -->
-<lib-button variant="outline">Outline</lib-button>
+<button variant="outline">Outline</button>
 
 <!-- Ghost button -->
-<lib-button variant="ghost">Ghost</lib-button>
+<button variant="ghost">Ghost</button>
 
 <!-- Link button -->
-<lib-button variant="link">Link</lib-button>
+<button variant="link">Link</button>
 ```
 
 ### Button Sizes
 
 ```html
 <!-- Small button -->
-<lib-button size="sm">Small</lib-button>
+<button size="sm">Small</button>
 
 <!-- Default size -->
-<lib-button>Default</lib-button>
+<button>Default</button>
 
 <!-- Large button -->
-<lib-button size="lg">Large</lib-button>
+<button size="lg">Large</button>
 
 <!-- Icon button -->
-<lib-button size="icon">
+<button size="icon">
   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
     <path d="M5 12h14M12 5v14"/>
   </svg>
-</lib-button>
+</button>
 ```
 
 ## API Reference
@@ -74,27 +74,27 @@ import { Button } from 'angular-superui';
 |------|-------------|
 | Default | The content of the button - supports text, icons, and other elements |
 
-**Note:** Events like `click` are handled through standard Angular event binding on the `<lib-button>` element. Use `(click)="yourHandler()"` to handle button clicks.
+**Note:** Events like `click` are handled through standard Angular event binding on the `<button>` element. Use `(click)="yourHandler()"` to handle button clicks.
 
 ## Examples
 
 ### Button with Icon
 
 ```html
-<lib-button>
+<button>
   <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
   </svg>
   Download
-</lib-button>
+</button>
 ```
 
 ### Simple Button with Event Handling
 
 ```html
-<lib-button (click)="handleClick()">
+<button (click)="handleClick()">
   Click me
-</lib-button>
+</button>
 ```
 
 ```typescript
@@ -107,17 +107,17 @@ handleClick() {
 
 ```html
 <div class="flex gap-2">
-  <lib-button variant="outline">Previous</lib-button>
-  <lib-button>Next</lib-button>
+  <button variant="outline">Previous</button>
+  <button>Next</button>
 </div>
 ```
 
 ### Responsive Button
 
 ```html
-<lib-button class="w-full sm:w-auto">
+<button class="w-full sm:w-auto">
   Responsive Button
-</lib-button>
+</button>
 ```
 
 ## Styling Variants
@@ -153,9 +153,9 @@ Button styled to look like a text link.
 You can extend the button with custom classes:
 
 ```html
-<lib-button class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
+<button class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600">
   Gradient Button
-</lib-button>
+</button>
 ```
 
 ## TypeScript Usage
@@ -168,13 +168,13 @@ import { Button } from 'angular-superui';
   standalone: true,
   imports: [Button],
   template: `
-    <lib-button 
+    <button 
       variant="primary" 
       size="lg"
       [disabled]="isSubmitting"
       (click)="handleSubmit()">
       {{ isSubmitting ? 'Submitting...' : 'Submit' }}
-    </lib-button>
+    </button>
   `
 })
 export class MyComponent {

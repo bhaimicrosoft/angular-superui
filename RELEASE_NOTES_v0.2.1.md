@@ -33,20 +33,20 @@ ng add angular-superui
 
 ```typescript
 // All these variants are now available:
-<lib-button variant="success">Success</lib-button>
-<lib-button variant="purple">Purple</lib-button>
-<lib-button variant="emerald">Emerald</lib-button>
-<lib-button variant="outline-info">Info Outline</lib-button>
-<lib-button variant="outline-pink">Pink Outline</lib-button>
+<button variant="success">Success</button>
+<button variant="purple">Purple</button>
+<button variant="emerald">Emerald</button>
+<button variant="outline-info">Info Outline</button>
+<button variant="outline-pink">Pink Outline</button>
 
-<lib-badge variant="success">Success</lib-badge>
-<lib-badge variant="outline-purple">Purple Outline</lib-badge>
+<badge variant="success">Success</badge>
+<badge variant="outline-purple">Purple Outline</badge>
 
-<lib-alert variant="info">Info Alert</lib-alert>
-<lib-alert variant="purple">Purple Alert</lib-alert>
+<alert variant="info">Info Alert</alert>
+<alert variant="purple">Purple Alert</alert>
 
-<lib-progress [value]="75" variant="success"></lib-progress>
-<lib-progress [value]="60" variant="purple"></lib-progress>
+<progress [value]="75" variant="success"></progress>
+<progress [value]="60" variant="purple"></progress>
 ```
 
 ### 🖼️ Enhanced Avatar Component
@@ -57,23 +57,23 @@ Major upgrade with full image source support:
 import { Avatar } from 'angular-superui';
 
 // Image source with automatic fallback
-<lib-avatar 
+<avatar 
   size="lg" 
   [src]="'https://github.com/shadcn.png'"
   [alt]="'User Avatar'">
-</lib-avatar>
+</avatar>
 
 // Custom fallback text
-<lib-avatar [fallback]="'JD'"></lib-avatar>
+<avatar [fallback]="'JD'"></avatar>
 
 // Auto-generated initials from alt text
-<lib-avatar [alt]="'John Doe'"></lib-avatar>
+<avatar [alt]="'John Doe'"></avatar>
 
 // Multiple sizes available
-<lib-avatar size="sm"></lib-avatar>    <!-- 32px -->
-<lib-avatar size="default"></lib-avatar> <!-- 40px -->
-<lib-avatar size="lg"></lib-avatar>    <!-- 48px -->
-<lib-avatar size="xl"></lib-avatar>    <!-- 64px -->
+<avatar size="sm"></avatar>    <!-- 32px -->
+<avatar size="default"></avatar> <!-- 40px -->
+<avatar size="lg"></avatar>    <!-- 48px -->
+<avatar size="xl"></avatar>    <!-- 64px -->
 ```
 
 **New Avatar Features:**
@@ -94,10 +94,10 @@ import { ThemeSelector } from 'angular-superui';
 @Component({
   imports: [ThemeSelector],
   template: `
-    <lib-theme-selector 
+    <theme-selector 
       [currentTheme]="currentTheme" 
       (themeChange)="onThemeChange($event)">
-    </lib-theme-selector>
+    </theme-selector>
   `
 })
 export class MyComponent {
@@ -156,48 +156,48 @@ All new colors automatically adapt to dark mode with proper contrast ratios:
   template: `
     <!-- Colorful Action Buttons -->
     <div class="flex gap-2 mb-4">
-      <lib-button variant="success">Save</lib-button>
-      <lib-button variant="info">Preview</lib-button>
-      <lib-button variant="warning">Draft</lib-button>
-      <lib-button variant="destructive">Delete</lib-button>
+      <button variant="success">Save</button>
+      <button variant="info">Preview</button>
+      <button variant="warning">Draft</button>
+      <button variant="destructive">Delete</button>
     </div>
 
     <!-- Status Badges -->
     <div class="flex gap-2 mb-4">
-      <lib-badge variant="emerald">Active</lib-badge>
-      <lib-badge variant="amber">Pending</lib-badge>
-      <lib-badge variant="purple">Premium</lib-badge>
-      <lib-badge variant="rose">Featured</lib-badge>
+      <badge variant="emerald">Active</badge>
+      <badge variant="amber">Pending</badge>
+      <badge variant="purple">Premium</badge>
+      <badge variant="rose">Featured</badge>
     </div>
 
     <!-- Enhanced Avatars -->
     <div class="flex gap-4 mb-4">
-      <lib-avatar 
+      <avatar 
         size="sm" 
         [src]="'https://github.com/shadcn.png'">
-      </lib-avatar>
-      <lib-avatar 
+      </avatar>
+      <avatar 
         size="default" 
         [alt]="'John Doe'">
-      </lib-avatar>
-      <lib-avatar 
+      </avatar>
+      <avatar 
         size="lg" 
         [fallback]="'AD'">
-      </lib-avatar>
+      </avatar>
     </div>
 
     <!-- Progress Indicators -->
     <div class="space-y-2">
-      <lib-progress [value]="85" variant="success"></lib-progress>
-      <lib-progress [value]="60" variant="info"></lib-progress>
-      <lib-progress [value]="30" variant="warning"></lib-progress>
+      <progress [value]="85" variant="success"></progress>
+      <progress [value]="60" variant="info"></progress>
+      <progress [value]="30" variant="warning"></progress>
     </div>
 
     <!-- Theme Selector -->
-    <lib-theme-selector 
+    <theme-selector 
       [currentTheme]="currentTheme" 
       (themeChange)="onThemeChange($event)">
-    </lib-theme-selector>
+    </theme-selector>
   `
 })
 export class ColorfulComponent {
@@ -244,18 +244,18 @@ npm update angular-superui@0.2.1
 
 ```typescript
 // Old avatar usage (still works)
-<lib-avatar></lib-avatar>
+<avatar></avatar>
 
 // New avatar with image source
-<lib-avatar [src]="imageUrl" [alt]="userName"></lib-avatar>
+<avatar [src]="imageUrl" [alt]="userName"></avatar>
 
 // Old button usage (still works)
-<lib-button variant="default">Button</lib-button>
+<button variant="default">Button</button>
 
 // New color variants available
-<lib-button variant="success">Success</lib-button>
-<lib-button variant="purple">Purple</lib-button>
-<lib-button variant="outline-emerald">Emerald Outline</lib-button>
+<button variant="success">Success</button>
+<button variant="purple">Purple</button>
+<button variant="outline-emerald">Emerald Outline</button>
 ```
 
 ### Adding Theme Support
@@ -267,10 +267,10 @@ import { ThemeSelector } from 'angular-superui';
 @Component({
   imports: [ThemeSelector],
   template: `
-    <lib-theme-selector 
+    <theme-selector 
       [currentTheme]="currentTheme" 
       (themeChange)="onThemeChange($event)">
-    </lib-theme-selector>
+    </theme-selector>
   `
 })
 ```

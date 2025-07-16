@@ -1,7 +1,7 @@
 # Angular SuperUI Roadmap 🚀
 
 ## 📅 Created: July 15, 2025
-## 🎯 Current Version: v0.4.1
+## 🎯 Current Version: v0.6.0
 ## 👤 Project Owner: Indranil Mukherjee
 
 ---

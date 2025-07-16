@@ -18,182 +18,182 @@ exports.COMPONENTS = {
         name: 'Button',
         description: 'Displays a button or a component that looks like a button.',
         dependencies: ['cn'],
-        files: ['button.ts']
+        files: ['index.ts']
     },
     'badge': {
         name: 'Badge',
         description: 'Displays a badge or a component that looks like a badge.',
         dependencies: ['cn'],
-        files: ['badge.ts']
+        files: ['index.ts']
     },
     'alert': {
         name: 'Alert',
         description: 'Displays a callout for user attention.',
         dependencies: ['cn'],
-        files: ['alert.ts']
+        files: ['index.ts']
     },
     'card': {
         name: 'Card',
         description: 'Displays a card with header, content, and footer.',
         dependencies: ['cn'],
-        files: ['card.ts']
+        files: ['index.ts']
     },
     'input': {
         name: 'Input',
         description: 'Displays a form input field.',
         dependencies: ['cn'],
-        files: ['input.component.ts']
+        files: ['index.ts']
     },
     'progress': {
         name: 'Progress',
         description: 'Displays an indicator showing the completion progress.',
         dependencies: ['cn'],
-        files: ['progress.ts']
+        files: ['index.ts']
     },
     // Form Components
     'checkbox': {
         name: 'Checkbox',
         description: 'A control that allows the user to toggle between checked and not checked.',
         dependencies: ['cn'],
-        files: ['checkbox.ts']
+        files: ['index.ts']
     },
     'switch': {
         name: 'Switch',
         description: 'A control that allows the user to toggle between checked and not checked.',
         dependencies: ['cn'],
-        files: ['switch.ts']
+        files: ['index.ts']
     },
     'textarea': {
         name: 'Textarea',
         description: 'Displays a form textarea field.',
         dependencies: ['cn'],
-        files: ['textarea.ts']
+        files: ['index.ts']
     },
     'select': {
         name: 'Select',
         description: 'Displays a list of options for the user to pick from.',
         dependencies: ['cn'],
-        files: ['select.ts']
+        files: ['index.ts']
     },
     'radio-group': {
         name: 'Radio Group',
         description: 'A set of checkable buttons—known as radio buttons.',
         dependencies: ['cn'],
-        files: ['radio-group.ts']
+        files: ['index.ts']
     },
     'slider': {
         name: 'Slider',
         description: 'An input where the user selects a value from within a given range.',
         dependencies: ['cn'],
-        files: ['slider.ts']
+        files: ['index.ts']
     },
     // Navigation Components
     'breadcrumb': {
         name: 'Breadcrumb',
         description: 'Displays the path to the current resource using a hierarchy of links.',
         dependencies: ['cn'],
-        files: ['breadcrumb.ts']
+        files: ['index.ts']
     },
     'tabs': {
         name: 'Tabs',
         description: 'A set of layered sections of content—known as tab panels.',
         dependencies: ['cn'],
-        files: ['tabs.ts']
+        files: ['index.ts']
     },
     // Layout Components
     'separator': {
         name: 'Separator',
         description: 'Visually or semantically separates content.',
         dependencies: ['cn'],
-        files: ['separator.ts']
+        files: ['index.ts']
     },
     'skeleton': {
         name: 'Skeleton',
         description: 'Use to show a placeholder while content is loading.',
         dependencies: ['cn'],
-        files: ['skeleton.ts']
+        files: ['index.ts']
     },
     // Overlay Components
     'dialog': {
         name: 'Dialog',
         description: 'A window overlaid on either the primary window or another dialog window.',
         dependencies: ['cn'],
-        files: ['dialog.ts']
+        files: ['index.ts']
     },
     'tooltip': {
         name: 'Tooltip',
         description: 'A popup that displays information related to an element.',
         dependencies: ['cn'],
-        files: ['tooltip.ts']
+        files: ['index.ts']
     },
     'popover': {
         name: 'Popover',
         description: 'Displays rich content in a portal, triggered by a button.',
         dependencies: ['cn'],
-        files: ['popover.ts']
+        files: ['index.ts']
     },
     'sheet': {
         name: 'Sheet',
         description: 'Extends the Dialog component to display content that complements the main content.',
         dependencies: ['cn'],
-        files: ['sheet.ts']
+        files: ['index.ts']
     },
     // New Components
     'calendar': {
         name: 'Calendar',
         description: 'A date field component that allows users to enter and edit date.',
         dependencies: ['cn'],
-        files: ['calendar.ts']
+        files: ['index.ts']
     },
     'command': {
         name: 'Command',
         description: 'Fast, composable, unstyled command menu for Angular.',
         dependencies: ['cn'],
-        files: ['command.ts']
+        files: ['index.ts']
     },
     // Display Components
     'avatar': {
         name: 'Avatar',
         description: 'An image element with a fallback for representing the user.',
         dependencies: ['cn'],
-        files: ['avatar.ts']
+        files: ['index.ts']
     },
     'table': {
         name: 'Table',
         description: 'A responsive table component.',
         dependencies: ['cn'],
-        files: ['table.ts']
+        files: ['index.ts']
     },
     // Utility Components
     'theme-selector': {
         name: 'Theme Selector',
         description: 'A component for switching between different themes.',
         dependencies: ['cn'],
-        files: ['theme-selector.ts']
+        files: ['index.ts']
     },
     'toast': {
         name: 'Toast',
         description: 'A succinct message that is displayed temporarily.',
         dependencies: ['cn'],
-        files: ['toast.ts']
+        files: ['index.ts']
     },
     'toggle': {
         name: 'Toggle',
         description: 'A two-state button that can be either on or off.',
         dependencies: ['cn'],
-        files: ['toggle.ts']
+        files: ['index.ts']
     },
     'accordion': {
         name: 'Accordion',
         description: 'A vertically stacked set of interactive headings.',
         dependencies: ['cn'],
-        files: ['accordion.ts']
+        files: ['index.ts']
     },
     'label': {
         name: 'Label',
         description: 'Renders an accessible label associated with controls.',
         dependencies: ['cn'],
-        files: ['label.ts']
+        files: ['index.ts']
     }
 };
 async function addCommand(componentNames, options) {
@@ -250,8 +250,9 @@ async function addCommand(componentNames, options) {
                     try {
                         const response = await axios_1.default.get(`${baseUrl}/${componentName}/${file}`);
                         let fileContent = response.data;
-                        // Fix import paths for cn utility
+                        // Fix import paths for cn utility - handle both possible patterns
                         fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+                        fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g, "import { cn } from '../../lib/utils/cn';");
                         await fs_extra_1.default.writeFile(path_1.default.join(componentDir, file), fileContent);
                     }
                     catch (error) {
@@ -267,25 +268,33 @@ async function addCommand(componentNames, options) {
             }
         }
         if (results.length > 0) {
-            spinner.succeed(`Successfully added ${results.length} component(s)!`);
-            console.log(chalk_1.default.green('✅ Components added successfully:'));
+            spinner.succeed(chalk_1.default.green(`🎉 Successfully added ${results.length} component(s)!`));
+            console.log('');
+            console.log(chalk_1.default.bgGreen.black(' ✅ COMPONENTS INSTALLED '));
+            console.log('');
             results.forEach(({ name, component }) => {
-                console.log(chalk_1.default.cyan(`  • ${component.name} (${name})`));
+                console.log(chalk_1.default.cyan(`  🎨 ${component.name}`) + chalk_1.default.gray(` (${name})`));
             });
-            console.log(chalk_1.default.cyan('\n📖 Usage examples:'));
+            console.log('');
+            console.log(chalk_1.default.bgBlue.white(' 📖 USAGE EXAMPLES '));
+            console.log('');
             results.slice(0, 3).forEach(({ name, component }) => {
-                console.log(chalk_1.default.white(`import { ${component.name} } from './lib/components/${name}/${component.files[0].replace('.ts', '')}';`));
+                console.log(chalk_1.default.yellow(`import { ${component.name} } from '@components/${name}';`));
             });
             if (results.length > 3) {
                 console.log(chalk_1.default.gray(`  ... and ${results.length - 3} more components`));
             }
+            console.log('');
+            console.log(chalk_1.default.green('🎯 Components installed in: ') + chalk_1.default.cyan('./src/lib/components/'));
+            console.log(chalk_1.default.magenta('💜 Happy coding with Angular SuperUI!'));
+            console.log('');
         }
         if (errors.length > 0) {
-            console.log(chalk_1.default.red('\n❌ Errors encountered:'));
+            console.log(chalk_1.default.red('❌ Errors encountered:'));
             errors.forEach(error => console.log(chalk_1.default.red(`  • ${error}`)));
             if (results.length === 0) {
                 spinner.fail('No components were added');
-                console.log(chalk_1.default.yellow('\nAvailable components:'));
+                console.log(chalk_1.default.yellow('Available components:'));
                 Object.keys(exports.COMPONENTS).forEach(key => {
                     const comp = exports.COMPONENTS[key];
                     console.log(chalk_1.default.cyan(`  ${key}`) + chalk_1.default.gray(` - ${comp.description}`));
@@ -305,7 +314,7 @@ async function updateComponentExports(componentName, component) {
         if (await fs_extra_1.default.pathExists(indexPath)) {
             indexContent = await fs_extra_1.default.readFile(indexPath, 'utf8');
         }
-        const exportLine = `export * from './${componentName}/${component.files[0].replace('.ts', '')}';`;
+        const exportLine = `export * from './${componentName}';`;
         if (!indexContent.includes(exportLine)) {
             // Add proper newline formatting
             if (indexContent && !indexContent.endsWith('\n')) {

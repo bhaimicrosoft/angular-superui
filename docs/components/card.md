@@ -13,34 +13,34 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 ### Basic Card
 
 ```html
-<lib-card>
-  <lib-card-header>
-    <lib-card-title>Card Title</lib-card-title>
-    <lib-card-description>Card description goes here</lib-card-description>
-  </lib-card-header>
-  <lib-card-content>
+<card>
+  <card-header>
+    <card-title>Card Title</card-title>
+    <card-description>Card description goes here</lib-card-description>
+  </card-header>
+  <card-content>
     <p>Card content goes here.</p>
-  </lib-card-content>
-  <lib-card-footer>
-    <lib-button>Action</lib-button>
-  </lib-card-footer>
-</lib-card>
+  </card-content>
+  <card-footer>
+    <button>Action</button>
+  </card-footer>
+</card>
 ```
 
 ### Card Variants
 
 ```html
 <!-- Default card -->
-<lib-card>Content</lib-card>
+<card>Content</card>
 
 <!-- Outlined card -->
-<lib-card variant="outlined">Content</lib-card>
+<card variant="outlined">Content</card>
 
 <!-- Elevated card -->
-<lib-card variant="elevated">Content</lib-card>
+<card variant="elevated">Content</card>
 
 <!-- Filled card -->
-<lib-card variant="filled">Content</lib-card>
+<card variant="filled">Content</card>
 ```
 
 ## API Reference
@@ -87,33 +87,33 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 ### Simple Profile Card
 
 ```html
-<lib-card class="w-[350px]">
-  <lib-card-header>
-    <lib-card-title>John Doe</lib-card-title>
-    <lib-card-description>Software Developer</lib-card-description>
-  </lib-card-header>
-  <lib-card-content>
+<card class="w-[350px]">
+  <card-header>
+    <card-title>John Doe</card-title>
+    <card-description>Software Developer</lib-card-description>
+  </card-header>
+  <card-content>
     <p>Passionate about creating amazing user experiences with modern technologies.</p>
-  </lib-card-content>
-  <lib-card-footer>
-    <lib-button>View Profile</lib-button>
-    <lib-button variant="outline">Contact</lib-button>
-  </lib-card-footer>
-</lib-card>
+  </card-content>
+  <card-footer>
+    <button>View Profile</button>
+    <button variant="outline">Contact</button>
+  </card-footer>
+</card>
 ```
 
 ### Stats Card
 
 ```html
-<lib-card variant="elevated">
-  <lib-card-header>
-    <lib-card-title>Total Sales</lib-card-title>
-  </lib-card-header>
-  <lib-card-content>
+<card variant="elevated">
+  <card-header>
+    <card-title>Total Sales</card-title>
+  </card-header>
+  <card-content>
     <div class="text-2xl font-bold">$45,231.89</div>
     <p class="text-xs text-muted-foreground">+20.1% from last month</p>
-  </lib-card-content>
-</lib-card>
+  </card-content>
+</card>
 ```
 
 ## Accessibility

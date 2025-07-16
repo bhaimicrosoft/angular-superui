@@ -93,30 +93,30 @@ import {
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <!-- Select Dropdown -->
-      <lib-select 
+      <select 
         formControlName="country"
         [options]="countries">
-      </lib-select>
+      </select>
 
       <!-- Radio Group -->
-      <lib-radio-group 
+      <radio-group 
         formControlName="theme"
         [options]="themes">
-      </lib-radio-group>
+      </radio-group>
 
       <!-- Toggle Button -->
-      <lib-toggle formControlName="premium">
+      <toggle formControlName="premium">
         Premium Features
-      </lib-toggle>
+      </toggle>
 
       <!-- Slider -->
-      <lib-slider 
+      <slider 
         formControlName="volume"
         [min]="0" 
         [max]="100">
-      </lib-slider>
+      </slider>
 
-      <lib-button type="submit">Save</lib-button>
+      <button type="submit">Save</button>
     </form>
   `
 })
@@ -154,38 +154,38 @@ import {
   imports: [Dialog, DialogContent, DialogHeader, DialogTitle, Tabs, TabsList, TabsTrigger, TabsContent, Accordion, AccordionItem, AccordionTrigger, AccordionContent, Tooltip, Button],
   template: `
     <!-- Tabs -->
-    <lib-tabs value="tab1">
-      <lib-tabs-list>
-        <lib-tabs-trigger value="tab1">Overview</lib-tabs-trigger>
-        <lib-tabs-trigger value="tab2">Settings</lib-tabs-trigger>
+    <tabs value="tab1">
+      <tabs-list>
+        <tabs-trigger value="tab1">Overview</lib-tabs-trigger>
+        <tabs-trigger value="tab2">Settings</lib-tabs-trigger>
       </lib-tabs-list>
-      <lib-tabs-content value="tab1">Overview content</lib-tabs-content>
-      <lib-tabs-content value="tab2">Settings content</lib-tabs-content>
-    </lib-tabs>
+      <tabs-content value="tab1">Overview content</lib-tabs-content>
+      <tabs-content value="tab2">Settings content</lib-tabs-content>
+    </tabs>
 
     <!-- Accordion -->
-    <lib-accordion type="single" collapsible>
-      <lib-accordion-item value="item-1">
-        <lib-accordion-trigger>What is Angular SuperUI?</lib-accordion-trigger>
-        <lib-accordion-content>
+    <accordion type="single" collapsible>
+      <accordion-item value="item-1">
+        <accordion-trigger>What is Angular SuperUI?</lib-accordion-trigger>
+        <accordion-content>
           A comprehensive Angular UI component library.
         </lib-accordion-content>
       </lib-accordion-item>
-    </lib-accordion>
+    </accordion>
 
     <!-- Dialog -->
-    <lib-tooltip content="Open confirmation dialog">
-      <lib-button (click)="showDialog = true">Open Dialog</lib-button>
-    </lib-tooltip>
+    <tooltip content="Open confirmation dialog">
+      <button (click)="showDialog = true">Open Dialog</button>
+    </tooltip>
 
-    <lib-dialog [open]="showDialog" (openChange)="showDialog = $event">
-      <lib-dialog-content>
-        <lib-dialog-header>
-          <lib-dialog-title>Confirm Action</lib-dialog-title>
+    <dialog [open]="showDialog" (openChange)="showDialog = $event">
+      <dialog-content>
+        <dialog-header>
+          <dialog-title>Confirm Action</lib-dialog-title>
         </lib-dialog-header>
         <!-- Dialog content -->
       </lib-dialog-content>
-    </lib-dialog>
+    </dialog>
   `
 })
 export class InteractiveComponent {
@@ -227,7 +227,7 @@ import { ToastContainer } from 'angular-superui';
   imports: [ToastContainer],
   template: `
     <!-- Your app content -->
-    <lib-toast-container></lib-toast-container>
+    <toast-container></lib-toast-container>
   `
 })
 export class AppComponent {}
