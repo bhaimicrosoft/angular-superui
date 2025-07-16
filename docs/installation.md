@@ -11,13 +11,13 @@ The recommended way to get started with Angular SuperUI v0.6.0 is using our CLI 
 
 ```bash
 # Install CLI globally
-npm install -g @ngsui/cli@0.6.0
+npm install -g ngsui-cli@0.6.2
 
 # Initialize in your Angular project
-@ngsui/cli init
+ngsui-cli init
 
 # Add specific components locally
-@ngsui/cli add button card alert
+ngsui-cli add button card alert
 ```
 
 **Benefits of CLI Installation:**
@@ -46,7 +46,7 @@ npm install angular-superui@0.6.0
 
 ## CLI Installation Details
 
-### What `@ngsui/cli init` does:
+### What `ngsui-cli init` does:
 
 1. **Creates Local Structure**:
    - `./src/lib/components/` - Component installation directory

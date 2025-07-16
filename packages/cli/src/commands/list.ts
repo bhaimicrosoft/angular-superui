@@ -40,9 +40,9 @@ export async function listCommand() {
 
   console.log(chalk.bgBlue.white(' 📖 USAGE EXAMPLES '));
   console.log('');
-  console.log(chalk.cyan('Single component:    ') + chalk.yellow('@ngsui/cli add button'));
-  console.log(chalk.cyan('Multiple components: ') + chalk.yellow('@ngsui/cli add button card alert'));
-  console.log(chalk.cyan('All components:      ') + chalk.yellow('@ngsui/cli add --all'));
+  console.log(chalk.cyan('Single component:    ') + chalk.yellow('ngsui-cli add button'));
+  console.log(chalk.cyan('Multiple components: ') + chalk.yellow('ngsui-cli add button card alert'));
+  console.log(chalk.cyan('All components:      ') + chalk.yellow('ngsui-cli add --all'));
   console.log('');
   
   console.log(chalk.bgMagenta.white(' 🎨 COLOR VARIANTS '));

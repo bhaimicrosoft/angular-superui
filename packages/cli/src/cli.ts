@@ -13,7 +13,7 @@ const CLI_VERSION = packageJson.version;
 const program = new Command();
 
 program
-  .name('@ngsui/cli')
+  .name('ngsui-cli')
   .description('🎨 Angular SuperUI CLI - Local-First Component Library')
   .version(CLI_VERSION);
 

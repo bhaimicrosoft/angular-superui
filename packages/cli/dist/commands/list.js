@@ -39,9 +39,9 @@ async function listCommand() {
     }
     console.log(chalk_1.default.bgBlue.white(' 📖 USAGE EXAMPLES '));
     console.log('');
-    console.log(chalk_1.default.cyan('Single component:    ') + chalk_1.default.yellow('@ngsui/cli add button'));
-    console.log(chalk_1.default.cyan('Multiple components: ') + chalk_1.default.yellow('@ngsui/cli add button card alert'));
-    console.log(chalk_1.default.cyan('All components:      ') + chalk_1.default.yellow('@ngsui/cli add --all'));
+    console.log(chalk_1.default.cyan('Single component:    ') + chalk_1.default.yellow('ngsui-cli add button'));
+    console.log(chalk_1.default.cyan('Multiple components: ') + chalk_1.default.yellow('ngsui-cli add button card alert'));
+    console.log(chalk_1.default.cyan('All components:      ') + chalk_1.default.yellow('ngsui-cli add --all'));
     console.log('');
     console.log(chalk_1.default.bgMagenta.white(' 🎨 COLOR VARIANTS '));
     console.log('');

@@ -1,19 +1,43 @@
 # 🎨 Angular SuperUI Component Demos & Examples
 
-> **The Ultimate Guide** to Angular SuperUI v0.6.0 Components with **Practical Examples**, **Use Cases**, and **Best Practices**
+> **The Ultimate Guide** to Angular SuperUI v0.6.2 Components with **Practical Examples**, **Use Cases**, and **Best Practices**
 
-[![Angular SuperUI](https://img.shields.io/badge/Angular%20SuperUI-v0.6.0-brightgreen)](https://github.com/bhaimicrosoft/angular-superui)
+[![Angular SuperUI](https://img.shields.io/badge/Angular%20SuperUI-v0.6.2-brightgreen)](https://github.com/bhaimicrosoft/angular-superui)
 [![Examples](https://img.shields.io/badge/Examples-100+-orange)](#examples)
 
 
 ## 🚀 **Quick Navigation**
 
-### 📂 **Accordion**
+| 🎨 **Core Components** | 📝 **Form Components** | 🗂️ **Layout Components** |
+|------------------------|-------------------------|---------------------------|
+| [Button](#-button) | [Input](#-input) | [Card](#-card) |
+| [Badge](#-badge) | [Textarea](#-textarea) | [Tabs](#️-tabs) |
+| [Alert](#-alert) | [Label](#️-label) | [Accordion](#-accordion) |
+| [Avatar](#-avatar) | [Select](#-select) | [Separator](#-separator) |
+| [Progress](#-progress) | [Checkbox](#️-checkbox) | [Table](#-table) |
+| [Skeleton](#-skeleton) | [Switch](#-switch) | [Breadcrumb](#-breadcrumb) |
+| | [Radio Group](#-radio-group) | |
+| | [Toggle](#-toggle) | |
+| | [Slider](#️-slider) | |
+| | [Calendar](#-calendar) | |
+
+| � **Overlay Components** | 🎯 **Interactive Components** | 📚 **Resources** |
+|---------------------------|------------------------------|------------------|
+| [Dialog](#️-dialog) | [Command](#-command) | [Installation](#-installation-1) |
+| [Sheet](#-sheet) | [Theme Selector](#-theme-selector) | [CLI Reference](#️-cli-reference) |
+| [Popover](#-popover) | [Toast](#-toast) | [GitHub](#-github-1) |
+| [Tooltip](#️-tooltip) | | |
+
+---
+
+## 🎯 **Core Components**
+
+### �📂 **Accordion**
 **Expandable/collapsible sections for content organization**
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add accordion
+ngsui-cli add accordion
 ```
 
 ```typescript
@@ -60,7 +84,7 @@ export class AccordionDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add avatar
+ngsui-cli add avatar
 ```
 #### 🎨 **Avatar Examples**
 ```typescript
@@ -100,7 +124,7 @@ export class AvatarDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add breadcrumb
+ngsui-cli add breadcrumb
 ```
 #### 🎨 **Breadcrumb Examples**
 ```typescript
@@ -157,7 +181,7 @@ export class BreadcrumbDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add checkbox
+ngsui-cli add checkbox
 ```
 
 #### 🎨 **Checkbox Examples**
@@ -217,7 +241,7 @@ import { Checkbox } from '@components/checkbox/checkbox';
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add command
+ngsui-cli add command
 ```
 
 #### � **Command Examples**
@@ -248,34 +272,149 @@ export class CommandDemoComponent {}
 **Modal dialogs for confirmations and forms**
 
 #### � **Installation**
-@ngsui/cli add dialog
+ngsui-cli add dialog
 ```
 
-#### 🎨 **Dialog Examples**
+#### 🎨 **Dialog API Components**
+- **Dialog** - Root container component with backdrop
+- **DialogContent** - Main content container  
+- **DialogHeader** - Header section with title and description
+- **DialogTitle** - Dialog title component
+- **DialogDescription** - Dialog description text
+- **DialogFooter** - Footer section for action buttons
+
+#### 🔧 **Dialog Props**
+**Dialog Component:**
+- `open: boolean` - Controls dialog visibility (default: false)
+- `class: string` - Additional CSS classes
+- `variant: 'default'` - Dialog variant style
+- `(openChange): EventEmitter<boolean>` - Emitted when open state changes
+
+#### 🎨 **Complete Dialog Examples**
 ```typescript
 import { Component } from '@angular/core';
-import { Dialog, DialogHeader, DialogContent, DialogFooter, DialogTitle, DialogDescription, DialogClose, DialogTrigger } from '@components/dialog/dialog';
+import { Dialog, DialogHeader, DialogContent, DialogFooter, DialogTitle, DialogDescription } from '@components/dialog';
+import { Button } from '@components/button';
 
 @Component({
   selector: 'app-dialog-demo',
   standalone: true,
-  imports: [Dialog, DialogHeader, DialogContent, DialogFooter, DialogTitle, DialogDescription, DialogClose, DialogTrigger],
+  imports: [Dialog, DialogHeader, DialogContent, DialogFooter, DialogTitle, DialogDescription, Button],
   template: `
+    <div class="space-y-6 p-6">
+      <!-- Basic Dialog -->
       <section>
         <h3 class="text-lg font-semibold mb-3">Basic Dialog</h3>
-        <Dialog>
-          <DialogTrigger>
-            <button>Open Dialog</button>
-          </DialogTrigger>
-          <DialogContent>
+        <div>
+          <Button (click)="openBasicDialog()">Open Dialog</Button>
+          
+          <Dialog 
+            [open]="isBasicDialogOpen"
+            (openChange)="onBasicDialogChange($event)"
+          >
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Basic Dialog</DialogTitle>
+                <DialogDescription>
+                  This is a basic dialog example with header and footer.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <Button variant="outline" (click)="closeBasicDialog()">
+                  Cancel
+                </Button>
+                <Button (click)="confirmBasicDialog()">
+                  Confirm
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </section>
+
+      <!-- Confirmation Dialog -->
+      <section>
+        <h3 class="text-lg font-semibold mb-3">Confirmation Dialog</h3>
+        <div class="flex gap-4">
+          <Button variant="destructive" (click)="openDeleteDialog()">
+            Delete Account
+          </Button>
+          
+          <Dialog 
+            [open]="isDeleteDialogOpen"
+            (openChange)="onDeleteDialogChange($event)"
+          >
+            <DialogContent class="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete your
+                  account and remove your data from our servers.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <Button variant="outline" (click)="closeDeleteDialog()">
+                  Cancel
+                </Button>
+                <Button variant="destructive" (click)="deleteAccount()">
+                  Yes, delete account
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </section>
+
+      <!-- Form Dialog -->
+      <section>
+        <h3 class="text-lg font-semibold mb-3">Form Dialog</h3>
+        <Button (click)="openFormDialog()">Add New User</Button>
+        
+        <Dialog 
+          [open]="isFormDialogOpen"
+          (openChange)="onFormDialogChange($event)"
+        >
+          <DialogContent class="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>Dialog Title</DialogTitle>
-              <DialogDescription>Dialog description goes here.</DialogDescription>
+              <DialogTitle>Add New User</DialogTitle>
+              <DialogDescription>
+                Create a new user account. Fill in the required information below.
+              </DialogDescription>
             </DialogHeader>
+            <div class="grid gap-4 py-4">
+              <div class="grid gap-2">
+                <label for="firstName">First Name</label>
+                <input 
+                  id="firstName" 
+                  placeholder="Enter first name"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
+              </div>
+              <div class="grid gap-2">
+                <label for="lastName">Last Name</label>
+                <input 
+                  id="lastName" 
+                  placeholder="Enter last name"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
+              </div>
+              <div class="grid gap-2">
+                <label for="email">Email</label>
+                <input 
+                  id="email" 
+                  type="email"
+                  placeholder="Enter email address"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                />
+              </div>
+            </div>
             <DialogFooter>
-              <DialogClose>
-                <button>Close</button>
-              </DialogClose>
+              <Button variant="outline" (click)="closeFormDialog()">
+                Cancel
+              </Button>
+              <Button type="submit" (click)="createUser()">
+                Create User
+              </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -283,7 +422,65 @@ import { Dialog, DialogHeader, DialogContent, DialogFooter, DialogTitle, DialogD
     </div>
   `
 })
-export class DialogDemoComponent {}
+export class DialogDemoComponent {
+  isBasicDialogOpen = false;
+  isDeleteDialogOpen = false;
+  isFormDialogOpen = false;
+
+  // Basic Dialog Methods
+  openBasicDialog() {
+    this.isBasicDialogOpen = true;
+  }
+
+  closeBasicDialog() {
+    this.isBasicDialogOpen = false;
+  }
+
+  onBasicDialogChange(open: boolean) {
+    this.isBasicDialogOpen = open;
+  }
+
+  confirmBasicDialog() {
+    console.log('Dialog confirmed');
+    this.closeBasicDialog();
+  }
+
+  // Delete Dialog Methods
+  openDeleteDialog() {
+    this.isDeleteDialogOpen = true;
+  }
+
+  closeDeleteDialog() {
+    this.isDeleteDialogOpen = false;
+  }
+
+  onDeleteDialogChange(open: boolean) {
+    this.isDeleteDialogOpen = open;
+  }
+
+  deleteAccount() {
+    console.log('Account deleted');
+    this.closeDeleteDialog();
+  }
+
+  // Form Dialog Methods
+  openFormDialog() {
+    this.isFormDialogOpen = true;
+  }
+
+  closeFormDialog() {
+    this.isFormDialogOpen = false;
+  }
+
+  onFormDialogChange(open: boolean) {
+    this.isFormDialogOpen = open;
+  }
+
+  createUser() {
+    console.log('User created');
+    this.closeFormDialog();
+  }
+}
 ```
 
 ---
@@ -292,7 +489,7 @@ export class DialogDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add popover
+ngsui-cli add popover
 ```
 
 #### 🎨 **Popover Examples**
@@ -329,7 +526,7 @@ export class PopoverDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add progress
+ngsui-cli add progress
 ```
 
 #### 🎨 **Progress Examples**
@@ -360,7 +557,7 @@ export class ProgressDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add separator
+ngsui-cli add separator
 ```
 
 #### 🎨 **Separator Examples**
@@ -394,7 +591,7 @@ export class SeparatorDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add skeleton
+ngsui-cli add skeleton
 ```
 
 #### 🎨 **Skeleton Examples**
@@ -425,7 +622,7 @@ export class SkeletonDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add slider
+ngsui-cli add slider
 ```
 
 #### 🎨 **Slider Examples**
@@ -455,7 +652,7 @@ export class SliderDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add switch
+ngsui-cli add switch
 ```
 
 #### 🎨 **Switch Examples**
@@ -486,7 +683,7 @@ export class SwitchDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add tabs
+ngsui-cli add tabs
 ```
 
 #### 🎨 **Tabs Examples**
@@ -527,7 +724,7 @@ export class TabsDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add theme-selector
+ngsui-cli add theme-selector
 ```
 
 #### 🎨 **Theme Selector Examples**
@@ -557,7 +754,7 @@ export class ThemeSelectorDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add toast
+ngsui-cli add toast
 ```
 
 #### 🎨 **Toast Examples**
@@ -594,7 +791,7 @@ export class ToastDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add tooltip
+ngsui-cli add tooltip
 ```
 
 #### 🎨 **Tooltip Examples**
@@ -648,7 +845,7 @@ export class TooltipDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add button
+ngsui-cli add button
 ```
 
 #### 🎨 **All Variants & Colors**
@@ -774,7 +971,7 @@ export class ButtonDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add badge
+ngsui-cli add badge
 ```
 
 #### 🎨 **Complete Badge Examples**
@@ -899,7 +1096,7 @@ export class BadgeDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add alert
+ngsui-cli add alert
 ```
 
 #### 🎨 **Complete Alert Examples**
@@ -1018,7 +1215,7 @@ export class AlertDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add card
+ngsui-cli add card
 ```
 
 #### 🎨 **Complete Card Examples**
@@ -1255,7 +1452,7 @@ export class CardDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add input
+ngsui-cli add input
 ```
 
 #### 🎨 **Complete Input Examples**
@@ -1414,7 +1611,7 @@ export class InputDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add textarea
+ngsui-cli add textarea
 ```
 
 #### 🎨 **Complete Textarea Examples**
@@ -1523,7 +1720,7 @@ export class TextareaDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add label
+ngsui-cli add label
 ```
 
 #### 🎨 **Complete Label Examples**
@@ -1640,7 +1837,7 @@ export class LabelDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add select
+ngsui-cli add select
 ```
 
 #### 🎨 **Complete Select Examples**
@@ -1808,7 +2005,7 @@ export class SelectDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add radio-group
+ngsui-cli add radio-group
 ```
 
 #### 🎨 **Complete Radio Group Examples**
@@ -1980,7 +2177,7 @@ export class RadioGroupDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add toggle
+ngsui-cli add toggle
 ```
 
 #### 🎨 **Complete Toggle Examples**
@@ -2109,7 +2306,7 @@ export class ToggleDemoComponent {}
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add calendar
+ngsui-cli add calendar
 ```
 
 #### 🎨 **Complete Calendar Examples**
@@ -2241,7 +2438,7 @@ export class CalendarDemoComponent {
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add table
+ngsui-cli add table
 ```
 
 #### 🎨 **Complete Table Examples**
@@ -2296,45 +2493,66 @@ export class TableDemoComponent {}
 ---
 
 ### 📋 **Sheet**
-
 **Slide-out panels for secondary content and forms**
 
 #### 📦 **Installation**
 ```bash
-@ngsui/cli add sheet
+ngsui-cli add sheet
 ```
+
+#### 🎨 **Sheet API Components**
+- **Sheet** - Root container component
+- **SheetContent** - Main content container with slide animations
+- **SheetHeader** - Header section with title and description
+- **SheetTitle** - Sheet title component
+- **SheetDescription** - Sheet description text
+- **SheetFooter** - Footer section for action buttons
+- **SheetTrigger** - Button component that opens the sheet
+- **SheetClose** - Close button with X icon
+
+#### 🔧 **Sheet Props**
+**Sheet Component:**
+- `open: boolean` - Controls sheet visibility (default: false)
+- `(openChange): EventEmitter<boolean>` - Emitted when open state changes
+
+**SheetContent Component:**
+- `open: boolean` - Controls content visibility (default: false)
+- `side: 'top' | 'bottom' | 'left' | 'right'` - Sheet slide direction (default: 'right')
+- `className?: string` - Additional CSS classes
+- `(openChange): EventEmitter<boolean>` - Emitted when open state changes
+
+**SheetTrigger Component:**
+- `className?: string` - Additional CSS classes
+- `(click): EventEmitter<void>` - Emitted when trigger is clicked
+
+**SheetClose Component:**
+- `className?: string` - Additional CSS classes
+- `(close): EventEmitter<void>` - Emitted when close button is clicked
 
 #### 🎨 **Complete Sheet Examples**
 ```typescript
 import { Component } from '@angular/core';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetTrigger, SheetClose } from '@components/sheet/sheet';
-import { Button } from '@components/button/button';
-import { Input } from '@components/input/input.component';
-import { Label } from '@components/label/label';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetTrigger, SheetClose } from '@components/sheet';
+import { Button } from '@components/button';
 
 @Component({
   selector: 'app-sheet-demo',
   standalone: true,
-  imports: [Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetTrigger, SheetClose, Button, Input, Label],
+  imports: [Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetTrigger, SheetClose, Button],
   template: `
     <div class="space-y-6 p-6">
-      <!-- Basic Sheet -->
+      <!-- Basic Right Sheet -->
       <section>
-        <h3 class="text-lg font-semibold mb-3">Basic Sheet</h3>
+        <h3 class="text-lg font-semibold mb-3">Right Side Sheet</h3>
         <div>
-          <SheetTrigger 
-            class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-            (click)="toggleSheet()"
-          >
-            Open Sheet
-          </SheetTrigger>
+          <Button (click)="openRightSheet()">Open Right Sheet</Button>
           
           <SheetContent 
-            [open]="isSheetOpen"
+            [open]="isRightSheetOpen"
             [side]="'right'"
-            (openChange)="onSheetOpenChange($event)"
+            (openChange)="onRightSheetChange($event)"
           >
-            <SheetClose (close)="closeSheet()"></SheetClose>
+            <SheetClose (close)="closeRightSheet()"></SheetClose>
             
             <SheetHeader>
               <SheetTitle>Edit Profile</SheetTitle>
@@ -2345,26 +2563,28 @@ import { Label } from '@components/label/label';
             
             <div class="grid gap-4 py-4">
               <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="name" class="text-right">Name</Label>
-                <Input id="name" value="Pedro Duarte" class="col-span-3" />
+                <label for="name" class="text-right">Name</label>
+                <input 
+                  id="name" 
+                  value="Pedro Duarte" 
+                  class="col-span-3 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" 
+                />
               </div>
               <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="username" class="text-right">Username</Label>
-                <Input id="username" value="@peduarte" class="col-span-3" />
+                <label for="username" class="text-right">Username</label>
+                <input 
+                  id="username" 
+                  value="@peduarte" 
+                  class="col-span-3 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" 
+                />
               </div>
             </div>
             
             <SheetFooter>
-              <Button 
-                variant="outline"
-                (click)="closeSheet()"
-              >
+              <Button variant="outline" (click)="closeRightSheet()">
                 Cancel
               </Button>
-              <Button 
-                type="submit"
-                (click)="saveChanges()"
-              >
+              <Button type="submit" (click)="saveProfile()">
                 Save changes
               </Button>
             </SheetFooter>
@@ -2372,195 +2592,143 @@ import { Label } from '@components/label/label';
         </div>
       </section>
 
-      <!-- Confirmation Dialog -->
+      <!-- Left Side Sheet -->
       <section>
-        <h3 class="text-lg font-semibold mb-3">Confirmation Dialog</h3>
-        <div class="flex gap-4">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="destructive">Delete Account</Button>
-            </DialogTrigger>
-            <DialogContent class="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                <DialogDescription>
-                  This action cannot be undone. This will permanently delete your
-                  account and remove your data from our servers.
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter class="flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-                <DialogClose asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogClose>
-                <Button variant="destructive" (click)="deleteAccount()">
-                  Yes, delete account
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>Save Changes</Button>
-            </DialogTrigger>
-            <DialogContent class="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Save Changes?</DialogTitle>
-                <DialogDescription>
-                  You have unsaved changes. Would you like to save them before continuing?
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">Don't Save</Button>
-                </DialogClose>
-                <DialogClose asChild>
-                  <Button variant="secondary">Cancel</Button>
-                </DialogClose>
-                <Button (click)="saveChanges()">Save</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+        <h3 class="text-lg font-semibold mb-3">Left Side Sheet</h3>
+        <div>
+          <Button variant="outline" (click)="openLeftSheet()">Open Left Sheet</Button>
+          
+          <SheetContent 
+            [open]="isLeftSheetOpen"
+            [side]="'left'"
+            (openChange)="onLeftSheetChange($event)"
+          >
+            <SheetClose (close)="closeLeftSheet()"></SheetClose>
+            
+            <SheetHeader>
+              <SheetTitle>Navigation Menu</SheetTitle>
+              <SheetDescription>
+                Navigate through different sections of the application.
+              </SheetDescription>
+            </SheetHeader>
+            
+            <div class="py-4">
+              <nav class="space-y-2">
+                <a href="#" class="block px-3 py-2 rounded-md hover:bg-accent">Dashboard</a>
+                <a href="#" class="block px-3 py-2 rounded-md hover:bg-accent">Profile</a>
+                <a href="#" class="block px-3 py-2 rounded-md hover:bg-accent">Settings</a>
+                <a href="#" class="block px-3 py-2 rounded-md hover:bg-accent">Help</a>
+              </nav>
+            </div>
+            
+            <SheetFooter>
+              <Button variant="outline" class="w-full" (click)="closeLeftSheet()">
+                Close Menu
+              </Button>
+            </SheetFooter>
+          </SheetContent>
         </div>
       </section>
 
-      <!-- Form Dialog -->
+      <!-- Top Sheet -->
       <section>
-        <h3 class="text-lg font-semibold mb-3">Form Dialog</h3>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button>Add New User</Button>
-          </DialogTrigger>
-          <DialogContent class="sm:max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle>Add New User</DialogTitle>
-              <DialogDescription>
-                Create a new user account. Fill in the required information below.
-              </DialogDescription>
-            </DialogHeader>
-            <div class="grid gap-4 py-4">
-              <div class="grid gap-2">
-                <Label htmlFor="firstName">First Name</Label>
-                <Input id="firstName" placeholder="Enter first name" />
-              </div>
-              <div class="grid gap-2">
-                <Label htmlFor="lastName">Last Name</Label>
-                <Input id="lastName" placeholder="Enter last name" />
-              </div>
-              <div class="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="Enter email address" />
-              </div>
-              <div class="grid gap-2">
-                <Label htmlFor="role">Role</Label>
-                <select id="role" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
-                  <option value="">Select a role</option>
-                  <option value="admin">Administrator</option>
-                  <option value="user">User</option>
-                  <option value="viewer">Viewer</option>
-                </select>
+        <h3 class="text-lg font-semibold mb-3">Top Sheet</h3>
+        <div>
+          <Button variant="secondary" (click)="openTopSheet()">Open Top Sheet</Button>
+          
+          <SheetContent 
+            [open]="isTopSheetOpen"
+            [side]="'top'"
+            (openChange)="onTopSheetChange($event)"
+          >
+            <SheetClose (close)="closeTopSheet()"></SheetClose>
+            
+            <SheetHeader>
+              <SheetTitle>Notification Banner</SheetTitle>
+              <SheetDescription>
+                Important system notifications and announcements.
+              </SheetDescription>
+            </SheetHeader>
+            
+            <div class="py-4">
+              <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+                <p class="text-sm text-blue-800">
+                  System maintenance is scheduled for tonight from 2:00 AM to 4:00 AM EST.
+                  Please save your work before this time.
+                </p>
               </div>
             </div>
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
-              </DialogClose>
-              <Button (click)="createUser()">Create User</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+            
+            <SheetFooter>
+              <Button (click)="acknowledgeNotification()">
+                Acknowledge
+              </Button>
+            </SheetFooter>
+          </SheetContent>
+        </div>
       </section>
 
-      <!-- Different Sizes -->
+      <!-- Bottom Sheet -->
       <section>
-        <h3 class="text-lg font-semibold mb-3">Different Sizes</h3>
-        <div class="flex gap-4">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Small Dialog</Button>
-            </DialogTrigger>
-            <DialogContent class="sm:max-w-[350px]">
-              <DialogHeader>
-                <DialogTitle>Small Dialog</DialogTitle>
-                <DialogDescription>
-                  This is a small dialog with minimal content.
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button>Close</Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Medium Dialog</Button>
-            </DialogTrigger>
-            <DialogContent class="sm:max-w-[600px]">
-              <DialogHeader>
-                <DialogTitle>Medium Dialog</DialogTitle>
-                <DialogDescription>
-                  This is a medium-sized dialog with more content space.
-                </DialogDescription>
-              </DialogHeader>
-              <div class="py-4">
-                <p class="text-sm text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris.
-                </p>
+        <h3 class="text-lg font-semibold mb-3">Bottom Sheet</h3>
+        <div>
+          <Button variant="success" (click)="openBottomSheet()">Open Bottom Sheet</Button>
+          
+          <SheetContent 
+            [open]="isBottomSheetOpen"
+            [side]="'bottom'"
+            (openChange)="onBottomSheetChange($event)"
+          >
+            <SheetClose (close)="closeBottomSheet()"></SheetClose>
+            
+            <SheetHeader>
+              <SheetTitle>Quick Actions</SheetTitle>
+              <SheetDescription>
+                Commonly used actions and shortcuts.
+              </SheetDescription>
+            </SheetHeader>
+            
+            <div class="py-4">
+              <div class="grid grid-cols-2 gap-4">
+                <Button variant="outline" class="h-20">
+                  <div class="text-center">
+                    <div class="text-lg">📁</div>
+                    <div class="text-sm">New Folder</div>
+                  </div>
+                </Button>
+                <Button variant="outline" class="h-20">
+                  <div class="text-center">
+                    <div class="text-lg">📄</div>
+                    <div class="text-sm">New File</div>
+                  </div>
+                </Button>
+                <Button variant="outline" class="h-20">
+                  <div class="text-center">
+                    <div class="text-lg">📷</div>
+                    <div class="text-sm">Camera</div>
+                  </div>
+                </Button>
+                <Button variant="outline" class="h-20">
+                  <div class="text-center">
+                    <div class="text-lg">📂</div>
+                    <div class="text-sm">Gallery</div>
+                  </div>
+                </Button>
               </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button>Close</Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline">Large Dialog</Button>
-            </DialogTrigger>
-            <DialogContent class="sm:max-w-[800px]">
-              <DialogHeader>
-                <DialogTitle>Large Dialog</DialogTitle>
-                <DialogDescription>
-                  This is a large dialog suitable for complex forms or detailed content.
-                </DialogDescription>
-              </DialogHeader>
-              <div class="py-4 max-h-96 overflow-y-auto">
-                <p class="text-sm text-gray-600 mb-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo consequat.
-                </p>
-                <p class="text-sm text-gray-600 mb-4">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <p class="text-sm text-gray-600">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem aperiam.
-                </p>
-              </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button>Close</Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+            </div>
+            
+            <SheetFooter>
+              <Button variant="outline" class="w-full" (click)="closeBottomSheet()">
+                Close Actions
+              </Button>
+            </SheetFooter>
+          </SheetContent>
         </div>
       </section>
 
       <!-- Action Results -->
       <section>
-        <h3 class="text-lg font-semibold mb-3">Dialog Results</h3>
+        <h3 class="text-lg font-semibold mb-3">Sheet Results</h3>
         <div class="p-4 bg-gray-50 rounded-lg">
           <h4 class="font-medium mb-2">Last Action:</h4>
           <p class="text-sm text-gray-600">
@@ -2571,19 +2739,75 @@ import { Label } from '@components/label/label';
     </div>
   `
 })
-export class DialogDemoComponent {
+export class SheetDemoComponent {
+  // Sheet state management
+  isRightSheetOpen = false;
+  isLeftSheetOpen = false;
+  isTopSheetOpen = false;
+  isBottomSheetOpen = false;
   lastAction = '';
-  
-  deleteAccount(): void {
-    this.lastAction = 'Account deletion confirmed';
+
+  // Right Sheet Methods
+  openRightSheet() {
+    this.isRightSheetOpen = true;
   }
-  
-  saveChanges(): void {
-    this.lastAction = 'Changes saved successfully';
+
+  closeRightSheet() {
+    this.isRightSheetOpen = false;
   }
-  
-  createUser(): void {
-    this.lastAction = 'New user created successfully';
+
+  onRightSheetChange(open: boolean) {
+    this.isRightSheetOpen = open;
+  }
+
+  // Left Sheet Methods
+  openLeftSheet() {
+    this.isLeftSheetOpen = true;
+  }
+
+  closeLeftSheet() {
+    this.isLeftSheetOpen = false;
+  }
+
+  onLeftSheetChange(open: boolean) {
+    this.isLeftSheetOpen = open;
+  }
+
+  // Top Sheet Methods
+  openTopSheet() {
+    this.isTopSheetOpen = true;
+  }
+
+  closeTopSheet() {
+    this.isTopSheetOpen = false;
+  }
+
+  onTopSheetChange(open: boolean) {
+    this.isTopSheetOpen = open;
+  }
+
+  // Bottom Sheet Methods
+  openBottomSheet() {
+    this.isBottomSheetOpen = true;
+  }
+
+  closeBottomSheet() {
+    this.isBottomSheetOpen = false;
+  }
+
+  onBottomSheetChange(open: boolean) {
+    this.isBottomSheetOpen = open;
+  }
+
+  // Action Methods
+  saveProfile() {
+    this.lastAction = 'Profile saved successfully';
+    this.closeRightSheet();
+  }
+
+  acknowledgeNotification() {
+    this.lastAction = 'Notification acknowledged';
+    this.closeTopSheet();
   }
 }
 ```
@@ -2598,23 +2822,23 @@ Get started with Angular SuperUI in your project:
 
 ```bash
 # Install the CLI
-npm install -g @ngsui/cli
+npm install -g ngsui-cli
 
 # Initialize in your project
-@ngsui/cli init
+ngsui-cli init
 
 # Add components
-@ngsui/cli add button badge alert
+ngsui-cli add button badge alert
 ```
 
 ### 🛠️ **CLI Reference**
 
 The Angular SuperUI CLI provides commands for easy component management:
 
-- `@ngsui/cli init` - Initialize Angular SuperUI in your project
-- `@ngsui/cli add <component>` - Add a specific component
-- `@ngsui/cli list` - List all available components
-- `@ngsui/cli --help` - Show help information
+- `ngsui-cli init` - Initialize Angular SuperUI in your project
+- `ngsui-cli add <component>` - Add a specific component
+- `ngsui-cli list` - List all available components
+- `ngsui-cli --help` - Show help information
 
 ### 🔗 **GitHub**
 
