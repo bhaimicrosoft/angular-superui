@@ -24,13 +24,13 @@ Components now use clean, simple selectors:
 ### 🚀 **Enhanced CLI Experience**
 ```bash
 # Install the new simplified CLI
-npm install -g @ngsui/cli@0.6.0
+npm install -g angular-superui-cli@0.6.0
 
 # Initialize project with beautiful graphics
-@ngsui/cli init
+angular-superui-cli init
 
 # Add components with improved UX
-@ngsui/cli add button card badge
+angular-superui-cli add button card badge
 
 # Install all components at once
 @ngsui/cli add --all
@@ -112,13 +112,13 @@ npm install -g @ngsui/cli@0.6.0
 Install the CLI for local component installation:
 
 ```bash
-npm install -g @ngsui/cli@0.6.0
+npm install -g angular-superui-cli@0.6.0
 ```
 
 Initialize in your Angular project (creates local structure):
 
 ```bash
-@ngsui/cli init
+angular-superui-cli init
 ```
 
 Add specific components locally:
