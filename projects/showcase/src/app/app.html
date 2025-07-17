@@ -1,6 +1,79 @@
 <div class="max-w-md mx-auto mt-8 p-6 space-y-8">
   <h1 class="text-2xl font-bold mb-6 text-success">Component Test Suite</h1>
 
+  <!-- Avatar Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Avatar Component</h2>
+    <div class="space-y-6">
+      <!-- Avatar Sizes -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+        <div class="flex items-center gap-4">
+          <Avatar size="sm">
+            <AvatarImage src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Small avatar" />
+            <AvatarFallback size="sm">SM</AvatarFallback>
+          </Avatar>
+
+          <Avatar size="sm">
+            <AvatarImage src="https://avatars.githubusercontent.com/u/14985020?s=200&v=4" alt="Default avatar" />
+            <AvatarFallback size="sm">DF</AvatarFallback>
+          </Avatar>
+
+          <Avatar size="lg">
+            <AvatarImage src="https://avatars.githubusercontent.com/u/139426?s=200&v=4" alt="Large avatar" />
+            <AvatarFallback size="lg">LG</AvatarFallback>
+          </Avatar>
+
+          <Avatar size="xl">
+            <AvatarImage src="https://avatars.githubusercontent.com/u/1841425?s=200&v=4" alt="Extra large avatar" />
+            <AvatarFallback size="xl">XL</AvatarFallback>
+          </Avatar>
+        </div>
+      </div>
+
+      <!-- Avatar with Fallbacks -->
+      <div>
+        <h3 class="text-md font-medium mb-3">With Fallbacks</h3>
+        <div class="flex items-center gap-4">
+          <Avatar>
+            <AvatarImage src="https://github.com/doesnotexist.png" alt="User avatar" />
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+
+          <Avatar>
+            <AvatarImage src="" alt="Empty src" />
+            <AvatarFallback>AB</AvatarFallback>
+          </Avatar>
+
+          <Avatar>
+            <AvatarFallback>UI</AvatarFallback>
+          </Avatar>
+        </div>
+      </div>
+
+      <!-- Avatar with Custom Styling -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Custom Styling</h3>
+        <div class="flex items-center gap-4">
+          <Avatar className="ring-2 ring-primary ring-offset-2">
+            <AvatarImage src="https://avatars.githubusercontent.com/u/4060187?s=200&v=4" alt="Tailwind CSS" />
+            <AvatarFallback>TW</AvatarFallback>
+          </Avatar>
+
+          <Avatar className="ring-2 ring-success ring-offset-2">
+            <AvatarFallback className="bg-success text-success-foreground">✓</AvatarFallback>
+          </Avatar>
+
+          <Avatar size="2xl" className="ring-4 ring-purple ring-offset-4">
+            <AvatarFallback size="2xl" className="bg-gradient-to-br from-purple to-pink text-white">
+              AS
+            </AvatarFallback>
+          </Avatar>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Alert Component Tests -->
   <div>
     <h2 class="text-lg font-semibold mb-4">Alert Component</h2>

@@ -21,7 +21,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/2%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/3%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -63,7 +63,7 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add accordion alert
+ngsui-cli add accordion alert avatar
 
 # List available components
 ngsui-cli list
@@ -85,14 +85,31 @@ import {
   AlertDescription, 
   AlertIcon 
 } from '@components/alert';
+import { 
+  Avatar, 
+  AvatarImage, 
+  AvatarFallback 
+} from '@components/avatar';
 
 @Component({
   standalone: true,
   imports: [
     Accordion, AccordionItem, AccordionTrigger, AccordionContent,
-    Alert, AlertTitle, AlertDescription, AlertIcon
+    Alert, AlertTitle, AlertDescription, AlertIcon,
+    Avatar, AvatarImage, AvatarFallback
   ],
   template: `
+    <!-- Avatar Example -->
+    <div class="flex items-center gap-3 mb-6">
+      <Avatar>
+        <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+      <div>
+        <p class="font-medium">Welcome back!</p>
+        <p class="text-sm text-muted-foreground">Ready to build something amazing?</p>
+      </div>
+    </div>
     <!-- Alert Example -->
     <Alert variant="success">
       <AlertIcon>
@@ -137,9 +154,9 @@ export class AppComponent {}
 |-----------|-------------|--------|
 | **🪗 [Accordion](./docs/components/accordion.md)** | Collapsible content sections with single or multiple modes | ✅ Available |
 | **🚨 [Alert](./docs/components/alert.md)** | Contextual feedback messages with 5 variants | ✅ Available |
+| **👤 [Avatar](./docs/components/avatar.md)** | User profile image with automatic fallback support | ✅ Available |
 
 ### 🚀 **Coming Soon**
-- Avatar
 - Badge  
 - Button
 - Card
@@ -185,6 +202,13 @@ ngsui-cli init
 - **ARIA Live Regions**: Automatic screen reader announcements
 - **Tailwind CSS v4**: Modern utility-first styling
 - **Semantic Colors**: Built-in color schemes for each variant
+
+### 👤 **Avatar Component**
+- **5 Sizes**: From sm (32px) to 2xl (80px) with responsive scaling
+- **Smart Fallbacks**: Automatic fallback when images fail to load
+- **Loading Timeout**: 5-second timeout with graceful degradation
+- **Accessibility**: Proper ARIA labels and semantic roles
+- **Performance**: Lazy loading and optimized image handling
 
 ---
 
