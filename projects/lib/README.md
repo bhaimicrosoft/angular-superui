@@ -1,4 +1,4 @@
-# Angular SuperUI v0.6.2 🚀
+# Angular SuperUI v0.1.0 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
@@ -10,17 +10,17 @@
 
 A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **local-first CLI installation**, and **enhanced dark mode support**.
 
-## � **[🎨 Complete Component Demos & Examples →](../../docs/demo.md)**
+## 🚀 **[📖 Complete Documentation →](../../docs/)**
 > 🚀 **Step-by-step guides** for all 30+ components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v0.6.2: CLI Naming Consistency + Documentation Improvements**
+## 🛠️ **v0.1.0: Initial Release**
 
 ### 🚀 **NEW: Zero NPM Dependencies (CLI Recommended)**
 Install components directly in your project with no package dependency:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli@0.6.1
+npm install -g ngsui-cli@0.1.0
 
 # Initialize project (creates local structure)
 ngsui-cli init
@@ -30,10 +30,10 @@ ngsui-cli add button card badge
 ```
 
 ### 📦 **Deprecated: NPM Package Installation**
-> ⚠️ **Note**: NPM package installation is deprecated in v0.6.2. Use CLI for better performance.
+> ⚠️ **Note**: NPM package installation is deprecated in v0.1.0. Use CLI for better performance.
 
 ```bash
-npm install angular-superui@0.6.1
+npm install angular-superui@0.1.0
 ```
 
 ### 🌟 **Local-First Benefits**
@@ -55,7 +55,7 @@ All Tailwind CSS color variants now work correctly:
 - **Creative palette** (purple, pink, violet, indigo, lime, orange)
 
 ## 📚 **Quick Links**
-- 🎨 **[Complete Component Demos →](../../docs/demo.md)** - Step-by-step examples for all components
+- 📚 **[Component Examples →](../../docs/examples.md)** - Real-world usage examples
 - 📖 **[Installation Guide →](../../docs/installation.md)** - Detailed setup instructions  
 - 🔧 **[GitHub Repository →](https://github.com/bhaimicrosoft/angular-superui)** - Source code and issues
 
@@ -88,10 +88,10 @@ ngsui-cli init
 # Add specific components
 ngsui-cli add button card badge alert
 
-# Add multiple components at once (New in v0.6.2!)
+# Add multiple components at once (New in v0.1.0!)
 ngsui-cli add button alert card dialog
 
-# Install ALL components at once (New in v0.6.2!)
+# Install ALL components at once (New in v0.1.0!)
 ngsui-cli add --all
 
 # Interactive component selection

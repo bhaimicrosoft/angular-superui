@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ContentChildren, QueryList, AfterContentInit, ChangeDetectorRef, ContentChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
@@ -46,7 +46,7 @@ const accordionTriggerVariants = cva(
 );
 
 const accordionContentVariants = cva(
-  'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+  'overflow-hidden text-sm transition-all duration-200 ease-in-out',
   {
     variants: {
       variant: {
@@ -60,95 +60,96 @@ const accordionContentVariants = cva(
 );
 
 @Component({
-  selector: 'Accordion',
-  standalone: true,
-  imports: [CommonModule],
-  template: `<div [class]="accordionClass"><ng-content></ng-content></div>`
-})
-export class Accordion {
-  @Input() type: 'single' | 'multiple' = 'single';
-  @Input() collapsible = false;
-  @Input() class = '';
-  @Input() variant: VariantProps<typeof accordionVariants>['variant'] = 'default';
-  @Input() value: string | string[] = '';
-  @Output() valueChange = new EventEmitter<string | string[]>();
-
-  public get accordionClass(): string {
-    return cn(accordionVariants({ variant: this.variant }), this.class);
-  }
-
-  onItemToggle(itemValue: string) {
-    if (this.type === 'single') {
-      const newValue = this.value === itemValue ? (this.collapsible ? '' : itemValue) : itemValue;
-      this.value = newValue;
-      this.valueChange.emit(newValue);
-    } else {
-      const currentArray = Array.isArray(this.value) ? this.value : [];
-      const newArray = currentArray.includes(itemValue)
-        ? currentArray.filter(v => v !== itemValue)
-        : [...currentArray, itemValue];
-      this.value = newArray;
-      this.valueChange.emit(newArray);
-    }
-  }
-
-  isItemOpen(itemValue: string): boolean {
-    if (this.type === 'single') {
-      return this.value === itemValue;
-    } else {
-      return Array.isArray(this.value) && this.value.includes(itemValue);
-    }
-  }
-}
-
-@Component({
-  selector: 'AccordionItem',
-  standalone: true,
-  imports: [CommonModule],
-  template: `<div [class]="accordionItemClass"><ng-content></ng-content></div>`
-})
-export class AccordionItem {
-  @Input() value = '';
-  @Input() class = '';
-  @Input() variant: VariantProps<typeof accordionItemVariants>['variant'] = 'default';
-
-  public get accordionItemClass(): string {
-    return cn(accordionItemVariants({ variant: this.variant }), this.class);
-  }
-}
-
-@Component({
   selector: 'AccordionTrigger',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <button 
-      [class]="accordionTriggerClass"
-      [attr.data-state]="isOpen ? 'open' : 'closed'"
-      (click)="onTriggerClick()">
-      <ng-content></ng-content>
-      <svg
-        class="h-4 w-4 shrink-0 transition-transform duration-200"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
-    </button>
+    <h3>
+      <button 
+        [class]="cn(accordionTriggerVariants({ variant }), className)"
+        [attr.data-state]="isOpen ? 'open' : 'closed'"
+        [attr.aria-expanded]="isOpen"
+        [attr.aria-controls]="contentId"
+        [attr.id]="triggerId"
+        type="button"
+        (click)="toggle()"
+        (keydown)="onKeyDown($event)">
+        <ng-content></ng-content>
+        <svg
+          class="h-4 w-4 shrink-0 transition-transform duration-200"
+          [class.rotate-180]="isOpen"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+    </h3>
   `
 })
 export class AccordionTrigger {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof accordionTriggerVariants>['variant'] = 'default';
-  @Input() isOpen = false;
-  @Output() triggerClick = new EventEmitter<void>();
+  @Input() className?: string;
 
-  public get accordionTriggerClass(): string {
-    return cn(accordionTriggerVariants({ variant: this.variant }), this.class);
+  item?: AccordionItem;
+  cn = cn;
+  accordionTriggerVariants = accordionTriggerVariants;
+
+  get isOpen(): boolean {
+    return this.item?.isOpen || false;
   }
 
-  onTriggerClick() {
-    this.triggerClick.emit();
+  get triggerId(): string {
+    return `accordion-trigger-${this.item?.value || 'default'}`;
+  }
+
+  get contentId(): string {
+    return `accordion-content-${this.item?.value || 'default'}`;
+  }
+
+  toggle() {
+    this.item?.toggle();
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (!this.item?.accordion) return;
+
+    const accordion = this.item.accordion;
+    const items = accordion.items.toArray();
+    const currentIndex = items.indexOf(this.item);
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        const nextIndex = (currentIndex + 1) % items.length;
+        items[nextIndex].trigger?.focus();
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        const prevIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
+        items[prevIndex].trigger?.focus();
+        break;
+      case 'Home':
+        event.preventDefault();
+        items[0].trigger?.focus();
+        break;
+      case 'End':
+        event.preventDefault();
+        items[items.length - 1].trigger?.focus();
+        break;
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        this.toggle();
+        break;
+    }
+  }
+
+  focus() {
+    // This will be called programmatically for keyboard navigation
+    const button = document.getElementById(this.triggerId);
+    button?.focus();
   }
 }
 
@@ -158,20 +159,139 @@ export class AccordionTrigger {
   imports: [CommonModule],
   template: `
     <div 
-      [class]="accordionContentClass"
-      [attr.data-state]="isOpen ? 'open' : 'closed'">
-      <div class="pb-4 pt-0">
+      [class]="cn(accordionContentVariants({ variant }), className)"
+      [attr.data-state]="isOpen ? 'open' : 'closed'"
+      [attr.id]="contentId"
+      [attr.aria-labelledby]="triggerId"
+      role="region"
+      [style.max-height]="isOpen ? '200px' : '0'"
+      [style.opacity]="isOpen ? '1' : '0'"
+      [style.padding-bottom]="isOpen ? '1rem' : '0'">
+      <div class="pt-0" [style.visibility]="isOpen ? 'visible' : 'hidden'">
         <ng-content></ng-content>
       </div>
     </div>
   `
 })
 export class AccordionContent {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof accordionContentVariants>['variant'] = 'default';
-  @Input() isOpen = false;
+  @Input() className?: string;
 
-  public get accordionContentClass(): string {
-    return cn(accordionContentVariants({ variant: this.variant }), this.class);
+  item?: AccordionItem;
+  cn = cn;
+  accordionContentVariants = accordionContentVariants;
+
+  get isOpen(): boolean {
+    return this.item?.isOpen || false;
+  }
+
+  get contentId(): string {
+    return `accordion-content-${this.item?.value || 'default'}`;
+  }
+
+  get triggerId(): string {
+    return `accordion-trigger-${this.item?.value || 'default'}`;
+  }
+}
+
+@Component({
+  selector: 'AccordionItem',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div [class]="cn(accordionItemVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </div>
+  `
+})
+export class AccordionItem implements AfterContentInit {
+  @Input() value = '';
+  @Input() variant: VariantProps<typeof accordionItemVariants>['variant'] = 'default';
+  @Input() className?: string;
+
+  @ContentChild(AccordionTrigger) trigger!: AccordionTrigger;
+  @ContentChild(AccordionContent) content!: AccordionContent;
+
+  accordion?: Accordion;
+  cn = cn;
+  accordionItemVariants = accordionItemVariants;
+
+  ngAfterContentInit() {
+    if (this.trigger) {
+      this.trigger.item = this;
+    }
+    if (this.content) {
+      this.content.item = this;
+    }
+  }
+
+  get isOpen(): boolean {
+    return this.accordion?.isItemOpen(this.value) || false;
+  }
+
+  toggle() {
+    if (this.accordion) {
+      this.accordion.onItemToggle(this.value);
+    }
+  }
+}
+
+@Component({
+  selector: 'Accordion',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div [class]="cn(accordionVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </div>
+  `
+})
+export class Accordion implements AfterContentInit {
+  @Input() type: 'single' | 'multiple' = 'single';
+  @Input() collapsible = false;
+  @Input() variant: VariantProps<typeof accordionVariants>['variant'] = 'default';
+  @Input() className?: string;
+  @Input() value: string | string[] = '';
+
+  @ContentChildren(AccordionItem) items!: QueryList<AccordionItem>;
+
+  cn = cn;
+  accordionVariants = accordionVariants;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngAfterContentInit() {
+    this.items.forEach(item => {
+      item.accordion = this;
+    });
+    this.cdr.detectChanges();
+  }
+
+  onItemToggle(itemValue: string) {
+    if (this.type === 'single') {
+      if (this.value === itemValue && this.collapsible) {
+        this.value = '';
+      } else {
+        this.value = itemValue;
+      }
+    } else {
+      // Multiple mode
+      let currentValues = Array.isArray(this.value) ? [...this.value] : [];
+      if (currentValues.includes(itemValue)) {
+        this.value = currentValues.filter(v => v !== itemValue);
+      } else {
+        this.value = [...currentValues, itemValue];
+      }
+    }
+    this.cdr.detectChanges();
+  }
+
+  isItemOpen(itemValue: string): boolean {
+    if (this.type === 'single') {
+      return this.value === itemValue;
+    } else {
+      const currentValues = Array.isArray(this.value) ? this.value : [];
+      return currentValues.includes(itemValue);
+    }
   }
 }

@@ -107,117 +107,124 @@ const tableCaptionVariants = cva(
   imports: [CommonModule],
   template: `
     <div class="relative w-full overflow-auto">
-      <table [class]="tableClass">
+      <table [class]="cn(tableVariants({ variant }), className)">
         <ng-content></ng-content>
       </table>
     </div>
   `
 })
 export class Table {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof tableVariants>['variant'] = 'default';
+  @Input() className?: string;
 
-  public get tableClass(): string {
-    return cn(tableVariants({ variant: this.variant }), this.class);
-  }
+  cn = cn;
+  tableVariants = tableVariants;
 }
 
 @Component({
   selector: 'TableHeader',
   standalone: true,
-  imports: [],
-  template: `<thead [class]="tableHeaderClass"><ng-content></ng-content></thead>`
+  imports: [CommonModule],
+  template: `
+    <thead [class]="cn(tableHeaderVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </thead>
+  `
 })
 export class TableHeader {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof tableHeaderVariants>['variant'] = 'default';
+  @Input() className?: string;
 
-  public get tableHeaderClass(): string {
-    return cn(tableHeaderVariants({ variant: this.variant }), this.class);
-  }
+  cn = cn;
+  tableHeaderVariants = tableHeaderVariants;
 }
 
 @Component({
   selector: 'TableBody',
   standalone: true,
-  imports: [],
-  template: `<tbody [class]="tableBodyClass"><ng-content></ng-content></tbody>`
+  imports: [CommonModule],
+  template: `
+    <tbody [class]="cn(tableBodyVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </tbody>
+  `
 })
 export class TableBody {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof tableBodyVariants>['variant'] = 'default';
+  @Input() className?: string;
 
-  public get tableBodyClass(): string {
-    return cn(tableBodyVariants({ variant: this.variant }), this.class);
-  }
-}
-
-@Component({
-  selector: 'TableFooter',
-  standalone: true,
-  imports: [],
-  template: `<tfoot class="border-t bg-muted/50 font-medium [&>tr]:last:border-b-0"><ng-content></ng-content></tfoot>`
-})
-export class TableFooter {
-  @Input() class = '';
+  cn = cn;
+  tableBodyVariants = tableBodyVariants;
 }
 
 @Component({
   selector: 'TableRow',
   standalone: true,
-  imports: [],
-  template: `<tr [class]="tableRowClass"><ng-content></ng-content></tr>`
+  imports: [CommonModule],
+  template: `
+    <tr [class]="cn(tableRowVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </tr>
+  `
 })
 export class TableRow {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof tableRowVariants>['variant'] = 'default';
+  @Input() className?: string;
 
-  public get tableRowClass(): string {
-    return cn(tableRowVariants({ variant: this.variant }), this.class);
-  }
+  cn = cn;
+  tableRowVariants = tableRowVariants;
 }
 
 @Component({
   selector: 'TableHead',
   standalone: true,
-  imports: [],
-  template: `<th [class]="tableHeadClass"><ng-content></ng-content></th>`
+  imports: [CommonModule],
+  template: `
+    <th [class]="cn(tableHeadVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </th>
+  `
 })
 export class TableHead {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof tableHeadVariants>['variant'] = 'default';
+  @Input() className?: string;
 
-  public get tableHeadClass(): string {
-    return cn(tableHeadVariants({ variant: this.variant }), this.class);
-  }
+  cn = cn;
+  tableHeadVariants = tableHeadVariants;
 }
 
 @Component({
   selector: 'TableCell',
   standalone: true,
-  imports: [],
-  template: `<td [class]="tableCellClass"><ng-content></ng-content></td>`
+  imports: [CommonModule],
+  template: `
+    <td [class]="cn(tableCellVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </td>
+  `
 })
 export class TableCell {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof tableCellVariants>['variant'] = 'default';
+  @Input() className?: string;
 
-  public get tableCellClass(): string {
-    return cn(tableCellVariants({ variant: this.variant }), this.class);
-  }
+  cn = cn;
+  tableCellVariants = tableCellVariants;
 }
 
 @Component({
   selector: 'TableCaption',
   standalone: true,
-  imports: [],
-  template: `<caption [class]="tableCaptionClass"><ng-content></ng-content></caption>`
+  imports: [CommonModule],
+  template: `
+    <caption [class]="cn(tableCaptionVariants({ variant }), className)">
+      <ng-content></ng-content>
+    </caption>
+  `
 })
 export class TableCaption {
-  @Input() class = '';
   @Input() variant: VariantProps<typeof tableCaptionVariants>['variant'] = 'default';
+  @Input() className?: string;
 
-  public get tableCaptionClass(): string {
-    return cn(tableCaptionVariants({ variant: this.variant }), this.class);
-  }
+  cn = cn;
+  tableCaptionVariants = tableCaptionVariants;
 }

@@ -1,188 +1,55 @@
-<div class="min-h-screen bg-background text-foreground p-8">
-  <!-- Header with Dark Mode Toggle -->
-  <div class="mb-8 flex justify-between items-start">
-    <div>
-      <h1 class="text-4xl font-bold mb-2">Angular SuperUI v0.3.0 Showcase</h1>
-      <p class="text-muted-foreground">Demonstrating all color variants and new components</p>
-    </div>
-    
-    <!-- Theme Controls -->
-    <div class="flex items-center gap-4">
-      <div class="flex items-center gap-2">
-        <span class="text-sm">Dark Mode:</span>
-        <button 
-          (click)="toggleDarkMode()" 
-          class="relative inline-flex h-6 w-11 items-center rounded-full"
-          [class]="isDarkMode ? 'bg-blue-600' : 'bg-gray-200'"
-        >
-          <span class="sr-only">Toggle dark mode</span>
-          <span 
-            class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-            [class]="isDarkMode ? 'translate-x-6' : 'translate-x-1'"
-          ></span>
-        </button>
-      </div>
-      <lib-theme-selector />
-    </div>
+<div class="max-w-md mx-auto mt-8 p-6 space-y-8">
+  <h1 class="text-2xl font-bold mb-6">Accordion Component Test</h1>
+
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Single Mode (Collapsible)</h2>
+    <Accordion type="single" [collapsible]="true" class="w-full">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It adheres to the WAI-ARIA design pattern and supports keyboard navigation.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Is it styled?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It comes with default styles that match the other components' aesthetic.
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-3">
+        <AccordionTrigger>Is it animated?</AccordionTrigger>
+        <AccordionContent>
+          Yes. It's animated by default with smooth transitions when expanding and collapsing.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   </div>
 
-  <!-- Color Variants Demo -->
-  <div class="space-y-8">
-    
-    <!-- Button Variants -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">Button Color Variants</h2>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <lib-button variant="default">Default</lib-button>
-        <lib-button variant="success">Success</lib-button>
-        <lib-button variant="warning">Warning</lib-button>
-        <lib-button variant="info">Info</lib-button>
-        <lib-button variant="purple">Purple</lib-button>
-        <lib-button variant="pink">Pink</lib-button>
-        <lib-button variant="orange">Orange</lib-button>
-        <lib-button variant="teal">Teal</lib-button>
-        <lib-button variant="indigo">Indigo</lib-button>
-        <lib-button variant="cyan">Cyan</lib-button>
-        <lib-button variant="rose">Rose</lib-button>
-        <lib-button variant="emerald">Emerald</lib-button>
-        <lib-button variant="amber">Amber</lib-button>
-        <lib-button variant="lime">Lime</lib-button>
-        <lib-button variant="violet">Violet</lib-button>
-        <lib-button variant="sky">Sky</lib-button>
-      </div>
-      
-      <h3 class="text-lg font-medium mb-2">Outline Variants</h3>
-      <div class="flex flex-wrap gap-2">
-        <lib-button variant="outline-success">Success</lib-button>
-        <lib-button variant="outline-warning">Warning</lib-button>
-        <lib-button variant="outline-info">Info</lib-button>
-        <lib-button variant="outline-purple">Purple</lib-button>
-        <lib-button variant="outline-pink">Pink</lib-button>
-        <lib-button variant="outline-orange">Orange</lib-button>
-        <lib-button variant="outline-teal">Teal</lib-button>
-        <lib-button variant="outline-indigo">Indigo</lib-button>
-        <lib-button variant="outline-cyan">Cyan</lib-button>
-        <lib-button variant="outline-rose">Rose</lib-button>
-        <lib-button variant="outline-emerald">Emerald</lib-button>
-        <lib-button variant="outline-amber">Amber</lib-button>
-        <lib-button variant="outline-lime">Lime</lib-button>
-        <lib-button variant="outline-violet">Violet</lib-button>
-        <lib-button variant="outline-sky">Sky</lib-button>
-      </div>
-    </section>
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Multiple Mode</h2>
+    <Accordion type="multiple" class="w-full">
+      <AccordionItem value="multi-1">
+        <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
+        <AccordionContent>
+          Yes! In multiple mode, you can have multiple accordion items open at the same time.
+        </AccordionContent>
+      </AccordionItem>
 
-    <!-- Badge Variants -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">Badge Color Variants</h2>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <lib-badge variant="default">Default</lib-badge>
-        <lib-badge variant="success">Success</lib-badge>
-        <lib-badge variant="warning">Warning</lib-badge>
-        <lib-badge variant="info">Info</lib-badge>
-        <lib-badge variant="purple">Purple</lib-badge>
-        <lib-badge variant="pink">Pink</lib-badge>
-        <lib-badge variant="orange">Orange</lib-badge>
-        <lib-badge variant="teal">Teal</lib-badge>
-        <lib-badge variant="indigo">Indigo</lib-badge>
-        <lib-badge variant="cyan">Cyan</lib-badge>
-        <lib-badge variant="rose">Rose</lib-badge>
-        <lib-badge variant="emerald">Emerald</lib-badge>
-        <lib-badge variant="amber">Amber</lib-badge>
-        <lib-badge variant="lime">Lime</lib-badge>
-        <lib-badge variant="violet">Violet</lib-badge>
-        <lib-badge variant="sky">Sky</lib-badge>
-      </div>
-      
-      <h3 class="text-lg font-medium mb-2">Outline Badge Variants</h3>
-      <div class="flex flex-wrap gap-2">
-        <lib-badge variant="outline-success">Success</lib-badge>
-        <lib-badge variant="outline-warning">Warning</lib-badge>
-        <lib-badge variant="outline-info">Info</lib-badge>
-        <lib-badge variant="outline-purple">Purple</lib-badge>
-        <lib-badge variant="outline-pink">Pink</lib-badge>
-        <lib-badge variant="outline-orange">Orange</lib-badge>
-        <lib-badge variant="outline-teal">Teal</lib-badge>
-        <lib-badge variant="outline-indigo">Indigo</lib-badge>
-        <lib-badge variant="outline-cyan">Cyan</lib-badge>
-        <lib-badge variant="outline-rose">Rose</lib-badge>
-        <lib-badge variant="outline-emerald">Emerald</lib-badge>
-        <lib-badge variant="outline-amber">Amber</lib-badge>
-        <lib-badge variant="outline-lime">Lime</lib-badge>
-        <lib-badge variant="outline-violet">Violet</lib-badge>
-        <lib-badge variant="outline-sky">Sky</lib-badge>
-      </div>
-    </section>
+      <AccordionItem value="multi-2">
+        <AccordionTrigger>How does keyboard navigation work?</AccordionTrigger>
+        <AccordionContent>
+          Use Arrow keys to navigate between triggers, Home/End for first/last item, and Enter/Space to toggle.
+        </AccordionContent>
+      </AccordionItem>
 
-    <!-- Alert Variants -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">Alert Color Variants</h2>
-      <div class="space-y-2">
-        <lib-alert variant="default">Default alert message</lib-alert>
-        <lib-alert variant="success">Success alert - Operation completed successfully!</lib-alert>
-        <lib-alert variant="warning">Warning alert - Please check your input</lib-alert>
-        <lib-alert variant="info">Info alert - Here's some helpful information</lib-alert>
-        <lib-alert variant="purple">Purple alert - Premium feature available</lib-alert>
-        <lib-alert variant="pink">Pink alert - Special announcement</lib-alert>
-        <lib-alert variant="orange">Orange alert - Important update</lib-alert>
-        <lib-alert variant="teal">Teal alert - System status update</lib-alert>
-        <lib-alert variant="indigo">Indigo alert - Deep insights available</lib-alert>
-        <lib-alert variant="cyan">Cyan alert - Cool notification</lib-alert>
-        <lib-alert variant="rose">Rose alert - Valentine's special</lib-alert>
-        <lib-alert variant="emerald">Emerald alert - Eco-friendly option</lib-alert>
-        <lib-alert variant="amber">Amber alert - Attention required</lib-alert>
-        <lib-alert variant="lime">Lime alert - Fresh updates available</lib-alert>
-        <lib-alert variant="violet">Violet alert - Creative mode enabled</lib-alert>
-        <lib-alert variant="sky">Sky alert - Weather update</lib-alert>
-      </div>
-    </section>
-
-    <!-- Progress Variants -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">Progress Color Variants</h2>
-      <div class="space-y-4">
-        <div>
-          <p class="mb-2">Default Progress (67%)</p>
-          <lib-progress [value]="progressValue" variant="default" />
-        </div>
-        <div>
-          <p class="mb-2">Success Progress (85%)</p>
-          <lib-progress [value]="85" variant="success" />
-        </div>
-        <div>
-          <p class="mb-2">Warning Progress (45%)</p>
-          <lib-progress [value]="45" variant="warning" />
-        </div>
-        <div>
-          <p class="mb-2">Info Progress (72%)</p>
-          <lib-progress [value]="72" variant="info" />
-        </div>
-        <div>
-          <p class="mb-2">Purple Progress (58%)</p>
-          <lib-progress [value]="58" variant="purple" />
-        </div>
-        <div>
-          <p class="mb-2">Lime Progress (92%)</p>
-          <lib-progress [value]="92" variant="lime" />
-        </div>
-      </div>
-    </section>
-
-    <!-- New Components Demo -->
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">New Components v0.3.0</h2>
-      
-      <!-- Date Picker -->
-      <div class="mb-6">
-        <h3 class="text-lg font-medium mb-2">Date Picker</h3>
-        <lib-date-picker [(ngModel)]="selectedDate" placeholder="Select a date" />
-        <p class="mt-2 text-sm text-muted-foreground">Selected: {{ selectedDate | date:'fullDate' }}</p>
-      </div>
-
-      <!-- Breadcrumb -->
-      <div class="mb-6">
-        <h3 class="text-lg font-medium mb-2">Breadcrumb Navigation</h3>
-        <lib-breadcrumb-complete [items]="breadcrumbItems" [maxItems]="3" />
-      </div>
-    </section>
+      <AccordionItem value="multi-3">
+        <AccordionTrigger>What about screen readers?</AccordionTrigger>
+        <AccordionContent>
+          Each trigger has proper ARIA attributes and the content regions are properly labeled for screen readers.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   </div>
 </div>

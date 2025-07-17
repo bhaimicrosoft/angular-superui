@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 /* You can add global styles to this file, and also import other style files */
+
+/* Modal Popover Styles */
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+.modal-popover-panel {
+  z-index: 1000;
+}
+
 @layer base {
   :root {
     /* Base Theme Variables */

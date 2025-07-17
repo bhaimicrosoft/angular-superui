@@ -1,35 +1,19 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
 const switchVariants = cva(
-  'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50',
+  'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
   {
     variants: {
-      size: {
-        default: 'h-6 w-11',
-        sm: 'h-5 w-9',
-        lg: 'h-7 w-12',
+      variant: {
+        default: '',
       },
     },
     defaultVariants: {
-      size: 'default',
-    },
-  }
-);
-
-const thumbVariants = cva(
-  'pointer-events-none block rounded-full bg-background shadow-lg ring-0 transition-transform',
-  {
-    variants: {
-      size: {
-        default: 'h-5 w-5',
-        sm: 'h-4 w-4',
-        lg: 'h-6 w-6',
-      },
-    },
-    defaultVariants: {
-      size: 'default',
+      variant: 'default',
     },
   }
 );
@@ -37,57 +21,66 @@ const thumbVariants = cva(
 @Component({
   selector: 'Switch',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => Switch),
+      multi: true,
+    },
+  ],
   template: `
     <button
       type="button"
       role="switch"
+      [class]="cn(switchVariants({ variant }), className)"
       [attr.aria-checked]="checked"
-      [class]="switchClass"
+      [attr.data-state]="checked ? 'checked' : 'unchecked'"
+      [disabled]="disabled"
       (click)="toggle()"
-      [disabled]="disabled">
-      <span [class]="thumbClass"></span>
+    >
+      <span
+        class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+        [attr.data-state]="checked ? 'checked' : 'unchecked'"
+      ></span>
     </button>
   `
 })
-export class Switch {
-  @Input() class = '';
-  @Input() checked = false;
+export class Switch implements ControlValueAccessor {
+  @Input() variant: VariantProps<typeof switchVariants>['variant'] = 'default';
+  @Input() className?: string;
   @Input() disabled = false;
-  @Input() size: VariantProps<typeof switchVariants>['size'] = 'default';
   @Output() checkedChange = new EventEmitter<boolean>();
 
-  public get switchClass(): string {
-    return cn(
-      switchVariants({ size: this.size }),
-      this.checked ? 'bg-primary' : 'bg-input',
-      this.class
-    );
-  }
+  checked = false;
+  onChange = (value: boolean) => {};
+  onTouched = () => {};
 
-  public get thumbClass(): string {
-    const baseClass = thumbVariants({ size: this.size });
-    const translateClass = this.getTranslateClass();
-    return cn(baseClass, translateClass);
-  }
-
-  private getTranslateClass(): string {
-    if (!this.checked) return 'translate-x-0';
-    
-    switch (this.size) {
-      case 'sm':
-        return 'translate-x-4';
-      case 'lg':
-        return 'translate-x-5';
-      default:
-        return 'translate-x-5';
-    }
-  }
+  cn = cn;
+  switchVariants = switchVariants;
 
   toggle() {
     if (!this.disabled) {
       this.checked = !this.checked;
+      this.onChange(this.checked);
       this.checkedChange.emit(this.checked);
+      this.onTouched();
     }
+  }
+
+  writeValue(value: boolean): void {
+    this.checked = value;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }

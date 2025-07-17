@@ -6,10 +6,9 @@
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
+    "baseUrl": "projects/",
     "paths": {
-      "lib": [
-        "./dist/lib"
-      ]
+      "@lib/*": ["lib/src/lib/*"]
     },
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

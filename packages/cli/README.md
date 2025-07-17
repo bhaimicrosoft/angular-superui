@@ -1,13 +1,13 @@
-# ngsui-cli v0.6.2 🛠️
+# ngsui-cli v0.1.0 🛠️
 
 [![npm version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
 A CLI tool for local Angular SuperUI component installation, inspired by shadcn/ui.
 
-**🎯 New in v0.6.2: CLI Naming Consistency + Documentation Improvements!**
+**🎯 New in v0.1.0: Initial Release!**
 
-## 📚 **[📖 Complete Component Demos & Examples →](../../docs/demo.md)**
+## 📚 **[📖 Complete Documentation →](../../docs/)**
 > 🎨 **Step-by-step guides** for all 30+ components with **practical examples** and **usage instructions**!
 
 ## 🚀 Features
@@ -25,7 +25,7 @@ A CLI tool for local Angular SuperUI component installation, inspired by shadcn/
 ## Installation
 
 ```bash
-npm install -g ngsui-cli@0.6.2
+npm install -g ngsui-cli@0.1.0
 ```
 
 ## Usage
@@ -99,7 +99,7 @@ ngsui-cli list
 - `popover` - Displays rich content in a portal, triggered by a button
 - `sheet` - Extends the Dialog component to display content that complements the main content
 
-### New Components (v0.6.2)
+### New Components (v0.1.0)
 - `calendar` - A date field component that allows users to enter and edit date
 - `command` - Fast, composable, unstyled command menu for Angular
 
@@ -126,7 +126,7 @@ Most components support these color variants:
 ## Examples
 
 ```typescript
-// After adding button component (v0.6.2 - Local Installation)
+// After adding button component (v0.1.0 - Local Installation)
 import { Button } from '@components/button';
 // Or using relative path: import { Button } from './lib/components/button';
 
@@ -150,7 +150,7 @@ export class MyComponent {}
 - ✅ Simplified component names (no lib- prefix!)
 
 ## 📚 **Quick Links**
-- 🎨 **[Complete Component Demos →](../../docs/demo.md)** - Step-by-step examples for all components
+- 📚 **[Component Examples →](../../docs/examples.md)** - Real-world usage examples
 - 📖 **[Installation Guide →](../../docs/installation.md)** - Detailed setup instructions
 - 🔧 **[GitHub Repository →](https://github.com/bhaimicrosoft/angular-superui)** - Source code and issues
 

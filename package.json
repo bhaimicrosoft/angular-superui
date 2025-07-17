@@ -1,6 +1,6 @@
 {
   "name": "angular-superui",
-  "version": "0.6.2",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,12 +24,16 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cdk": "^20.1.0",
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",
     "@angular/core": "^20.1.0",
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "@internationalized/date": "^3.8.2",
+    "@radix-ng/primitives": "^0.42.0",
+    "angular-superui": "^0.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "rxjs": "~7.8.0",
