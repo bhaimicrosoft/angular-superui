@@ -352,6 +352,120 @@
     </div>
   </div>
 
+  <!-- AlertDialog Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">AlertDialog Component</h2>
+    
+    <div class="space-y-6">
+      <!-- Basic AlertDialog -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Basic AlertDialog</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button variant="destructive" (buttonClick)="openDeleteDialog()">
+            Delete Account
+          </Button>
+          
+          <Button variant="outline" (buttonClick)="openLogoutDialog()">
+            Logout
+          </Button>
+          
+          <Button variant="default" (buttonClick)="openConfirmDialog()">
+            Confirm Action
+          </Button>
+        </div>
+      </div>
+
+      <!-- Delete Confirmation Dialog -->
+      <AlertDialog 
+        [isOpen]="isDeleteDialogOpen()"
+        (openChange)="isDeleteDialogOpen.set($event)"
+        [accessibility]="{
+          ariaLabel: 'Delete account confirmation',
+          ariaLabelledBy: 'delete-title',
+          ariaDescribedBy: 'delete-description',
+          role: 'alertdialog',
+          announceText: 'Delete account confirmation dialog opened'
+        }">
+        <AlertDialogHeader>
+          <AlertDialogTitle id="delete-title">Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription id="delete-description">
+            This action cannot be undone. This will permanently delete your account
+            and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel (cancelClick)="cancelDialog('delete')">
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction 
+            variant="destructive" 
+            (actionClick)="handleDelete()">
+            Delete Account
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialog>
+
+      <!-- Logout Confirmation Dialog -->
+      <AlertDialog 
+        [isOpen]="isLogoutDialogOpen()"
+        (openChange)="isLogoutDialogOpen.set($event)"
+        [accessibility]="{
+          ariaLabel: 'Logout confirmation',
+          ariaLabelledBy: 'logout-title',
+          ariaDescribedBy: 'logout-description',
+          role: 'dialog'
+        }">
+        <AlertDialogHeader>
+          <AlertDialogTitle id="logout-title">Sign out of your account?</AlertDialogTitle>
+          <AlertDialogDescription id="logout-description">
+            You will need to sign in again to access your account.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel (cancelClick)="cancelDialog('logout')">
+            Stay signed in
+          </AlertDialogCancel>
+          <AlertDialogAction 
+            variant="secondary" 
+            (actionClick)="handleLogout()">
+            Sign out
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialog>
+
+      <!-- Generic Confirmation Dialog -->
+      <AlertDialog 
+        [isOpen]="isConfirmDialogOpen()"
+        (openChange)="isConfirmDialogOpen.set($event)"
+        [preventCloseOnOverlayClick]="true"
+        [accessibility]="{
+          ariaLabel: 'Action confirmation',
+          ariaLabelledBy: 'confirm-title',
+          ariaDescribedBy: 'confirm-description',
+          role: 'alertdialog',
+          ariaLive: 'assertive'
+        }">
+        <AlertDialogHeader>
+          <AlertDialogTitle id="confirm-title">Confirm your action</AlertDialogTitle>
+          <AlertDialogDescription id="confirm-description">
+            Please confirm that you want to proceed with this action. This dialog 
+            cannot be dismissed by clicking outside.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel (cancelClick)="cancelDialog('confirm')">
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction 
+            variant="default" 
+            (actionClick)="handleConfirm()">
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialog>
+    </div>
+  </div>
+
   <!-- Accordion Component Tests -->
   <div>
     <h2 class="text-lg font-semibold mb-4">Accordion Component</h2>
