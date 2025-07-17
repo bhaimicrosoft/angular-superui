@@ -8,9 +8,11 @@
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://www.npmjs.com/package/ngsui-cli)
+[![Components](https://img.shields.io/badge/Components-4-green)](#components)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-17%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue.svg)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8)](https://tailwindcss.com/)
 
 ### ☕ Support This Project
 [![Buy Me A Coffee](https://img.shields.io/badge/☕-Buy%20Me%20A%20Coffee-orange?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://coff.ee/bhaikaju)
@@ -21,7 +23,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/3%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/4%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -63,7 +65,7 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add accordion alert avatar
+ngsui-cli add accordion alert avatar badge
 
 # List available components
 ngsui-cli list
@@ -90,13 +92,15 @@ import {
   AvatarImage, 
   AvatarFallback 
 } from '@components/avatar';
+import { Badge } from '@components/badge';
 
 @Component({
   standalone: true,
   imports: [
     Accordion, AccordionItem, AccordionTrigger, AccordionContent,
     Alert, AlertTitle, AlertDescription, AlertIcon,
-    Avatar, AvatarImage, AvatarFallback
+    Avatar, AvatarImage, AvatarFallback,
+    Badge
   ],
   template: `
     <!-- Avatar Example -->
@@ -155,9 +159,10 @@ export class AppComponent {}
 | **🪗 [Accordion](./docs/components/accordion.md)** | Collapsible content sections with single or multiple modes | ✅ Available |
 | **🚨 [Alert](./docs/components/alert.md)** | Contextual feedback messages with 5 variants | ✅ Available |
 | **👤 [Avatar](./docs/components/avatar.md)** | User profile image with automatic fallback support | ✅ Available |
+| **🏷️ [Badge](./docs/components/badge.md)** | Status indicators and labels with 4 variants | ✅ Available |
 
 ### 🚀 **Coming Soon**
-- Badge  
+
 - Button
 - Card
 - Input
@@ -209,6 +214,14 @@ ngsui-cli init
 - **Loading Timeout**: 5-second timeout with graceful degradation
 - **Accessibility**: Proper ARIA labels and semantic roles
 - **Performance**: Lazy loading and optimized image handling
+
+### 🏷️ **Badge Component**
+- **4 Variants**: Default, Secondary, Destructive, Outline
+- **Smart ARIA Roles**: Automatic role assignment based on variant (alert/status/note)
+- **Interactive Links**: Optional link mode with keyboard accessibility
+- **Live Regions**: Dynamic content announcements for screen readers
+- **WCAG 2.1 AA**: Full accessibility compliance with semantic roles
+- **TypeScript**: Complete type safety with CVA variants
 
 ---
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@lib/accordion';
 import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@lib/alert';
 import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
+import { Badge } from '@lib/badge';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
     Avatar,
     AvatarImage,
     AvatarFallback,
-    Avatar
+    Badge
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

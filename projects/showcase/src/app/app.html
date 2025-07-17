@@ -74,6 +74,57 @@
     </div>
   </div>
 
+  <!-- Badge Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Badge Component</h2>
+    <div class="space-y-6">
+      <!-- Badge Variants -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Variants</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Badge variant="default">Default</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="outline">Outline</Badge>
+        </div>
+      </div>
+
+      <!-- Badge with Numbers -->
+      <div>
+        <h3 class="text-md font-medium mb-3">With Numbers</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Badge variant="default">New</Badge>
+          <Badge variant="secondary">99+</Badge>
+          <Badge variant="destructive">Error</Badge>
+          <Badge variant="outline">Beta</Badge>
+        </div>
+      </div>
+
+      <!-- Badge in Context -->
+      <div>
+        <h3 class="text-md font-medium mb-3">In Context</h3>
+        <div class="space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-sm">Inbox</span>
+            <Badge variant="default" [ariaLabel]="'12 unread messages'">12</Badge>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm">Documentation</span>
+            <Badge variant="secondary" [asLink]="true" href="/docs" [ariaLabel]="'View documentation'">Updated</Badge>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm">Build Status</span>
+            <Badge variant="destructive" role="alert" [ariaLabel]="'Build failed - requires attention'">Failed</Badge>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm">Feature</span>
+            <Badge variant="outline" ariaLive="polite">Coming Soon</Badge>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Alert Component Tests -->
   <div>
     <h2 class="text-lg font-semibold mb-4">Alert Component</h2>
