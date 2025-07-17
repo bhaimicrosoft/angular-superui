@@ -6,22 +6,6 @@
 
 <div align="center">
 
-[![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
-[![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://www.npmjs.com/pack## 📖 Documentation
-
-- 📋 **[Installation Guide](./docs/installation.md)** - Complete setup instructions
-- 🪗 **[Accordion Examples](./docs/components/accordion.md)** - Interactive accordion usage
-- 🚨 **[Alert Examples](./docs/components/alert.md)** - Alert variants and styling
-- 🚨 **[AlertDialog Examples](./docs/components/alert-dialog.md)** - Modal dialogs with accessibility
-- 👤 **[Avatar Examples](./docs/components/avatar.md)** - Avatar sizes and fallbacks
-- 🏷️ **[Badge Examples](./docs/components/badge.md)** - Badge variants and accessibility
-- 🔘 **[Button Examples](./docs/components/button.md)** - Button variants, loading states, and events
-- 🔧 **[CLI Reference](./packages/cli/README.md)** - All CLI commands and options-cli)
-[![Components](https://img.shields.io/badge/Components-6-green)](#components)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Angular](https://img.shields.io/badge/Angular-17%2B-red.svg)](https://angular.io/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue.svg)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8)](https://tailwindcss.com/)
 
 ### ☕ Support This Project
 [![Buy Me A Coffee](https://img.shields.io/badge/☕-Buy%20Me%20A%20Coffee-orange?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://coff.ee/bhaikaju)
