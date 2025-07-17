@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@lib/accordion';
+import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@lib/alert';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,14 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@l
     Accordion,
     AccordionItem,
     AccordionTrigger,
-    AccordionContent
+    AccordionContent,
+    Alert,
+    AlertTitle,
+    AlertDescription,
+    AlertIcon
   ],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.css'
 })
 export class App {
 

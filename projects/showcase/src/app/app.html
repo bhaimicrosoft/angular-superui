@@ -1,55 +1,133 @@
 <div class="max-w-md mx-auto mt-8 p-6 space-y-8">
-  <h1 class="text-2xl font-bold mb-6">Accordion Component Test</h1>
+  <h1 class="text-2xl font-bold mb-6">Component Test Suite</h1>
 
+  <!-- Alert Component Tests -->
   <div>
-    <h2 class="text-lg font-semibold mb-4">Single Mode (Collapsible)</h2>
-    <Accordion type="single" [collapsible]="true" class="w-full">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It adheres to the WAI-ARIA design pattern and supports keyboard navigation.
-        </AccordionContent>
-      </AccordionItem>
+    <h2 class="text-lg font-semibold mb-4">Alert Component</h2>
+    <div class="space-y-4">
+      <!-- Default Alert -->
+      <Alert>
+        <AlertIcon>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </AlertIcon>
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          You can add components and dependencies to your app using the cli.
+        </AlertDescription>
+      </Alert>
 
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Is it styled?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It comes with default styles that match the other components' aesthetic.
-        </AccordionContent>
-      </AccordionItem>
+      <!-- Destructive Alert -->
+      <Alert variant="destructive">
+        <AlertIcon>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+          </svg>
+        </AlertIcon>
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>
+          Your session has expired. Please log in again.
+        </AlertDescription>
+      </Alert>
 
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Is it animated?</AccordionTrigger>
-        <AccordionContent>
-          Yes. It's animated by default with smooth transitions when expanding and collapsing.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+      <!-- Warning Alert -->
+      <Alert variant="warning">
+        <AlertIcon>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+          </svg>
+        </AlertIcon>
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          This action cannot be undone. Please proceed with caution.
+        </AlertDescription>
+      </Alert>
+
+      <!-- Success Alert -->
+      <Alert variant="success">
+        <AlertIcon>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </AlertIcon>
+        <AlertTitle>Success</AlertTitle>
+        <AlertDescription>
+          Your changes have been saved successfully.
+        </AlertDescription>
+      </Alert>
+
+      <!-- Info Alert -->
+      <Alert variant="info">
+        <AlertIcon>
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </AlertIcon>
+        <AlertTitle>Information</AlertTitle>
+        <AlertDescription>
+          You have 3 unread messages in your inbox.
+        </AlertDescription>
+      </Alert>
+    </div>
   </div>
 
+  <!-- Accordion Component Tests -->
   <div>
-    <h2 class="text-lg font-semibold mb-4">Multiple Mode</h2>
-    <Accordion type="multiple" class="w-full">
-      <AccordionItem value="multi-1">
-        <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
-        <AccordionContent>
-          Yes! In multiple mode, you can have multiple accordion items open at the same time.
-        </AccordionContent>
-      </AccordionItem>
+    <h2 class="text-lg font-semibold mb-4">Accordion Component</h2>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-md font-medium mb-2">Single Mode (Collapsible)</h3>
+        <Accordion type="single" [collapsible]="true" class="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It adheres to the WAI-ARIA design pattern and supports keyboard navigation.
+            </AccordionContent>
+          </AccordionItem>
 
-      <AccordionItem value="multi-2">
-        <AccordionTrigger>How does keyboard navigation work?</AccordionTrigger>
-        <AccordionContent>
-          Use Arrow keys to navigate between triggers, Home/End for first/last item, and Enter/Space to toggle.
-        </AccordionContent>
-      </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It comes with default styles that match the other components' aesthetic.
+            </AccordionContent>
+          </AccordionItem>
 
-      <AccordionItem value="multi-3">
-        <AccordionTrigger>What about screen readers?</AccordionTrigger>
-        <AccordionContent>
-          Each trigger has proper ARIA attributes and the content regions are properly labeled for screen readers.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionContent>
+              Yes. It's animated by default with smooth transitions when expanding and collapsing.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+
+      <div>
+        <h3 class="text-md font-medium mb-2">Multiple Mode</h3>
+        <Accordion type="multiple" class="w-full">
+          <AccordionItem value="multi-1">
+            <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
+            <AccordionContent>
+              Yes! In multiple mode, you can have multiple accordion items open at the same time.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="multi-2">
+            <AccordionTrigger>How does keyboard navigation work?</AccordionTrigger>
+            <AccordionContent>
+              Use Arrow keys to navigate between triggers, Home/End for first/last item, and Enter/Space to toggle.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="multi-3">
+            <AccordionTrigger>What about screen readers?</AccordionTrigger>
+            <AccordionContent>
+              Each trigger has proper ARIA attributes and the content regions are properly labeled for screen readers.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </div>
   </div>
 </div>
