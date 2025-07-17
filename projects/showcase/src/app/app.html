@@ -206,6 +206,152 @@
     </div>
   </div>
 
+  <!-- Button Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Button Component</h2>
+    <div class="space-y-6">
+      <!-- Button Variants -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Variants</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button variant="default">Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="link">Link</Button>
+        </div>
+      </div>
+
+      <!-- Extended Variants -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Extended Variants</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button variant="success">Success</Button>
+          <Button variant="warning">Warning</Button>
+          <Button variant="info">Info</Button>
+        </div>
+      </div>
+
+      <!-- Button Sizes -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button size="sm">Small</Button>
+          <Button size="default">Default</Button>
+          <Button size="lg">Large</Button>
+          <Button size="xl">Extra Large</Button>
+        </div>
+      </div>
+
+      <!-- Icon Buttons -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Icon Buttons</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button size="icon" variant="outline">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+          </Button>
+          
+          <Button size="icon-sm" variant="ghost">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </Button>
+
+          <Button size="icon-lg" variant="default">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </Button>
+
+          <Button size="icon-xl" variant="destructive">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+          </Button>
+        </div>
+      </div>
+
+      <!-- Loading States -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Loading States</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button [loadingState]="true">Loading</Button>
+          <Button [loadingState]="{ loading: true, loadingText: 'Saving...', disableOnLoading: true }" variant="secondary">
+            Save Document
+          </Button>
+          <Button [loadingState]="{ loading: true, loadingText: 'Processing...', disableOnLoading: false }" variant="outline">
+            Process
+          </Button>
+        </div>
+      </div>
+
+      <!-- Disabled States -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Disabled States</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button [disabled]="true">Disabled Default</Button>
+          <Button [disabled]="true" variant="secondary">Disabled Secondary</Button>
+          <Button [disabled]="true" variant="outline">Disabled Outline</Button>
+          <Button [disabled]="true" variant="destructive">Disabled Destructive</Button>
+        </div>
+      </div>
+
+      <!-- With Accessibility -->
+      <div>
+        <h3 class="text-md font-medium mb-3">With Accessibility Features</h3>
+        <div class="flex items-center gap-3 flex-wrap">
+          <Button 
+            [accessibility]="{
+              ariaLabel: 'Save document to cloud storage',
+              ariaDescription: 'Uploads and saves the current document to your cloud storage account'
+            }"
+            variant="default">
+            Save to Cloud
+          </Button>
+          
+          <Button 
+            [accessibility]="{
+              ariaHasPopup: 'menu',
+              ariaExpanded: 'false'
+            }"
+            variant="outline">
+            Options ▼
+          </Button>
+
+          <Button 
+            [accessibility]="{
+              ariaPressed: 'false',
+              ariaLive: 'polite'
+            }"
+            variant="ghost">
+            Toggle Feature
+          </Button>
+        </div>
+      </div>
+
+      <!-- Button Groups -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Button Groups</h3>
+        <div class="space-y-3">
+          <div class="flex">
+            <Button variant="outline" class="rounded-r-none border-r-0">First</Button>
+            <Button variant="outline" class="rounded-none border-r-0">Second</Button>
+            <Button variant="outline" class="rounded-l-none">Third</Button>
+          </div>
+          
+          <div class="flex gap-2">
+            <Button variant="default">Primary Action</Button>
+            <Button variant="outline">Secondary Action</Button>
+            <Button variant="ghost">Cancel</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Accordion Component Tests -->
   <div>
     <h2 class="text-lg font-semibold mb-4">Accordion Component</h2>

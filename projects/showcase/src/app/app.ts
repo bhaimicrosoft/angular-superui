@@ -3,6 +3,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@l
 import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@lib/alert';
 import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
 import { Badge } from '@lib/badge';
+import { ButtonComponent } from '@lib/button';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ import { Badge } from '@lib/badge';
     Avatar,
     AvatarImage,
     AvatarFallback,
-    Badge
+    Badge,
+    ButtonComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
