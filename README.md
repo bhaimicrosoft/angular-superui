@@ -16,7 +16,7 @@
 - 👤 **[Avatar Examples](./docs/components/avatar.md)** - Avatar sizes and fallbacks
 - 🏷️ **[Badge Examples](./docs/components/badge.md)** - Badge variants and accessibility
 - 🔘 **[Button Examples](./docs/components/button.md)** - Button variants, loading states, and events
-- 🔧 **[CLI Reference](./packages/cli/README.md)** - All CLI commands and options-cli)s-cli)
+- 🔧 **[CLI Reference](./packages/cli/README.md)** - All CLI commands and options-cli)
 [![Components](https://img.shields.io/badge/Components-6-green)](#components)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-17%2B-red.svg)](https://angular.io/)
