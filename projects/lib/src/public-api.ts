@@ -10,5 +10,6 @@ export * from './lib/alert';
 export * from './lib/alert-dialog';
 export * from './lib/avatar';
 export * from './lib/badge';
+export * from './lib/breadcrumb';
 export * from './lib/button';
 

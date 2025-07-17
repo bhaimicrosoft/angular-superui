@@ -12,6 +12,15 @@ import {
 } from '@lib/alert-dialog';
 import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
 import { Badge } from '@lib/badge';
+import { 
+  BreadcrumbComponent,
+  BreadcrumbListComponent,
+  BreadcrumbItemComponent,
+  BreadcrumbLinkComponent,
+  BreadcrumbPageComponent,
+  BreadcrumbSeparatorComponent,
+  BreadcrumbEllipsisComponent
+} from '@lib/breadcrumb';
 import { ButtonComponent } from '@lib/button';
 
 @Component({
@@ -36,6 +45,13 @@ import { ButtonComponent } from '@lib/button';
     AvatarImage,
     AvatarFallback,
     Badge,
+    BreadcrumbComponent,
+    BreadcrumbListComponent,
+    BreadcrumbItemComponent,
+    BreadcrumbLinkComponent,
+    BreadcrumbPageComponent,
+    BreadcrumbSeparatorComponent,
+    BreadcrumbEllipsisComponent,
     ButtonComponent
   ],
   templateUrl: './app.html',
@@ -75,17 +91,15 @@ export class App {
     this.isConfirmDialogOpen.set(false);
   }
 
-  cancelDialog(dialogType: 'delete' | 'logout' | 'confirm') {
-    switch (dialogType) {
-      case 'delete':
-        this.isDeleteDialogOpen.set(false);
-        break;
-      case 'logout':
-        this.isLogoutDialogOpen.set(false);
-        break;
-      case 'confirm':
-        this.isConfirmDialogOpen.set(false);
-        break;
-    }
+  cancelDialog(type: string) {
+    console.log(`${type} dialog cancelled`);
+    this.isDeleteDialogOpen.set(false);
+    this.isLogoutDialogOpen.set(false);
+    this.isConfirmDialogOpen.set(false);
+  }
+
+  // Breadcrumb demo methods
+  onBreadcrumbClick(section: string) {
+    console.log(`Navigating to: ${section}`);
   }
 }

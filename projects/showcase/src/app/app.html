@@ -524,4 +524,147 @@
       </div>
     </div>
   </div>
+
+  <!-- Breadcrumb Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Breadcrumb Component</h2>
+    <div class="space-y-6">
+      <!-- Basic Breadcrumb -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Basic Navigation</h3>
+        <Breadcrumb [accessibility]="{
+          ariaLabel: 'Basic navigation breadcrumb',
+          ariaLive: 'polite'
+        }">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/" [accessibility]="{
+                ariaLabel: 'Navigate to home page'
+              }">
+                Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator></BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/docs" [accessibility]="{
+                ariaLabel: 'Navigate to documentation'
+              }">
+                Documentation
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator></BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage [accessibility]="{
+                ariaLabel: 'Current page: Components'
+              }">
+                Components
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+
+      <!-- With Custom Separator -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Custom Separator</h3>
+        <Breadcrumb [accessibility]="{
+          ariaLabel: 'Custom separator breadcrumb'
+        }">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">
+                Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator [customSeparator]="true">
+              <span class="text-muted-foreground">/</span>
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/products">
+                Products
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator [customSeparator]="true">
+              <span class="text-muted-foreground">/</span>
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>
+                Laptops
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+
+      <!-- With Ellipsis (Collapsed) -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Collapsed Navigation</h3>
+        <Breadcrumb [accessibility]="{
+          ariaLabel: 'Collapsed navigation breadcrumb'
+        }">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">
+                Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator></BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbEllipsis></BreadcrumbEllipsis>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator></BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/components">
+                Components
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator></BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>
+                Breadcrumb
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+
+      <!-- Interactive Breadcrumb -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Interactive Links</h3>
+        <Breadcrumb [accessibility]="{
+          ariaLabel: 'Interactive breadcrumb navigation'
+        }">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink 
+                (linkClick)="onBreadcrumbClick('home')"
+                [accessibility]="{
+                  ariaLabel: 'Click to navigate to home'
+                }">
+                🏠 Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator></BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbLink 
+                (linkClick)="onBreadcrumbClick('settings')"
+                [accessibility]="{
+                  ariaLabel: 'Click to navigate to settings'
+                }">
+                ⚙️ Settings
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator></BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage [accessibility]="{
+                ariaLabel: 'Current page: Profile settings'
+              }">
+                👤 Profile
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+    </div>
+  </div>
 </div>

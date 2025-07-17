@@ -129,15 +129,15 @@ export interface ButtonLoadingState {
       [ngClass]="computedClasses()"
       [type]="type"
       [disabled]="computedDisabled()"
-      [attr.aria-label]="accessibility?.ariaLabel"
-      [attr.aria-description]="accessibility?.ariaDescription"
-      [attr.aria-labelledby]="accessibility?.ariaLabelledBy"
-      [attr.aria-describedby]="accessibility?.ariaDescribedBy"
-      [attr.aria-haspopup]="accessibility?.ariaHasPopup"
-      [attr.aria-expanded]="accessibility?.ariaExpanded"
-      [attr.aria-pressed]="accessibility?.ariaPressed"
-      [attr.aria-live]="accessibility?.ariaLive"
-      [attr.tabindex]="accessibility?.tabIndex"
+      [attr.aria-label]="accessibility.ariaLabel"
+      [attr.aria-description]="accessibility.ariaDescription"
+      [attr.aria-labelledby]="accessibility.ariaLabelledBy"
+      [attr.aria-describedby]="accessibility.ariaDescribedBy"
+      [attr.aria-haspopup]="accessibility.ariaHasPopup"
+      [attr.aria-expanded]="accessibility.ariaExpanded"
+      [attr.aria-pressed]="accessibility.ariaPressed"
+      [attr.aria-live]="accessibility.ariaLive"
+      [attr.tabindex]="accessibility.tabIndex"
       [attr.data-loading]="loading().loading"
       [attr.data-variant]="variant"
       [attr.data-size]="size"
@@ -182,7 +182,7 @@ export interface ButtonLoadingState {
       </span>
       
       <!-- Screen reader loading announcement -->
-      @if (loading().loading && accessibility?.ariaLive) {
+      @if (loading().loading && accessibility.ariaLive) {
         <span class="sr-only" [attr.aria-live]="accessibility.ariaLive">
           {{ loading().loadingText || 'Loading...' }}
         </span>

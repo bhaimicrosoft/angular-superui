@@ -16,7 +16,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/6%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/7%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -95,6 +95,15 @@ import {
   AvatarFallback 
 } from '@components/avatar';
 import { Badge } from '@components/badge';
+import { 
+  BreadcrumbComponent,
+  BreadcrumbListComponent,
+  BreadcrumbItemComponent,
+  BreadcrumbLinkComponent,
+  BreadcrumbPageComponent,
+  BreadcrumbSeparatorComponent,
+  BreadcrumbEllipsisComponent
+} from '@components/breadcrumb';
 import { Button } from '@components/button';
 
 @Component({
@@ -175,9 +184,10 @@ export class AppComponent {}
 |-----------|-------------|--------|
 | **🪗 [Accordion](./docs/components/accordion.md)** | Collapsible content sections with single or multiple modes | ✅ Available |
 | **🚨 [Alert](./docs/components/alert.md)** | Contextual feedback messages with 5 variants | ✅ Available |
-| **� [AlertDialog](./docs/components/alert-dialog.md)** | Modal dialogs with full accessibility and focus management | ✅ Available |
-| **�👤 [Avatar](./docs/components/avatar.md)** | User profile image with automatic fallback support | ✅ Available |
+| **🚨 [AlertDialog](./docs/components/alert-dialog.md)** | Modal dialogs with full accessibility and focus management | ✅ Available |
+| **👤 [Avatar](./docs/components/avatar.md)** | User profile image with automatic fallback support | ✅ Available |
 | **🏷️ [Badge](./docs/components/badge.md)** | Status indicators and labels with 4 variants | ✅ Available |
+| **🍞 [Breadcrumb](./docs/components/breadcrumb.md)** | Navigation breadcrumbs with accessibility and custom separators | ✅ Available |
 | **🔘 [Button](./docs/components/button.md)** | Interactive buttons with 9 variants and loading states | ✅ Available |
 
 ### 🚀 **Coming Soon**
@@ -249,7 +259,18 @@ ngsui-cli init
 - **Event Handling**: Click, keydown, focus, and blur events with TypeScript
 - **Smart Interactions**: Space/Enter key support and disabled state management
 
+### 🍞 **Breadcrumb Component**
+
+- **7 Sub-Components**: Breadcrumb, List, Item, Link, Page, Separator, Ellipsis
+- **Navigation Landmarks**: Semantic navigation with ARIA support
+- **Router Integration**: Full Angular RouterLink support with active states
+- **Custom Separators**: Flexible separator options (icon, text, custom)
+- **Collapsed Navigation**: Ellipsis support for long breadcrumb chains
+- **Accessibility**: WCAG 2.1 AA compliance with proper ARIA attributes
+- **Event Handling**: Click events with navigation data and TypeScript safety
+
 ### 🚨 **AlertDialog Component**
+
 - **Modal Dialog System**: Full modal dialog with overlay and focus trapping
 - **7 Sub-Components**: AlertDialog, Header, Footer, Title, Description, Action, Cancel
 - **Full Accessibility**: WCAG 2.1 AA compliance with ARIA support
@@ -281,6 +302,7 @@ ngsui-cli init
 - 🚨 **[Alert Examples](./docs/components/alert.md)** - Alert variants and styling
 - � **[Avatar Examples](./docs/components/avatar.md)** - Avatar sizes and fallbacks
 - 🏷️ **[Badge Examples](./docs/components/badge.md)** - Badge variants and accessibility
+- 🍞 **[Breadcrumb Examples](./docs/components/breadcrumb.md)** - Navigation breadcrumbs and custom separators
 - 🔘 **[Button Examples](./docs/components/button.md)** - Button variants, loading states, and events
 - �🔧 **[CLI Reference](./packages/cli/README.md)** - All CLI commands and options
 
