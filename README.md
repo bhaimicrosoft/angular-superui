@@ -1,4 +1,8 @@
+<div align="center">
+
 # 🎨 Angular SuperUI v1.0.0
+
+</div>
 
 <div align="center">
 
@@ -17,8 +21,8 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI Demo](https://img.shields.io/badge/40%2B%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
-  ![Build Size](https://img.shields.io/badge/Bundle%20Size-60%25%20Smaller-blue?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/2%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
 
@@ -26,13 +30,13 @@
 
 ## ✨ What is Angular SuperUI?
 
-Angular SuperUI is a **modern, beautiful, and accessible** Angular UI component library that revolutionizes how you build Angular applications. Built with **Tailwind CSS** and **TypeScript**, it provides a comprehensive set of **40+ reusable components** with **local-first architecture**.
+Angular SuperUI is a **modern, beautiful, and accessible** Angular UI component library that revolutionizes how you build Angular applications. Built with **Tailwind CSS v4** and **TypeScript**, it provides a comprehensive set of reusable components with **local-first architecture**.
 
 ### 🎯 **Why Choose Angular SuperUI?**
 
 🔥 **Local-First Architecture** - No NPM dependencies, components live in your project  
-⚡ **60% Smaller Bundles** - Only install what you need  
-🎨 **40+ Beautiful Components** - Modern design system with dark mode  
+⚡ **Smaller Bundles** - Only install what you need  
+🎨 **Beautiful Components** - Modern design system with dark mode support  
 🛠️ **CLI-Powered** - Effortless installation and management  
 📱 **Fully Responsive** - Works perfectly on all devices  
 ♿ **Accessibility First** - ARIA compliant and keyboard friendly  
@@ -59,31 +63,61 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add button card alert
+ngsui-cli add accordion alert
 
-# Or add all components
-ngsui-cli add --all
+# List available components
+ngsui-cli list
 ```
 
 ### 4️⃣ Start Building
 
 ```typescript
 import { Component } from '@angular/core';
-import { Button } from '@components/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@components/card';
+import { 
+  Accordion, 
+  AccordionItem, 
+  AccordionTrigger, 
+  AccordionContent 
+} from '@components/accordion';
+import { 
+  Alert, 
+  AlertTitle, 
+  AlertDescription, 
+  AlertIcon 
+} from '@components/alert';
 
 @Component({
   standalone: true,
-  imports: [Button, Card, CardContent, CardHeader, CardTitle],
+  imports: [
+    Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+    Alert, AlertTitle, AlertDescription, AlertIcon
+  ],
   template: `
-    <Card class="w-96">
-      <CardHeader>
-        <CardTitle>Welcome to Angular SuperUI! 🎉</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Button variant="default" size="lg">Get Started</Button>
-      </CardContent>
-    </Card>
+    <!-- Alert Example -->
+    <Alert variant="success">
+      <AlertIcon>
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </AlertIcon>
+      <div class="flex-1">
+        <AlertTitle>Welcome to Angular SuperUI! 🎉</AlertTitle>
+        <AlertDescription>
+          You're ready to build amazing user interfaces.
+        </AlertDescription>
+      </div>
+    </Alert>
+
+    <!-- Accordion Example -->
+    <Accordion type="single" [collapsible]="true" class="w-full mt-6">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Getting Started</AccordionTrigger>
+        <AccordionContent>
+          Install components locally and start building immediately.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   `
 })
 export class AppComponent {}
@@ -91,30 +125,33 @@ export class AppComponent {}
 
 ---
 
-## 📚 Component Library
+## � Available Components
 
 <div align="center">
 
-### 🧩 **Quick Navigation**
+### 🧩 **Component Showcase**
 
 </div>
 
-| Category | Components |
-|----------|-----------|
-| **🔘 Form Controls** | [Button](./docs/components/button.md) • [Input](./docs/components/input.md) • [Textarea](./docs/components/textarea.md) • [Select](./docs/components/select.md) • [Checkbox](./docs/components/checkbox.md) • [Radio Group](./docs/components/radio-group.md) • [Switch](./docs/components/switch.md) • [Slider](./docs/components/slider.md) • [Toggle](./docs/components/toggle.md) |
-| **📋 Data Display** | [Table](./docs/components/table.md) • [Badge](./docs/components/badge.md) • [Avatar](./docs/components/avatar.md) • [Progress](./docs/components/progress.md) • [Skeleton](./docs/components/skeleton.md) • [Separator](./docs/components/separator.md) |
-| **📦 Layout** | [Card](./docs/components/card.md) • [Accordion](./docs/components/accordion.md) • [Tabs](./docs/components/tabs.md) • [Collapsible](./docs/components/collapsible.md) • [Aspect Ratio](./docs/components/aspect-ratio.md) • [Scroll Area](./docs/components/scroll-area.md) |
-| **🚨 Feedback** | [Alert](./docs/components/alert.md) • [Toast](./docs/components/toast.md) • [Alert Dialog](./docs/components/alert-dialog.md) • [Dialog](./docs/components/dialog.md) |
-| **🧭 Navigation** | [Breadcrumb](./docs/components/breadcrumb.md) • [Pagination](./docs/components/pagination.md) • [Navigation Menu](./docs/components/navigation-menu.md) • [Menubar](./docs/components/menubar.md) |
-| **🎯 Overlays** | [Popover](./docs/components/popover.md) • [Tooltip](./docs/components/tooltip.md) • [Hover Card](./docs/components/hover-card.md) • [Context Menu](./docs/components/context-menu.md) • [Dropdown Menu](./docs/components/dropdown-menu.md) |
-| **🎠 Media** | [Carousel](./docs/components/carousel.md) • [Calendar](./docs/components/calendar.md) |
-| **⚡ Utils** | [Label](./docs/components/label.md) • [Command](./docs/components/command.md) • [Resizable](./docs/components/resizable.md) |
+| Component | Description | Status |
+|-----------|-------------|--------|
+| **🪗 [Accordion](./docs/components/accordion.md)** | Collapsible content sections with single or multiple modes | ✅ Available |
+| **🚨 [Alert](./docs/components/alert.md)** | Contextual feedback messages with 5 variants | ✅ Available |
+
+### 🚀 **Coming Soon**
+- Avatar
+- Badge  
+- Button
+- Card
+- Input
+- Select
+- And many more...
 
 ---
 
 ## 🎯 CLI Commands
 
-### 📋 List All Components
+### 📋 List Available Components
 ```bash
 ngsui-cli list
 ```
@@ -122,51 +159,32 @@ ngsui-cli list
 ### ➕ Add Components
 ```bash
 # Add specific components
-ngsui-cli add button card
-
-# Add all components
-ngsui-cli add --all
-
-# Add with custom path
-ngsui-cli add button --path ./src/components
+ngsui-cli add accordion alert
 ```
 
 ### ⚙️ Initialize Project
 ```bash
 # Initialize with default settings
 ngsui-cli init
-
-# Initialize with custom configuration
-ngsui-cli init --components-path ./src/ui
 ```
 
 ---
 
-## 💫 Features
+## 💫 Component Features
 
-### 🎨 **Modern Design System**
-- **Beautiful Components**: Professionally designed with attention to detail
-- **Dark Mode Support**: Automatic theme switching with system preference
-- **Responsive Design**: Perfect on desktop, tablet, and mobile
-- **Tailwind CSS**: Utility-first styling with full customization
+### 🪗 **Accordion Component**
+- **Multiple Modes**: Single or multiple items open
+- **Accessibility**: Full WAI-ARIA compliance
+- **Keyboard Navigation**: Arrow keys, Home/End, Enter/Space
+- **Smooth Animations**: Tailwind CSS powered transitions
+- **Screen Reader Support**: Proper announcements and labeling
 
-### 🏗️ **Local-First Architecture**
-- **Zero Dependencies**: No angular-superui package required in production
-- **Direct Installation**: Components installed in `./src/lib/components/`
-- **Full Control**: Modify components freely without constraints
-- **TypeScript Aliases**: Automatic `@components/*` and `@utils/*` setup
-
-### ⚡ **Performance Optimized**
-- **Tree Shakeable**: Only bundle what you use
-- **60% Smaller Builds**: Compared to traditional component libraries
-- **Lazy Loading Ready**: Components work with Angular's lazy loading
-- **Signal Support**: Built for Angular's latest reactive primitives
-
-### ♿ **Accessibility First**
-- **ARIA Compliant**: Full screen reader support
-- **Keyboard Navigation**: Complete keyboard accessibility
-- **Focus Management**: Proper focus handling throughout
-- **WCAG Guidelines**: Follows web accessibility standards
+### 🚨 **Alert Component**
+- **5 Variants**: Default, Destructive, Warning, Success, Info
+- **Flexible Layout**: Icon + Title + Description structure
+- **ARIA Live Regions**: Automatic screen reader announcements
+- **Tailwind CSS v4**: Modern utility-first styling
+- **Semantic Colors**: Built-in color schemes for each variant
 
 ---
 
@@ -175,7 +193,7 @@ ngsui-cli init --components-path ./src/ui
 | Feature | Angular SuperUI | Traditional Libraries |
 |---------|-----------------|----------------------|
 | **Installation** | Local components via CLI | NPM package dependency |
-| **Bundle Size** | 60% smaller (only what you use) | Full library in bundle |
+| **Bundle Size** | Only what you use | Full library in bundle |
 | **Customization** | Direct file editing | CSS overrides/themes |
 | **Dependencies** | Zero runtime dependencies | Package + peer dependencies |
 | **Updates** | Manual (full control) | Automatic (breaking changes) |
@@ -186,7 +204,8 @@ ngsui-cli init --components-path ./src/ui
 ## 📖 Documentation
 
 - 📋 **[Installation Guide](./docs/installation.md)** - Complete setup instructions
-- 📚 **[Component Examples](./docs/examples.md)** - Real-world usage examples
+- 🪗 **[Accordion Examples](./docs/components/accordion.md)** - Interactive accordion usage
+- 🚨 **[Alert Examples](./docs/components/alert.md)** - Alert variants and styling
 - 🔧 **[CLI Reference](./packages/cli/README.md)** - All CLI commands and options
 
 ---
@@ -241,6 +260,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-**Made with ❤️ by [Indranil Mukherjee](https://github.com/bhaimicrosoft)**
+**Made with ❤️ by [Indranil Mukherjee](https://bhaikaju.com)**
 
 </div>

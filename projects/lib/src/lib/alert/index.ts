@@ -4,19 +4,19 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
 const alertVariants = cva(
-  'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+  'relative w-full rounded-lg border p-4 flex items-start gap-3',
   {
     variants: {
       variant: {
-        default: 'bg-background text-foreground',
+        default: 'bg-background text-foreground border-border',
         destructive:
-          'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',
+          'border-destructive/50 text-destructive bg-destructive/5 dark:border-destructive',
         warning:
-          'border-warning/50 text-warning dark:border-warning [&>svg]:text-warning',
+          'border-warning/50 text-warning bg-warning/5 dark:border-warning',
         success:
-          'border-success/50 text-success dark:border-success [&>svg]:text-success',
+          'border-success/50 text-success bg-success/5 dark:border-success',
         info:
-          'border-info/50 text-info dark:border-info [&>svg]:text-info',
+          'border-info/50 text-info bg-info/5 dark:border-info',
       },
     },
     defaultVariants: {
@@ -40,7 +40,7 @@ const alertTitleVariants = cva(
 );
 
 const alertDescriptionVariants = cva(
-  'text-sm [&_p]:leading-relaxed',
+  'text-sm leading-relaxed',
   {
     variants: {
       variant: {
@@ -116,7 +116,9 @@ export class AlertDescription {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <ng-content></ng-content>
+    <div class="flex-shrink-0 mt-0.5">
+      <ng-content></ng-content>
+    </div>
   `
 })
 export class AlertIcon {
