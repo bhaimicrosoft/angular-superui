@@ -255,6 +255,121 @@
       </div>
     </div>
 
+    <!-- Combobox Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Combobox Component</h2>
+      <div class="space-y-8">
+        <!-- Basic Combobox -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Basic Combobox</h3>
+          <p class="text-sm text-gray-600 mb-3">Simple dropdown selection without search</p>
+          <Combobox [options]="comboboxOptions" [(ngModel)]="selectedOptionValue" placeholder="Select a framework..." (valueChange)="onFrameworkChange($event)">
+            <ComboboxTrigger></ComboboxTrigger>
+            <ComboboxContent [searchable]="false"></ComboboxContent>
+          </Combobox>
+        </div>
+
+        <!-- Searchable Combobox -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Searchable Combobox</h3>
+          <p class="text-sm text-gray-600 mb-3">Dropdown with search functionality</p>
+          <Combobox [options]="languageOptions" [(ngModel)]="selectedLanguageValue" placeholder="Select a language..." (valueChange)="onLanguageChange($event)">
+            <ComboboxTrigger></ComboboxTrigger>
+            <ComboboxContent [searchable]="true" searchPlaceholder="Search languages..."></ComboboxContent>
+          </Combobox>
+        </div>
+
+        <!-- Multi-Select Combobox -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Multi-Select Combobox</h3>
+          <p class="text-sm text-gray-600 mb-3">Select multiple options</p>
+          <Combobox [options]="skillOptions" [multiple]="true" [(ngModel)]="selectedSkillsValue" placeholder="Select skills..." (valueChange)="onSkillsChange($event)">
+            <ComboboxTrigger [multiple]="true"></ComboboxTrigger>
+            <ComboboxContent [multiple]="true" searchPlaceholder="Search skills..."></ComboboxContent>
+          </Combobox>
+        </div>
+
+        <!-- Grouped Options -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Grouped Options</h3>
+          <p class="text-sm text-gray-600 mb-3">Options organized by categories</p>
+          <Combobox [options]="groupedTechOptions" [(ngModel)]="selectedTechValue" placeholder="Select technology..." (valueChange)="onTechChange($event)">
+            <ComboboxTrigger></ComboboxTrigger>
+            <ComboboxContent [showGroupLabels]="true" searchPlaceholder="Search technologies..."></ComboboxContent>
+          </Combobox>
+        </div>
+
+        <!-- Loading State -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Loading State</h3>
+          <p class="text-sm text-gray-600 mb-3">Combobox with loading indicator</p>
+          <div class="flex space-x-4">
+            <Combobox [options]="asyncOptions" [loadingState]="isLoading()" [(ngModel)]="selectedAsyncValue" placeholder="Select async option..." (valueChange)="onAsyncChange($event)">
+              <ComboboxTrigger></ComboboxTrigger>
+              <ComboboxContent [loadingMessage]="'Loading data...'" searchPlaceholder="Search options..."></ComboboxContent>
+            </Combobox>
+            <button 
+              (click)="simulateLoading()"
+              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            >
+              Simulate Loading
+            </button>
+          </div>
+        </div>
+
+        <!-- Error State -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Error State</h3>
+          <p class="text-sm text-gray-600 mb-3">Combobox with error handling</p>
+          <div class="flex space-x-4">
+            <Combobox [options]="errorOptions" [error]="errorMessage()" [(ngModel)]="selectedErrorValue" placeholder="Select option..." (valueChange)="onErrorChange($event)">
+              <ComboboxTrigger></ComboboxTrigger>
+              <ComboboxContent searchPlaceholder="Search options..."></ComboboxContent>
+            </Combobox>
+            <button 
+              (click)="simulateError()"
+              class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+            >
+              Simulate Error
+            </button>
+          </div>
+        </div>
+
+        <!-- With Descriptions -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Options with Descriptions</h3>
+          <p class="text-sm text-gray-600 mb-3">Rich options with additional information</p>
+          <Combobox [options]="planOptions" [(ngModel)]="selectedPlanValue" placeholder="Select a plan..." (valueChange)="onPlanChange($event)">
+            <ComboboxTrigger></ComboboxTrigger>
+            <ComboboxContent searchPlaceholder="Search plans..."></ComboboxContent>
+          </Combobox>
+        </div>
+
+        <!-- Disabled Combobox -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Disabled Combobox</h3>
+          <p class="text-sm text-gray-600 mb-3">Non-interactive combobox</p>
+          <Combobox [options]="comboboxOptions" [disabled]="true" placeholder="Disabled combobox">
+            <ComboboxTrigger [disabled]="true"></ComboboxTrigger>
+            <ComboboxContent [searchable]="false"></ComboboxContent>
+          </Combobox>
+        </div>
+
+        <!-- Current Selection Display -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Current Selections</h3>
+          <div class="p-4 bg-gray-50 rounded-lg border space-y-2">
+            <p class="text-sm"><strong>Framework:</strong> {{ selectedOption() || 'None' }}</p>
+            <p class="text-sm"><strong>Language:</strong> {{ selectedLanguage() || 'None' }}</p>
+            <p class="text-sm"><strong>Skills:</strong> {{ selectedSkills().join(', ') || 'None' }}</p>
+            <p class="text-sm"><strong>Technology:</strong> {{ selectedTech() || 'None' }}</p>
+            <p class="text-sm"><strong>Async:</strong> {{ selectedAsync() || 'None' }}</p>
+            <p class="text-sm"><strong>Plan:</strong> {{ selectedPlan() || 'None' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- AspectRatio Component Tests -->
     <div>
       <h2 class="text-lg font-semibold mb-4">AspectRatio Component</h2>

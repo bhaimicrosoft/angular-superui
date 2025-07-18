@@ -223,6 +223,7 @@ export class AppComponent {}
 | **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
 | **☑️ [Checkbox](./docs/components/checkbox.md)** | A control that allows the user to toggle between checked and not checked | ✅ Available |
 | **🗃️ [Collapsible](./docs/components/collapsible.md)** | Expandable content sections with smooth animations and keyboard support | ✅ Available |
+| **🔽 [ComboBox](./docs/components/combobox.md)** | Dropdown selection with search, multi-select, and loading states | ✅ Available |
 | **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
 
 ### 🚀 **Coming Soon**

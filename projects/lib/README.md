@@ -331,7 +331,7 @@ Boolean input controls with multiple states:
 <Checkbox [disabled]="true" [(ngModel)]="isDisabled">Disabled state</Checkbox>
 ```
 
-## 🧩 Available Components (14)
+## 🧩 Available Components (15)
 
 ### 🎨 **Core UI Components**
 
@@ -403,6 +403,15 @@ Boolean input controls with multiple states:
     - Three variants: default, outline, ghost
     - Multiple sizes: sm, default, lg, xl
     - Toggle or cycle modes for theme switching
+
+14. **🔽 ComboBox** - Advanced dropdown selection component
+    - Searchable options with real-time filtering
+    - Multi-select support with chips display
+    - Loading states and error handling
+    - Grouped options with custom labels
+    - Keyboard navigation and accessibility
+    - Rich options with descriptions
+    - Form integration with ControlValueAccessor
 
 ## 🖼️ Enhanced Avatar Component
 

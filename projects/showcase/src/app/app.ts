@@ -35,7 +35,8 @@ import {
 } from '@lib/card';
 import {Carousel} from '@lib/carousel';
 import {CheckboxComponent} from '@lib/checkbox';
-import {Collapsible, CollapsibleTrigger, CollapsibleContent} from '@lib/collapsible';
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from '@lib/collapsible';
+import {Combobox, ComboboxContent, ComboboxEmpty, type ComboboxOption, ComboboxTrigger} from '@lib/combobox';
 import {ThemeSwitcher} from '@lib/theme-switcher';
 
 @Component({
@@ -82,8 +83,10 @@ import {ThemeSwitcher} from '@lib/theme-switcher';
     Collapsible,
     CollapsibleTrigger,
     CollapsibleContent,
+    Combobox,
+    ComboboxTrigger,
+    ComboboxContent,
     ThemeSwitcher,
-    Collapsible,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -156,6 +159,184 @@ export class App {
   featureA = signal(false);
   featureB = signal(true);
   featureC = signal(false);
+
+  // Combobox states
+  selectedOption = signal<string | null>(null);
+  selectedLanguage = signal<string | null>(null);
+
+  // Combobox ngModel properties
+  selectedOptionValue: string | null = null;
+  selectedLanguageValue: string | null = null;
+
+  // Combobox options
+  comboboxOptions: ComboboxOption[] = [
+    {value: 'react', label: 'React'},
+    {value: 'angular', label: 'Angular'},
+    {value: 'vue', label: 'Vue.js'},
+    {value: 'svelte', label: 'Svelte'},
+    {value: 'nextjs', label: 'Next.js'},
+    {value: 'nuxt', label: 'Nuxt.js'},
+    {value: 'solid', label: 'SolidJS'},
+    {value: 'qwik', label: 'Qwik'},
+    {value: 'astro', label: 'Astro'},
+    {value: 'remix', label: 'Remix', disabled: true}
+  ];
+
+  languageOptions: ComboboxOption[] = [
+    {value: 'javascript', label: 'JavaScript'},
+    {value: 'typescript', label: 'TypeScript'},
+    {value: 'python', label: 'Python'},
+    {value: 'java', label: 'Java'},
+    {value: 'csharp', label: 'C#'},
+    {value: 'cpp', label: 'C++'},
+    {value: 'rust', label: 'Rust'},
+    {value: 'go', label: 'Go'},
+    {value: 'swift', label: 'Swift'},
+    {value: 'kotlin', label: 'Kotlin'},
+    {value: 'php', label: 'PHP'},
+    {value: 'ruby', label: 'Ruby'},
+    {value: 'dart', label: 'Dart'},
+    {value: 'scala', label: 'Scala'},
+    {value: 'haskell', label: 'Haskell', disabled: true}
+  ];
+
+  // Combobox event handlers
+  onFrameworkChange(value: string | string[] | null) {
+    const frameworkValue = Array.isArray(value) ? value[0] || null : value;
+    this.selectedOption.set(frameworkValue);
+    this.selectedOptionValue = frameworkValue;
+  }
+
+  onLanguageChange(value: string | string[] | null) {
+    const languageValue = Array.isArray(value) ? value[0] || null : value;
+    this.selectedLanguage.set(languageValue);
+    this.selectedLanguageValue = languageValue;
+  }
+
+  // Enhanced combobox data
+  skillOptions: ComboboxOption[] = [
+    {value: 'frontend', label: 'Frontend Development', description: 'HTML, CSS, JavaScript, React, Angular'},
+    {value: 'backend', label: 'Backend Development', description: 'Node.js, Python, Java, C#'},
+    {value: 'mobile', label: 'Mobile Development', description: 'iOS, Android, React Native, Flutter'},
+    {value: 'devops', label: 'DevOps', description: 'Docker, Kubernetes, AWS, Azure'},
+    {value: 'database', label: 'Database Design', description: 'SQL, NoSQL, MongoDB, PostgreSQL'},
+    {value: 'testing', label: 'Testing', description: 'Unit testing, Integration testing, E2E testing'},
+    {value: 'security', label: 'Security', description: 'Authentication, Authorization, OWASP'},
+    {value: 'ui-ux', label: 'UI/UX Design', description: 'Figma, Adobe XD, Sketch, Prototyping'}
+  ];
+
+  groupedTechOptions: ComboboxOption[] = [
+    // Frontend
+    {value: 'react', label: 'React', group: 'Frontend', description: 'JavaScript library for building user interfaces'},
+    {value: 'angular', label: 'Angular', group: 'Frontend', description: 'TypeScript-based web application framework'},
+    {value: 'vue', label: 'Vue.js', group: 'Frontend', description: 'Progressive JavaScript framework'},
+    {value: 'svelte', label: 'Svelte', group: 'Frontend', description: 'Compile-time framework'},
+    
+    // Backend
+    {value: 'nodejs', label: 'Node.js', group: 'Backend', description: 'JavaScript runtime built on Chrome\'s V8 engine'},
+    {value: 'python', label: 'Python', group: 'Backend', description: 'High-level programming language'},
+    {value: 'java', label: 'Java', group: 'Backend', description: 'Object-oriented programming language'},
+    {value: 'csharp', label: 'C#', group: 'Backend', description: 'Microsoft\'s object-oriented programming language'},
+    
+    // Database
+    {value: 'postgres', label: 'PostgreSQL', group: 'Database', description: 'Open source relational database'},
+    {value: 'mongodb', label: 'MongoDB', group: 'Database', description: 'NoSQL document database'},
+    {value: 'mysql', label: 'MySQL', group: 'Database', description: 'Open source relational database'},
+    {value: 'redis', label: 'Redis', group: 'Database', description: 'In-memory data structure store'},
+    
+    // Cloud
+    {value: 'aws', label: 'AWS', group: 'Cloud', description: 'Amazon Web Services'},
+    {value: 'azure', label: 'Azure', group: 'Cloud', description: 'Microsoft Azure'},
+    {value: 'gcp', label: 'Google Cloud', group: 'Cloud', description: 'Google Cloud Platform'}
+  ];
+
+  planOptions: ComboboxOption[] = [
+    {value: 'free', label: 'Free', description: 'Perfect for personal projects and learning'},
+    {value: 'pro', label: 'Pro', description: 'Best for professionals and small teams'},
+    {value: 'team', label: 'Team', description: 'Collaboration features for growing teams'},
+    {value: 'enterprise', label: 'Enterprise', description: 'Advanced features and priority support'}
+  ];
+
+  asyncOptions: ComboboxOption[] = [];
+  errorOptions: ComboboxOption[] = [];
+
+  // Enhanced combobox signals
+  selectedSkills = signal<string[]>([]);
+  selectedTech = signal<string | null>(null);
+  selectedAsync = signal<string | null>(null);
+  selectedPlan = signal<string | null>(null);
+
+  // Enhanced combobox values for ngModel
+  selectedSkillsValue: string[] = [];
+  selectedTechValue: string | null = null;
+  selectedAsyncValue: string | null = null;
+  selectedPlanValue: string | null = null;
+  selectedErrorValue: string | null = null;
+
+  // Loading and error states
+  isLoading = signal(false);
+  errorMessage = signal('');
+
+  // Enhanced combobox event handlers
+  onSkillsChange(value: string | string[] | null) {
+    const skillsArray = Array.isArray(value) ? value : (value ? [value] : []);
+    this.selectedSkills.set(skillsArray);
+    this.selectedSkillsValue = skillsArray;
+  }
+
+  onTechChange(value: string | string[] | null) {
+    const techValue = Array.isArray(value) ? value[0] || null : value;
+    this.selectedTech.set(techValue);
+    this.selectedTechValue = techValue;
+  }
+
+  onAsyncChange(value: string | string[] | null) {
+    const asyncValue = Array.isArray(value) ? value[0] || null : value;
+    this.selectedAsync.set(asyncValue);
+    this.selectedAsyncValue = asyncValue;
+  }
+
+  onPlanChange(value: string | string[] | null) {
+    const planValue = Array.isArray(value) ? value[0] || null : value;
+    this.selectedPlan.set(planValue);
+    this.selectedPlanValue = planValue;
+  }
+
+  onErrorChange(value: string | string[] | null) {
+    const errorValue = Array.isArray(value) ? value[0] || null : value;
+    this.selectedErrorValue = errorValue;
+    console.log('Error combobox changed:', errorValue);
+  }
+
+  // Simulation methods
+  simulateLoading() {
+    this.isLoading.set(true);
+    this.asyncOptions = [];
+    
+    // Simulate async data loading
+    setTimeout(() => {
+      this.asyncOptions = [
+        {value: 'async1', label: 'Async Option 1', description: 'Loaded from server'},
+        {value: 'async2', label: 'Async Option 2', description: 'Loaded from server'},
+        {value: 'async3', label: 'Async Option 3', description: 'Loaded from server'}
+      ];
+      this.isLoading.set(false);
+    }, 2000);
+  }
+
+  simulateError() {
+    this.errorMessage.set('Failed to load options. Please try again.');
+    this.errorOptions = [];
+    
+    // Clear error after 3 seconds
+    setTimeout(() => {
+      this.errorMessage.set('');
+      this.errorOptions = [
+        {value: 'error1', label: 'Error Option 1'},
+        {value: 'error2', label: 'Error Option 2'}
+      ];
+    }, 3000);
+  }
 
   // Demo methods
   openDeleteDialog() {

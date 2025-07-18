@@ -1,6 +1,51 @@
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v1.0.3: Production Release**
+## 🛠️ **v1.0.3: Production Ready** 🎯
+
+The **Angular SuperUI CLI** is your gateway to the most beautiful and accessible Angular component library. Install components locally with zero dependencies and full customization control.
+
+## 🚀 Quick Start
+
+### Install globally
+```bash
+npm install -g ngsui-cli@1.0.3
+```
+
+### Initialize your project
+```bash
+ngsui-cli init
+```
+
+### Add components
+```bash
+# Add a single component
+ngsui-cli add button
+
+# Add multiple components  
+ngsui-cli add button badge alert
+
+# List all available components
+ngsui-cli list
+
+# Add all available components
+ngsui-cli add --all
+
+# Interactive component selection
+ngsui-cli add
+```
+
+## 📦 Available Components (15 total)
+
+### 🎯 Core Components
+- `button` - Displays a button or a component that looks like a button
+- `badge` - Displays a badge or a component that looks like a badge  
+- `alert` - Displays a callout for user attention
+- `aspect-ratio` - Displays content within a desired ratio
+- `card` - Flexible content container with header, content, and footer
+- `checkbox` - A control that allows the user to toggle between checked and not checked
+- `collapsible` - Expandable content sections with smooth animations and keyboard support
+- `combobox` - Advanced dropdown selection with search, multi-select, and loading states
+- `theme-switcher` - Toggle between light, dark, and system themes with localStorage persistenceRelease**
 
 A powerful CLI tool for selective Angular SuperUI component installation. Install only the components you need, when you need them.
 
@@ -52,6 +97,7 @@ ngsui-cli add
 - `card` - Flexible content container with header, content, and footer
 - `checkbox` - A control that allows the user to toggle between checked and not checked
 - `collapsible` - Expandable content sections with smooth animations and keyboard support
+- `combobox` - Dropdown selection with search, multi-select, and loading states
 - `theme-switcher` - Toggle between light, dark, and system themes with localStorage persistence
 
 ### 🧭 Navigation Components

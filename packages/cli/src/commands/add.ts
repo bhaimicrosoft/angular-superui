@@ -26,6 +26,12 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'aspect-ratio': {
+    name: 'Aspect Ratio',
+    description: 'Displays content within a desired ratio.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'avatar': {
     name: 'Avatar',
     description: 'An image element with a fallback for representing users.',
@@ -77,6 +83,12 @@ export const COMPONENTS = {
   'collapsible': {
     name: 'Collapsible',
     description: 'Expandable content sections with smooth animations and keyboard support.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'combobox': {
+    name: 'ComboBox',
+    description: 'Advanced dropdown selection with search, multi-select, and loading states.',
     dependencies: ['cn'],
     files: ['index.ts']
   },

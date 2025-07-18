@@ -42,3 +42,12 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Package files
+*.tgz
+*.tar.gz
+*.zip
+
+# Build artifacts
+dist/
+build/

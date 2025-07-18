@@ -19,10 +19,10 @@ export async function listCommand() {
 
   // Group components by category with actually implemented components only
   const categories = {
-    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card'],
+    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox'],
     '🧭 Navigation': ['breadcrumb'],
     '💫 Overlays & Dialogs': ['alert-dialog'],
-    '🎨 Media & Display': ['carousel'],
+    '🎨 Media & Display': ['carousel', 'aspect-ratio'],
     '⚙️ User Interface': ['theme-switcher', 'checkbox', 'collapsible'],
     '📅 Featured Component': ['calendar']
   };

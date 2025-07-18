@@ -17,6 +17,12 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
+    'aspect-ratio': {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
     avatar: {
         name: string;
         description: string;
@@ -66,6 +72,12 @@ export declare const COMPONENTS: {
         files: string[];
     };
     collapsible: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    combobox: {
         name: string;
         description: string;
         dependencies: string[];

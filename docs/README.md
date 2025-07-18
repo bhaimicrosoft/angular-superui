@@ -103,7 +103,7 @@ export class WelcomeComponent {}
 ## 🎨 Components Library
 
 <div align="center">
-  <h3>🌟 14 Production-Ready Components • Growing Every Week</h3>
+  <h3>🌟 15 Production-Ready Components • Growing Every Week</h3>
 </div>
 
 ### 🎯 **Core Components**
@@ -321,6 +321,21 @@ export class WelcomeComponent {}
 </td>
 <td>
   <a href="./components/collapsible.md">📖 Docs</a>
+</td>
+</tr>
+
+<tr>
+<td>
+  <strong>🔽 ComboBox</strong>
+</td>
+<td>
+  Advanced dropdown selection with search functionality, multi-select support, loading states, and grouped options. Perfect for forms and data filtering.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/combobox.md">📖 Docs</a>
 </td>
 </tr>
 
