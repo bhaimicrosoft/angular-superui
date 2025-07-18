@@ -14,4 +14,6 @@ export * from './lib/badge';
 export * from './lib/breadcrumb';
 export * from './lib/button';
 export * from './lib/calendar';
+export * from './lib/aspect-ratio';
+export * from './lib/card';
 

@@ -8,7 +8,7 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **8 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **10 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
 > 🚀 **Step-by-step guides** for all 8 components with **practical examples**, **usage instructions**, and **styling tips**!
@@ -44,7 +44,7 @@ npm install angular-superui@1.0.1
 ```
 
 ### 🌟 **Key Features in v1.0.1**
-- **8 Essential Components** - Production-ready UI components
+- **10 Essential Components** - Production-ready UI components
 - **Enhanced CLI** - Improved component selection and installation
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach
@@ -58,7 +58,7 @@ npm install angular-superui@1.0.1
 ## ✨ Features
 
 - 🛠️ **CLI Tool** - Selective component installation with ngsui-cli
-- 🎨 **8 Essential Components** - Production-ready UI component library  
+- 🎨 **10 Essential Components** - Production-ready UI component library  
 - 🌈 **Multiple Variants** - Customizable styling options for all components
 - 🔧 **TypeScript First** - Full type safety and excellent IntelliSense support
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant)
@@ -310,7 +310,7 @@ Contextual feedback styling:
 <alert variant="destructive">Error message</alert>
 ```
 
-## 🧩 Available Components (9)
+## 🧩 Available Components (10)
 
 ### 🎨 **Core UI Components**
 
@@ -354,10 +354,15 @@ Contextual feedback styling:
    - Smooth animations and transitions
    - Keyboard navigation support
 
-9. **📅 Calendar** - Date picker and calendar widget
-   - Month and year navigation
-   - Date selection functionality
-   - Customizable date formatting
+9. **🧭 Breadcrumb** - Navigation path indicators
+   - Hierarchical navigation support
+   - Customizable separators and styling
+   - Link and page elements with accessibility
+
+10. **📅 Calendar** - Date picker and calendar widget
+    - Month and year navigation
+    - Date selection functionality
+    - Customizable date formatting
 
 ## 🖼️ Enhanced Avatar Component
 

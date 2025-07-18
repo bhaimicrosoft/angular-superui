@@ -50,6 +50,12 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'card': {
+    name: 'Card',
+    description: 'A flexible card component for displaying content in contained sections.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   
   // 📅 Featured Component
   'calendar': {

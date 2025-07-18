@@ -31,7 +31,7 @@ ngsui-cli list
 ngsui-cli add button
 
 # Install multiple components
-ngsui-cli add button badge alert
+ngsui-cli add button badge alert card
 
 # Install all available components
 ngsui-cli add --all
@@ -40,13 +40,14 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (9 total)
+## 📦 Available Components (10 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button
 - `badge` - Displays a badge or a component that looks like a badge  
 - `alert` - Displays a callout for user attention
 - `aspect-ratio` - Displays content within a desired ratio
+- `card` - Flexible content container with header, content, and footer
 
 ### 🧭 Navigation Components
 - `breadcrumb` - Displays the path to the current resource using a hierarchy of links
@@ -69,7 +70,7 @@ ngsui-cli add
 ngsui-cli add button
 
 # Install multiple components at once
-ngsui-cli add button badge alert avatar
+ngsui-cli add button badge alert avatar card aspect-ratio
 ```
 
 ### Interactive Mode

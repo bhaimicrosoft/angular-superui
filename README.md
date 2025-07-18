@@ -6,7 +6,6 @@
 
 <div align="center">
 
-
 ### ☕ Support This Project
 [![Buy Me A Coffee](https://img.shields.io/badge/☕-Buy%20Me%20A%20Coffee-orange?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://coff.ee/bhaikaju)
 
@@ -16,7 +15,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/8%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/10%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -58,7 +57,10 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add accordion alert avatar badge button
+ngsui-cli add accordion alert avatar badge button card
+
+# Add all components
+ngsui-cli add --all
 
 # List available components
 ngsui-cli list
@@ -73,28 +75,29 @@ import {
   AccordionItem, 
   AccordionTrigger, 
   AccordionContent 
-} from '@components/accordion';
+} from '@lib/accordion';
 import { 
   Alert, 
   AlertTitle, 
   AlertDescription, 
   AlertIcon 
-} from '@components/alert';
+} from '@lib/alert';
 import { 
-  AlertDialog, 
-  AlertDialogHeader, 
-  AlertDialogFooter, 
-  AlertDialogTitle, 
-  AlertDialogDescription, 
-  AlertDialogAction, 
-  AlertDialogCancel 
-} from '@components/alert-dialog';
+  AlertDialogComponent, 
+  AlertDialogHeaderComponent, 
+  AlertDialogFooterComponent, 
+  AlertDialogTitleComponent, 
+  AlertDialogDescriptionComponent, 
+  AlertDialogActionComponent, 
+  AlertDialogCancelComponent 
+} from '@lib/alert-dialog';
+import { AspectRatioComponent } from '@lib/aspect-ratio';
 import { 
   Avatar, 
   AvatarImage, 
   AvatarFallback 
-} from '@components/avatar';
-import { Badge } from '@components/badge';
+} from '@lib/avatar';
+import { Badge } from '@lib/badge';
 import { 
   BreadcrumbComponent,
   BreadcrumbListComponent,
@@ -103,51 +106,70 @@ import {
   BreadcrumbPageComponent,
   BreadcrumbSeparatorComponent,
   BreadcrumbEllipsisComponent
-} from '@components/breadcrumb';
-import { Button } from '@components/button';
+} from '@lib/breadcrumb';
+import { ButtonComponent } from '@lib/button';
+import { CalendarComponent } from '@lib/calendar';
+import { 
+  CardComponent,
+  CardHeaderComponent,
+  CardTitleComponent,
+  CardDescriptionComponent,
+  CardContentComponent,
+  CardFooterComponent
+} from '@lib/card';
 
 @Component({
   standalone: true,
   imports: [
     Accordion, AccordionItem, AccordionTrigger, AccordionContent,
     Alert, AlertTitle, AlertDescription, AlertIcon,
-    AlertDialog, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, 
-    AlertDialogDescription, AlertDialogAction, AlertDialogCancel,
+    AlertDialogComponent, AlertDialogHeaderComponent, AlertDialogFooterComponent, 
+    AlertDialogTitleComponent, AlertDialogDescriptionComponent, AlertDialogActionComponent, AlertDialogCancelComponent,
+    AspectRatioComponent,
     Avatar, AvatarImage, AvatarFallback,
     Badge,
-    Button
+    BreadcrumbComponent, BreadcrumbListComponent, BreadcrumbItemComponent, 
+    BreadcrumbLinkComponent, BreadcrumbPageComponent, BreadcrumbSeparatorComponent, BreadcrumbEllipsisComponent,
+    ButtonComponent,
+    CalendarComponent,
+    CardComponent, CardHeaderComponent, CardTitleComponent, 
+    CardDescriptionComponent, CardContentComponent, CardFooterComponent
   ],
   template: `
-    <!-- Avatar Example -->
-    <div class="flex items-center gap-3 mb-6">
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-        <AvatarFallback>JD</AvatarFallback>
-      </Avatar>
-      <div>
-        <p class="font-medium">Welcome back!</p>
-        <p class="text-sm text-muted-foreground">Ready to build something amazing?</p>
-      </div>
-    </div>
+    <!-- Card Example -->
+    <CardComponent class="max-w-md mx-auto">
+      <CardHeaderComponent>
+        <div class="flex items-center gap-3 mb-4">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+          <div>
+            <CardTitleComponent>Welcome back!</CardTitleComponent>
+            <CardDescriptionComponent>Ready to build something amazing?</CardDescriptionComponent>
+          </div>
+        </div>
+      </CardHeaderComponent>
+      
+      <CardContentComponent>
+        <!-- Button Examples -->
+        <div class="flex gap-2 mb-6">
+          <ButtonComponent>Get Started</ButtonComponent>
+          <ButtonComponent variant="outline">Learn More</ButtonComponent>
+          <ButtonComponent variant="ghost" size="sm">
+            <Badge variant="secondary" class="mr-2">New</Badge>
+            Features
+          </ButtonComponent>
+        </div>
 
-    <!-- Button Examples -->
-    <div class="flex gap-2 mb-6">
-      <Button>Get Started</Button>
-      <Button variant="outline">Learn More</Button>
-      <Button variant="ghost" size="sm">
-        <Badge variant="secondary" class="mr-2">New</Badge>
-        Features
-      </Button>
-    </div>
-
-    <!-- Alert Example -->
-    <Alert variant="success">
-      <AlertIcon>
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
-      </AlertIcon>
+        <!-- Alert Example -->
+        <Alert variant="success" class="mb-6">
+          <AlertIcon>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </AlertIcon>
       <div class="flex-1">
         <AlertTitle>Welcome to Angular SuperUI! 🎉</AlertTitle>
         <AlertDescription>
@@ -190,13 +212,14 @@ export class AppComponent {}
 | **🏷️ [Badge](./docs/components/badge.md)** | Status indicators and labels with 4 variants | ✅ Available |
 | **🍞 [Breadcrumb](./docs/components/breadcrumb.md)** | Navigation breadcrumbs with accessibility and custom separators | ✅ Available |
 | **🔘 [Button](./docs/components/button.md)** | Interactive buttons with 9 variants and loading states | ✅ Available |
+| **🃏 [Card](./docs/components/card.md)** | Flexible content container with header, content, and footer | ✅ Available |
 | **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
 
 ### 🚀 **Coming Soon**
 
-- Card
 - Input
 - Select
+- Checkbox
 - And many more...
 
 ---
@@ -211,7 +234,7 @@ ngsui-cli list
 ### ➕ Add Components
 ```bash
 # Add specific components
-ngsui-cli add accordion alert
+ngsui-cli add accordion alert card aspect-ratio
 ```
 
 ### ⚙️ Initialize Project

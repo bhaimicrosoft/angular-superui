@@ -21,7 +21,7 @@ async function listCommand() {
     console.log('');
     // Group components by category with actually implemented components only
     const categories = {
-        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card'],
+        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion'],
         '🧭 Navigation': ['breadcrumb'],
         '💫 Overlays & Dialogs': ['alert-dialog'],
         '📅 Featured Component': ['calendar']
@@ -80,4 +80,4 @@ async function listCommand() {
     console.log('');
 }
 exports.default = listCommand;
-//# sourceMappingURL=list.js.map
+//# sourceMappingURL=list_new.js.map

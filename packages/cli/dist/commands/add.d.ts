@@ -41,6 +41,12 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
+    card: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
     calendar: {
         name: string;
         description: string;

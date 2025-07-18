@@ -1,19 +1,19 @@
 import { Component, signal } from '@angular/core';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@lib/accordion';
 import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@lib/alert';
-import { 
-  AlertDialogComponent, 
-  AlertDialogHeaderComponent, 
-  AlertDialogFooterComponent, 
-  AlertDialogTitleComponent, 
+import {
+  AlertDialogComponent,
+  AlertDialogHeaderComponent,
+  AlertDialogFooterComponent,
+  AlertDialogTitleComponent,
   AlertDialogDescriptionComponent,
   AlertDialogActionComponent,
-  AlertDialogCancelComponent 
+  AlertDialogCancelComponent
 } from '@lib/alert-dialog';
 import { AspectRatioComponent } from '@lib/aspect-ratio';
 import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
 import { Badge } from '@lib/badge';
-import { 
+import {
   BreadcrumbComponent,
   BreadcrumbListComponent,
   BreadcrumbItemComponent,
@@ -24,6 +24,14 @@ import {
 } from '@lib/breadcrumb';
 import { ButtonComponent } from '@lib/button';
 import { CalendarComponent, type DateRange, type TimeSelection } from '@lib/calendar';
+import {
+  CardComponent,
+  CardHeaderComponent,
+  CardTitleComponent,
+  CardDescriptionComponent,
+  CardContentComponent,
+  CardFooterComponent
+} from '@lib/card';
 
 @Component({
   selector: 'app-root',
@@ -56,7 +64,13 @@ import { CalendarComponent, type DateRange, type TimeSelection } from '@lib/cale
     BreadcrumbSeparatorComponent,
     BreadcrumbEllipsisComponent,
     ButtonComponent,
-    CalendarComponent
+    CalendarComponent,
+    CardComponent,
+    CardHeaderComponent,
+    CardTitleComponent,
+    CardDescriptionComponent,
+    CardContentComponent,
+    CardFooterComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -73,16 +87,16 @@ export class App {
   // Calendar states - separate for each calendar
   selectedDate = signal<Date | undefined>(new Date());
   calendarMonth = signal(new Date());
-  
+
   // Range picker state
   selectedRange = signal<DateRange>({ start: null, end: null });
   rangeCalendarMonth = signal(new Date());
-  
-  // Time picker state  
+
+  // Time picker state
   timePickerDate = signal<Date | undefined>(new Date());
   timePickerMonth = signal(new Date());
   selectedTime = signal<TimeSelection>({ hours: 14, minutes: 30 });
-  
+
   // 12-hour time picker state
   time12hDate = signal<Date | undefined>(new Date());
   time12hMonth = signal(new Date());

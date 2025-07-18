@@ -1,53 +1,384 @@
-# Component Selectors Quick Reference
+# Component Selectors Quick Reference (v1.0.1)
 
-This document provides a quick reference for all Angular SuperUI component selectors and their correct usage.
+This document provides a quick reference for all Angular SuperUI component selectors and their correct usage in v1.0.1.
 
-## Updated Component Documentation
+## 🎯 Available Components (10 Total)
 
-The following component documentation files have been updated with correct selectors, step-by-step guides, and comprehensive examples:
-
-- ✅ **Tooltip** - Updated with correct selectors and implementation guide
-- ✅ **ScrollArea** - New comprehensive documentation created
-- ✅ **Navigation Menu** - New comprehensive documentation created
-- ✅ **Button** - Updated import paths and usage examples
-- ✅ **Card** - Updated import paths and structure guide
-- ✅ **Hover Card** - Updated selectors and step-by-step guide
+Angular SuperUI v1.0.1 includes **10 production-ready components** with clean PascalCase selectors.
 
 ## Component Selectors
 
-### Form Components
+### 🪗 Accordion Components
 
 | Component | Selector | Import |
 |-----------|----------|---------|
-| Button | `<Button>` | `Button` |
-| Input | `<InputComponent>` | `InputComponent` |
-| Switch | `<Switch>` | `Switch` |
-| Select | `<SelectComponent>` | `SelectComponent` |
-| Select Trigger | `[SelectTrigger]` | `SelectTrigger` |
-| Select Value | `<SelectValue>` | `SelectValue` |
-| Select Content | `<SelectContent>` | `SelectContent` |
-| Select Label | `<SelectLabel>` | `SelectLabel` |
-| Select Item | `<SelectItem>` | `SelectItem` |
-| Select Separator | `<SelectSeparator>` | `SelectSeparator` |
+| Accordion | `<Accordion>` | `Accordion` |
+| Accordion Item | `<AccordionItem>` | `AccordionItem` |
+| Accordion Trigger | `<AccordionTrigger>` | `AccordionTrigger` |
+| Accordion Content | `<AccordionContent>` | `AccordionContent` |
 
-### Layout Components
+```typescript
+import { 
+  Accordion, 
+  AccordionItem, 
+  AccordionTrigger, 
+  AccordionContent 
+} from '@lib/accordion';
+```
 
-| Component | Selector | Import |
-|-----------|----------|---------|
-| Card | `<Card>` | `Card` |
-| Card Header | `<CardHeader>` | `CardHeader` |
-| Card Title | `<CardTitle>` | `CardTitle` |
-| Card Description | `<CardDescription>` | `CardDescription` |
-| Card Content | `<CardContent>` | `CardContent` |
-| Card Footer | `<CardFooter>` | `CardFooter` |
-| Card Action | `<CardAction>` | `CardAction` |
-| Separator | `<Separator>` | `Separator` |
-
-### Overlay Components
+### 🚨 Alert Components
 
 | Component | Selector | Import |
 |-----------|----------|---------|
-| Tooltip Provider | `<TooltipProvider>` | `TooltipProvider` |
+| Alert | `<Alert>` | `Alert` |
+| Alert Title | `<AlertTitle>` | `AlertTitle` |
+| Alert Description | `<AlertDescription>` | `AlertDescription` |
+| Alert Icon | `<AlertIcon>` | `AlertIcon` |
+
+```typescript
+import { 
+  Alert, 
+  AlertTitle, 
+  AlertDescription, 
+  AlertIcon 
+} from '@lib/alert';
+```
+
+### 🚨 Alert Dialog Components
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Alert Dialog | `<AlertDialogComponent>` | `AlertDialogComponent` |
+| Alert Dialog Header | `<AlertDialogHeaderComponent>` | `AlertDialogHeaderComponent` |
+| Alert Dialog Footer | `<AlertDialogFooterComponent>` | `AlertDialogFooterComponent` |
+| Alert Dialog Title | `<AlertDialogTitleComponent>` | `AlertDialogTitleComponent` |
+| Alert Dialog Description | `<AlertDialogDescriptionComponent>` | `AlertDialogDescriptionComponent` |
+| Alert Dialog Action | `<AlertDialogActionComponent>` | `AlertDialogActionComponent` |
+| Alert Dialog Cancel | `<AlertDialogCancelComponent>` | `AlertDialogCancelComponent` |
+
+```typescript
+import { 
+  AlertDialogComponent,
+  AlertDialogHeaderComponent,
+  AlertDialogFooterComponent,
+  AlertDialogTitleComponent,
+  AlertDialogDescriptionComponent,
+  AlertDialogActionComponent,
+  AlertDialogCancelComponent
+} from '@lib/alert-dialog';
+```
+
+### 📐 Aspect Ratio Component
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Aspect Ratio | `<AspectRatioComponent>` | `AspectRatioComponent` |
+
+```typescript
+import { AspectRatioComponent } from '@lib/aspect-ratio';
+```
+
+### 👤 Avatar Components
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Avatar | `<Avatar>` | `Avatar` |
+| Avatar Image | `<AvatarImage>` | `AvatarImage` |
+| Avatar Fallback | `<AvatarFallback>` | `AvatarFallback` |
+
+```typescript
+import { 
+  Avatar, 
+  AvatarImage, 
+  AvatarFallback 
+} from '@lib/avatar';
+```
+
+### 🏷️ Badge Component
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Badge | `<Badge>` | `Badge` |
+
+```typescript
+import { Badge } from '@lib/badge';
+```
+
+### 🍞 Breadcrumb Components
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Breadcrumb | `<BreadcrumbComponent>` | `BreadcrumbComponent` |
+| Breadcrumb List | `<BreadcrumbListComponent>` | `BreadcrumbListComponent` |
+| Breadcrumb Item | `<BreadcrumbItemComponent>` | `BreadcrumbItemComponent` |
+| Breadcrumb Link | `<BreadcrumbLinkComponent>` | `BreadcrumbLinkComponent` |
+| Breadcrumb Page | `<BreadcrumbPageComponent>` | `BreadcrumbPageComponent` |
+| Breadcrumb Separator | `<BreadcrumbSeparatorComponent>` | `BreadcrumbSeparatorComponent` |
+| Breadcrumb Ellipsis | `<BreadcrumbEllipsisComponent>` | `BreadcrumbEllipsisComponent` |
+
+```typescript
+import { 
+  BreadcrumbComponent,
+  BreadcrumbListComponent,
+  BreadcrumbItemComponent,
+  BreadcrumbLinkComponent,
+  BreadcrumbPageComponent,
+  BreadcrumbSeparatorComponent,
+  BreadcrumbEllipsisComponent
+} from '@lib/breadcrumb';
+```
+
+### 🔘 Button Component
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Button | `<ButtonComponent>` | `ButtonComponent` |
+
+```typescript
+import { ButtonComponent } from '@lib/button';
+```
+
+### 📅 Calendar Component
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Calendar | `<CalendarComponent>` | `CalendarComponent` |
+
+```typescript
+import { CalendarComponent } from '@lib/calendar';
+```
+
+### 🃏 Card Components
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Card | `<CardComponent>` | `CardComponent` |
+| Card Header | `<CardHeaderComponent>` | `CardHeaderComponent` |
+| Card Title | `<CardTitleComponent>` | `CardTitleComponent` |
+| Card Description | `<CardDescriptionComponent>` | `CardDescriptionComponent` |
+| Card Content | `<CardContentComponent>` | `CardContentComponent` |
+| Card Footer | `<CardFooterComponent>` | `CardFooterComponent` |
+
+```typescript
+import { 
+  CardComponent,
+  CardHeaderComponent,
+  CardTitleComponent,
+  CardDescriptionComponent,
+  CardContentComponent,
+  CardFooterComponent
+} from '@lib/card';
+```
+
+## Usage Examples
+
+### Basic Component Usage
+
+```typescript
+import { Component } from '@angular/core';
+import { 
+  CardComponent,
+  CardHeaderComponent,
+  CardTitleComponent,
+  CardContentComponent
+} from '@lib/card';
+import { ButtonComponent } from '@lib/button';
+import { Badge } from '@lib/badge';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [
+    CardComponent,
+    CardHeaderComponent,
+    CardTitleComponent,
+    CardContentComponent,
+    ButtonComponent,
+    Badge
+  ],
+  template: `
+    <CardComponent>
+      <CardHeaderComponent>
+        <CardTitleComponent>
+          Hello World
+          <Badge variant="secondary" class="ml-2">New</Badge>
+        </CardTitleComponent>
+      </CardHeaderComponent>
+      <CardContentComponent>
+        <p>This is a simple example using Angular SuperUI components.</p>
+        <ButtonComponent variant="default" class="mt-4">
+          Get Started
+        </ButtonComponent>
+      </CardContentComponent>
+    </CardComponent>
+  `
+})
+export class ExampleComponent {}
+```
+
+### Complex Component Usage
+
+```typescript
+import { Component } from '@angular/core';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent
+} from '@lib/accordion';
+import {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  AlertIcon
+} from '@lib/alert';
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback
+} from '@lib/avatar';
+
+@Component({
+  selector: 'app-complex',
+  standalone: true,
+  imports: [
+    Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+    Alert, AlertTitle, AlertDescription, AlertIcon,
+    Avatar, AvatarImage, AvatarFallback
+  ],
+  template: `
+    <div class="space-y-6">
+      <!-- Alert Example -->
+      <Alert variant="success">
+        <AlertIcon>✅</AlertIcon>
+        <AlertTitle>Success!</AlertTitle>
+        <AlertDescription>
+          Your profile has been updated successfully.
+        </AlertDescription>
+      </Alert>
+
+      <!-- Avatar Example -->
+      <div class="flex items-center gap-3">
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+        <div>
+          <p class="font-medium">John Doe</p>
+          <p class="text-sm text-muted-foreground">john@example.com</p>
+        </div>
+      </div>
+
+      <!-- Accordion Example -->
+      <Accordion>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Is it styled?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It comes with default styles that matches the other components' aesthetic.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
+  `
+})
+export class ComplexExampleComponent {}
+```
+
+## Import Patterns
+
+### CLI Installation Imports
+
+```typescript
+// Using @lib/* path aliases (CLI installation)
+import { Alert } from '@lib/alert';
+import { ButtonComponent } from '@lib/button';
+import { CardComponent } from '@lib/card';
+```
+
+### NPM Package Imports
+
+```typescript
+// Using NPM package (alternative installation)
+import { Alert } from 'angular-superui';
+import { ButtonComponent } from 'angular-superui';
+import { CardComponent } from 'angular-superui';
+```
+
+## Best Practices
+
+### 1. Use Standalone Components
+
+```typescript
+@Component({
+  selector: 'app-example',
+  standalone: true, // ✅ Use standalone components
+  imports: [CardComponent, ButtonComponent], // ✅ Import what you need
+  template: `...`
+})
+```
+
+### 2. Group Related Imports
+
+```typescript
+// ✅ Good - Group related imports
+import { 
+  CardComponent,
+  CardHeaderComponent,
+  CardTitleComponent,
+  CardContentComponent
+} from '@lib/card';
+
+// ❌ Avoid - Multiple separate imports
+import { CardComponent } from '@lib/card';
+import { CardHeaderComponent } from '@lib/card';
+```
+
+### 3. Use Proper Naming
+
+```typescript
+// ✅ Good - Clear, descriptive names
+<CardComponent>
+  <CardHeaderComponent>
+    <CardTitleComponent>User Profile</CardTitleComponent>
+  </CardHeaderComponent>
+</CardComponent>
+
+// ❌ Avoid - Generic or unclear names
+<Card>
+  <Header>
+    <Title>User Profile</Title>
+  </Header>
+</Card>
+```
+
+## Migration from v0.x
+
+If you're upgrading from previous versions:
+
+```typescript
+// Old v0.x selectors (deprecated)
+<lib-alert>
+<lib-button>
+<lib-card>
+
+// New v1.0.1 selectors
+<Alert>
+<ButtonComponent>
+<CardComponent>
+```
+
+## Additional Resources
+
+- [Installation Guide](./installation.md)
+- [Component Documentation](./components/)
+- [Theming Guide](./theming.md)
+- [Migration Guide](./migration.md)
 | Tooltip | `<Tooltip>` | `Tooltip` |
 | Tooltip Trigger | `<TooltipTrigger>` | `TooltipTrigger` |
 | Tooltip Content | `<TooltipContent>` | `TooltipContent` |
