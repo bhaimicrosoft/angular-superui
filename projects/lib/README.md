@@ -1,4 +1,4 @@
-# Angular SuperUI v1.0.2 🚀
+# Angular SuperUI v1.0.3 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
@@ -8,19 +8,19 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **14 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **15 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 14 components with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 15 components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v1.0.2: Production Release**
+## 🛠️ **v1.0.3: Production Release**
 
 ### 🚀 **CLI Tool (Recommended)**
 Install components directly in your project with our enhanced CLI:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli@1.0.1
+npm install -g ngsui-cli@1.0.3
 
 # Initialize project (sets up Tailwind CSS and TypeScript configs)
 ngsui-cli init
@@ -37,14 +37,14 @@ Install the complete component library:
 
 ```bash
 # Using Angular schematics (recommended)
-ng add angular-superui@1.0.1
+ng add angular-superui@1.0.3
 
 # Or using npm directly
-npm install angular-superui@1.0.1
+npm install angular-superui@1.0.3
 ```
 
-### 🌟 **Key Features in v1.0.2**
-- **14 Essential Components** - Production-ready UI components
+### 🌟 **Key Features in v1.0.3**
+- **15 Essential Components** - Production-ready UI components including new Collapsible
 - **Enhanced CLI** - Improved component selection and installation
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach

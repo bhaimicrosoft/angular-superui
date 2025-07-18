@@ -35,6 +35,7 @@ import {
 } from '@lib/card';
 import {Carousel} from '@lib/carousel';
 import {CheckboxComponent} from '@lib/checkbox';
+import {Collapsible, CollapsibleTrigger, CollapsibleContent} from '@lib/collapsible';
 import {ThemeSwitcher} from '@lib/theme-switcher';
 
 @Component({
@@ -78,7 +79,11 @@ import {ThemeSwitcher} from '@lib/theme-switcher';
     CardFooterComponent,
     Carousel,
     CheckboxComponent,
+    Collapsible,
+    CollapsibleTrigger,
+    CollapsibleContent,
     ThemeSwitcher,
+    Collapsible,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -121,19 +126,19 @@ export class App {
   // Checkbox states
   basicCheckbox = signal(false);
   disabledCheckbox = signal(false);
-  
+
   // Checkbox sizes
   smallCheckbox = signal(false);
   defaultCheckbox = signal(false);
   largeCheckbox = signal(false);
   extraLargeCheckbox = signal(false);
-  
+
   // Checkbox variants
   defaultVariant = signal(false);
   destructiveVariant = signal(false);
   successVariant = signal(false);
   warningVariant = signal(false);
-  
+
   // Checkbox states
   uncheckedState = signal(false);
   checkedState = signal(true);
@@ -142,7 +147,7 @@ export class App {
   disabledChecked = signal(true);
   disabledUncheckedSignal = signal(true);
   disabledCheckedSignal = signal(true);
-  
+
   // Accessibility checkbox
   accessibleCheckbox = signal(false);
   indeterminateCheckbox = signal(false);

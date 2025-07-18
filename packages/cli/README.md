@@ -1,5 +1,7 @@
 # 🚀 Angular SuperUI CLI
 
+## 🛠️ **v1.0.3: Production Release**
+
 A powerful CLI tool for selective Angular SuperUI component installation. Install only the components you need, when you need them.
 
 ## ✨ Features
@@ -15,10 +17,10 @@ A powerful CLI tool for selective Angular SuperUI component installation. Instal
 
 ```bash
 # Install globally
-npm install -g ngsui-cli@1.0.2
+npm install -g ngsui-cli@1.0.3
 
 # Or use with npx (no installation required)
-npx ngsui-cli@1.0.1 --help
+npx ngsui-cli@1.0.3 --help
 ```
 
 ## 🎯 Quick Start
@@ -40,7 +42,7 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (14 total)
+## 📦 Available Components (15 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button
@@ -49,6 +51,7 @@ ngsui-cli add
 - `aspect-ratio` - Displays content within a desired ratio
 - `card` - Flexible content container with header, content, and footer
 - `checkbox` - A control that allows the user to toggle between checked and not checked
+- `collapsible` - Expandable content sections with smooth animations and keyboard support
 - `theme-switcher` - Toggle between light, dark, and system themes with localStorage persistence
 
 ### 🧭 Navigation Components
@@ -72,7 +75,7 @@ ngsui-cli add
 ngsui-cli add button
 
 # Install multiple components at once
-ngsui-cli add button badge alert avatar card aspect-ratio checkbox theme-switcher
+ngsui-cli add button badge alert avatar card aspect-ratio checkbox collapsible theme-switcher
 ```
 
 ### Interactive Mode

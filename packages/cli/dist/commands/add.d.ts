@@ -41,13 +41,37 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
+    calendar: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
     card: {
         name: string;
         description: string;
         dependencies: string[];
         files: string[];
     };
-    calendar: {
+    carousel: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    checkbox: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    collapsible: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    'theme-switcher': {
         name: string;
         description: string;
         dependencies: string[];

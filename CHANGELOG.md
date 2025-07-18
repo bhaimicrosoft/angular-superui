@@ -6,6 +6,72 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.3] - 2025-07-18
+
+### 🎉 **Feature Release - Collapsible Component & Enhanced CLI**
+
+#### 🆕 New Components
+- 🔽 **Collapsible Component**: Interactive expandable content sections with smooth animations
+  - Signal-based state management for optimal performance
+  - Keyboard support (Enter/Space to toggle, Escape to close)
+  - Accessibility compliant with ARIA attributes
+  - Dependency injection pattern for clean component communication
+  - Three sub-components: Collapsible, CollapsibleTrigger, CollapsibleContent
+
+#### 🛠️ CLI Tool Enhancements
+- 📦 **Component Count Update**: Now supports 15 total components (up from 14)
+- 🔽 **Collapsible Installation**: Added collapsible component to CLI installation options
+- 🔧 **TypeScript Improvements**: Added missing type definitions for better development experience
+- 📋 **Enhanced Component Listing**: Updated component descriptions and categories
+
+#### 📖 Documentation Updates
+- 📝 **Comprehensive Collapsible Docs**: Complete documentation with installation guide and examples
+- 🚀 **Version Alignment**: Updated all version references to v1.0.3 across all README files
+- 🎯 **CLI Installation Guide**: Updated CLI installation commands throughout documentation
+- 📊 **Component Count**: Updated badges and feature lists to reflect 15 components
+
+#### 🔧 Technical Improvements
+- 🏗️ **Build Process**: Enhanced build pipeline with proper TypeScript type checking
+- 📦 **Package Publishing**: Successfully published both angular-superui and ngsui-cli packages
+- 🎨 **Code Quality**: Improved TypeScript type safety in CLI tool
+- 🌟 **Production Ready**: All components tested and validated for production use
+
+---
+
+## [1.0.2] - 2025-07-18
+
+### 🎠 **Major Feature Release - Carousel Component & Enhanced Library**
+
+#### 🆕 New Components
+- 🎠 **Carousel Component**: Feature-rich image carousel with advanced functionality
+  - Auto-play with configurable intervals and pause on hover
+  - Smooth navigation with previous/next controls
+  - Pagination dots with clickable navigation
+  - Keyboard support (Arrow keys, Enter, Space)
+  - Touch/swipe support for mobile devices
+  - Responsive design with mobile-first approach
+  - Accessibility compliant with ARIA attributes
+
+#### 🛠️ CLI Tool Enhancements
+- 📦 **Component Count Update**: Now supports 14 total components (up from 8)
+- 🎠 **Carousel Installation**: Added carousel component to CLI installation options
+- 🔧 **Enhanced Component Management**: Improved component detection and installation
+- 📋 **Better Component Listing**: Updated component descriptions and categories
+
+#### 📖 Documentation Updates
+- 📝 **Comprehensive Carousel Docs**: Complete documentation with installation guide and examples
+- 🚀 **Version Updates**: Updated all version references to v1.0.2 across documentation
+- 🎯 **Enhanced README**: Improved main README with better feature descriptions
+- 📊 **Component Count**: Updated badges and feature lists to reflect 14 components
+
+#### 🔧 Technical Improvements
+- 🏗️ **Build Optimization**: Enhanced build process for better performance
+- 📦 **Package Structure**: Improved package organization and exports
+- 🎨 **Code Quality**: Enhanced TypeScript types and component interfaces
+- 🌟 **Production Ready**: All components tested and validated for production use
+
+---
+
 ## [1.0.1] - 2025-07-18
 
 ### ✨ **Minor Updates & Documentation Improvements**

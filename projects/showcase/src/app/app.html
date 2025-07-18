@@ -2,1791 +2,1812 @@
   <div class="max-w-md mx-auto pt-8 pb-8 px-6 space-y-8">
     <div class="flex items-center justify-between">
       <h1 class="text-2xl font-bold mb-6 text-success">Component Test Suite</h1>
-      <ThemeSwitcher />
+      <ThemeSwitcher/>
     </div>
 
-  <!-- Theme Switcher Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Theme Switcher Component</h2>
-    <div class="space-y-6">
-      <!-- Basic Theme Switcher -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Basic Theme Switcher</h3>
-        <div class="flex items-center gap-4">
-          <ThemeSwitcher />
-          <ThemeSwitcher mode="cycle" />
-          <ThemeSwitcher [showLabel]="true" />
+    <!-- Theme Switcher Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Theme Switcher Component</h2>
+      <div class="space-y-6">
+        <!-- Basic Theme Switcher -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Basic Theme Switcher</h3>
+          <div class="flex items-center gap-4">
+            <ThemeSwitcher/>
+            <ThemeSwitcher mode="cycle"/>
+            <ThemeSwitcher [showLabel]="true"/>
+          </div>
         </div>
-      </div>
 
-      <!-- Theme Switcher Variants -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Variants</h3>
-        <div class="flex items-center gap-4">
-          <ThemeSwitcher variant="default" />
-          <ThemeSwitcher variant="outline" />
-          <ThemeSwitcher variant="ghost" />
-          <ThemeSwitcher variant="ghost" />
+        <!-- Theme Switcher Variants -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Variants</h3>
+          <div class="flex items-center gap-4">
+            <ThemeSwitcher variant="default"/>
+            <ThemeSwitcher variant="outline"/>
+            <ThemeSwitcher variant="ghost"/>
+            <ThemeSwitcher variant="ghost"/>
+          </div>
         </div>
-      </div>
 
-      <!-- Theme Switcher Sizes -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-        <div class="flex items-center gap-4">
-          <ThemeSwitcher size="sm" />
-          <ThemeSwitcher size="default" />
-          <ThemeSwitcher size="lg" />
-          <ThemeSwitcher size="xl" />
+        <!-- Theme Switcher Sizes -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+          <div class="flex items-center gap-4">
+            <ThemeSwitcher size="sm"/>
+            <ThemeSwitcher size="default"/>
+            <ThemeSwitcher size="lg"/>
+            <ThemeSwitcher size="xl"/>
+          </div>
         </div>
-      </div>
 
-      <!-- Theme Switcher with Custom Class -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Custom Styling</h3>
-        <div class="flex items-center gap-4">
-          <ThemeSwitcher class="border-2 border-dashed border-primary" />
-          <ThemeSwitcher class="rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Avatar Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Avatar Component</h2>
-    <div class="space-y-6">
-      <!-- Avatar Sizes -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-        <div class="flex items-center gap-4">
-          <Avatar size="sm">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Small avatar"/>
-            <AvatarFallback size="sm">SM</AvatarFallback>
-          </Avatar>
-
-          <Avatar size="sm">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/14985020?s=200&v=4" alt="Default avatar"/>
-            <AvatarFallback size="sm">DF</AvatarFallback>
-          </Avatar>
-
-          <Avatar size="lg">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/139426?s=200&v=4" alt="Large avatar"/>
-            <AvatarFallback size="lg">LG</AvatarFallback>
-          </Avatar>
-
-          <Avatar size="xl">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/1841425?s=200&v=4" alt="Extra large avatar"/>
-            <AvatarFallback size="xl">XL</AvatarFallback>
-          </Avatar>
-        </div>
-      </div>
-
-      <!-- Avatar with Fallbacks -->
-      <div>
-        <h3 class="text-md font-medium mb-3">With Fallbacks</h3>
-        <div class="flex items-center gap-4">
-          <Avatar>
-            <AvatarImage src="https://github.com/doesnotexist.png" alt="User avatar"/>
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-
-          <Avatar>
-            <AvatarImage src="" alt="Empty src"/>
-            <AvatarFallback>AB</AvatarFallback>
-          </Avatar>
-
-          <Avatar>
-            <AvatarFallback>UI</AvatarFallback>
-          </Avatar>
-        </div>
-      </div>
-
-      <!-- Avatar with Custom Styling -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Custom Styling</h3>
-        <div class="flex items-center gap-4">
-          <Avatar className="ring-2 ring-primary ring-offset-2">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/4060187?s=200&v=4" alt="Tailwind CSS"/>
-            <AvatarFallback>TW</AvatarFallback>
-          </Avatar>
-
-          <Avatar className="ring-2 ring-success ring-offset-2">
-            <AvatarFallback className="bg-success text-success-foreground">✓</AvatarFallback>
-          </Avatar>
-
-          <Avatar size="2xl" className="ring-4 ring-purple ring-offset-4">
-            <AvatarFallback size="2xl" className="bg-gradient-to-br from-purple to-pink text-white">
-              AS
-            </AvatarFallback>
-          </Avatar>
+        <!-- Theme Switcher with Custom Class -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Custom Styling</h3>
+          <div class="flex items-center gap-4">
+            <ThemeSwitcher class="border-2 border-dashed border-primary"/>
+            <ThemeSwitcher class="rounded-full bg-gradient-to-r from-purple-500 to-pink-500"/>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Checkbox Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
-    <div class="space-y-6">
-      <!-- Basic Checkbox -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2">
-            <Checkbox [(ngModel)]="basicCheckbox" />
-            <label class="text-sm font-medium">Accept terms and conditions</label>
-          </div>
-          <p class="text-xs text-gray-600">Current value: {{basicCheckbox()}}</p>
-        </div>
-      </div>
+    <!-- Avatar Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Avatar Component</h2>
+      <div class="space-y-6">
+        <!-- Avatar Sizes -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+          <div class="flex items-center gap-4">
+            <Avatar size="sm">
+              <AvatarImage src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Small avatar"/>
+              <AvatarFallback size="sm">SM</AvatarFallback>
+            </Avatar>
 
-      <!-- Checkbox Sizes -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2">
-            <Checkbox size="sm" [(ngModel)]="smallCheckbox" />
-            <label class="text-sm">Small checkbox</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox size="default" [(ngModel)]="defaultCheckbox" />
-            <label class="text-sm">Default checkbox</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox size="lg" [(ngModel)]="largeCheckbox" />
-            <label class="text-sm">Large checkbox</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox size="xl" [(ngModel)]="extraLargeCheckbox" />
-            <label class="text-sm">Extra large checkbox</label>
+            <Avatar size="sm">
+              <AvatarImage src="https://avatars.githubusercontent.com/u/14985020?s=200&v=4" alt="Default avatar"/>
+              <AvatarFallback size="sm">DF</AvatarFallback>
+            </Avatar>
+
+            <Avatar size="lg">
+              <AvatarImage src="https://avatars.githubusercontent.com/u/139426?s=200&v=4" alt="Large avatar"/>
+              <AvatarFallback size="lg">LG</AvatarFallback>
+            </Avatar>
+
+            <Avatar size="xl">
+              <AvatarImage src="https://avatars.githubusercontent.com/u/1841425?s=200&v=4" alt="Extra large avatar"/>
+              <AvatarFallback size="xl">XL</AvatarFallback>
+            </Avatar>
           </div>
         </div>
-      </div>
 
-      <!-- Checkbox Variants -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Variants</h3>
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2">
-            <Checkbox variant="default" [(ngModel)]="defaultVariant" />
-            <label class="text-sm">Default variant</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox variant="destructive" [(ngModel)]="destructiveVariant" />
-            <label class="text-sm">Destructive variant</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox variant="success" [(ngModel)]="successVariant" />
-            <label class="text-sm">Success variant</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox variant="warning" [(ngModel)]="warningVariant" />
-            <label class="text-sm">Warning variant</label>
+        <!-- Avatar with Fallbacks -->
+        <div>
+          <h3 class="text-md font-medium mb-3">With Fallbacks</h3>
+          <div class="flex items-center gap-4">
+            <Avatar>
+              <AvatarImage src="https://github.com/doesnotexist.png" alt="User avatar"/>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+
+            <Avatar>
+              <AvatarImage src="" alt="Empty src"/>
+              <AvatarFallback>AB</AvatarFallback>
+            </Avatar>
+
+            <Avatar>
+              <AvatarFallback>UI</AvatarFallback>
+            </Avatar>
           </div>
         </div>
-      </div>
 
-      <!-- Checkbox States -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different States</h3>
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2">
-            <Checkbox [(ngModel)]="uncheckedState" />
-            <label class="text-sm">Unchecked state</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox [(ngModel)]="checkedState" />
-            <label class="text-sm">Checked state</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox [indeterminate]="indeterminateState()" />
-            <label class="text-sm">Indeterminate state</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox [disabled]="disabledUncheckedSignal()" [(ngModel)]="disabledUnchecked" />
-            <label class="text-sm text-gray-500">Disabled unchecked</label>
-          </div>
-          <div class="flex items-center space-x-2">
-            <Checkbox [disabled]="disabledCheckedSignal()" [(ngModel)]="disabledChecked" />
-            <label class="text-sm text-gray-500">Disabled checked</label>
+        <!-- Avatar with Custom Styling -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Custom Styling</h3>
+          <div class="flex items-center gap-4">
+            <Avatar className="ring-2 ring-primary ring-offset-2">
+              <AvatarImage src="https://avatars.githubusercontent.com/u/4060187?s=200&v=4" alt="Tailwind CSS"/>
+              <AvatarFallback>TW</AvatarFallback>
+            </Avatar>
+
+            <Avatar className="ring-2 ring-success ring-offset-2">
+              <AvatarFallback className="bg-success text-success-foreground">✓</AvatarFallback>
+            </Avatar>
+
+            <Avatar size="2xl" className="ring-4 ring-purple ring-offset-4">
+              <AvatarFallback size="2xl" className="bg-gradient-to-br from-purple to-pink text-white">
+                AS
+              </AvatarFallback>
+            </Avatar>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Checkbox with Accessibility -->
-      <div>
-        <h3 class="text-md font-medium mb-3">With Accessibility</h3>
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="accessibleCheckbox" 
-              [accessibility]="{
+    <!-- Checkbox Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
+      <div class="space-y-6">
+        <!-- Basic Checkbox -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox [(ngModel)]="basicCheckbox"/>
+              <label class="text-sm font-medium">Accept terms and conditions</label>
+            </div>
+            <p class="text-xs text-gray-600">Current value: {{ basicCheckbox() }}</p>
+          </div>
+        </div>
+
+        <!-- Checkbox Sizes -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox size="sm" [(ngModel)]="smallCheckbox"/>
+              <label class="text-sm">Small checkbox</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox size="default" [(ngModel)]="defaultCheckbox"/>
+              <label class="text-sm">Default checkbox</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox size="lg" [(ngModel)]="largeCheckbox"/>
+              <label class="text-sm">Large checkbox</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox size="xl" [(ngModel)]="extraLargeCheckbox"/>
+              <label class="text-sm">Extra large checkbox</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox Variants -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Variants</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox variant="default" [(ngModel)]="defaultVariant"/>
+              <label class="text-sm">Default variant</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox variant="destructive" [(ngModel)]="destructiveVariant"/>
+              <label class="text-sm">Destructive variant</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox variant="success" [(ngModel)]="successVariant"/>
+              <label class="text-sm">Success variant</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox variant="warning" [(ngModel)]="warningVariant"/>
+              <label class="text-sm">Warning variant</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox States -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different States</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox [(ngModel)]="uncheckedState"/>
+              <label class="text-sm">Unchecked state</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox [(ngModel)]="checkedState"/>
+              <label class="text-sm">Checked state</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox [indeterminate]="indeterminateState()"/>
+              <label class="text-sm">Indeterminate state</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox [disabled]="disabledUncheckedSignal()" [(ngModel)]="disabledUnchecked"/>
+              <label class="text-sm text-gray-500">Disabled unchecked</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox [disabled]="disabledCheckedSignal()" [(ngModel)]="disabledChecked"/>
+              <label class="text-sm text-gray-500">Disabled checked</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox with Accessibility -->
+        <div>
+          <h3 class="text-md font-medium mb-3">With Accessibility</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="accessibleCheckbox"
+                [accessibility]="{
                 ariaLabel: 'Subscribe to newsletter',
                 ariaDescription: 'You can unsubscribe at any time',
                 ariaRequired: true
-              }" />
-            <label class="text-sm">Subscribe to newsletter (required)</label>
+              }"/>
+              <label class="text-sm">Subscribe to newsletter (required)</label>
+            </div>
+            <p class="text-xs text-gray-600">Screen reader accessible with proper ARIA attributes</p>
           </div>
-          <p class="text-xs text-gray-600">Screen reader accessible with proper ARIA attributes</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- AspectRatio Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">AspectRatio Component</h2>
-    <div class="space-y-6">
-      <!-- Predefined Ratios -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Predefined Ratios</h3>
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <p class="text-sm text-gray-600 mb-2">Square (1:1)</p>
-            <AspectRatio ratio="square" class="bg-gradient-to-br from-pink-400 to-red-600 rounded-lg border shadow-md"
-                         [ariaLabel]="'Square ratio example'">
-              <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
-                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                  📸
-                </div>
-                <span class="text-sm">Profile Image</span>
-                <span class="text-xs opacity-80">1:1 Ratio</span>
-              </div>
-            </AspectRatio>
-          </div>
+    <!-- Collapsible Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Collapsible Component</h2>
+      <div class="space-y-6">
+        <!-- Basic Collapsible -->
+        <Collapsible>
+          <CollapsibleTrigger>
+            Toggle Content
+          </CollapsibleTrigger>
 
-          <div>
-            <p class="text-sm text-gray-600 mb-2">Video (16:9)</p>
-            <AspectRatio ratio="video" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg border shadow-md"
-                         [ariaLabel]="'Video ratio example'">
-              <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
-                <div class="w-10 h-6 bg-white/20 rounded flex items-center justify-center mb-2">
-                  ▶️
-                </div>
-                <span class="text-sm">Video Player</span>
-                <span class="text-xs opacity-80">16:9 Ratio</span>
-              </div>
-            </AspectRatio>
-          </div>
-        </div>
+          <CollapsibleContent>
+            <p class="text-sm text-gray-700">
+              This content will collapse and expand with animation.
+            </p>
+          </CollapsibleContent>
+        </Collapsible>
+
+
       </div>
+    </div>
 
-      <!-- With Images -->
-      <div>
-        <h3 class="text-md font-medium mb-3">With Images</h3>
-        <div class="grid grid-cols-1 gap-4">
-          <AspectRatio ratio="16/9" class="bg-muted rounded-lg overflow-hidden shadow-md" [ariaLabel]="'Image example'">
-            <div class="relative h-full w-full bg-gradient-to-br from-green-400 to-blue-500">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-center text-white">
-                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    🖼️
+    <!-- AspectRatio Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">AspectRatio Component</h2>
+      <div class="space-y-6">
+        <!-- Predefined Ratios -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Predefined Ratios</h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Square (1:1)</p>
+              <AspectRatio ratio="square" class="bg-gradient-to-br from-pink-400 to-red-600 rounded-lg border shadow-md"
+                           [ariaLabel]="'Square ratio example'">
+                <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
+                  <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-2">
+                    📸
                   </div>
-                  <h4 class="font-semibold mb-1">Banner Image</h4>
-                  <p class="text-sm opacity-90">Perfect for hero sections</p>
-                  <span class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">16:9</span>
+                  <span class="text-sm">Profile Image</span>
+                  <span class="text-xs opacity-80">1:1 Ratio</span>
+                </div>
+              </AspectRatio>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Video (16:9)</p>
+              <AspectRatio ratio="video" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg border shadow-md"
+                           [ariaLabel]="'Video ratio example'">
+                <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
+                  <div class="w-10 h-6 bg-white/20 rounded flex items-center justify-center mb-2">
+                    ▶️
+                  </div>
+                  <span class="text-sm">Video Player</span>
+                  <span class="text-xs opacity-80">16:9 Ratio</span>
+                </div>
+              </AspectRatio>
+            </div>
+          </div>
+        </div>
+
+        <!-- With Images -->
+        <div>
+          <h3 class="text-md font-medium mb-3">With Images</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <AspectRatio ratio="16/9" class="bg-muted rounded-lg overflow-hidden shadow-md" [ariaLabel]="'Image example'">
+              <div class="relative h-full w-full bg-gradient-to-br from-green-400 to-blue-500">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                      🖼️
+                    </div>
+                    <h4 class="font-semibold mb-1">Banner Image</h4>
+                    <p class="text-sm opacity-90">Perfect for hero sections</p>
+                    <span class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">16:9</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </AspectRatio>
+            </AspectRatio>
+          </div>
         </div>
-      </div>
 
-      <!-- Custom Ratio -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Custom Ratio</h3>
-        <AspectRatio [customRatio]="'2 / 1'"
-                     class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-md"
-                     [ariaLabel]="'Custom ratio example'">
-          <div class="flex items-center justify-center h-full text-white font-medium p-4">
-            <div class="text-center">
-              <div class="w-12 h-8 bg-white/20 rounded mb-3 mx-auto flex items-center justify-center">
-                📏
+        <!-- Custom Ratio -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Custom Ratio</h3>
+          <AspectRatio [customRatio]="'2 / 1'"
+                       class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-md"
+                       [ariaLabel]="'Custom ratio example'">
+            <div class="flex items-center justify-center h-full text-white font-medium p-4">
+              <div class="text-center">
+                <div class="w-12 h-8 bg-white/20 rounded mb-3 mx-auto flex items-center justify-center">
+                  📏
+                </div>
+                <div class="font-semibold">Custom Banner</div>
+                <div class="text-sm opacity-90 mt-1">2:1 Ultra-wide Ratio</div>
+                <div class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">Perfect for headers</div>
               </div>
-              <div class="font-semibold">Custom Banner</div>
-              <div class="text-sm opacity-90 mt-1">2:1 Ultra-wide Ratio</div>
-              <div class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">Perfect for headers</div>
-            </div>
-          </div>
-        </AspectRatio>
-      </div>
-
-      <!-- Multiple Ratios Gallery -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Gallery Layout</h3>
-        <div class="grid grid-cols-3 gap-3">
-          <AspectRatio ratio="4/3" class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-md shadow-sm"
-                       [ariaLabel]="'Photo ratio example'">
-            <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
-              <span>📷</span>
-              <span class="mt-1">Photo</span>
-              <span class="text-xs opacity-80">4:3</span>
-            </div>
-          </AspectRatio>
-
-          <AspectRatio ratio="3/4" class="bg-gradient-to-br from-teal-400 to-green-500 rounded-md shadow-sm"
-                       [ariaLabel]="'Portrait ratio example'">
-            <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
-              <span>🖼️</span>
-              <span class="mt-1">Portrait</span>
-              <span class="text-xs opacity-80">3:4</span>
-            </div>
-          </AspectRatio>
-
-          <AspectRatio ratio="1/1" class="bg-gradient-to-br from-violet-400 to-purple-500 rounded-md shadow-sm"
-                       [ariaLabel]="'Instagram ratio example'">
-            <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
-              <span>📱</span>
-              <span class="mt-1">Social</span>
-              <span class="text-xs opacity-80">1:1</span>
             </div>
           </AspectRatio>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Badge Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Badge Component</h2>
-    <div class="space-y-6">
-      <!-- Badge Variants -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Variants</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Badge variant="default">Default</Badge>
-          <Badge variant="secondary">Secondary</Badge>
-          <Badge variant="destructive">Destructive</Badge>
-          <Badge variant="outline">Outline</Badge>
-        </div>
-      </div>
+        <!-- Multiple Ratios Gallery -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Gallery Layout</h3>
+          <div class="grid grid-cols-3 gap-3">
+            <AspectRatio ratio="4/3" class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-md shadow-sm"
+                         [ariaLabel]="'Photo ratio example'">
+              <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
+                <span>📷</span>
+                <span class="mt-1">Photo</span>
+                <span class="text-xs opacity-80">4:3</span>
+              </div>
+            </AspectRatio>
 
-      <!-- Badge with Numbers -->
-      <div>
-        <h3 class="text-md font-medium mb-3">With Numbers</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Badge variant="default">New</Badge>
-          <Badge variant="secondary">99+</Badge>
-          <Badge variant="destructive">Error</Badge>
-          <Badge variant="outline">Beta</Badge>
-        </div>
-      </div>
+            <AspectRatio ratio="3/4" class="bg-gradient-to-br from-teal-400 to-green-500 rounded-md shadow-sm"
+                         [ariaLabel]="'Portrait ratio example'">
+              <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
+                <span>🖼️</span>
+                <span class="mt-1">Portrait</span>
+                <span class="text-xs opacity-80">3:4</span>
+              </div>
+            </AspectRatio>
 
-      <!-- Badge in Context -->
-      <div>
-        <h3 class="text-md font-medium mb-3">In Context</h3>
-        <div class="space-y-3">
-          <div class="flex items-center gap-2">
-            <span class="text-sm">Inbox</span>
-            <Badge variant="default" [ariaLabel]="'12 unread messages'">12</Badge>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-sm">Documentation</span>
-            <Badge variant="secondary" [asLink]="true" href="/docs" [ariaLabel]="'View documentation'">Updated</Badge>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-sm">Build Status</span>
-            <Badge variant="destructive" role="alert" [ariaLabel]="'Build failed - requires attention'">Failed</Badge>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-sm">Feature</span>
-            <Badge variant="outline" ariaLive="polite">Coming Soon</Badge>
+            <AspectRatio ratio="1/1" class="bg-gradient-to-br from-violet-400 to-purple-500 rounded-md shadow-sm"
+                         [ariaLabel]="'Instagram ratio example'">
+              <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
+                <span>📱</span>
+                <span class="mt-1">Social</span>
+                <span class="text-xs opacity-80">1:1</span>
+              </div>
+            </AspectRatio>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Alert Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Alert Component</h2>
-    <div class="space-y-4">
-      <!-- Default Alert -->
-      <Alert>
-        <AlertIcon>
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </AlertIcon>
-        <div class="flex-1">
-          <AlertTitle>Heads up!</AlertTitle>
-          <AlertDescription>
-            You can add components and dependencies to your app using the cli.
-          </AlertDescription>
+    <!-- Badge Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Badge Component</h2>
+      <div class="space-y-6">
+        <!-- Badge Variants -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Variants</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Badge variant="default">Default</Badge>
+            <Badge variant="secondary">Secondary</Badge>
+            <Badge variant="destructive">Destructive</Badge>
+            <Badge variant="outline">Outline</Badge>
+          </div>
         </div>
-      </Alert>
 
-      <!-- Destructive Alert -->
-      <Alert variant="destructive">
-        <AlertIcon>
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
-          </svg>
-        </AlertIcon>
-        <div class="flex-1">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            Your session has expired. Please log in again.
-          </AlertDescription>
+        <!-- Badge with Numbers -->
+        <div>
+          <h3 class="text-md font-medium mb-3">With Numbers</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Badge variant="default">New</Badge>
+            <Badge variant="secondary">99+</Badge>
+            <Badge variant="destructive">Error</Badge>
+            <Badge variant="outline">Beta</Badge>
+          </div>
         </div>
-      </Alert>
 
-      <!-- Warning Alert -->
-      <Alert variant="warning">
-        <AlertIcon>
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
-          </svg>
-        </AlertIcon>
-        <div class="flex-1">
-          <AlertTitle>Warning</AlertTitle>
-          <AlertDescription>
-            This action cannot be undone. Please proceed with caution.
-          </AlertDescription>
+        <!-- Badge in Context -->
+        <div>
+          <h3 class="text-md font-medium mb-3">In Context</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Inbox</span>
+              <Badge variant="default" [ariaLabel]="'12 unread messages'">12</Badge>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Documentation</span>
+              <Badge variant="secondary" [asLink]="true" href="/docs" [ariaLabel]="'View documentation'">Updated</Badge>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Build Status</span>
+              <Badge variant="destructive" role="alert" [ariaLabel]="'Build failed - requires attention'">Failed</Badge>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Feature</span>
+              <Badge variant="outline" ariaLive="polite">Coming Soon</Badge>
+            </div>
+          </div>
         </div>
-      </Alert>
-
-      <!-- Success Alert -->
-      <Alert variant="success">
-        <AlertIcon>
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </AlertIcon>
-        <div class="flex-1">
-          <AlertTitle>Success</AlertTitle>
-          <AlertDescription>
-            Your changes have been saved successfully.
-          </AlertDescription>
-        </div>
-      </Alert>
-
-      <!-- Info Alert -->
-      <Alert variant="info">
-        <AlertIcon>
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </AlertIcon>
-        <div class="flex-1">
-          <AlertTitle>Information</AlertTitle>
-          <AlertDescription>
-            You have 3 unread messages in your inbox.
-          </AlertDescription>
-        </div>
-      </Alert>
+      </div>
     </div>
-  </div>
 
-  <!-- Button Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Button Component</h2>
-    <div class="space-y-6">
-      <!-- Button Variants -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Variants</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button variant="default">Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
-        </div>
-      </div>
-
-      <!-- Extended Variants -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Extended Variants</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button variant="success">Success</Button>
-          <Button variant="warning">Warning</Button>
-          <Button variant="info">Info</Button>
-        </div>
-      </div>
-
-      <!-- Button Sizes -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button size="sm">Small</Button>
-          <Button size="default">Default</Button>
-          <Button size="lg">Large</Button>
-          <Button size="xl">Extra Large</Button>
-        </div>
-      </div>
-
-      <!-- Icon Buttons -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Icon Buttons</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button size="icon" variant="outline">
+    <!-- Alert Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Alert Component</h2>
+      <div class="space-y-4">
+        <!-- Default Alert -->
+        <Alert>
+          <AlertIcon>
             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-          </Button>
-
-          <Button size="icon-sm" variant="ghost">
-            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </Button>
-
-          <Button size="icon-lg" variant="default">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-          </Button>
+          </AlertIcon>
+          <div class="flex-1">
+            <AlertTitle>Heads up!</AlertTitle>
+            <AlertDescription>
+              You can add components and dependencies to your app using the cli.
+            </AlertDescription>
+          </div>
+        </Alert>
 
-          <Button size="icon-xl" variant="destructive">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Destructive Alert -->
+        <Alert variant="destructive">
+          <AlertIcon>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
             </svg>
-          </Button>
-        </div>
-      </div>
+          </AlertIcon>
+          <div class="flex-1">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              Your session has expired. Please log in again.
+            </AlertDescription>
+          </div>
+        </Alert>
 
-      <!-- Loading States -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Loading States</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button [loadingState]="true">Loading</Button>
-          <Button [loadingState]="{ loading: true, loadingText: 'Saving...', disableOnLoading: true }"
-                  variant="secondary">
-            Save Document
-          </Button>
-          <Button [loadingState]="{ loading: true, loadingText: 'Processing...', disableOnLoading: false }"
-                  variant="outline">
-            Process
-          </Button>
-        </div>
-      </div>
+        <!-- Warning Alert -->
+        <Alert variant="warning">
+          <AlertIcon>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </AlertIcon>
+          <div class="flex-1">
+            <AlertTitle>Warning</AlertTitle>
+            <AlertDescription>
+              This action cannot be undone. Please proceed with caution.
+            </AlertDescription>
+          </div>
+        </Alert>
 
-      <!-- Disabled States -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Disabled States</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button [disabled]="true">Disabled Default</Button>
-          <Button [disabled]="true" variant="secondary">Disabled Secondary</Button>
-          <Button [disabled]="true" variant="outline">Disabled Outline</Button>
-          <Button [disabled]="true" variant="destructive">Disabled Destructive</Button>
-        </div>
-      </div>
+        <!-- Success Alert -->
+        <Alert variant="success">
+          <AlertIcon>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </AlertIcon>
+          <div class="flex-1">
+            <AlertTitle>Success</AlertTitle>
+            <AlertDescription>
+              Your changes have been saved successfully.
+            </AlertDescription>
+          </div>
+        </Alert>
 
-      <!-- With Accessibility -->
-      <div>
-        <h3 class="text-md font-medium mb-3">With Accessibility Features</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button
-            [accessibility]="{
+        <!-- Info Alert -->
+        <Alert variant="info">
+          <AlertIcon>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </AlertIcon>
+          <div class="flex-1">
+            <AlertTitle>Information</AlertTitle>
+            <AlertDescription>
+              You have 3 unread messages in your inbox.
+            </AlertDescription>
+          </div>
+        </Alert>
+      </div>
+    </div>
+
+    <!-- Button Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Button Component</h2>
+      <div class="space-y-6">
+        <!-- Button Variants -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Variants</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button variant="default">Default</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="destructive">Destructive</Button>
+            <Button variant="outline">Outline</Button>
+            <Button variant="ghost">Ghost</Button>
+            <Button variant="link">Link</Button>
+          </div>
+        </div>
+
+        <!-- Extended Variants -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Extended Variants</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button variant="success">Success</Button>
+            <Button variant="warning">Warning</Button>
+            <Button variant="info">Info</Button>
+          </div>
+        </div>
+
+        <!-- Button Sizes -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button size="sm">Small</Button>
+            <Button size="default">Default</Button>
+            <Button size="lg">Large</Button>
+            <Button size="xl">Extra Large</Button>
+          </div>
+        </div>
+
+        <!-- Icon Buttons -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Icon Buttons</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button size="icon" variant="outline">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+            </Button>
+
+            <Button size="icon-sm" variant="ghost">
+              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </Button>
+
+            <Button size="icon-lg" variant="default">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </Button>
+
+            <Button size="icon-xl" variant="destructive">
+              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+            </Button>
+          </div>
+        </div>
+
+        <!-- Loading States -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Loading States</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button [loadingState]="true">Loading</Button>
+            <Button [loadingState]="{ loading: true, loadingText: 'Saving...', disableOnLoading: true }"
+                    variant="secondary">
+              Save Document
+            </Button>
+            <Button [loadingState]="{ loading: true, loadingText: 'Processing...', disableOnLoading: false }"
+                    variant="outline">
+              Process
+            </Button>
+          </div>
+        </div>
+
+        <!-- Disabled States -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Disabled States</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button [disabled]="true">Disabled Default</Button>
+            <Button [disabled]="true" variant="secondary">Disabled Secondary</Button>
+            <Button [disabled]="true" variant="outline">Disabled Outline</Button>
+            <Button [disabled]="true" variant="destructive">Disabled Destructive</Button>
+          </div>
+        </div>
+
+        <!-- With Accessibility -->
+        <div>
+          <h3 class="text-md font-medium mb-3">With Accessibility Features</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button
+              [accessibility]="{
               ariaLabel: 'Save document to cloud storage',
               ariaDescription: 'Uploads and saves the current document to your cloud storage account'
             }"
-            variant="default">
-            Save to Cloud
-          </Button>
+              variant="default">
+              Save to Cloud
+            </Button>
 
-          <Button
-            [accessibility]="{
+            <Button
+              [accessibility]="{
               ariaHasPopup: 'menu',
               ariaExpanded: 'false'
             }"
-            variant="outline">
-            Options ▼
-          </Button>
+              variant="outline">
+              Options ▼
+            </Button>
 
-          <Button
-            [accessibility]="{
+            <Button
+              [accessibility]="{
               ariaPressed: 'false',
               ariaLive: 'polite'
             }"
-            variant="ghost">
-            Toggle Feature
-          </Button>
-        </div>
-      </div>
-
-      <!-- Button Groups -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Button Groups</h3>
-        <div class="space-y-3">
-          <div class="flex">
-            <Button variant="outline" class="rounded-r-none border-r-0">First</Button>
-            <Button variant="outline" class="rounded-none border-r-0">Second</Button>
-            <Button variant="outline" class="rounded-l-none">Third</Button>
+              variant="ghost">
+              Toggle Feature
+            </Button>
           </div>
+        </div>
 
-          <div class="flex gap-2">
-            <Button variant="default">Primary Action</Button>
-            <Button variant="outline">Secondary Action</Button>
-            <Button variant="ghost">Cancel</Button>
+        <!-- Button Groups -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Button Groups</h3>
+          <div class="space-y-3">
+            <div class="flex">
+              <Button variant="outline" class="rounded-r-none border-r-0">First</Button>
+              <Button variant="outline" class="rounded-none border-r-0">Second</Button>
+              <Button variant="outline" class="rounded-l-none">Third</Button>
+            </div>
+
+            <div class="flex gap-2">
+              <Button variant="default">Primary Action</Button>
+              <Button variant="outline">Secondary Action</Button>
+              <Button variant="ghost">Cancel</Button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Checkbox Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
-    <div class="space-y-6">
-      <!-- Basic Checkbox -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
-        <div class="flex items-center gap-4">
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              id="basic-checkbox">
-            </Checkbox>
-            <label for="basic-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-              Basic Checkbox
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Checkbox Variants -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Variants</h3>
-        <div class="flex items-center gap-6 flex-wrap">
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              variant="default"
-              id="default-checkbox">
-            </Checkbox>
-            <label for="default-checkbox" class="text-sm font-medium">Default</label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              variant="destructive"
-              id="destructive-checkbox">
-            </Checkbox>
-            <label for="destructive-checkbox" class="text-sm font-medium">Destructive</label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              variant="success"
-              id="success-checkbox">
-            </Checkbox>
-            <label for="success-checkbox" class="text-sm font-medium">Success</label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              variant="warning"
-              id="warning-checkbox">
-            </Checkbox>
-            <label for="warning-checkbox" class="text-sm font-medium">Warning</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Checkbox Sizes -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Sizes</h3>
-        <div class="flex items-center gap-6 flex-wrap">
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              size="sm"
-              id="sm-checkbox">
-            </Checkbox>
-            <label for="sm-checkbox" class="text-sm font-medium">Small</label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              size="default"
-              id="default-size-checkbox">
-            </Checkbox>
-            <label for="default-size-checkbox" class="text-sm font-medium">Default</label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              size="lg"
-              id="lg-checkbox">
-            </Checkbox>
-            <label for="lg-checkbox" class="text-sm font-medium">Large</label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              size="xl"
-              id="xl-checkbox">
-            </Checkbox>
-            <label for="xl-checkbox" class="text-sm font-medium">Extra Large</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Disabled State -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Disabled State</h3>
-        <div class="flex items-center gap-4">
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="disabledCheckbox" 
-              [disabled]="true"
-              id="disabled-unchecked">
-            </Checkbox>
-            <label for="disabled-unchecked" class="text-sm font-medium">Disabled (Unchecked)</label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="notificationsEnabled" 
-              [disabled]="true"
-              id="disabled-checked">
-            </Checkbox>
-            <label for="disabled-checked" class="text-sm font-medium">Disabled (Checked)</label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Indeterminate State -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Indeterminate State</h3>
-        <div class="flex items-center space-x-2">
-          <Checkbox 
-            [(ngModel)]="indeterminateCheckbox" 
-            [indeterminate]="true"
-            id="indeterminate-checkbox">
-          </Checkbox>
-          <label for="indeterminate-checkbox" class="text-sm font-medium">
-            Indeterminate State
-          </label>
-        </div>
-      </div>
-
-      <!-- Form Example -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Form Example</h3>
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="termsAccepted" 
-              id="terms-checkbox">
-            </Checkbox>
-            <label for="terms-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-              Accept terms and conditions
-            </label>
-          </div>
-          <p class="text-sm text-muted-foreground">
-            By checking this box, you agree to our terms of service and privacy policy.
-          </p>
-        </div>
-      </div>
-
-      <!-- Feature Selection Example -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Feature Selection</h3>
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="notificationsEnabled" 
-              id="notifications-checkbox">
-            </Checkbox>
-            <label for="notifications-checkbox" class="text-sm font-medium leading-none">
-              Enable notifications
-            </label>
-          </div>
-          <p class="text-sm text-muted-foreground">
-            You can enable or disable notifications at any time.
-          </p>
-
-          <div class="mt-4 space-y-2">
+    <!-- Checkbox Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
+      <div class="space-y-6">
+        <!-- Basic Checkbox -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
+          <div class="flex items-center gap-4">
             <div class="flex items-center space-x-2">
-              <Checkbox 
-                [(ngModel)]="featureA" 
-                id="feature-a">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                id="basic-checkbox">
               </Checkbox>
-              <label for="feature-a" class="text-sm font-medium">Feature A</label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox 
-                [(ngModel)]="featureB" 
-                id="feature-b">
-              </Checkbox>
-              <label for="feature-b" class="text-sm font-medium">Feature B</label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox 
-                [(ngModel)]="featureC" 
-                id="feature-c">
-              </Checkbox>
-              <label for="feature-c" class="text-sm font-medium">Feature C</label>
+              <label for="basic-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Basic Checkbox
+              </label>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Accessibility Features -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Accessibility Features</h3>
-        <div class="space-y-3">
+        <!-- Checkbox Variants -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Variants</h3>
+          <div class="flex items-center gap-6 flex-wrap">
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                variant="default"
+                id="default-checkbox">
+              </Checkbox>
+              <label for="default-checkbox" class="text-sm font-medium">Default</label>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                variant="destructive"
+                id="destructive-checkbox">
+              </Checkbox>
+              <label for="destructive-checkbox" class="text-sm font-medium">Destructive</label>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                variant="success"
+                id="success-checkbox">
+              </Checkbox>
+              <label for="success-checkbox" class="text-sm font-medium">Success</label>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                variant="warning"
+                id="warning-checkbox">
+              </Checkbox>
+              <label for="warning-checkbox" class="text-sm font-medium">Warning</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox Sizes -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Sizes</h3>
+          <div class="flex items-center gap-6 flex-wrap">
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                size="sm"
+                id="sm-checkbox">
+              </Checkbox>
+              <label for="sm-checkbox" class="text-sm font-medium">Small</label>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                size="default"
+                id="default-size-checkbox">
+              </Checkbox>
+              <label for="default-size-checkbox" class="text-sm font-medium">Default</label>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                size="lg"
+                id="lg-checkbox">
+              </Checkbox>
+              <label for="lg-checkbox" class="text-sm font-medium">Large</label>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                size="xl"
+                id="xl-checkbox">
+              </Checkbox>
+              <label for="xl-checkbox" class="text-sm font-medium">Extra Large</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled State -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Disabled State</h3>
+          <div class="flex items-center gap-4">
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="disabledCheckbox"
+                [disabled]="true"
+                id="disabled-unchecked">
+              </Checkbox>
+              <label for="disabled-unchecked" class="text-sm font-medium">Disabled (Unchecked)</label>
+            </div>
+
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="notificationsEnabled"
+                [disabled]="true"
+                id="disabled-checked">
+              </Checkbox>
+              <label for="disabled-checked" class="text-sm font-medium">Disabled (Checked)</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indeterminate State -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Indeterminate State</h3>
           <div class="flex items-center space-x-2">
-            <Checkbox 
-              [(ngModel)]="basicCheckbox" 
-              id="accessible-checkbox"
-              [accessibility]="{
+            <Checkbox
+              [(ngModel)]="indeterminateCheckbox"
+              [indeterminate]="true"
+              id="indeterminate-checkbox">
+            </Checkbox>
+            <label for="indeterminate-checkbox" class="text-sm font-medium">
+              Indeterminate State
+            </label>
+          </div>
+        </div>
+
+        <!-- Form Example -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Form Example</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="termsAccepted"
+                id="terms-checkbox">
+              </Checkbox>
+              <label for="terms-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Accept terms and conditions
+              </label>
+            </div>
+            <p class="text-sm text-muted-foreground">
+              By checking this box, you agree to our terms of service and privacy policy.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature Selection Example -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Feature Selection</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="notificationsEnabled"
+                id="notifications-checkbox">
+              </Checkbox>
+              <label for="notifications-checkbox" class="text-sm font-medium leading-none">
+                Enable notifications
+              </label>
+            </div>
+            <p class="text-sm text-muted-foreground">
+              You can enable or disable notifications at any time.
+            </p>
+
+            <div class="mt-4 space-y-2">
+              <div class="flex items-center space-x-2">
+                <Checkbox
+                  [(ngModel)]="featureA"
+                  id="feature-a">
+                </Checkbox>
+                <label for="feature-a" class="text-sm font-medium">Feature A</label>
+              </div>
+              <div class="flex items-center space-x-2">
+                <Checkbox
+                  [(ngModel)]="featureB"
+                  id="feature-b">
+                </Checkbox>
+                <label for="feature-b" class="text-sm font-medium">Feature B</label>
+              </div>
+              <div class="flex items-center space-x-2">
+                <Checkbox
+                  [(ngModel)]="featureC"
+                  id="feature-c">
+                </Checkbox>
+                <label for="feature-c" class="text-sm font-medium">Feature C</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accessibility Features -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Accessibility Features</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <Checkbox
+                [(ngModel)]="basicCheckbox"
+                id="accessible-checkbox"
+                [accessibility]="{
                 ariaLabel: 'Custom aria label',
                 ariaDescription: 'This checkbox has enhanced accessibility features'
               }">
-            </Checkbox>
-            <label for="accessible-checkbox" class="text-sm font-medium">
-              Checkbox with Accessibility Features
-            </label>
+              </Checkbox>
+              <label for="accessible-checkbox" class="text-sm font-medium">
+                Checkbox with Accessibility Features
+              </label>
+            </div>
+            <p class="text-sm text-muted-foreground">
+              This checkbox includes ARIA labels and descriptions for better screen reader support.
+            </p>
           </div>
-          <p class="text-sm text-muted-foreground">
-            This checkbox includes ARIA labels and descriptions for better screen reader support.
-          </p>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- AlertDialog Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">AlertDialog Component</h2>
+    <!-- AlertDialog Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">AlertDialog Component</h2>
 
-    <div class="space-y-6">
-      <!-- Basic AlertDialog -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Basic AlertDialog</h3>
-        <div class="flex items-center gap-3 flex-wrap">
-          <Button variant="destructive" (buttonClick)="openDeleteDialog()">
-            Delete Account
-          </Button>
+      <div class="space-y-6">
+        <!-- Basic AlertDialog -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Basic AlertDialog</h3>
+          <div class="flex items-center gap-3 flex-wrap">
+            <Button variant="destructive" (buttonClick)="openDeleteDialog()">
+              Delete Account
+            </Button>
 
-          <Button variant="outline" (buttonClick)="openLogoutDialog()">
-            Logout
-          </Button>
+            <Button variant="outline" (buttonClick)="openLogoutDialog()">
+              Logout
+            </Button>
 
-          <Button variant="default" (buttonClick)="openConfirmDialog()">
-            Confirm Action
-          </Button>
+            <Button variant="default" (buttonClick)="openConfirmDialog()">
+              Confirm Action
+            </Button>
+          </div>
         </div>
-      </div>
 
-      <!-- Delete Confirmation Dialog -->
-      <AlertDialog
-        [isOpen]="isDeleteDialogOpen()"
-        (openChange)="isDeleteDialogOpen.set($event)"
-        [accessibility]="{
+        <!-- Delete Confirmation Dialog -->
+        <AlertDialog
+          [isOpen]="isDeleteDialogOpen()"
+          (openChange)="isDeleteDialogOpen.set($event)"
+          [accessibility]="{
           ariaLabel: 'Delete account confirmation',
           ariaLabelledBy: 'delete-title',
           ariaDescribedBy: 'delete-description',
           role: 'alertdialog',
           announceText: 'Delete account confirmation dialog opened'
         }">
-        <AlertDialogHeader>
-          <AlertDialogTitle id="delete-title">Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription id="delete-description">
-            This action cannot be undone. This will permanently delete your account
-            and remove your data from our servers.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel (cancelClick)="cancelDialog('delete')">
-            Cancel
-          </AlertDialogCancel>
-          <AlertDialogAction
-            variant="destructive"
-            (actionClick)="handleDelete()">
-            Delete Account
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialog>
+          <AlertDialogHeader>
+            <AlertDialogTitle id="delete-title">Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription id="delete-description">
+              This action cannot be undone. This will permanently delete your account
+              and remove your data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel (cancelClick)="cancelDialog('delete')">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              variant="destructive"
+              (actionClick)="handleDelete()">
+              Delete Account
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialog>
 
-      <!-- Logout Confirmation Dialog -->
-      <AlertDialog
-        [isOpen]="isLogoutDialogOpen()"
-        (openChange)="isLogoutDialogOpen.set($event)"
-        [accessibility]="{
+        <!-- Logout Confirmation Dialog -->
+        <AlertDialog
+          [isOpen]="isLogoutDialogOpen()"
+          (openChange)="isLogoutDialogOpen.set($event)"
+          [accessibility]="{
           ariaLabel: 'Logout confirmation',
           ariaLabelledBy: 'logout-title',
           ariaDescribedBy: 'logout-description',
           role: 'dialog'
         }">
-        <AlertDialogHeader>
-          <AlertDialogTitle id="logout-title">Sign out of your account?</AlertDialogTitle>
-          <AlertDialogDescription id="logout-description">
-            You will need to sign in again to access your account.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel (cancelClick)="cancelDialog('logout')">
-            Stay signed in
-          </AlertDialogCancel>
-          <AlertDialogAction
-            variant="secondary"
-            (actionClick)="handleLogout()">
-            Sign out
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialog>
+          <AlertDialogHeader>
+            <AlertDialogTitle id="logout-title">Sign out of your account?</AlertDialogTitle>
+            <AlertDialogDescription id="logout-description">
+              You will need to sign in again to access your account.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel (cancelClick)="cancelDialog('logout')">
+              Stay signed in
+            </AlertDialogCancel>
+            <AlertDialogAction
+              variant="secondary"
+              (actionClick)="handleLogout()">
+              Sign out
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialog>
 
-      <!-- Generic Confirmation Dialog -->
-      <AlertDialog
-        [isOpen]="isConfirmDialogOpen()"
-        (openChange)="isConfirmDialogOpen.set($event)"
-        [preventCloseOnOverlayClick]="true"
-        [accessibility]="{
+        <!-- Generic Confirmation Dialog -->
+        <AlertDialog
+          [isOpen]="isConfirmDialogOpen()"
+          (openChange)="isConfirmDialogOpen.set($event)"
+          [preventCloseOnOverlayClick]="true"
+          [accessibility]="{
           ariaLabel: 'Action confirmation',
           ariaLabelledBy: 'confirm-title',
           ariaDescribedBy: 'confirm-description',
           role: 'alertdialog',
           ariaLive: 'assertive'
         }">
-        <AlertDialogHeader>
-          <AlertDialogTitle id="confirm-title">Confirm your action</AlertDialogTitle>
-          <AlertDialogDescription id="confirm-description">
-            Please confirm that you want to proceed with this action. This dialog
-            cannot be dismissed by clicking outside.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel (cancelClick)="cancelDialog('confirm')">
-            Cancel
-          </AlertDialogCancel>
-          <AlertDialogAction
-            variant="default"
-            (actionClick)="handleConfirm()">
-            Continue
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialog>
-    </div>
-  </div>
-
-  <!-- Accordion Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Accordion Component</h2>
-
-    <div class="space-y-6">
-      <div>
-        <h3 class="text-md font-medium mb-2">Single Mode (Collapsible)</h3>
-        <Accordion type="single" [collapsible]="true" class="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger>Is it accessible?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern and supports keyboard navigation.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-2">
-            <AccordionTrigger>Is it styled?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It comes with default styles that match the other components' aesthetic.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-3">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It's animated by default with smooth transitions when expanding and collapsing.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
-
-      <div>
-        <h3 class="text-md font-medium mb-2">Multiple Mode</h3>
-        <Accordion type="multiple" class="w-full">
-          <AccordionItem value="multi-1">
-            <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
-            <AccordionContent>
-              Yes! In multiple mode, you can have multiple accordion items open at the same time.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="multi-2">
-            <AccordionTrigger>How does keyboard navigation work?</AccordionTrigger>
-            <AccordionContent>
-              Use Arrow keys to navigate between triggers, Home/End for first/last item, and Enter/Space to toggle.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="multi-3">
-            <AccordionTrigger>What about screen readers?</AccordionTrigger>
-            <AccordionContent>
-              Each trigger has proper ARIA attributes and the content regions are properly labeled for screen readers.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+          <AlertDialogHeader>
+            <AlertDialogTitle id="confirm-title">Confirm your action</AlertDialogTitle>
+            <AlertDialogDescription id="confirm-description">
+              Please confirm that you want to proceed with this action. This dialog
+              cannot be dismissed by clicking outside.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel (cancelClick)="cancelDialog('confirm')">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              variant="default"
+              (actionClick)="handleConfirm()">
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialog>
       </div>
     </div>
-  </div>
 
-  <!-- Breadcrumb Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Breadcrumb Component</h2>
-    <div class="space-y-6">
-      <!-- Basic Breadcrumb -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Basic Navigation</h3>
-        <Breadcrumb [accessibility]="{
+    <!-- Accordion Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Accordion Component</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-md font-medium mb-2">Single Mode (Collapsible)</h3>
+          <Accordion type="single" [collapsible]="true" class="w-full">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It adheres to the WAI-ARIA design pattern and supports keyboard navigation.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it styled?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It comes with default styles that match the other components' aesthetic.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it animated?</AccordionTrigger>
+              <AccordionContent>
+                Yes. It's animated by default with smooth transitions when expanding and collapsing.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+
+        <div>
+          <h3 class="text-md font-medium mb-2">Multiple Mode</h3>
+          <Accordion type="multiple" class="w-full">
+            <AccordionItem value="multi-1">
+              <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
+              <AccordionContent>
+                Yes! In multiple mode, you can have multiple accordion items open at the same time.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="multi-2">
+              <AccordionTrigger>How does keyboard navigation work?</AccordionTrigger>
+              <AccordionContent>
+                Use Arrow keys to navigate between triggers, Home/End for first/last item, and Enter/Space to toggle.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="multi-3">
+              <AccordionTrigger>What about screen readers?</AccordionTrigger>
+              <AccordionContent>
+                Each trigger has proper ARIA attributes and the content regions are properly labeled for screen readers.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breadcrumb Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Breadcrumb Component</h2>
+      <div class="space-y-6">
+        <!-- Basic Breadcrumb -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Basic Navigation</h3>
+          <Breadcrumb [accessibility]="{
           ariaLabel: 'Basic navigation breadcrumb',
           ariaLive: 'polite'
         }">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/" [accessibility]="{
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/" [accessibility]="{
                 ariaLabel: 'Navigate to home page'
               }">
-                Home
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator></BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/docs" [accessibility]="{
+                  Home
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator></BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/docs" [accessibility]="{
                 ariaLabel: 'Navigate to documentation'
               }">
-                Documentation
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator></BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbPage [accessibility]="{
+                  Documentation
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator></BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage [accessibility]="{
                 ariaLabel: 'Current page: Components'
               }">
-                Components
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+                  Components
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
 
-      <!-- With Custom Separator -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Custom Separator</h3>
-        <Breadcrumb [accessibility]="{
+        <!-- With Custom Separator -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Custom Separator</h3>
+          <Breadcrumb [accessibility]="{
           ariaLabel: 'Custom separator breadcrumb'
         }">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">
-                Home
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator [customSeparator]="true">
-              <span class="text-muted-foreground">/</span>
-            </BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/products">
-                Products
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator [customSeparator]="true">
-              <span class="text-muted-foreground">/</span>
-            </BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbPage>
-                Laptops
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">
+                  Home
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator [customSeparator]="true">
+                <span class="text-muted-foreground">/</span>
+              </BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/products">
+                  Products
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator [customSeparator]="true">
+                <span class="text-muted-foreground">/</span>
+              </BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage>
+                  Laptops
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
 
-      <!-- With Ellipsis (Collapsed) -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Collapsed Navigation</h3>
-        <Breadcrumb [accessibility]="{
+        <!-- With Ellipsis (Collapsed) -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Collapsed Navigation</h3>
+          <Breadcrumb [accessibility]="{
           ariaLabel: 'Collapsed navigation breadcrumb'
         }">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">
-                Home
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator></BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbEllipsis></BreadcrumbEllipsis>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator></BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/components">
-                Components
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator></BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbPage>
-                Breadcrumb
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">
+                  Home
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator></BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbEllipsis></BreadcrumbEllipsis>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator></BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/components">
+                  Components
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator></BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage>
+                  Breadcrumb
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
 
-      <!-- Interactive Breadcrumb -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Interactive Links</h3>
-        <Breadcrumb [accessibility]="{
+        <!-- Interactive Breadcrumb -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Interactive Links</h3>
+          <Breadcrumb [accessibility]="{
           ariaLabel: 'Interactive breadcrumb navigation'
         }">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink
-                (linkClick)="onBreadcrumbClick('home')"
-                [accessibility]="{
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink
+                  (linkClick)="onBreadcrumbClick('home')"
+                  [accessibility]="{
                   ariaLabel: 'Click to navigate to home'
                 }">
-                🏠 Home
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator></BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbLink
-                (linkClick)="onBreadcrumbClick('settings')"
-                [accessibility]="{
+                  🏠 Home
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator></BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbLink
+                  (linkClick)="onBreadcrumbClick('settings')"
+                  [accessibility]="{
                   ariaLabel: 'Click to navigate to settings'
                 }">
-                ⚙️ Settings
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator></BreadcrumbSeparator>
-            <BreadcrumbItem>
-              <BreadcrumbPage [accessibility]="{
+                  ⚙️ Settings
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator></BreadcrumbSeparator>
+              <BreadcrumbItem>
+                <BreadcrumbPage [accessibility]="{
                 ariaLabel: 'Current page: Profile settings'
               }">
-                👤 Profile
-              </BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+                  👤 Profile
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Calendar Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Calendar Component</h2>
-    <div class="space-y-6">
-      <!-- Basic Calendar -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Basic Calendar</h3>
-        <Calendar
-          [selectedDate]="selectedDate()"
-          [currentMonth]="calendarMonth()"
-          (dateSelect)="onDateSelect($event)"
-          (monthChange)="onMonthChange($event)"
-          [accessibility]="{
-            label: 'Date picker calendar',
-            describedBy: 'calendar-help'
-          }">
-        </Calendar>
-        <p id="calendar-help" class="text-sm text-muted-foreground mt-2">
-          Use arrow keys to navigate, Enter or Space to select a date
-        </p>
-        @if (selectedDate()) {
-          <p class="text-sm mt-2">
-            <strong>Selected:</strong> {{ selectedDate()?.toLocaleDateString() }}
-          </p>
-        }
-      </div>
-
-      <!-- Calendar with Constraints -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Calendar with Date Constraints</h3>
-        <Calendar
-          [minDate]="getMinDate()"
-          [maxDate]="getMaxDate()"
-          [disabledDaysOfWeek]="[0, 6]"
-          [selectedDate]="constrainedDate()"
-          [currentMonth]="constrainedMonth()"
-          (dateSelect)="onConstrainedDateSelect($event)"
-          (monthChange)="onConstrainedMonthChange($event)"
-          [accessibility]="{
-            label: 'Constrained date picker - weekends disabled',
-            describedBy: 'constrained-calendar-help'
-          }">
-        </Calendar>
-        <p id="constrained-calendar-help" class="text-sm text-muted-foreground mt-2">
-          Only weekdays are selectable, within the next 30 days
-        </p>
-        @if (constrainedDate()) {
-          <p class="text-sm mt-2">
-            <strong>Selected:</strong> {{ constrainedDate()?.toLocaleDateString() }}
-          </p>
-        }
-      </div>
-
-      <!-- Small Calendar -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Small Calendar</h3>
-        <Calendar
-          size="sm"
-          [selectedDate]="compactDate()"
-          [currentMonth]="compactMonth()"
-          (dateSelect)="onCompactDateSelect($event)"
-          (monthChange)="onCompactMonthChange($event)"
-          [accessibility]="{
-            label: 'Compact date picker'
-          }">
-        </Calendar>
-        @if (compactDate()) {
-          <p class="text-sm mt-2">
-            <strong>Selected:</strong> {{ compactDate()?.toLocaleDateString() }}
-          </p>
-        }
-      </div>
-
-      <!-- Calendar with Actions -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Calendar with Actions</h3>
-        <div class="space-y-3">
-          <div class="flex gap-2">
-            <button
-              type="button"
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-              (click)="goToToday()">
-              📅 Go to Today
-            </button>
-            <button
-              type="button"
-              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
-              (click)="clearSelection()">
-              🗑️ Clear Selection
-            </button>
-          </div>
+    <!-- Calendar Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Calendar Component</h2>
+      <div class="space-y-6">
+        <!-- Basic Calendar -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Basic Calendar</h3>
           <Calendar
             [selectedDate]="selectedDate()"
             [currentMonth]="calendarMonth()"
             (dateSelect)="onDateSelect($event)"
             (monthChange)="onMonthChange($event)"
             [accessibility]="{
-              label: 'Interactive date picker with action buttons'
-            }">
+            label: 'Date picker calendar',
+            describedBy: 'calendar-help'
+          }">
           </Calendar>
+          <p id="calendar-help" class="text-sm text-muted-foreground mt-2">
+            Use arrow keys to navigate, Enter or Space to select a date
+          </p>
+          @if (selectedDate()) {
+            <p class="text-sm mt-2">
+              <strong>Selected:</strong> {{ selectedDate()?.toLocaleDateString() }}
+            </p>
+          }
         </div>
-      </div>
 
-      <!-- Date Range Picker -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Date Range Picker</h3>
-        <div class="p-4 bg-background border border-border rounded-lg">
+        <!-- Calendar with Constraints -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Calendar with Date Constraints</h3>
           <Calendar
-            selectionMode="range"
-            [currentMonth]="rangeCalendarMonth()"
-            [selectedRange]="selectedRange()"
             [minDate]="getMinDate()"
             [maxDate]="getMaxDate()"
-            (rangeSelect)="onRangeSelect($event)"
-            (monthChange)="onRangeMonthChange($event)"
+            [disabledDaysOfWeek]="[0, 6]"
+            [selectedDate]="constrainedDate()"
+            [currentMonth]="constrainedMonth()"
+            (dateSelect)="onConstrainedDateSelect($event)"
+            (monthChange)="onConstrainedMonthChange($event)"
             [accessibility]="{
-              label: 'Date range picker - select start and end dates'
-            }">
+            label: 'Constrained date picker - weekends disabled',
+            describedBy: 'constrained-calendar-help'
+          }">
           </Calendar>
+          <p id="constrained-calendar-help" class="text-sm text-muted-foreground mt-2">
+            Only weekdays are selectable, within the next 30 days
+          </p>
+          @if (constrainedDate()) {
+            <p class="text-sm mt-2">
+              <strong>Selected:</strong> {{ constrainedDate()?.toLocaleDateString() }}
+            </p>
+          }
+        </div>
 
-          <!-- Range Selection Status -->
-          <div class="mt-4 p-3 bg-muted/50 rounded-md border border-border/50">
-            <div class="text-sm font-medium text-foreground mb-2">Range Selection Status:</div>
-            @if (!selectedRange().start && !selectedRange().end) {
-              <div class="text-sm text-muted-foreground">Click a date to start selecting a range</div>
-            } @else if (selectedRange().start && !selectedRange().end) {
-              <div class="text-sm space-y-1">
-                <p><span class="font-medium text-foreground">Start:</span> <span
-                  class="text-primary">{{ selectedRange().start?.toLocaleDateString() }}</span></p>
-                <p class="text-muted-foreground text-xs">Click another date to complete the range</p>
-              </div>
-            } @else if (selectedRange().start && selectedRange().end) {
-              <div class="text-sm space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="text-foreground font-medium">Selected Range:</span>
-                  <span class="text-primary font-medium">
-                    {{ selectedRange().start?.toLocaleDateString() }} → {{ selectedRange().end?.toLocaleDateString() }}
-                  </span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-muted-foreground">Duration:</span>
-                  <span class="text-primary font-medium">
-                    {{ Math.ceil((selectedRange().end!.getTime() - selectedRange().start!.getTime()) / (1000 * 60 * 60 * 24)) + 1 }}
-                    days
-                  </span>
-                </div>
-                <button
-                  (click)="clearRange()"
-                  class="text-xs px-2 py-1 bg-destructive/10 text-destructive hover:bg-destructive/20 rounded-sm transition-colors">
-                  Clear Range
-                </button>
-              </div>
-            }
+        <!-- Small Calendar -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Small Calendar</h3>
+          <Calendar
+            size="sm"
+            [selectedDate]="compactDate()"
+            [currentMonth]="compactMonth()"
+            (dateSelect)="onCompactDateSelect($event)"
+            (monthChange)="onCompactMonthChange($event)"
+            [accessibility]="{
+            label: 'Compact date picker'
+          }">
+          </Calendar>
+          @if (compactDate()) {
+            <p class="text-sm mt-2">
+              <strong>Selected:</strong> {{ compactDate()?.toLocaleDateString() }}
+            </p>
+          }
+        </div>
+
+        <!-- Calendar with Actions -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Calendar with Actions</h3>
+          <div class="space-y-3">
+            <div class="flex gap-2">
+              <button
+                type="button"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+                (click)="goToToday()">
+                📅 Go to Today
+              </button>
+              <button
+                type="button"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+                (click)="clearSelection()">
+                🗑️ Clear Selection
+              </button>
+            </div>
+            <Calendar
+              [selectedDate]="selectedDate()"
+              [currentMonth]="calendarMonth()"
+              (dateSelect)="onDateSelect($event)"
+              (monthChange)="onMonthChange($event)"
+              [accessibility]="{
+              label: 'Interactive date picker with action buttons'
+            }">
+            </Calendar>
           </div>
         </div>
-      </div>
 
-      <!-- Calendar with Time Picker -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Calendar with Time Picker</h3>
-        <Calendar
-          [selectedDate]="timePickerDate()"
-          [currentMonth]="timePickerMonth()"
-          [selectedTime]="selectedTime()"
-          [showTimePicker]="true"
-          timeFormat="24h"
-          [minuteStep]="15"
-          (dateSelect)="onTimePickerDateSelect($event)"
-          (monthChange)="onTimePickerMonthChange($event)"
-          (timeChange)="onTimeChange($event)"
-          [accessibility]="{
+        <!-- Date Range Picker -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Date Range Picker</h3>
+          <div class="p-4 bg-background border border-border rounded-lg">
+            <Calendar
+              selectionMode="range"
+              [currentMonth]="rangeCalendarMonth()"
+              [selectedRange]="selectedRange()"
+              [minDate]="getMinDate()"
+              [maxDate]="getMaxDate()"
+              (rangeSelect)="onRangeSelect($event)"
+              (monthChange)="onRangeMonthChange($event)"
+              [accessibility]="{
+              label: 'Date range picker - select start and end dates'
+            }">
+            </Calendar>
+
+            <!-- Range Selection Status -->
+            <div class="mt-4 p-3 bg-muted/50 rounded-md border border-border/50">
+              <div class="text-sm font-medium text-foreground mb-2">Range Selection Status:</div>
+              @if (!selectedRange().start && !selectedRange().end) {
+                <div class="text-sm text-muted-foreground">Click a date to start selecting a range</div>
+              } @else if (selectedRange().start && !selectedRange().end) {
+                <div class="text-sm space-y-1">
+                  <p><span class="font-medium text-foreground">Start:</span> <span
+                    class="text-primary">{{ selectedRange().start?.toLocaleDateString() }}</span></p>
+                  <p class="text-muted-foreground text-xs">Click another date to complete the range</p>
+                </div>
+              } @else if (selectedRange().start && selectedRange().end) {
+                <div class="text-sm space-y-2">
+                  <div class="flex items-center gap-2">
+                    <span class="text-foreground font-medium">Selected Range:</span>
+                    <span class="text-primary font-medium">
+                    {{ selectedRange().start?.toLocaleDateString() }} → {{ selectedRange().end?.toLocaleDateString() }}
+                  </span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-muted-foreground">Duration:</span>
+                    <span class="text-primary font-medium">
+                    {{ Math.ceil((selectedRange().end!.getTime() - selectedRange().start!.getTime()) / (1000 * 60 * 60 * 24)) + 1 }}
+                      days
+                  </span>
+                  </div>
+                  <button
+                    (click)="clearRange()"
+                    class="text-xs px-2 py-1 bg-destructive/10 text-destructive hover:bg-destructive/20 rounded-sm transition-colors">
+                    Clear Range
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Calendar with Time Picker -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Calendar with Time Picker</h3>
+          <Calendar
+            [selectedDate]="timePickerDate()"
+            [currentMonth]="timePickerMonth()"
+            [selectedTime]="selectedTime()"
+            [showTimePicker]="true"
+            timeFormat="24h"
+            [minuteStep]="15"
+            (dateSelect)="onTimePickerDateSelect($event)"
+            (monthChange)="onTimePickerMonthChange($event)"
+            (timeChange)="onTimeChange($event)"
+            [accessibility]="{
             label: 'Date and time picker'
           }">
-        </Calendar>
-        @if (timePickerDate() && selectedTime()) {
-          <p class="text-sm mt-2">
-            <strong>Selected:</strong>
-            {{ timePickerDate()?.toLocaleDateString() }} at
-            {{ selectedTime().hours.toString().padStart(2, '0') }}
-            :{{ selectedTime().minutes.toString().padStart(2, '0') }}
-          </p>
-        }
-      </div>
+          </Calendar>
+          @if (timePickerDate() && selectedTime()) {
+            <p class="text-sm mt-2">
+              <strong>Selected:</strong>
+              {{ timePickerDate()?.toLocaleDateString() }} at
+              {{ selectedTime().hours.toString().padStart(2, '0') }}
+                                                           :{{ selectedTime().minutes.toString().padStart(2, '0') }}
+            </p>
+          }
+        </div>
 
-      <!-- 12-Hour Time Format Calendar -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Calendar with 12-Hour Time</h3>
-        <Calendar
-          size="sm"
-          [selectedDate]="time12hDate()"
-          [currentMonth]="time12hMonth()"
-          [selectedTime]="selectedTime12h()"
-          [showTimePicker]="true"
-          timeFormat="12h"
-          [minuteStep]="30"
-          (dateSelect)="onTime12hDateSelect($event)"
-          (monthChange)="onTime12hMonthChange($event)"
-          (timeChange)="onTime12hChange($event)"
-          [accessibility]="{
+        <!-- 12-Hour Time Format Calendar -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Calendar with 12-Hour Time</h3>
+          <Calendar
+            size="sm"
+            [selectedDate]="time12hDate()"
+            [currentMonth]="time12hMonth()"
+            [selectedTime]="selectedTime12h()"
+            [showTimePicker]="true"
+            timeFormat="12h"
+            [minuteStep]="30"
+            (dateSelect)="onTime12hDateSelect($event)"
+            (monthChange)="onTime12hMonthChange($event)"
+            (timeChange)="onTime12hChange($event)"
+            [accessibility]="{
             label: 'Compact date and time picker with 12-hour format'
           }">
-        </Calendar>
-        @if (time12hDate() && selectedTime12h()) {
-          <p class="text-sm mt-2">
-            <strong>Selected:</strong>
-            {{ time12hDate()?.toLocaleDateString() }} at
-            {{ selectedTime12h().hours > 12 ? (selectedTime12h().hours - 12).toString().padStart(2, '0') : selectedTime12h().hours.toString().padStart(2, '0') }}
-            :{{ selectedTime12h().minutes.toString().padStart(2, '0') }} {{ selectedTime12h().hours >= 12 ? 'PM' : 'AM' }}
-          </p>
-        }
+          </Calendar>
+          @if (time12hDate() && selectedTime12h()) {
+            <p class="text-sm mt-2">
+              <strong>Selected:</strong>
+              {{ time12hDate()?.toLocaleDateString() }} at
+              {{ selectedTime12h().hours > 12 ? (selectedTime12h().hours - 12).toString().padStart(2, '0') : selectedTime12h().hours.toString().padStart(2, '0') }}
+                                                        :{{ selectedTime12h().minutes.toString().padStart(2, '0') }} {{ selectedTime12h().hours >= 12 ? 'PM' : 'AM' }}
+            </p>
+          }
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Card Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Card Component</h2>
-    <div class="space-y-8">
+    <!-- Card Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Card Component</h2>
+      <div class="space-y-8">
 
-      <!-- Card Variants -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Card Variants</h3>
-        <div class="grid grid-cols-1 gap-4">
-          <!-- Default Card -->
-          <Card variant="default">
-            <CardHeader>
-              <div
-                class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3">
-                <span class="text-white text-xl">🏠</span>
-              </div>
-              <CardTitle>Default Card</CardTitle>
-              <CardDescription>Standard card with subtle border and shadow</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p class="text-sm text-muted-foreground">
-                Perfect for general content display with clean, minimal styling.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Default</span>
-            </CardFooter>
-          </Card>
-
-          <!-- Outline Card -->
-          <Card variant="outline">
-            <CardHeader>
-              <div
-                class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-3">
-                <span class="text-white text-xl">📋</span>
-              </div>
-              <CardTitle>Outline Card</CardTitle>
-              <CardDescription>Emphasized border for important content</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p class="text-sm text-muted-foreground">
-                Great for highlighting key information or call-to-action sections.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Outline</span>
-            </CardFooter>
-          </Card>
-
-          <!-- Elevated Card -->
-          <Card variant="elevated">
-            <CardHeader>
-              <div
-                class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-3">
-                <span class="text-white text-xl">⭐</span>
-              </div>
-              <CardTitle>Elevated Card</CardTitle>
-              <CardDescription>Enhanced shadow for premium content</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p class="text-sm text-muted-foreground">
-                Ideal for featured content, testimonials, or premium offerings.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Elevated</span>
-            </CardFooter>
-          </Card>
-        </div>
-      </div>
-
-      <!-- Product Cards -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Product Cards</h3>
-        <div class="grid grid-cols-1 gap-4">
-          <!-- Product Card 1 -->
-          <Card variant="default" class="overflow-hidden hover:shadow-lg transition-shadow">
-            <div class="aspect-video bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
-              <div class="text-center text-white">
-                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  💻
-                </div>
-                <p class="text-sm font-medium">Product Image</p>
-              </div>
-            </div>
-            <CardHeader>
-              <CardTitle class="text-lg">Premium Laptop</CardTitle>
-              <CardDescription>High-performance laptop for professionals</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Processor:</span>
-                  <span>Intel i7</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">RAM:</span>
-                  <span>16GB</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Storage:</span>
-                  <span>512GB SSD</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-primary">$1,299</span>
-              <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
-                Add to Cart
-              </button>
-            </CardFooter>
-          </Card>
-
-          <!-- Product Card 2 -->
-          <Card variant="outline" class="overflow-hidden hover:shadow-lg transition-shadow">
-            <div class="aspect-video bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-              <div class="text-center text-white">
-                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  📱
-                </div>
-                <p class="text-sm font-medium">Product Image</p>
-              </div>
-            </div>
-            <CardHeader>
-              <CardTitle class="text-lg">Smart Phone</CardTitle>
-              <CardDescription>Latest smartphone with advanced features</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Display:</span>
-                  <span>6.7" OLED</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Camera:</span>
-                  <span>108MP Triple</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Battery:</span>
-                  <span>5000mAh</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-primary">$899</span>
-              <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
-                Add to Cart
-              </button>
-            </CardFooter>
-          </Card>
-
-          <!-- Product Card 3 -->
-          <Card variant="elevated" class="overflow-hidden hover:shadow-xl transition-shadow">
-            <div
-              class="aspect-video bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center relative">
-              <div
-                class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold">
-                🔥 Hot
-              </div>
-              <div class="text-center text-white">
-                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  🎧
-                </div>
-                <p class="text-sm font-medium">Product Image</p>
-              </div>
-            </div>
-            <CardHeader>
-              <CardTitle class="text-lg">Wireless Headphones</CardTitle>
-              <CardDescription>Premium noise-canceling headphones</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Battery:</span>
-                  <span>30h Playback</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Connectivity:</span>
-                  <span>Bluetooth 5.0</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-muted-foreground">Features:</span>
-                  <span>ANC, Touch</span>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-primary">$349</span>
-              <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
-                Add to Cart
-              </button>
-            </CardFooter>
-          </Card>
-        </div>
-      </div>
-
-      <!-- Dashboard Cards -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Dashboard Cards</h3>
-        <div class="grid grid-cols-1 gap-4">
-          <!-- Metric Card 1 -->
-          <Card variant="default" class="hover:shadow-md transition-shadow">
-            <CardContent class="p-6">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm font-medium text-muted-foreground">Total Users</p>
-                  <p class="text-2xl font-bold">12,345</p>
-                  <p class="text-xs text-green-600 flex items-center mt-1">
-                    <span class="mr-1">📈</span>
-                    +12% from last month
-                  </p>
-                </div>
-                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span class="text-blue-600 text-xl">👥</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <!-- Metric Card 2 -->
-          <Card variant="default" class="hover:shadow-md transition-shadow">
-            <CardContent class="p-6">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm font-medium text-muted-foreground">Revenue</p>
-                  <p class="text-2xl font-bold">$89,432</p>
-                  <p class="text-xs text-green-600 flex items-center mt-1">
-                    <span class="mr-1">💰</span>
-                    +8% from last month
-                  </p>
-                </div>
-                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <span class="text-green-600 text-xl">💵</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <!-- Metric Card 3 -->
-          <Card variant="default" class="hover:shadow-md transition-shadow">
-            <CardContent class="p-6">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm font-medium text-muted-foreground">Orders</p>
-                  <p class="text-2xl font-bold">1,234</p>
-                  <p class="text-xs text-red-600 flex items-center mt-1">
-                    <span class="mr-1">📉</span>
-                    -3% from last month
-                  </p>
-                </div>
-                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <span class="text-purple-600 text-xl">🛍️</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <!-- Metric Card 4 -->
-          <Card variant="default" class="hover:shadow-md transition-shadow">
-            <CardContent class="p-6">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-sm font-medium text-muted-foreground">Conversion</p>
-                  <p class="text-2xl font-bold">3.4%</p>
-                  <p class="text-xs text-green-600 flex items-center mt-1">
-                    <span class="mr-1">🎯</span>
-                    +0.8% from last month
-                  </p>
-                </div>
-                <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <span class="text-orange-600 text-xl">📊</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      <!-- Profile Cards -->
-      <div>
-        <h3 class="text-md font-medium mb-3">Profile Cards</h3>
-        <div class="grid grid-cols-1 gap-4">
-          <!-- Team Member Card -->
-          <Card variant="default" class="text-center">
-            <CardHeader class="pb-2">
-              <div
-                class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-white text-2xl">👨‍💻</span>
-              </div>
-              <CardTitle class="text-xl">John Doe</CardTitle>
-              <CardDescription>Senior Frontend Developer</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p class="text-sm text-muted-foreground mb-4">
-                Passionate about creating beautiful and functional user interfaces with modern technologies.
-              </p>
-              <div class="flex justify-center space-x-2">
-                <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">React</span>
-                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Angular</span>
-                <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">TypeScript</span>
-              </div>
-            </CardContent>
-            <CardFooter class="justify-center">
-              <div class="flex space-x-2">
-                <button
-                  class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm hover:bg-blue-600">
-                  in
-                </button>
-                <button
-                  class="w-8 h-8 bg-gray-800 text-white rounded-full flex items-center justify-center text-sm hover:bg-gray-900">
-                  &#64;gmail.com
-                </button>
-              </div>
-            </CardFooter>
-          </Card>
-
-          <!-- Customer Testimonial -->
-          <Card variant="outline" class="relative">
-            <div class="absolute top-4 right-4 text-4xl opacity-20">"</div>
-            <CardHeader>
-              <div class="flex items-center space-x-3">
+        <!-- Card Variants -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Card Variants</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <!-- Default Card -->
+            <Card variant="default">
+              <CardHeader>
                 <div
-                  class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
-                  <span class="text-white">👩‍💼</span>
+                  class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3">
+                  <span class="text-white text-xl">🏠</span>
                 </div>
-                <div>
-                  <CardTitle class="text-lg">Sarah Johnson</CardTitle>
-                  <CardDescription>Product Manager at TechCorp</CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p class="text-sm text-muted-foreground italic">
-                "This component library has significantly improved our development speed. The quality and consistency
-                are outstanding!"
-              </p>
-            </CardContent>
-            <CardFooter>
-              <div class="flex items-center space-x-1">
-                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                <span class="text-xs text-muted-foreground ml-2">5.0 rating</span>
-              </div>
-            </CardFooter>
-          </Card>
+                <CardTitle>Default Card</CardTitle>
+                <CardDescription>Standard card with subtle border and shadow</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-muted-foreground">
+                  Perfect for general content display with clean, minimal styling.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Default</span>
+              </CardFooter>
+            </Card>
 
-          <!-- Achievement Card -->
-          <Card variant="filled" class="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
-            <CardHeader class="text-center">
-              <div
-                class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span class="text-white text-2xl">🏆</span>
-              </div>
-              <CardTitle class="text-xl text-yellow-800">Achievement Unlocked!</CardTitle>
-              <CardDescription class="text-yellow-700">Milestone Reached</CardDescription>
-            </CardHeader>
-            <CardContent class="text-center">
-              <p class="text-sm text-yellow-700 mb-3">
-                Congratulations! You've successfully completed 100 projects.
-              </p>
-              <div class="bg-yellow-200 rounded-full h-2 mb-2">
-                <div class="bg-yellow-500 h-2 rounded-full w-full"></div>
-              </div>
-              <span class="text-xs text-yellow-600">100/100 Projects Complete</span>
-            </CardContent>
-            <CardFooter class="justify-center">
-              <button class="px-4 py-2 bg-yellow-500 text-white rounded-md text-sm hover:bg-yellow-600">
-                View Details
-              </button>
-            </CardFooter>
-          </Card>
+            <!-- Outline Card -->
+            <Card variant="outline">
+              <CardHeader>
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-3">
+                  <span class="text-white text-xl">📋</span>
+                </div>
+                <CardTitle>Outline Card</CardTitle>
+                <CardDescription>Emphasized border for important content</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-muted-foreground">
+                  Great for highlighting key information or call-to-action sections.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Outline</span>
+              </CardFooter>
+            </Card>
+
+            <!-- Elevated Card -->
+            <Card variant="elevated">
+              <CardHeader>
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-3">
+                  <span class="text-white text-xl">⭐</span>
+                </div>
+                <CardTitle>Elevated Card</CardTitle>
+                <CardDescription>Enhanced shadow for premium content</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-muted-foreground">
+                  Ideal for featured content, testimonials, or premium offerings.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Elevated</span>
+              </CardFooter>
+            </Card>
+          </div>
         </div>
+
+        <!-- Product Cards -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Product Cards</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <!-- Product Card 1 -->
+            <Card variant="default" class="overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="aspect-video bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+                <div class="text-center text-white">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                    💻
+                  </div>
+                  <p class="text-sm font-medium">Product Image</p>
+                </div>
+              </div>
+              <CardHeader>
+                <CardTitle class="text-lg">Premium Laptop</CardTitle>
+                <CardDescription>High-performance laptop for professionals</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div class="space-y-2">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Processor:</span>
+                    <span>Intel i7</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">RAM:</span>
+                    <span>16GB</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Storage:</span>
+                    <span>512GB SSD</span>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-primary">$1,299</span>
+                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
+                  Add to Cart
+                </button>
+              </CardFooter>
+            </Card>
+
+            <!-- Product Card 2 -->
+            <Card variant="outline" class="overflow-hidden hover:shadow-lg transition-shadow">
+              <div class="aspect-video bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
+                <div class="text-center text-white">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                    📱
+                  </div>
+                  <p class="text-sm font-medium">Product Image</p>
+                </div>
+              </div>
+              <CardHeader>
+                <CardTitle class="text-lg">Smart Phone</CardTitle>
+                <CardDescription>Latest smartphone with advanced features</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div class="space-y-2">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Display:</span>
+                    <span>6.7" OLED</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Camera:</span>
+                    <span>108MP Triple</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Battery:</span>
+                    <span>5000mAh</span>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-primary">$899</span>
+                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
+                  Add to Cart
+                </button>
+              </CardFooter>
+            </Card>
+
+            <!-- Product Card 3 -->
+            <Card variant="elevated" class="overflow-hidden hover:shadow-xl transition-shadow">
+              <div
+                class="aspect-video bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center relative">
+                <div
+                  class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold">
+                  🔥 Hot
+                </div>
+                <div class="text-center text-white">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                    🎧
+                  </div>
+                  <p class="text-sm font-medium">Product Image</p>
+                </div>
+              </div>
+              <CardHeader>
+                <CardTitle class="text-lg">Wireless Headphones</CardTitle>
+                <CardDescription>Premium noise-canceling headphones</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div class="space-y-2">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Battery:</span>
+                    <span>30h Playback</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Connectivity:</span>
+                    <span>Bluetooth 5.0</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted-foreground">Features:</span>
+                    <span>ANC, Touch</span>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-primary">$349</span>
+                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
+                  Add to Cart
+                </button>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Dashboard Cards</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <!-- Metric Card 1 -->
+            <Card variant="default" class="hover:shadow-md transition-shadow">
+              <CardContent class="p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm font-medium text-muted-foreground">Total Users</p>
+                    <p class="text-2xl font-bold">12,345</p>
+                    <p class="text-xs text-green-600 flex items-center mt-1">
+                      <span class="mr-1">📈</span>
+                      +12% from last month
+                    </p>
+                  </div>
+                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <span class="text-blue-600 text-xl">👥</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <!-- Metric Card 2 -->
+            <Card variant="default" class="hover:shadow-md transition-shadow">
+              <CardContent class="p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm font-medium text-muted-foreground">Revenue</p>
+                    <p class="text-2xl font-bold">$89,432</p>
+                    <p class="text-xs text-green-600 flex items-center mt-1">
+                      <span class="mr-1">💰</span>
+                      +8% from last month
+                    </p>
+                  </div>
+                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <span class="text-green-600 text-xl">💵</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <!-- Metric Card 3 -->
+            <Card variant="default" class="hover:shadow-md transition-shadow">
+              <CardContent class="p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm font-medium text-muted-foreground">Orders</p>
+                    <p class="text-2xl font-bold">1,234</p>
+                    <p class="text-xs text-red-600 flex items-center mt-1">
+                      <span class="mr-1">📉</span>
+                      -3% from last month
+                    </p>
+                  </div>
+                  <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <span class="text-purple-600 text-xl">🛍️</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <!-- Metric Card 4 -->
+            <Card variant="default" class="hover:shadow-md transition-shadow">
+              <CardContent class="p-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-sm font-medium text-muted-foreground">Conversion</p>
+                    <p class="text-2xl font-bold">3.4%</p>
+                    <p class="text-xs text-green-600 flex items-center mt-1">
+                      <span class="mr-1">🎯</span>
+                      +0.8% from last month
+                    </p>
+                  </div>
+                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <span class="text-orange-600 text-xl">📊</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Profile Cards -->
+        <div>
+          <h3 class="text-md font-medium mb-3">Profile Cards</h3>
+          <div class="grid grid-cols-1 gap-4">
+            <!-- Team Member Card -->
+            <Card variant="default" class="text-center">
+              <CardHeader class="pb-2">
+                <div
+                  class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-white text-2xl">👨‍💻</span>
+                </div>
+                <CardTitle class="text-xl">John Doe</CardTitle>
+                <CardDescription>Senior Frontend Developer</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-muted-foreground mb-4">
+                  Passionate about creating beautiful and functional user interfaces with modern technologies.
+                </p>
+                <div class="flex justify-center space-x-2">
+                  <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">React</span>
+                  <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Angular</span>
+                  <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">TypeScript</span>
+                </div>
+              </CardContent>
+              <CardFooter class="justify-center">
+                <div class="flex space-x-2">
+                  <button
+                    class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm hover:bg-blue-600">
+                    in
+                  </button>
+                  <button
+                    class="w-8 h-8 bg-gray-800 text-white rounded-full flex items-center justify-center text-sm hover:bg-gray-900">
+                    &#64;gmail.com
+                  </button>
+                </div>
+              </CardFooter>
+            </Card>
+
+            <!-- Customer Testimonial -->
+            <Card variant="outline" class="relative">
+              <div class="absolute top-4 right-4 text-4xl opacity-20">"</div>
+              <CardHeader>
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+                    <span class="text-white">👩‍💼</span>
+                  </div>
+                  <div>
+                    <CardTitle class="text-lg">Sarah Johnson</CardTitle>
+                    <CardDescription>Product Manager at TechCorp</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p class="text-sm text-muted-foreground italic">
+                  "This component library has significantly improved our development speed. The quality and consistency
+                  are outstanding!"
+                </p>
+              </CardContent>
+              <CardFooter>
+                <div class="flex items-center space-x-1">
+                  <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                  <span class="text-xs text-muted-foreground ml-2">5.0 rating</span>
+                </div>
+              </CardFooter>
+            </Card>
+
+            <!-- Achievement Card -->
+            <Card variant="filled" class="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
+              <CardHeader class="text-center">
+                <div
+                  class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span class="text-white text-2xl">🏆</span>
+                </div>
+                <CardTitle class="text-xl text-yellow-800">Achievement Unlocked!</CardTitle>
+                <CardDescription class="text-yellow-700">Milestone Reached</CardDescription>
+              </CardHeader>
+              <CardContent class="text-center">
+                <p class="text-sm text-yellow-700 mb-3">
+                  Congratulations! You've successfully completed 100 projects.
+                </p>
+                <div class="bg-yellow-200 rounded-full h-2 mb-2">
+                  <div class="bg-yellow-500 h-2 rounded-full w-full"></div>
+                </div>
+                <span class="text-xs text-yellow-600">100/100 Projects Complete</span>
+              </CardContent>
+              <CardFooter class="justify-center">
+                <button class="px-4 py-2 bg-yellow-500 text-white rounded-md text-sm hover:bg-yellow-600">
+                  View Details
+                </button>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+
       </div>
-
     </div>
-  </div>
 
-  <!-- Carousel Component Tests -->
-  <div>
-    <h2 class="text-lg font-semibold mb-4">Carousel Component</h2>
-    <div class="space-y-8">
+    <!-- Carousel Component Tests -->
+    <div>
+      <h2 class="text-lg font-semibold mb-4">Carousel Component</h2>
+      <div class="space-y-8">
 
-      <Carousel
-        [images]="[
+        <Carousel
+          [images]="[
     'https://via.assets.so/game.png?id=2&q=95&w=800&h=300&fit=fill',
     'https://via.assets.so/game.png?id=1&q=95&w=800&h=300&fit=fill',
     'https://via.assets.so/game.png?id=3&q=95&w=800&h=300&fit=fill'
   ]"
-        [width]="800"
-        [height]="400"
-        [interval]="5000"
-      />
+          [width]="800"
+          [height]="400"
+          [interval]="5000"
+        />
 
 
+      </div>
     </div>
   </div>
-</div>

@@ -24,6 +24,8 @@ async function listCommand() {
         '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card'],
         '🧭 Navigation': ['breadcrumb'],
         '💫 Overlays & Dialogs': ['alert-dialog'],
+        '🎨 Media & Display': ['carousel'],
+        '⚙️ User Interface': ['theme-switcher', 'checkbox', 'collapsible'],
         '📅 Featured Component': ['calendar']
     };
     for (const [category, componentList] of Object.entries(categories)) {

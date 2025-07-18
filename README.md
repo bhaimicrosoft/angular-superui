@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v1.0.2
+# 🎨 Angular SuperUI v1.0.3
 
 </div>
 
@@ -15,7 +15,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/14%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/15%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -44,7 +44,7 @@ Angular SuperUI is a **modern, beautiful, and accessible** Angular UI component 
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui-cli@1.0.2
+npm install -g ngsui-cli@1.0.3
 ```
 
 ### 2️⃣ Initialize Your Project
@@ -57,7 +57,7 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add accordion alert avatar badge button card carousel checkbox theme-switcher
+ngsui-cli add accordion alert avatar badge button card carousel checkbox collapsible theme-switcher
 
 # Add all components
 ngsui-cli add --all
@@ -222,6 +222,7 @@ export class AppComponent {}
 | **🎠 [Carousel](./docs/components/carousel.md)** | Accessible image carousel with auto-play, navigation, and pagination | ✅ Available |
 | **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
 | **☑️ [Checkbox](./docs/components/checkbox.md)** | A control that allows the user to toggle between checked and not checked | ✅ Available |
+| **🗃️ [Collapsible](./docs/components/collapsible.md)** | Expandable content sections with smooth animations and keyboard support | ✅ Available |
 | **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
 
 ### 🚀 **Coming Soon**

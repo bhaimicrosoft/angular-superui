@@ -56,19 +56,43 @@ exports.COMPONENTS = {
         dependencies: ['cn'],
         files: ['index.ts']
     },
+    'calendar': {
+        name: 'Calendar',
+        description: '🌟 Enhanced calendar with range selection, drag support, and time picker.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
     'card': {
         name: 'Card',
         description: 'A flexible card component for displaying content in contained sections.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
-    // 📅 Featured Component
-    'calendar': {
-        name: 'Calendar',
-        description: '🌟 Enhanced calendar with range selection, drag support, and time picker.',
+    'carousel': {
+        name: 'Carousel',
+        description: 'An accessible image carousel with auto-play, navigation, and pagination.',
         dependencies: ['cn'],
         files: ['index.ts']
-    }
+    },
+    'checkbox': {
+        name: 'Checkbox',
+        description: 'A control that allows the user to toggle between checked and not checked.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'collapsible': {
+        name: 'Collapsible',
+        description: 'Expandable content sections with smooth animations and keyboard support.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'theme-switcher': {
+        name: 'Theme Switcher',
+        description: 'A component that allows users to switch between light, dark, and system themes.',
+        dependencies: ['cn', 'button'],
+        files: ['index.ts']
+    },
+    // 📅 Featured Component
 };
 async function addCommand(componentNames, options) {
     let componentsToAdd = [];

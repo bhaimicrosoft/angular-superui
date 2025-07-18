@@ -74,6 +74,12 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'collapsible': {
+    name: 'Collapsible',
+    description: 'Expandable content sections with smooth animations and keyboard support.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'theme-switcher': {
     name: 'Theme Switcher',
     description: 'A component that allows users to switch between light, dark, and system themes.',
@@ -146,7 +152,7 @@ export async function addCommand(componentNames: string | string[], options: { f
         for (const file of component.files) {
           try {
             const response = await axios.get(`${baseUrl}/${componentName}/${file}`);
-            let fileContent = response.data;
+            let fileContent = response.data as string;
             
             // Fix import paths for cn utility - handle both possible patterns
             fileContent = fileContent.replace(

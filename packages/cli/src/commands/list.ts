@@ -23,7 +23,7 @@ export async function listCommand() {
     '🧭 Navigation': ['breadcrumb'],
     '💫 Overlays & Dialogs': ['alert-dialog'],
     '🎨 Media & Display': ['carousel'],
-    '⚙️ User Interface': ['theme-switcher', 'checkbox'],
+    '⚙️ User Interface': ['theme-switcher', 'checkbox', 'collapsible'],
     '📅 Featured Component': ['calendar']
   };
 

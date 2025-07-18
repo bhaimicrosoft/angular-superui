@@ -309,6 +309,21 @@ export class WelcomeComponent {}
 </td>
 </tr>
 
+<tr>
+<td>
+  <strong>🗃️ Collapsible</strong>
+</td>
+<td>
+  Expandable content sections with smooth animations and keyboard support. Perfect for FAQs, settings panels, and progressive disclosure.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/collapsible.md">📖 Docs</a>
+</td>
+</tr>
+
 </table>
 
 ---
