@@ -22,6 +22,7 @@ export async function listCommand() {
     '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card'],
     '🧭 Navigation': ['breadcrumb'],
     '💫 Overlays & Dialogs': ['alert-dialog'],
+    '🎨 Media & Display': ['carousel'],
     '📅 Featured Component': ['calendar']
   };
 

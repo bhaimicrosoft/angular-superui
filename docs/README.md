@@ -1,583 +1,679 @@
-# Angular SuperUI Documentation
+<div align="center">
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
+# 🎨 Angular SuperUI Documentation
 
-A comprehensive Angular UI component library built with Tailwind CSS and TypeScript. Featuring **25+ beautiful components** that follow modern design principles and accessibility best practices.
-
-## 🚀 Features
-
-- 🎨 **Beautiful Components** - 25+ carefully crafted components with attention to detail
-- ⚡ **Easy Installation** - Get started with `ng add angular-superui`
-- 🌙 **Dark Mode** - Built-in support for light and dark themes
-- 📱 **Responsive** - Mobile-first design approach
-- 🎭 **Customizable** - Powered by Tailwind CSS and CVA (Class Variance Authority)
-- 🔧 **TypeScript** - Full type safety and IntelliSense support
-- ♿ **Accessible** - ARIA-compliant components following WCAG guidelines
-- 🔄 **Form Integration** - Full Angular Forms support with ControlValueAccessor
-- 📦 **Tree Shakable** - Import only what you need for optimal bundle size
-
-## 📦 Quick Start
-
-### Installation
-
-```bash
-npm install angular-superui
-```
-
-Or use our automatic setup (recommended):
-
-```bash
-ng add angular-superui
-```
-
-### Basic Usage
-
-```typescript
-import { Component } from '@angular/core';
-import { 
-  Alert, Button, Input, Card, CardHeader, 
-  CardTitle, CardContent, Dialog, ToastService 
-} from 'angular-superui';
-
-@Component({
-  standalone: true,
-  imports: [Alert, Button, Input, Card, CardHeader, CardTitle, CardContent, Dialog],
-  template: `
-    <card class="max-w-md">
-      <card-header>
-        <card-title>Welcome to Angular SuperUI</card-title>
-      </card-header>
-      <card-content>
-        <alert variant="success" class="mb-4">
-          <h5>Success!</h5>
-          <div>Your component library is ready to use!</div>
-        </alert>
-        
-        <div class="space-y-4">
-          <input placeholder="Enter your name" [(value)]="name"></input>
-          <button (click)="showToast()" class="w-full">
-            Show Toast Notification
-          </button>
-        </div>
-      </card-content>
-    </card>
-  `
-})
-export class MyComponent {
-  name = '';
+  <h1>
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Angular-SuperUI-DD0031?style=for-the-badge&logo=angular&logoColor=white">
+      <img alt="Angular SuperUI" src="https://img.shields.io/badge/Angular-SuperUI-DD0031?style=for-the-badge&logo=angular&logoColor=white">
+    </picture>
+  </h1>
   
-  constructor(private toastService: ToastService) {}
+  <p><strong>🚀 The most beautiful Angular component library you'll ever use</strong></p>
   
-  showToast() {
-    this.toastService.success('Hello!', `Welcome ${this.name || 'User'}!`);
-  }
-}
-```
-
-## 🧩 Component Categories
-
-### 📝 Form Components
-- [Button](./components/button.md) - Interactive buttons with multiple variants and sizes
-- [Input](./components/input.md) - Text input fields with validation support
-- [Textarea](./components/textarea.md) - Multi-line text input with auto-resize
-- [Label](./components/label.md) - Accessible form labels
-- [Checkbox](./components/checkbox.md) - Toggle checkboxes with custom styling
-- [Switch](./components/switch.md) - Toggle switches for boolean values
-- [Select](./components/select.md) - Dropdown selection with search capabilities
-- [Radio Group](./components/radio-group.md) - Single selection from multiple options
-- [Toggle](./components/toggle.md) - Toggle buttons with pressed states
-- [Slider](./components/slider.md) - Range input with customizable min/max values
-
-### 🏗️ Layout Components
-- [Card](./components/card.md) - Flexible content containers with header, content, footer
-- [Separator](./components/separator.md) - Visual dividers for content sections
-- [Tabs](./components/tabs.md) - Tabbed navigation with content panels
-- [Accordion](./components/accordion.md) - Collapsible content sections
-- [Table](./components/table.md) - Data tables with comprehensive structure
-
-### 🎭 Overlay Components
-- [Dialog](./components/dialog.md) - Modal dialogs with backdrop and focus management
-- [Tooltip](./components/tooltip.md) - Contextual information popups
-- [Toast](./components/toast.md) - Notification messages with service integration
-
-### 💬 Feedback Components
-- [Alert](./components/alert.md) - Contextual feedback messages
-- [Badge](./components/badge.md) - Small status and labeling components
-- [Progress](./components/progress.md) - Progress indicators and loading bars
-- [Skeleton](./components/skeleton.md) - Loading placeholders
-
-### 🖼️ Display Components
-- [Avatar](./components/avatar.md) - User profile pictures with fallbacks
-
-## 📚 Advanced Examples
-
-### Complete Form Example
-
-```typescript
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { 
-  Card, CardHeader, CardTitle, CardContent,
-  Input, Label, Select, RadioGroup, Checkbox, 
-  Switch, Slider, Button, Alert 
-} from 'angular-superui';
-
-@Component({
-  imports: [
-    ReactiveFormsModule, Card, CardHeader, CardTitle, CardContent,
-    Input, Label, Select, RadioGroup, Checkbox, Switch, Slider, Button, Alert
-  ],
-  template: `
-    <card class="max-w-lg">
-      <card-header>
-        <card-title>Complete Form Example</card-title>
-      </card-header>
-      <card-content>
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-6">
-          <!-- Text Input -->
-          <div class="space-y-2">
-            <label for="name">Full Name *</label>
-            <input 
-              id="name"
-              formControlName="name"
-              placeholder="Enter your full name">
-            </input>
-          </div>
-
-          <!-- Select Dropdown -->
-          <div class="space-y-2">
-            <label for="country">Country</label>
-            <select 
-              id="country"
-              formControlName="country"
-              [options]="countries">
-            </select>
-          </div>
-
-          <!-- Radio Group -->
-          <div class="space-y-2">
-            <label>Preferred Theme</label>
-            <radio-group 
-              formControlName="theme"
-              [options]="themeOptions">
-            </radio-group>
-          </div>
-
-          <!-- Checkboxes -->
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <checkbox id="newsletter" formControlName="newsletter"></checkbox>
-              <label for="newsletter">Subscribe to newsletter</label>
-            </div>
-            
-            <div class="flex items-center space-x-2">
-              <switch id="notifications" formControlName="notifications"></switch>
-              <label for="notifications">Enable push notifications</label>
-            </div>
-          </div>
-
-          <!-- Slider -->
-          <div class="space-y-2">
-            <label>Volume: {{userForm.get('volume')?.value}}%</label>
-            <slider 
-              formControlName="volume"
-              [min]="0" 
-              [max]="100" 
-              [step]="5">
-            </slider>
-          </div>
-
-          <!-- Success Message -->
-          <alert *ngIf="submitted" variant="success">
-            <h5>Form Submitted!</h5>
-            <div>Your preferences have been saved successfully.</div>
-          </alert>
-
-          <!-- Submit Button -->
-          <button 
-            type="submit" 
-            [disabled]="userForm.invalid"
-            class="w-full">
-            Save Preferences
-          </button>
-        </form>
-      </card-content>
-    </card>
-  `
-})
-export class CompleteFormComponent {
-  userForm: FormGroup;
-  submitted = false;
-
-  countries = [
-    { value: 'us', label: 'United States' },
-    { value: 'uk', label: 'United Kingdom' },
-    { value: 'ca', label: 'Canada' },
-    { value: 'de', label: 'Germany' },
-    { value: 'fr', label: 'France' }
-  ];
-
-  themeOptions = [
-    { value: 'light', label: 'Light' },
-    { value: 'dark', label: 'Dark' },
-    { value: 'auto', label: 'System' }
-  ];
-
-  constructor(private fb: FormBuilder) {
-    this.userForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      country: [''],
-      theme: ['light'],
-      newsletter: [false],
-      notifications: [true],
-      volume: [50]
-    });
-  }
-
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log('Form Data:', this.userForm.value);
-      this.submitted = true;
-      
-      // Reset submitted flag after 3 seconds
-      setTimeout(() => this.submitted = false, 3000);
-    }
-  }
-}
-```
-
-### Interactive Components Showcase
-
-```typescript
-import { Component } from '@angular/core';
-import { 
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter,
-  Tabs, TabsList, TabsTrigger, TabsContent,
-  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
-  Tooltip, ToastService, Button, Badge 
-} from 'angular-superui';
-
-@Component({
-  imports: [
-    Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter,
-    Tabs, TabsList, TabsTrigger, TabsContent, Accordion, AccordionItem, 
-    AccordionTrigger, AccordionContent, Tooltip, Button, Badge
-  ],
-  template: `
-    <div class="space-y-8 p-6">
-      <!-- Tabs Example -->
-      <section>
-        <h3 class="text-lg font-semibold mb-4">Tabs Navigation</h3>
-        <tabs value="overview">
-          <tabs-list class="grid w-full grid-cols-3">
-            <tabs-trigger value="overview">Overview</lib-tabs-trigger>
-            <tabs-trigger value="analytics">Analytics</lib-tabs-trigger>
-            <tabs-trigger value="settings">Settings</lib-tabs-trigger>
-          </lib-tabs-list>
-          
-          <tabs-content value="overview" class="mt-4">
-            <div class="rounded-lg border p-4">
-              <h4 class="font-medium">Overview Content</h4>
-              <p class="text-sm text-muted-foreground mt-1">
-                View your dashboard overview and key metrics.
-              </p>
-            </div>
-          </lib-tabs-content>
-          
-          <tabs-content value="analytics" class="mt-4">
-            <div class="rounded-lg border p-4">
-              <h4 class="font-medium">Analytics Content</h4>
-              <p class="text-sm text-muted-foreground mt-1">
-                Detailed analytics and performance metrics.
-              </p>
-            </div>
-          </lib-tabs-content>
-          
-          <tabs-content value="settings" class="mt-4">
-            <div class="rounded-lg border p-4">
-              <h4 class="font-medium">Settings Content</h4>
-              <p class="text-sm text-muted-foreground mt-1">
-                Configure your application settings.
-              </p>
-            </div>
-          </lib-tabs-content>
-        </tabs>
-      </section>
-
-      <!-- Accordion Example -->
-      <section>
-        <h3 class="text-lg font-semibold mb-4">Accordion</h3>
-        <accordion type="single" collapsible>
-          <accordion-item value="faq-1">
-            <accordion-trigger>What is Angular SuperUI?</lib-accordion-trigger>
-            <accordion-content>
-              Angular SuperUI is a comprehensive UI component library built with Angular 20+, 
-              TypeScript, and Tailwind CSS. It provides 25+ beautiful, accessible components.
-            </lib-accordion-content>
-          </lib-accordion-item>
-          
-          <accordion-item value="faq-2">
-            <accordion-trigger>How do I install it?</lib-accordion-trigger>
-            <accordion-content>
-              You can install Angular SuperUI using npm or the Angular CLI. 
-              Run `ng add angular-superui` for automatic setup.
-            </lib-accordion-content>
-          </lib-accordion-item>
-          
-          <accordion-item value="faq-3">
-            <accordion-trigger>Is it accessible?</lib-accordion-trigger>
-            <accordion-content>
-              Yes! All components follow WCAG guidelines and include proper ARIA attributes 
-              for screen reader compatibility.
-            </lib-accordion-content>
-          </lib-accordion-item>
-        </accordion>
-      </section>
-
-      <!-- Interactive Buttons -->
-      <section>
-        <h3 class="text-lg font-semibold mb-4">Interactive Elements</h3>
-        <div class="flex flex-wrap gap-4">
-          <!-- Dialog Trigger -->
-          <button (click)="showDialog = true" variant="outline">
-            Open Dialog
-          </button>
-          
-          <!-- Toast Triggers -->
-          <tooltip content="Show success message" placement="top">
-            <button (click)="showSuccessToast()" variant="default">
-              Success Toast
-            </button>
-          </tooltip>
-          
-          <tooltip content="Show error message" placement="top">
-            <button (click)="showErrorToast()" variant="destructive">
-              Error Toast
-            </button>
-          </tooltip>
-          
-          <tooltip content="Show info message" placement="top">
-            <button (click)="showInfoToast()" variant="secondary">
-              Info Toast
-            </button>
-          </tooltip>
-        </div>
-      </section>
-
-      <!-- Status Badges -->
-      <section>
-        <h3 class="text-lg font-semibold mb-4">Status Indicators</h3>
-        <div class="flex flex-wrap gap-2">
-          <badge variant="default">Active</badge>
-          <badge variant="secondary">Pending</badge>
-          <badge variant="destructive">Error</badge>
-          <badge variant="outline">Draft</badge>
-        </div>
-      </section>
-    </div>
-
-    <!-- Dialog -->
-    <dialog [open]="showDialog" (openChange)="showDialog = $event">
-      <dialog-content>
-        <dialog-header>
-          <dialog-title>Confirm Action</lib-dialog-title>
-          <dialog-description>
-            Are you sure you want to proceed? This action cannot be undone.
-          </lib-dialog-description>
-        </lib-dialog-header>
-        <dialog-footer>
-          <button variant="outline" (click)="showDialog = false">
-            Cancel
-          </button>
-          <button (click)="confirmAction()">
-            Continue
-          </button>
-        </lib-dialog-footer>
-      </lib-dialog-content>
-    </dialog>
-  `
-})
-export class InteractiveShowcaseComponent {
-  showDialog = false;
-
-  constructor(private toastService: ToastService) {}
-
-  confirmAction() {
-    this.showDialog = false;
-    this.toastService.success('Confirmed!', 'Your action has been completed.');
-  }
-
-  showSuccessToast() {
-    this.toastService.success('Success!', 'Operation completed successfully.');
-  }
-
-  showErrorToast() {
-    this.toastService.error('Error!', 'Something went wrong. Please try again.');
-  }
-
-  showInfoToast() {
-    this.toastService.info('Information', 'Here is some helpful information.');
-  }
-}
-```
-
-## 🎨 Theming Guide
-
-See our [Theming Guide](./theming.md) for detailed information on customizing the appearance of components.
-
-## 🛠️ Installation Guide
-
-See our [Installation Guide](./installation.md) for step-by-step setup instructions.
-
-## 📖 Individual Component Docs
-
-Each component has detailed documentation with examples and API references. Visit the component-specific documentation for more information.
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md) for details on how to get started.
-
-## 📄 License
-
-Angular SuperUI is open source software licensed under the MIT License.
-- [Input](./components/input.md) - Text input field with validation support
-- [Textarea](./components/textarea.md) - Multi-line text input
-- [Label](./components/label.md) - Accessible form labels
-- [Checkbox](./components/checkbox.md) - Boolean input control
-- [Switch](./components/switch.md) - Toggle switch component
-
-### Layout Components
-- [Card](./components/card.md) - Flexible container for content
-- [Separator](./components/separator.md) - Visual divider component
-
-### Feedback Components
-- [Alert](./components/alert.md) - Display contextual feedback messages
-- [Badge](./components/badge.md) - Small status and label indicators
-- [Progress](./components/progress.md) - Progress indicator with variants
-- [Skeleton](./components/skeleton.md) - Loading placeholder
-
-### Display Components
-- [Avatar](./components/avatar.md) - User profile pictures and fallbacks
-- [Input](./components/input.md) - Form input with built-in styling
-
-## Installation Guide
-
-### Prerequisites
-
-- Angular 20+
-- Node.js 18+
-- Tailwind CSS (automatically configured with `ng add`)
-
-### Manual Installation
-
-1. **Install the package:**
-   ```bash
-   npm install angular-superui
-   ```
-
-2. **Install peer dependencies:**
-   ```bash
-   npm install class-variance-authority clsx tailwind-merge
-   ```
-
-3. **Configure Tailwind CSS:**
-   
-   Add to your `tailwind.config.js`:
-   ```javascript
-   module.exports = {
-     content: [
-       "./src/**/*.{html,ts}",
-       "./node_modules/angular-superui/**/*.{html,js}"
-     ],
-     // ... rest of your config
-   }
-   ```
-
-4. **Add base styles:**
-   
-   Add to your `src/styles.css`:
-   ```css
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-   
-   @layer base {
-     :root {
-       --background: 0 0% 100%;
-       --foreground: 222.2 84% 4.9%;
-       --primary: 222.2 47.4% 11.2%;
-       --primary-foreground: 210 40% 98%;
-       --secondary: 210 40% 96%;
-       --secondary-foreground: 222.2 84% 4.9%;
-       --destructive: 0 84.2% 60.2%;
-       --destructive-foreground: 210 40% 98%;
-       /* ... more CSS variables */
-     }
-   }
-   ```
-
-## Examples
-
-### Basic Button Usage
-
-```html
-<button>Default Button</button>
-<button variant="secondary">Secondary</button>
-<button variant="destructive">Destructive</button>
-<button variant="outline">Outline</button>
-<button variant="ghost">Ghost</button>
-<button variant="link">Link</button>
-```
-
-### Alert Variants
-
-```html
-<alert variant="default">
-  <h5>Default Alert</h5>
-  <div>This is a default alert message.</div>
-</alert>
-
-<alert variant="success">
-  <svg><!-- success icon --></svg>
-  <h5>Success!</h5>
-  <div>Your action was completed successfully.</div>
-</alert>
-
-<alert variant="warning">
-  <svg><!-- warning icon --></svg>
-  <h5>Warning</h5>
-  <div>Please review your settings.</div>
-</alert>
-
-<alert variant="destructive">
-  <svg><!-- error icon --></svg>
-  <h5>Error</h5>
-  <div>Something went wrong. Please try again.</div>
-</alert>
-```
-
-### Form Inputs
-
-```html
-<input type="text" placeholder="Enter your name"></input>
-<input type="email" placeholder="Enter your email"></input>
-<input type="password" placeholder="Enter your password"></input>
-```
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
-
-## License
-
-MIT License - see [LICENSE](../LICENSE) file for details.
-
-## Support
-
-- 📚 [Documentation](./README.md)
-- 🐛 [Issues](https://github.com/bhaimicrosoft/angular-superui/issues)
-- 💬 [Discussions](https://github.com/bhaimicrosoft/angular-superui/discussions)
+  [![npm version](https://img.shields.io/npm/v/@lib/angular-superui.svg?style=flat-square)](https://www.npmjs.com/package/@lib/angular-superui)
+  [![downloads](https://img.shields.io/npm/dm/@lib/angular-superui.svg?style=flat-square)](https://www.npmjs.com/package/@lib/angular-superui)
+  [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+  [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat-square&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
+  
+  <br>
+  
+  <a href="#🚀-quick-start">Quick Start</a> • 
+  <a href="#🎨-components">Components</a> • 
+  <a href="#📚-examples">Examples</a> • 
+  <a href="#🛠️-installation">Installation</a> • 
+  <a href="#🤝-contributing">Contributing</a>
+  
+</div>
 
 ---
 
-Built with ❤️ by [Indranil Mukherjee](https://github.com/bhaimicrosoft)
+## ✨ What Makes Angular SuperUI Special?
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎨 **Beautiful by Default**
+Every component is meticulously crafted with attention to detail, following modern design principles and the latest UI trends.
+
+### ⚡ **Blazing Fast Setup**
+Get started in seconds with our intelligent CLI that automatically configures everything for you.
+
+### 🌙 **Dark Mode Ready**
+Built-in support for light and dark themes with seamless switching and system preference detection.
+
+</td>
+<td width="50%">
+
+### ♿ **Accessibility First**
+WCAG 2.1 AA compliant components with full keyboard navigation, screen reader support, and focus management.
+
+### 🎯 **TypeScript Native**
+Full type safety, IntelliSense support, and exceptional developer experience out of the box.
+
+### 📱 **Mobile Optimized**
+Responsive components that look perfect on any device, from mobile to desktop.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Quick Start
+
+### One-Command Installation
+```bash
+# 🎯 Automatic setup (Recommended)
+ngsui-cli init
+
+# 📦 Or install manually
+npm install angular-superui
+```
+
+### Your First Component
+```typescript
+import { Component } from '@angular/core';
+import { Button } from '@lib/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@lib/card';
+
+@Component({
+  standalone: true,
+  imports: [Button, Card, CardHeader, CardTitle, CardContent],
+  template: `
+    <Card class="w-96">
+      <CardHeader>
+        <CardTitle>Welcome to Angular SuperUI! 🎉</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p class="text-muted-foreground mb-4">
+          Build beautiful applications with our premium component library.
+        </p>
+        <Button>Get Started</Button>
+      </CardContent>
+    </Card>
+  `
+})
+export class WelcomeComponent {}
+```
+
+---
+
+## 🎨 Components Library
+
+<div align="center">
+  <h3>🌟 10 Production-Ready Components • Growing Every Week</h3>
+</div>
+
+### 🎯 **Core Components**
+<table>
+<tr>
+<th width="20%">Component</th>
+<th width="50%">Description</th>
+<th width="15%">Status</th>
+<th width="15%">Docs</th>
+</tr>
+
+<tr>
+<td>
+  <strong>🔘 Button</strong>
+</td>
+<td>
+  Versatile button component with multiple variants, sizes, and states. Supports loading states, icons, and custom styling.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/button.md">📖 Docs</a>
+</td>
+</tr>
+
+<tr>
+<td>
+  <strong>🎴 Card</strong>
+</td>
+<td>
+  Flexible container component for organizing content. Perfect for dashboards, profiles, and content layouts.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/card.md">📖 Docs</a>
+</td>
+</tr>
+
+<tr>
+<td>
+  <strong>🚨 Alert</strong>
+</td>
+<td>
+  Contextual feedback messages with multiple variants (success, warning, error, info). Dismissible and customizable.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/alert.md">📖 Docs</a>
+</td>
+</tr>
+
+<tr>
+<td>
+  <strong>👤 Avatar</strong>
+</td>
+<td>
+  User profile images with automatic fallbacks, status indicators, and group layouts. Perfect for user interfaces.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/avatar.md">📖 Docs</a>
+</td>
+</tr>
+
+<tr>
+<td>
+  <strong>🏷️ Badge</strong>
+</td>
+<td>
+  Small status indicators and labels. Perfect for notifications, counts, and status displays.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/badge.md">📖 Docs</a>
+</td>
+</tr>
+
+<tr>
+<td>
+  <strong>🗂️ Accordion</strong>
+</td>
+<td>
+  Collapsible content panels with smooth animations. Single or multiple expansion modes supported.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/accordion.md">📖 Docs</a>
+</td>
+</tr>
+
+</table>
+
+### 🧭 **Navigation Components**
+<table>
+<tr>
+<th width="20%">Component</th>
+<th width="50%">Description</th>
+<th width="15%">Status</th>
+<th width="15%">Docs</th>
+</tr>
+
+<tr>
+<td>
+  <strong>🍞 Breadcrumb</strong>
+</td>
+<td>
+  Navigation component showing the current page's location within a hierarchy. Supports custom separators and icons.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/breadcrumb.md">📖 Docs</a>
+</td>
+</tr>
+
+</table>
+
+### 💫 **Overlay & Dialog Components**
+<table>
+<tr>
+<th width="20%">Component</th>
+<th width="50%">Description</th>
+<th width="15%">Status</th>
+<th width="15%">Docs</th>
+</tr>
+
+<tr>
+<td>
+  <strong>⚠️ Alert Dialog</strong>
+</td>
+<td>
+  Modal dialogs for important messages and confirmations. Accessible with focus management and keyboard navigation.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/alert-dialog.md">📖 Docs</a>
+</td>
+</tr>
+
+</table>
+
+### 🎨 **Media & Display Components**
+<table>
+<tr>
+<th width="20%">Component</th>
+<th width="50%">Description</th>
+<th width="15%">Status</th>
+<th width="15%">Docs</th>
+</tr>
+
+<tr>
+<td>
+  <strong>🎠 Carousel</strong>
+</td>
+<td>
+  Responsive image carousel with auto-play, navigation controls, and touch support. Perfect for image galleries and showcases.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/carousel.md">📖 Docs</a>
+</td>
+</tr>
+
+</table>
+
+### 📅 **Featured Components**
+<table>
+<tr>
+<th width="20%">Component</th>
+<th width="50%">Description</th>
+<th width="15%">Status</th>
+<th width="15%">Docs</th>
+</tr>
+
+<tr>
+<td>
+  <strong>📅 Calendar</strong>
+</td>
+<td>
+  <strong>🌟 Premium:</strong> Advanced calendar with date range selection, time picker, drag & drop, and localization support.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✨-Premium-gold?style=flat-square" alt="Premium">
+</td>
+<td>
+  <a href="./components/calendar.md">📖 Docs</a>
+</td>
+</tr>
+
+</table>
+
+---
+
+## 📚 Examples & Showcases
+
+### 🎯 **Real-World Examples**
+
+<details>
+<summary><strong>🏪 E-Commerce Product Card</strong></summary>
+
+```typescript
+import { Component } from '@angular/core';
+import { Card, CardHeader, CardContent, CardFooter } from '@lib/card';
+import { Button } from '@lib/button';
+import { Badge } from '@lib/badge';
+import { Avatar } from '@lib/avatar';
+
+@Component({
+  standalone: true,
+  imports: [Card, CardHeader, CardContent, CardFooter, Button, Badge, Avatar],
+  template: `
+    <Card class="w-80 overflow-hidden">
+      <div class="relative">
+        <img src="product-image.jpg" alt="Product" class="w-full h-48 object-cover">
+        <Badge class="absolute top-2 right-2" variant="destructive">-20%</Badge>
+      </div>
+      
+      <CardHeader class="pb-3">
+        <div class="flex justify-between items-start">
+          <h3 class="font-semibold text-lg">Premium Headphones</h3>
+          <div class="text-right">
+            <p class="text-2xl font-bold">$79</p>
+            <p class="text-sm text-muted-foreground line-through">$99</p>
+          </div>
+        </div>
+      </CardHeader>
+      
+      <CardContent class="pt-0">
+        <p class="text-muted-foreground text-sm mb-3">
+          High-quality wireless headphones with noise cancellation
+        </p>
+        <div class="flex items-center gap-2">
+          <div class="flex">
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <span class="text-sm text-muted-foreground">(128 reviews)</span>
+        </div>
+      </CardContent>
+      
+      <CardFooter class="gap-2">
+        <Button variant="outline" class="flex-1">Add to Cart</Button>
+        <Button class="flex-1">Buy Now</Button>
+      </CardFooter>
+    </Card>
+  `
+})
+export class ProductCardComponent {}
+```
+
+</details>
+
+<details>
+<summary><strong>👨‍💼 User Profile Dashboard</strong></summary>
+
+```typescript
+import { Component } from '@angular/core';
+import { Card, CardHeader, CardContent } from '@lib/card';
+import { Avatar } from '@lib/avatar';
+import { Badge } from '@lib/badge';
+import { Button } from '@lib/button';
+import { Alert } from '@lib/alert';
+
+@Component({
+  standalone: true,
+  imports: [Card, CardHeader, CardContent, Avatar, Badge, Button, Alert],
+  template: `
+    <div class="max-w-4xl mx-auto space-y-6">
+      <!-- Profile Header -->
+      <Card>
+        <CardContent class="pt-6">
+          <div class="flex items-center space-x-4">
+            <Avatar class="h-20 w-20">
+              <img src="avatar.jpg" alt="User Avatar">
+            </Avatar>
+            <div class="space-y-1">
+              <h1 class="text-2xl font-bold">John Doe</h1>
+              <p class="text-muted-foreground">Senior Frontend Developer</p>
+              <div class="flex gap-2">
+                <Badge variant="secondary">Angular Expert</Badge>
+                <Badge variant="outline">TypeScript</Badge>
+                <Badge>Open to Work</Badge>
+              </div>
+            </div>
+            <div class="ml-auto">
+              <Button>Edit Profile</Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card>
+          <CardContent class="pt-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-blue-600">24</div>
+              <p class="text-muted-foreground">Projects Completed</p>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent class="pt-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600">98%</div>
+              <p class="text-muted-foreground">Client Satisfaction</p>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardContent class="pt-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-purple-600">5+</div>
+              <p class="text-muted-foreground">Years Experience</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Notifications -->
+      <Alert variant="success">
+        <strong>Profile Updated!</strong> Your profile has been successfully updated.
+      </Alert>
+    </div>
+  `
+})
+export class ProfileDashboardComponent {}
+```
+
+</details>
+
+<details>
+<summary><strong>🎠 Image Gallery with Carousel</strong></summary>
+
+```typescript
+import { Component } from '@angular/core';
+import { Carousel } from '@lib/carousel';
+import { Card, CardContent } from '@lib/card';
+import { Button } from '@lib/button';
+
+@Component({
+  standalone: true,
+  imports: [Carousel, Card, CardContent, Button],
+  template: `
+    <Card class="max-w-4xl mx-auto">
+      <CardContent class="p-6">
+        <h2 class="text-2xl font-bold mb-6">Our Latest Projects</h2>
+        
+        <Carousel
+          [images]="projectImages"
+          [width]="800"
+          [height]="400"
+          [interval]="5000"
+          class="rounded-lg overflow-hidden"
+        />
+        
+        <div class="mt-6 text-center">
+          <Button variant="outline">View All Projects</Button>
+        </div>
+      </CardContent>
+    </Card>
+  `
+})
+export class GalleryComponent {
+  projectImages = [
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=400&fit=crop'
+  ];
+}
+```
+
+</details>
+
+---
+
+## 🛠️ Installation Guide
+
+### 🚀 **Automatic Setup (Recommended)**
+
+```bash
+ngsui-cli init
+```
+
+This command will:
+- ✅ Install the package and dependencies
+- ✅ Configure Tailwind CSS automatically
+- ✅ Add required CSS variables
+- ✅ Set up the utility function
+- ✅ Create example components
+
+### 📦 **Manual Installation**
+
+<details>
+<summary>Click to expand manual installation steps</summary>
+
+1. **Install the package:**
+   ```bash
+   npm install angular-superui class-variance-authority clsx tailwind-merge --legacy-peer-deps
+   ```
+2. **Add CSS Variables:**
+   ```css
+   /* src/styles.css */
+   @import "tailwindcss";
+    refer to installation.md for full list of classes
+   
+   ```
+</details>
+
+---
+[Installation Details 👈🏻](./installation.md)
+## 🎨 CLI Commands
+
+Our powerful CLI makes component management effortless:
+
+```bash
+# 📋 List all available components
+ngsui-cli list
+
+# ⬇️ Add a single component
+ngsui-cli add button
+
+# ⬇️ Add multiple components
+ngsui-cli add button card alert
+
+# 🎠 Add the new carousel component
+ngsui-cli add carousel
+
+# ⬇️ Add all components at once
+ngsui-cli add --all
+
+# 📅 Add the premium calendar
+ngsui-cli add calendar
+```
+
+---
+
+## 🌟 What's Coming Next?
+
+<div align="center">
+
+### 🚧 **Roadmap 2025**
+
+| Component | Status | Expected |
+|-----------|--------|----------|
+| 📝 Form Components | In Development | Q1 2025 |
+| 🎭 Animation Library | Planning | Q1 2025 |
+| 📊 Data Tables | Planning | Q2 2025 |
+| 🎨 Theme Builder | Planning | Q2 2025 |
+| 📱 Mobile Components | Planning | Q3 2025 |
+
+</div>
+
+---
+
+## 🤝 Contributing
+
+We love contributions! Here's how you can help make Angular SuperUI even better:
+
+### 🎯 **Ways to Contribute**
+- 🐛 **Report Bugs** - Found an issue? Let us know!
+- 💡 **Suggest Features** - Have ideas for new components?
+- 📝 **Improve Docs** - Help make our documentation better
+- 🔧 **Submit PRs** - Fix bugs or add features
+- ⭐ **Star the Repo** - Show your support!
+
+### 🚀 **Quick Start for Contributors**
+
+```bash
+# 1. Fork and clone the repository
+git clone https://github.com/bhaimicrosoft/angular-superui.git
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm run start
+
+# 4. Make your changes and test
+npm run build
+npm run test
+
+# 5. Submit a pull request
+```
+
+**Read our [Contributing Guide](../CONTRIBUTING.md) for detailed instructions.**
+
+---
+
+## 💬 Community & Support
+
+<div align="center">
+
+### 🤝 **Join Our Community**
+
+[![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/your-discord)
+[![Twitter](https://img.shields.io/badge/Twitter-Follow%20Us-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/bhaimicrosoft)
+[![GitHub](https://img.shields.io/badge/GitHub-Star%20Us-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/bhaimicrosoft/angular-superui)
+
+### 📚 **Resources**
+
+| Resource | Description | Link |
+|----------|-------------|------|
+| 📖 **Documentation** | Complete component documentation | [Browse Docs](./README.md) |
+| 🐛 **Bug Reports** | Report issues and bugs | [GitHub Issues](https://github.com/bhaimicrosoft/angular-superui/issues) |
+| 💬 **Discussions** | Community discussions and help | [GitHub Discussions](https://github.com/bhaimicrosoft/angular-superui/discussions) |
+| 📝 **Changelog** | See what's new in each version | [Changelog](../CHANGELOG.md) |
+
+</div>
+
+---
+
+## 📄 License
+
+**Angular SuperUI** is open source software licensed under the [MIT License](../LICENSE).
+
+```
+MIT License
+
+Copyright (c) 2024 Indranil Mukherjee
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction...
+```
+
+---
+
+<div align="center">
+
+### 💝 **Support the Project**
+
+If Angular SuperUI has helped you build amazing applications, consider supporting the project:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/bhaikaju)
+
+**Your support helps us:**
+- 🚀 Add new components faster
+- 🐛 Fix bugs and improve quality  
+- 📚 Create better documentation
+- 🌟 Maintain the project long-term
+
+---
+
+### 👨‍💻 **Created with ❤️ by**
+
+**[Indranil Mukherjee](https://bhaikaju.com)**  
+*Full Stack Developer & UI/UX Enthusiast*
+
+[![GitHub](https://img.shields.io/badge/GitHub-bhaimicrosoft-181717?style=flat-square&logo=github)](https://github.com/bhaimicrosoft)
+
+
+---
+
+<p><em>Made with ❤️ for the Angular community</em></p>
+<p><strong>Happy coding! 🚀</strong></p>

@@ -15,7 +15,7 @@ A powerful CLI tool for selective Angular SuperUI component installation. Instal
 
 ```bash
 # Install globally
-npm install -g ngsui-cli@1.0.1
+npm install -g ngsui-cli@1.0.2
 
 # Or use with npx (no installation required)
 npx ngsui-cli@1.0.1 --help

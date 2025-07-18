@@ -1,37 +1,38 @@
-import { Component, signal } from '@angular/core';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@lib/accordion';
-import { Alert, AlertTitle, AlertDescription, AlertIcon } from '@lib/alert';
+import {Component, signal} from '@angular/core';
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@lib/accordion';
+import {Alert, AlertDescription, AlertIcon, AlertTitle} from '@lib/alert';
 import {
-  AlertDialogComponent,
-  AlertDialogHeaderComponent,
-  AlertDialogFooterComponent,
-  AlertDialogTitleComponent,
-  AlertDialogDescriptionComponent,
   AlertDialogActionComponent,
-  AlertDialogCancelComponent
+  AlertDialogCancelComponent,
+  AlertDialogComponent,
+  AlertDialogDescriptionComponent,
+  AlertDialogFooterComponent,
+  AlertDialogHeaderComponent,
+  AlertDialogTitleComponent
 } from '@lib/alert-dialog';
-import { AspectRatioComponent } from '@lib/aspect-ratio';
-import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
-import { Badge } from '@lib/badge';
+import {AspectRatioComponent} from '@lib/aspect-ratio';
+import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
+import {Badge} from '@lib/badge';
 import {
   BreadcrumbComponent,
-  BreadcrumbListComponent,
+  BreadcrumbEllipsisComponent,
   BreadcrumbItemComponent,
   BreadcrumbLinkComponent,
+  BreadcrumbListComponent,
   BreadcrumbPageComponent,
-  BreadcrumbSeparatorComponent,
-  BreadcrumbEllipsisComponent
+  BreadcrumbSeparatorComponent
 } from '@lib/breadcrumb';
-import { ButtonComponent } from '@lib/button';
-import { CalendarComponent, type DateRange, type TimeSelection } from '@lib/calendar';
+import {ButtonComponent} from '@lib/button';
+import {CalendarComponent, type DateRange, type TimeSelection} from '@lib/calendar';
 import {
   CardComponent,
-  CardHeaderComponent,
-  CardTitleComponent,
-  CardDescriptionComponent,
   CardContentComponent,
-  CardFooterComponent
+  CardDescriptionComponent,
+  CardFooterComponent,
+  CardHeaderComponent,
+  CardTitleComponent
 } from '@lib/card';
+import {Carousel} from '@lib/carousel';
 
 @Component({
   selector: 'app-root',
@@ -70,7 +71,8 @@ import {
     CardTitleComponent,
     CardDescriptionComponent,
     CardContentComponent,
-    CardFooterComponent
+    CardFooterComponent,
+    Carousel,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -89,18 +91,18 @@ export class App {
   calendarMonth = signal(new Date());
 
   // Range picker state
-  selectedRange = signal<DateRange>({ start: null, end: null });
+  selectedRange = signal<DateRange>({start: null, end: null});
   rangeCalendarMonth = signal(new Date());
 
   // Time picker state
   timePickerDate = signal<Date | undefined>(new Date());
   timePickerMonth = signal(new Date());
-  selectedTime = signal<TimeSelection>({ hours: 14, minutes: 30 });
+  selectedTime = signal<TimeSelection>({hours: 14, minutes: 30});
 
   // 12-hour time picker state
   time12hDate = signal<Date | undefined>(new Date());
   time12hMonth = signal(new Date());
-  selectedTime12h = signal<TimeSelection>({ hours: 9, minutes: 0 });
+  selectedTime12h = signal<TimeSelection>({hours: 9, minutes: 0});
 
   // Constrained calendar state
   constrainedDate = signal<Date | undefined>(undefined);
@@ -162,7 +164,7 @@ export class App {
   }
 
   clearRange() {
-    this.selectedRange.set({ start: null, end: null });
+    this.selectedRange.set({start: null, end: null});
     console.log('Range cleared');
   }
 
@@ -240,7 +242,7 @@ export class App {
 
   clearSelection() {
     this.selectedDate.set(undefined);
-    this.selectedRange.set({ start: null, end: null });
+    this.selectedRange.set({start: null, end: null});
   }
 
   getMinDate(): Date {

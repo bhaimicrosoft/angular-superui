@@ -10,22 +10,22 @@
         <h3 class="text-md font-medium mb-3">Different Sizes</h3>
         <div class="flex items-center gap-4">
           <Avatar size="sm">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Small avatar" />
+            <AvatarImage src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Small avatar"/>
             <AvatarFallback size="sm">SM</AvatarFallback>
           </Avatar>
 
           <Avatar size="sm">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/14985020?s=200&v=4" alt="Default avatar" />
+            <AvatarImage src="https://avatars.githubusercontent.com/u/14985020?s=200&v=4" alt="Default avatar"/>
             <AvatarFallback size="sm">DF</AvatarFallback>
           </Avatar>
 
           <Avatar size="lg">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/139426?s=200&v=4" alt="Large avatar" />
+            <AvatarImage src="https://avatars.githubusercontent.com/u/139426?s=200&v=4" alt="Large avatar"/>
             <AvatarFallback size="lg">LG</AvatarFallback>
           </Avatar>
 
           <Avatar size="xl">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/1841425?s=200&v=4" alt="Extra large avatar" />
+            <AvatarImage src="https://avatars.githubusercontent.com/u/1841425?s=200&v=4" alt="Extra large avatar"/>
             <AvatarFallback size="xl">XL</AvatarFallback>
           </Avatar>
         </div>
@@ -36,12 +36,12 @@
         <h3 class="text-md font-medium mb-3">With Fallbacks</h3>
         <div class="flex items-center gap-4">
           <Avatar>
-            <AvatarImage src="https://github.com/doesnotexist.png" alt="User avatar" />
+            <AvatarImage src="https://github.com/doesnotexist.png" alt="User avatar"/>
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
 
           <Avatar>
-            <AvatarImage src="" alt="Empty src" />
+            <AvatarImage src="" alt="Empty src"/>
             <AvatarFallback>AB</AvatarFallback>
           </Avatar>
 
@@ -56,7 +56,7 @@
         <h3 class="text-md font-medium mb-3">Custom Styling</h3>
         <div class="flex items-center gap-4">
           <Avatar className="ring-2 ring-primary ring-offset-2">
-            <AvatarImage src="https://avatars.githubusercontent.com/u/4060187?s=200&v=4" alt="Tailwind CSS" />
+            <AvatarImage src="https://avatars.githubusercontent.com/u/4060187?s=200&v=4" alt="Tailwind CSS"/>
             <AvatarFallback>TW</AvatarFallback>
           </Avatar>
 
@@ -84,7 +84,8 @@
         <div class="grid grid-cols-2 gap-4">
           <div>
             <p class="text-sm text-gray-600 mb-2">Square (1:1)</p>
-            <AspectRatio ratio="square" class="bg-gradient-to-br from-pink-400 to-red-600 rounded-lg border shadow-md" [ariaLabel]="'Square ratio example'">
+            <AspectRatio ratio="square" class="bg-gradient-to-br from-pink-400 to-red-600 rounded-lg border shadow-md"
+                         [ariaLabel]="'Square ratio example'">
               <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
                 <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-2">
                   📸
@@ -97,7 +98,8 @@
 
           <div>
             <p class="text-sm text-gray-600 mb-2">Video (16:9)</p>
-            <AspectRatio ratio="video" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg border shadow-md" [ariaLabel]="'Video ratio example'">
+            <AspectRatio ratio="video" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg border shadow-md"
+                         [ariaLabel]="'Video ratio example'">
               <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
                 <div class="w-10 h-6 bg-white/20 rounded flex items-center justify-center mb-2">
                   ▶️
@@ -134,7 +136,9 @@
       <!-- Custom Ratio -->
       <div>
         <h3 class="text-md font-medium mb-3">Custom Ratio</h3>
-        <AspectRatio [customRatio]="'2 / 1'" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-md" [ariaLabel]="'Custom ratio example'">
+        <AspectRatio [customRatio]="'2 / 1'"
+                     class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-md"
+                     [ariaLabel]="'Custom ratio example'">
           <div class="flex items-center justify-center h-full text-white font-medium p-4">
             <div class="text-center">
               <div class="w-12 h-8 bg-white/20 rounded mb-3 mx-auto flex items-center justify-center">
@@ -152,7 +156,8 @@
       <div>
         <h3 class="text-md font-medium mb-3">Gallery Layout</h3>
         <div class="grid grid-cols-3 gap-3">
-          <AspectRatio ratio="4/3" class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-md shadow-sm" [ariaLabel]="'Photo ratio example'">
+          <AspectRatio ratio="4/3" class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-md shadow-sm"
+                       [ariaLabel]="'Photo ratio example'">
             <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
               <span>📷</span>
               <span class="mt-1">Photo</span>
@@ -160,7 +165,8 @@
             </div>
           </AspectRatio>
 
-          <AspectRatio ratio="3/4" class="bg-gradient-to-br from-teal-400 to-green-500 rounded-md shadow-sm" [ariaLabel]="'Portrait ratio example'">
+          <AspectRatio ratio="3/4" class="bg-gradient-to-br from-teal-400 to-green-500 rounded-md shadow-sm"
+                       [ariaLabel]="'Portrait ratio example'">
             <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
               <span>🖼️</span>
               <span class="mt-1">Portrait</span>
@@ -168,7 +174,8 @@
             </div>
           </AspectRatio>
 
-          <AspectRatio ratio="1/1" class="bg-gradient-to-br from-violet-400 to-purple-500 rounded-md shadow-sm" [ariaLabel]="'Instagram ratio example'">
+          <AspectRatio ratio="1/1" class="bg-gradient-to-br from-violet-400 to-purple-500 rounded-md shadow-sm"
+                       [ariaLabel]="'Instagram ratio example'">
             <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
               <span>📱</span>
               <span class="mt-1">Social</span>
@@ -239,7 +246,8 @@
       <Alert>
         <AlertIcon>
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </AlertIcon>
         <div class="flex-1">
@@ -254,7 +262,8 @@
       <Alert variant="destructive">
         <AlertIcon>
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
           </svg>
         </AlertIcon>
         <div class="flex-1">
@@ -269,7 +278,8 @@
       <Alert variant="warning">
         <AlertIcon>
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
           </svg>
         </AlertIcon>
         <div class="flex-1">
@@ -284,7 +294,8 @@
       <Alert variant="success">
         <AlertIcon>
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </AlertIcon>
         <div class="flex-1">
@@ -299,7 +310,8 @@
       <Alert variant="info">
         <AlertIcon>
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </AlertIcon>
         <div class="flex-1">
@@ -368,13 +380,15 @@
 
           <Button size="icon-lg" variant="default">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
             </svg>
           </Button>
 
           <Button size="icon-xl" variant="destructive">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
             </svg>
           </Button>
         </div>
@@ -385,10 +399,12 @@
         <h3 class="text-md font-medium mb-3">Loading States</h3>
         <div class="flex items-center gap-3 flex-wrap">
           <Button [loadingState]="true">Loading</Button>
-          <Button [loadingState]="{ loading: true, loadingText: 'Saving...', disableOnLoading: true }" variant="secondary">
+          <Button [loadingState]="{ loading: true, loadingText: 'Saving...', disableOnLoading: true }"
+                  variant="secondary">
             Save Document
           </Button>
-          <Button [loadingState]="{ loading: true, loadingText: 'Processing...', disableOnLoading: false }" variant="outline">
+          <Button [loadingState]="{ loading: true, loadingText: 'Processing...', disableOnLoading: false }"
+                  variant="outline">
             Process
           </Button>
         </div>
@@ -901,7 +917,8 @@
               <div class="text-sm text-muted-foreground">Click a date to start selecting a range</div>
             } @else if (selectedRange().start && !selectedRange().end) {
               <div class="text-sm space-y-1">
-                <p><span class="font-medium text-foreground">Start:</span> <span class="text-primary">{{ selectedRange().start?.toLocaleDateString() }}</span></p>
+                <p><span class="font-medium text-foreground">Start:</span> <span
+                  class="text-primary">{{ selectedRange().start?.toLocaleDateString() }}</span></p>
                 <p class="text-muted-foreground text-xs">Click another date to complete the range</p>
               </div>
             } @else if (selectedRange().start && selectedRange().end) {
@@ -915,7 +932,8 @@
                 <div class="flex items-center gap-2">
                   <span class="text-muted-foreground">Duration:</span>
                   <span class="text-primary font-medium">
-                    {{ Math.ceil((selectedRange().end!.getTime() - selectedRange().start!.getTime()) / (1000 * 60 * 60 * 24)) + 1 }} days
+                    {{ Math.ceil((selectedRange().end!.getTime() - selectedRange().start!.getTime()) / (1000 * 60 * 60 * 24)) + 1 }}
+                    days
                   </span>
                 </div>
                 <button
@@ -950,7 +968,8 @@
           <p class="text-sm mt-2">
             <strong>Selected:</strong>
             {{ timePickerDate()?.toLocaleDateString() }} at
-            {{ selectedTime().hours.toString().padStart(2, '0') }}:{{ selectedTime().minutes.toString().padStart(2, '0') }}
+            {{ selectedTime().hours.toString().padStart(2, '0') }}
+            :{{ selectedTime().minutes.toString().padStart(2, '0') }}
           </p>
         }
       </div>
@@ -977,7 +996,8 @@
           <p class="text-sm mt-2">
             <strong>Selected:</strong>
             {{ time12hDate()?.toLocaleDateString() }} at
-            {{ selectedTime12h().hours > 12 ? (selectedTime12h().hours - 12).toString().padStart(2, '0') : selectedTime12h().hours.toString().padStart(2, '0') }}:{{ selectedTime12h().minutes.toString().padStart(2, '0') }} {{ selectedTime12h().hours >= 12 ? 'PM' : 'AM' }}
+            {{ selectedTime12h().hours > 12 ? (selectedTime12h().hours - 12).toString().padStart(2, '0') : selectedTime12h().hours.toString().padStart(2, '0') }}
+            :{{ selectedTime12h().minutes.toString().padStart(2, '0') }} {{ selectedTime12h().hours >= 12 ? 'PM' : 'AM' }}
           </p>
         }
       </div>
@@ -996,7 +1016,8 @@
           <!-- Default Card -->
           <Card variant="default">
             <CardHeader>
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3">
                 <span class="text-white text-xl">🏠</span>
               </div>
               <CardTitle>Default Card</CardTitle>
@@ -1015,7 +1036,8 @@
           <!-- Outline Card -->
           <Card variant="outline">
             <CardHeader>
-              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-3">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-3">
                 <span class="text-white text-xl">📋</span>
               </div>
               <CardTitle>Outline Card</CardTitle>
@@ -1034,7 +1056,8 @@
           <!-- Elevated Card -->
           <Card variant="elevated">
             <CardHeader>
-              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-3">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-3">
                 <span class="text-white text-xl">⭐</span>
               </div>
               <CardTitle>Elevated Card</CardTitle>
@@ -1134,8 +1157,10 @@
 
           <!-- Product Card 3 -->
           <Card variant="elevated" class="overflow-hidden hover:shadow-xl transition-shadow">
-            <div class="aspect-video bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center relative">
-              <div class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold">
+            <div
+              class="aspect-video bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center relative">
+              <div
+                class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold">
                 🔥 Hot
               </div>
               <div class="text-center text-white">
@@ -1264,7 +1289,8 @@
           <!-- Team Member Card -->
           <Card variant="default" class="text-center">
             <CardHeader class="pb-2">
-              <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div
+                class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-white text-2xl">👨‍💻</span>
               </div>
               <CardTitle class="text-xl">John Doe</CardTitle>
@@ -1282,10 +1308,12 @@
             </CardContent>
             <CardFooter class="justify-center">
               <div class="flex space-x-2">
-                <button class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm hover:bg-blue-600">
+                <button
+                  class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm hover:bg-blue-600">
                   in
                 </button>
-                <button class="w-8 h-8 bg-gray-800 text-white rounded-full flex items-center justify-center text-sm hover:bg-gray-900">
+                <button
+                  class="w-8 h-8 bg-gray-800 text-white rounded-full flex items-center justify-center text-sm hover:bg-gray-900">
                   &#64;gmail.com
                 </button>
               </div>
@@ -1297,7 +1325,8 @@
             <div class="absolute top-4 right-4 text-4xl opacity-20">"</div>
             <CardHeader>
               <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
                   <span class="text-white">👩‍💼</span>
                 </div>
                 <div>
@@ -1308,7 +1337,8 @@
             </CardHeader>
             <CardContent>
               <p class="text-sm text-muted-foreground italic">
-                "This component library has significantly improved our development speed. The quality and consistency are outstanding!"
+                "This component library has significantly improved our development speed. The quality and consistency
+                are outstanding!"
               </p>
             </CardContent>
             <CardFooter>
@@ -1322,7 +1352,8 @@
           <!-- Achievement Card -->
           <Card variant="filled" class="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
             <CardHeader class="text-center">
-              <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
                 <span class="text-white text-2xl">🏆</span>
               </div>
               <CardTitle class="text-xl text-yellow-800">Achievement Unlocked!</CardTitle>
@@ -1345,6 +1376,26 @@
           </Card>
         </div>
       </div>
+
+    </div>
+  </div>
+
+  <!-- Carousel Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Carousel Component</h2>
+    <div class="space-y-8">
+
+      <Carousel
+        [images]="[
+    'https://via.assets.so/game.png?id=2&q=95&w=800&h=300&fit=fill',
+    'https://via.assets.so/game.png?id=1&q=95&w=800&h=300&fit=fill',
+    'https://via.assets.so/game.png?id=3&q=95&w=800&h=300&fit=fill'
+  ]"
+        [width]="800"
+        [height]="400"
+        [interval]="5000"
+      />
+
 
     </div>
   </div>

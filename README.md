@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v1.0.1
+# 🎨 Angular SuperUI v1.0.2
 
 </div>
 
@@ -44,7 +44,7 @@ Angular SuperUI is a **modern, beautiful, and accessible** Angular UI component 
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui-cli@1.0.1
+npm install -g ngsui-cli@1.0.2
 ```
 
 ### 2️⃣ Initialize Your Project
@@ -57,7 +57,7 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add accordion alert avatar badge button card
+ngsui-cli add accordion alert avatar badge button card carousel
 
 # Add all components
 ngsui-cli add --all
@@ -213,6 +213,7 @@ export class AppComponent {}
 | **🍞 [Breadcrumb](./docs/components/breadcrumb.md)** | Navigation breadcrumbs with accessibility and custom separators | ✅ Available |
 | **🔘 [Button](./docs/components/button.md)** | Interactive buttons with 9 variants and loading states | ✅ Available |
 | **🃏 [Card](./docs/components/card.md)** | Flexible content container with header, content, and footer | ✅ Available |
+| **🎠 [Carousel](./docs/components/carousel.md)** | Accessible image carousel with auto-play, navigation, and pagination | ✅ Available |
 | **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
 
 ### 🚀 **Coming Soon**

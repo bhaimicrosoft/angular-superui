@@ -56,6 +56,12 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'carousel': {
+    name: 'Carousel',
+    description: 'An accessible image carousel with auto-play, navigation, and pagination.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   
   // 📅 Featured Component
   'calendar': {
