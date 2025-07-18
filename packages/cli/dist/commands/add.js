@@ -11,187 +11,55 @@ const chalk_1 = __importDefault(require("chalk"));
 const ora_1 = __importDefault(require("ora"));
 const inquirer_1 = __importDefault(require("inquirer"));
 const axios_1 = __importDefault(require("axios"));
-// Define available components
+// Define available components based on actual library structure (currently implemented)
 exports.COMPONENTS = {
-    // Core Components
-    'button': {
-        name: 'Button',
-        description: 'Displays a button or a component that looks like a button.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'badge': {
-        name: 'Badge',
-        description: 'Displays a badge or a component that looks like a badge.',
+    // 🎯 Core Components
+    'accordion': {
+        name: 'Accordion',
+        description: 'A vertically stacked set of interactive headings that reveal content.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
     'alert': {
         name: 'Alert',
-        description: 'Displays a callout for user attention.',
+        description: 'Displays an important message with different severity levels.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
-    'card': {
-        name: 'Card',
-        description: 'Displays a card with header, content, and footer.',
+    'alert-dialog': {
+        name: 'Alert Dialog',
+        description: 'A modal dialog that interrupts the user with important content.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
-    'input': {
-        name: 'Input',
-        description: 'Displays a form input field.',
+    'avatar': {
+        name: 'Avatar',
+        description: 'An image element with a fallback for representing users.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
-    'progress': {
-        name: 'Progress',
-        description: 'Displays an indicator showing the completion progress.',
+    'badge': {
+        name: 'Badge',
+        description: 'Displays a badge or status indicator.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
-    // Form Components
-    'checkbox': {
-        name: 'Checkbox',
-        description: 'A control that allows the user to toggle between checked and not checked.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'switch': {
-        name: 'Switch',
-        description: 'A control that allows the user to toggle between checked and not checked.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'textarea': {
-        name: 'Textarea',
-        description: 'Displays a form textarea field.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'select': {
-        name: 'Select',
-        description: 'Displays a list of options for the user to pick from.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'radio-group': {
-        name: 'Radio Group',
-        description: 'A set of checkable buttons—known as radio buttons.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'slider': {
-        name: 'Slider',
-        description: 'An input where the user selects a value from within a given range.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    // Navigation Components
     'breadcrumb': {
         name: 'Breadcrumb',
         description: 'Displays the path to the current resource using a hierarchy of links.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
-    'tabs': {
-        name: 'Tabs',
-        description: 'A set of layered sections of content—known as tab panels.',
+    'button': {
+        name: 'Button',
+        description: 'A clickable button component with multiple variants.',
         dependencies: ['cn'],
         files: ['index.ts']
     },
-    // Layout Components
-    'separator': {
-        name: 'Separator',
-        description: 'Visually or semantically separates content.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'skeleton': {
-        name: 'Skeleton',
-        description: 'Use to show a placeholder while content is loading.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    // Overlay Components
-    'dialog': {
-        name: 'Dialog',
-        description: 'A window overlaid on either the primary window or another dialog window.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'tooltip': {
-        name: 'Tooltip',
-        description: 'A popup that displays information related to an element.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'popover': {
-        name: 'Popover',
-        description: 'Displays rich content in a portal, triggered by a button.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'sheet': {
-        name: 'Sheet',
-        description: 'Extends the Dialog component to display content that complements the main content.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    // New Components
+    // 📅 Featured Component
     'calendar': {
         name: 'Calendar',
-        description: 'A date field component that allows users to enter and edit date.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'command': {
-        name: 'Command',
-        description: 'Fast, composable, unstyled command menu for Angular.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    // Display Components
-    'avatar': {
-        name: 'Avatar',
-        description: 'An image element with a fallback for representing the user.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'table': {
-        name: 'Table',
-        description: 'A responsive table component.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    // Utility Components
-    'theme-selector': {
-        name: 'Theme Selector',
-        description: 'A component for switching between different themes.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'toast': {
-        name: 'Toast',
-        description: 'A succinct message that is displayed temporarily.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'toggle': {
-        name: 'Toggle',
-        description: 'A two-state button that can be either on or off.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'accordion': {
-        name: 'Accordion',
-        description: 'A vertically stacked set of interactive headings.',
-        dependencies: ['cn'],
-        files: ['index.ts']
-    },
-    'label': {
-        name: 'Label',
-        description: 'Renders an accessible label associated with controls.',
+        description: '🌟 Enhanced calendar with range selection, drag support, and time picker.',
         dependencies: ['cn'],
         files: ['index.ts']
     }

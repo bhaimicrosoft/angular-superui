@@ -10,52 +10,74 @@ const add_1 = require("./add");
 const packageJson = require('../../package.json');
 const CLI_VERSION = packageJson.version;
 async function listCommand() {
+    // Get total component count from actually implemented components
+    const totalComponents = Object.keys(add_1.COMPONENTS).length;
     console.log('');
-    console.log(chalk_1.default.cyan('┌─────────────────────────────────────────────────────────────┐'));
-    console.log(chalk_1.default.cyan('│') + chalk_1.default.bold.magenta('           📦 Angular SuperUI Components           ') + chalk_1.default.cyan('│'));
-    console.log(chalk_1.default.cyan('│') + chalk_1.default.yellow(`                     v${CLI_VERSION}                      `) + chalk_1.default.cyan('│'));
-    console.log(chalk_1.default.cyan('└─────────────────────────────────────────────────────────────┘'));
+    console.log(chalk_1.default.cyan('╔═══════════════════════════════════════════════════════════════╗'));
+    console.log(chalk_1.default.cyan('║') + chalk_1.default.bold.magenta('   📦 Angular SuperUI - Modern Component Library   ') + chalk_1.default.cyan('║'));
+    console.log(chalk_1.default.cyan('║') + chalk_1.default.yellow(`                      v${CLI_VERSION} • ${totalComponents} Components Ready                    `) + chalk_1.default.cyan('║'));
+    console.log(chalk_1.default.cyan('║') + chalk_1.default.gray('           ⚡ TailwindCSS • 🎨 Customizable • 🔥 Production Ready        ') + chalk_1.default.cyan('║'));
+    console.log(chalk_1.default.cyan('╚═══════════════════════════════════════════════════════════════╝'));
     console.log('');
-    // Group components by category
+    // Group components by category with actually implemented components only
     const categories = {
-        '🎯 Core Components': ['button', 'badge', 'alert', 'card', 'input', 'progress'],
-        '📝 Form Components': ['checkbox', 'switch', 'textarea', 'select', 'radio-group', 'slider'],
-        '🧭 Navigation Components': ['breadcrumb', 'tabs'],
-        '📐 Layout Components': ['separator', 'skeleton'],
-        '💫 Overlay Components': ['dialog', 'tooltip', 'popover', 'sheet'],
-        '🆕 New Components': ['calendar', 'command'],
-        '🖼️ Display Components': ['avatar', 'table'],
-        '⚙️ Utility Components': ['theme-selector', 'toast', 'toggle', 'accordion', 'label']
+        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion'],
+        '🧭 Navigation': ['breadcrumb'],
+        '💫 Overlays & Dialogs': ['alert-dialog'],
+        '📅 Featured Component': ['calendar']
     };
     for (const [category, componentList] of Object.entries(categories)) {
         console.log(chalk_1.default.bold.yellow(category));
         componentList.forEach(componentKey => {
             const component = add_1.COMPONENTS[componentKey];
             if (component) {
-                console.log(chalk_1.default.green(`  ✓ ${componentKey}`) + chalk_1.default.gray(` - ${component.description}`));
+                const icon = componentKey === 'calendar' ? '🌟' : '✨';
+                console.log(chalk_1.default.green(`  ${icon} ${componentKey}`) + chalk_1.default.gray(` - ${component.description}`));
             }
         });
         console.log(''); // Empty line between categories
     }
-    console.log(chalk_1.default.bgBlue.white(' 📖 USAGE EXAMPLES '));
+    console.log(chalk_1.default.bgBlue.white(' 📖 QUICK START GUIDE '));
     console.log('');
-    console.log(chalk_1.default.cyan('Single component:    ') + chalk_1.default.yellow('ngsui-cli add button'));
-    console.log(chalk_1.default.cyan('Multiple components: ') + chalk_1.default.yellow('ngsui-cli add button card alert'));
-    console.log(chalk_1.default.cyan('All components:      ') + chalk_1.default.yellow('ngsui-cli add --all'));
+    console.log(chalk_1.default.cyan('Add single component:    ') + chalk_1.default.yellow('ngsui-cli add button'));
+    console.log(chalk_1.default.cyan('Add multiple components: ') + chalk_1.default.yellow('ngsui-cli add button alert badge'));
+    console.log(chalk_1.default.cyan('Add featured calendar:   ') + chalk_1.default.yellow('ngsui-cli add calendar'));
+    console.log(chalk_1.default.cyan('Add all components:      ') + chalk_1.default.yellow('ngsui-cli add --all'));
     console.log('');
-    console.log(chalk_1.default.bgMagenta.white(' 🎨 COLOR VARIANTS '));
+    console.log(chalk_1.default.bgMagenta.white(' 🌟 FEATURED SPOTLIGHT '));
     console.log('');
-    console.log(chalk_1.default.gray('Most components support these beautiful color variants:'));
-    console.log(chalk_1.default.green('  🟢 Semantic: ') + chalk_1.default.white('success, warning, info, destructive'));
-    console.log(chalk_1.default.magenta('  🟣 Purple Family: ') + chalk_1.default.white('purple, pink, violet, indigo'));
-    console.log(chalk_1.default.yellow('  🟡 Warm Colors: ') + chalk_1.default.white('orange, amber, lime, yellow'));
-    console.log(chalk_1.default.blue('  🔵 Cool Colors: ') + chalk_1.default.white('blue, cyan, sky, teal'));
-    console.log(chalk_1.default.red('  🔴 Nature Colors: ') + chalk_1.default.white('rose, red, emerald, green'));
+    console.log(chalk_1.default.bold.green('📅 Enhanced Calendar Component:'));
+    console.log(chalk_1.default.cyan('  🎯 Advanced range selection with intuitive drag support'));
+    console.log(chalk_1.default.cyan('  ⏰ Integrated time picker for complete date-time handling'));
+    console.log(chalk_1.default.cyan('  ♿ Full accessibility compliance (WCAG 2.1)'));
+    console.log(chalk_1.default.cyan('  🎨 Beautiful TailwindCSS styling with custom themes'));
+    console.log(chalk_1.default.cyan('  📱 Fully responsive design for all screen sizes'));
+    console.log(chalk_1.default.cyan('  🔧 Easy customization with PascalCase selectors'));
     console.log('');
-    console.log(chalk_1.default.cyan('┌─────────────────────────────────────────────────────────────┐'));
-    console.log(chalk_1.default.cyan('│') + chalk_1.default.bold.green('               🌈 Total: 30+ Components                ') + chalk_1.default.cyan('│'));
-    console.log(chalk_1.default.cyan('│') + chalk_1.default.gray('            Local-First • Zero Dependencies             ') + chalk_1.default.cyan('│'));
-    console.log(chalk_1.default.cyan('└─────────────────────────────────────────────────────────────┘'));
+    console.log(chalk_1.default.bgCyan.black(' 🎨 MODERN STYLING SYSTEM '));
+    console.log('');
+    console.log(chalk_1.default.gray('Built with cutting-edge design principles:'));
+    console.log(chalk_1.default.green('  🎨 TailwindCSS v4: ') + chalk_1.default.white('Latest utility-first CSS framework'));
+    console.log(chalk_1.default.blue('  🔧 CVA Variants: ') + chalk_1.default.white('Type-safe component styling variants'));
+    console.log(chalk_1.default.magenta('  🎭 Smart Class Merging: ') + chalk_1.default.white('Intelligent class combination system'));
+    console.log(chalk_1.default.yellow('  📱 Mobile-First: ') + chalk_1.default.white('Responsive design from the ground up'));
+    console.log(chalk_1.default.red('  ⚡ Zero Runtime: ') + chalk_1.default.white('Pure CSS with no JavaScript overhead'));
+    console.log('');
+    console.log(chalk_1.default.bgGreen.black(' 🚀 READY FOR PRODUCTION '));
+    console.log('');
+    console.log(chalk_1.default.gray('These components are battle-tested and production-ready:'));
+    console.log(chalk_1.default.green('  ✅ Zero external dependencies'));
+    console.log(chalk_1.default.blue('  📦 Tree-shakable for optimal bundle size'));
+    console.log(chalk_1.default.yellow('  🔧 Angular 18+ compatible'));
+    console.log(chalk_1.default.magenta('  🎯 TypeScript first with full type safety'));
+    console.log(chalk_1.default.cyan('  🧪 Comprehensive test coverage'));
+    console.log('');
+    console.log(chalk_1.default.cyan('╔═══════════════════════════════════════════════════════════════╗'));
+    console.log(chalk_1.default.cyan('║') + chalk_1.default.bold.green(`               🎉 Total: ${totalComponents} Components Available                `) + chalk_1.default.cyan('║'));
+    console.log(chalk_1.default.cyan('║') + chalk_1.default.gray('          Zero Dependencies • Tree-Shakable • Angular 18+         ') + chalk_1.default.cyan('║'));
+    console.log(chalk_1.default.cyan('║') + chalk_1.default.magenta('               💜 Built with ❤️ for Angular Developers          ') + chalk_1.default.cyan('║'));
+    console.log(chalk_1.default.cyan('╚═══════════════════════════════════════════════════════════════╝'));
     console.log('');
 }
+exports.default = listCommand;
 //# sourceMappingURL=list.js.map

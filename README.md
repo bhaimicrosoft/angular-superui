@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v1.0.0
+# 🎨 Angular SuperUI v1.0.1
 
 </div>
 
@@ -16,7 +16,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/7%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/8%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -45,7 +45,7 @@ Angular SuperUI is a **modern, beautiful, and accessible** Angular UI component 
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui-cli@1.0.0
+npm install -g ngsui-cli@1.0.1
 ```
 
 ### 2️⃣ Initialize Your Project
@@ -172,7 +172,7 @@ export class AppComponent {}
 
 ---
 
-## � Available Components
+## 🧩 Available Components
 
 <div align="center">
 
@@ -300,11 +300,11 @@ ngsui-cli init
 - 📋 **[Installation Guide](./docs/installation.md)** - Complete setup instructions
 - 🪗 **[Accordion Examples](./docs/components/accordion.md)** - Interactive accordion usage
 - 🚨 **[Alert Examples](./docs/components/alert.md)** - Alert variants and styling
-- � **[Avatar Examples](./docs/components/avatar.md)** - Avatar sizes and fallbacks
+- 👤 **[Avatar Examples](./docs/components/avatar.md)** - Avatar sizes and fallbacks
 - 🏷️ **[Badge Examples](./docs/components/badge.md)** - Badge variants and accessibility
 - 🍞 **[Breadcrumb Examples](./docs/components/breadcrumb.md)** - Navigation breadcrumbs and custom separators
 - 🔘 **[Button Examples](./docs/components/button.md)** - Button variants, loading states, and events
-- �🔧 **[CLI Reference](./packages/cli/README.md)** - All CLI commands and options
+- 🔧 **[CLI Reference](./packages/cli/README.md)** - All CLI commands and options
 
 ---
 

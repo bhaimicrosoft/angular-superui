@@ -15,10 +15,10 @@ A powerful CLI tool for selective Angular SuperUI component installation. Instal
 
 ```bash
 # Install globally
-npm install -g ngsui-cli@1.0.0
+npm install -g ngsui-cli@1.0.1
 
 # Or use with npx (no installation required)
-npx ngsui-cli@1.0.0 --help
+npx ngsui-cli@1.0.1 --help
 ```
 
 ## 🎯 Quick Start
@@ -40,7 +40,7 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (7 total)
+## 📦 Available Components (8 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button

@@ -42,7 +42,7 @@ npm install angular-superui@0.1.0
 - **Better Performance** - 50%+ smaller bundle sizes
 - **Version Control Friendly** - Components versioned with your code
 
-### � **Enhanced Dark Mode System**
+### 🌙 **Enhanced Dark Mode System**
 - **System theme detection** - Automatically follows OS preference
 - **Theme persistence** - Remembers user choice across sessions  
 - **Instant toggle** - Switch themes without page reload
@@ -64,7 +64,7 @@ All Tailwind CSS color variants now work correctly:
 - 🛠️ **CLI Tool** - Selective component installation like shadcn/ui
 - 🎨 **30+ Components** - Comprehensive UI component library  
 - 🌈 **15+ Color Variants** - Extended color palette for all components
-- � **Enhanced Dark Mode** - System detection + theme persistence
+- 🌙 **Enhanced Dark Mode** - System detection + theme persistence
 - 🔧 **TypeScript First** - Full type safety with Class Variance Authority
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant, WCAG AA)
 - 🎯 **Tree Shakable** - Import only what you need

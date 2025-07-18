@@ -1,11 +1,5 @@
 export declare const COMPONENTS: {
-    button: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    badge: {
+    accordion: {
         name: string;
         description: string;
         dependencies: string[];
@@ -17,115 +11,7 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
-    card: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    input: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    progress: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    checkbox: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    switch: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    textarea: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    select: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    'radio-group': {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    slider: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    breadcrumb: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    tabs: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    separator: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    skeleton: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    dialog: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    tooltip: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    popover: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    sheet: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    calendar: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    command: {
+    'alert-dialog': {
         name: string;
         description: string;
         dependencies: string[];
@@ -137,37 +23,25 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
-    table: {
+    badge: {
         name: string;
         description: string;
         dependencies: string[];
         files: string[];
     };
-    'theme-selector': {
+    breadcrumb: {
         name: string;
         description: string;
         dependencies: string[];
         files: string[];
     };
-    toast: {
+    button: {
         name: string;
         description: string;
         dependencies: string[];
         files: string[];
     };
-    toggle: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    accordion: {
-        name: string;
-        description: string;
-        dependencies: string[];
-        files: string[];
-    };
-    label: {
+    calendar: {
         name: string;
         description: string;
         dependencies: string[];
