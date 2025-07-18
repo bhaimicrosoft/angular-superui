@@ -15,7 +15,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/10%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/13%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -57,7 +57,7 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add accordion alert avatar badge button card carousel
+ngsui-cli add accordion alert avatar badge button card carousel checkbox
 
 # Add all components
 ngsui-cli add --all
@@ -215,12 +215,12 @@ export class AppComponent {}
 | **🃏 [Card](./docs/components/card.md)** | Flexible content container with header, content, and footer | ✅ Available |
 | **🎠 [Carousel](./docs/components/carousel.md)** | Accessible image carousel with auto-play, navigation, and pagination | ✅ Available |
 | **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
+| **☑️ [Checkbox](./docs/components/checkbox.md)** | A control that allows the user to toggle between checked and not checked | ✅ Available |
 
 ### 🚀 **Coming Soon**
 
 - Input
 - Select
-- Checkbox
 - And many more...
 
 ---

@@ -8,10 +8,10 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **10 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **12 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 10 components with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 12 components with **practical examples**, **usage instructions**, and **styling tips**!
 
 ## 🛠️ **v1.0.2: Production Release**
 
@@ -26,7 +26,7 @@ npm install -g ngsui-cli@1.0.1
 ngsui-cli init
 
 # Add specific components
-ngsui-cli add button card badge alert
+ngsui-cli add button card badge alert checkbox
 
 # List all available components
 ngsui-cli list
@@ -43,8 +43,8 @@ ng add angular-superui@1.0.1
 npm install angular-superui@1.0.1
 ```
 
-### 🌟 **Key Features in v1.0.1**
-- **10 Essential Components** - Production-ready UI components
+### 🌟 **Key Features in v1.0.2**
+- **12 Essential Components** - Production-ready UI components
 - **Enhanced CLI** - Improved component selection and installation
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach
@@ -58,7 +58,7 @@ npm install angular-superui@1.0.1
 ## ✨ Features
 
 - 🛠️ **CLI Tool** - Selective component installation with ngsui-cli
-- 🎨 **10 Essential Components** - Production-ready UI component library  
+- 🎨 **12 Essential Components** - Production-ready UI component library  
 - 🌈 **Multiple Variants** - Customizable styling options for all components
 - 🔧 **TypeScript First** - Full type safety and excellent IntelliSense support
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant)
@@ -81,7 +81,7 @@ npm install -g ngsui-cli
 ngsui-cli init
 
 # Add specific components
-ngsui-cli add button card badge alert
+ngsui-cli add button card badge alert checkbox
 
 # List all available components
 ngsui-cli list
@@ -210,7 +210,8 @@ import {
   Card, 
   CardHeader, 
   CardTitle, 
-  CardContent 
+  CardContent,
+  Checkbox 
 } from 'angular-superui';
 
 @Component({
@@ -224,93 +225,129 @@ import {
     Card, 
     CardHeader, 
     CardTitle, 
-    CardContent
+    CardContent,
+    Checkbox
   ],
   template: `
     <div class="p-6 space-y-6">
       <!-- Welcome Card -->
-      <card class="w-96">
-        <card-header>
-          <card-title>Welcome to Angular SuperUI</card-title>
-        </card-header>
-        <card-content>
+      <Card class="w-96">
+        <CardHeader>
+          <CardTitle>Welcome to Angular SuperUI</CardTitle>
+        </CardHeader>
+        <CardContent>
           <!-- Avatar Component -->
-          <avatar 
+          <Avatar 
             size="lg" 
             [src]="'https://github.com/shadcn.png'"
             [alt]="'User Avatar'"
             class="mb-4">
-          </avatar>
+          </Avatar>
 
           <!-- Alert Component -->
-          <alert variant="default" class="mb-4">
+          <Alert variant="default" class="mb-4">
             <h4 class="font-medium">Success!</h4>
             <p class="text-sm">Your component library is ready to use.</p>
-          </alert>
+          </Alert>
 
           <!-- Button Components -->
           <div class="flex gap-2 mb-4">
-            <button variant="default">Default</button>
-            <button variant="secondary">Secondary</button>
-            <button variant="outline">Outline</button>
+            <Button variant="default">Default</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="outline">Outline</Button>
           </div>
 
           <!-- Badge Components -->
-          <div class="flex gap-2">
-            <badge variant="default">Default</badge>
-            <badge variant="secondary">Secondary</badge>
-            <badge variant="destructive">Important</badge>
+          <div class="flex gap-2 mb-4">
+            <Badge variant="default">Default</Badge>
+            <Badge variant="secondary">Secondary</Badge>
+            <Badge variant="destructive">Important</Badge>
           </div>
-        </card-content>
-      </card>
+
+          <!-- Checkbox Components -->
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center space-x-2">
+              <Checkbox [(ngModel)]="isChecked" />
+              <label class="text-sm">Accept terms and conditions</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox variant="success" [(ngModel)]="isSubscribed" />
+              <label class="text-sm">Subscribe to newsletter</label>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   `
 })
 export class ExampleComponent {
   // Component logic here
+  isChecked = false;
+  isSubscribed = false;
 }
 ```
 
-## � Component Variants
+## 🎨 Component Variants
 
 ### Button Variants
 Each button component supports multiple styling options:
 
 ```typescript
 // Basic variants
-<button variant="default">Default</button>
-<button variant="secondary">Secondary</button>
-<button variant="destructive">Destructive</button>
-<button variant="outline">Outline</button>
-<button variant="ghost">Ghost</button>
-<button variant="link">Link</button>
+<Button variant="default">Default</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
 
 // Sizes
-<button size="sm">Small</button>
-<button size="default">Default</button>
-<button size="lg">Large</button>
-<button size="icon">Icon</button>
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+<Button size="icon">Icon</Button>
 ```
 
 ### Badge Variants
 Status and labeling options:
 
 ```typescript
-<badge variant="default">Default</badge>
-<badge variant="secondary">Secondary</badge>
-<badge variant="destructive">Important</badge>
-<badge variant="outline">Outline</badge>
+<Badge variant="default">Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="destructive">Important</Badge>
+<Badge variant="outline">Outline</Badge>
 ```
 
 ### Alert Variants
 Contextual feedback styling:
 
 ```typescript
-<alert variant="default">Default message</alert>
-<alert variant="destructive">Error message</alert>
+<Alert variant="default">Default message</Alert>
+<Alert variant="destructive">Error message</Alert>
 ```
 
-## 🧩 Available Components (10)
+### Checkbox Variants
+Boolean input controls with multiple states:
+
+```typescript
+<Checkbox [(ngModel)]="isChecked">Default checkbox</Checkbox>
+<Checkbox variant="success" [(ngModel)]="isSuccess">Success checkbox</Checkbox>
+<Checkbox variant="warning" [(ngModel)]="isWarning">Warning checkbox</Checkbox>
+<Checkbox variant="destructive" [(ngModel)]="isError">Error checkbox</Checkbox>
+
+<!-- Different sizes -->
+<Checkbox size="sm" [(ngModel)]="isSmall">Small checkbox</Checkbox>
+<Checkbox size="default" [(ngModel)]="isDefault">Default checkbox</Checkbox>
+<Checkbox size="lg" [(ngModel)]="isLarge">Large checkbox</Checkbox>
+<Checkbox size="xl" [(ngModel)]="isXLarge">Extra large checkbox</Checkbox>
+
+<!-- Different states -->
+<Checkbox [(ngModel)]="isChecked">Checked state</Checkbox>
+<Checkbox [indeterminate]="true">Indeterminate state</Checkbox>
+<Checkbox [disabled]="true" [(ngModel)]="isDisabled">Disabled state</Checkbox>
+```
+
+## 🧩 Available Components (12)
 
 ### 🎨 **Core UI Components**
 
@@ -364,29 +401,41 @@ Contextual feedback styling:
     - Date selection functionality
     - Customizable date formatting
 
+11. **☑️ Checkbox** - Boolean input control with multiple states
+    - Checked, unchecked, and indeterminate states
+    - Multiple variants: default, destructive, success, warning
+    - Different sizes: sm, default, lg, xl
+    - Full form integration with ControlValueAccessor
+    - Accessibility compliant with ARIA attributes
+
+12. **🎠 Carousel** - Content slider and carousel component
+    - Smooth sliding animations
+    - Navigation controls and indicators
+    - Responsive design with touch support
+
 ## 🖼️ Enhanced Avatar Component
 
 The Avatar component now supports full image functionality:
 
 ```typescript
 // Image source with automatic fallback
-<avatar 
+<Avatar 
   size="lg" 
   [src]="'https://github.com/shadcn.png'"
   [alt]="'User Avatar'">
-</avatar>
+</Avatar>
 
 // Custom fallback text
-<avatar [fallback]="'JD'"></avatar>
+<Avatar [fallback]="'JD'"></Avatar>
 
 // Auto-generated initials from alt text
-<avatar [alt]="'John Doe'"></avatar>
+<Avatar [alt]="'John Doe'"></Avatar>
 
 // Multiple sizes
-<avatar size="sm"></avatar>    <!-- 32px -->
-<avatar size="default"></avatar> <!-- 40px -->
-<avatar size="lg"></avatar>    <!-- 48px -->
-<avatar size="xl"></avatar>    <!-- 64px -->
+<Avatar size="sm"></Avatar>    <!-- 32px -->
+<Avatar size="default"></Avatar> <!-- 40px -->
+<Avatar size="lg"></Avatar>    <!-- 48px -->
+<Avatar size="xl"></Avatar>    <!-- 64px -->
 ```
 
 **Features**:
@@ -408,57 +457,57 @@ The Avatar component now supports full image functionality:
       <!-- Header with Avatar -->
       <div class="flex items-center justify-between">
         <h1 class="text-2xl font-bold">Dashboard</h1>
-        <avatar 
+        <Avatar 
           size="default" 
           [src]="'https://github.com/shadcn.png'"
           [alt]="'User Avatar'">
-        </avatar>
+        </Avatar>
       </div>
 
       <!-- Alert Notification -->
-      <alert variant="default">
+      <Alert variant="default">
         <h4 class="font-medium">Welcome back!</h4>
         <p class="text-sm">You have 3 new notifications.</p>
-      </alert>
+      </Alert>
 
       <!-- Action Buttons -->
       <div class="flex gap-2">
-        <button variant="default">Create</button>
-        <button variant="secondary">Save Draft</button>
-        <button variant="destructive">Delete</button>
+        <Button variant="default">Create</Button>
+        <Button variant="secondary">Save Draft</Button>
+        <Button variant="destructive">Delete</Button>
       </div>
 
       <!-- Status Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <card>
-          <card-header>
-            <card-title>Sales</card-title>
-          </card-header>
-          <card-content>
+        <Card>
+          <CardHeader>
+            <CardTitle>Sales</CardTitle>
+          </CardHeader>
+          <CardContent>
             <div class="text-2xl font-bold">$12,345</div>
-            <badge variant="default" class="mt-2">+12%</badge>
-          </card-content>
-        </card>
+            <Badge variant="default" class="mt-2">+12%</Badge>
+          </CardContent>
+        </Card>
         
-        <card>
-          <card-header>
-            <card-title>Orders</card-title>
-          </card-header>
-          <card-content>
+        <Card>
+          <CardHeader>
+            <CardTitle>Orders</CardTitle>
+          </CardHeader>
+          <CardContent>
             <div class="text-2xl font-bold">1,234</div>
-            <badge variant="secondary" class="mt-2">+8%</badge>
-          </card-content>
-        </card>
+            <Badge variant="secondary" class="mt-2">+8%</Badge>
+          </CardContent>
+        </Card>
         
-        <card>
-          <card-header>
-            <card-title>Users</card-title>
-          </card-header>
-          <card-content>
+        <Card>
+          <CardHeader>
+            <CardTitle>Users</CardTitle>
+          </CardHeader>
+          <CardContent>
             <div class="text-2xl font-bold">5,678</div>
-            <badge variant="destructive" class="mt-2">-3%</badge>
-          </card-content>
-        </card>
+            <Badge variant="destructive" class="mt-2">-3%</Badge>
+          </CardContent>
+        </Card>
       </div>
     </div>
   `
@@ -480,8 +529,8 @@ const buttonVariant: ButtonVariant = 'default';
 const avatarSize: AvatarSize = 'lg';
 
 // All components are fully typed
-<button [variant]="buttonVariant">Typed Button</button>
-<avatar [size]="avatarSize">Typed Avatar</avatar>
+<Button [variant]="buttonVariant">Typed Button</Button>
+<Avatar [size]="avatarSize">Typed Avatar</Avatar>
 ```
 
 ## ♿ Accessibility

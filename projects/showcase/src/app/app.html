@@ -74,6 +74,115 @@
     </div>
   </div>
 
+  <!-- Checkbox Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
+    <div class="space-y-6">
+      <!-- Basic Checkbox -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox [(ngModel)]="basicCheckbox" />
+            <label class="text-sm font-medium">Accept terms and conditions</label>
+          </div>
+          <p class="text-xs text-gray-600">Current value: {{basicCheckbox()}}</p>
+        </div>
+      </div>
+
+      <!-- Checkbox Sizes -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox size="sm" [(ngModel)]="smallCheckbox" />
+            <label class="text-sm">Small checkbox</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox size="default" [(ngModel)]="defaultCheckbox" />
+            <label class="text-sm">Default checkbox</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox size="lg" [(ngModel)]="largeCheckbox" />
+            <label class="text-sm">Large checkbox</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox size="xl" [(ngModel)]="extraLargeCheckbox" />
+            <label class="text-sm">Extra large checkbox</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkbox Variants -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Variants</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox variant="default" [(ngModel)]="defaultVariant" />
+            <label class="text-sm">Default variant</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox variant="destructive" [(ngModel)]="destructiveVariant" />
+            <label class="text-sm">Destructive variant</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox variant="success" [(ngModel)]="successVariant" />
+            <label class="text-sm">Success variant</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox variant="warning" [(ngModel)]="warningVariant" />
+            <label class="text-sm">Warning variant</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkbox States -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different States</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox [(ngModel)]="uncheckedState" />
+            <label class="text-sm">Unchecked state</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox [(ngModel)]="checkedState" />
+            <label class="text-sm">Checked state</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox [indeterminate]="indeterminateState()" />
+            <label class="text-sm">Indeterminate state</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox [disabled]="disabledUncheckedSignal()" [(ngModel)]="disabledUnchecked" />
+            <label class="text-sm text-gray-500">Disabled unchecked</label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Checkbox [disabled]="disabledCheckedSignal()" [(ngModel)]="disabledChecked" />
+            <label class="text-sm text-gray-500">Disabled checked</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkbox with Accessibility -->
+      <div>
+        <h3 class="text-md font-medium mb-3">With Accessibility</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="accessibleCheckbox" 
+              [accessibility]="{
+                ariaLabel: 'Subscribe to newsletter',
+                ariaDescription: 'You can unsubscribe at any time',
+                ariaRequired: true
+              }" />
+            <label class="text-sm">Subscribe to newsletter (required)</label>
+          </div>
+          <p class="text-xs text-gray-600">Screen reader accessible with proper ARIA attributes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- AspectRatio Component Tests -->
   <div>
     <h2 class="text-lg font-semibold mb-4">AspectRatio Component</h2>
@@ -469,6 +578,236 @@
             <Button variant="outline">Secondary Action</Button>
             <Button variant="ghost">Cancel</Button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkbox Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
+    <div class="space-y-6">
+      <!-- Basic Checkbox -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              id="basic-checkbox">
+            </Checkbox>
+            <label for="basic-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              Basic Checkbox
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkbox Variants -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Variants</h3>
+        <div class="flex items-center gap-6 flex-wrap">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              variant="default"
+              id="default-checkbox">
+            </Checkbox>
+            <label for="default-checkbox" class="text-sm font-medium">Default</label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              variant="destructive"
+              id="destructive-checkbox">
+            </Checkbox>
+            <label for="destructive-checkbox" class="text-sm font-medium">Destructive</label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              variant="success"
+              id="success-checkbox">
+            </Checkbox>
+            <label for="success-checkbox" class="text-sm font-medium">Success</label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              variant="warning"
+              id="warning-checkbox">
+            </Checkbox>
+            <label for="warning-checkbox" class="text-sm font-medium">Warning</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkbox Sizes -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Sizes</h3>
+        <div class="flex items-center gap-6 flex-wrap">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              size="sm"
+              id="sm-checkbox">
+            </Checkbox>
+            <label for="sm-checkbox" class="text-sm font-medium">Small</label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              size="default"
+              id="default-size-checkbox">
+            </Checkbox>
+            <label for="default-size-checkbox" class="text-sm font-medium">Default</label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              size="lg"
+              id="lg-checkbox">
+            </Checkbox>
+            <label for="lg-checkbox" class="text-sm font-medium">Large</label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              size="xl"
+              id="xl-checkbox">
+            </Checkbox>
+            <label for="xl-checkbox" class="text-sm font-medium">Extra Large</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disabled State -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Disabled State</h3>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="disabledCheckbox" 
+              [disabled]="true"
+              id="disabled-unchecked">
+            </Checkbox>
+            <label for="disabled-unchecked" class="text-sm font-medium">Disabled (Unchecked)</label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="notificationsEnabled" 
+              [disabled]="true"
+              id="disabled-checked">
+            </Checkbox>
+            <label for="disabled-checked" class="text-sm font-medium">Disabled (Checked)</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indeterminate State -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Indeterminate State</h3>
+        <div class="flex items-center space-x-2">
+          <Checkbox 
+            [(ngModel)]="indeterminateCheckbox" 
+            [indeterminate]="true"
+            id="indeterminate-checkbox">
+          </Checkbox>
+          <label for="indeterminate-checkbox" class="text-sm font-medium">
+            Indeterminate State
+          </label>
+        </div>
+      </div>
+
+      <!-- Form Example -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Form Example</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="termsAccepted" 
+              id="terms-checkbox">
+            </Checkbox>
+            <label for="terms-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              Accept terms and conditions
+            </label>
+          </div>
+          <p class="text-sm text-muted-foreground">
+            By checking this box, you agree to our terms of service and privacy policy.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature Selection Example -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Feature Selection</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="notificationsEnabled" 
+              id="notifications-checkbox">
+            </Checkbox>
+            <label for="notifications-checkbox" class="text-sm font-medium leading-none">
+              Enable notifications
+            </label>
+          </div>
+          <p class="text-sm text-muted-foreground">
+            You can enable or disable notifications at any time.
+          </p>
+
+          <div class="mt-4 space-y-2">
+            <div class="flex items-center space-x-2">
+              <Checkbox 
+                [(ngModel)]="featureA" 
+                id="feature-a">
+              </Checkbox>
+              <label for="feature-a" class="text-sm font-medium">Feature A</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox 
+                [(ngModel)]="featureB" 
+                id="feature-b">
+              </Checkbox>
+              <label for="feature-b" class="text-sm font-medium">Feature B</label>
+            </div>
+            <div class="flex items-center space-x-2">
+              <Checkbox 
+                [(ngModel)]="featureC" 
+                id="feature-c">
+              </Checkbox>
+              <label for="feature-c" class="text-sm font-medium">Feature C</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accessibility Features -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Accessibility Features</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Checkbox 
+              [(ngModel)]="basicCheckbox" 
+              id="accessible-checkbox"
+              [accessibility]="{
+                ariaLabel: 'Custom aria label',
+                ariaDescription: 'This checkbox has enhanced accessibility features'
+              }">
+            </Checkbox>
+            <label for="accessible-checkbox" class="text-sm font-medium">
+              Checkbox with Accessibility Features
+            </label>
+          </div>
+          <p class="text-sm text-muted-foreground">
+            This checkbox includes ARIA labels and descriptions for better screen reader support.
+          </p>
         </div>
       </div>
     </div>

@@ -50,6 +50,12 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'calendar': {
+    name: 'Calendar',
+    description: '🌟 Enhanced calendar with range selection, drag support, and time picker.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'card': {
     name: 'Card',
     description: 'A flexible card component for displaying content in contained sections.',
@@ -62,14 +68,14 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
-  
-  // 📅 Featured Component
-  'calendar': {
-    name: 'Calendar',
-    description: '🌟 Enhanced calendar with range selection, drag support, and time picker.',
+  'checkbox': {
+    name: 'Checkbox',
+    description: 'A control that allows the user to toggle between checked and not checked.',
     dependencies: ['cn'],
     files: ['index.ts']
-  }
+  },
+  
+  // 📅 Featured Component
 };
 
 export async function addCommand(componentNames: string | string[], options: { force?: boolean; all?: boolean }) {

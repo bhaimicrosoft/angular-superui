@@ -1,4 +1,5 @@
 import {Component, signal} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from '@lib/accordion';
 import {Alert, AlertDescription, AlertIcon, AlertTitle} from '@lib/alert';
 import {
@@ -33,10 +34,12 @@ import {
   CardTitleComponent
 } from '@lib/card';
 import {Carousel} from '@lib/carousel';
+import {CheckboxComponent} from '@lib/checkbox';
 
 @Component({
   selector: 'app-root',
   imports: [
+    FormsModule,
     Accordion,
     AccordionItem,
     AccordionTrigger,
@@ -73,6 +76,7 @@ import {Carousel} from '@lib/carousel';
     CardContentComponent,
     CardFooterComponent,
     Carousel,
+    CheckboxComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -111,6 +115,40 @@ export class App {
   // Compact calendar state
   compactDate = signal<Date | undefined>(new Date());
   compactMonth = signal(new Date());
+
+  // Checkbox states
+  basicCheckbox = signal(false);
+  disabledCheckbox = signal(false);
+  
+  // Checkbox sizes
+  smallCheckbox = signal(false);
+  defaultCheckbox = signal(false);
+  largeCheckbox = signal(false);
+  extraLargeCheckbox = signal(false);
+  
+  // Checkbox variants
+  defaultVariant = signal(false);
+  destructiveVariant = signal(false);
+  successVariant = signal(false);
+  warningVariant = signal(false);
+  
+  // Checkbox states
+  uncheckedState = signal(false);
+  checkedState = signal(true);
+  indeterminateState = signal(true);
+  disabledUnchecked = signal(false);
+  disabledChecked = signal(true);
+  disabledUncheckedSignal = signal(true);
+  disabledCheckedSignal = signal(true);
+  
+  // Accessibility checkbox
+  accessibleCheckbox = signal(false);
+  indeterminateCheckbox = signal(false);
+  termsAccepted = signal(false);
+  notificationsEnabled = signal(true);
+  featureA = signal(false);
+  featureB = signal(true);
+  featureC = signal(false);
 
   // Demo methods
   openDeleteDialog() {

@@ -40,7 +40,7 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (10 total)
+## 📦 Available Components (13 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button
@@ -48,6 +48,7 @@ ngsui-cli add
 - `alert` - Displays a callout for user attention
 - `aspect-ratio` - Displays content within a desired ratio
 - `card` - Flexible content container with header, content, and footer
+- `checkbox` - A control that allows the user to toggle between checked and not checked
 
 ### 🧭 Navigation Components
 - `breadcrumb` - Displays the path to the current resource using a hierarchy of links
@@ -70,7 +71,7 @@ ngsui-cli add
 ngsui-cli add button
 
 # Install multiple components at once
-ngsui-cli add button badge alert avatar card aspect-ratio
+ngsui-cli add button badge alert avatar card aspect-ratio checkbox
 ```
 
 ### Interactive Mode
