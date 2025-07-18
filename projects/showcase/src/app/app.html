@@ -667,4 +667,214 @@
       </div>
     </div>
   </div>
+
+  <!-- Calendar Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Calendar Component</h2>
+    <div class="space-y-6">
+      <!-- Basic Calendar -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Basic Calendar</h3>
+        <Calendar
+          [selectedDate]="selectedDate()"
+          [currentMonth]="calendarMonth()"
+          (dateSelect)="onDateSelect($event)"
+          (monthChange)="onMonthChange($event)"
+          [accessibility]="{
+            label: 'Date picker calendar',
+            describedBy: 'calendar-help'
+          }">
+        </Calendar>
+        <p id="calendar-help" class="text-sm text-muted-foreground mt-2">
+          Use arrow keys to navigate, Enter or Space to select a date
+        </p>
+        @if (selectedDate()) {
+          <p class="text-sm mt-2">
+            <strong>Selected:</strong> {{ selectedDate()?.toLocaleDateString() }}
+          </p>
+        }
+      </div>
+
+      <!-- Calendar with Constraints -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Calendar with Date Constraints</h3>
+        <Calendar
+          [minDate]="getMinDate()"
+          [maxDate]="getMaxDate()"
+          [disabledDaysOfWeek]="[0, 6]"
+          [selectedDate]="constrainedDate()"
+          [currentMonth]="constrainedMonth()"
+          (dateSelect)="onConstrainedDateSelect($event)"
+          (monthChange)="onConstrainedMonthChange($event)"
+          [accessibility]="{
+            label: 'Constrained date picker - weekends disabled',
+            describedBy: 'constrained-calendar-help'
+          }">
+        </Calendar>
+        <p id="constrained-calendar-help" class="text-sm text-muted-foreground mt-2">
+          Only weekdays are selectable, within the next 30 days
+        </p>
+        @if (constrainedDate()) {
+          <p class="text-sm mt-2">
+            <strong>Selected:</strong> {{ constrainedDate()?.toLocaleDateString() }}
+          </p>
+        }
+      </div>
+
+      <!-- Small Calendar -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Small Calendar</h3>
+        <Calendar
+          size="sm"
+          [selectedDate]="compactDate()"
+          [currentMonth]="compactMonth()"
+          (dateSelect)="onCompactDateSelect($event)"
+          (monthChange)="onCompactMonthChange($event)"
+          [accessibility]="{
+            label: 'Compact date picker'
+          }">
+        </Calendar>
+        @if (compactDate()) {
+          <p class="text-sm mt-2">
+            <strong>Selected:</strong> {{ compactDate()?.toLocaleDateString() }}
+          </p>
+        }
+      </div>
+
+      <!-- Calendar with Actions -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Calendar with Actions</h3>
+        <div class="space-y-3">
+          <div class="flex gap-2">
+            <button 
+              type="button"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              (click)="goToToday()">
+              📅 Go to Today
+            </button>
+            <button 
+              type="button"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+              (click)="clearSelection()">
+              🗑️ Clear Selection
+            </button>
+          </div>
+          <Calendar
+            [selectedDate]="selectedDate()"
+            [currentMonth]="calendarMonth()"
+            (dateSelect)="onDateSelect($event)"
+            (monthChange)="onMonthChange($event)"
+            [accessibility]="{
+              label: 'Interactive date picker with action buttons'
+            }">
+          </Calendar>
+        </div>
+      </div>
+
+      <!-- Date Range Picker -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Date Range Picker</h3>
+        <div class="p-4 bg-background border border-border rounded-lg">
+          <Calendar
+            selectionMode="range"
+            [currentMonth]="rangeCalendarMonth()"
+            [selectedRange]="selectedRange()"
+            [minDate]="getMinDate()"
+            [maxDate]="getMaxDate()"
+            (rangeSelect)="onRangeSelect($event)"
+            (monthChange)="onRangeMonthChange($event)"
+            [accessibility]="{
+              label: 'Date range picker - select start and end dates'
+            }">
+          </Calendar>
+          
+          <!-- Range Selection Status -->
+          <div class="mt-4 p-3 bg-muted/50 rounded-md border border-border/50">
+            <div class="text-sm font-medium text-foreground mb-2">Range Selection Status:</div>
+            @if (!selectedRange().start && !selectedRange().end) {
+              <div class="text-sm text-muted-foreground">Click a date to start selecting a range</div>
+            } @else if (selectedRange().start && !selectedRange().end) {
+              <div class="text-sm space-y-1">
+                <p><span class="font-medium text-foreground">Start:</span> <span class="text-primary">{{ selectedRange().start?.toLocaleDateString() }}</span></p>
+                <p class="text-muted-foreground text-xs">Click another date to complete the range</p>
+              </div>
+            } @else if (selectedRange().start && selectedRange().end) {
+              <div class="text-sm space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-foreground font-medium">Selected Range:</span>
+                  <span class="text-primary font-medium">
+                    {{ selectedRange().start?.toLocaleDateString() }} → {{ selectedRange().end?.toLocaleDateString() }}
+                  </span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-muted-foreground">Duration:</span>
+                  <span class="text-primary font-medium">
+                    {{ Math.ceil((selectedRange().end!.getTime() - selectedRange().start!.getTime()) / (1000 * 60 * 60 * 24)) + 1 }} days
+                  </span>
+                </div>
+                <button 
+                  (click)="clearRange()" 
+                  class="text-xs px-2 py-1 bg-destructive/10 text-destructive hover:bg-destructive/20 rounded-sm transition-colors">
+                  Clear Range
+                </button>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar with Time Picker -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Calendar with Time Picker</h3>
+        <Calendar
+          [selectedDate]="timePickerDate()"
+          [currentMonth]="timePickerMonth()"
+          [selectedTime]="selectedTime()"
+          [showTimePicker]="true"
+          timeFormat="24h"
+          [minuteStep]="15"
+          (dateSelect)="onTimePickerDateSelect($event)"
+          (monthChange)="onTimePickerMonthChange($event)"
+          (timeChange)="onTimeChange($event)"
+          [accessibility]="{
+            label: 'Date and time picker'
+          }">
+        </Calendar>
+        @if (timePickerDate() && selectedTime()) {
+          <p class="text-sm mt-2">
+            <strong>Selected:</strong> 
+            {{ timePickerDate()?.toLocaleDateString() }} at 
+            {{ selectedTime().hours.toString().padStart(2, '0') }}:{{ selectedTime().minutes.toString().padStart(2, '0') }}
+          </p>
+        }
+      </div>
+
+      <!-- 12-Hour Time Format Calendar -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Calendar with 12-Hour Time</h3>
+        <Calendar
+          size="sm"
+          [selectedDate]="time12hDate()"
+          [currentMonth]="time12hMonth()"
+          [selectedTime]="selectedTime12h()"
+          [showTimePicker]="true"
+          timeFormat="12h"
+          [minuteStep]="30"
+          (dateSelect)="onTime12hDateSelect($event)"
+          (monthChange)="onTime12hMonthChange($event)"
+          (timeChange)="onTime12hChange($event)"
+          [accessibility]="{
+            label: 'Compact date and time picker with 12-hour format'
+          }">
+        </Calendar>
+        @if (time12hDate() && selectedTime12h()) {
+          <p class="text-sm mt-2">
+            <strong>Selected:</strong> 
+            {{ time12hDate()?.toLocaleDateString() }} at 
+            {{ selectedTime12h().hours > 12 ? (selectedTime12h().hours - 12).toString().padStart(2, '0') : selectedTime12h().hours.toString().padStart(2, '0') }}:{{ selectedTime12h().minutes.toString().padStart(2, '0') }} {{ selectedTime12h().hours >= 12 ? 'PM' : 'AM' }}
+          </p>
+        }
+      </div>
+    </div>
+  </div>
 </div>
