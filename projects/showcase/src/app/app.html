@@ -74,6 +74,112 @@
     </div>
   </div>
 
+  <!-- AspectRatio Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">AspectRatio Component</h2>
+    <div class="space-y-6">
+      <!-- Predefined Ratios -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Predefined Ratios</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p class="text-sm text-gray-600 mb-2">Square (1:1)</p>
+            <AspectRatio ratio="square" class="bg-gradient-to-br from-pink-400 to-red-600 rounded-lg border shadow-md" [ariaLabel]="'Square ratio example'">
+              <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-2">
+                  📸
+                </div>
+                <span class="text-sm">Profile Image</span>
+                <span class="text-xs opacity-80">1:1 Ratio</span>
+              </div>
+            </AspectRatio>
+          </div>
+          
+          <div>
+            <p class="text-sm text-gray-600 mb-2">Video (16:9)</p>
+            <AspectRatio ratio="video" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg border shadow-md" [ariaLabel]="'Video ratio example'">
+              <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
+                <div class="w-10 h-6 bg-white/20 rounded flex items-center justify-center mb-2">
+                  ▶️
+                </div>
+                <span class="text-sm">Video Player</span>
+                <span class="text-xs opacity-80">16:9 Ratio</span>
+              </div>
+            </AspectRatio>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Images -->
+      <div>
+        <h3 class="text-md font-medium mb-3">With Images</h3>
+        <div class="grid grid-cols-1 gap-4">
+          <AspectRatio ratio="16/9" class="bg-muted rounded-lg overflow-hidden shadow-md" [ariaLabel]="'Image example'">
+            <div class="relative h-full w-full bg-gradient-to-br from-green-400 to-blue-500">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center text-white">
+                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    🖼️
+                  </div>
+                  <h4 class="font-semibold mb-1">Banner Image</h4>
+                  <p class="text-sm opacity-90">Perfect for hero sections</p>
+                  <span class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">16:9</span>
+                </div>
+              </div>
+            </div>
+          </AspectRatio>
+        </div>
+      </div>
+
+      <!-- Custom Ratio -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Custom Ratio</h3>
+        <AspectRatio [customRatio]="'2 / 1'" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-md" [ariaLabel]="'Custom ratio example'">
+          <div class="flex items-center justify-center h-full text-white font-medium p-4">
+            <div class="text-center">
+              <div class="w-12 h-8 bg-white/20 rounded mb-3 mx-auto flex items-center justify-center">
+                📏
+              </div>
+              <div class="font-semibold">Custom Banner</div>
+              <div class="text-sm opacity-90 mt-1">2:1 Ultra-wide Ratio</div>
+              <div class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">Perfect for headers</div>
+            </div>
+          </div>
+        </AspectRatio>
+      </div>
+
+      <!-- Multiple Ratios Gallery -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Gallery Layout</h3>
+        <div class="grid grid-cols-3 gap-3">
+          <AspectRatio ratio="4/3" class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-md shadow-sm" [ariaLabel]="'Photo ratio example'">
+            <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
+              <span>📷</span>
+              <span class="mt-1">Photo</span>
+              <span class="text-xs opacity-80">4:3</span>
+            </div>
+          </AspectRatio>
+          
+          <AspectRatio ratio="3/4" class="bg-gradient-to-br from-teal-400 to-green-500 rounded-md shadow-sm" [ariaLabel]="'Portrait ratio example'">
+            <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
+              <span>🖼️</span>
+              <span class="mt-1">Portrait</span>
+              <span class="text-xs opacity-80">3:4</span>
+            </div>
+          </AspectRatio>
+          
+          <AspectRatio ratio="1/1" class="bg-gradient-to-br from-violet-400 to-purple-500 rounded-md shadow-sm" [ariaLabel]="'Instagram ratio example'">
+            <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
+              <span>📱</span>
+              <span class="mt-1">Social</span>
+              <span class="text-xs opacity-80">1:1</span>
+            </div>
+          </AspectRatio>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Badge Component Tests -->
   <div>
     <h2 class="text-lg font-semibold mb-4">Badge Component</h2>

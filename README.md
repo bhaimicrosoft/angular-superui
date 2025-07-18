@@ -185,10 +185,12 @@ export class AppComponent {}
 | **🪗 [Accordion](./docs/components/accordion.md)** | Collapsible content sections with single or multiple modes | ✅ Available |
 | **🚨 [Alert](./docs/components/alert.md)** | Contextual feedback messages with 5 variants | ✅ Available |
 | **🚨 [AlertDialog](./docs/components/alert-dialog.md)** | Modal dialogs with full accessibility and focus management | ✅ Available |
-| **👤 [Avatar](./docs/components/avatar.md)** | User profile image with automatic fallback support | ✅ Available |
+| **� [AspectRatio](./docs/components/aspect-ratio.md)** | Maintains consistent proportions for responsive content containers | ✅ Available |
+| **�👤 [Avatar](./docs/components/avatar.md)** | User profile image with automatic fallback support | ✅ Available |
 | **🏷️ [Badge](./docs/components/badge.md)** | Status indicators and labels with 4 variants | ✅ Available |
 | **🍞 [Breadcrumb](./docs/components/breadcrumb.md)** | Navigation breadcrumbs with accessibility and custom separators | ✅ Available |
 | **🔘 [Button](./docs/components/button.md)** | Interactive buttons with 9 variants and loading states | ✅ Available |
+| **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
 
 ### 🚀 **Coming Soon**
 

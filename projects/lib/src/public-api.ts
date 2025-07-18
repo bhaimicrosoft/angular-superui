@@ -8,6 +8,7 @@ export * from './lib/utils/cn';
 export * from './lib/accordion';
 export * from './lib/alert';
 export * from './lib/alert-dialog';
+export * from './lib/aspect-ratio';
 export * from './lib/avatar';
 export * from './lib/badge';
 export * from './lib/breadcrumb';

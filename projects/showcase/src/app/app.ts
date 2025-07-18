@@ -10,6 +10,7 @@ import {
   AlertDialogActionComponent,
   AlertDialogCancelComponent 
 } from '@lib/alert-dialog';
+import { AspectRatioComponent } from '@lib/aspect-ratio';
 import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
 import { Badge } from '@lib/badge';
 import { 
@@ -42,6 +43,7 @@ import { CalendarComponent, type DateRange, type TimeSelection } from '@lib/cale
     AlertDialogDescriptionComponent,
     AlertDialogActionComponent,
     AlertDialogCancelComponent,
+    AspectRatioComponent,
     Avatar,
     AvatarImage,
     AvatarFallback,

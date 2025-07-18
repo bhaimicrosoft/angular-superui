@@ -23,13 +23,13 @@ Install components directly in your project with our enhanced CLI:
 npm install -g ngsui-cli@1.0.1
 
 # Initialize project (sets up Tailwind CSS and TypeScript configs)
-ngsui init
+ngsui-cli init
 
 # Add specific components
-ngsui add button card badge alert
+ngsui-cli add button card badge alert
 
 # List all available components
-ngsui list
+ngsui-cli list
 ```
 
 ### 📦 **NPM Package Installation**
@@ -78,13 +78,13 @@ Perfect for new projects or when you want to reduce bundle size:
 npm install -g ngsui-cli
 
 # Initialize your Angular project
-ngsui init
+ngsui-cli init
 
 # Add specific components
-ngsui add button card badge alert
+ngsui-cli add button card badge alert
 
 # List all available components
-ngsui list
+ngsui-cli list
 ```
 
 ### Option 2: Full Library Installation
@@ -310,7 +310,7 @@ Contextual feedback styling:
 <alert variant="destructive">Error message</alert>
 ```
 
-## 🧩 Available Components (8)
+## 🧩 Available Components (9)
 
 ### 🎨 **Core UI Components**
 
@@ -319,37 +319,42 @@ Contextual feedback styling:
    - Different sizes: sm, default, lg, icon
    - Loading states and disabled support
 
-2. **🃏 Card** - Flexible content container
+2. **📐 AspectRatio** - Maintains consistent proportions for responsive content
+   - Predefined ratios: square, video, 4/3, 16/9, and more
+   - Custom ratio support with CSS aspect-ratio
+   - Perfect for images, videos, and content containers
+
+3. **🃏 Card** - Flexible content container
    - CardHeader, CardTitle, CardContent, CardFooter
    - Perfect for organizing content sections
    - Responsive design with customizable padding
 
-3. **🏷️ Badge** - Labels and status indicators
+4. **🏷️ Badge** - Labels and status indicators
    - Multiple color variants
    - Different sizes and styles
    - Perfect for status, tags, and labels
 
-4. **⚠️ Alert** - Contextual feedback messages
+5. **⚠️ Alert** - Contextual feedback messages
    - Success, warning, error, and info variants
    - Dismissible alerts with close buttons
    - Icon support for better visual communication
 
-5. **🚪 Alert Dialog** - Modal confirmation dialogs
+6. **🚪 Alert Dialog** - Modal confirmation dialogs
    - Accessible modal implementation
    - Customizable trigger, content, and actions
    - Escape key and overlay click handling
 
-6. **👤 Avatar** - User profile pictures and initials
+7. **👤 Avatar** - User profile pictures and initials
    - Image support with fallback handling
    - Automatic initials generation
    - Multiple sizes: sm, default, lg, xl
 
-7. **🗂️ Accordion** - Collapsible content panels
+8. **🗂️ Accordion** - Collapsible content panels
    - Single or multiple panel expansion
    - Smooth animations and transitions
    - Keyboard navigation support
 
-8. **📅 Calendar** - Date picker and calendar widget
+9. **📅 Calendar** - Date picker and calendar widget
    - Month and year navigation
    - Date selection functionality
    - Customizable date formatting
