@@ -57,6 +57,12 @@
     --sky-foreground: hsl(355 7% 97%);
   }
 
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
   .dark {
     --background: hsl(222.2 84% 4.9%);
     --foreground: hsl(210 40% 98%);

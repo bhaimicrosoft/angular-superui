@@ -17,5 +17,5 @@ export * from './lib/calendar';
 export * from './lib/card';
 export * from './lib/carousel';
 export * from './lib/checkbox';
-export * from './lib/checkbox';
+export * from './lib/theme-switcher';
 

@@ -74,6 +74,12 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'theme-switcher': {
+    name: 'Theme Switcher',
+    description: 'A component that allows users to switch between light, dark, and system themes.',
+    dependencies: ['cn', 'button'],
+    files: ['index.ts']
+  },
   
   // 📅 Featured Component
 };

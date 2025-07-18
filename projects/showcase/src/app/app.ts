@@ -35,6 +35,7 @@ import {
 } from '@lib/card';
 import {Carousel} from '@lib/carousel';
 import {CheckboxComponent} from '@lib/checkbox';
+import {ThemeSwitcher} from '@lib/theme-switcher';
 
 @Component({
   selector: 'app-root',
@@ -77,6 +78,7 @@ import {CheckboxComponent} from '@lib/checkbox';
     CardFooterComponent,
     Carousel,
     CheckboxComponent,
+    ThemeSwitcher,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

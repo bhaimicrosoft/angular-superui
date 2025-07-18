@@ -5,6 +5,7 @@ export default {
     "./projects/lib/src/**/*.{html,ts}",
     "./projects/showcase/src/**/*.{html,ts}"
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {

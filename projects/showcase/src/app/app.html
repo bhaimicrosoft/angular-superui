@@ -1,5 +1,56 @@
-<div class="max-w-md mx-auto mt-8 p-6 space-y-8">
-  <h1 class="text-2xl font-bold mb-6 text-success">Component Test Suite</h1>
+<div class="min-h-screen bg-background text-foreground">
+  <div class="max-w-md mx-auto pt-8 pb-8 px-6 space-y-8">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold mb-6 text-success">Component Test Suite</h1>
+      <ThemeSwitcher />
+    </div>
+
+  <!-- Theme Switcher Component Tests -->
+  <div>
+    <h2 class="text-lg font-semibold mb-4">Theme Switcher Component</h2>
+    <div class="space-y-6">
+      <!-- Basic Theme Switcher -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Basic Theme Switcher</h3>
+        <div class="flex items-center gap-4">
+          <ThemeSwitcher />
+          <ThemeSwitcher mode="cycle" />
+          <ThemeSwitcher [showLabel]="true" />
+        </div>
+      </div>
+
+      <!-- Theme Switcher Variants -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Variants</h3>
+        <div class="flex items-center gap-4">
+          <ThemeSwitcher variant="default" />
+          <ThemeSwitcher variant="outline" />
+          <ThemeSwitcher variant="ghost" />
+          <ThemeSwitcher variant="ghost" />
+        </div>
+      </div>
+
+      <!-- Theme Switcher Sizes -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Different Sizes</h3>
+        <div class="flex items-center gap-4">
+          <ThemeSwitcher size="sm" />
+          <ThemeSwitcher size="default" />
+          <ThemeSwitcher size="lg" />
+          <ThemeSwitcher size="xl" />
+        </div>
+      </div>
+
+      <!-- Theme Switcher with Custom Class -->
+      <div>
+        <h3 class="text-md font-medium mb-3">Custom Styling</h3>
+        <div class="flex items-center gap-4">
+          <ThemeSwitcher class="border-2 border-dashed border-primary" />
+          <ThemeSwitcher class="rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Avatar Component Tests -->
   <div>

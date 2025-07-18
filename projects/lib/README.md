@@ -8,10 +8,10 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **12 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **14 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 12 components with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 14 components with **practical examples**, **usage instructions**, and **styling tips**!
 
 ## 🛠️ **v1.0.2: Production Release**
 
@@ -26,7 +26,7 @@ npm install -g ngsui-cli@1.0.1
 ngsui-cli init
 
 # Add specific components
-ngsui-cli add button card badge alert checkbox
+ngsui-cli add button card badge alert checkbox theme-switcher
 
 # List all available components
 ngsui-cli list
@@ -44,7 +44,7 @@ npm install angular-superui@1.0.1
 ```
 
 ### 🌟 **Key Features in v1.0.2**
-- **12 Essential Components** - Production-ready UI components
+- **14 Essential Components** - Production-ready UI components
 - **Enhanced CLI** - Improved component selection and installation
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach
@@ -58,7 +58,7 @@ npm install angular-superui@1.0.1
 ## ✨ Features
 
 - 🛠️ **CLI Tool** - Selective component installation with ngsui-cli
-- 🎨 **12 Essential Components** - Production-ready UI component library  
+- 🎨 **14 Essential Components** - Production-ready UI component library  
 - 🌈 **Multiple Variants** - Customizable styling options for all components
 - 🔧 **TypeScript First** - Full type safety and excellent IntelliSense support
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant)
@@ -112,93 +112,65 @@ npm install angular-superui
 npm install angular-superui class-variance-authority clsx tailwind-merge
 ```
 
-2. Configure your `tailwind.config.js`:
-
-```javascript
-module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-    "./node_modules/angular-superui/**/*.{js,ts}"
-  ],
-  theme: {
-    extend: {
-      colors: {
-        border: "var(--border)",
-        input: "var(--input)",
-        ring: "var(--ring)",
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primary: {
-          DEFAULT: "var(--primary)",
-          foreground: "var(--primary-foreground)",
-        },
-        secondary: {
-          DEFAULT: "var(--secondary)",
-          foreground: "var(--secondary-foreground)",
-        },
-        destructive: {
-          DEFAULT: "var(--destructive)",
-          foreground: "var(--destructive-foreground)",
-        },
-        muted: {
-          DEFAULT: "var(--muted)",
-          foreground: "var(--muted-foreground)",
-        },
-        accent: {
-          DEFAULT: "var(--accent)",
-          foreground: "var(--accent-foreground)",
-        },
-        // Extended Color Palette
-        success: {
-          DEFAULT: "var(--success)",
-          foreground: "var(--success-foreground)",
-        },
-        warning: {
-          DEFAULT: "var(--warning)",
-          foreground: "var(--warning-foreground)",
-        },
-        info: {
-          DEFAULT: "var(--info)",
-          foreground: "var(--info-foreground)",
-        },
-        purple: {
-          DEFAULT: "var(--purple)",
-          foreground: "var(--purple-foreground)",
-        },
-        // ... add all 15+ colors
-      },
-    },
-  },
-  plugins: [],
-}
-```
-
-3. Add CSS variables to your `styles.css`:
+2. Configure your `styles.css` for Tailwind CSS v4:
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   :root {
+    --border: hsl(214.3 31.8% 91.4%);
+    --input: hsl(214.3 31.8% 91.4%);
+    --ring: hsl(222.2 84% 4.9%);
     --background: hsl(0 0% 100%);
     --foreground: hsl(222.2 84% 4.9%);
     --primary: hsl(222.2 47.4% 11.2%);
     --primary-foreground: hsl(210 40% 98%);
-    /* Extended Color Palette */
-    --success: hsl(142 76% 36%);
-    --success-foreground: hsl(355 7% 97%);
-    --purple: hsl(262 83% 58%);
-    --purple-foreground: hsl(355 7% 97%);
-    /* ... all color variables */
+    --secondary: hsl(210 40% 96.1%);
+    --secondary-foreground: hsl(222.2 47.4% 11.2%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --muted: hsl(210 40% 96.1%);
+    --muted-foreground: hsl(215.4 16.3% 46.9%);
+    --accent: hsl(210 40% 96.1%);
+    --accent-foreground: hsl(222.2 47.4% 11.2%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(222.2 84% 4.9%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(222.2 84% 4.9%);
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --border: hsl(217.2 32.6% 17.5%);
+    --input: hsl(217.2 32.6% 17.5%);
+    --ring: hsl(212.7 26.8% 83.9%);
+    --background: hsl(222.2 84% 4.9%);
+    --foreground: hsl(210 40% 98%);
+    --primary: hsl(210 40% 98%);
+    --primary-foreground: hsl(222.2 47.4% 11.2%);
+    --secondary: hsl(217.2 32.6% 17.5%);
+    --secondary-foreground: hsl(210 40% 98%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --muted: hsl(217.2 32.6% 17.5%);
+    --muted-foreground: hsl(215 20.2% 65.1%);
+    --accent: hsl(217.2 32.6% 17.5%);
+    --accent-foreground: hsl(210 40% 98%);
+    --card: hsl(222.2 84% 4.9%);
+    --card-foreground: hsl(210 40% 98%);
+    --popover: hsl(222.2 84% 4.9%);
+    --popover-foreground: hsl(210 40% 98%);
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 ```
 
-## 🎯 Quick Start
-
-Import components in your Angular component:
+3. Import components in your Angular app:
 
 ```typescript
 import { Component } from '@angular/core';
@@ -211,7 +183,8 @@ import {
   CardHeader, 
   CardTitle, 
   CardContent,
-  Checkbox 
+  Checkbox,
+  ThemeSwitcher 
 } from 'angular-superui';
 
 @Component({
@@ -226,10 +199,14 @@ import {
     CardHeader, 
     CardTitle, 
     CardContent,
-    Checkbox
+    Checkbox,
+    ThemeSwitcher
   ],
   template: `
     <div class="p-6 space-y-6">
+      <!-- Theme Switcher -->
+      <lib-theme-switcher></lib-theme-switcher>
+      
       <!-- Welcome Card -->
       <Card class="w-96">
         <CardHeader>
@@ -289,6 +266,13 @@ export class ExampleComponent {
 
 ## 🎨 Component Variants
 
+### Theme Switcher
+A dark/light theme switcher with system preference detection:
+
+```html
+<lib-theme-switcher></lib-theme-switcher>
+```
+
 ### Button Variants
 Each button component supports multiple styling options:
 
@@ -347,7 +331,7 @@ Boolean input controls with multiple states:
 <Checkbox [disabled]="true" [(ngModel)]="isDisabled">Disabled state</Checkbox>
 ```
 
-## 🧩 Available Components (12)
+## 🧩 Available Components (14)
 
 ### 🎨 **Core UI Components**
 
@@ -412,6 +396,13 @@ Boolean input controls with multiple states:
     - Smooth sliding animations
     - Navigation controls and indicators
     - Responsive design with touch support
+
+13. **🌓 Theme Switcher** - Toggle between light, dark, and system themes
+    - Automatic system theme detection
+    - localStorage persistence across sessions
+    - Three variants: default, outline, ghost
+    - Multiple sizes: sm, default, lg, xl
+    - Toggle or cycle modes for theme switching
 
 ## 🖼️ Enhanced Avatar Component
 

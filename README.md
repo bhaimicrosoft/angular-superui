@@ -15,7 +15,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/13%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/14%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -57,7 +57,7 @@ ngsui-cli init
 
 ```bash
 # Add specific components
-ngsui-cli add accordion alert avatar badge button card carousel checkbox
+ngsui-cli add accordion alert avatar badge button card carousel checkbox theme-switcher
 
 # Add all components
 ngsui-cli add --all
@@ -117,6 +117,9 @@ import {
   CardContentComponent,
   CardFooterComponent
 } from '@lib/card';
+import { Carousel } from '@lib/carousel';
+import { CheckboxComponent } from '@lib/checkbox';
+import { ThemeSwitcher } from '@lib/theme-switcher';
 
 @Component({
   standalone: true,
@@ -133,7 +136,10 @@ import {
     ButtonComponent,
     CalendarComponent,
     CardComponent, CardHeaderComponent, CardTitleComponent, 
-    CardDescriptionComponent, CardContentComponent, CardFooterComponent
+    CardDescriptionComponent, CardContentComponent, CardFooterComponent,
+    Carousel,
+    CheckboxComponent,
+    ThemeSwitcher
   ],
   template: `
     <!-- Card Example -->
@@ -216,6 +222,7 @@ export class AppComponent {}
 | **🎠 [Carousel](./docs/components/carousel.md)** | Accessible image carousel with auto-play, navigation, and pagination | ✅ Available |
 | **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
 | **☑️ [Checkbox](./docs/components/checkbox.md)** | A control that allows the user to toggle between checked and not checked | ✅ Available |
+| **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
 
 ### 🚀 **Coming Soon**
 
