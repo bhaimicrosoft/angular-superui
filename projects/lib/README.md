@@ -1,58 +1,54 @@
-# Angular SuperUI v0.1.0 🚀
+# Angular SuperUI v1.0.1 🚀
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Angular](https://img.shields.io/badge/Angular-20%2B-red.svg)](https://angular.io/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8%2B-blue.svg)](https://www.typescriptlang.org/)
+[![Angular](https://img.shields.io/badge/Angular-18%2B-red.svg)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue.svg)](https://www.typescriptlang.org/)
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **30+ reusable components** with **15+ color variants**, **local-first CLI installation**, and **enhanced dark mode support**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **8 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 30+ components with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 8 components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v0.1.0: Initial Release**
+## 🛠️ **v1.0.1: Production Release**
 
-### 🚀 **NEW: Zero NPM Dependencies (CLI Recommended)**
-Install components directly in your project with no package dependency:
+### 🚀 **CLI Tool (Recommended)**
+Install components directly in your project with our enhanced CLI:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli@0.1.0
+npm install -g ngsui-cli@1.0.1
 
-# Initialize project (creates local structure)
-ngsui-cli init
+# Initialize project (sets up Tailwind CSS and TypeScript configs)
+ngsui init
 
-# Add components locally (reduces bundle size by 50%+)
-ngsui-cli add button card badge
+# Add specific components
+ngsui add button card badge alert
+
+# List all available components
+ngsui list
 ```
 
-### 📦 **Deprecated: NPM Package Installation**
-> ⚠️ **Note**: NPM package installation is deprecated in v0.1.0. Use CLI for better performance.
+### 📦 **NPM Package Installation**
+Install the complete component library:
 
 ```bash
-npm install angular-superui@0.1.0
+# Using Angular schematics (recommended)
+ng add angular-superui@1.0.1
+
+# Or using npm directly
+npm install angular-superui@1.0.1
 ```
 
-### 🌟 **Local-First Benefits**
-- **Zero External Dependencies** - No npm package required with CLI
-- **Full Control** - Modify components freely in your project
-- **Better Performance** - 50%+ smaller bundle sizes
-- **Version Control Friendly** - Components versioned with your code
-
-### 🌙 **Enhanced Dark Mode System**
-- **System theme detection** - Automatically follows OS preference
-- **Theme persistence** - Remembers user choice across sessions  
-- **Instant toggle** - Switch themes without page reload
-- **All components** - Complete dark mode support across 30+ components
-
-### ✅ **Fixed Color Variants**
-All Tailwind CSS color variants now work correctly:
-- **15+ color variants** with proper numeric classes (`bg-lime-500`)
-- **Semantic colors** (success, warning, destructive, info)
-- **Creative palette** (purple, pink, violet, indigo, lime, orange)
+### 🌟 **Key Features in v1.0.1**
+- **8 Essential Components** - Production-ready UI components
+- **Enhanced CLI** - Improved component selection and installation
+- **TypeScript First** - Full type safety and IntelliSense support
+- **Tailwind CSS Integration** - Utility-first styling approach
+- **Angular 18+ Support** - Built for modern Angular applications
 
 ## 📚 **Quick Links**
 - 📚 **[Component Examples →](../../docs/examples.md)** - Real-world usage examples
@@ -61,16 +57,15 @@ All Tailwind CSS color variants now work correctly:
 
 ## ✨ Features
 
-- 🛠️ **CLI Tool** - Selective component installation like shadcn/ui
-- 🎨 **30+ Components** - Comprehensive UI component library  
-- 🌈 **15+ Color Variants** - Extended color palette for all components
-- 🌙 **Enhanced Dark Mode** - System detection + theme persistence
-- 🔧 **TypeScript First** - Full type safety with Class Variance Authority
-- ♿ **Accessible** - Built with accessibility in mind (ARIA compliant, WCAG AA)
+- 🛠️ **CLI Tool** - Selective component installation with ngsui-cli
+- 🎨 **8 Essential Components** - Production-ready UI component library  
+- 🌈 **Multiple Variants** - Customizable styling options for all components
+- 🔧 **TypeScript First** - Full type safety and excellent IntelliSense support
+- ♿ **Accessible** - Built with accessibility in mind (ARIA compliant)
 - 🎯 **Tree Shakable** - Import only what you need
-- 🚀 **Angular 20+** - Built for the latest Angular features
+- 🚀 **Angular 18+** - Built for modern Angular features and standalone components
 - 📱 **Responsive** - Mobile-first design approach
-- 📦 **Zero Dependencies** - No external UI dependencies (except Tailwind CSS)
+- 📦 **Tailwind CSS** - Utility-first CSS framework integration
 - 🔄 **Form Integration** - Full Angular Forms support with ControlValueAccessor
 
 ## 📦 Installation
@@ -83,19 +78,13 @@ Perfect for new projects or when you want to reduce bundle size:
 npm install -g ngsui-cli
 
 # Initialize your Angular project
-ngsui-cli init
+ngsui init
 
 # Add specific components
-ngsui-cli add button card badge alert
+ngsui add button card badge alert
 
-# Add multiple components at once (New in v0.1.0!)
-ngsui-cli add button alert card dialog
-
-# Install ALL components at once (New in v0.1.0!)
-ngsui-cli add --all
-
-# Interactive component selection
-ngsui-cli add
+# List all available components
+ngsui list
 ```
 
 ### Option 2: Full Library Installation
@@ -214,147 +203,156 @@ Import components in your Angular component:
 ```typescript
 import { Component } from '@angular/core';
 import { 
-  Button, Avatar, ThemeSelector, Alert, Badge, 
-  Card, CardHeader, CardTitle, CardContent 
+  Button, 
+  Avatar, 
+  Alert, 
+  Badge, 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardContent 
 } from 'angular-superui';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [Button, Avatar, ThemeSelector, Alert, Badge, Card, CardHeader, CardTitle, CardContent],
+  imports: [
+    Button, 
+    Avatar, 
+    Alert, 
+    Badge, 
+    Card, 
+    CardHeader, 
+    CardTitle, 
+    CardContent
+  ],
   template: `
-    <!-- Theme Selector -->
-    <theme-selector 
-      [currentTheme]="currentTheme" 
-      (themeChange)="onThemeChange($event)">
-    </theme-selector>
+    <div class="p-6 space-y-6">
+      <!-- Welcome Card -->
+      <card class="w-96">
+        <card-header>
+          <card-title>Welcome to Angular SuperUI</card-title>
+        </card-header>
+        <card-content>
+          <!-- Avatar Component -->
+          <avatar 
+            size="lg" 
+            [src]="'https://github.com/shadcn.png'"
+            [alt]="'User Avatar'"
+            class="mb-4">
+          </avatar>
 
-    <card class="w-96">
-      <card-header>
-        <card-title>Welcome to Angular SuperUI</card-title>
-      </card-header>
-      <card-content>
-        <!-- Enhanced Avatar -->
-        <avatar 
-          size="lg" 
-          [src]="'https://github.com/shadcn.png'"
-          [alt]="'User Avatar'"
-          class="mb-4">
-        </avatar>
+          <!-- Alert Component -->
+          <alert variant="default" class="mb-4">
+            <h4 class="font-medium">Success!</h4>
+            <p class="text-sm">Your component library is ready to use.</p>
+          </alert>
 
-        <!-- Colorful Alerts -->
-        <alert variant="success" class="mb-4">
-          <h4 class="font-medium">Success!</h4>
-          <p class="text-sm">Your component library is ready to use.</p>
-        </alert>
+          <!-- Button Components -->
+          <div class="flex gap-2 mb-4">
+            <button variant="default">Default</button>
+            <button variant="secondary">Secondary</button>
+            <button variant="outline">Outline</button>
+          </div>
 
-        <!-- Colorful Buttons -->
-        <div class="flex gap-2">
-          <button variant="success">Success</button>
-          <button variant="purple">Purple</button>
-          <button variant="outline-info">Info Outline</button>
-        </div>
-
-        <!-- Colorful Badges -->
-        <div class="flex gap-2 mt-4">
-          <badge variant="emerald">Active</badge>
-          <badge variant="amber">Pending</badge>
-          <badge variant="outline-rose">Featured</badge>
-        </div>
-      </card-content>
-    </card>
+          <!-- Badge Components -->
+          <div class="flex gap-2">
+            <badge variant="default">Default</badge>
+            <badge variant="secondary">Secondary</badge>
+            <badge variant="destructive">Important</badge>
+          </div>
+        </card-content>
+      </card>
+    </div>
   `
 })
 export class ExampleComponent {
-  currentTheme = 'default';
-
-  onThemeChange(theme: string) {
-    this.currentTheme = theme;
-    document.body.className = theme;
-  }
+  // Component logic here
 }
 ```
 
-## 🌈 Color System
+## � Component Variants
 
-### 15+ Beautiful Color Variants
-
-Available across Button, Badge, Alert, and Progress components:
-
-**Core Colors**: Default, Secondary, Destructive
-**Semantic Colors**: Success, Warning, Info  
-**Creative Palette**: Purple, Pink, Orange, Teal, Indigo, Cyan, Rose, Emerald, Amber, Lime, Violet, Sky
+### Button Variants
+Each button component supports multiple styling options:
 
 ```typescript
-// Button variants (30+ total)
-<button variant="success">Success</button>
-<button variant="purple">Purple</button>
-<button variant="outline-emerald">Emerald Outline</button>
+// Basic variants
+<button variant="default">Default</button>
+<button variant="secondary">Secondary</button>
+<button variant="destructive">Destructive</button>
+<button variant="outline">Outline</button>
+<button variant="ghost">Ghost</button>
+<button variant="link">Link</button>
 
-// Badge variants (30+ total)
-<badge variant="info">Info</badge>
-<badge variant="outline-pink">Pink Outline</badge>
-
-// Alert variants (15+ total)
-<alert variant="warning">Warning Alert</alert>
-<alert variant="purple">Purple Alert</alert>
-
-// Progress variants (15+ total)
-<progress [value]="75" variant="success"></progress>
-<progress [value]="60" variant="purple"></progress>
+// Sizes
+<button size="sm">Small</button>
+<button size="default">Default</button>
+<button size="lg">Large</button>
+<button size="icon">Icon</button>
 ```
 
-### 🎭 Theme Switching
-
-11 beautiful themes with the ThemeSelector component:
+### Badge Variants
+Status and labeling options:
 
 ```typescript
-<theme-selector 
-  [currentTheme]="currentTheme" 
-  (themeChange)="onThemeChange($event)">
-</theme-selector>
+<badge variant="default">Default</badge>
+<badge variant="secondary">Secondary</badge>
+<badge variant="destructive">Important</badge>
+<badge variant="outline">Outline</badge>
 ```
 
-**Available Themes**: Default, Blue, Green, Purple, Pink, Orange, Teal, Red, Yellow, Indigo, Cyan
+### Alert Variants
+Contextual feedback styling:
 
-## 🧩 Available Components (25+)
+```typescript
+<alert variant="default">Default message</alert>
+<alert variant="destructive">Error message</alert>
+```
 
-### Form Components (10)
-- **Button** - 30+ variants (solid + outline for each color)
-- **Input** - Text input fields with validation support
-- **Textarea** - Multi-line text input with auto-resize
-- **Label** - Accessible form labels
-- **Checkbox** - Toggle checkboxes with custom styling
-- **Switch** - Toggle switches for boolean values
-- **Select** - Dropdown selection with search capabilities
-- **Radio Group** - Single selection from multiple options
-- **Toggle** - Toggle buttons with pressed states
-- **Slider** - Range input with customizable min/max values
+## 🧩 Available Components (8)
 
-### Layout Components (5)
-- **Card Suite** - Flexible content containers (Header, Title, Description, Content, Footer)
-- **Separator** - Visual dividers for content sections
-- **Tabs Suite** - Tabbed navigation (List, Trigger, Content)
-- **Accordion Suite** - Collapsible content (Item, Trigger, Content)
-- **Table Suite** - Data tables (Header, Body, Row, Head, Cell, Caption)
+### 🎨 **Core UI Components**
 
-### Overlay Components (3)
-- **Dialog Suite** - Modal dialogs (Header, Title, Description, Content, Footer)
-- **Tooltip** - Contextual information popups
-- **Toast Suite** - Notification system with service integration
+1. **🔲 Button** - Versatile button component with multiple variants
+   - Solid, outline, ghost, and link variants
+   - Different sizes: sm, default, lg, icon
+   - Loading states and disabled support
 
-### Feedback Components (4)
-- **Alert** - 15+ color variants for contextual feedback
-- **Badge** - 30+ variants for status and labeling
-- **Progress** - 15+ color variants for progress indicators
-- **Skeleton** - Loading placeholders
+2. **🃏 Card** - Flexible content container
+   - CardHeader, CardTitle, CardContent, CardFooter
+   - Perfect for organizing content sections
+   - Responsive design with customizable padding
 
-### Display Components (1)
-- **Avatar** - Enhanced with image source support, automatic fallbacks, error handling
+3. **🏷️ Badge** - Labels and status indicators
+   - Multiple color variants
+   - Different sizes and styles
+   - Perfect for status, tags, and labels
 
-### Utility Components (2)
-- **ThemeSelector** - Dynamic theme switching with 11 themes
-- **Separator** - Visual content dividers
+4. **⚠️ Alert** - Contextual feedback messages
+   - Success, warning, error, and info variants
+   - Dismissible alerts with close buttons
+   - Icon support for better visual communication
+
+5. **🚪 Alert Dialog** - Modal confirmation dialogs
+   - Accessible modal implementation
+   - Customizable trigger, content, and actions
+   - Escape key and overlay click handling
+
+6. **👤 Avatar** - User profile pictures and initials
+   - Image support with fallback handling
+   - Automatic initials generation
+   - Multiple sizes: sm, default, lg, xl
+
+7. **🗂️ Accordion** - Collapsible content panels
+   - Single or multiple panel expansion
+   - Smooth animations and transitions
+   - Keyboard navigation support
+
+8. **📅 Calendar** - Date picker and calendar widget
+   - Month and year navigation
+   - Date selection functionality
+   - Customizable date formatting
 
 ## 🖼️ Enhanced Avatar Component
 
@@ -391,23 +389,32 @@ The Avatar component now supports full image functionality:
 
 ## 📚 Advanced Examples
 
-### Multi-Color Dashboard
+### Simple Dashboard Layout
 
 ```typescript
 @Component({
   template: `
     <div class="p-6 space-y-6">
-      <!-- Theme Selector -->
-      <theme-selector 
-        [currentTheme]="currentTheme" 
-        (themeChange)="onThemeChange($event)">
-      </theme-selector>
+      <!-- Header with Avatar -->
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <avatar 
+          size="default" 
+          [src]="'https://github.com/shadcn.png'"
+          [alt]="'User Avatar'">
+        </avatar>
+      </div>
+
+      <!-- Alert Notification -->
+      <alert variant="default">
+        <h4 class="font-medium">Welcome back!</h4>
+        <p class="text-sm">You have 3 new notifications.</p>
+      </alert>
 
       <!-- Action Buttons -->
       <div class="flex gap-2">
-        <button variant="success">Save</button>
-        <button variant="info">Preview</button>
-        <button variant="warning">Draft</button>
+        <button variant="default">Create</button>
+        <button variant="secondary">Save Draft</button>
         <button variant="destructive">Delete</button>
       </div>
 
@@ -418,57 +425,36 @@ The Avatar component now supports full image functionality:
             <card-title>Sales</card-title>
           </card-header>
           <card-content>
-            <progress [value]="85" variant="success"></progress>
-            <badge variant="success" class="mt-2">+12%</badge>
+            <div class="text-2xl font-bold">$12,345</div>
+            <badge variant="default" class="mt-2">+12%</badge>
           </card-content>
         </card>
         
         <card>
           <card-header>
-            <card-title>Traffic</card-title>
+            <card-title>Orders</card-title>
           </card-header>
           <card-content>
-            <progress [value]="65" variant="info"></progress>
-            <badge variant="info" class="mt-2">+8%</badge>
+            <div class="text-2xl font-bold">1,234</div>
+            <badge variant="secondary" class="mt-2">+8%</badge>
           </card-content>
         </card>
         
         <card>
           <card-header>
-            <card-title>Conversion</card-title>
+            <card-title>Users</card-title>
           </card-header>
           <card-content>
-            <progress [value]="42" variant="warning"></progress>
-            <badge variant="warning" class="mt-2">-3%</badge>
+            <div class="text-2xl font-bold">5,678</div>
+            <badge variant="destructive" class="mt-2">-3%</badge>
           </card-content>
         </card>
-      </div>
-
-      <!-- Enhanced Avatars -->
-      <div class="flex gap-4">
-        <avatar 
-          size="sm" 
-          [src]="'https://github.com/shadcn.png'">
-        </avatar>
-        <avatar 
-          size="default" 
-          [alt]="'John Doe'">
-        </avatar>
-        <avatar 
-          size="lg" 
-          [fallback]="'AD'">
-        </avatar>
       </div>
     </div>
   `
 })
 export class DashboardComponent {
-  currentTheme = 'default';
-
-  onThemeChange(theme: string) {
-    this.currentTheme = theme;
-    document.body.className = theme;
-  }
+  // Component logic here
 }
 ```
 
@@ -477,30 +463,37 @@ export class DashboardComponent {
 Full TypeScript support with intelligent IntelliSense:
 
 ```typescript
-import type { ButtonVariant, AvatarSize, ThemeOption } from 'angular-superui';
+import type { ButtonVariant, AvatarSize } from 'angular-superui';
 
-// Type-safe variant usage
-const buttonVariant: ButtonVariant = 'success';
+// Type-safe component usage
+const buttonVariant: ButtonVariant = 'default';
 const avatarSize: AvatarSize = 'lg';
+
+// All components are fully typed
+<button [variant]="buttonVariant">Typed Button</button>
+<avatar [size]="avatarSize">Typed Avatar</avatar>
 ```
 
 ## ♿ Accessibility
 
-- **WCAG AA Compliant**: All color combinations meet 4.5:1 contrast ratio
-- **ARIA Support**: Proper ARIA attributes and roles
-- **Keyboard Navigation**: Full keyboard accessibility
-- **Screen Reader Support**: Semantic HTML and proper labeling
-- **Focus Management**: Visible focus indicators
+Angular SuperUI components are built with accessibility in mind:
+
+- **ARIA Attributes**: Proper ARIA attributes and roles for screen readers
+- **Keyboard Navigation**: Full keyboard accessibility support
+- **Semantic HTML**: Uses appropriate HTML elements for better accessibility
+- **Focus Management**: Visible focus indicators and logical focus flow
+- **High Contrast**: Components work well in high contrast mode
 
 ## 🌙 Dark Mode
 
-Automatic dark mode support with proper contrast ratios:
+Components automatically adapt to your theme preferences:
 
 ```css
+/* Dark mode support through CSS variables */
 .dark {
-  --success: hsl(142, 69%, 58%);
-  --success-foreground: hsl(144, 61%, 20%);
-  /* All colors automatically adapt */
+  --background: hsl(222.2 84% 4.9%);
+  --foreground: hsl(210 40% 98%);
+  /* Components automatically use these variables */
 }
 ```
 
@@ -516,8 +509,8 @@ Contributions are welcome! Please read our [Contributing Guide](https://github.c
 
 - 📦 **npm**: [angular-superui](https://www.npmjs.com/package/angular-superui)
 - 🐙 **GitHub**: [bhaimicrosoft/angular-superui](https://github.com/bhaimicrosoft/angular-superui)
-- 📧 **Email**: bhaikaju@gmail.com
+- 📧 **Email**: [bhaikaju@gmail.com](mailto:bhaikaju@gmail.com)
 
 ---
 
-**Built with ❤️ by the Angular SuperUI Team**
+Built with ❤️ by the Angular SuperUI Team
