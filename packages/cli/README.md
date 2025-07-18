@@ -1,171 +1,139 @@
-# ngsui-cli v0.1.0 🛠️
+# 🚀 Angular SuperUI CLI
 
-[![npm version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
+A powerful CLI tool for selective Angular SuperUI component installation. Install only the components you need, when you need them.
 
-A CLI tool for local Angular SuperUI component installation, inspired by shadcn/ui.
+## ✨ Features
 
-**🎯 New in v0.1.0: Initial Release!**
+- 🎯 **Selective Installation** - Install only the components you need
+- 📦 **Zero Waste** - No unused components in your bundle
+- 🔥 **Lightning Fast** - Quick component installation from GitHub
+- 🎨 **Beautiful Output** - Colorful and informative CLI interface
+- 🛠️ **Developer Friendly** - Interactive component selection
+- 📚 **Well Documented** - Comprehensive component documentation
 
-## 📚 **[📖 Complete Documentation →](../../docs/)**
-> 🎨 **Step-by-step guides** for all 30+ components with **practical examples** and **usage instructions**!
-
-## 🚀 Features
-
-- **🎨 Simplified Component Names**: No more `lib-` prefixes! Use `<button>`, `<card>`, `<dialog>`
-- **🏠 Local-First Installation**: Components installed directly in your project
-- **📦 Zero External Dependencies**: No angular-superui package required
-- **⚡ 50%+ Smaller Bundle Size**: Only the components you use
-- **🔧 Full Control**: Modify components freely after installation
-- **🎯 Selective Installation**: Add only the components you need
-- **💾 Persistent Storage**: Components stay in your project, versioned with your code
-- **🚀 TypeScript Support**: Full type safety and IntelliSense
-- **� Enhanced CLI Graphics**: Beautiful interface with emojis and improved UX
-
-## Installation
+## 🏗️ Installation
 
 ```bash
-npm install -g ngsui-cli@0.1.0
+# Install globally
+npm install -g ngsui-cli@1.0.0
+
+# Or use with npx (no installation required)
+npx ngsui-cli@1.0.0 --help
 ```
 
-## Usage
-
-### Initialize Angular SuperUI in your project
+## 🎯 Quick Start
 
 ```bash
-ngsui-cli init
-```
+# List all available components
+ngsui-cli list
 
-This will:
-- Create local component directory structure in `./src/lib/components/`
-- Set up utility functions in `./src/lib/utils/`
-- Install only required dependencies (TailwindCSS + utilities)
-- Configure TypeScript path aliases (@components/*, @utils/*)
-- **No angular-superui npm package installation required!**
-
-### Add specific components locally
-
-```bash
-# Add a single component (installed in ./src/lib/components/)
+# Install a single component
 ngsui-cli add button
 
-# Add multiple components at once
-ngsui-cli add button card alert
-ngsui-cli add dialog tooltip popover sheet
+# Install multiple components
+ngsui-cli add button badge alert
 
-# Install ALL components at once
+# Install all available components
 ngsui-cli add --all
 
-# Force overwrite existing components
-ngsui-cli add button --force
-ngsui-cli add --all --force
+# Interactive component selection
+ngsui-cli add
 ```
 
-### List available components
+## 📦 Available Components (7 total)
 
-```bash
-ngsui-cli list
-```
-
-## Available Components
-
-### Core Components
+### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button
-- `badge` - Displays a badge or a component that looks like a badge
+- `badge` - Displays a badge or a component that looks like a badge  
 - `alert` - Displays a callout for user attention
-- `card` - Displays a card with header, content, and footer
-- `input` - Displays a form input field
-- `progress` - Displays an indicator showing completion progress
 
-### Form Components
-- `checkbox` - A control that allows the user to toggle between checked and not checked
-- `switch` - A control that allows the user to toggle between checked and not checked
-- `textarea` - Displays a form textarea field
-- `select` - Displays a list of options for the user to pick from
-- `radio-group` - A set of checkable buttons—known as radio buttons
-- `slider` - An input where the user selects a value from within a given range
-
-### Navigation Components
+### 🧭 Navigation Components
 - `breadcrumb` - Displays the path to the current resource using a hierarchy of links
-- `tabs` - A set of layered sections of content—known as tab panels
 
-### Layout Components
-- `separator` - Visually or semantically separates content
-- `skeleton` - Use to show a placeholder while content is loading
-
-### Overlay Components
-- `dialog` - A window overlaid on either the primary window or another dialog window
-- `tooltip` - A popup that displays information related to an element
-- `popover` - Displays rich content in a portal, triggered by a button
-- `sheet` - Extends the Dialog component to display content that complements the main content
-
-### New Components (v0.1.0)
-- `calendar` - A date field component that allows users to enter and edit date
-- `command` - Fast, composable, unstyled command menu for Angular
-
-### Display Components
+### 🖼️ Display Components
 - `avatar` - An image element with a fallback for representing the user
-- `table` - A responsive table component
 
-### Utility Components
-- `theme-selector` - A component for switching between different themes
-- `toast` - A succinct message that is displayed temporarily
-- `toggle` - A two-state button that can be either on or off
+### 💫 Overlay Components
+- `alert-dialog` - A modal dialog that interrupts the user with important content
+
+### ⚙️ Utility Components
 - `accordion` - A vertically stacked set of interactive headings
-- `label` - Renders an accessible label associated with controls
 
-## Color Variants
+## 🔧 Usage Examples
 
-Most components support these color variants:
-- **Semantic**: success, warning, info, destructive
-- **Purple Family**: purple, pink, violet, indigo
-- **Warm Colors**: orange, amber, lime, yellow
-- **Cool Colors**: blue, cyan, sky, teal
-- **Nature Colors**: rose, red, emerald, green
+### Basic Usage
+```bash
+# Install the button component
+ngsui-cli add button
 
-## Examples
-
-```typescript
-// After adding button component (v0.1.0 - Local Installation)
-import { Button } from '@components/button';
-// Or using relative path: import { Button } from './lib/components/button';
-
-@Component({
-  standalone: true,
-  imports: [Button],
-  template: `
-    <button variant="success">Success Button</button>
-    <button variant="outline-purple">Purple Outline</button>
-  `
-})
-export class MyComponent {}
+# Install multiple components at once
+ngsui-cli add button badge alert avatar
 ```
 
-**Benefits of Local Installation:**
-- ✅ No external package dependency
-- ✅ Full control over component code
-- ✅ Better tree shaking and performance
-- ✅ Components versioned with your project
-- ✅ TypeScript path aliases for clean imports
-- ✅ Simplified component names (no lib- prefix!)
+### Interactive Mode
+```bash
+# Run without arguments for interactive selection
+ngsui-cli add
+```
 
-## 📚 **Quick Links**
-- 📚 **[Component Examples →](../../docs/examples.md)** - Real-world usage examples
-- 📖 **[Installation Guide →](../../docs/installation.md)** - Detailed setup instructions
-- 🔧 **[GitHub Repository →](https://github.com/bhaimicrosoft/angular-superui)** - Source code and issues
+### Install All Components
+```bash
+# Install all available components
+ngsui-cli add --all
+```
 
-## Why Use This CLI?
+## 📋 Requirements
 
-- **🏠 Local-First Architecture**: Components are installed directly in your project, no npm package dependency
-- **📦 Zero External Dependencies**: No need to install the angular-superui package
-- **⚡ Superior Performance**: 50%+ smaller bundle sizes with local components
-- **🔧 Full Control**: Modify components freely - they're yours!
-- **💾 Version Control Friendly**: Components are versioned with your code
-- **🚀 Always Up-to-Date**: Fetch the latest component versions on demand
-- **🎯 Tree Shaking**: Perfect tree shaking with local installation
-- **🌟 shadcn/ui Style**: Familiar workflow for shadcn/ui users
-- **🔧 TypeScript Path Aliases**: Automatic @components/* and @utils/* setup
+- Node.js 16+ 
+- Angular project (detected by `angular.json`)
+- Angular SuperUI library installed (`npm install angular-superui`)
 
-## License
+## 🎨 Color Variants
 
-MIT
+Most components support these beautiful color variants:
+- ❤️ red
+- 💙 blue  
+- 💚 green
+- 💛 yellow
+- 💜 purple
+- 🩷 pink
+- 🤍 gray
+- 🩵 cyan
+
+## 🚀 Coming Soon
+
+These components are planned for future releases:
+- Card - Display content in a card layout
+- Input - Form input fields
+- Checkbox - Toggle controls
+- Select - Dropdown selection
+- Tooltip - Hover information
+- Dialog - Modal windows
+- Tabs - Tabbed navigation
+- Table - Data tables
+- And many more...
+
+## 📚 Documentation
+
+- [GitHub Repository](https://github.com/bhaimicrosoft/angular-superui)
+- [Documentation](https://github.com/bhaimicrosoft/angular-superui/tree/main/docs)
+- [Components Guide](https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+MIT License - see the [LICENSE](LICENSE) file for details.
+
+## ⭐ Support
+
+If you find Angular SuperUI CLI useful, please consider:
+- ⭐ Star the repository on GitHub
+- 🐛 Report bugs and suggest features
+- 🤝 Contribute to the project
+
+---
+
+Made with ❤️ by [Indranil Mukherjee](https://bhaikaju.com)
