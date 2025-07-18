@@ -1,5 +1,5 @@
 <div class="min-h-screen bg-background text-foreground">
-  <div class="max-w-md mx-auto pt-8 pb-8 px-6 space-y-8">
+  <div class="max-w-2xl mx-auto pt-8 pb-8 px-6 space-y-8">
     <div class="flex items-center justify-between">
       <h1 class="text-2xl font-bold mb-6 text-success">Component Test Suite</h1>
       <ThemeSwitcher/>
@@ -263,7 +263,8 @@
         <div>
           <h3 class="text-md font-medium mb-3">Basic Combobox</h3>
           <p class="text-sm text-gray-600 mb-3">Simple dropdown selection without search</p>
-          <Combobox [options]="comboboxOptions" [(ngModel)]="selectedOptionValue" placeholder="Select a framework..." (valueChange)="onFrameworkChange($event)">
+          <Combobox [options]="comboboxOptions" [(ngModel)]="selectedOptionValue" placeholder="Select a framework..."
+                    (valueChange)="onFrameworkChange($event)">
             <ComboboxTrigger></ComboboxTrigger>
             <ComboboxContent [searchable]="false"></ComboboxContent>
           </Combobox>
@@ -273,7 +274,8 @@
         <div>
           <h3 class="text-md font-medium mb-3">Searchable Combobox</h3>
           <p class="text-sm text-gray-600 mb-3">Dropdown with search functionality</p>
-          <Combobox [options]="languageOptions" [(ngModel)]="selectedLanguageValue" placeholder="Select a language..." (valueChange)="onLanguageChange($event)">
+          <Combobox [options]="languageOptions" [(ngModel)]="selectedLanguageValue" placeholder="Select a language..."
+                    (valueChange)="onLanguageChange($event)">
             <ComboboxTrigger></ComboboxTrigger>
             <ComboboxContent [searchable]="true" searchPlaceholder="Search languages..."></ComboboxContent>
           </Combobox>
@@ -283,7 +285,8 @@
         <div>
           <h3 class="text-md font-medium mb-3">Multi-Select Combobox</h3>
           <p class="text-sm text-gray-600 mb-3">Select multiple options</p>
-          <Combobox [options]="skillOptions" [multiple]="true" [(ngModel)]="selectedSkillsValue" placeholder="Select skills..." (valueChange)="onSkillsChange($event)">
+          <Combobox [options]="skillOptions" [multiple]="true" [(ngModel)]="selectedSkillsValue" placeholder="Select skills..."
+                    (valueChange)="onSkillsChange($event)">
             <ComboboxTrigger [multiple]="true"></ComboboxTrigger>
             <ComboboxContent [multiple]="true" searchPlaceholder="Search skills..."></ComboboxContent>
           </Combobox>
@@ -293,7 +296,8 @@
         <div>
           <h3 class="text-md font-medium mb-3">Grouped Options</h3>
           <p class="text-sm text-gray-600 mb-3">Options organized by categories</p>
-          <Combobox [options]="groupedTechOptions" [(ngModel)]="selectedTechValue" placeholder="Select technology..." (valueChange)="onTechChange($event)">
+          <Combobox [options]="groupedTechOptions" [(ngModel)]="selectedTechValue" placeholder="Select technology..."
+                    (valueChange)="onTechChange($event)">
             <ComboboxTrigger></ComboboxTrigger>
             <ComboboxContent [showGroupLabels]="true" searchPlaceholder="Search technologies..."></ComboboxContent>
           </Combobox>
@@ -304,11 +308,12 @@
           <h3 class="text-md font-medium mb-3">Loading State</h3>
           <p class="text-sm text-gray-600 mb-3">Combobox with loading indicator</p>
           <div class="flex space-x-4">
-            <Combobox [options]="asyncOptions" [loadingState]="isLoading()" [(ngModel)]="selectedAsyncValue" placeholder="Select async option..." (valueChange)="onAsyncChange($event)">
+            <Combobox [options]="asyncOptions" [loadingState]="isLoading()" [(ngModel)]="selectedAsyncValue" placeholder="Select async option..."
+                      (valueChange)="onAsyncChange($event)">
               <ComboboxTrigger></ComboboxTrigger>
               <ComboboxContent [loadingMessage]="'Loading data...'" searchPlaceholder="Search options..."></ComboboxContent>
             </Combobox>
-            <button 
+            <button
               (click)="simulateLoading()"
               class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             >
@@ -322,11 +327,12 @@
           <h3 class="text-md font-medium mb-3">Error State</h3>
           <p class="text-sm text-gray-600 mb-3">Combobox with error handling</p>
           <div class="flex space-x-4">
-            <Combobox [options]="errorOptions" [error]="errorMessage()" [(ngModel)]="selectedErrorValue" placeholder="Select option..." (valueChange)="onErrorChange($event)">
+            <Combobox [options]="errorOptions" [error]="errorMessage()" [(ngModel)]="selectedErrorValue" placeholder="Select option..."
+                      (valueChange)="onErrorChange($event)">
               <ComboboxTrigger></ComboboxTrigger>
               <ComboboxContent searchPlaceholder="Search options..."></ComboboxContent>
             </Combobox>
-            <button 
+            <button
               (click)="simulateError()"
               class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
             >
@@ -1921,6 +1927,18 @@
           [height]="400"
           [interval]="5000"
         />
+
+        <!-- Context Menu Component Tests -->
+        <div>
+          <h2 class="text-lg font-semibold mb-4">Context Menu Component</h2>
+          <div class="space-y-6">
+
+            <ContextMenu [menuOptions]="menuOptions" ></ContextMenu>
+            <div class="p-4">
+              <button class="p-2 bg-blue-500 text-white">Right-click me!</button>
+            </div>
+          </div>
+        </div>
 
 
       </div>

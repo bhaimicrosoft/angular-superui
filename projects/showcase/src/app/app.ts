@@ -36,8 +36,9 @@ import {
 import {Carousel} from '@lib/carousel';
 import {CheckboxComponent} from '@lib/checkbox';
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from '@lib/collapsible';
-import {Combobox, ComboboxContent, ComboboxEmpty, type ComboboxOption, ComboboxTrigger} from '@lib/combobox';
+import {Combobox, ComboboxContent, type ComboboxOption, ComboboxTrigger} from '@lib/combobox';
 import {ThemeSwitcher} from '@lib/theme-switcher';
+import {ContextMenuComponent} from '@lib/context-menu';
 
 @Component({
   selector: 'app-root',
@@ -87,6 +88,7 @@ import {ThemeSwitcher} from '@lib/theme-switcher';
     ComboboxTrigger,
     ComboboxContent,
     ThemeSwitcher,
+    ContextMenuComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
@@ -94,6 +96,8 @@ import {ThemeSwitcher} from '@lib/theme-switcher';
 export class App {
   // Math for template usage
   Math = Math;
+
+  menuOptions = ['Option 1', 'Option 2', 'Option 3'];
 
   // AlertDialog state
   isDeleteDialogOpen = signal(false);
@@ -168,6 +172,15 @@ export class App {
   selectedOptionValue: string | null = null;
   selectedLanguageValue: string | null = null;
 
+  // ContextMenu states
+  showBookmarks = signal(true);
+  showUrls = signal(false);
+  showPerson = signal(false);
+  selectedView = signal('grid');
+  contextMenuNotifications = signal(true);
+  emailEnabled = signal(false);
+  smsEnabled = signal(true);
+
   // Combobox options
   comboboxOptions: ComboboxOption[] = [
     {value: 'react', label: 'React'},
@@ -199,6 +212,68 @@ export class App {
     {value: 'scala', label: 'Scala'},
     {value: 'haskell', label: 'Haskell', disabled: true}
   ];
+  // Enhanced combobox data
+  skillOptions: ComboboxOption[] = [
+    {value: 'frontend', label: 'Frontend Development', description: 'HTML, CSS, JavaScript, React, Angular'},
+    {value: 'backend', label: 'Backend Development', description: 'Node.js, Python, Java, C#'},
+    {value: 'mobile', label: 'Mobile Development', description: 'iOS, Android, React Native, Flutter'},
+    {value: 'devops', label: 'DevOps', description: 'Docker, Kubernetes, AWS, Azure'},
+    {value: 'database', label: 'Database Design', description: 'SQL, NoSQL, MongoDB, PostgreSQL'},
+    {value: 'testing', label: 'Testing', description: 'Unit testing, Integration testing, E2E testing'},
+    {value: 'security', label: 'Security', description: 'Authentication, Authorization, OWASP'},
+    {value: 'ui-ux', label: 'UI/UX Design', description: 'Figma, Adobe XD, Sketch, Prototyping'}
+  ];
+  groupedTechOptions: ComboboxOption[] = [
+    // Frontend
+    {value: 'react', label: 'React', group: 'Frontend', description: 'JavaScript library for building user interfaces'},
+    {value: 'angular', label: 'Angular', group: 'Frontend', description: 'TypeScript-based web application framework'},
+    {value: 'vue', label: 'Vue.js', group: 'Frontend', description: 'Progressive JavaScript framework'},
+    {value: 'svelte', label: 'Svelte', group: 'Frontend', description: 'Compile-time framework'},
+
+    // Backend
+    {
+      value: 'nodejs',
+      label: 'Node.js',
+      group: 'Backend',
+      description: 'JavaScript runtime built on Chrome\'s V8 engine'
+    },
+    {value: 'python', label: 'Python', group: 'Backend', description: 'High-level programming language'},
+    {value: 'java', label: 'Java', group: 'Backend', description: 'Object-oriented programming language'},
+    {value: 'csharp', label: 'C#', group: 'Backend', description: 'Microsoft\'s object-oriented programming language'},
+
+    // Database
+    {value: 'postgres', label: 'PostgreSQL', group: 'Database', description: 'Open source relational database'},
+    {value: 'mongodb', label: 'MongoDB', group: 'Database', description: 'NoSQL document database'},
+    {value: 'mysql', label: 'MySQL', group: 'Database', description: 'Open source relational database'},
+    {value: 'redis', label: 'Redis', group: 'Database', description: 'In-memory data structure store'},
+
+    // Cloud
+    {value: 'aws', label: 'AWS', group: 'Cloud', description: 'Amazon Web Services'},
+    {value: 'azure', label: 'Azure', group: 'Cloud', description: 'Microsoft Azure'},
+    {value: 'gcp', label: 'Google Cloud', group: 'Cloud', description: 'Google Cloud Platform'}
+  ];
+  planOptions: ComboboxOption[] = [
+    {value: 'free', label: 'Free', description: 'Perfect for personal projects and learning'},
+    {value: 'pro', label: 'Pro', description: 'Best for professionals and small teams'},
+    {value: 'team', label: 'Team', description: 'Collaboration features for growing teams'},
+    {value: 'enterprise', label: 'Enterprise', description: 'Advanced features and priority support'}
+  ];
+  asyncOptions: ComboboxOption[] = [];
+  errorOptions: ComboboxOption[] = [];
+  // Enhanced combobox signals
+  selectedSkills = signal<string[]>([]);
+  selectedTech = signal<string | null>(null);
+  selectedAsync = signal<string | null>(null);
+  selectedPlan = signal<string | null>(null);
+  // Enhanced combobox values for ngModel
+  selectedSkillsValue: string[] = [];
+  selectedTechValue: string | null = null;
+  selectedAsyncValue: string | null = null;
+  selectedPlanValue: string | null = null;
+  selectedErrorValue: string | null = null;
+  // Loading and error states
+  isLoading = signal(false);
+  errorMessage = signal('');
 
   // Combobox event handlers
   onFrameworkChange(value: string | string[] | null) {
@@ -212,70 +287,6 @@ export class App {
     this.selectedLanguage.set(languageValue);
     this.selectedLanguageValue = languageValue;
   }
-
-  // Enhanced combobox data
-  skillOptions: ComboboxOption[] = [
-    {value: 'frontend', label: 'Frontend Development', description: 'HTML, CSS, JavaScript, React, Angular'},
-    {value: 'backend', label: 'Backend Development', description: 'Node.js, Python, Java, C#'},
-    {value: 'mobile', label: 'Mobile Development', description: 'iOS, Android, React Native, Flutter'},
-    {value: 'devops', label: 'DevOps', description: 'Docker, Kubernetes, AWS, Azure'},
-    {value: 'database', label: 'Database Design', description: 'SQL, NoSQL, MongoDB, PostgreSQL'},
-    {value: 'testing', label: 'Testing', description: 'Unit testing, Integration testing, E2E testing'},
-    {value: 'security', label: 'Security', description: 'Authentication, Authorization, OWASP'},
-    {value: 'ui-ux', label: 'UI/UX Design', description: 'Figma, Adobe XD, Sketch, Prototyping'}
-  ];
-
-  groupedTechOptions: ComboboxOption[] = [
-    // Frontend
-    {value: 'react', label: 'React', group: 'Frontend', description: 'JavaScript library for building user interfaces'},
-    {value: 'angular', label: 'Angular', group: 'Frontend', description: 'TypeScript-based web application framework'},
-    {value: 'vue', label: 'Vue.js', group: 'Frontend', description: 'Progressive JavaScript framework'},
-    {value: 'svelte', label: 'Svelte', group: 'Frontend', description: 'Compile-time framework'},
-    
-    // Backend
-    {value: 'nodejs', label: 'Node.js', group: 'Backend', description: 'JavaScript runtime built on Chrome\'s V8 engine'},
-    {value: 'python', label: 'Python', group: 'Backend', description: 'High-level programming language'},
-    {value: 'java', label: 'Java', group: 'Backend', description: 'Object-oriented programming language'},
-    {value: 'csharp', label: 'C#', group: 'Backend', description: 'Microsoft\'s object-oriented programming language'},
-    
-    // Database
-    {value: 'postgres', label: 'PostgreSQL', group: 'Database', description: 'Open source relational database'},
-    {value: 'mongodb', label: 'MongoDB', group: 'Database', description: 'NoSQL document database'},
-    {value: 'mysql', label: 'MySQL', group: 'Database', description: 'Open source relational database'},
-    {value: 'redis', label: 'Redis', group: 'Database', description: 'In-memory data structure store'},
-    
-    // Cloud
-    {value: 'aws', label: 'AWS', group: 'Cloud', description: 'Amazon Web Services'},
-    {value: 'azure', label: 'Azure', group: 'Cloud', description: 'Microsoft Azure'},
-    {value: 'gcp', label: 'Google Cloud', group: 'Cloud', description: 'Google Cloud Platform'}
-  ];
-
-  planOptions: ComboboxOption[] = [
-    {value: 'free', label: 'Free', description: 'Perfect for personal projects and learning'},
-    {value: 'pro', label: 'Pro', description: 'Best for professionals and small teams'},
-    {value: 'team', label: 'Team', description: 'Collaboration features for growing teams'},
-    {value: 'enterprise', label: 'Enterprise', description: 'Advanced features and priority support'}
-  ];
-
-  asyncOptions: ComboboxOption[] = [];
-  errorOptions: ComboboxOption[] = [];
-
-  // Enhanced combobox signals
-  selectedSkills = signal<string[]>([]);
-  selectedTech = signal<string | null>(null);
-  selectedAsync = signal<string | null>(null);
-  selectedPlan = signal<string | null>(null);
-
-  // Enhanced combobox values for ngModel
-  selectedSkillsValue: string[] = [];
-  selectedTechValue: string | null = null;
-  selectedAsyncValue: string | null = null;
-  selectedPlanValue: string | null = null;
-  selectedErrorValue: string | null = null;
-
-  // Loading and error states
-  isLoading = signal(false);
-  errorMessage = signal('');
 
   // Enhanced combobox event handlers
   onSkillsChange(value: string | string[] | null) {
@@ -312,7 +323,7 @@ export class App {
   simulateLoading() {
     this.isLoading.set(true);
     this.asyncOptions = [];
-    
+
     // Simulate async data loading
     setTimeout(() => {
       this.asyncOptions = [
@@ -327,7 +338,7 @@ export class App {
   simulateError() {
     this.errorMessage.set('Failed to load options. Please try again.');
     this.errorOptions = [];
-    
+
     // Clear error after 3 seconds
     setTimeout(() => {
       this.errorMessage.set('');
@@ -479,5 +490,119 @@ export class App {
     const maxDate = new Date();
     maxDate.setDate(maxDate.getDate() + 30); // 30 days from today
     return maxDate;
+  }
+
+  // ContextMenu methods
+  onContextMenuAction(action: string) {
+    console.log('Context menu action:', action);
+
+    switch (action) {
+      case 'copy':
+        console.log('Copying...');
+        break;
+      case 'paste':
+        console.log('Pasting...');
+        break;
+      case 'delete':
+        console.log('Deleting...');
+        break;
+      case 'properties':
+        console.log('Opening properties...');
+        break;
+      case 'refresh':
+        console.log('Refreshing...');
+        break;
+      case 'new-folder':
+        console.log('Creating new folder...');
+        break;
+      case 'new-file':
+        console.log('Creating new file...');
+        break;
+      case 'open':
+        console.log('Opening...');
+        break;
+      case 'rename':
+        console.log('Renaming...');
+        break;
+      case 'duplicate':
+        console.log('Duplicating...');
+        break;
+      case 'share':
+        console.log('Sharing...');
+        break;
+      case 'download':
+        console.log('Downloading...');
+        break;
+      case 'print':
+        console.log('Printing...');
+        break;
+      case 'view-source':
+        console.log('View source...');
+        break;
+      case 'developer-tools':
+        console.log('Opening developer tools...');
+        break;
+      case 'back':
+        console.log('Going back...');
+        break;
+      case 'forward':
+        console.log('Going forward...');
+        break;
+      case 'reload':
+        console.log('Reloading...');
+        break;
+      case 'save':
+        console.log('Saving...');
+        break;
+      case 'zoom-in':
+        console.log('Zooming in...');
+        break;
+      case 'zoom-out':
+        console.log('Zooming out...');
+        break;
+      case 'reset-zoom':
+        console.log('Reset zoom...');
+        break;
+      case 'fullscreen':
+        console.log('Toggle fullscreen...');
+        break;
+      default:
+        console.log('Unknown action:', action);
+    }
+  }
+
+  onViewChange(view: string) {
+    this.selectedView.set(view);
+    console.log('View changed to:', view);
+  }
+
+  onToggleBookmarks() {
+    this.showBookmarks.update(value => !value);
+    console.log('Bookmarks toggled:', this.showBookmarks());
+  }
+
+  onToggleUrls() {
+    this.showUrls.update(value => !value);
+    console.log('URLs toggled:', this.showUrls());
+  }
+
+  onTogglePerson() {
+    this.showPerson.update(value => !value);
+    console.log('Person toggled:', this.showPerson());
+  }
+
+  onToggleNotifications() {
+    this.contextMenuNotifications.update(value => !value);
+    console.log('Notifications toggled:', this.contextMenuNotifications());
+  }
+
+  onToggleEmail() {
+    this.emailEnabled.update(value => !value);
+    console.log('Email toggled:', this.emailEnabled());
+  }
+
+  onToggleSms() {
+    this.smsEnabled.update(value => !value);
+    console.log('SMS toggled:', this.smsEnabled());
   }
 }
