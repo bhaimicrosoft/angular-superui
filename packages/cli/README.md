@@ -40,12 +40,13 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (8 total)
+## 📦 Available Components (9 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button
 - `badge` - Displays a badge or a component that looks like a badge  
 - `alert` - Displays a callout for user attention
+- `aspect-ratio` - Displays content within a desired ratio
 
 ### 🧭 Navigation Components
 - `breadcrumb` - Displays the path to the current resource using a hierarchy of links
@@ -58,6 +59,7 @@ ngsui-cli add
 
 ### ⚙️ Utility Components
 - `accordion` - A vertically stacked set of interactive headings
+- `calendar` - A date field component that allows users to enter and edit date
 
 ## 🔧 Usage Examples
 
