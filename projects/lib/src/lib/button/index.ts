@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter, computed, signal } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { Component, Input, Output, EventEmitter, computed, signal, HostBinding, HostListener } from '@angular/core';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
 
@@ -10,7 +9,7 @@ import { cn } from '../utils/cn';
 const buttonVariants = cva(
   // Base styles - consistent across all variants
   [
-    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium',
+    'inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium',
     'transition-colors duration-200 ease-in-out',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
     'disabled:pointer-events-none disabled:opacity-50',
@@ -30,8 +29,8 @@ const buttonVariants = cva(
           'before:bg-white/10 before:opacity-0 hover:before:opacity-100',
         ],
         outline: [
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-          'before:bg-accent/20 before:opacity-0 hover:before:opacity-100',
+          'border-2 border-gray-300 dark:border-gray-600 bg-transparent text-gray-900 dark:text-gray-100 shadow-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500',
+          'before:bg-gray-100 dark:before:bg-gray-800 before:opacity-0 hover:before:opacity-100',
         ],
         secondary: [
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:text-background',
@@ -59,14 +58,14 @@ const buttonVariants = cva(
         ],
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-8',
-        xl: 'h-12 rounded-lg px-10 text-base',
-        icon: 'h-9 w-9',
-        'icon-sm': 'h-8 w-8',
-        'icon-lg': 'h-10 w-10',
-        'icon-xl': 'h-12 w-12',
+        default: 'h-9 px-4 py-2 justify-center',
+        sm: 'h-8 rounded-md px-3 text-xs justify-center',
+        lg: 'h-10 rounded-md px-8 justify-center',
+        xl: 'h-12 rounded-lg px-10 text-base justify-center',
+        icon: 'h-9 w-9 justify-center',
+        'icon-sm': 'h-8 w-8 justify-center',
+        'icon-lg': 'h-10 w-10 justify-center',
+        'icon-xl': 'h-12 w-12 justify-center',
       },
       loading: {
         true: 'cursor-wait',
@@ -123,71 +122,50 @@ export interface ButtonLoadingState {
 @Component({
   selector: 'Button',
   standalone: true,
-  imports: [NgClass],
   template: `
-    <button
-      [ngClass]="computedClasses()"
-      [type]="type"
-      [disabled]="computedDisabled()"
-      [attr.aria-label]="accessibility.ariaLabel"
-      [attr.aria-description]="accessibility.ariaDescription"
-      [attr.aria-labelledby]="accessibility.ariaLabelledBy"
-      [attr.aria-describedby]="accessibility.ariaDescribedBy"
-      [attr.aria-haspopup]="accessibility.ariaHasPopup"
-      [attr.aria-expanded]="accessibility.ariaExpanded"
-      [attr.aria-pressed]="accessibility.ariaPressed"
-      [attr.aria-live]="accessibility.ariaLive"
-      [attr.tabindex]="accessibility.tabIndex"
-      [attr.data-loading]="loading().loading"
-      [attr.data-variant]="variant"
-      [attr.data-size]="size"
-      (click)="handleClick($event)"
-      (keydown)="handleKeydown($event)"
-    >
-      <!-- Loading spinner -->
-      @if (loading().loading) {
-        <svg
-          class="animate-spin h-4 w-4 shrink-0"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <circle
-            class="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            stroke-width="4"
-          ></circle>
-          <path
-            class="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-      }
-
-      <!-- Button content -->
-      <span
-        [class.sr-only]="loading().loading && loading().loadingText"
-        class="relative z-10"
+    <!-- Loading spinner -->
+    @if (loading().loading) {
+      <svg
+        class="animate-spin h-4 w-4 shrink-0"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
       >
-        @if (loading().loading && loading().loadingText) {
-          {{ loading().loadingText }}
-        } @else {
-          <ng-content></ng-content>
-        }
-      </span>
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    }
 
-      <!-- Screen reader loading announcement -->
-      @if (loading().loading && accessibility.ariaLive) {
-        <span class="sr-only" [attr.aria-live]="accessibility.ariaLive">
-          {{ loading().loadingText || 'Loading...' }}
-        </span>
+    <!-- Button content -->
+    <span
+      [class.sr-only]="loading().loading && loading().loadingText"
+      class="relative z-10"
+    >
+      @if (loading().loading && loading().loadingText) {
+        {{ loading().loadingText }}
+      } @else {
+        <ng-content></ng-content>
       }
-    </button>
+    </span>
+
+    <!-- Screen reader loading announcement -->
+    @if (loading().loading && accessibility.ariaLive) {
+      <span class="sr-only" [attr.aria-live]="accessibility.ariaLive">
+        {{ loading().loadingText || 'Loading...' }}
+      </span>
+    }
   `,
 })
 export class Button {
@@ -237,6 +215,41 @@ export class Button {
 
   /** Blur event emitter */
   @Output() buttonBlur = new EventEmitter<FocusEvent>();
+
+  // Host Bindings - Apply button attributes directly to the component element
+  @HostBinding('attr.role') get hostRole() { return 'button'; }
+  @HostBinding('class') get hostClasses() { return this.computedClasses(); }
+  @HostBinding('attr.type') get hostType() { return this.type; }
+  @HostBinding('disabled') get hostDisabled() { return this.computedDisabled(); }
+  @HostBinding('attr.aria-label') get hostAriaLabel() { return this.accessibility.ariaLabel; }
+  @HostBinding('attr.aria-description') get hostAriaDescription() { return this.accessibility.ariaDescription; }
+  @HostBinding('attr.aria-labelledby') get hostAriaLabelledBy() { return this.accessibility.ariaLabelledBy; }
+  @HostBinding('attr.aria-describedby') get hostAriaDescribedBy() { return this.accessibility.ariaDescribedBy; }
+  @HostBinding('attr.aria-haspopup') get hostAriaHasPopup() { return this.accessibility.ariaHasPopup; }
+  @HostBinding('attr.aria-expanded') get hostAriaExpanded() { return this.accessibility.ariaExpanded; }
+  @HostBinding('attr.aria-pressed') get hostAriaPressed() { return this.accessibility.ariaPressed; }
+  @HostBinding('attr.aria-live') get hostAriaLive() { return this.accessibility.ariaLive; }
+  @HostBinding('attr.tabindex') get hostTabIndex() { return this.accessibility.tabIndex; }
+  @HostBinding('attr.data-loading') get hostDataLoading() { return this.loading().loading; }
+  @HostBinding('attr.data-variant') get hostDataVariant() { return this.variant; }
+  @HostBinding('attr.data-size') get hostDataSize() { return this.size; }
+
+  // Host Listeners - Handle events on the component element
+  @HostListener('click', ['$event']) onHostClick(event: MouseEvent): void {
+    this.handleClick(event);
+  }
+
+  @HostListener('keydown', ['$event']) onHostKeydown(event: KeyboardEvent): void {
+    this.handleKeydown(event);
+  }
+
+  @HostListener('focus', ['$event']) onHostFocus(event: FocusEvent): void {
+    this.handleFocus(event);
+  }
+
+  @HostListener('blur', ['$event']) onHostBlur(event: FocusEvent): void {
+    this.handleBlur(event);
+  }
 
   /** Loading state signal */
   protected loading = signal<Required<ButtonLoadingState>>({

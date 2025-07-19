@@ -1,4 +1,4 @@
-import { Component, Input, ContentChildren, QueryList, AfterContentInit, ContentChild, computed, signal, effect } from '@angular/core';
+import { Component, Input, ContentChildren, QueryList, AfterContentInit, ContentChild, computed, signal, effect, HostBinding, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
@@ -145,34 +145,19 @@ export type AccordionVariant = VariantProps<typeof accordionVariants>;
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h3>
-      <button
-        type="button"
-        [class]="triggerClasses()"
-        [attr.data-state]="isOpen() ? 'open' : 'closed'"
-        [attr.aria-expanded]="isOpen()"
-        [attr.aria-controls]="contentId()"
-        [attr.id]="triggerId()"
-        [attr.aria-label]="ariaLabel"
-        [attr.aria-describedby]="ariaDescribedBy"
-        (click)="toggle()"
-        (keydown)="onKeyDown($event)">
+    <span class="flex-1 text-left">
+      <ng-content></ng-content>
+    </span>
 
-        <span class="flex-1 text-left">
-          <ng-content></ng-content>
-        </span>
-
-        <svg
-          class="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:text-accent-foreground"
-          [class.rotate-180]="isOpen()"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-    </h3>
+    <svg
+      class="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:text-accent-foreground"
+      [class.rotate-180]="isOpen()"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
   `
 })
 export class AccordionTrigger {
@@ -235,6 +220,26 @@ export class AccordionTrigger {
     return this._ariaDescribedBy();
   }
   private _ariaDescribedBy = signal('');
+
+  // Host Bindings - Apply button attributes directly to the component element
+  @HostBinding('attr.type') get hostType() { return 'button'; }
+  @HostBinding('attr.role') get hostRole() { return 'button'; }
+  @HostBinding('class') get hostClasses() { return this.triggerClasses(); }
+  @HostBinding('attr.data-state') get hostDataState() { return this.isOpen() ? 'open' : 'closed'; }
+  @HostBinding('attr.aria-expanded') get hostAriaExpanded() { return this.isOpen(); }
+  @HostBinding('attr.aria-controls') get hostAriaControls() { return this.contentId(); }
+  @HostBinding('attr.id') get hostId() { return this.triggerId(); }
+  @HostBinding('attr.aria-label') get hostAriaLabel() { return this.ariaLabel; }
+  @HostBinding('attr.aria-describedby') get hostAriaDescribedBy() { return this.ariaDescribedBy; }
+
+  // Host Listeners - Handle events on the component element
+  @HostListener('click') onHostClick(): void {
+    this.toggle();
+  }
+
+  @HostListener('keydown', ['$event']) onHostKeydown(event: KeyboardEvent): void {
+    this.onKeyDown(event);
+  }
 
   // Internal references
   item?: AccordionItem;

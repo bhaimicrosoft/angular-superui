@@ -1,6 +1,6 @@
 <div class="min-h-screen bg-background text-foreground scroll-smooth">
   <!-- Go to Top Button -->
-  <button 
+  <button
     #goToTopBtn
     (click)="scrollToTop()"
     class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
@@ -48,21 +48,22 @@
         <!-- Desktop Actions -->
         <div class="hidden md:flex items-center space-x-4">
           <!-- GitHub Link -->
-          <a 
-            href="https://github.com/bhaimicrosoft/angular-superui" 
-            target="_blank" 
+          <a
+            href="https://github.com/bhaimicrosoft/angular-superui"
+            target="_blank"
             rel="noopener noreferrer"
             class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-200 group"
             aria-label="View on GitHub">
-            <svg 
-              class="w-5 h-5 text-white group-hover:text-white/90 transition-colors" 
-              fill="currentColor" 
-              viewBox="0 0 24 24" 
+            <svg
+              class="w-5 h-5 text-white group-hover:text-white/90 transition-colors"
+              fill="currentColor"
+              viewBox="0 0 24 24"
               aria-hidden="true">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
           </a>
-          
+
           <!-- Theme Status Indicator -->
           <div class="flex items-center space-x-2 text-white/70 text-xs">
             <span>{{ currentTheme }}</span>
@@ -102,18 +103,19 @@
         <!-- Mobile Actions -->
         <div class="flex md:hidden items-center space-x-2 sm:space-x-3">
           <!-- GitHub Link - Mobile -->
-          <a 
-            href="https://github.com/bhaimicrosoft/angular-superui" 
-            target="_blank" 
+          <a
+            href="https://github.com/bhaimicrosoft/angular-superui"
+            target="_blank"
             rel="noopener noreferrer"
             class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-200 group"
             aria-label="View on GitHub">
-            <svg 
-              class="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-white/90 transition-colors" 
-              fill="currentColor" 
-              viewBox="0 0 24 24" 
+            <svg
+              class="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-white/90 transition-colors"
+              fill="currentColor"
+              viewBox="0 0 24 24"
               aria-hidden="true">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
           </a>
 
@@ -176,8 +178,8 @@
 
         <!-- Scroll Indicator -->
         <div class="animate-bounce mt-8 sm:mt-12">
-          <a 
-            href="#accordion" 
+          <a
+            href="#accordion"
             class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 group"
             aria-label="Scroll to components">
             <svg class="w-6 h-6 text-white/60 group-hover:text-white/90 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,33 +196,40 @@
     <!-- Accordion Component Section -->
     <section id="accordion" class="py-24 px-6 relative overflow-hidden">
       <!-- Background with subtle pattern -->
-      <div class="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-white to-blue-50/50 dark:from-slate-900/90 dark:via-gray-900 dark:to-slate-800/80"></div>
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-white to-blue-50/50 dark:from-slate-900/90 dark:via-gray-900 dark:to-slate-800/80"></div>
       <div class="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]"></div>
-      
+
       <div class="container mx-auto max-w-7xl relative z-10">
         <!-- Section Header -->
         <div class="text-center mb-20">
-          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl mb-8 shadow-2xl shadow-purple-500/25 dark:shadow-purple-500/10">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl mb-8 shadow-2xl shadow-purple-500/25 dark:shadow-purple-500/10">
             <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </div>
-          <h2 class="text-5xl md:text-6xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-6">
+          <h2
+            class="text-5xl md:text-6xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-6">
             Accordion
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
-            Elegant collapsible content panels with smooth animations, full accessibility support, and beautiful theming for both light and dark modes.
+            Elegant collapsible content panels with smooth animations, full accessibility support, and beautiful theming for both light and dark
+            modes.
           </p>
-          
+
           <!-- Feature Badges -->
           <div class="flex flex-wrap justify-center gap-3">
-            <span class="px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-semibold border border-emerald-200 dark:border-emerald-800">
+            <span
+              class="px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-semibold border border-emerald-200 dark:border-emerald-800">
               ✨ WAI-ARIA Ready
             </span>
-            <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold border border-blue-200 dark:border-blue-800">
+            <span
+              class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold border border-blue-200 dark:border-blue-800">
               ⌨️ Keyboard Nav
             </span>
-            <span class="px-4 py-2 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full text-sm font-semibold border border-violet-200 dark:border-violet-800">
+            <span
+              class="px-4 py-2 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full text-sm font-semibold border border-violet-200 dark:border-violet-800">
               🎨 Theme Aware
             </span>
           </div>
@@ -228,12 +237,11 @@
 
         <!-- Demo Grid -->
         <div class="grid lg:grid-cols-2 gap-12 mb-20">
-          
+
           <!-- Single Mode Demo -->
           <div class="space-y-8">
             <div class="text-center lg:text-left">
               <div class="inline-flex items-center gap-3 mb-4">
-                <div class="w-2 h-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Single Selection</h3>
                 <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-medium rounded-full">
                   Collapsible
@@ -244,9 +252,11 @@
 
             <div class="relative group">
               <!-- Glow effect -->
-              <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div
+                class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
                 <Accordion type="single" [collapsible]="true" variant="separated">
                   <AccordionItem value="features" variant="default">
                     <AccordionTrigger>
@@ -286,7 +296,8 @@
                     </AccordionTrigger>
                     <AccordionContent>
                       <div class="pt-4 space-y-4">
-                        <p class="text-gray-700 dark:text-gray-300">Built with accessibility as a core principle, ensuring everyone can use your interface.</p>
+                        <p class="text-gray-700 dark:text-gray-300">Built with accessibility as a core principle, ensuring everyone can use your
+                                                                    interface.</p>
                         <div class="grid grid-cols-2 gap-3 text-sm">
                           <div class="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                             <div class="font-medium text-gray-900 dark:text-white mb-1">Screen Readers</div>
@@ -314,10 +325,14 @@
                       <div class="pt-4">
                         <p class="text-gray-700 dark:text-gray-300 mb-4">Flexible theming system with multiple variants and size options.</p>
                         <div class="flex flex-wrap gap-2">
-                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">default</span>
-                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">ghost</span>
-                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">filled</span>
-                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">compact</span>
+                          <span
+                            class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">default</span>
+                          <span
+                            class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">ghost</span>
+                          <span
+                            class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">filled</span>
+                          <span
+                            class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">compact</span>
                         </div>
                       </div>
                     </AccordionContent>
@@ -331,7 +346,6 @@
           <div class="space-y-8">
             <div class="text-center lg:text-left">
               <div class="inline-flex items-center gap-3 mb-4">
-                <div class="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full"></div>
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Multiple Selection</h3>
                 <span class="px-2 py-1 bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 text-xs font-medium rounded-full">
                   Multi-open
@@ -342,9 +356,11 @@
 
             <div class="relative group">
               <!-- Glow effect -->
-              <div class="absolute -inset-1 bg-gradient-to-r from-pink-500/20 via-rose-500/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-pink-500/20 via-rose-500/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div
+                class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
                 <Accordion type="multiple" variant="compact">
                   <AccordionItem value="getting-started" variant="default">
                     <AccordionTrigger>
@@ -407,7 +423,8 @@
                       <div class="pt-4 space-y-3">
                         <div class="grid grid-cols-1 gap-2 text-sm">
                           <div class="flex items-center gap-3">
-                            <kbd class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">↑ ↓</kbd>
+                            <kbd class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">↑
+                                                                                                                                                   ↓</kbd>
                             <span class="text-gray-700 dark:text-gray-300">Navigate between triggers</span>
                           </div>
                           <div class="flex items-center gap-3">
@@ -415,7 +432,8 @@
                             <span class="text-gray-700 dark:text-gray-300">Go to first item</span>
                           </div>
                           <div class="flex items-center gap-3">
-                            <kbd class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">End</kbd>
+                            <kbd
+                              class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">End</kbd>
                             <span class="text-gray-700 dark:text-gray-300">Go to last item</span>
                           </div>
                           <div class="flex items-center gap-3">
@@ -435,9 +453,11 @@
         <!-- Code Example Section -->
         <div class="relative">
           <div class="absolute -inset-4 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-orange-500/10 rounded-3xl blur-2xl"></div>
-          <div class="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+          <div
+            class="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
             <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center">
                 <svg class="w-6 h-6 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                 </svg>
@@ -447,19 +467,35 @@
                 <p class="text-gray-600 dark:text-gray-400">Get up and running in minutes</p>
               </div>
             </div>
-            
-            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 font-mono text-sm overflow-x-auto">
-              <div class="text-gray-500 dark:text-gray-400 mb-2">// Basic Usage</div>
-              <div class="text-gray-800 dark:text-gray-200">
-                <span class="text-blue-600 dark:text-blue-400">&lt;Accordion</span>
-                <span class="text-green-600 dark:text-green-400"> type</span>=<span class="text-orange-600 dark:text-orange-400">"single"</span>
-                <span class="text-green-600 dark:text-green-400"> [collapsible]</span>=<span class="text-orange-600 dark:text-orange-400">"true"</span><span class="text-blue-600 dark:text-blue-400">&gt;</span><br/>
-                &nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;AccordionItem</span>
-                <span class="text-green-600 dark:text-green-400"> value</span>=<span class="text-orange-600 dark:text-orange-400">"item-1"</span><span class="text-blue-600 dark:text-blue-400">&gt;</span><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;AccordionTrigger&gt;</span>Question<span class="text-blue-600 dark:text-blue-400">&lt;/AccordionTrigger&gt;</span><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;AccordionContent&gt;</span>Answer<span class="text-blue-600 dark:text-blue-400">&lt;/AccordionContent&gt;</span><br/>
-                &nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;/AccordionItem&gt;</span><br/>
-                <span class="text-blue-600 dark:text-blue-400">&lt;/Accordion&gt;</span>
+
+            <!-- CLI Installation -->
+            <div class="mb-6 p-4 bg-indigo-50 dark:bg-indigo-950/30 rounded-2xl border border-indigo-200 dark:border-indigo-800">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-bold text-indigo-900 dark:text-indigo-100">Quick Start</h4>
+              </div>
+              <div class="bg-white/70 dark:bg-black/20 rounded-lg p-4 font-mono text-lg mb-3">
+                <div class="text-indigo-600 dark:text-indigo-400 mb-2 text-xl font-semibold">npx ngsui-cli add accordion</div>
+                <div class="text-gray-600 dark:text-gray-400 text-base">
+                  Installs Accordion component with full accessibility support
+                </div>
+              </div>
+              <!-- Documentation Link -->
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/accordion.md"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium underline transition-colors">
+                  📖 Full Documentation & Examples
+                </a>
               </div>
             </div>
           </div>
@@ -469,7 +505,7 @@
 
     <!-- Alert Dialog Component Section -->
     <section id="alert-dialog"
-      class="py-24 px-6 bg-gradient-to-br from-red-50/50 to-orange-50/50 dark:bg-gradient-to-br dark:from-red-900/30 dark:via-orange-900/30 dark:to-yellow-900/30">
+             class="py-24 px-6 bg-gradient-to-br from-red-50/50 to-orange-50/50 dark:bg-gradient-to-br dark:from-red-900/30 dark:via-orange-900/30 dark:to-yellow-900/30">
       <div class="container mx-auto max-w-6xl">
         <!-- Section Header -->
         <div class="text-center mb-16">
@@ -503,7 +539,6 @@
           <!-- Destructive Dialog -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-red-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Destructive Action</h3>
               <span class="px-2 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 text-xs rounded-full font-medium">Critical</span>
             </div>
@@ -532,7 +567,6 @@
           <!-- Logout Dialog -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Sign Out</h3>
               <span
                 class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs rounded-full font-medium">Confirmation</span>
@@ -562,7 +596,6 @@
           <!-- Confirmation Dialog -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Save Changes</h3>
               <span
                 class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs rounded-full font-medium">Save</span>
@@ -598,13 +631,26 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
               </svg>
             </div>
-            <h4 class="text-lg font-bold text-red-900 dark:text-red-100">Quick Start</h4>
+            <h4 class="text-xl font-bold text-red-900 dark:text-red-100">Quick Start</h4>
           </div>
-          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-4 font-mono text-sm">
-            <div class="text-red-600 dark:text-red-400 mb-2">npx ngsui-cli add alert-dialog</div>
-            <div class="text-gray-600 dark:text-gray-400">
+          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-6 font-mono text-lg mb-3">
+            <div class="text-red-600 dark:text-red-400 mb-2 text-xl font-semibold">npx ngsui-cli add alert-dialog</div>
+            <div class="text-gray-600 dark:text-gray-400 text-base">
               Installs AlertDialog component with modal focus management
             </div>
+          </div>
+          <!-- Documentation Link -->
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/alert-dialog.md"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 font-medium underline transition-colors">
+              📖 Full Documentation & Examples
+            </a>
           </div>
         </div>
 
@@ -864,20 +910,34 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
               </svg>
             </div>
-            <h4 class="text-lg font-bold text-amber-900 dark:text-amber-100">Quick Start</h4>
+            <h4 class="text-xl font-bold text-amber-900 dark:text-amber-100">Quick Start</h4>
           </div>
-          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-4 font-mono text-sm">
-            <div class="text-amber-600 dark:text-amber-400 mb-2">npx ngsui-cli add alert</div>
-            <div class="text-gray-600 dark:text-gray-400">
+          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-6 font-mono text-lg mb-3">
+            <div class="text-amber-600 dark:text-amber-400 mb-2 text-xl font-semibold">npx ngsui-cli add alert</div>
+            <div class="text-gray-600 dark:text-gray-400 text-base">
               Installs Alert component with multiple variants and semantic styling
             </div>
+          </div>
+          <!-- Documentation Link -->
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/alert.md"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 font-medium underline transition-colors">
+              📖 Full Documentation & Examples
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Card Component Section -->
-    <section id="card" class="relative py-24 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:bg-gradient-to-br dark:from-emerald-950/30 dark:via-teal-950/30 dark:to-cyan-950/30">
+    <section id="card"
+             class="relative py-24 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:bg-gradient-to-br dark:from-emerald-950/30 dark:via-teal-950/30 dark:to-cyan-950/30">
       <!-- Animated Background Pattern -->
       <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/20 dark:to-transparent"></div>
@@ -885,16 +945,20 @@
       <div class="relative z-10 container mx-auto px-6">
         <!-- Section Header -->
         <div class="text-center mb-16">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-cyan-600 dark:bg-gradient-to-br dark:from-emerald-700 dark:to-cyan-800 rounded-2xl mb-6 shadow-xl">
+          <div
+            class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-cyan-600 dark:bg-gradient-to-br dark:from-emerald-700 dark:to-cyan-800 rounded-2xl mb-6 shadow-xl">
             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
           </div>
-          <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent mb-4">
+          <h2
+            class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent mb-4">
             Card
           </h2>
           <p class="text-xl text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Flexible content containers with multiple variants and layouts. Perfect for displaying information, actions, and complex content structures.
+            Flexible content containers with multiple variants and layouts. Perfect for displaying information, actions, and complex content
+            structures.
           </p>
           <!-- Feature Badges -->
           <div class="flex flex-wrap justify-center gap-2 mt-6">
@@ -911,7 +975,6 @@
           <!-- Default Card -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-emerald-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Default Card</h3>
               <span class="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs rounded-full font-medium">Standard</span>
             </div>
@@ -924,15 +987,12 @@
               <CardContent>
                 <div class="space-y-4">
                   <div class="flex items-center space-x-3">
-                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
                     <span class="text-sm text-muted-foreground dark:text-gray-300">Real-time collaboration</span>
                   </div>
                   <div class="flex items-center space-x-3">
-                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
                     <span class="text-sm text-muted-foreground dark:text-gray-300">Advanced permissions</span>
                   </div>
                   <div class="flex items-center space-x-3">
-                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
                     <span class="text-sm text-muted-foreground dark:text-gray-300">Version control</span>
                   </div>
                 </div>
@@ -947,7 +1007,6 @@
           <!-- Elevated Card -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-cyan-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Elevated Card</h3>
               <span class="px-2 py-1 bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300 text-xs rounded-full font-medium">Premium</span>
             </div>
@@ -969,7 +1028,8 @@
                       <div class="text-xs text-muted-foreground dark:text-gray-400">Load Time</div>
                     </div>
                   </div>
-                  <div class="text-center p-3 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 dark:from-emerald-500/20 dark:to-cyan-500/20 rounded-lg border border-emerald-200 dark:border-emerald-800">
+                  <div
+                    class="text-center p-3 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 dark:from-emerald-500/20 dark:to-cyan-500/20 rounded-lg border border-emerald-200 dark:border-emerald-800">
                     <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">+24%</div>
                     <div class="text-xs text-muted-foreground dark:text-gray-400">Performance Increase</div>
                   </div>
@@ -984,7 +1044,6 @@
           <!-- Ghost Card -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-teal-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Ghost Card</h3>
               <span class="px-2 py-1 bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 text-xs rounded-full font-medium">Minimal</span>
             </div>
@@ -1004,19 +1063,22 @@
                   </Button>
                   <Button variant="outline" size="sm" class="h-12 flex-col">
                     <svg class="w-4 h-4 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4l-1 16h12L17 4"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4l-1 16h12L17 4"></path>
                     </svg>
                     <span class="text-xs">Import</span>
                   </Button>
                   <Button variant="outline" size="sm" class="h-12 flex-col">
                     <svg class="w-4 h-4 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4"></path>
                     </svg>
                     <span class="text-xs">Export</span>
                   </Button>
                   <Button variant="outline" size="sm" class="h-12 flex-col">
                     <svg class="w-4 h-4 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                     <span class="text-xs">Settings</span>
@@ -1033,7 +1095,6 @@
           <!-- Filled Card with Complex Content -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Filled Card</h3>
               <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs rounded-full font-medium">Rich Content</span>
             </div>
@@ -1095,7 +1156,6 @@
           <!-- Outline Card with Stats -->
           <div class="space-y-6">
             <div class="flex items-center space-x-3 mb-6">
-              <div class="w-3 h-3 bg-indigo-500 rounded-full"></div>
               <h3 class="text-xl font-bold text-foreground dark:text-white">Outline Card</h3>
               <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs rounded-full font-medium">Statistics</span>
             </div>
@@ -1122,7 +1182,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                <div
+                  class="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-lg border border-indigo-200 dark:border-indigo-800">
                   <div class="flex items-center justify-between">
                     <span class="text-sm font-medium text-indigo-700 dark:text-indigo-300">Next Deadline</span>
                     <span class="text-sm text-muted-foreground dark:text-gray-400">March 15, 2025</span>
@@ -1138,19 +1199,887 @@
         </div>
 
         <!-- Usage Example -->
-        <div class="mt-16 p-8 bg-gradient-to-br from-emerald-50 to-cyan-50 dark:bg-gradient-to-br dark:from-emerald-950/30 dark:to-cyan-950/30 rounded-2xl border border-emerald-200 dark:border-emerald-800">
+        <div
+          class="mt-16 p-8 bg-gradient-to-br from-emerald-50 to-cyan-50 dark:bg-gradient-to-br dark:from-emerald-950/30 dark:to-cyan-950/30 rounded-2xl border border-emerald-200 dark:border-emerald-800">
           <div class="flex items-center space-x-3 mb-4">
             <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
               </svg>
             </div>
-            <h4 class="text-lg font-bold text-emerald-900 dark:text-emerald-100">Quick Start</h4>
+            <h4 class="text-xl font-bold text-emerald-900 dark:text-emerald-100">Quick Start</h4>
           </div>
-          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-4 font-mono text-sm">
-            <div class="text-emerald-600 dark:text-emerald-400 mb-2">npx ngsui-cli add card</div>
-            <div class="text-gray-600 dark:text-gray-400">
+          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-6 font-mono text-lg mb-3">
+            <div class="text-emerald-600 dark:text-emerald-400 mb-2 text-xl font-semibold">npx ngsui-cli add card</div>
+            <div class="text-gray-600 dark:text-gray-400 text-base">
               Installs Card component with header, content, footer, and multiple variants
+            </div>
+          </div>
+          <!-- Documentation Link -->
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/card.md"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 font-medium underline transition-colors">
+              📖 Full Documentation & Examples
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Button Component Section -->
+    <section id="button"
+             class="relative py-24 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:bg-gradient-to-br dark:from-blue-950/30 dark:via-indigo-950/30 dark:to-purple-950/30">
+      <!-- Animated Background Pattern -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/20 dark:to-transparent"></div>
+
+      <div class="relative z-10 container mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 rounded-3xl mb-8 shadow-2xl shadow-blue-500/25 dark:shadow-blue-500/10">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+            </svg>
+          </div>
+          <h2
+            class="text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-6">
+            Button
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            Essential interactive elements with multiple variants, sizes, and states. Built for accessibility, performance, and beautiful user
+            interactions across all devices.
+          </p>
+
+          <!-- Feature Badges -->
+          <div class="flex flex-wrap justify-center gap-3">
+            <span
+              class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold border border-blue-200 dark:border-blue-800">
+              🎯 Multiple Variants
+            </span>
+            <span
+              class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-semibold border border-indigo-200 dark:border-indigo-800">
+              📏 Size Options
+            </span>
+            <span
+              class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold border border-purple-200 dark:border-purple-800">
+              ♿ Accessible
+            </span>
+          </div>
+        </div>
+
+        <!-- Button Variants Grid -->
+        <div class="grid lg:grid-cols-2 gap-12 mb-20">
+
+          <!-- Primary Variants -->
+          <div class="space-y-8">
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-3 mb-4">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Primary Variants</h3>
+                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
+                  Essential
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">Main action buttons for primary interactions</p>
+            </div>
+
+            <div class="relative group">
+              <!-- Glow effect -->
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div
+                class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                <div class="space-y-6">
+
+                  <!-- Default Button -->
+                  <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Default</h4>
+                    <div class="flex flex-wrap gap-3">
+                      <Button variant="default" size="sm">Small</Button>
+                      <Button variant="default" size="default">Default</Button>
+                      <Button variant="default" size="lg">Large</Button>
+                    </div>
+                  </div>
+
+                  <!-- Secondary Button -->
+                  <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Secondary</h4>
+                    <div class="flex flex-wrap gap-3">
+                      <Button variant="secondary" size="sm">Cancel</Button>
+                      <Button variant="secondary" size="default">Learn More</Button>
+                      <Button variant="secondary" size="lg">View Details</Button>
+                    </div>
+                  </div>
+
+                  <!-- Success Button -->
+                  <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Success</h4>
+                    <div class="flex flex-wrap gap-3">
+                      <Button variant="success" size="sm">Save</Button>
+                      <Button variant="success" size="default">Get Started</Button>
+                      <Button variant="success" size="lg">Download Now</Button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Special Variants -->
+          <div class="space-y-8">
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-3 mb-4">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Special Variants</h3>
+                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs font-medium rounded-full">
+                  Advanced
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">Specialized buttons for specific use cases</p>
+            </div>
+
+            <div class="relative group">
+              <!-- Glow effect -->
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-red-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div
+                class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                <div class="space-y-6">
+
+                  <!-- Destructive Button -->
+                  <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Destructive</h4>
+                    <div class="flex flex-wrap gap-3">
+                      <Button variant="destructive" size="sm">Delete</Button>
+                      <Button variant="destructive" size="default">Remove Item</Button>
+                      <Button variant="destructive" size="lg">Delete Account</Button>
+                    </div>
+                  </div>
+
+                  <!-- Ghost Button -->
+                  <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Ghost</h4>
+                    <div class="flex flex-wrap gap-3">
+                      <Button variant="ghost" size="sm">Edit</Button>
+                      <Button variant="ghost" size="default">View Source</Button>
+                      <Button variant="ghost" size="lg">Open Settings</Button>
+                    </div>
+                  </div>
+
+                  <!-- Outline Button -->
+                  <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Outline</h4>
+                    <div class="flex flex-wrap gap-3">
+                      <Button variant="outline" size="sm">Preview</Button>
+                      <Button variant="outline" size="default">Add to Cart</Button>
+                      <Button variant="outline" size="lg">Contact Us</Button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Examples -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <!-- Button States -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Button States</h3>
+              <span
+                class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs rounded-full font-medium">Interactive</span>
+            </div>
+
+            <div class="p-6 border border-gray-200 dark:border-gray-700 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm space-y-4">
+              <div class="space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Normal State</span>
+                <div class="flex gap-3">
+                  <Button variant="default">Click me</Button>
+                  <Button variant="secondary">Secondary</Button>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Loading State</span>
+                <div class="flex gap-3">
+                  <Button variant="default" [loadingState]="true" loadingText="Loading...">
+                    Load Data
+                  </Button>
+                  <Button variant="secondary" [loadingState]="true" loadingText="Processing...">
+                    Process
+                  </Button>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Disabled State</span>
+                <div class="flex gap-3">
+                  <Button variant="default" [disabled]="true">Disabled</Button>
+                  <Button variant="secondary" [disabled]="true">Disabled</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Icon Buttons -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Icon Buttons</h3>
+              <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs rounded-full font-medium">With Icons</span>
+            </div>
+
+            <div class="p-6 border border-gray-200 dark:border-gray-700 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm space-y-4">
+              <div class="space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Left Icons</span>
+                <div class="flex flex-wrap gap-3">
+                  <Button variant="default" size="sm" class="justify-start">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Add Item
+                  </Button>
+                  <Button variant="secondary" size="default" class="justify-start">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                    Like
+                  </Button>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Right Icons</span>
+                <div class="flex flex-wrap gap-3">
+                  <Button variant="outline" size="sm" class="justify-start">
+                    Download
+                    <p>test</p>
+                  </Button>
+                  <Button variant="ghost" size="default" class="justify-start">
+                    Next Step
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </Button>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Icon Only</span>
+                <div class="flex gap-3">
+                  <Button variant="outline" size="icon" aria-label="Close">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </Button>
+                  <Button variant="ghost" size="icon" aria-label="Edit">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                    </svg>
+                  </Button>
+                  <Button variant="default" size="icon" aria-label="Confirm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Example Section -->
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 rounded-3xl blur-2xl"></div>
+          <div
+            class="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Quick Start</h3>
+                <p class="text-gray-600 dark:text-gray-400">Get started with buttons in minutes</p>
+              </div>
+            </div>
+
+            <!-- CLI Installation -->
+            <div class="mb-6 p-6 bg-blue-50 dark:bg-blue-950/30 rounded-2xl border border-blue-200 dark:border-blue-800">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h4 class="text-xl font-bold text-blue-900 dark:text-blue-100">Installation</h4>
+              </div>
+              <div class="bg-white/70 dark:bg-black/20 rounded-lg p-6 font-mono text-lg mb-3">
+                <div class="text-blue-600 dark:text-blue-400 mb-2 text-xl font-semibold">npx ngsui-cli add button</div>
+                <div class="text-gray-600 dark:text-gray-400 text-base">
+                  Installs Button component with all variants and accessibility features
+                </div>
+              </div>
+              <!-- Documentation Link -->
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/button.md"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium underline transition-colors">
+                  📖 Full Documentation & Examples
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badge & Breadcrumb Components Section -->
+    <section id="badge-breadcrumb" class="py-20 sm:py-32 bg-gradient-to-b from-background via-accent/5 to-background relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-[0.02] animate-pulse"></div>
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 mb-6">
+            <span class="text-sm font-medium bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">UI Components</span>
+          </div>
+          <h2
+            class="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-br from-purple-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent mb-6 pb-10">
+            Badge & Breadcrumb
+          </h2>
+          <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Display status indicators and navigation paths with our versatile Badge and Breadcrumb components
+          </p>
+        </div>
+
+        <!-- Two Column Layout for Badge and Breadcrumb -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+          <!-- Badge Component Column -->
+          <div class="space-y-12">
+            <div class="text-center lg:text-left">
+              <h3 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                Badge Component
+              </h3>
+              <p class="text-lg text-muted-foreground mb-8">
+                Compact status indicators perfect for showing counts, labels, and notifications
+              </p>
+            </div>
+
+            <!-- Basic Badges -->
+            <div class="bg-card/50 backdrop-blur-sm rounded-3xl border border-border/50 p-8 shadow-2xl">
+              <h4 class="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+                Basic Badges
+              </h4>
+              <div class="space-y-6">
+                <div class="flex flex-wrap gap-3">
+                  <Badge variant="default">Default</Badge>
+                  <Badge variant="secondary">Secondary</Badge>
+                  <Badge variant="destructive">Destructive</Badge>
+                  <Badge variant="outline">Outline</Badge>
+                </div>
+
+                <!-- Status Badges -->
+                <div class="pt-4 border-t border-border/30">
+                  <p class="text-sm text-muted-foreground mb-3">Status Indicators</p>
+                  <div class="flex flex-wrap gap-3">
+                    <Badge variant="default" className="bg-green-500 hover:bg-green-600">Active</Badge>
+                    <Badge variant="secondary" className="bg-yellow-500 hover:bg-yellow-600 text-yellow-50">Pending</Badge>
+                    <Badge variant="destructive">Inactive</Badge>
+                    <Badge variant="outline" className="border-blue-500 text-blue-600">Draft</Badge>
+                  </div>
+                </div>
+
+                <!-- Count Badges -->
+                <div class="pt-4 border-t border-border/30">
+                  <p class="text-sm text-muted-foreground mb-3">Count Badges</p>
+                  <div class="flex flex-wrap gap-3">
+                    <Badge variant="default">5</Badge>
+                    <Badge variant="secondary">12</Badge>
+                    <Badge variant="destructive">99+</Badge>
+                    <Badge variant="outline">New</Badge>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Badge Documentation -->
+            <div class="bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl border border-purple-200/20 dark:border-purple-800/20 p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-foreground mb-2">Badge Documentation</h4>
+                  <p class="text-muted-foreground mb-4">
+                    Learn how to use and customize Badge components with our comprehensive guide.
+                  </p>
+                  <div class="flex flex-wrap gap-3">
+                    <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/badge.md" target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                      </svg>
+                      Documentation
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Badge Installation -->
+            <div id="badge-installation" class="bg-card/30 backdrop-blur-sm rounded-2xl border border-border/30 p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                  </svg>
+                </div>
+                <h4 class="text-xl font-semibold">Quick Installation</h4>
+              </div>
+              <div class="bg-slate-900 dark:bg-slate-950 rounded-xl p-6 overflow-x-auto">
+                <code class="text-xl text-green-400 font-semibold">
+                  npx ngsui-cli add badge
+                </code>
+              </div>
+              <p class="text-base text-muted-foreground mt-3">
+                Installs Badge component with all variants and accessibility features
+              </p>
+            </div>
+          </div>
+
+          <!-- Breadcrumb Component Column -->
+          <div class="space-y-12">
+            <div class="text-center lg:text-left">
+              <h3 class="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4">
+                Breadcrumb Component
+              </h3>
+              <p class="text-lg text-muted-foreground mb-8">
+                Navigation paths that help users understand their location within the application
+              </p>
+            </div>
+
+            <!-- Basic Breadcrumbs -->
+            <div class="bg-card/50 backdrop-blur-sm rounded-3xl border border-border/50 p-8 shadow-2xl">
+              <h4 class="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+                Basic Breadcrumbs
+              </h4>
+              <div class="space-y-6">
+                <div>
+                  <Breadcrumb>
+                    <BreadcrumbList>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator/>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator/>
+                      <BreadcrumbItem>
+                        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </BreadcrumbList>
+                  </Breadcrumb>
+                </div>
+
+                <!-- Custom Separator -->
+                <div class="pt-4 border-t border-border/30">
+                  <p class="text-sm text-muted-foreground mb-3">Custom Separator</p>
+                  <Breadcrumb>
+                    <BreadcrumbList>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                      </BreadcrumbSeparator>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/settings">Settings</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                      </BreadcrumbSeparator>
+                      <BreadcrumbItem>
+                        <BreadcrumbPage>Profile</BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </BreadcrumbList>
+                  </Breadcrumb>
+                </div>
+
+                <!-- Long Path Example -->
+                <div class="pt-4 border-t border-border/30">
+                  <p class="text-sm text-muted-foreground mb-3">Long Navigation Path</p>
+                  <Breadcrumb>
+                    <BreadcrumbList>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator/>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator/>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/products/electronics">Electronics</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator/>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href="/products/electronics/laptops">Laptops</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator/>
+                      <BreadcrumbItem>
+                        <BreadcrumbPage>MacBook Pro</BreadcrumbPage>
+                      </BreadcrumbItem>
+                    </BreadcrumbList>
+                  </Breadcrumb>
+                </div>
+              </div>
+            </div>
+
+            <!-- Breadcrumb Documentation -->
+            <div class="bg-gradient-to-br from-emerald-500/5 to-teal-500/5 rounded-2xl border border-emerald-200/20 dark:border-emerald-800/20 p-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-foreground mb-2">Breadcrumb Documentation</h4>
+                  <p class="text-muted-foreground mb-4">
+                    Learn how to implement navigation breadcrumbs with our comprehensive guide.
+                  </p>
+                  <div class="flex flex-wrap gap-3">
+                    <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/breadcrumb.md" target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                      </svg>
+                      Documentation
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Breadcrumb Installation -->
+            <div id="breadcrumb-installation" class="bg-card/30 backdrop-blur-sm rounded-2xl border border-border/30 p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                  </svg>
+                </div>
+                <h4 class="text-xl font-semibold">Quick Installation</h4>
+              </div>
+              <div class="bg-slate-900 dark:bg-slate-950 rounded-xl p-6 overflow-x-auto">
+                <code class="text-xl text-green-400 font-semibold">
+                  npx ngsui-cli add breadcrumb
+                </code>
+              </div>
+              <p class="text-base text-muted-foreground mt-3">
+                Installs Breadcrumb component with all sub-components and navigation features
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendar Component Section -->
+    <section id="calendar"
+             class="py-24 px-6 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:bg-gradient-to-br dark:from-indigo-950/30 dark:via-purple-950/30 dark:to-pink-950/30 relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/20 dark:to-transparent"></div>
+
+      <div class="container mx-auto max-w-7xl relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl mb-8 shadow-2xl shadow-indigo-500/25 dark:shadow-indigo-500/10">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h2
+            class="text-5xl md:text-6xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent mb-6">
+            Calendar
+          </h2>
+          <p class="text-xl text-muted-foreground dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            A feature-rich date picker and calendar component with multiple selection modes, keyboard navigation, and beautiful styling.
+            Perfect for scheduling, date ranges, and event planning.
+          </p>
+
+          <!-- Feature Badges -->
+          <div class="flex flex-wrap justify-center gap-3">
+            <span
+              class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-semibold border border-indigo-200 dark:border-indigo-800">
+              📅 Date Selection
+            </span>
+            <span
+              class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold border border-purple-200 dark:border-purple-800">
+              🗓️ Range Selection
+            </span>
+            <span
+              class="px-4 py-2 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full text-sm font-semibold border border-pink-200 dark:border-pink-800">
+              ⌨️ Keyboard Navigation
+            </span>
+          </div>
+        </div>
+
+        <!-- Demo Grid -->
+        <div class="grid lg:grid-cols-2 gap-12 mb-20">
+
+          <!-- Single Date Selection -->
+          <div class="space-y-8">
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-3 mb-4">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Single Date Selection</h3>
+                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-medium rounded-full">
+                  Essential
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">Select a single date for appointments and deadlines</p>
+            </div>
+
+            <div class="relative group">
+              <!-- Glow effect -->
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div
+                class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                <div class="space-y-6">
+
+                  <!-- Calendar Component -->
+                  <div class="flex justify-center">
+                    <Calendar
+                      [selectedDate]="selectedDate"
+                      (dateSelect)="onDateSelect($event)"
+                      class="rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                    </Calendar>
+                  </div>
+
+                  <!-- Selected Date Display -->
+                  <div class="text-center p-4 bg-indigo-50 dark:bg-indigo-950/30 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                    <p class="text-sm font-medium text-indigo-700 dark:text-indigo-300 mb-1">Selected Date</p>
+                    <p class="text-lg font-semibold text-indigo-900 dark:text-indigo-100">
+                      {{ selectedDate ? (selectedDate | date:'fullDate') : 'No date selected' }}
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date Range Selection -->
+          <div class="space-y-8">
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-3 mb-4">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Date Range Selection</h3>
+                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs font-medium rounded-full">
+                  Advanced
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">Drag from start date to end date to select a range</p>
+            </div>
+
+            <div class="relative group">
+              <!-- Glow effect -->
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-indigo-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div
+                class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                <div class="space-y-6">
+
+                  <!-- Calendar Component -->
+                  <div class="flex justify-center">
+                    <Calendar
+                      selectionMode="range"
+                      [selectedRange]="selectedRange"
+                      (rangeSelect)="onRangeSelect($event)"
+                      class="rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                    </Calendar>
+                  </div>
+
+                  <!-- Selected Range Display -->
+                  <div class="text-center p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg border border-purple-200 dark:border-purple-800">
+                    <p class="text-sm font-medium text-purple-700 dark:text-purple-300 mb-1">Selected Range</p>
+                    <div class="text-lg font-semibold text-purple-900 dark:text-purple-100">
+                      @if (selectedRange.start && selectedRange.end) {
+                        <p>{{ selectedRange.start | date:'mediumDate' }} - {{ selectedRange.end | date:'mediumDate' }}</p>
+                      } @else if (selectedRange.start) {
+                        <p>From: {{ selectedRange.start | date:'mediumDate' }}</p>
+                        <p class="text-xs text-purple-600 dark:text-purple-400 mt-1">Continue dragging to complete the range</p>
+                      } @else {
+                        <p>Drag from start date to end date</p>
+                      }
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Features and Disabled Dates -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <!-- Calendar with Constraints -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">With Constraints</h3>
+              <span
+                class="px-2 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 text-xs rounded-full font-medium">Constrained</span>
+            </div>
+
+            <div class="p-6 border border-gray-200 dark:border-gray-700 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+              <div class="flex justify-center mb-4">
+                <Calendar
+                  [selectedDate]="constrainedDate"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                  [disabledDaysOfWeek]="[0, 6]"
+                  (dateSelect)="onConstrainedDateSelect($event)"
+                  class="rounded-lg border border-gray-200 dark:border-gray-700">
+                </Calendar>
+              </div>
+
+              <div class="text-center space-y-3">
+                <div class="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-lg border border-orange-200 dark:border-orange-800">
+                  <p class="text-sm font-medium text-orange-700 dark:text-orange-300 mb-1">Selected Date</p>
+                  <p class="text-sm text-orange-900 dark:text-orange-100">
+                    {{ constrainedDate ? (constrainedDate | date:'fullDate') : 'No date selected' }}
+                  </p>
+                </div>
+                <p class="text-xs text-orange-600 dark:text-orange-400">
+                  Weekends disabled • Next 30 days only
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compact Calendar -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">Compact Size</h3>
+              <span
+                class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs rounded-full font-medium">Small</span>
+            </div>
+
+            <div class="p-6 border border-gray-200 dark:border-gray-700 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+              <div class="flex justify-center mb-4">
+                <Calendar
+                  size="sm"
+                  [selectedDate]="compactDate"
+                  (dateSelect)="onCompactDateSelect($event)"
+                  class="rounded-lg border border-gray-200 dark:border-gray-700">
+                </Calendar>
+              </div>
+
+              <div class="text-center space-y-3">
+                <button
+                  (click)="selectToday()"
+                  class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition-colors text-sm">
+                  Select Today
+                </button>
+                <div class="p-3 bg-green-50 dark:bg-green-950/30 rounded-lg border border-green-200 dark:border-green-800">
+                  <p class="text-sm font-medium text-green-700 dark:text-green-300 mb-1">Selected Date</p>
+                  <p class="text-sm text-green-900 dark:text-green-100">
+                    {{ compactDate ? (compactDate | date:'fullDate') : 'No date selected' }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usage Example -->
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl"></div>
+          <div
+            class="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Quick Start</h3>
+                <p class="text-gray-600 dark:text-gray-400">Get started with Calendar in minutes</p>
+              </div>
+            </div>
+
+            <!-- CLI Installation -->
+            <div class="mb-6 p-6 bg-indigo-50 dark:bg-indigo-950/30 rounded-2xl border border-indigo-200 dark:border-indigo-800">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h4 class="text-xl font-bold text-indigo-900 dark:text-indigo-100">Installation</h4>
+              </div>
+              <div class="bg-white/70 dark:bg-black/20 rounded-lg p-6 font-mono text-lg mb-3">
+                <div class="text-indigo-600 dark:text-indigo-400 mb-2 text-xl font-semibold">npx ngsui-cli add calendar</div>
+                <div class="text-gray-600 dark:text-gray-400 text-base">
+                  Installs Calendar component with date selection, ranges, and keyboard navigation
+                </div>
+              </div>
+              <!-- Documentation Link -->
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                <a href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/calendar.md"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium underline transition-colors">
+                  📖 Full Documentation & Examples
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -1159,20 +2088,16 @@
   </main>
 
   <!-- Stunning Footer -->
-  <footer class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900 dark:from-slate-950 dark:via-gray-950 dark:to-black">
+  <footer
+    class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900 dark:from-slate-950 dark:via-gray-950 dark:to-black">
     <!-- Background Effects -->
     <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-    
-    <!-- Animated Particles -->
-    <div class="absolute top-0 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
-    <div class="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-400/40 rounded-full animate-ping"></div>
-    <div class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-emerald-400/20 rounded-full animate-bounce"></div>
-    
+
     <div class="relative z-10 container mx-auto px-6 py-16">
       <!-- Main Footer Content -->
       <div class="grid lg:grid-cols-3 gap-12 mb-12">
-        
+
         <!-- Brand Section -->
         <div class="lg:col-span-1">
           <div class="flex items-center space-x-3 mb-6">
@@ -1185,35 +2110,37 @@
             </div>
           </div>
           <p class="text-gray-300 leading-relaxed mb-6">
-            A comprehensive, accessible, and beautifully designed component library for Angular applications. 
+            A comprehensive, accessible, and beautifully designed component library for Angular applications.
             Built with TypeScript, Tailwind CSS, and modern best practices.
           </p>
-          
+
           <!-- Social Links -->
           <div class="flex items-center space-x-4">
-            <a 
-              href="https://github.com/bhaimicrosoft/angular-superui" 
-              target="_blank" 
+            <a
+              href="https://github.com/bhaimicrosoft/angular-superui"
+              target="_blank"
               rel="noopener noreferrer"
               class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-200 group"
               aria-label="GitHub Repository">
               <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
             </a>
-            <a 
-              href="https://www.npmjs.com/package/angular-superui" 
-              target="_blank" 
+            <a
+              href="https://www.npmjs.com/package/angular-superui"
+              target="_blank"
               rel="noopener noreferrer"
               class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:bg-red-500/20 hover:border-red-400/30 transition-all duration-200 group"
               aria-label="NPM Package">
               <svg class="w-5 h-5 text-gray-400 group-hover:text-red-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113L5.13 5.323z"/>
+                <path
+                  d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113L5.13 5.323z"/>
               </svg>
             </a>
           </div>
         </div>
-        
+
         <!-- Quick Links -->
         <div class="lg:col-span-1">
           <h4 class="text-lg font-semibold text-white mb-6">Components</h4>
@@ -1234,33 +2161,50 @@
               <span class="text-green-400 group-hover:text-green-300">🃏</span>
               <span>Card</span>
             </a>
+            <a href="#button" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-blue-400 group-hover:text-blue-300">🔘</span>
+              <span>Button</span>
+            </a>
+            <a href="#badge-breadcrumb" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-purple-400 group-hover:text-purple-300">🏷️</span>
+              <span>Badge & Breadcrumb</span>
+            </a>
+            <a href="#calendar" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-indigo-400 group-hover:text-indigo-300">📅</span>
+              <span>Calendar</span>
+            </a>
           </div>
-          
+
           <h4 class="text-lg font-semibold text-white mb-4 mt-8">Resources</h4>
           <div class="space-y-3">
-            <a href="https://github.com/imukherjee/angular-superui" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+            <a href="https://github.com/imukherjee/angular-superui" target="_blank" rel="noopener noreferrer"
+               class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
               <span class="text-purple-400 group-hover:text-purple-300">📚</span>
               <span>Documentation</span>
             </a>
-            <a href="https://github.com/imukherjee/angular-superui/issues" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+            <a href="https://github.com/imukherjee/angular-superui/issues" target="_blank" rel="noopener noreferrer"
+               class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
               <span class="text-red-400 group-hover:text-red-300">🐛</span>
               <span>Report Issues</span>
             </a>
-            <a href="https://github.com/imukherjee/angular-superui/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+            <a href="https://github.com/imukherjee/angular-superui/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer"
+               class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
               <span class="text-teal-400 group-hover:text-teal-300">🤝</span>
               <span>Contributing</span>
             </a>
           </div>
         </div>
-        
+
         <!-- Developer Info -->
         <div class="lg:col-span-1">
           <h4 class="text-lg font-semibold text-white mb-6">Developer</h4>
           <div class="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
             <div class="flex items-center space-x-4 mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <span class="text-white font-bold text-lg">BK</span>
-              </div>
+
+              <Avatar>
+                <AvatarImage src="/me.jpg" alt="BK"/>
+              </Avatar>
+
               <div>
                 <h5 class="text-white font-semibold">Bhai Kaju</h5>
                 <p class="text-gray-400 text-sm">Full Stack Developer</p>
@@ -1269,20 +2213,21 @@
             <p class="text-gray-300 text-sm mb-4">
               Passionate about creating beautiful, accessible, and performant user interfaces with modern web technologies.
             </p>
-            <a 
-              href="https://bhaikaju.com" 
-              target="_blank" 
+            <a
+              href="https://bhaikaju.com"
+              target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
               <span>Visit Portfolio</span>
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
               </svg>
             </a>
           </div>
         </div>
       </div>
-      
+
       <!-- Bottom Bar -->
       <div class="border-t border-white/10 pt-8">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -1294,7 +2239,7 @@
               <span>using Angular & Tailwind CSS</span>
             </div>
           </div>
-          
+
           <!-- Version Badge -->
           <div class="flex items-center gap-3">
             <span class="text-xs text-gray-500">v1.0.3</span>
@@ -1305,7 +2250,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Decorative Elements -->
     <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"></div>
   </footer>
