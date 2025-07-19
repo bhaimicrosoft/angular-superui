@@ -21,7 +21,7 @@ export async function listCommand() {
   const categories = {
     '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox'],
     '🧭 Navigation': ['breadcrumb'],
-    '💫 Overlays & Dialogs': ['alert-dialog'],
+    '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu'],
     '🎨 Media & Display': ['carousel', 'aspect-ratio'],
     '⚙️ User Interface': ['theme-switcher', 'checkbox', 'collapsible'],
     '📅 Featured Component': ['calendar']

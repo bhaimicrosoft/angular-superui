@@ -1,4 +1,17 @@
-# Angular SuperUI v1.0.3 🚀
+# Angular SuperUI v1.0.4 🚀
+
+<div align="center">
+
+### 🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
+
+**✨ All 16 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
+
+[![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![🎮 Try Now](https://img.shields.io/badge/🎮-Try%20Now-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+
+</div>
+
+---
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
 [![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
@@ -8,19 +21,19 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **15 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **16 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 15 components with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 16 components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v1.0.3: Production Release**
+## 🛠️ **v1.0.4: 16 Components Ready**
 
 ### 🚀 **CLI Tool (Recommended)**
 Install components directly in your project with our enhanced CLI:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli@1.0.3
+npm install -g ngsui-cli@1.0.4
 
 # Initialize project (sets up Tailwind CSS and TypeScript configs)
 ngsui-cli init
@@ -37,14 +50,14 @@ Install the complete component library:
 
 ```bash
 # Using Angular schematics (recommended)
-ng add angular-superui@1.0.3
+ng add angular-superui@1.0.4
 
 # Or using npm directly
-npm install angular-superui@1.0.3
+npm install angular-superui@1.0.4
 ```
 
-### 🌟 **Key Features in v1.0.3**
-- **15 Essential Components** - Production-ready UI components including new Collapsible
+### 🌟 **Key Features in v1.0.4**
+- **16 Essential Components** - Production-ready UI components including new ContextMenu
 - **Enhanced CLI** - Improved component selection and installation
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach

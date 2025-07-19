@@ -101,25 +101,24 @@ class ThemeServiceImpl {
    * Initialize theme from localStorage or system preference
    */
   private initializeTheme(): void {
-    console.log('🔧 ThemeService.initializeTheme called');
+
 
     const savedTheme = localStorage.getItem('theme') as Theme;
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-    console.log('🔧 Saved theme from localStorage:', savedTheme);
-    console.log('🔧 System theme detected:', systemTheme);
+
 
     this._systemTheme.set(systemTheme);
 
     if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
-      console.log('🔧 Using saved theme:', savedTheme);
+
       this._currentTheme.set(savedTheme);
     } else {
-      console.log('🔧 No valid saved theme, defaulting to system');
+
       this._currentTheme.set('system');
     }
 
-    console.log('🔧 Final theme after initialization:', this._currentTheme());
+
     this.applyTheme();
   }
 
@@ -177,16 +176,15 @@ class ThemeServiceImpl {
    * Set theme
    */
   setTheme(theme: Theme): void {
-    console.log('🔧 ThemeService.setTheme called with:', theme);
-    console.log('🔧 Current theme before set:', this._currentTheme());
+
 
     this._currentTheme.set(theme);
 
-    console.log('🔧 Current theme after set:', this._currentTheme());
+
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('theme', theme);
-      console.log('🔧 Saved to localStorage:', localStorage.getItem('theme'));
+
       this.applyTheme();
     }
   }
@@ -469,11 +467,7 @@ export class ThemeSwitcher {
    */
   isThemeActive(theme: Theme): string {
     const isActive = this.currentTheme() === theme;
-    console.log(`🎯 Checking if ${theme} is active:`, {
-      currentTheme: this.currentTheme(),
-      checkingTheme: theme,
-      isActive
-    });
+
     return isActive ? 'true' : 'false';
   }
 
@@ -512,13 +506,7 @@ export class ThemeSwitcher {
 
     const classes = cn(baseClasses, isActive ? activeClasses : inactiveClasses);
 
-    console.log(`🎨 Generated classes for ${theme}:`, {
-      currentTheme: this.currentTheme(),
-      theme,
-      isActive,
-      classes,
-      finalClassString: classes
-    });
+
 
     return classes;
   }
@@ -608,10 +596,7 @@ export class ThemeSwitcher {
    * Handle theme selection for slider mode
    */
   selectTheme(theme: Theme): void {
-    console.log('🎨 === Theme Selection Started ===');
-    console.log('🎨 Requested theme:', theme);
-    console.log('🎨 Current theme before:', this.currentTheme());
-    console.log('🎨 Service current theme before:', this.themeService.currentTheme());
+
 
     const oldTheme = this.currentTheme();
 
@@ -621,18 +606,13 @@ export class ThemeSwitcher {
     // Force a re-check after a small delay to ensure signals update
     setTimeout(() => {
       const newTheme = this.currentTheme();
-      console.log('🎨 Theme after update:', {
-        oldTheme,
-        newTheme,
-        serviceTheme: this.themeService.currentTheme(),
-        success: newTheme === theme
-      });
+
 
       if (oldTheme !== newTheme) {
         this.themeChange.emit(newTheme);
       }
 
-      console.log('🎨 === Theme Selection Complete ===');
+
     }, 0);
   }
 

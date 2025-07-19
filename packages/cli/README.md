@@ -1,6 +1,17 @@
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v1.0.3: Production Ready** 🎯
+## 🛠️ **v1.0.4: 16 Components Ready** 🎯
+
+<div align="center">
+
+### 🌟 **[🎮 LIVE DEMO - See Components in Action!](https://angular-superui.vercel.app/)** 🌟
+
+**✨ Interactive Showcase • 16 Components • Dark Mode • Mobile Responsive ✨**
+
+[![🚀 View Live Demo](https://img.shields.io/badge/🚀-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![📱 Try on Mobile](https://img.shields.io/badge/📱-Try%20on%20Mobile-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+
+</div>
 
 The **Angular SuperUI CLI** is your gateway to the most beautiful and accessible Angular component library. Install components locally with zero dependencies and full customization control.
 
@@ -8,7 +19,7 @@ The **Angular SuperUI CLI** is your gateway to the most beautiful and accessible
 
 ### Install globally
 ```bash
-npm install -g ngsui-cli@1.0.3
+npm install -g ngsui-cli@1.0.4
 ```
 
 ### Initialize your project
@@ -34,7 +45,7 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (15 total)
+## 📦 Available Components (16 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button
@@ -62,10 +73,10 @@ A powerful CLI tool for selective Angular SuperUI component installation. Instal
 
 ```bash
 # Install globally
-npm install -g ngsui-cli@1.0.3
+npm install -g ngsui-cli@1.0.4
 
 # Or use with npx (no installation required)
-npx ngsui-cli@1.0.3 --help
+npx ngsui-cli@1.0.4 --help
 ```
 
 ## 🎯 Quick Start
@@ -87,7 +98,7 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (15 total)
+## 📦 Available Components (16 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button
@@ -108,6 +119,7 @@ ngsui-cli add
 
 ### 💫 Overlay Components
 - `alert-dialog` - A modal dialog that interrupts the user with important content
+- `context-menu` - Right-click context menus with keyboard shortcuts and accessibility
 
 ### ⚙️ Utility Components
 - `accordion` - A vertically stacked set of interactive headings

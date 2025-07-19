@@ -6,6 +6,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.4] - 2025-07-20
+
+### 🎉 **Feature Release - Context Menu Component & Enhanced Architecture**
+
+#### 🆕 New Components
+- 🖱️ **Context Menu Component**: Professional right-click context menus with advanced functionality
+  - Signal-based reactive state management for optimal performance
+  - CDK Overlay integration for robust positioning and backdrop management
+  - Global service architecture for centralized menu management
+  - Keyboard accessibility (Escape to close, Enter for selection)
+  - Disabled items support with proper ARIA attributes
+  - Keyboard shortcuts display with optional shortcut text
+  - Separator support for visual grouping
+  - Browser context menu prevention with selective global listener
+  - Multiple context menu support with seamless switching
+
+#### 🛠️ CLI Tool Enhancements
+- 📦 **Component Count Update**: Now supports 16 total components (up from 15)
+- 🖱️ **Context Menu Installation**: Added context-menu component to CLI installation options
+- 🔧 **Enhanced Component Categorization**: Added context-menu to "Overlays & Dialogs" category
+- 📋 **Updated Component Descriptions**: Improved descriptions with accessibility features highlighted
+
+#### 📖 Documentation Updates
+- 📝 **Comprehensive Context Menu Docs**: Complete documentation with installation guide and advanced examples
+  - Basic usage example with menu items and actions
+  - Advanced example with text selection and file operations
+  - Disabled items example showing proper state handling
+  - Full API reference with IContextMenuItem interface
+  - Architecture explanation with signals and service patterns
+- 🚀 **Version Alignment**: Updated all version references to v1.0.4 across all README files
+- 🎯 **CLI Installation Guide**: Updated CLI installation commands to use v1.0.4
+- 📊 **Component Count**: Updated badges and feature lists to reflect 16 components
+- 🖱️ **Main README**: Added ContextMenu to the components table with proper description
+
+#### 🔧 Technical Improvements
+- 🏗️ **Modern Architecture**: Implemented Angular Signals for reactive state management
+- 📦 **CDK Integration**: Leveraged Angular CDK Overlay for professional positioning
+- 🎨 **Global Service Pattern**: Centralized context menu management across application
+- 🔗 **Template Portal**: Efficient template rendering in overlay system
+- 🌟 **Production Ready**: Full accessibility compliance and keyboard navigation
+- ⚡ **Performance Optimized**: Signal-based reactivity for minimal re-renders
+
+---
+
 ## [1.0.3] - 2025-07-18
 
 ### 🎉 **Feature Release - Collapsible Component & Enhanced CLI**

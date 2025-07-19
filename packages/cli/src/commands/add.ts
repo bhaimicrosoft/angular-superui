@@ -92,6 +92,12 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'context-menu': {
+    name: 'Context Menu',
+    description: 'Right-click context menus with keyboard shortcuts and accessibility.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'theme-switcher': {
     name: 'Theme Switcher',
     description: 'A component that allows users to switch between light, dark, and system themes.',

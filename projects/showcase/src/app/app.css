@@ -12,9 +12,53 @@
   100% { transform: translate(30px, 30px); }
 }
 
+/* Floating animations for background elements */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-20px); 
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-15px) rotate(3deg); 
+  }
+  66% { 
+    transform: translateY(-10px) rotate(-3deg); 
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 12s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
 /* Smooth theme transitions */
 * {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Context Menu Overlay Styles */
+.context-menu-panel {
+  z-index: 9999 !important;
+}
+
+.cdk-overlay-transparent-backdrop {
+  background: transparent;
+}
+
+.cdk-overlay-pane {
+  z-index: 9999 !important;
 }
 
 /* Enhanced backdrop blur support */
@@ -43,11 +87,69 @@ html {
 /* Component showcase specific styles */
 .showcase-container {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Ensure proper containment for all components */
 section {
   position: relative;
-  contain: layout style;
+  overflow: visible;
+}
+
+/* Dropdown and overlay z-index management */
+.combobox-dropdown,
+[role="listbox"],
+[role="menu"],
+[data-radix-popper-content-wrapper] {
+  z-index: 99999 !important;
+}
+
+/* Combobox specific styling */
+Combobox [role="listbox"] {
+  z-index: 99999 !important;
+  position: fixed !important;
+}
+
+/* Context menu z-index */
+.context-menu {
+  z-index: 9998 !important;
+}
+
+/* Theme switcher visibility */
+.theme-switcher {
+  z-index: 100 !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Combobox content wrapper override */
+[data-combobox-content],
+[data-combobox-content] > *,
+.hlm-combobox-content,
+[role="listbox"] {
+  z-index: 99999 !important;
+  position: fixed !important;
+}
+
+/* Override any container that might clip the dropdown */
+.bg-card,
+.backdrop-blur-sm,
+.overflow-hidden {
+  overflow: visible !important;
+}
+
+/* Ensure all dropdowns and popovers are visible */
+.hlm-popover-content,
+[data-radix-popover-content],
+.hlm-dropdown-menu-content,
+[data-radix-dropdown-menu-content] {
+  z-index: 99999 !important;
+  position: fixed !important;
+}
+
+/* Context menu styling */
+.fixed.z-50[role="menu"],
+ContextMenu .fixed {
+  z-index: 99999 !important;
 }

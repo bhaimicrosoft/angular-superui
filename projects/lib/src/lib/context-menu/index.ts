@@ -1,141 +1,266 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  Signal,
-  signal,
-  ViewChild,
-  WritableSignal
-} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { Component, Input, signal, HostListener, ViewChild, TemplateRef, effect, DestroyRef, inject, ViewContainerRef, Injectable, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Overlay, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FocusMonitor } from '@angular/cdk/a11y'; // For better focus management, optional but good
 
-// ContextMenu Component (Standalone)
+// Renamed interface: IContextMenuItem
+export interface IContextMenuItem {
+  label: string;
+  action?: (item: IContextMenuItem) => void;
+  shortcut?: string;
+  separator?: boolean;
+  disabled?: boolean;
+}
+
+// Global service to manage context menu state
+@Injectable({
+  providedIn: 'root'
+})
+export class ContextMenuService {
+  private currentOverlayRef: OverlayRef | null = null;
+  private currentContextMenuComponent: ContextMenu | null = null;
+
+  // Signals for state management
+  private isMenuOpen = signal(false);
+  private menuPosition = signal<{ x: number; y: number } | null>(null);
+  private activeComponent = signal<ContextMenu | null>(null);
+
+  private readonly destroyRef = inject(DestroyRef);
+
+  constructor(private overlay: Overlay) {
+    // Global document click listener to close any open context menu
+    document.addEventListener('click', (event) => {
+      if (this.isMenuOpen()) {
+        console.log('Service: Global click detected, closing current menu.');
+        this.closeCurrentMenu();
+      }
+    });
+
+    // Global contextmenu listener to prevent browser context menu everywhere
+    document.addEventListener('contextmenu', (event) => {
+      // Always prevent the browser context menu
+      event.preventDefault();
+      console.log('Service: Browser context menu prevented globally.');
+    }, false);
+
+    // Effect to handle menu state changes
+    effect(() => {
+      const isOpen = this.isMenuOpen();
+      const position = this.menuPosition();
+      const component = this.activeComponent();
+
+      console.log('Service: Menu state changed', { isOpen, position, component });
+
+      if (isOpen && position && component) {
+        console.log('Service: Effect detected open request - calling actuallyOpenMenu');
+        // Open menu
+        this.actuallyOpenMenu(component, position.x, position.y);
+      } else if (!isOpen) {
+        console.log('Service: Effect detected close request - calling actuallyCloseMenu');
+        // Close menu
+        this.actuallyCloseMenu();
+      }
+    });
+  }
+
+  /**
+   * Opens a context menu at the specified coordinates.
+   * This method now uses signals for better state management.
+   * @param menuComponent The ContextMenu component instance that wants to open.
+   * @param x The X-coordinate for the menu.
+   * @param y The Y-coordinate for the menu.
+   */
+  openContextMenu(menuComponent: ContextMenu, x: number, y: number): void {
+    console.log('Service: Request to open context menu received.', { menuComponent, x, y });
+
+    // First close any existing menu by setting isMenuOpen to false
+    if (this.isMenuOpen()) {
+      console.log('Service: Closing existing menu before opening new one.');
+      this.isMenuOpen.set(false);
+    }
+
+    // Use setTimeout to ensure the close operation completes before opening new menu
+    setTimeout(() => {
+      // Update signals to trigger the effect for opening new menu
+      this.activeComponent.set(menuComponent);
+      this.menuPosition.set({ x, y });
+      this.isMenuOpen.set(true);
+      console.log('Service: Signals updated for new menu', { 
+        isOpen: this.isMenuOpen(), 
+        position: this.menuPosition(), 
+        component: this.activeComponent() 
+      });
+    }, 0);
+  }
+
+  private actuallyOpenMenu(menuComponent: ContextMenu, x: number, y: number): void {
+    console.log('Service: Actually opening menu at coordinates', { x, y, menuComponent });
+
+    // Close any existing menu first
+    if (this.currentOverlayRef) {
+      this.actuallyCloseMenu();
+    }
+
+    const { template, viewContainerRef, onActionCallback } = menuComponent.getMenuData();
+
+    const positionStrategy = this.overlay.position()
+      .global()
+      .left(`${x}px`)
+      .top(`${y}px`);
+
+    this.currentOverlayRef = this.overlay.create({
+      positionStrategy,
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+      scrollStrategy: this.overlay.scrollStrategies.close(),
+      panelClass: 'context-menu-panel'
+    });
+
+    // Attach the portal to the overlay
+    const portal = new TemplatePortal(template, viewContainerRef);
+    this.currentOverlayRef.attach(portal);
+
+    // Store the component reference for later interaction
+    this.currentContextMenuComponent = menuComponent;
+
+    console.log('Service: Context menu opened successfully at', { x, y });
+
+    // Subscribe to backdrop clicks to close the menu
+    this.currentOverlayRef.backdropClick()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        console.log('Service: Backdrop clicked. Closing current menu.');
+        this.closeCurrentMenu();
+      });
+
+    // Handle ESC key to close the menu
+    this.currentOverlayRef.keydownEvents()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(event => {
+        if (event.key === 'Escape') {
+          console.log('Service: Escape key pressed. Closing current menu.');
+          this.closeCurrentMenu();
+        }
+      });
+  }
+
+  private actuallyCloseMenu(): void {
+    if (this.currentOverlayRef) {
+      console.log('Service: Actually disposing current overlayRef.');
+      try {
+        this.currentOverlayRef.dispose();
+      } catch (error) {
+        console.warn('Service: Error disposing overlay:', error);
+      }
+      this.currentOverlayRef = null;
+    }
+    this.currentContextMenuComponent = null;
+    
+    // Reset signals to ensure clean state
+    this.menuPosition.set(null);
+    this.activeComponent.set(null);
+    console.log('Service: Menu closed and signals reset.');
+  }
+
+  /**
+   * Closes the currently open context menu using signals.
+   */
+  closeCurrentMenu(): void {
+    console.log('Service: Request to close current menu.');
+    this.isMenuOpen.set(false);
+    this.menuPosition.set(null);
+    this.activeComponent.set(null);
+  }
+}
+
 @Component({
-  selector: 'ContextMenu', // PascalCase selector without prefix or suffix
-  standalone: true, // Marking this component as standalone
-  imports: [CommonModule],
+  selector: 'ContextMenu',
+  standalone: true,
+  imports: [CommonModule, OverlayModule],
   template: `
-    <div
-      *ngIf="isVisible()"
-      [ngStyle]="{
-        top: position().y + 'px',
-        left: position().x + 'px'
-      }"
-      class="fixed z-50 bg-white border border-gray-300 rounded-lg shadow-lg w-48 py-2 mt-1"
-      role="menu"
-      aria-labelledby="context-menu-button"
-      (keydown)="onKeydown($event)">
-      <ul class="space-y-1" role="none">
-        <li
-          role="menuitem"
-          tabindex="0"
-          class="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
-          *ngFor="let option of options; let i = index"
-          (click)="onOptionSelect(option)">
-          {{ option }}
-        </li>
-      </ul>
-    </div>
+    <ng-content></ng-content>
+
+    <ng-template #menuContent>
+      <div
+        class="min-w-[8rem] overflow-hidden rounded-md border bg-white dark:bg-slate-800 p-1 text-slate-950 dark:text-slate-50 shadow-md z-50"
+        (click)="$event.stopPropagation()"
+        (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
+        role="menu"
+      >
+        @for (item of items; track item.label) {
+          @if (!item.separator) {
+            <div
+              role="menuitem"
+              [attr.aria-disabled]="item.disabled ? 'true' : null"
+              class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-slate-100 dark:hover:bg-slate-700 focus:bg-slate-100 dark:focus:bg-slate-700 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+              [class.cursor-not-allowed]="item.disabled"
+              [class.opacity-50]="item.disabled"
+              (click)="!item.disabled && onAction(item)"
+              (contextmenu)="$event.preventDefault(); $event.stopPropagation()"
+              tabindex="0"
+            >
+              <span>{{ item.label }}</span>
+              @if (item.shortcut) {
+                <span class="ml-auto text-xs tracking-widest opacity-60">{{ item.shortcut }}</span>
+              }
+            </div>
+          } @else {
+            <div class="my-1 h-px bg-slate-200 dark:bg-slate-600"></div>
+          }
+        }
+      </div>
+    </ng-template>
   `,
   styles: [`
     :host {
-      position: relative;
+      display: block;
+      cursor: context-menu;
     }
-    li.focused {
-      background-color: #e0e0e0; /* Highlight focused item */
-    }
-  `]
+  `],
 })
-export class ContextMenu implements AfterViewInit{
-  isVisible = signal(false);
+export class ContextMenu {
+  @Input() items: IContextMenuItem[] = [];
 
-  // Store the current position for the context menu
-  position= signal({ x: 0, y: 0 });
+  @ViewChild('menuContent') menuContent!: TemplateRef<any>;
 
-  // Focus management
-  focusedIndex = 0;
-  options: string[] = [];
+  private viewContainerRef = inject(ViewContainerRef);
+  private contextMenuService = inject(ContextMenuService);
 
-  @ViewChild('contextMenu') contextMenuRef!: ElementRef;
-
-  // Input to receive the dynamic options
-  @Input() set menuOptions(options: string[]) {
-    this.options = options;
+  // Expose necessary data for the service to open the overlay
+  getMenuData() {
+    return {
+      template: this.menuContent,
+      viewContainerRef: this.viewContainerRef,
+      onActionCallback: (item: IContextMenuItem) => this.onAction(item) // Pass a reference to the action handler
+    };
   }
 
-  // Show the menu when right-clicking
-  @HostListener('document:contextmenu', ['$event'])
-  onRightClick(event: MouseEvent): void {
-    event.preventDefault();
+  @HostListener('contextmenu', ['$event'])
+  onHostContextMenu(event: MouseEvent): void {
+    console.log('ContextMenu Component: onHostContextMenu fired.', {
+      target: event.target,
+      clientX: event.clientX,
+      clientY: event.clientY,
+      component: this
+    });
 
-    // Get the position of the click
-    let x = event.clientX;
-    let y = event.clientY;
+    event.preventDefault(); // Prevent default browser context menu
+    event.stopPropagation(); // Stop event bubbling
 
-    // Get the viewport width and height
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+    // Always request the service to open THIS menu instance at the event's coordinates
+    // The service will handle closing any existing menu (including from this same component)
+    this.contextMenuService.openContextMenu(this, event.clientX, event.clientY);
+  }
 
-    // Approximate context menu dimensions
-    const menuWidth = 192; // Adjust according to your design
-    const menuHeight = 150; // Adjust according to your design
-
-    // Prevent the context menu from going off the screen on the right
-    if (x + menuWidth > viewportWidth) {
-      x = viewportWidth - menuWidth - 10; // 10px margin from the right edge
+  // Action handler, called when an item is clicked
+  onAction(item: IContextMenuItem): void {
+    console.log('ContextMenu Component: Action clicked:', item.label);
+    if (item.action) {
+      item.action(item);
     }
-
-    // Prevent the context menu from going off the screen at the bottom
-    if (y + menuHeight > viewportHeight) {
-      y = viewportHeight - menuHeight - 10; // 10px margin from the bottom edge
-    }
-
-    this.position.set({ x, y });
-    this.isVisible.set(true); // Show context menu
-
-    // Set focus to the first item in the menu
-    this.focusedIndex = 0;
-  }
-
-  // Close the context menu when clicking anywhere else
-  @HostListener('document:click')
-  onDocumentClick(): void {
-    this.isVisible.set(false); // Hide context menu
-  }
-
-  // Keyboard navigation for menu items
-  onKeydown(event: KeyboardEvent): void {
-    if (event.key === 'ArrowDown') {
-      this.focusedIndex = (this.focusedIndex + 1) % this.options.length;
-    } else if (event.key === 'ArrowUp') {
-      this.focusedIndex = (this.focusedIndex - 1 + this.options.length) % this.options.length;
-    } else if (event.key === 'Enter') {
-      this.onOptionSelect(this.options[this.focusedIndex]);
-    } else if (event.key === 'Escape') {
-      this.isVisible.set(false); // Close menu
-    }
-  }
-
-  // Option selection
-  onOptionSelect(option: string): void {
-    console.log('Selected:', option);
-    this.isVisible.set(false); // Close menu after selection
-  }
-
-  // Implementing AfterViewInit to focus the first menu item
-  ngAfterViewInit() {
-    if (this.isVisible()) {
-      this.setFocusOnMenuItem(0);
-    }
-  }
-
-  // Set focus on the currently focused menu item
-  setFocusOnMenuItem(index: number): void {
-    const menuItems = this.contextMenuRef.nativeElement.querySelectorAll('li');
-    if (menuItems[index]) {
-      menuItems[index].focus();
-    }
+    // The service handles closing the menu globally
+    this.contextMenuService.closeCurrentMenu();
   }
 }

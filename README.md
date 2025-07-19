@@ -1,6 +1,18 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v1.0.3
+# 🎨 Angular SuperUI v1.0.4
+
+</div>
+
+<div align="center">
+
+### 🌟 **[🚀 LIVE DEMO - See All Components in Action!](https://angular-superui.vercel.app/)** 🌟
+
+**✨ Interactive Showcase • 16 Components • Dark Mode • Mobile Responsive ✨**
+
+[![🎯 View Live Demo](https://img.shields.io/badge/🎯-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![🎮 Interactive Demo](https://img.shields.io/badge/🎮-Interactive%20Demo-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![📱 Mobile Ready](https://img.shields.io/badge/📱-Mobile%20Ready-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 
 </div>
 
@@ -15,7 +27,7 @@
   <h3>🚀 The Modern Angular UI Component Library</h3>
   <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/15%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/16%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
 </div>
@@ -41,10 +53,24 @@ Angular SuperUI is a **modern, beautiful, and accessible** Angular UI component 
 
 ## 🚀 Quick Start
 
+### 🌟 **First, Check Out Our Live Demo!** 🌟
+
+<div align="center">
+
+**🎮 [Experience Angular SuperUI Live](https://angular-superui.vercel.app/) 🎮**
+
+[![Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white)](https://angular-superui.vercel.app/)
+
+*See all 16 components in action with dark mode, mobile responsiveness, and interactive examples!*
+
+</div>
+
+---
+
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui-cli@1.0.3
+npm install -g ngsui-cli@1.0.4
 ```
 
 ### 2️⃣ Initialize Your Project
@@ -218,12 +244,13 @@ export class AppComponent {}
 | **🏷️ [Badge](./docs/components/badge.md)** | Status indicators and labels with 4 variants | ✅ Available |
 | **🍞 [Breadcrumb](./docs/components/breadcrumb.md)** | Navigation breadcrumbs with accessibility and custom separators | ✅ Available |
 | **🔘 [Button](./docs/components/button.md)** | Interactive buttons with 9 variants and loading states | ✅ Available |
-| **🃏 [Card](./docs/components/card.md)** | Flexible content container with header, content, and footer | ✅ Available |
-| **🎠 [Carousel](./docs/components/carousel.md)** | Accessible image carousel with auto-play, navigation, and pagination | ✅ Available |
 | **📅 [Calendar](./docs/components/calendar.md)** | Date picker and calendar widget with month/year navigation | ✅ Available |
+| **� [Card](./docs/components/card.md)** | Flexible content container with header, content, and footer | ✅ Available |
+| **🎠 [Carousel](./docs/components/carousel.md)** | Accessible image carousel with auto-play, navigation, and pagination | ✅ Available |
 | **☑️ [Checkbox](./docs/components/checkbox.md)** | A control that allows the user to toggle between checked and not checked | ✅ Available |
 | **🗃️ [Collapsible](./docs/components/collapsible.md)** | Expandable content sections with smooth animations and keyboard support | ✅ Available |
 | **🔽 [ComboBox](./docs/components/combobox.md)** | Dropdown selection with search, multi-select, and loading states | ✅ Available |
+| **🖱️ [ContextMenu](./docs/components/context-menu.md)** | Right-click context menus with keyboard shortcuts and accessibility | ✅ Available |
 | **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
 
 ### 🚀 **Coming Soon**
@@ -377,7 +404,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🔗 Resources
 
-- 🌐 **[Official Website](https://github.com/bhaimicrosoft/angular-superui)**
+- � **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 16 components**
+- �🌐 **[Official Website](https://github.com/bhaimicrosoft/angular-superui)**
 - 📦 **[NPM Package](https://www.npmjs.com/package/angular-superui)**
 - 🛠️ **[CLI Package](https://www.npmjs.com/package/ngsui-cli)**
 - 🐛 **[Issue Tracker](https://github.com/bhaimicrosoft/angular-superui/issues)**

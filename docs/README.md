@@ -2,6 +2,16 @@
 
 # 🎨 Angular SuperUI Documentation
 
+### 🌟 **[🚀 LIVE INTERACTIVE DEMO!](https://angular-superui.vercel.app/)** 🌟
+
+**✨ Experience All 16 Components Live • Dark Mode • Mobile Responsive ✨**
+
+[![🚀 Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![🎮 Interactive Components](https://img.shields.io/badge/🎮-Interactive%20Components-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![📱 Mobile Demo](https://img.shields.io/badge/📱-Mobile%20Demo-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+
+---
+
   <h1>
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Angular-SuperUI-DD0031?style=for-the-badge&logo=angular&logoColor=white">
@@ -103,7 +113,7 @@ export class WelcomeComponent {}
 ## 🎨 Components Library
 
 <div align="center">
-  <h3>🌟 15 Production-Ready Components • Growing Every Week</h3>
+  <h3>🌟 16 Production-Ready Components • Growing Every Week</h3>
 </div>
 
 ### 🎯 **Core Components**
@@ -254,6 +264,21 @@ export class WelcomeComponent {}
 </td>
 <td>
   <a href="./components/alert-dialog.md">📖 Docs</a>
+</td>
+</tr>
+
+<tr>
+<td>
+  <strong>🖱️ Context Menu</strong>
+</td>
+<td>
+  Right-click context menus with keyboard shortcuts and accessibility. Signal-based state management with CDK Overlay.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/context-menu.md">📖 Docs</a>
 </td>
 </tr>
 
