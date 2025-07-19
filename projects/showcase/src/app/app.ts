@@ -107,11 +107,7 @@ export class App implements OnInit {
   constructor() {
     // Force theme service initialization after render
     afterNextRender(() => {
-      console.log('🎨 App render complete, theme state:', {
-        theme: this.themeService.currentTheme(),
-        isDark: this.themeService.isDarkMode(),
-        systemTheme: this.themeService.systemTheme()
-      });
+      // Theme service initialized after render
     });
   }
 
@@ -125,17 +121,15 @@ export class App implements OnInit {
   }
 
   ngOnInit() {
-    console.log('🚀 App component initializing...');
-
     // Listen for theme changes
     window.addEventListener('theme-changed', (event: any) => {
-      console.log('📡 App received theme change event:', event.detail);
+      // Theme change event received
     });
 
     // Check for pre-initialization data
     const preloadData = (window as any).__THEME_PRELOAD__;
     if (preloadData) {
-      console.log('📥 Found theme preload data:', preloadData);
+      // Theme preload data found
     }
   }
 
@@ -158,7 +152,7 @@ export class App implements OnInit {
 
   // Theme change handler
   onThemeChange(theme: any) {
-    console.log('🎨 Theme changed in component:', theme);
+    // Theme changed in component
   }
 
   // AlertDialog methods
@@ -175,17 +169,14 @@ export class App implements OnInit {
   }
 
   handleDelete() {
-    console.log('Account deleted!');
     this.isDeleteDialogOpen.set(false);
   }
 
   handleLogout() {
-    console.log('User logged out!');
     this.isLogoutDialogOpen.set(false);
   }
 
   handleConfirm() {
-    console.log('Action confirmed!');
     this.isConfirmDialogOpen.set(false);
   }
 
@@ -206,28 +197,23 @@ export class App implements OnInit {
   // Calendar methods
   onDateSelect(date: Date) {
     this.selectedDate = date;
-    console.log('Selected date:', date);
   }
 
   onRangeSelect(range: { start: Date | null, end: Date | null }) {
     this.selectedRange = range;
-    console.log('Selected range:', range);
   }
 
   onConstrainedDateSelect(date: Date) {
     this.constrainedDate = date;
-    console.log('Selected constrained date:', date);
   }
 
   onCompactDateSelect(date: Date) {
     this.compactDate = date;
-    console.log('Selected compact date:', date);
   }
 
   selectToday() {
     const today = new Date();
     this.selectedDate = today;
     this.compactDate = today;
-    console.log('Selected today:', today);
   }
 }

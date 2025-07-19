@@ -818,9 +818,11 @@ export class CalendarHeader implements OnChanges {
           (mousedown)="onDayMouseDown(day, $event)"
           (mouseenter)="onDayMouseEnter(day, $event)"
           (mouseup)="onDayMouseUp(day, $event)"
+          (touchstart)="onDayTouchStart(day, $event)"
+          (touchmove)="onDayTouchMove($event)"
+          (touchend)="onDayTouchEnd(day, $event)"
           (keydown)="onDayKeydown(day, $event, i)"
           (focus)="onDayFocus(day, $event)"
-          (mouseenter)="onDayHover(day)"
           (mouseleave)="onDayHoverEnd()">
           {{ day.date.getDate() }}
         </div>
@@ -864,6 +866,7 @@ export class CalendarGrid implements OnInit, OnChanges {
   // Drag selection state
   protected isDragging = signal(false);
   protected dragStartDate = signal<Date | null>(null);
+  protected hasActuallyDragged = signal(false);
 
   ngOnInit(): void {
     this.updateSignals();
@@ -972,10 +975,22 @@ export class CalendarGrid implements OnInit, OnChanges {
       if (currentRange.end) {
         isRangeEnd = isSameDay(date, currentRange.end);
         isInRange = isDateInRange(date, currentRange) && !isRangeStart && !isRangeEnd;
-      } else if (hoverDate && hoverDate > currentRange.start) {
-        // Show preview range while hovering
-        const previewRange = { start: currentRange.start, end: hoverDate };
-        isInRange = isDateInRange(date, previewRange) && !isRangeStart;
+      } else if (hoverDate) {
+        // Show preview range while hovering (works in both directions)
+        const previewStart = currentRange.start.getTime() <= hoverDate.getTime() 
+          ? currentRange.start 
+          : hoverDate;
+        const previewEnd = currentRange.start.getTime() <= hoverDate.getTime() 
+          ? hoverDate 
+          : currentRange.start;
+        const previewRange = { start: previewStart, end: previewEnd };
+        
+        isInRange = isDateInRange(date, previewRange) && !isSameDay(date, previewStart) && !isSameDay(date, previewEnd);
+        
+        // Also handle the preview end date styling
+        if (isSameDay(date, hoverDate) && !isSameDay(hoverDate, currentRange.start)) {
+          isRangeEnd = true;
+        }
       }
     }
 
@@ -1089,8 +1104,18 @@ export class CalendarGrid implements OnInit, OnChanges {
   protected onDayClick(day: CalendarDay, event: MouseEvent): void {
     if (day.isDisabled) return;
 
-    // Don't handle click if we were dragging
-    if (this.isDragging()) return;
+    // Check if this was part of a drag operation - if so, don't handle as click
+    const wasDragging = this.hasActuallyDragged();
+    
+    // Always clear drag state after checking
+    this.isDragging.set(false);
+    this.hasActuallyDragged.set(false);
+    this.dragStartDate.set(null);
+
+    // Don't process click if this was actually a drag operation
+    if (wasDragging) {
+      return;
+    }
 
     this.focusedDateSignal.set(day.date);
 
@@ -1105,7 +1130,7 @@ export class CalendarGrid implements OnInit, OnChanges {
       const currentRange = this.selectedRangeSignal();
 
       if (!currentRange.start || (currentRange.start && currentRange.end)) {
-        // Start new range
+        // Start new range and immediately enter range-building mode
         const newRange = { start: day.date, end: null };
         this.selectedRangeSignal.set(newRange);
         this.rangeSelect.emit(newRange);
@@ -1114,26 +1139,15 @@ export class CalendarGrid implements OnInit, OnChanges {
           date: day.date,
           originalEvent: event
         });
+        
+        // Enter range-building mode - set hover to same date initially
+        this.hoverDateSignal.set(day.date);
       } else if (currentRange.start && !currentRange.end) {
-        // Complete range
+        // Complete range with clicked date as end date
         const start = currentRange.start;
         const end = day.date;
 
-        // Check if clicking the same date as start - this should clear the range instead
-        if (isSameDay(start, end)) {
-          // Clear range if clicking the same start date
-          const emptyRange = { start: null, end: null };
-          this.selectedRangeSignal.set(emptyRange);
-          this.rangeSelect.emit(emptyRange);
-          this.daySelect.emit({
-            type: 'range-clear',
-            date: day.date,
-            originalEvent: event
-          });
-          return;
-        }
-
-        // Order the dates properly
+        // Order the dates properly (handle same date case too)
         const orderedRange = start.getTime() <= end.getTime()
           ? { start, end }
           : { start: end, end: start };
@@ -1145,6 +1159,9 @@ export class CalendarGrid implements OnInit, OnChanges {
           date: day.date,
           originalEvent: event
         });
+        
+        // Clear hover state when range is complete
+        this.hoverDateSignal.set(null);
       }
     }
   }
@@ -1152,56 +1169,89 @@ export class CalendarGrid implements OnInit, OnChanges {
   protected onDayHover(day: CalendarDay): void {
     if (day.isDisabled || this.selectionMode !== 'range') return;
 
-    // Don't update hover if we're dragging
-    if (this.isDragging()) return;
-
     const currentRange = this.selectedRangeSignal();
+    
+    // If we have a start date but no end date, we're in range-building mode
     if (currentRange.start && !currentRange.end) {
+      // Always update hover to show range preview
+      this.hoverDateSignal.set(day.date);
+      
+      // Also update the range preview to show the potential selection
+      const start = currentRange.start;
+      const end = day.date;
+      const orderedRange = start.getTime() <= end.getTime()
+        ? { start, end: null }  // Keep end as null to indicate it's a preview
+        : { start: end, end: null };
+      
+      // Update the visual range but keep end as null to show it's in progress
+      this.selectedRangeSignal.set({ start: currentRange.start, end: null });
       this.hoverDateSignal.set(day.date);
     }
   }
 
   protected onDayHoverEnd(): void {
+    // Don't clear hover state when in range-building mode
+    // This allows the user to click without the preview disappearing
+    // Only clear hover if no range is being built
     if (this.selectionMode === 'range') {
-      this.hoverDateSignal.set(null);
+      const currentRange = this.selectedRangeSignal();
+      
+      // Only clear hover if we're not in range-building mode
+      if (!currentRange.start || currentRange.end) {
+        this.hoverDateSignal.set(null);
+      }
+      // If we have start but no end, keep the hover state for clicking
     }
   }
 
   protected onDayMouseDown(day: CalendarDay, event: MouseEvent): void {
     if (day.isDisabled || this.selectionMode !== 'range') return;
 
-    this.isDragging.set(false); // Will be set to true if mouse moves
+    // Only handle left mouse button
+    if (event.button !== 0) return;
+
+    // Set up potential drag tracking, but don't mark as dragged yet
+    // Only set dragStartDate for potential drag detection
     this.dragStartDate.set(day.date);
+    // Don't set isDragging or hasActuallyDragged here - let mouse move events handle that
   }
 
   protected onDayMouseEnter(day: CalendarDay, event: MouseEvent): void {
     if (day.isDisabled || this.selectionMode !== 'range') return;
 
     const dragStart = this.dragStartDate();
+    const currentRange = this.selectedRangeSignal();
 
-    // Start dragging if mouse down was pressed and we moved to a different day
-    if (dragStart && !this.isDragging() && !isSameDay(dragStart, day.date)) {
-      this.isDragging.set(true);
+    // Handle drag operations
+    if (dragStart && event.buttons === 1 && !this.isDragging() && !isSameDay(dragStart, day.date)) {
+      
+      // Only allow dragging if:
+      // 1. No range exists (starting fresh), OR
+      // 2. Range is complete (replacing with new range)
+      const canStartDrag = !currentRange.start || (currentRange.start && currentRange.end);
+      
+      if (canStartDrag) {
+        this.isDragging.set(true);
+        this.hasActuallyDragged.set(true);
+        event.preventDefault(); // Prevent text selection
 
-      // Prevent text selection when dragging
-      event.preventDefault();
-
-      // Start new range
-      const newRange = { start: dragStart, end: null };
-      this.selectedRangeSignal.set(newRange);
-      this.rangeSelect.emit(newRange);
+        // Start new range
+        const newRange = { start: dragStart, end: null };
+        this.selectedRangeSignal.set(newRange);
+        this.rangeSelect.emit(newRange);
+      }
     }
 
-    // Update range during drag
-    if (this.isDragging() && dragStart) {
+    // Update range during active drag
+    if (this.isDragging() && dragStart && event.buttons === 1) {
       const orderedRange = dragStart.getTime() <= day.date.getTime()
         ? { start: dragStart, end: day.date }
         : { start: day.date, end: dragStart };
 
       this.selectedRangeSignal.set(orderedRange);
       this.rangeSelect.emit(orderedRange);
-    } else if (!this.isDragging()) {
-      // Regular hover behavior
+    } else if (!this.isDragging() && !dragStart) {
+      // Only do hover behavior if we're not in the middle of any mouse operation
       this.onDayHover(day);
     }
   }
@@ -1210,9 +1260,14 @@ export class CalendarGrid implements OnInit, OnChanges {
     if (this.selectionMode !== 'range') return;
 
     const dragStart = this.dragStartDate();
+    const wasDragging = this.isDragging();
 
-    if (this.isDragging() && dragStart) {
-      // Complete drag selection
+    // Clean up drag state first
+    this.isDragging.set(false);
+    this.dragStartDate.set(null);
+
+    // If we were dragging, complete the selection
+    if (wasDragging && dragStart) {
       const orderedRange = dragStart.getTime() <= day.date.getTime()
         ? { start: dragStart, end: day.date }
         : { start: day.date, end: dragStart };
@@ -1220,10 +1275,6 @@ export class CalendarGrid implements OnInit, OnChanges {
       this.selectedRangeSignal.set(orderedRange);
       this.rangeSelect.emit(orderedRange);
     }
-
-    // Clean up
-    this.isDragging.set(false);
-    this.dragStartDate.set(null);
   }
 
   @HostListener('document:mouseup', ['$event'])
@@ -1231,6 +1282,98 @@ export class CalendarGrid implements OnInit, OnChanges {
     // Clean up any drag state when mouse is released outside calendar
     this.isDragging.set(false);
     this.dragStartDate.set(null);
+    // Don't reset hasActuallyDragged here - let the click handler reset it
+  }
+
+  @HostListener('document:touchend', ['$event'])
+  onDocumentTouchEnd(event: TouchEvent): void {
+    // Clean up any drag state when touch is released outside calendar
+    this.isDragging.set(false);
+    this.dragStartDate.set(null);
+  }
+
+  // Touch event handlers for mobile devices
+  protected onDayTouchStart(day: CalendarDay, event: TouchEvent): void {
+    if (day.isDisabled) return;
+
+    // For range mode, set up potential drag
+    if (this.selectionMode === 'range') {
+      this.isDragging.set(false);
+      this.hasActuallyDragged.set(false);
+      this.dragStartDate.set(day.date);
+    }
+  }
+
+  protected onDayTouchMove(event: TouchEvent): void {
+    if (this.selectionMode !== 'range') return;
+
+    const dragStart = this.dragStartDate();
+    if (!dragStart) return;
+
+    // Prevent scrolling during drag
+    event.preventDefault();
+
+    // Get the element under the touch point
+    const touch = event.touches[0];
+    const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY) as HTMLElement;
+    if (!elementBelow) return;
+
+    // Find the day element
+    const dayElement = elementBelow.closest('[data-date]') as HTMLElement;
+    if (!dayElement) return;
+
+    const dateString = dayElement.getAttribute('data-date');
+    if (!dateString) return;
+
+    const touchedDate = new Date(dateString);
+    const touchedDay = this.calendarDays().find(d => isSameDay(d.date, touchedDate));
+    if (!touchedDay || touchedDay.isDisabled) return;
+
+    // Start dragging if we moved to a different day
+    if (!this.isDragging() && !isSameDay(dragStart, touchedDay.date)) {
+      this.isDragging.set(true);
+      this.hasActuallyDragged.set(true);
+      const newRange = { start: dragStart, end: null };
+      this.selectedRangeSignal.set(newRange);
+      this.rangeSelect.emit(newRange);
+    }
+
+    // Update range during drag
+    if (this.isDragging()) {
+      const orderedRange = dragStart.getTime() <= touchedDay.date.getTime()
+        ? { start: dragStart, end: touchedDay.date }
+        : { start: touchedDay.date, end: dragStart };
+
+      this.selectedRangeSignal.set(orderedRange);
+      this.rangeSelect.emit(orderedRange);
+    }
+  }
+
+  protected onDayTouchEnd(day: CalendarDay, event: TouchEvent): void {
+    if (day.isDisabled) return;
+
+    const dragStart = this.dragStartDate();
+    const wasDragging = this.isDragging();
+
+    // Clean up drag state
+    this.isDragging.set(false);
+    this.dragStartDate.set(null);
+
+    // If we weren't dragging, treat as a regular click
+    if (!wasDragging) {
+      // Let the click event handle this
+      return;
+    }
+
+    // Complete drag selection for range mode
+    if (this.selectionMode === 'range' && dragStart) {
+      const orderedRange = dragStart.getTime() <= day.date.getTime()
+        ? { start: dragStart, end: day.date }
+        : { start: day.date, end: dragStart };
+
+      this.selectedRangeSignal.set(orderedRange);
+      this.rangeSelect.emit(orderedRange);
+    }
   }
 
   protected onDayFocus(day: CalendarDay, event: FocusEvent): void {
