@@ -1,4 +1,21 @@
-<div class="min-h-screen bg-background text-foreground">
+<div class="min-h-screen bg-background text-foreground scroll-smooth">
+  <!-- Go to Top Button -->
+  <button 
+    #goToTopBtn
+    (click)="scrollToTop()"
+    class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+    [class.opacity-0]="!showGoToTop()"
+    [class.pointer-events-none]="!showGoToTop()"
+    [class.opacity-100]="showGoToTop()"
+    [class.pointer-events-auto]="showGoToTop()"
+    [class.translate-y-2]="!showGoToTop()"
+    [class.translate-y-0]="showGoToTop()"
+    aria-label="Go to top">
+    <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+  </button>
+
   <!-- Stunning Header with Gradient Background -->
   <header
     class="sticky top-0 z-50 overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-emerald-500 dark:bg-gradient-to-br dark:from-slate-800 dark:via-gray-800 dark:to-zinc-800">
@@ -7,29 +24,29 @@
     <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/40 dark:to-transparent"></div>
 
     <!-- Navigation Bar -->
-    <nav class="relative z-10 container mx-auto px-6 py-4">
+    <nav class="relative z-10 container mx-auto px-4 sm:px-6 py-3 sm:py-4">
       <div class="flex items-center justify-between">
         <!-- Logo & Brand -->
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2 sm:space-x-3">
           <div class="relative">
-            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
               <div
-                class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 dark:bg-gradient-to-br dark:from-yellow-600 dark:to-orange-700 rounded-lg flex items-center justify-center">
-                <span class="text-white font-bold text-lg">⚡</span>
+                class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-yellow-400 to-orange-500 dark:bg-gradient-to-br dark:from-yellow-600 dark:to-orange-700 rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-sm sm:text-lg">⚡</span>
               </div>
             </div>
-            <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+            <div class="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
           </div>
           <div>
-            <h1 class="text-2xl font-bold text-white">
+            <h1 class="text-lg sm:text-2xl font-bold text-white">
               Angular <span class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">SuperUI</span>
             </h1>
-            <p class="text-white/70 text-sm">Modern Component Library</p>
+            <p class="text-white/70 text-xs sm:text-sm hidden sm:block">Modern Component Library</p>
           </div>
         </div>
 
-        <!-- Theme Switcher & Actions -->
-        <div class="flex items-center space-x-4">
+        <!-- Desktop Actions -->
+        <div class="hidden md:flex items-center space-x-4">
           <!-- GitHub Link -->
           <a 
             href="https://github.com/bhaimicrosoft/angular-superui" 
@@ -47,40 +64,24 @@
           </a>
           
           <!-- Theme Status Indicator -->
-          <div class="hidden lg:flex items-center space-x-2 text-white/70 text-xs">
+          <div class="flex items-center space-x-2 text-white/70 text-xs">
             <span>{{ currentTheme }}</span>
             <span class="w-2 h-2 rounded-full"
                   [class]="isDarkMode ? 'bg-purple-400' : 'bg-yellow-400'">
             </span>
           </div>
 
-          <!-- Theme Switcher Options - You can choose which design you prefer! -->
-
-          <!-- Option 1: Classic Toggle Button -->
+          <!-- Theme Switcher -->
           <div class="relative">
             <div class="absolute inset-0 bg-white/10 rounded-lg blur-xl"></div>
-
             <ThemeSwitcher
               mode="cycle"
               [showLabel]="false"
               (themeChange)="onThemeChange($event)"/>
-
           </div>
 
-          <!-- Separator -->
-          <div class="w-px h-8 bg-white/30"></div>
-
-          <!-- Option 2: 3-Button Slider (New Design!) -->
-          <div class="relative">
-            <div class="absolute inset-0 bg-white/10 rounded-lg blur-xl"></div>
-
-            <ThemeSwitcher
-              mode="slider"
-              [showLabel]="false"
-              (themeChange)="onThemeChange($event)"/>
-
-          </div>          <!-- Quick Stats -->
-          <div class="hidden md:flex items-center space-x-4 text-white/80">
+          <!-- Quick Stats -->
+          <div class="hidden lg:flex items-center space-x-4 text-white/80">
             <div class="text-center">
               <div class="text-2xl font-bold text-white">20+</div>
               <div class="text-xs">Components</div>
@@ -97,21 +98,49 @@
             </div>
           </div>
         </div>
+
+        <!-- Mobile Actions -->
+        <div class="flex md:hidden items-center space-x-2 sm:space-x-3">
+          <!-- GitHub Link - Mobile -->
+          <a 
+            href="https://github.com/bhaimicrosoft/angular-superui" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-200 group"
+            aria-label="View on GitHub">
+            <svg 
+              class="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-white/90 transition-colors" 
+              fill="currentColor" 
+              viewBox="0 0 24 24" 
+              aria-hidden="true">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+
+          <!-- Theme Switcher - Mobile -->
+          <div class="relative">
+            <div class="absolute inset-0 bg-white/10 rounded-lg blur-xl"></div>
+            <ThemeSwitcher
+              mode="cycle"
+              [showLabel]="false"
+              (themeChange)="onThemeChange($event)"/>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section
-    class="relative overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-emerald-500 dark:bg-gradient-to-br dark:from-indigo-900 dark:via-purple-900 dark:to-blue-900">
+    class="relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-purple-600 via-blue-600 to-emerald-500 dark:bg-gradient-to-br dark:from-indigo-900 dark:via-purple-900 dark:to-blue-900">
     <!-- Animated Background Pattern -->
     <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/40 dark:to-transparent"></div>
 
-    <div class="relative z-10 container mx-auto px-6 py-16 text-center">
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 py-8 sm:py-16 text-center w-full">
       <div class="max-w-4xl mx-auto">
         <!-- Main Headline -->
-        <h2 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+        <h2 class="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight">
           Beautiful
           <span class="block bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
             Components
@@ -120,36 +149,41 @@
         </h2>
 
         <!-- Subtitle -->
-        <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+        <p class="text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 leading-relaxed px-4">
           Discover our comprehensive collection of modern, accessible, and beautifully designed components.
           Built with TypeScript, styled with Tailwind CSS, and crafted for developers who care about quality.
         </p>
 
         <!-- Feature Pills -->
-        <div class="flex flex-wrap justify-center gap-3 mb-8">
-          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-4">
+          <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
             <span class="text-green-300">✨</span>
-            <span class="text-white font-medium">Modern Design</span>
+            <span class="text-white font-medium text-sm sm:text-base">Modern Design</span>
           </div>
-          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+          <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
             <span class="text-blue-300">♿</span>
-            <span class="text-white font-medium">Fully Accessible</span>
+            <span class="text-white font-medium text-sm sm:text-base">Fully Accessible</span>
           </div>
-          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+          <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
             <span class="text-purple-300">🎨</span>
-            <span class="text-white font-medium">Customizable</span>
+            <span class="text-white font-medium text-sm sm:text-base">Customizable</span>
           </div>
-          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+          <div class="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
             <span class="text-orange-300">⚡</span>
-            <span class="text-white font-medium">High Performance</span>
+            <span class="text-white font-medium text-sm sm:text-base">High Performance</span>
           </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="animate-bounce">
-          <svg class="w-6 h-6 text-white/60 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+        <div class="animate-bounce mt-8 sm:mt-12">
+          <a 
+            href="#accordion" 
+            class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 group"
+            aria-label="Scroll to components">
+            <svg class="w-6 h-6 text-white/60 group-hover:text-white/90 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </div>

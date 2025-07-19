@@ -1,4 +1,4 @@
-import { Component, signal, OnInit, inject, afterNextRender } from '@angular/core';
+import { Component, signal, OnInit, inject, afterNextRender, HostListener } from '@angular/core';
 import { ThemeSwitcher, ThemeService } from '@lib/theme-switcher';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@lib/accordion';
 import {
@@ -90,6 +90,26 @@ export class App implements OnInit {
   isDeleteDialogOpen = signal(false);
   isLogoutDialogOpen = signal(false);
   isConfirmDialogOpen = signal(false);
+
+  // Go to top button state
+  showGoToTop = signal(false);
+
+  // Listen for scroll events
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    // Show button only after scrolling past the hero section (typically full viewport height)
+    const heroHeight = window.innerHeight;
+    this.showGoToTop.set(scrollTop > heroHeight - 100); // Show when 100px before end of hero
+  }
+
+  // Scroll to top method
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 
   // Theme change handler
   onThemeChange(theme: any) {
