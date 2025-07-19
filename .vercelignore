@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist/lib
+.angular
+
+# Development files
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Test coverage
+coverage
+
+# Temporary files
+*.tmp
+*.temp
