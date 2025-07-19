@@ -10,7 +10,7 @@ const alertVariants = cva(
       variant: {
         default: 'bg-background text-foreground border-border',
         destructive:
-          'border-destructive/50 text-destructive bg-destructive/5 dark:border-destructive',
+          'border-destructive/50 text-destructive bg-destructive/10 dark:border-destructive',
         warning:
           'border-warning/50 text-warning bg-warning/5 dark:border-warning',
         success:
@@ -58,7 +58,7 @@ const alertDescriptionVariants = cva(
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div 
+    <div
       [class]="cn(alertVariants({ variant }), className)"
       role="alert"
       [attr.aria-live]="variant === 'destructive' ? 'assertive' : 'polite'"

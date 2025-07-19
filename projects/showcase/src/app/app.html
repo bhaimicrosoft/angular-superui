@@ -1,1946 +1,1278 @@
 <div class="min-h-screen bg-background text-foreground">
-  <div class="max-w-2xl mx-auto pt-8 pb-8 px-6 space-y-8">
-    <div class="flex items-center justify-between">
-      <h1 class="text-2xl font-bold mb-6 text-success">Component Test Suite</h1>
-      <ThemeSwitcher/>
-    </div>
+  <!-- Stunning Header with Gradient Background -->
+  <header
+    class="sticky top-0 z-50 overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-emerald-500 dark:bg-gradient-to-br dark:from-slate-800 dark:via-gray-800 dark:to-zinc-800">
+    <!-- Animated Background Pattern -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/40 dark:to-transparent"></div>
 
-    <!-- Theme Switcher Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Theme Switcher Component</h2>
-      <div class="space-y-6">
-        <!-- Basic Theme Switcher -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Basic Theme Switcher</h3>
-          <div class="flex items-center gap-4">
-            <ThemeSwitcher/>
-            <ThemeSwitcher mode="cycle"/>
-            <ThemeSwitcher [showLabel]="true"/>
+    <!-- Navigation Bar -->
+    <nav class="relative z-10 container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <!-- Logo & Brand -->
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
+              <div
+                class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 dark:bg-gradient-to-br dark:from-yellow-600 dark:to-orange-700 rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-lg">⚡</span>
+              </div>
+            </div>
+            <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold text-white">
+              Angular <span class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">SuperUI</span>
+            </h1>
+            <p class="text-white/70 text-sm">Modern Component Library</p>
           </div>
         </div>
 
-        <!-- Theme Switcher Variants -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Variants</h3>
-          <div class="flex items-center gap-4">
-            <ThemeSwitcher variant="default"/>
-            <ThemeSwitcher variant="outline"/>
-            <ThemeSwitcher variant="ghost"/>
-            <ThemeSwitcher variant="ghost"/>
+        <!-- Theme Switcher & Actions -->
+        <div class="flex items-center space-x-4">
+          <!-- GitHub Link -->
+          <a 
+            href="https://github.com/bhaimicrosoft/angular-superui" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-200 group"
+            aria-label="View on GitHub">
+            <svg 
+              class="w-5 h-5 text-white group-hover:text-white/90 transition-colors" 
+              fill="currentColor" 
+              viewBox="0 0 24 24" 
+              aria-hidden="true">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          
+          <!-- Theme Status Indicator -->
+          <div class="hidden lg:flex items-center space-x-2 text-white/70 text-xs">
+            <span>{{ currentTheme }}</span>
+            <span class="w-2 h-2 rounded-full"
+                  [class]="isDarkMode ? 'bg-purple-400' : 'bg-yellow-400'">
+            </span>
           </div>
-        </div>
 
-        <!-- Theme Switcher Sizes -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-          <div class="flex items-center gap-4">
-            <ThemeSwitcher size="sm"/>
-            <ThemeSwitcher size="default"/>
-            <ThemeSwitcher size="lg"/>
-            <ThemeSwitcher size="xl"/>
+          <!-- Theme Switcher Options - You can choose which design you prefer! -->
+
+          <!-- Option 1: Classic Toggle Button -->
+          <div class="relative">
+            <div class="absolute inset-0 bg-white/10 rounded-lg blur-xl"></div>
+
+            <ThemeSwitcher
+              mode="cycle"
+              [showLabel]="false"
+              (themeChange)="onThemeChange($event)"/>
+
           </div>
-        </div>
 
-        <!-- Theme Switcher with Custom Class -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Custom Styling</h3>
-          <div class="flex items-center gap-4">
-            <ThemeSwitcher class="border-2 border-dashed border-primary"/>
-            <ThemeSwitcher class="rounded-full bg-gradient-to-r from-purple-500 to-pink-500"/>
+          <!-- Separator -->
+          <div class="w-px h-8 bg-white/30"></div>
+
+          <!-- Option 2: 3-Button Slider (New Design!) -->
+          <div class="relative">
+            <div class="absolute inset-0 bg-white/10 rounded-lg blur-xl"></div>
+
+            <ThemeSwitcher
+              mode="slider"
+              [showLabel]="false"
+              (themeChange)="onThemeChange($event)"/>
+
+          </div>          <!-- Quick Stats -->
+          <div class="hidden md:flex items-center space-x-4 text-white/80">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">20+</div>
+              <div class="text-xs">Components</div>
+            </div>
+            <div class="w-px h-8 bg-white/30"></div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">100%</div>
+              <div class="text-xs">TypeScript</div>
+            </div>
+            <div class="w-px h-8 bg-white/30"></div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">A11Y</div>
+              <div class="text-xs">Accessible</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </nav>
+  </header>
 
-    <!-- Avatar Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Avatar Component</h2>
-      <div class="space-y-6">
-        <!-- Avatar Sizes -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-          <div class="flex items-center gap-4">
-            <Avatar size="sm">
-              <AvatarImage src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Small avatar"/>
-              <AvatarFallback size="sm">SM</AvatarFallback>
-            </Avatar>
+  <!-- Hero Section -->
+  <section
+    class="relative overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-emerald-500 dark:bg-gradient-to-br dark:from-indigo-900 dark:via-purple-900 dark:to-blue-900">
+    <!-- Animated Background Pattern -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent dark:from-black/40 dark:to-transparent"></div>
 
-            <Avatar size="sm">
-              <AvatarImage src="https://avatars.githubusercontent.com/u/14985020?s=200&v=4" alt="Default avatar"/>
-              <AvatarFallback size="sm">DF</AvatarFallback>
-            </Avatar>
+    <div class="relative z-10 container mx-auto px-6 py-16 text-center">
+      <div class="max-w-4xl mx-auto">
+        <!-- Main Headline -->
+        <h2 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+          Beautiful
+          <span class="block bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 bg-clip-text text-transparent">
+            Components
+          </span>
+          for Angular
+        </h2>
 
-            <Avatar size="lg">
-              <AvatarImage src="https://avatars.githubusercontent.com/u/139426?s=200&v=4" alt="Large avatar"/>
-              <AvatarFallback size="lg">LG</AvatarFallback>
-            </Avatar>
+        <!-- Subtitle -->
+        <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+          Discover our comprehensive collection of modern, accessible, and beautifully designed components.
+          Built with TypeScript, styled with Tailwind CSS, and crafted for developers who care about quality.
+        </p>
 
-            <Avatar size="xl">
-              <AvatarImage src="https://avatars.githubusercontent.com/u/1841425?s=200&v=4" alt="Extra large avatar"/>
-              <AvatarFallback size="xl">XL</AvatarFallback>
-            </Avatar>
+        <!-- Feature Pills -->
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+            <span class="text-green-300">✨</span>
+            <span class="text-white font-medium">Modern Design</span>
+          </div>
+          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+            <span class="text-blue-300">♿</span>
+            <span class="text-white font-medium">Fully Accessible</span>
+          </div>
+          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+            <span class="text-purple-300">🎨</span>
+            <span class="text-white font-medium">Customizable</span>
+          </div>
+          <div class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+            <span class="text-orange-300">⚡</span>
+            <span class="text-white font-medium">High Performance</span>
           </div>
         </div>
 
-        <!-- Avatar with Fallbacks -->
-        <div>
-          <h3 class="text-md font-medium mb-3">With Fallbacks</h3>
-          <div class="flex items-center gap-4">
-            <Avatar>
-              <AvatarImage src="https://github.com/doesnotexist.png" alt="User avatar"/>
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-
-            <Avatar>
-              <AvatarImage src="" alt="Empty src"/>
-              <AvatarFallback>AB</AvatarFallback>
-            </Avatar>
-
-            <Avatar>
-              <AvatarFallback>UI</AvatarFallback>
-            </Avatar>
-          </div>
-        </div>
-
-        <!-- Avatar with Custom Styling -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Custom Styling</h3>
-          <div class="flex items-center gap-4">
-            <Avatar className="ring-2 ring-primary ring-offset-2">
-              <AvatarImage src="https://avatars.githubusercontent.com/u/4060187?s=200&v=4" alt="Tailwind CSS"/>
-              <AvatarFallback>TW</AvatarFallback>
-            </Avatar>
-
-            <Avatar className="ring-2 ring-success ring-offset-2">
-              <AvatarFallback className="bg-success text-success-foreground">✓</AvatarFallback>
-            </Avatar>
-
-            <Avatar size="2xl" className="ring-4 ring-purple ring-offset-4">
-              <AvatarFallback size="2xl" className="bg-gradient-to-br from-purple to-pink text-white">
-                AS
-              </AvatarFallback>
-            </Avatar>
-          </div>
+        <!-- Scroll Indicator -->
+        <div class="animate-bounce">
+          <svg class="w-6 h-6 text-white/60 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Checkbox Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
-      <div class="space-y-6">
-        <!-- Basic Checkbox -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox [(ngModel)]="basicCheckbox"/>
-              <label class="text-sm font-medium">Accept terms and conditions</label>
-            </div>
-            <p class="text-xs text-gray-600">Current value: {{ basicCheckbox() }}</p>
+  <!-- Main Content Area -->
+  <main class="relative bg-background">
+    <!-- Accordion Component Section -->
+    <section id="accordion" class="py-24 px-6 relative overflow-hidden">
+      <!-- Background with subtle pattern -->
+      <div class="absolute inset-0 bg-gradient-to-br from-slate-50/80 via-white to-blue-50/50 dark:from-slate-900/90 dark:via-gray-900 dark:to-slate-800/80"></div>
+      <div class="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]"></div>
+      
+      <div class="container mx-auto max-w-7xl relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl mb-8 shadow-2xl shadow-purple-500/25 dark:shadow-purple-500/10">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <h2 class="text-5xl md:text-6xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-6">
+            Accordion
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            Elegant collapsible content panels with smooth animations, full accessibility support, and beautiful theming for both light and dark modes.
+          </p>
+          
+          <!-- Feature Badges -->
+          <div class="flex flex-wrap justify-center gap-3">
+            <span class="px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-semibold border border-emerald-200 dark:border-emerald-800">
+              ✨ WAI-ARIA Ready
+            </span>
+            <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold border border-blue-200 dark:border-blue-800">
+              ⌨️ Keyboard Nav
+            </span>
+            <span class="px-4 py-2 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full text-sm font-semibold border border-violet-200 dark:border-violet-800">
+              🎨 Theme Aware
+            </span>
           </div>
         </div>
 
-        <!-- Checkbox Sizes -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox size="sm" [(ngModel)]="smallCheckbox"/>
-              <label class="text-sm">Small checkbox</label>
+        <!-- Demo Grid -->
+        <div class="grid lg:grid-cols-2 gap-12 mb-20">
+          
+          <!-- Single Mode Demo -->
+          <div class="space-y-8">
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-3 mb-4">
+                <div class="w-2 h-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Single Selection</h3>
+                <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-medium rounded-full">
+                  Collapsible
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">Only one panel can be open at a time</p>
             </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox size="default" [(ngModel)]="defaultCheckbox"/>
-              <label class="text-sm">Default checkbox</label>
+
+            <div class="relative group">
+              <!-- Glow effect -->
+              <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                <Accordion type="single" [collapsible]="true" variant="separated">
+                  <AccordionItem value="features" variant="default">
+                    <AccordionTrigger>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                          <span class="text-white text-sm">🚀</span>
+                        </div>
+                        <span class="font-semibold text-gray-900 dark:text-white">Features & Benefits</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div class="pt-4 space-y-3">
+                        <div class="flex items-start gap-3">
+                          <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <p class="text-gray-700 dark:text-gray-300">Full WAI-ARIA compliance with proper roles and states</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <p class="text-gray-700 dark:text-gray-300">Smooth CSS animations with reduced motion support</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                          <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <p class="text-gray-700 dark:text-gray-300">Customizable variants and theming system</p>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="accessibility" variant="default">
+                    <AccordionTrigger>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
+                          <span class="text-white text-sm">♿</span>
+                        </div>
+                        <span class="font-semibold text-gray-900 dark:text-white">Accessibility First</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div class="pt-4 space-y-4">
+                        <p class="text-gray-700 dark:text-gray-300">Built with accessibility as a core principle, ensuring everyone can use your interface.</p>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                          <div class="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                            <div class="font-medium text-gray-900 dark:text-white mb-1">Screen Readers</div>
+                            <div class="text-gray-600 dark:text-gray-400">Full support</div>
+                          </div>
+                          <div class="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
+                            <div class="font-medium text-gray-900 dark:text-white mb-1">Keyboard Nav</div>
+                            <div class="text-gray-600 dark:text-gray-400">Arrow keys</div>
+                          </div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="customization" variant="default">
+                    <AccordionTrigger>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-500 rounded-lg flex items-center justify-center">
+                          <span class="text-white text-sm">🎨</span>
+                        </div>
+                        <span class="font-semibold text-gray-900 dark:text-white">Easy Customization</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div class="pt-4">
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Flexible theming system with multiple variants and size options.</p>
+                        <div class="flex flex-wrap gap-2">
+                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">default</span>
+                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">ghost</span>
+                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">filled</span>
+                          <span class="px-2 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded text-xs">compact</span>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox size="lg" [(ngModel)]="largeCheckbox"/>
-              <label class="text-sm">Large checkbox</label>
+          </div>
+
+          <!-- Multiple Mode Demo -->
+          <div class="space-y-8">
+            <div class="text-center lg:text-left">
+              <div class="inline-flex items-center gap-3 mb-4">
+                <div class="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full"></div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Multiple Selection</h3>
+                <span class="px-2 py-1 bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 text-xs font-medium rounded-full">
+                  Multi-open
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 text-sm">Multiple panels can be open simultaneously</p>
             </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox size="xl" [(ngModel)]="extraLargeCheckbox"/>
-              <label class="text-sm">Extra large checkbox</label>
+
+            <div class="relative group">
+              <!-- Glow effect -->
+              <div class="absolute -inset-1 bg-gradient-to-r from-pink-500/20 via-rose-500/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div class="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+                <Accordion type="multiple" variant="compact">
+                  <AccordionItem value="getting-started" variant="default">
+                    <AccordionTrigger>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                          <span class="text-white text-sm">📚</span>
+                        </div>
+                        <span class="font-semibold text-gray-900 dark:text-white">Getting Started</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div class="pt-4">
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Quick installation and setup guide:</p>
+                        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3 font-mono text-sm text-gray-800 dark:text-gray-200">
+                          npm install angular-superui
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="api-reference" variant="default">
+                    <AccordionTrigger>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                          <span class="text-white text-sm">⚡</span>
+                        </div>
+                        <span class="font-semibold text-gray-900 dark:text-white">API Reference</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div class="pt-4 space-y-3">
+                        <div class="grid grid-cols-1 gap-3 text-sm">
+                          <div class="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-800/50 rounded">
+                            <code class="text-blue-600 dark:text-blue-400">type</code>
+                            <span class="text-gray-600 dark:text-gray-400">'single' | 'multiple'</span>
+                          </div>
+                          <div class="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-800/50 rounded">
+                            <code class="text-blue-600 dark:text-blue-400">collapsible</code>
+                            <span class="text-gray-600 dark:text-gray-400">boolean</span>
+                          </div>
+                          <div class="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-800/50 rounded">
+                            <code class="text-blue-600 dark:text-blue-400">variant</code>
+                            <span class="text-gray-600 dark:text-gray-400">'default' | 'ghost' | 'filled'</span>
+                          </div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="keyboard-shortcuts" variant="default">
+                    <AccordionTrigger>
+                      <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                          <span class="text-white text-sm">⌨️</span>
+                        </div>
+                        <span class="font-semibold text-gray-900 dark:text-white">Keyboard Shortcuts</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <div class="pt-4 space-y-3">
+                        <div class="grid grid-cols-1 gap-2 text-sm">
+                          <div class="flex items-center gap-3">
+                            <kbd class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">↑ ↓</kbd>
+                            <span class="text-gray-700 dark:text-gray-300">Navigate between triggers</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            <kbd class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">Home</kbd>
+                            <span class="text-gray-700 dark:text-gray-300">Go to first item</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            <kbd class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">End</kbd>
+                            <span class="text-gray-700 dark:text-gray-300">Go to last item</span>
+                          </div>
+                          <div class="flex items-center gap-3">
+                            <kbd class="px-2 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded text-xs font-mono">Enter</kbd>
+                            <span class="text-gray-700 dark:text-gray-300">Toggle current item</span>
+                          </div>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Checkbox Variants -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Variants</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox variant="default" [(ngModel)]="defaultVariant"/>
-              <label class="text-sm">Default variant</label>
+        <!-- Code Example Section -->
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-orange-500/10 rounded-3xl blur-2xl"></div>
+          <div class="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white dark:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Quick Start</h3>
+                <p class="text-gray-600 dark:text-gray-400">Get up and running in minutes</p>
+              </div>
             </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox variant="destructive" [(ngModel)]="destructiveVariant"/>
-              <label class="text-sm">Destructive variant</label>
+            
+            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 font-mono text-sm overflow-x-auto">
+              <div class="text-gray-500 dark:text-gray-400 mb-2">// Basic Usage</div>
+              <div class="text-gray-800 dark:text-gray-200">
+                <span class="text-blue-600 dark:text-blue-400">&lt;Accordion</span>
+                <span class="text-green-600 dark:text-green-400"> type</span>=<span class="text-orange-600 dark:text-orange-400">"single"</span>
+                <span class="text-green-600 dark:text-green-400"> [collapsible]</span>=<span class="text-orange-600 dark:text-orange-400">"true"</span><span class="text-blue-600 dark:text-blue-400">&gt;</span><br/>
+                &nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;AccordionItem</span>
+                <span class="text-green-600 dark:text-green-400"> value</span>=<span class="text-orange-600 dark:text-orange-400">"item-1"</span><span class="text-blue-600 dark:text-blue-400">&gt;</span><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;AccordionTrigger&gt;</span>Question<span class="text-blue-600 dark:text-blue-400">&lt;/AccordionTrigger&gt;</span><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;AccordionContent&gt;</span>Answer<span class="text-blue-600 dark:text-blue-400">&lt;/AccordionContent&gt;</span><br/>
+                &nbsp;&nbsp;<span class="text-blue-600 dark:text-blue-400">&lt;/AccordionItem&gt;</span><br/>
+                <span class="text-blue-600 dark:text-blue-400">&lt;/Accordion&gt;</span>
+              </div>
             </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox variant="success" [(ngModel)]="successVariant"/>
-              <label class="text-sm">Success variant</label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox variant="warning" [(ngModel)]="warningVariant"/>
-              <label class="text-sm">Warning variant</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Checkbox States -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different States</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox [(ngModel)]="uncheckedState"/>
-              <label class="text-sm">Unchecked state</label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox [(ngModel)]="checkedState"/>
-              <label class="text-sm">Checked state</label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox [indeterminate]="indeterminateState()"/>
-              <label class="text-sm">Indeterminate state</label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox [disabled]="disabledUncheckedSignal()" [(ngModel)]="disabledUnchecked"/>
-              <label class="text-sm text-gray-500">Disabled unchecked</label>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Checkbox [disabled]="disabledCheckedSignal()" [(ngModel)]="disabledChecked"/>
-              <label class="text-sm text-gray-500">Disabled checked</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Checkbox with Accessibility -->
-        <div>
-          <h3 class="text-md font-medium mb-3">With Accessibility</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="accessibleCheckbox"
-                [accessibility]="{
-                ariaLabel: 'Subscribe to newsletter',
-                ariaDescription: 'You can unsubscribe at any time',
-                ariaRequired: true
-              }"/>
-              <label class="text-sm">Subscribe to newsletter (required)</label>
-            </div>
-            <p class="text-xs text-gray-600">Screen reader accessible with proper ARIA attributes</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Collapsible Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Collapsible Component</h2>
-      <div class="space-y-6">
-        <!-- Basic Collapsible -->
-        <Collapsible>
-          <CollapsibleTrigger>
-            Toggle Content
-          </CollapsibleTrigger>
-
-          <CollapsibleContent>
-            <p class="text-sm text-gray-700">
-              This content will collapse and expand with animation.
-            </p>
-          </CollapsibleContent>
-        </Collapsible>
-
-
-      </div>
-    </div>
-
-    <!-- Combobox Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Combobox Component</h2>
-      <div class="space-y-8">
-        <!-- Basic Combobox -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Basic Combobox</h3>
-          <p class="text-sm text-gray-600 mb-3">Simple dropdown selection without search</p>
-          <Combobox [options]="comboboxOptions" [(ngModel)]="selectedOptionValue" placeholder="Select a framework..."
-                    (valueChange)="onFrameworkChange($event)">
-            <ComboboxTrigger></ComboboxTrigger>
-            <ComboboxContent [searchable]="false"></ComboboxContent>
-          </Combobox>
-        </div>
-
-        <!-- Searchable Combobox -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Searchable Combobox</h3>
-          <p class="text-sm text-gray-600 mb-3">Dropdown with search functionality</p>
-          <Combobox [options]="languageOptions" [(ngModel)]="selectedLanguageValue" placeholder="Select a language..."
-                    (valueChange)="onLanguageChange($event)">
-            <ComboboxTrigger></ComboboxTrigger>
-            <ComboboxContent [searchable]="true" searchPlaceholder="Search languages..."></ComboboxContent>
-          </Combobox>
-        </div>
-
-        <!-- Multi-Select Combobox -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Multi-Select Combobox</h3>
-          <p class="text-sm text-gray-600 mb-3">Select multiple options</p>
-          <Combobox [options]="skillOptions" [multiple]="true" [(ngModel)]="selectedSkillsValue" placeholder="Select skills..."
-                    (valueChange)="onSkillsChange($event)">
-            <ComboboxTrigger [multiple]="true"></ComboboxTrigger>
-            <ComboboxContent [multiple]="true" searchPlaceholder="Search skills..."></ComboboxContent>
-          </Combobox>
-        </div>
-
-        <!-- Grouped Options -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Grouped Options</h3>
-          <p class="text-sm text-gray-600 mb-3">Options organized by categories</p>
-          <Combobox [options]="groupedTechOptions" [(ngModel)]="selectedTechValue" placeholder="Select technology..."
-                    (valueChange)="onTechChange($event)">
-            <ComboboxTrigger></ComboboxTrigger>
-            <ComboboxContent [showGroupLabels]="true" searchPlaceholder="Search technologies..."></ComboboxContent>
-          </Combobox>
-        </div>
-
-        <!-- Loading State -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Loading State</h3>
-          <p class="text-sm text-gray-600 mb-3">Combobox with loading indicator</p>
-          <div class="flex space-x-4">
-            <Combobox [options]="asyncOptions" [loadingState]="isLoading()" [(ngModel)]="selectedAsyncValue" placeholder="Select async option..."
-                      (valueChange)="onAsyncChange($event)">
-              <ComboboxTrigger></ComboboxTrigger>
-              <ComboboxContent [loadingMessage]="'Loading data...'" searchPlaceholder="Search options..."></ComboboxContent>
-            </Combobox>
-            <button
-              (click)="simulateLoading()"
-              class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-            >
-              Simulate Loading
-            </button>
+    <!-- Alert Dialog Component Section -->
+    <section id="alert-dialog"
+      class="py-24 px-6 bg-gradient-to-br from-red-50/50 to-orange-50/50 dark:bg-gradient-to-br dark:from-red-900/30 dark:via-orange-900/30 dark:to-yellow-900/30">
+      <div class="container mx-auto max-w-6xl">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 dark:bg-gradient-to-br dark:from-red-700 dark:to-orange-800 rounded-2xl mb-6 shadow-xl">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </div>
+          <h2
+            class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent mb-6 pb-8 leading-tight">
+            Alert Dialog
+          </h2>
+          <p class="text-xl text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Modal dialogs for critical actions that require user attention. Perfect for confirmations, warnings, and important decisions.
+          </p>
+          <!-- Feature Badges -->
+          <div class="flex flex-wrap justify-center gap-2 mt-6">
+            <span class="px-3 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 rounded-full text-sm font-medium">Modal Focus</span>
+            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium">Escape Key</span>
+            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-300 rounded-full text-sm font-medium">Backdrop Click</span>
+            <span
+              class="px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">ARIA Compliant</span>
           </div>
         </div>
 
-        <!-- Error State -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Error State</h3>
-          <p class="text-sm text-gray-600 mb-3">Combobox with error handling</p>
-          <div class="flex space-x-4">
-            <Combobox [options]="errorOptions" [error]="errorMessage()" [(ngModel)]="selectedErrorValue" placeholder="Select option..."
-                      (valueChange)="onErrorChange($event)">
-              <ComboboxTrigger></ComboboxTrigger>
-              <ComboboxContent searchPlaceholder="Search options..."></ComboboxContent>
-            </Combobox>
-            <button
-              (click)="simulateError()"
-              class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-            >
-              Simulate Error
-            </button>
-          </div>
-        </div>
+        <!-- Demo Grid -->
+        <div class="grid lg:grid-cols-3 gap-8 mb-16">
 
-        <!-- With Descriptions -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Options with Descriptions</h3>
-          <p class="text-sm text-gray-600 mb-3">Rich options with additional information</p>
-          <Combobox [options]="planOptions" [(ngModel)]="selectedPlanValue" placeholder="Select a plan..." (valueChange)="onPlanChange($event)">
-            <ComboboxTrigger></ComboboxTrigger>
-            <ComboboxContent searchPlaceholder="Search plans..."></ComboboxContent>
-          </Combobox>
-        </div>
+          <!-- Destructive Dialog -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Destructive Action</h3>
+              <span class="px-2 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 text-xs rounded-full font-medium">Critical</span>
+            </div>
 
-        <!-- Disabled Combobox -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Disabled Combobox</h3>
-          <p class="text-sm text-gray-600 mb-3">Non-interactive combobox</p>
-          <Combobox [options]="comboboxOptions" [disabled]="true" placeholder="Disabled combobox">
-            <ComboboxTrigger [disabled]="true"></ComboboxTrigger>
-            <ComboboxContent [searchable]="false"></ComboboxContent>
-          </Combobox>
-        </div>
-
-        <!-- Current Selection Display -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Current Selections</h3>
-          <div class="p-4 bg-gray-50 rounded-lg border space-y-2">
-            <p class="text-sm"><strong>Framework:</strong> {{ selectedOption() || 'None' }}</p>
-            <p class="text-sm"><strong>Language:</strong> {{ selectedLanguage() || 'None' }}</p>
-            <p class="text-sm"><strong>Skills:</strong> {{ selectedSkills().join(', ') || 'None' }}</p>
-            <p class="text-sm"><strong>Technology:</strong> {{ selectedTech() || 'None' }}</p>
-            <p class="text-sm"><strong>Async:</strong> {{ selectedAsync() || 'None' }}</p>
-            <p class="text-sm"><strong>Plan:</strong> {{ selectedPlan() || 'None' }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- AspectRatio Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">AspectRatio Component</h2>
-      <div class="space-y-6">
-        <!-- Predefined Ratios -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Predefined Ratios</h3>
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <p class="text-sm text-gray-600 mb-2">Square (1:1)</p>
-              <AspectRatio ratio="square" class="bg-gradient-to-br from-pink-400 to-red-600 rounded-lg border shadow-md"
-                           [ariaLabel]="'Square ratio example'">
-                <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
-                  <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                    📸
-                  </div>
-                  <span class="text-sm">Profile Image</span>
-                  <span class="text-xs opacity-80">1:1 Ratio</span>
+            <div class="p-6 border border-border dark:border-gray-700 rounded-xl bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm">
+              <div class="text-center space-y-4">
+                <div class="w-12 h-12 bg-red-100 dark:bg-red-900/50 rounded-full flex items-center justify-center mx-auto">
+                  <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
                 </div>
-              </AspectRatio>
-            </div>
-
-            <div>
-              <p class="text-sm text-gray-600 mb-2">Video (16:9)</p>
-              <AspectRatio ratio="video" class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg border shadow-md"
-                           [ariaLabel]="'Video ratio example'">
-                <div class="flex flex-col items-center justify-center h-full text-white font-medium p-4">
-                  <div class="w-10 h-6 bg-white/20 rounded flex items-center justify-center mb-2">
-                    ▶️
-                  </div>
-                  <span class="text-sm">Video Player</span>
-                  <span class="text-xs opacity-80">16:9 Ratio</span>
+                <div>
+                  <h4 class="font-semibold text-foreground dark:text-white mb-2">Delete Account</h4>
+                  <p class="text-sm text-muted-foreground dark:text-gray-300 mb-4">
+                    Permanently remove your account and all associated data
+                  </p>
                 </div>
-              </AspectRatio>
+                <Button variant="destructive" (click)="openDeleteDialog()" class="w-full">
+                  Delete Account
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- With Images -->
-        <div>
-          <h3 class="text-md font-medium mb-3">With Images</h3>
-          <div class="grid grid-cols-1 gap-4">
-            <AspectRatio ratio="16/9" class="bg-muted rounded-lg overflow-hidden shadow-md" [ariaLabel]="'Image example'">
-              <div class="relative h-full w-full bg-gradient-to-br from-green-400 to-blue-500">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="text-center text-white">
-                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                      🖼️
-                    </div>
-                    <h4 class="font-semibold mb-1">Banner Image</h4>
-                    <p class="text-sm opacity-90">Perfect for hero sections</p>
-                    <span class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">16:9</span>
-                  </div>
+          <!-- Logout Dialog -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Sign Out</h3>
+              <span
+                class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs rounded-full font-medium">Confirmation</span>
+            </div>
+
+            <div class="p-6 border border-border dark:border-gray-700 rounded-xl bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm">
+              <div class="text-center space-y-4">
+                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center mx-auto">
+                  <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                  </svg>
                 </div>
-              </div>
-            </AspectRatio>
-          </div>
-        </div>
-
-        <!-- Custom Ratio -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Custom Ratio</h3>
-          <AspectRatio [customRatio]="'2 / 1'"
-                       class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg shadow-md"
-                       [ariaLabel]="'Custom ratio example'">
-            <div class="flex items-center justify-center h-full text-white font-medium p-4">
-              <div class="text-center">
-                <div class="w-12 h-8 bg-white/20 rounded mb-3 mx-auto flex items-center justify-center">
-                  📏
+                <div>
+                  <h4 class="font-semibold text-foreground dark:text-white mb-2">Sign Out</h4>
+                  <p class="text-sm text-muted-foreground dark:text-gray-300 mb-4">
+                    End your current session and return to login
+                  </p>
                 </div>
-                <div class="font-semibold">Custom Banner</div>
-                <div class="text-sm opacity-90 mt-1">2:1 Ultra-wide Ratio</div>
-                <div class="text-xs bg-white/20 px-2 py-1 rounded mt-2 inline-block">Perfect for headers</div>
+                <Button variant="secondary" (click)="openLogoutDialog()" class="w-full">
+                  Sign Out
+                </Button>
               </div>
             </div>
-          </AspectRatio>
-        </div>
+          </div>
 
-        <!-- Multiple Ratios Gallery -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Gallery Layout</h3>
-          <div class="grid grid-cols-3 gap-3">
-            <AspectRatio ratio="4/3" class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-md shadow-sm"
-                         [ariaLabel]="'Photo ratio example'">
-              <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
-                <span>📷</span>
-                <span class="mt-1">Photo</span>
-                <span class="text-xs opacity-80">4:3</span>
+          <!-- Confirmation Dialog -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Save Changes</h3>
+              <span
+                class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs rounded-full font-medium">Save</span>
+            </div>
+
+            <div class="p-6 border border-border dark:border-gray-700 rounded-xl bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm">
+              <div class="text-center space-y-4">
+                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center mx-auto">
+                  <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-foreground dark:text-white mb-2">Save Changes</h4>
+                  <p class="text-sm text-muted-foreground dark:text-gray-300 mb-4">
+                    Confirm your changes before proceeding
+                  </p>
+                </div>
+                <Button variant="default" (click)="openConfirmDialog()" class="w-full">
+                  Save Changes
+                </Button>
               </div>
-            </AspectRatio>
-
-            <AspectRatio ratio="3/4" class="bg-gradient-to-br from-teal-400 to-green-500 rounded-md shadow-sm"
-                         [ariaLabel]="'Portrait ratio example'">
-              <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
-                <span>🖼️</span>
-                <span class="mt-1">Portrait</span>
-                <span class="text-xs opacity-80">3:4</span>
-              </div>
-            </AspectRatio>
-
-            <AspectRatio ratio="1/1" class="bg-gradient-to-br from-violet-400 to-purple-500 rounded-md shadow-sm"
-                         [ariaLabel]="'Instagram ratio example'">
-              <div class="flex flex-col items-center justify-center h-full text-white text-xs font-medium">
-                <span>📱</span>
-                <span class="mt-1">Social</span>
-                <span class="text-xs opacity-80">1:1</span>
-              </div>
-            </AspectRatio>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Badge Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Badge Component</h2>
-      <div class="space-y-6">
-        <!-- Badge Variants -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Variants</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Badge variant="default">Default</Badge>
-            <Badge variant="secondary">Secondary</Badge>
-            <Badge variant="destructive">Destructive</Badge>
-            <Badge variant="outline">Outline</Badge>
-          </div>
-        </div>
-
-        <!-- Badge with Numbers -->
-        <div>
-          <h3 class="text-md font-medium mb-3">With Numbers</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Badge variant="default">New</Badge>
-            <Badge variant="secondary">99+</Badge>
-            <Badge variant="destructive">Error</Badge>
-            <Badge variant="outline">Beta</Badge>
-          </div>
-        </div>
-
-        <!-- Badge in Context -->
-        <div>
-          <h3 class="text-md font-medium mb-3">In Context</h3>
-          <div class="space-y-3">
-            <div class="flex items-center gap-2">
-              <span class="text-sm">Inbox</span>
-              <Badge variant="default" [ariaLabel]="'12 unread messages'">12</Badge>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-sm">Documentation</span>
-              <Badge variant="secondary" [asLink]="true" href="/docs" [ariaLabel]="'View documentation'">Updated</Badge>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-sm">Build Status</span>
-              <Badge variant="destructive" role="alert" [ariaLabel]="'Build failed - requires attention'">Failed</Badge>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="text-sm">Feature</span>
-              <Badge variant="outline" ariaLive="polite">Coming Soon</Badge>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Alert Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Alert Component</h2>
-      <div class="space-y-4">
-        <!-- Default Alert -->
-        <Alert>
-          <AlertIcon>
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </AlertIcon>
-          <div class="flex-1">
-            <AlertTitle>Heads up!</AlertTitle>
-            <AlertDescription>
-              You can add components and dependencies to your app using the cli.
-            </AlertDescription>
-          </div>
-        </Alert>
-
-        <!-- Destructive Alert -->
-        <Alert variant="destructive">
-          <AlertIcon>
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
-            </svg>
-          </AlertIcon>
-          <div class="flex-1">
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>
-              Your session has expired. Please log in again.
-            </AlertDescription>
-          </div>
-        </Alert>
-
-        <!-- Warning Alert -->
-        <Alert variant="warning">
-          <AlertIcon>
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
-            </svg>
-          </AlertIcon>
-          <div class="flex-1">
-            <AlertTitle>Warning</AlertTitle>
-            <AlertDescription>
-              This action cannot be undone. Please proceed with caution.
-            </AlertDescription>
-          </div>
-        </Alert>
-
-        <!-- Success Alert -->
-        <Alert variant="success">
-          <AlertIcon>
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </AlertIcon>
-          <div class="flex-1">
-            <AlertTitle>Success</AlertTitle>
-            <AlertDescription>
-              Your changes have been saved successfully.
-            </AlertDescription>
-          </div>
-        </Alert>
-
-        <!-- Info Alert -->
-        <Alert variant="info">
-          <AlertIcon>
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </AlertIcon>
-          <div class="flex-1">
-            <AlertTitle>Information</AlertTitle>
-            <AlertDescription>
-              You have 3 unread messages in your inbox.
-            </AlertDescription>
-          </div>
-        </Alert>
-      </div>
-    </div>
-
-    <!-- Button Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Button Component</h2>
-      <div class="space-y-6">
-        <!-- Button Variants -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Variants</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button variant="default">Default</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="destructive">Destructive</Button>
-            <Button variant="outline">Outline</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="link">Link</Button>
-          </div>
-        </div>
-
-        <!-- Extended Variants -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Extended Variants</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button variant="success">Success</Button>
-            <Button variant="warning">Warning</Button>
-            <Button variant="info">Info</Button>
-          </div>
-        </div>
-
-        <!-- Button Sizes -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Different Sizes</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button size="sm">Small</Button>
-            <Button size="default">Default</Button>
-            <Button size="lg">Large</Button>
-            <Button size="xl">Extra Large</Button>
-          </div>
-        </div>
-
-        <!-- Icon Buttons -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Icon Buttons</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button size="icon" variant="outline">
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        <!-- Usage Example -->
+        <div
+          class="p-8 bg-gradient-to-br from-red-50 to-orange-50 dark:bg-gradient-to-br dark:from-red-950/30 dark:to-orange-950/30 rounded-2xl border border-red-200 dark:border-red-800">
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
               </svg>
-            </Button>
-
-            <Button size="icon-sm" variant="ghost">
-              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </Button>
-
-            <Button size="icon-lg" variant="default">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-              </svg>
-            </Button>
-
-            <Button size="icon-xl" variant="destructive">
-              <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-              </svg>
-            </Button>
-          </div>
-        </div>
-
-        <!-- Loading States -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Loading States</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button [loadingState]="true">Loading</Button>
-            <Button [loadingState]="{ loading: true, loadingText: 'Saving...', disableOnLoading: true }"
-                    variant="secondary">
-              Save Document
-            </Button>
-            <Button [loadingState]="{ loading: true, loadingText: 'Processing...', disableOnLoading: false }"
-                    variant="outline">
-              Process
-            </Button>
-          </div>
-        </div>
-
-        <!-- Disabled States -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Disabled States</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button [disabled]="true">Disabled Default</Button>
-            <Button [disabled]="true" variant="secondary">Disabled Secondary</Button>
-            <Button [disabled]="true" variant="outline">Disabled Outline</Button>
-            <Button [disabled]="true" variant="destructive">Disabled Destructive</Button>
-          </div>
-        </div>
-
-        <!-- With Accessibility -->
-        <div>
-          <h3 class="text-md font-medium mb-3">With Accessibility Features</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button
-              [accessibility]="{
-              ariaLabel: 'Save document to cloud storage',
-              ariaDescription: 'Uploads and saves the current document to your cloud storage account'
-            }"
-              variant="default">
-              Save to Cloud
-            </Button>
-
-            <Button
-              [accessibility]="{
-              ariaHasPopup: 'menu',
-              ariaExpanded: 'false'
-            }"
-              variant="outline">
-              Options ▼
-            </Button>
-
-            <Button
-              [accessibility]="{
-              ariaPressed: 'false',
-              ariaLive: 'polite'
-            }"
-              variant="ghost">
-              Toggle Feature
-            </Button>
-          </div>
-        </div>
-
-        <!-- Button Groups -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Button Groups</h3>
-          <div class="space-y-3">
-            <div class="flex">
-              <Button variant="outline" class="rounded-r-none border-r-0">First</Button>
-              <Button variant="outline" class="rounded-none border-r-0">Second</Button>
-              <Button variant="outline" class="rounded-l-none">Third</Button>
             </div>
-
-            <div class="flex gap-2">
-              <Button variant="default">Primary Action</Button>
-              <Button variant="outline">Secondary Action</Button>
-              <Button variant="ghost">Cancel</Button>
-            </div>
+            <h4 class="text-lg font-bold text-red-900 dark:text-red-100">Quick Start</h4>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Checkbox Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Checkbox Component</h2>
-      <div class="space-y-6">
-        <!-- Basic Checkbox -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Basic Checkbox</h3>
-          <div class="flex items-center gap-4">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                id="basic-checkbox">
-              </Checkbox>
-              <label for="basic-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Basic Checkbox
-              </label>
+          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-4 font-mono text-sm">
+            <div class="text-red-600 dark:text-red-400 mb-2">npx ngsui-cli add alert-dialog</div>
+            <div class="text-gray-600 dark:text-gray-400">
+              Installs AlertDialog component with modal focus management
             </div>
           </div>
         </div>
 
-        <!-- Checkbox Variants -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Variants</h3>
-          <div class="flex items-center gap-6 flex-wrap">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                variant="default"
-                id="default-checkbox">
-              </Checkbox>
-              <label for="default-checkbox" class="text-sm font-medium">Default</label>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                variant="destructive"
-                id="destructive-checkbox">
-              </Checkbox>
-              <label for="destructive-checkbox" class="text-sm font-medium">Destructive</label>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                variant="success"
-                id="success-checkbox">
-              </Checkbox>
-              <label for="success-checkbox" class="text-sm font-medium">Success</label>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                variant="warning"
-                id="warning-checkbox">
-              </Checkbox>
-              <label for="warning-checkbox" class="text-sm font-medium">Warning</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Checkbox Sizes -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Sizes</h3>
-          <div class="flex items-center gap-6 flex-wrap">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                size="sm"
-                id="sm-checkbox">
-              </Checkbox>
-              <label for="sm-checkbox" class="text-sm font-medium">Small</label>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                size="default"
-                id="default-size-checkbox">
-              </Checkbox>
-              <label for="default-size-checkbox" class="text-sm font-medium">Default</label>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                size="lg"
-                id="lg-checkbox">
-              </Checkbox>
-              <label for="lg-checkbox" class="text-sm font-medium">Large</label>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                size="xl"
-                id="xl-checkbox">
-              </Checkbox>
-              <label for="xl-checkbox" class="text-sm font-medium">Extra Large</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Disabled State -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Disabled State</h3>
-          <div class="flex items-center gap-4">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="disabledCheckbox"
-                [disabled]="true"
-                id="disabled-unchecked">
-              </Checkbox>
-              <label for="disabled-unchecked" class="text-sm font-medium">Disabled (Unchecked)</label>
-            </div>
-
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="notificationsEnabled"
-                [disabled]="true"
-                id="disabled-checked">
-              </Checkbox>
-              <label for="disabled-checked" class="text-sm font-medium">Disabled (Checked)</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Indeterminate State -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Indeterminate State</h3>
-          <div class="flex items-center space-x-2">
-            <Checkbox
-              [(ngModel)]="indeterminateCheckbox"
-              [indeterminate]="true"
-              id="indeterminate-checkbox">
-            </Checkbox>
-            <label for="indeterminate-checkbox" class="text-sm font-medium">
-              Indeterminate State
-            </label>
-          </div>
-        </div>
-
-        <!-- Form Example -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Form Example</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="termsAccepted"
-                id="terms-checkbox">
-              </Checkbox>
-              <label for="terms-checkbox" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Accept terms and conditions
-              </label>
-            </div>
-            <p class="text-sm text-muted-foreground">
-              By checking this box, you agree to our terms of service and privacy policy.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature Selection Example -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Feature Selection</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="notificationsEnabled"
-                id="notifications-checkbox">
-              </Checkbox>
-              <label for="notifications-checkbox" class="text-sm font-medium leading-none">
-                Enable notifications
-              </label>
-            </div>
-            <p class="text-sm text-muted-foreground">
-              You can enable or disable notifications at any time.
-            </p>
-
-            <div class="mt-4 space-y-2">
-              <div class="flex items-center space-x-2">
-                <Checkbox
-                  [(ngModel)]="featureA"
-                  id="feature-a">
-                </Checkbox>
-                <label for="feature-a" class="text-sm font-medium">Feature A</label>
-              </div>
-              <div class="flex items-center space-x-2">
-                <Checkbox
-                  [(ngModel)]="featureB"
-                  id="feature-b">
-                </Checkbox>
-                <label for="feature-b" class="text-sm font-medium">Feature B</label>
-              </div>
-              <div class="flex items-center space-x-2">
-                <Checkbox
-                  [(ngModel)]="featureC"
-                  id="feature-c">
-                </Checkbox>
-                <label for="feature-c" class="text-sm font-medium">Feature C</label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accessibility Features -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Accessibility Features</h3>
-          <div class="space-y-3">
-            <div class="flex items-center space-x-2">
-              <Checkbox
-                [(ngModel)]="basicCheckbox"
-                id="accessible-checkbox"
-                [accessibility]="{
-                ariaLabel: 'Custom aria label',
-                ariaDescription: 'This checkbox has enhanced accessibility features'
-              }">
-              </Checkbox>
-              <label for="accessible-checkbox" class="text-sm font-medium">
-                Checkbox with Accessibility Features
-              </label>
-            </div>
-            <p class="text-sm text-muted-foreground">
-              This checkbox includes ARIA labels and descriptions for better screen reader support.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- AlertDialog Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">AlertDialog Component</h2>
-
-      <div class="space-y-6">
-        <!-- Basic AlertDialog -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Basic AlertDialog</h3>
-          <div class="flex items-center gap-3 flex-wrap">
-            <Button variant="destructive" (buttonClick)="openDeleteDialog()">
-              Delete Account
-            </Button>
-
-            <Button variant="outline" (buttonClick)="openLogoutDialog()">
-              Logout
-            </Button>
-
-            <Button variant="default" (buttonClick)="openConfirmDialog()">
-              Confirm Action
-            </Button>
-          </div>
-        </div>
-
-        <!-- Delete Confirmation Dialog -->
+        <!-- Alert Dialog Components -->
         <AlertDialog
           [isOpen]="isDeleteDialogOpen()"
-          (openChange)="isDeleteDialogOpen.set($event)"
-          [accessibility]="{
-          ariaLabel: 'Delete account confirmation',
-          ariaLabelledBy: 'delete-title',
-          ariaDescribedBy: 'delete-description',
-          role: 'alertdialog',
-          announceText: 'Delete account confirmation dialog opened'
-        }">
+          (openChange)="isDeleteDialogOpen.set($event)">
           <AlertDialogHeader>
-            <AlertDialogTitle id="delete-title">Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription id="delete-description">
+            <AlertDialogTitle>⚠️ Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
               This action cannot be undone. This will permanently delete your account
               and remove your data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel (cancelClick)="cancelDialog('delete')">
+            <AlertDialogCancel (click)="cancelDialog('delete')">
               Cancel
             </AlertDialogCancel>
-            <AlertDialogAction
-              variant="destructive"
-              (actionClick)="handleDelete()">
-              Delete Account
+            <AlertDialogAction variant="destructive" (click)="handleDelete()">
+              Yes, delete account
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialog>
 
-        <!-- Logout Confirmation Dialog -->
         <AlertDialog
           [isOpen]="isLogoutDialogOpen()"
-          (openChange)="isLogoutDialogOpen.set($event)"
-          [accessibility]="{
-          ariaLabel: 'Logout confirmation',
-          ariaLabelledBy: 'logout-title',
-          ariaDescribedBy: 'logout-description',
-          role: 'dialog'
-        }">
+          (openChange)="isLogoutDialogOpen.set($event)">
           <AlertDialogHeader>
-            <AlertDialogTitle id="logout-title">Sign out of your account?</AlertDialogTitle>
-            <AlertDialogDescription id="logout-description">
-              You will need to sign in again to access your account.
+            <AlertDialogTitle>🚪 Sign out of your account?</AlertDialogTitle>
+            <AlertDialogDescription>
+              You will need to sign in again to access your account and saved data.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel (cancelClick)="cancelDialog('logout')">
+            <AlertDialogCancel (click)="cancelDialog('logout')">
               Stay signed in
             </AlertDialogCancel>
-            <AlertDialogAction
-              variant="secondary"
-              (actionClick)="handleLogout()">
+            <AlertDialogAction variant="secondary" (click)="handleLogout()">
               Sign out
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialog>
 
-        <!-- Generic Confirmation Dialog -->
         <AlertDialog
           [isOpen]="isConfirmDialogOpen()"
-          (openChange)="isConfirmDialogOpen.set($event)"
-          [preventCloseOnOverlayClick]="true"
-          [accessibility]="{
-          ariaLabel: 'Action confirmation',
-          ariaLabelledBy: 'confirm-title',
-          ariaDescribedBy: 'confirm-description',
-          role: 'alertdialog',
-          ariaLive: 'assertive'
-        }">
+          (openChange)="isConfirmDialogOpen.set($event)">
           <AlertDialogHeader>
-            <AlertDialogTitle id="confirm-title">Confirm your action</AlertDialogTitle>
-            <AlertDialogDescription id="confirm-description">
-              Please confirm that you want to proceed with this action. This dialog
-              cannot be dismissed by clicking outside.
+            <AlertDialogTitle>💾 Save your changes?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Your changes will be saved and applied immediately. This action can be undone later.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel (cancelClick)="cancelDialog('confirm')">
-              Cancel
+            <AlertDialogCancel (click)="cancelDialog('confirm')">
+              Don't save
             </AlertDialogCancel>
-            <AlertDialogAction
-              variant="default"
-              (actionClick)="handleConfirm()">
-              Continue
+            <AlertDialogAction variant="default" (click)="handleConfirm()">
+              Save changes
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialog>
       </div>
-    </div>
+    </section>
 
-    <!-- Accordion Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Accordion Component</h2>
+    <!-- Alert Section -->
+    <section id="alert" class="relative py-24">
+      <!-- Background gradient -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-amber-50 via-yellow-50 to-lime-50 dark:bg-gradient-to-br dark:from-emerald-900/40 dark:via-teal-900/40 dark:to-cyan-900/40"></div>
 
-      <div class="space-y-6">
-        <div>
-          <h3 class="text-md font-medium mb-2">Single Mode (Collapsible)</h3>
-          <Accordion type="single" [collapsible]="true" class="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It adheres to the WAI-ARIA design pattern and supports keyboard navigation.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Is it styled?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It comes with default styles that match the other components' aesthetic.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Is it animated?</AccordionTrigger>
-              <AccordionContent>
-                Yes. It's animated by default with smooth transitions when expanding and collapsing.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-
-        <div>
-          <h3 class="text-md font-medium mb-2">Multiple Mode</h3>
-          <Accordion type="multiple" class="w-full">
-            <AccordionItem value="multi-1">
-              <AccordionTrigger>Can multiple items be open?</AccordionTrigger>
-              <AccordionContent>
-                Yes! In multiple mode, you can have multiple accordion items open at the same time.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="multi-2">
-              <AccordionTrigger>How does keyboard navigation work?</AccordionTrigger>
-              <AccordionContent>
-                Use Arrow keys to navigate between triggers, Home/End for first/last item, and Enter/Space to toggle.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="multi-3">
-              <AccordionTrigger>What about screen readers?</AccordionTrigger>
-              <AccordionContent>
-                Each trigger has proper ARIA attributes and the content regions are properly labeled for screen readers.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </div>
-    </div>
-
-    <!-- Breadcrumb Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Breadcrumb Component</h2>
-      <div class="space-y-6">
-        <!-- Basic Breadcrumb -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Basic Navigation</h3>
-          <Breadcrumb [accessibility]="{
-          ariaLabel: 'Basic navigation breadcrumb',
-          ariaLive: 'polite'
-        }">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/" [accessibility]="{
-                ariaLabel: 'Navigate to home page'
-              }">
-                  Home
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator></BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/docs" [accessibility]="{
-                ariaLabel: 'Navigate to documentation'
-              }">
-                  Documentation
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator></BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbPage [accessibility]="{
-                ariaLabel: 'Current page: Components'
-              }">
-                  Components
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-
-        <!-- With Custom Separator -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Custom Separator</h3>
-          <Breadcrumb [accessibility]="{
-          ariaLabel: 'Custom separator breadcrumb'
-        }">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">
-                  Home
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator [customSeparator]="true">
-                <span class="text-muted-foreground">/</span>
-              </BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/products">
-                  Products
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator [customSeparator]="true">
-                <span class="text-muted-foreground">/</span>
-              </BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbPage>
-                  Laptops
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-
-        <!-- With Ellipsis (Collapsed) -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Collapsed Navigation</h3>
-          <Breadcrumb [accessibility]="{
-          ariaLabel: 'Collapsed navigation breadcrumb'
-        }">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">
-                  Home
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator></BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbEllipsis></BreadcrumbEllipsis>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator></BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/components">
-                  Components
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator></BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbPage>
-                  Breadcrumb
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-
-        <!-- Interactive Breadcrumb -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Interactive Links</h3>
-          <Breadcrumb [accessibility]="{
-          ariaLabel: 'Interactive breadcrumb navigation'
-        }">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink
-                  (linkClick)="onBreadcrumbClick('home')"
-                  [accessibility]="{
-                  ariaLabel: 'Click to navigate to home'
-                }">
-                  🏠 Home
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator></BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbLink
-                  (linkClick)="onBreadcrumbClick('settings')"
-                  [accessibility]="{
-                  ariaLabel: 'Click to navigate to settings'
-                }">
-                  ⚙️ Settings
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator></BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbPage [accessibility]="{
-                ariaLabel: 'Current page: Profile settings'
-              }">
-                  👤 Profile
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-      </div>
-    </div>
-
-    <!-- Calendar Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Calendar Component</h2>
-      <div class="space-y-6">
-        <!-- Basic Calendar -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Basic Calendar</h3>
-          <Calendar
-            [selectedDate]="selectedDate()"
-            [currentMonth]="calendarMonth()"
-            (dateSelect)="onDateSelect($event)"
-            (monthChange)="onMonthChange($event)"
-            [accessibility]="{
-            label: 'Date picker calendar',
-            describedBy: 'calendar-help'
-          }">
-          </Calendar>
-          <p id="calendar-help" class="text-sm text-muted-foreground mt-2">
-            Use arrow keys to navigate, Enter or Space to select a date
+      <div class="relative max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <div
+            class="inline-flex items-center space-x-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"/>
+            </svg>
+            <span>Alert Component</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            <span
+              class="bg-gradient-to-r from-amber-600 via-yellow-600 to-lime-600 dark:from-amber-400 dark:via-yellow-800 dark:to-lime-800 bg-clip-text text-transparent">
+              Alert Notifications
+            </span>
+          </h2>
+          <p class="text-xl text-muted-foreground dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Display important messages, warnings, and notifications with beautiful alert components.
+            Support for multiple variants with custom icons and actions.
           </p>
-          @if (selectedDate()) {
-            <p class="text-sm mt-2">
-              <strong>Selected:</strong> {{ selectedDate()?.toLocaleDateString() }}
-            </p>
-          }
         </div>
 
-        <!-- Calendar with Constraints -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Calendar with Date Constraints</h3>
-          <Calendar
-            [minDate]="getMinDate()"
-            [maxDate]="getMaxDate()"
-            [disabledDaysOfWeek]="[0, 6]"
-            [selectedDate]="constrainedDate()"
-            [currentMonth]="constrainedMonth()"
-            (dateSelect)="onConstrainedDateSelect($event)"
-            (monthChange)="onConstrainedMonthChange($event)"
-            [accessibility]="{
-            label: 'Constrained date picker - weekends disabled',
-            describedBy: 'constrained-calendar-help'
-          }">
-          </Calendar>
-          <p id="constrained-calendar-help" class="text-sm text-muted-foreground mt-2">
-            Only weekdays are selectable, within the next 30 days
-          </p>
-          @if (constrainedDate()) {
-            <p class="text-sm mt-2">
-              <strong>Selected:</strong> {{ constrainedDate()?.toLocaleDateString() }}
-            </p>
-          }
+        <!-- Feature badges -->
+        <div class="flex flex-wrap justify-center gap-3 mb-16">
+          <span class="px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm font-medium">Multiple Variants</span>
+          <span class="px-4 py-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded-full text-sm font-medium">Custom Icons</span>
+          <span
+            class="px-4 py-2 bg-lime-100 dark:bg-lime-900/30 text-lime-700 dark:text-lime-300 rounded-full text-sm font-medium">Semantic Colors</span>
+          <span
+            class="px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Accessible</span>
         </div>
 
-        <!-- Small Calendar -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Small Calendar</h3>
-          <Calendar
-            size="sm"
-            [selectedDate]="compactDate()"
-            [currentMonth]="compactMonth()"
-            (dateSelect)="onCompactDateSelect($event)"
-            (monthChange)="onCompactMonthChange($event)"
-            [accessibility]="{
-            label: 'Compact date picker'
-          }">
-          </Calendar>
-          @if (compactDate()) {
-            <p class="text-sm mt-2">
-              <strong>Selected:</strong> {{ compactDate()?.toLocaleDateString() }}
-            </p>
-          }
-        </div>
-
-        <!-- Calendar with Actions -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Calendar with Actions</h3>
-          <div class="space-y-3">
-            <div class="flex gap-2">
-              <button
-                type="button"
-                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-                (click)="goToToday()">
-                📅 Go to Today
-              </button>
-              <button
-                type="button"
-                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
-                (click)="clearSelection()">
-                🗑️ Clear Selection
-              </button>
+        <!-- Alert Examples Grid -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+          <!-- Destructive Alert -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Destructive Alert</h3>
+              <span class="px-2 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 text-xs rounded-full font-medium">Error</span>
             </div>
-            <Calendar
-              [selectedDate]="selectedDate()"
-              [currentMonth]="calendarMonth()"
-              (dateSelect)="onDateSelect($event)"
-              (monthChange)="onMonthChange($event)"
-              [accessibility]="{
-              label: 'Interactive date picker with action buttons'
-            }">
-            </Calendar>
+
+            <Alert variant="destructive">
+              <AlertIcon>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"/>
+                </svg>
+              </AlertIcon>
+              <div class="flex-1">
+                <AlertTitle className="">Error</AlertTitle>
+                <AlertDescription>
+                  Your session has expired. Please log in again.
+                </AlertDescription>
+              </div>
+            </Alert>
+          </div>
+
+          <!-- Warning Alert -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Warning Alert</h3>
+              <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-300 text-xs rounded-full font-medium">Warning</span>
+            </div>
+
+            <Alert variant="warning">
+              <AlertIcon>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"/>
+                </svg>
+              </AlertIcon>
+              <div class="flex-1">
+                <AlertTitle>Update Available</AlertTitle>
+                <AlertDescription>
+                  A new version of the application is available.
+                  <a href="#" class="font-medium underline">Update now</a> or
+                  <button class="font-medium underline">remind me later</button>
+                  .
+                </AlertDescription>
+              </div>
+            </Alert>
+          </div>
+
+          <!-- Success Alert -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Success Alert</h3>
+              <span
+                class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs rounded-full font-medium">Success</span>
+            </div>
+
+            <Alert variant="success">
+              <AlertIcon>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </AlertIcon>
+              <div class="flex-1">
+                <AlertTitle>Success</AlertTitle>
+                <AlertDescription>
+                  Your changes have been saved successfully.
+                </AlertDescription>
+              </div>
+            </Alert>
+          </div>
+
+          <!-- Info Alert -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3">
+              <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Info Alert</h3>
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs rounded-full font-medium">Info</span>
+            </div>
+
+            <Alert variant="info">
+              <AlertIcon>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </AlertIcon>
+              <div class="flex-1">
+                <AlertTitle>Information</AlertTitle>
+                <AlertDescription>
+                  You have 3 unread messages in your inbox.
+                </AlertDescription>
+              </div>
+            </Alert>
           </div>
         </div>
 
-        <!-- Date Range Picker -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Date Range Picker</h3>
-          <div class="p-4 bg-background border border-border rounded-lg">
-            <Calendar
-              selectionMode="range"
-              [currentMonth]="rangeCalendarMonth()"
-              [selectedRange]="selectedRange()"
-              [minDate]="getMinDate()"
-              [maxDate]="getMaxDate()"
-              (rangeSelect)="onRangeSelect($event)"
-              (monthChange)="onRangeMonthChange($event)"
-              [accessibility]="{
-              label: 'Date range picker - select start and end dates'
-            }">
-            </Calendar>
-
-            <!-- Range Selection Status -->
-            <div class="mt-4 p-3 bg-muted/50 rounded-md border border-border/50">
-              <div class="text-sm font-medium text-foreground mb-2">Range Selection Status:</div>
-              @if (!selectedRange().start && !selectedRange().end) {
-                <div class="text-sm text-muted-foreground">Click a date to start selecting a range</div>
-              } @else if (selectedRange().start && !selectedRange().end) {
-                <div class="text-sm space-y-1">
-                  <p><span class="font-medium text-foreground">Start:</span> <span
-                    class="text-primary">{{ selectedRange().start?.toLocaleDateString() }}</span></p>
-                  <p class="text-muted-foreground text-xs">Click another date to complete the range</p>
-                </div>
-              } @else if (selectedRange().start && selectedRange().end) {
-                <div class="text-sm space-y-2">
-                  <div class="flex items-center gap-2">
-                    <span class="text-foreground font-medium">Selected Range:</span>
-                    <span class="text-primary font-medium">
-                    {{ selectedRange().start?.toLocaleDateString() }} → {{ selectedRange().end?.toLocaleDateString() }}
-                  </span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-muted-foreground">Duration:</span>
-                    <span class="text-primary font-medium">
-                    {{ Math.ceil((selectedRange().end!.getTime() - selectedRange().start!.getTime()) / (1000 * 60 * 60 * 24)) + 1 }}
-                      days
-                  </span>
-                  </div>
-                  <button
-                    (click)="clearRange()"
-                    class="text-xs px-2 py-1 bg-destructive/10 text-destructive hover:bg-destructive/20 rounded-sm transition-colors">
-                    Clear Range
-                  </button>
-                </div>
-              }
+        <!-- Simple Alert Example -->
+        <div class="mb-16">
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+              </svg>
             </div>
+            <h3 class="text-xl font-bold text-foreground dark:text-white">Simple Alert (Without Icon)</h3>
+            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-900/50 text-gray-700 dark:text-gray-300 text-xs rounded-full font-medium">Minimal</span>
+          </div>
+
+          <div class="max-w-2xl">
+            <Alert variant="success">
+              <div class="flex-1">
+                <AlertTitle>Success!</AlertTitle>
+                <AlertDescription>
+                  Operation completed successfully.
+                </AlertDescription>
+              </div>
+            </Alert>
           </div>
         </div>
 
-        <!-- Calendar with Time Picker -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Calendar with Time Picker</h3>
-          <Calendar
-            [selectedDate]="timePickerDate()"
-            [currentMonth]="timePickerMonth()"
-            [selectedTime]="selectedTime()"
-            [showTimePicker]="true"
-            timeFormat="24h"
-            [minuteStep]="15"
-            (dateSelect)="onTimePickerDateSelect($event)"
-            (monthChange)="onTimePickerMonthChange($event)"
-            (timeChange)="onTimeChange($event)"
-            [accessibility]="{
-            label: 'Date and time picker'
-          }">
-          </Calendar>
-          @if (timePickerDate() && selectedTime()) {
-            <p class="text-sm mt-2">
-              <strong>Selected:</strong>
-              {{ timePickerDate()?.toLocaleDateString() }} at
-              {{ selectedTime().hours.toString().padStart(2, '0') }}
-                                                           :{{ selectedTime().minutes.toString().padStart(2, '0') }}
-            </p>
-          }
-        </div>
-
-        <!-- 12-Hour Time Format Calendar -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Calendar with 12-Hour Time</h3>
-          <Calendar
-            size="sm"
-            [selectedDate]="time12hDate()"
-            [currentMonth]="time12hMonth()"
-            [selectedTime]="selectedTime12h()"
-            [showTimePicker]="true"
-            timeFormat="12h"
-            [minuteStep]="30"
-            (dateSelect)="onTime12hDateSelect($event)"
-            (monthChange)="onTime12hMonthChange($event)"
-            (timeChange)="onTime12hChange($event)"
-            [accessibility]="{
-            label: 'Compact date and time picker with 12-hour format'
-          }">
-          </Calendar>
-          @if (time12hDate() && selectedTime12h()) {
-            <p class="text-sm mt-2">
-              <strong>Selected:</strong>
-              {{ time12hDate()?.toLocaleDateString() }} at
-              {{ selectedTime12h().hours > 12 ? (selectedTime12h().hours - 12).toString().padStart(2, '0') : selectedTime12h().hours.toString().padStart(2, '0') }}
-                                                        :{{ selectedTime12h().minutes.toString().padStart(2, '0') }} {{ selectedTime12h().hours >= 12 ? 'PM' : 'AM' }}
-            </p>
-          }
+        <!-- Usage Example -->
+        <div
+          class="p-8 bg-gradient-to-br from-amber-50 to-yellow-50 dark:bg-gradient-to-br dark:from-amber-950/30 dark:to-yellow-950/30 rounded-2xl border border-amber-200 dark:border-amber-800">
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-8 h-8 bg-amber-500 rounded-lg flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-amber-900 dark:text-amber-100">Quick Start</h4>
+          </div>
+          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-4 font-mono text-sm">
+            <div class="text-amber-600 dark:text-amber-400 mb-2">npx ngsui-cli add alert</div>
+            <div class="text-gray-600 dark:text-gray-400">
+              Installs Alert component with multiple variants and semantic styling
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Card Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Card Component</h2>
-      <div class="space-y-8">
+    <!-- Card Component Section -->
+    <section id="card" class="relative py-24 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:bg-gradient-to-br dark:from-emerald-950/30 dark:via-teal-950/30 dark:to-cyan-950/30">
+      <!-- Animated Background Pattern -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/20 dark:to-transparent"></div>
 
-        <!-- Card Variants -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Card Variants</h3>
-          <div class="grid grid-cols-1 gap-4">
-            <!-- Default Card -->
+      <div class="relative z-10 container mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-cyan-600 dark:bg-gradient-to-br dark:from-emerald-700 dark:to-cyan-800 rounded-2xl mb-6 shadow-xl">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent mb-4">
+            Card
+          </h2>
+          <p class="text-xl text-muted-foreground dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Flexible content containers with multiple variants and layouts. Perfect for displaying information, actions, and complex content structures.
+          </p>
+          <!-- Feature Badges -->
+          <div class="flex flex-wrap justify-center gap-2 mt-6">
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Flexible Layout</span>
+            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">Multiple Variants</span>
+            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">Composable</span>
+            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium">TypeScript Ready</span>
+          </div>
+        </div>
+
+        <!-- Demo Grid -->
+        <div class="grid lg:grid-cols-3 gap-8 mb-16">
+
+          <!-- Default Card -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-emerald-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Default Card</h3>
+              <span class="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs rounded-full font-medium">Standard</span>
+            </div>
+
             <Card variant="default">
               <CardHeader>
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3">
-                  <span class="text-white text-xl">🏠</span>
-                </div>
-                <CardTitle>Default Card</CardTitle>
-                <CardDescription>Standard card with subtle border and shadow</CardDescription>
+                <CardTitle>Team Collaboration</CardTitle>
+                <CardDescription>Streamline your workflow with powerful team features</CardDescription>
               </CardHeader>
               <CardContent>
-                <p class="text-sm text-muted-foreground">
-                  Perfect for general content display with clean, minimal styling.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Default</span>
-              </CardFooter>
-            </Card>
-
-            <!-- Outline Card -->
-            <Card variant="outline">
-              <CardHeader>
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-3">
-                  <span class="text-white text-xl">📋</span>
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span class="text-sm text-muted-foreground dark:text-gray-300">Real-time collaboration</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span class="text-sm text-muted-foreground dark:text-gray-300">Advanced permissions</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span class="text-sm text-muted-foreground dark:text-gray-300">Version control</span>
+                  </div>
                 </div>
-                <CardTitle>Outline Card</CardTitle>
-                <CardDescription>Emphasized border for important content</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p class="text-sm text-muted-foreground">
-                  Great for highlighting key information or call-to-action sections.
-                </p>
               </CardContent>
               <CardFooter>
-                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Outline</span>
+                <Button variant="default" size="sm">Get Started</Button>
+                <Button variant="ghost" size="sm" class="ml-2">Learn More</Button>
               </CardFooter>
             </Card>
+          </div>
 
-            <!-- Elevated Card -->
+          <!-- Elevated Card -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-cyan-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Elevated Card</h3>
+              <span class="px-2 py-1 bg-cyan-100 dark:bg-cyan-900/50 text-cyan-700 dark:text-cyan-300 text-xs rounded-full font-medium">Premium</span>
+            </div>
+
             <Card variant="elevated">
               <CardHeader>
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-3">
-                  <span class="text-white text-xl">⭐</span>
-                </div>
-                <CardTitle>Elevated Card</CardTitle>
-                <CardDescription>Enhanced shadow for premium content</CardDescription>
+                <CardTitle>Analytics Dashboard</CardTitle>
+                <CardDescription>Comprehensive insights into your application performance</CardDescription>
               </CardHeader>
               <CardContent>
-                <p class="text-sm text-muted-foreground">
-                  Ideal for featured content, testimonials, or premium offerings.
-                </p>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center p-3 bg-muted/50 dark:bg-gray-800/50 rounded-lg">
+                      <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">98.7%</div>
+                      <div class="text-xs text-muted-foreground dark:text-gray-400">Uptime</div>
+                    </div>
+                    <div class="text-center p-3 bg-muted/50 dark:bg-gray-800/50 rounded-lg">
+                      <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">2.4s</div>
+                      <div class="text-xs text-muted-foreground dark:text-gray-400">Load Time</div>
+                    </div>
+                  </div>
+                  <div class="text-center p-3 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 dark:from-emerald-500/20 dark:to-cyan-500/20 rounded-lg border border-emerald-200 dark:border-emerald-800">
+                    <div class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">+24%</div>
+                    <div class="text-xs text-muted-foreground dark:text-gray-400">Performance Increase</div>
+                  </div>
+                </div>
               </CardContent>
               <CardFooter>
-                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">Elevated</span>
+                <Button variant="default" size="sm">View Details</Button>
               </CardFooter>
             </Card>
           </div>
-        </div>
 
-        <!-- Product Cards -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Product Cards</h3>
-          <div class="grid grid-cols-1 gap-4">
-            <!-- Product Card 1 -->
-            <Card variant="default" class="overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="aspect-video bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
-                <div class="text-center text-white">
-                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                    💻
-                  </div>
-                  <p class="text-sm font-medium">Product Image</p>
-                </div>
-              </div>
+          <!-- Ghost Card -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-teal-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Ghost Card</h3>
+              <span class="px-2 py-1 bg-teal-100 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 text-xs rounded-full font-medium">Minimal</span>
+            </div>
+
+            <Card variant="ghost">
               <CardHeader>
-                <CardTitle class="text-lg">Premium Laptop</CardTitle>
-                <CardDescription>High-performance laptop for professionals</CardDescription>
+                <CardTitle>Quick Actions</CardTitle>
+                <CardDescription>Frequently used shortcuts and tools</CardDescription>
               </CardHeader>
               <CardContent>
-                <div class="space-y-2">
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Processor:</span>
-                    <span>Intel i7</span>
-                  </div>
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">RAM:</span>
-                    <span>16GB</span>
-                  </div>
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Storage:</span>
-                    <span>512GB SSD</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter class="flex justify-between items-center">
-                <span class="text-2xl font-bold text-primary">$1,299</span>
-                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
-                  Add to Cart
-                </button>
-              </CardFooter>
-            </Card>
-
-            <!-- Product Card 2 -->
-            <Card variant="outline" class="overflow-hidden hover:shadow-lg transition-shadow">
-              <div class="aspect-video bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-                <div class="text-center text-white">
-                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                    📱
-                  </div>
-                  <p class="text-sm font-medium">Product Image</p>
-                </div>
-              </div>
-              <CardHeader>
-                <CardTitle class="text-lg">Smart Phone</CardTitle>
-                <CardDescription>Latest smartphone with advanced features</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div class="space-y-2">
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Display:</span>
-                    <span>6.7" OLED</span>
-                  </div>
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Camera:</span>
-                    <span>108MP Triple</span>
-                  </div>
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Battery:</span>
-                    <span>5000mAh</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter class="flex justify-between items-center">
-                <span class="text-2xl font-bold text-primary">$899</span>
-                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
-                  Add to Cart
-                </button>
-              </CardFooter>
-            </Card>
-
-            <!-- Product Card 3 -->
-            <Card variant="elevated" class="overflow-hidden hover:shadow-xl transition-shadow">
-              <div
-                class="aspect-video bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center relative">
-                <div
-                  class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold">
-                  🔥 Hot
-                </div>
-                <div class="text-center text-white">
-                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                    🎧
-                  </div>
-                  <p class="text-sm font-medium">Product Image</p>
-                </div>
-              </div>
-              <CardHeader>
-                <CardTitle class="text-lg">Wireless Headphones</CardTitle>
-                <CardDescription>Premium noise-canceling headphones</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div class="space-y-2">
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Battery:</span>
-                    <span>30h Playback</span>
-                  </div>
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Connectivity:</span>
-                    <span>Bluetooth 5.0</span>
-                  </div>
-                  <div class="flex justify-between text-sm">
-                    <span class="text-muted-foreground">Features:</span>
-                    <span>ANC, Touch</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter class="flex justify-between items-center">
-                <span class="text-2xl font-bold text-primary">$349</span>
-                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90">
-                  Add to Cart
-                </button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
-
-        <!-- Dashboard Cards -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Dashboard Cards</h3>
-          <div class="grid grid-cols-1 gap-4">
-            <!-- Metric Card 1 -->
-            <Card variant="default" class="hover:shadow-md transition-shadow">
-              <CardContent class="p-6">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-sm font-medium text-muted-foreground">Total Users</p>
-                    <p class="text-2xl font-bold">12,345</p>
-                    <p class="text-xs text-green-600 flex items-center mt-1">
-                      <span class="mr-1">📈</span>
-                      +12% from last month
-                    </p>
-                  </div>
-                  <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <span class="text-blue-600 text-xl">👥</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Metric Card 2 -->
-            <Card variant="default" class="hover:shadow-md transition-shadow">
-              <CardContent class="p-6">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-sm font-medium text-muted-foreground">Revenue</p>
-                    <p class="text-2xl font-bold">$89,432</p>
-                    <p class="text-xs text-green-600 flex items-center mt-1">
-                      <span class="mr-1">💰</span>
-                      +8% from last month
-                    </p>
-                  </div>
-                  <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <span class="text-green-600 text-xl">💵</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Metric Card 3 -->
-            <Card variant="default" class="hover:shadow-md transition-shadow">
-              <CardContent class="p-6">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-sm font-medium text-muted-foreground">Orders</p>
-                    <p class="text-2xl font-bold">1,234</p>
-                    <p class="text-xs text-red-600 flex items-center mt-1">
-                      <span class="mr-1">📉</span>
-                      -3% from last month
-                    </p>
-                  </div>
-                  <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <span class="text-purple-600 text-xl">🛍️</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Metric Card 4 -->
-            <Card variant="default" class="hover:shadow-md transition-shadow">
-              <CardContent class="p-6">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-sm font-medium text-muted-foreground">Conversion</p>
-                    <p class="text-2xl font-bold">3.4%</p>
-                    <p class="text-xs text-green-600 flex items-center mt-1">
-                      <span class="mr-1">🎯</span>
-                      +0.8% from last month
-                    </p>
-                  </div>
-                  <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <span class="text-orange-600 text-xl">📊</span>
-                  </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <Button variant="outline" size="sm" class="h-12 flex-col">
+                    <svg class="w-4 h-4 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <span class="text-xs">Create</span>
+                  </Button>
+                  <Button variant="outline" size="sm" class="h-12 flex-col">
+                    <svg class="w-4 h-4 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4l-1 16h12L17 4"></path>
+                    </svg>
+                    <span class="text-xs">Import</span>
+                  </Button>
+                  <Button variant="outline" size="sm" class="h-12 flex-col">
+                    <svg class="w-4 h-4 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4"></path>
+                    </svg>
+                    <span class="text-xs">Export</span>
+                  </Button>
+                  <Button variant="outline" size="sm" class="h-12 flex-col">
+                    <svg class="w-4 h-4 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span class="text-xs">Settings</span>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
           </div>
         </div>
 
-        <!-- Profile Cards -->
-        <div>
-          <h3 class="text-md font-medium mb-3">Profile Cards</h3>
-          <div class="grid grid-cols-1 gap-4">
-            <!-- Team Member Card -->
-            <Card variant="default" class="text-center">
-              <CardHeader class="pb-2">
-                <div
-                  class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span class="text-white text-2xl">👨‍💻</span>
-                </div>
-                <CardTitle class="text-xl">John Doe</CardTitle>
-                <CardDescription>Senior Frontend Developer</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p class="text-sm text-muted-foreground mb-4">
-                  Passionate about creating beautiful and functional user interfaces with modern technologies.
-                </p>
-                <div class="flex justify-center space-x-2">
-                  <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">React</span>
-                  <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Angular</span>
-                  <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">TypeScript</span>
-                </div>
-              </CardContent>
-              <CardFooter class="justify-center">
-                <div class="flex space-x-2">
-                  <button
-                    class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm hover:bg-blue-600">
-                    in
-                  </button>
-                  <button
-                    class="w-8 h-8 bg-gray-800 text-white rounded-full flex items-center justify-center text-sm hover:bg-gray-900">
-                    &#64;gmail.com
-                  </button>
-                </div>
-              </CardFooter>
-            </Card>
+        <!-- Additional Card Examples -->
+        <div class="grid lg:grid-cols-2 gap-8">
 
-            <!-- Customer Testimonial -->
-            <Card variant="outline" class="relative">
-              <div class="absolute top-4 right-4 text-4xl opacity-20">"</div>
+          <!-- Filled Card with Complex Content -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Filled Card</h3>
+              <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs rounded-full font-medium">Rich Content</span>
+            </div>
+
+            <Card variant="filled" size="lg">
               <CardHeader>
                 <div class="flex items-center space-x-3">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
-                    <span class="text-white">👩‍💼</span>
+                  <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
                   </div>
                   <div>
-                    <CardTitle class="text-lg">Sarah Johnson</CardTitle>
-                    <CardDescription>Product Manager at TechCorp</CardDescription>
+                    <CardTitle>Pro Plan</CardTitle>
+                    <CardDescription>Everything you need for professional workflows</CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
-                <p class="text-sm text-muted-foreground italic">
-                  "This component library has significantly improved our development speed. The quality and consistency
-                  are outstanding!"
-                </p>
+                <div class="space-y-6">
+                  <div class="flex items-baseline space-x-2">
+                    <span class="text-4xl font-bold text-foreground dark:text-white">$29</span>
+                    <span class="text-muted-foreground dark:text-gray-400">/month</span>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex items-center space-x-3">
+                      <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-sm text-muted-foreground dark:text-gray-300">Unlimited projects</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                      <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-sm text-muted-foreground dark:text-gray-300">Advanced analytics</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                      <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-sm text-muted-foreground dark:text-gray-300">Priority support</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                      <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-sm text-muted-foreground dark:text-gray-300">Custom integrations</span>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
               <CardFooter>
-                <div class="flex items-center space-x-1">
-                  <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                  <span class="text-xs text-muted-foreground ml-2">5.0 rating</span>
-                </div>
+                <Button variant="default" class="w-full">Upgrade to Pro</Button>
               </CardFooter>
             </Card>
+          </div>
 
-            <!-- Achievement Card -->
-            <Card variant="filled" class="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
-              <CardHeader class="text-center">
-                <div
-                  class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span class="text-white text-2xl">🏆</span>
-                </div>
-                <CardTitle class="text-xl text-yellow-800">Achievement Unlocked!</CardTitle>
-                <CardDescription class="text-yellow-700">Milestone Reached</CardDescription>
+          <!-- Outline Card with Stats -->
+          <div class="space-y-6">
+            <div class="flex items-center space-x-3 mb-6">
+              <div class="w-3 h-3 bg-indigo-500 rounded-full"></div>
+              <h3 class="text-xl font-bold text-foreground dark:text-white">Outline Card</h3>
+              <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs rounded-full font-medium">Statistics</span>
+            </div>
+
+            <Card variant="outline" size="lg">
+              <CardHeader>
+                <CardTitle>Project Overview</CardTitle>
+                <CardDescription>Current status and key metrics</CardDescription>
               </CardHeader>
-              <CardContent class="text-center">
-                <p class="text-sm text-yellow-700 mb-3">
-                  Congratulations! You've successfully completed 100 projects.
-                </p>
-                <div class="bg-yellow-200 rounded-full h-2 mb-2">
-                  <div class="bg-yellow-500 h-2 rounded-full w-full"></div>
+              <CardContent>
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="text-center space-y-2">
+                    <div class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">42</div>
+                    <div class="text-sm text-muted-foreground dark:text-gray-400">Completed Tasks</div>
+                    <div class="w-full bg-muted dark:bg-gray-700 rounded-full h-2">
+                      <div class="bg-emerald-500 h-2 rounded-full w-5/6"></div>
+                    </div>
+                  </div>
+                  <div class="text-center space-y-2">
+                    <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">8</div>
+                    <div class="text-sm text-muted-foreground dark:text-gray-400">In Progress</div>
+                    <div class="w-full bg-muted dark:bg-gray-700 rounded-full h-2">
+                      <div class="bg-blue-500 h-2 rounded-full w-3/5"></div>
+                    </div>
+                  </div>
                 </div>
-                <span class="text-xs text-yellow-600">100/100 Projects Complete</span>
+                <div class="mt-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-indigo-700 dark:text-indigo-300">Next Deadline</span>
+                    <span class="text-sm text-muted-foreground dark:text-gray-400">March 15, 2025</span>
+                  </div>
+                </div>
               </CardContent>
-              <CardFooter class="justify-center">
-                <button class="px-4 py-2 bg-yellow-500 text-white rounded-md text-sm hover:bg-yellow-600">
-                  View Details
-                </button>
+              <CardFooter>
+                <Button variant="outline" size="sm">View All Tasks</Button>
+                <Button variant="default" size="sm" class="ml-auto">New Task</Button>
               </CardFooter>
             </Card>
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- Carousel Component Tests -->
-    <div>
-      <h2 class="text-lg font-semibold mb-4">Carousel Component</h2>
-      <div class="space-y-8">
-
-        <Carousel
-          [images]="[
-    'https://via.assets.so/game.png?id=2&q=95&w=800&h=300&fit=fill',
-    'https://via.assets.so/game.png?id=1&q=95&w=800&h=300&fit=fill',
-    'https://via.assets.so/game.png?id=3&q=95&w=800&h=300&fit=fill'
-  ]"
-          [width]="800"
-          [height]="400"
-          [interval]="5000"
-        />
-
-        <!-- Context Menu Component Tests -->
-        <div>
-          <h2 class="text-lg font-semibold mb-4">Context Menu Component</h2>
-          <div class="space-y-6">
-
-            <ContextMenu [menuOptions]="menuOptions" ></ContextMenu>
-            <div class="p-4">
-              <button class="p-2 bg-blue-500 text-white">Right-click me!</button>
+        <!-- Usage Example -->
+        <div class="mt-16 p-8 bg-gradient-to-br from-emerald-50 to-cyan-50 dark:bg-gradient-to-br dark:from-emerald-950/30 dark:to-cyan-950/30 rounded-2xl border border-emerald-200 dark:border-emerald-800">
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg font-bold text-emerald-900 dark:text-emerald-100">Quick Start</h4>
+          </div>
+          <div class="bg-white/70 dark:bg-black/20 rounded-lg p-4 font-mono text-sm">
+            <div class="text-emerald-600 dark:text-emerald-400 mb-2">npx ngsui-cli add card</div>
+            <div class="text-gray-600 dark:text-gray-400">
+              Installs Card component with header, content, footer, and multiple variants
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  </main>
 
-
+  <!-- Stunning Footer -->
+  <footer class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900 dark:from-slate-950 dark:via-gray-950 dark:to-black">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+    
+    <!-- Animated Particles -->
+    <div class="absolute top-0 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
+    <div class="absolute top-1/3 right-1/4 w-1 h-1 bg-purple-400/40 rounded-full animate-ping"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-emerald-400/20 rounded-full animate-bounce"></div>
+    
+    <div class="relative z-10 container mx-auto px-6 py-16">
+      <!-- Main Footer Content -->
+      <div class="grid lg:grid-cols-3 gap-12 mb-12">
+        
+        <!-- Brand Section -->
+        <div class="lg:col-span-1">
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+              <span class="text-white font-bold text-xl">⚡</span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white">Angular SuperUI</h3>
+              <p class="text-gray-400 text-sm">Modern Component Library</p>
+            </div>
+          </div>
+          <p class="text-gray-300 leading-relaxed mb-6">
+            A comprehensive, accessible, and beautifully designed component library for Angular applications. 
+            Built with TypeScript, Tailwind CSS, and modern best practices.
+          </p>
+          
+          <!-- Social Links -->
+          <div class="flex items-center space-x-4">
+            <a 
+              href="https://github.com/bhaimicrosoft/angular-superui" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-200 group"
+              aria-label="GitHub Repository">
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a 
+              href="https://www.npmjs.com/package/angular-superui" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:bg-red-500/20 hover:border-red-400/30 transition-all duration-200 group"
+              aria-label="NPM Package">
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-red-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113L5.13 5.323z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="lg:col-span-1">
+          <h4 class="text-lg font-semibold text-white mb-6">Components</h4>
+          <div class="space-y-3">
+            <a href="#accordion" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-blue-400 group-hover:text-blue-300">📂</span>
+              <span>Accordion</span>
+            </a>
+            <a href="#alert" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-amber-400 group-hover:text-amber-300">🚨</span>
+              <span>Alert</span>
+            </a>
+            <a href="#alert-dialog" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-yellow-400 group-hover:text-yellow-300">⚠️</span>
+              <span>Alert Dialog</span>
+            </a>
+            <a href="#card" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-green-400 group-hover:text-green-300">🃏</span>
+              <span>Card</span>
+            </a>
+          </div>
+          
+          <h4 class="text-lg font-semibold text-white mb-4 mt-8">Resources</h4>
+          <div class="space-y-3">
+            <a href="https://github.com/imukherjee/angular-superui" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-purple-400 group-hover:text-purple-300">📚</span>
+              <span>Documentation</span>
+            </a>
+            <a href="https://github.com/imukherjee/angular-superui/issues" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-red-400 group-hover:text-red-300">🐛</span>
+              <span>Report Issues</span>
+            </a>
+            <a href="https://github.com/imukherjee/angular-superui/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group">
+              <span class="text-teal-400 group-hover:text-teal-300">🤝</span>
+              <span>Contributing</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Developer Info -->
+        <div class="lg:col-span-1">
+          <h4 class="text-lg font-semibold text-white mb-6">Developer</h4>
+          <div class="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold text-lg">BK</span>
+              </div>
+              <div>
+                <h5 class="text-white font-semibold">Bhai Kaju</h5>
+                <p class="text-gray-400 text-sm">Full Stack Developer</p>
+              </div>
+            </div>
+            <p class="text-gray-300 text-sm mb-4">
+              Passionate about creating beautiful, accessible, and performant user interfaces with modern web technologies.
+            </p>
+            <a 
+              href="https://bhaikaju.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+              <span>Visit Portfolio</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/10 pt-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex flex-col md:flex-row items-center gap-4 text-sm text-gray-400">
+            <span>© 2025 Angular SuperUI. All rights reserved.</span>
+            <div class="flex items-center gap-1">
+              <span>Made with</span>
+              <span class="text-red-400 animate-pulse">❤️</span>
+              <span>using Angular & Tailwind CSS</span>
+            </div>
+          </div>
+          
+          <!-- Version Badge -->
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-gray-500">v1.0.3</span>
+            <div class="px-3 py-1 bg-green-500/20 border border-green-400/30 rounded-full text-green-400 text-xs font-medium">
+              ✨ Latest
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    
+    <!-- Decorative Elements -->
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"></div>
+  </footer>
+</div>

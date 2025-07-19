@@ -1,9 +1,9 @@
-import { 
-  Component, 
-  Input, 
-  Output, 
-  EventEmitter, 
-  OnInit, 
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
   OnChanges,
   ChangeDetectionStrategy,
   computed,
@@ -120,15 +120,15 @@ const getMonthName = (date: Date, locale: string = 'en-US'): string => {
 const getWeekdays = (locale: string = 'en-US'): string[] => {
   const date = new Date();
   const weekdays = [];
-  
+
   // Get first day of week (Sunday = 0)
   date.setDate(date.getDate() - date.getDay());
-  
+
   for (let i = 0; i < 7; i++) {
     weekdays.push(date.toLocaleDateString(locale, { weekday: 'short' }));
     date.setDate(date.getDate() + 1);
   }
-  
+
   return weekdays;
 };
 
@@ -237,7 +237,7 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
           {{ timeFormat === '12h' ? '24h' : '12h' }}
         </button>
       </div>
-      
+
       <div class="flex items-center gap-2">
         <!-- Hours -->
         <div class="flex flex-col items-center">
@@ -268,9 +268,9 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
             </svg>
           </button>
         </div>
-        
+
         <span class="text-sm font-medium">:</span>
-        
+
         <!-- Minutes -->
         <div class="flex flex-col items-center">
           <button
@@ -300,7 +300,7 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
             </svg>
           </button>
         </div>
-        
+
         <!-- AM/PM for 12h format -->
         @if (timeFormat === '12h') {
           <div class="flex flex-col">
@@ -314,7 +314,7 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
           </div>
         }
       </div>
-      
+
       <div class="mt-3 text-center">
         <span class="text-sm text-muted-foreground">
           {{ formatCurrentTime() }}
@@ -324,7 +324,7 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarTimePickerComponent implements OnInit, OnChanges {
+export class CalendarTimePicker implements OnInit, OnChanges {
   @Input() selectedTime: TimeSelection = { hours: 12, minutes: 0 };
   @Input() timeFormat: '12h' | '24h' = '24h';
   @Input() minuteStep: number = 15;
@@ -369,10 +369,10 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
   protected adjustHours(delta: number): void {
     const currentTime = this.timeSignal();
     let newHours = currentTime.hours + delta;
-    
+
     if (newHours < 0) newHours = 23;
     if (newHours > 23) newHours = 0;
-    
+
     const newTime = { ...currentTime, hours: newHours };
     this.updateTime(newTime);
   }
@@ -381,7 +381,7 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
     const currentTime = this.timeSignal();
     let newMinutes = currentTime.minutes + delta;
     let newHours = currentTime.hours;
-    
+
     if (newMinutes < 0) {
       newMinutes = 60 + newMinutes;
       newHours = newHours === 0 ? 23 : newHours - 1;
@@ -390,7 +390,7 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
       newMinutes = newMinutes - 60;
       newHours = newHours === 23 ? 0 : newHours + 1;
     }
-    
+
     const newTime = { hours: newHours, minutes: newMinutes };
     this.updateTime(newTime);
   }
@@ -409,7 +409,7 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
   protected onHoursChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     let hours = parseInt(input.value) || 0;
-    
+
     if (this.timeFormat === '12h') {
       if (hours < 1) hours = 1;
       if (hours > 12) hours = 12;
@@ -420,7 +420,7 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
       if (hours < 0) hours = 0;
       if (hours > 23) hours = 23;
     }
-    
+
     const currentTime = this.timeSignal();
     const newTime = { ...currentTime, hours };
     this.updateTime(newTime);
@@ -429,10 +429,10 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
   protected onMinutesChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     let minutes = parseInt(input.value) || 0;
-    
+
     if (minutes < 0) minutes = 0;
     if (minutes > 59) minutes = 59;
-    
+
     const currentTime = this.timeSignal();
     const newTime = { ...currentTime, minutes };
     this.updateTime(newTime);
@@ -473,11 +473,11 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div 
+    <div
       [class]="cn(monthHeaderClass())"
       role="banner"
       [attr.aria-label]="headerLabel()">
-      
+
       <!-- Previous Month Button -->
       <button
         type="button"
@@ -486,10 +486,10 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
         [attr.aria-label]="'Previous month, ' + prevMonthLabel()"
         (click)="onPreviousMonth()"
         (keydown)="onNavigationKeydown($event, 'prev')">
-        <svg 
-          class="h-4 w-4" 
-          fill="none" 
-          stroke="currentColor" 
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -497,10 +497,10 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
       </button>
 
       <!-- Month and Year Display with Dropdowns -->
-      <div 
+      <div
         class="calendar-month-year flex items-center space-x-1 relative"
         [attr.aria-live]="accessibility.live || 'polite'">
-        
+
         <!-- Month Dropdown -->
         <div class="relative">
           <button
@@ -514,7 +514,7 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          
+
           @if (showMonthDropdown()) {
             <div class="absolute top-full left-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 min-w-[120px]">
               <div class="p-1 max-h-48 overflow-y-auto">
@@ -547,7 +547,7 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
-          
+
           @if (showYearDropdown()) {
             <div class="absolute top-full left-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 min-w-[80px]">
               <div class="p-1 max-h-48 overflow-y-auto">
@@ -576,10 +576,10 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
         [attr.aria-label]="'Next month, ' + nextMonthLabel()"
         (click)="onNextMonth()"
         (keydown)="onNavigationKeydown($event, 'next')">
-        <svg 
-          class="h-4 w-4" 
-          fill="none" 
-          stroke="currentColor" 
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -589,7 +589,7 @@ export class CalendarTimePickerComponent implements OnInit, OnChanges {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarHeaderComponent implements OnChanges {
+export class CalendarHeader implements OnChanges {
   @Input() currentMonth: Date = new Date();
   @Input() minDate?: Date;
   @Input() maxDate?: Date;
@@ -609,7 +609,7 @@ export class CalendarHeaderComponent implements OnChanges {
   private maxDateSignal = signal<Date | undefined>(undefined);
   private localeSignal = signal('en-US');
   private sizeSignal = signal<'sm' | 'default' | 'lg'>('default');
-  
+
   // Dropdown state signals
   private showMonthDropdownSignal = signal(false);
   private showYearDropdownSignal = signal(false);
@@ -624,23 +624,23 @@ export class CalendarHeaderComponent implements OnChanges {
   }
 
   // Computed properties using signals
-  protected monthHeaderClass = computed(() => 
+  protected monthHeaderClass = computed(() =>
     monthHeaderVariants({ size: this.sizeSignal() })
   );
 
-  protected currentMonthName = computed(() => 
+  protected currentMonthName = computed(() =>
     getMonthName(this.currentMonthSignal(), this.localeSignal())
   );
 
-  protected currentYear = computed(() => 
+  protected currentYear = computed(() =>
     this.currentMonthSignal().getFullYear()
   );
 
-  protected headerLabel = computed(() => 
+  protected headerLabel = computed(() =>
     `Calendar navigation, current month is ${this.currentMonthName()} ${this.currentYear()}`
   );
 
-  protected monthLabelId = computed(() => 
+  protected monthLabelId = computed(() =>
     `month-${this.currentMonthSignal().getMonth()}-${this.currentYear()}`
   );
 
@@ -660,7 +660,7 @@ export class CalendarHeaderComponent implements OnChanges {
   protected monthOptions = computed(() => {
     const months = [];
     const currentYear = this.currentYear();
-    
+
     for (let i = 0; i < 12; i++) {
       const date = new Date(currentYear, i, 1);
       months.push({
@@ -668,19 +668,19 @@ export class CalendarHeaderComponent implements OnChanges {
         label: getMonthName(date, this.localeSignal())
       });
     }
-    
+
     return months;
   });
 
   protected yearOptions = computed(() => {
     const currentYear = this.currentYear();
     const years = [];
-    
+
     // Show 10 years before and 10 years after current year
     for (let year = currentYear - 10; year <= currentYear + 10; year++) {
       years.push(year);
     }
-    
+
     return years;
   });
 
@@ -737,7 +737,7 @@ export class CalendarHeaderComponent implements OnChanges {
   onDocumentClick(event: Event): void {
     const target = event.target as HTMLElement;
     const headerElement = target.closest('CalendarHeader');
-    
+
     if (!headerElement) {
       this.showMonthDropdownSignal.set(false);
       this.showYearDropdownSignal.set(false);
@@ -746,7 +746,7 @@ export class CalendarHeaderComponent implements OnChanges {
 
   protected onPreviousMonth(): void {
     if (this.isPrevDisabled()) return;
-    
+
     const newMonth = addMonths(this.currentMonthSignal(), -1);
     this.monthChange.emit(newMonth);
     this.navigationEvent.emit({
@@ -757,7 +757,7 @@ export class CalendarHeaderComponent implements OnChanges {
 
   protected onNextMonth(): void {
     if (this.isNextDisabled()) return;
-    
+
     const newMonth = addMonths(this.currentMonthSignal(), 1);
     this.monthChange.emit(newMonth);
     this.navigationEvent.emit({
@@ -784,15 +784,15 @@ export class CalendarHeaderComponent implements OnChanges {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div 
+    <div
       class="calendar-grid"
       role="grid"
       [attr.aria-labelledby]="gridLabelId()"
       [attr.aria-describedby]="accessibility.describedBy">
-      
+
       <!-- Weekday Headers -->
       <div class="calendar-weekdays grid grid-cols-7 mb-1" role="row">
-        <div 
+        <div
           *ngFor="let weekday of weekdays(); let i = index"
           class="calendar-weekday-header flex items-center justify-center p-2 text-xs font-medium text-muted-foreground"
           role="columnheader"
@@ -802,7 +802,7 @@ export class CalendarHeaderComponent implements OnChanges {
       </div>
 
       <!-- Calendar Days -->
-      <div class="calendar-days grid grid-cols-7 gap-1" 
+      <div class="calendar-days grid grid-cols-7 gap-1"
            [class.select-none]="isDragging()"
            [class.cursor-crosshair]="selectionMode === 'range' && isDragging()">
         <div
@@ -829,7 +829,7 @@ export class CalendarHeaderComponent implements OnChanges {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarGridComponent implements OnInit, OnChanges {
+export class CalendarGrid implements OnInit, OnChanges {
   @Input() currentMonth: Date = new Date();
   @Input() selectedDate?: Date | undefined;
   @Input() minDate?: Date;
@@ -850,7 +850,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
   @Output() rangeSelect = new EventEmitter<DateRange>();
 
   protected cn = cn;
-  
+
   // Signals for reactive state
   private currentMonthSignal = signal(new Date());
   private selectedDateSignal = signal<Date | undefined>(undefined);
@@ -860,7 +860,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
   private localeSignal = signal('en-US');
   private focusedDateSignal = signal<Date | null>(null);
   private hoverDateSignal = signal<Date | null>(null);
-  
+
   // Drag selection state
   protected isDragging = signal(false);
   protected dragStartDate = signal<Date | null>(null);
@@ -881,7 +881,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 
   private updateSignals(): void {
     this.currentMonthSignal.set(this.currentMonth);
-    
+
     // Only set selectedDate if we're in single mode
     if (this.selectionMode === 'single') {
       this.selectedDateSignal.set(this.selectedDate);
@@ -889,7 +889,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
       // Clear selected date in range mode to avoid confusion
       this.selectedDateSignal.set(undefined);
     }
-    
+
     this.selectedRangeSignal.set(this.selectedRange || { start: null, end: null });
     this.minDateSignal.set(this.minDate);
     this.maxDateSignal.set(this.maxDate);
@@ -897,7 +897,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
   }
 
   // Computed properties using signals
-  protected weekdays = computed(() => 
+  protected weekdays = computed(() =>
     getWeekdays(this.localeSignal())
   );
 
@@ -913,38 +913,38 @@ export class CalendarGridComponent implements OnInit, OnChanges {
     const month = currentMonth.getMonth();
     const daysInMonth = getDaysInMonth(currentMonth);
     const firstDay = getFirstDayOfMonth(currentMonth);
-    
+
     // Calculate starting point considering first day of week
     const startDay = (firstDay - this.firstDayOfWeek + 7) % 7;
-    
+
     // Add previous month days (if showing other months)
     if (this.showOtherMonths && startDay > 0) {
       const prevMonth = addMonths(currentMonth, -1);
       const daysInPrevMonth = getDaysInMonth(prevMonth);
-      
+
       for (let i = startDay - 1; i >= 0; i--) {
         const date = new Date(prevMonth.getFullYear(), prevMonth.getMonth(), daysInPrevMonth - i);
         days.push(this.createCalendarDay(date, false));
       }
     }
-    
+
     // Add current month days
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month, day);
       days.push(this.createCalendarDay(date, true));
     }
-    
+
     // Add next month days to fill grid (if showing other months)
     if (this.showOtherMonths) {
       const totalCells = Math.ceil(days.length / 7) * 7;
       const nextMonth = addMonths(currentMonth, 1);
-      
+
       for (let day = 1; days.length < totalCells; day++) {
         const date = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), day);
         days.push(this.createCalendarDay(date, false));
       }
     }
-    
+
     return days;
   });
 
@@ -953,22 +953,22 @@ export class CalendarGridComponent implements OnInit, OnChanges {
     const currentSelected = this.selectedDateSignal();
     const currentRange = this.selectedRangeSignal();
     const hoverDate = this.hoverDateSignal();
-    
-    const isSelected = this.selectionMode === 'single' 
+
+    const isSelected = this.selectionMode === 'single'
       ? (currentSelected ? isSameDay(date, currentSelected) : false)
       : false;
-    
+
     const isTodayDate = isToday(date);
     const isDisabled = this.isDateDisabled(date);
-    
+
     // Range selection logic
     let isRangeStart = false;
     let isRangeEnd = false;
     let isInRange = false;
-    
+
     if (this.selectionMode === 'range' && currentRange.start) {
       isRangeStart = isSameDay(date, currentRange.start);
-      
+
       if (currentRange.end) {
         isRangeEnd = isSameDay(date, currentRange.end);
         isInRange = isDateInRange(date, currentRange) && !isRangeStart && !isRangeEnd;
@@ -994,36 +994,36 @@ export class CalendarGridComponent implements OnInit, OnChanges {
   private isDateDisabled(date: Date): boolean {
     const minDate = this.minDateSignal();
     const maxDate = this.maxDateSignal();
-    
+
     // Check min/max dates (compare date only, not time)
     if (minDate) {
       const minDateOnly = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate());
       const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       if (dateOnly < minDateOnly) return true;
     }
-    
+
     if (maxDate) {
       const maxDateOnly = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate());
       const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       if (dateOnly > maxDateOnly) return true;
     }
-    
+
     // Check disabled dates
     if (this.disabledDates?.some(disabledDate => isSameDay(date, disabledDate))) {
       return true;
     }
-    
+
     // Check disabled days of week
     if (this.disabledDaysOfWeek?.includes(date.getDay())) {
       return true;
     }
-    
+
     return false;
   }
 
   protected getDayClasses(day: CalendarDay): string {
     let variant: 'default' | 'selected' | 'selected-today' | 'today' | 'outside' | 'disabled' | 'range-start' | 'range-end' | 'in-range' | 'range-start-end' = 'default';
-    
+
     if (day.isDisabled) {
       variant = 'disabled';
     } else if (this.selectionMode === 'range') {
@@ -1047,7 +1047,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
     } else if (!day.isCurrentMonth) {
       variant = 'outside';
     }
-    
+
     return cn(
       dayVariants({ variant }),
       !day.isCurrentMonth && !this.showOtherMonths && 'invisible',
@@ -1061,24 +1061,24 @@ export class CalendarGridComponent implements OnInit, OnChanges {
     if (focusedDate && isSameDay(day.date, focusedDate)) {
       return 0;
     }
-    
+
     // If no focused date, focus first non-disabled day
     if (!focusedDate && !day.isDisabled && index === this.calendarDays().findIndex(d => !d.isDisabled)) {
       return 0;
     }
-    
+
     return -1;
   }
 
   protected getDayAriaLabel(day: CalendarDay): string {
     const dateString = formatDate(day.date, this.locale);
     const parts = [dateString];
-    
+
     if (day.isToday) parts.push('today');
     if (day.isSelected) parts.push('selected');
     if (day.isDisabled) parts.push('unavailable');
     if (!day.isCurrentMonth) parts.push('outside current month');
-    
+
     return parts.join(', ');
   }
 
@@ -1088,12 +1088,12 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 
   protected onDayClick(day: CalendarDay, event: MouseEvent): void {
     if (day.isDisabled) return;
-    
+
     // Don't handle click if we were dragging
     if (this.isDragging()) return;
-    
+
     this.focusedDateSignal.set(day.date);
-    
+
     if (this.selectionMode === 'single') {
       this.selectedDateSignal.set(day.date);
       this.daySelect.emit({
@@ -1103,7 +1103,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
       });
     } else if (this.selectionMode === 'range') {
       const currentRange = this.selectedRangeSignal();
-      
+
       if (!currentRange.start || (currentRange.start && currentRange.end)) {
         // Start new range
         const newRange = { start: day.date, end: null };
@@ -1118,7 +1118,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
         // Complete range
         const start = currentRange.start;
         const end = day.date;
-        
+
         // Check if clicking the same date as start - this should clear the range instead
         if (isSameDay(start, end)) {
           // Clear range if clicking the same start date
@@ -1132,12 +1132,12 @@ export class CalendarGridComponent implements OnInit, OnChanges {
           });
           return;
         }
-        
+
         // Order the dates properly
-        const orderedRange = start.getTime() <= end.getTime() 
-          ? { start, end } 
+        const orderedRange = start.getTime() <= end.getTime()
+          ? { start, end }
           : { start: end, end: start };
-          
+
         this.selectedRangeSignal.set(orderedRange);
         this.rangeSelect.emit(orderedRange);
         this.daySelect.emit({
@@ -1151,10 +1151,10 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 
   protected onDayHover(day: CalendarDay): void {
     if (day.isDisabled || this.selectionMode !== 'range') return;
-    
+
     // Don't update hover if we're dragging
     if (this.isDragging()) return;
-    
+
     const currentRange = this.selectedRangeSignal();
     if (currentRange.start && !currentRange.end) {
       this.hoverDateSignal.set(day.date);
@@ -1169,35 +1169,35 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 
   protected onDayMouseDown(day: CalendarDay, event: MouseEvent): void {
     if (day.isDisabled || this.selectionMode !== 'range') return;
-    
+
     this.isDragging.set(false); // Will be set to true if mouse moves
     this.dragStartDate.set(day.date);
   }
 
   protected onDayMouseEnter(day: CalendarDay, event: MouseEvent): void {
     if (day.isDisabled || this.selectionMode !== 'range') return;
-    
+
     const dragStart = this.dragStartDate();
-    
+
     // Start dragging if mouse down was pressed and we moved to a different day
     if (dragStart && !this.isDragging() && !isSameDay(dragStart, day.date)) {
       this.isDragging.set(true);
-      
+
       // Prevent text selection when dragging
       event.preventDefault();
-      
+
       // Start new range
       const newRange = { start: dragStart, end: null };
       this.selectedRangeSignal.set(newRange);
       this.rangeSelect.emit(newRange);
     }
-    
+
     // Update range during drag
     if (this.isDragging() && dragStart) {
-      const orderedRange = dragStart.getTime() <= day.date.getTime() 
+      const orderedRange = dragStart.getTime() <= day.date.getTime()
         ? { start: dragStart, end: day.date }
         : { start: day.date, end: dragStart };
-        
+
       this.selectedRangeSignal.set(orderedRange);
       this.rangeSelect.emit(orderedRange);
     } else if (!this.isDragging()) {
@@ -1208,19 +1208,19 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 
   protected onDayMouseUp(day: CalendarDay, event: MouseEvent): void {
     if (this.selectionMode !== 'range') return;
-    
+
     const dragStart = this.dragStartDate();
-    
+
     if (this.isDragging() && dragStart) {
       // Complete drag selection
-      const orderedRange = dragStart.getTime() <= day.date.getTime() 
+      const orderedRange = dragStart.getTime() <= day.date.getTime()
         ? { start: dragStart, end: day.date }
         : { start: day.date, end: dragStart };
-        
+
       this.selectedRangeSignal.set(orderedRange);
       this.rangeSelect.emit(orderedRange);
     }
-    
+
     // Clean up
     this.isDragging.set(false);
     this.dragStartDate.set(null);
@@ -1235,7 +1235,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 
   protected onDayFocus(day: CalendarDay, event: FocusEvent): void {
     if (day.isDisabled) return;
-    
+
     this.focusedDateSignal.set(day.date);
     this.dayFocus.emit({
       type: 'focus',
@@ -1246,48 +1246,48 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 
   protected onDayKeydown(day: CalendarDay, event: KeyboardEvent, index: number): void {
     if (day.isDisabled) return;
-    
+
     const days = this.calendarDays();
     let newFocusIndex = index;
-    
+
     switch (event.key) {
       case 'Enter':
       case ' ':
         event.preventDefault();
         this.onDayClick(day, event as any);
         break;
-        
+
       case 'ArrowRight':
         event.preventDefault();
         newFocusIndex = this.findNextFocusableDay(index, 1);
         break;
-        
+
       case 'ArrowLeft':
         event.preventDefault();
         newFocusIndex = this.findNextFocusableDay(index, -1);
         break;
-        
+
       case 'ArrowDown':
         event.preventDefault();
         newFocusIndex = this.findNextFocusableDay(index, 7);
         break;
-        
+
       case 'ArrowUp':
         event.preventDefault();
         newFocusIndex = this.findNextFocusableDay(index, -7);
         break;
-        
+
       case 'Home':
         event.preventDefault();
         newFocusIndex = this.findFirstFocusableDay();
         break;
-        
+
       case 'End':
         event.preventDefault();
         newFocusIndex = this.findLastFocusableDay();
         break;
     }
-    
+
     if (newFocusIndex !== index && newFocusIndex >= 0 && newFocusIndex < days.length) {
       const newDay = days[newFocusIndex];
       if (!newDay.isDisabled) {
@@ -1304,14 +1304,14 @@ export class CalendarGridComponent implements OnInit, OnChanges {
   private findNextFocusableDay(currentIndex: number, step: number): number {
     const days = this.calendarDays();
     let newIndex = currentIndex + step;
-    
+
     while (newIndex >= 0 && newIndex < days.length) {
       if (!days[newIndex].isDisabled) {
         return newIndex;
       }
       newIndex += step > 0 ? 1 : -1;
     }
-    
+
     return currentIndex;
   }
 
@@ -1335,14 +1335,14 @@ export class CalendarGridComponent implements OnInit, OnChanges {
 @Component({
   selector: 'Calendar',
   standalone: true,
-  imports: [CommonModule, CalendarHeaderComponent, CalendarGridComponent, CalendarTimePickerComponent],
+  imports: [CommonModule, CalendarHeader, CalendarGrid, CalendarTimePicker],
   template: `
-    <div 
+    <div
       [class]="cn(calendarClass())"
       role="application"
       [attr.aria-label]="accessibility.label || 'Calendar'"
       [attr.aria-describedby]="accessibility.describedBy">
-      
+
       <CalendarHeader
         [currentMonth]="currentMonthSignal()"
         [minDate]="minDate"
@@ -1353,7 +1353,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
         (monthChange)="onMonthChange($event)"
         (navigationEvent)="onNavigationEvent($event)">
       </CalendarHeader>
-      
+
       <CalendarGrid
         [currentMonth]="currentMonthSignal()"
         [selectedDate]="selectedDateSignal()"
@@ -1371,7 +1371,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
         (dayFocus)="onDayFocus($event)"
         (rangeSelect)="onRangeSelect($event)">
       </CalendarGrid>
-      
+
       @if (showTimePicker) {
         <CalendarTimePicker
           [selectedTime]="selectedTimeSignal()"
@@ -1381,7 +1381,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
           (timeEvent)="onTimeEvent($event)">
         </CalendarTimePicker>
       }
-      
+
       <!-- Range selection display -->
       @if (selectionMode === 'range' && rangeDisplayText()) {
         <div class="mt-3 p-3 bg-muted/50 rounded-md border border-border/50">
@@ -1389,11 +1389,11 @@ export class CalendarGridComponent implements OnInit, OnChanges {
           <div class="text-sm text-muted-foreground">{{ rangeDisplayText() }}</div>
         </div>
       }
-      
+
       <!-- Screen reader live region for announcements -->
-      <div 
-        class="sr-only" 
-        aria-live="polite" 
+      <div
+        class="sr-only"
+        aria-live="polite"
         aria-atomic="true"
         [attr.id]="accessibility.describedBy">
         {{ screenReaderAnnouncement() }}
@@ -1402,7 +1402,7 @@ export class CalendarGridComponent implements OnInit, OnChanges {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
+export class Calendar implements CalendarProps, OnInit, OnChanges {
   @Input() selectedDate?: Date | undefined;
   @Input() currentMonth?: Date;
   @Input() minDate?: Date;
@@ -1446,7 +1446,7 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
     this.currentMonthSignal.set(this.currentMonth || new Date());
     this.selectedRangeSignal.set(this.selectedRange || { start: null, end: null });
     this.selectedTimeSignal.set(this.selectedTime || { hours: 12, minutes: 0 });
-    
+
     // Set up accessibility defaults
     if (!this.accessibility.describedBy) {
       this.accessibility.describedBy = `calendar-announcements-${Date.now()}`;
@@ -1464,11 +1464,11 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
   }
 
   // Computed properties
-  protected calendarClass = computed(() => 
+  protected calendarClass = computed(() =>
     calendarVariants({ size: this.size })
   );
 
-  protected screenReaderAnnouncement = computed(() => 
+  protected screenReaderAnnouncement = computed(() =>
     this.announcementSignal()
   );
 
@@ -1477,25 +1477,25 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
     if (!range.start) {
       return '';
     }
-    
+
     if (!range.end) {
       return `Start: ${formatDate(range.start, this.locale)} (Select end date)`;
     }
-    
+
     const startText = formatDate(range.start, this.locale);
     const endText = formatDate(range.end, this.locale);
-    
+
     // Calculate number of days
     const timeDiff = range.end.getTime() - range.start.getTime();
     const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1; // +1 to include both start and end days
-    
+
     return `${startText} → ${endText} (${daysDiff} day${daysDiff !== 1 ? 's' : ''})`;
   });
 
   protected onMonthChange(newMonth: Date): void {
     this.currentMonthSignal.set(newMonth);
     this.monthChange.emit(newMonth);
-    
+
     const monthName = getMonthName(newMonth, this.locale);
     this.announcementSignal.set(`Navigated to ${monthName} ${newMonth.getFullYear()}`);
   }
@@ -1509,11 +1509,11 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
     if (this.selectionMode === 'single') {
       this.selectedDateSignal.set(event.date);
       this.dateSelect.emit(event.date);
-      
+
       const dateString = formatDate(event.date, this.locale);
       this.announcementSignal.set(`Selected ${dateString}`);
     }
-    
+
     // Always emit the calendar event for other listeners
     this.calendarEvent.emit(event);
   }
@@ -1525,7 +1525,7 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
   protected onRangeSelect(range: DateRange): void {
     this.selectedRangeSignal.set(range);
     this.rangeSelect.emit(range);
-    
+
     if (!range.start) {
       this.announcementSignal.set('Range selection cleared');
     } else if (!range.end) {
@@ -1543,7 +1543,7 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
   protected onTimeChange(time: TimeSelection): void {
     this.selectedTimeSignal.set(time);
     this.timeChange.emit(time);
-    
+
     const timeString = formatTime(time.hours, time.minutes, this.timeFormat);
     this.announcementSignal.set(`Time changed to ${timeString}`);
   }
@@ -1555,10 +1555,10 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
   // Public API methods
   public selectDate(date: Date): void {
     if (this.isDateDisabled(date)) return;
-    
+
     this.selectedDateSignal.set(date);
     this.dateSelect.emit(date);
-    
+
     const dateString = formatDate(date, this.locale);
     this.announcementSignal.set(`Selected ${dateString}`);
   }
@@ -1566,7 +1566,7 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
   public navigateToMonth(date: Date): void {
     this.currentMonthSignal.set(date);
     this.monthChange.emit(date);
-    
+
     const monthName = getMonthName(date, this.locale);
     this.announcementSignal.set(`Navigated to ${monthName} ${date.getFullYear()}`);
   }
@@ -1584,13 +1584,13 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
       const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       if (dateOnly < minDateOnly) return true;
     }
-    
+
     if (this.maxDate) {
       const maxDateOnly = new Date(this.maxDate.getFullYear(), this.maxDate.getMonth(), this.maxDate.getDate());
       const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       if (dateOnly > maxDateOnly) return true;
     }
-    
+
     if (this.disabledDates?.some(disabledDate => isSameDay(date, disabledDate))) return true;
     if (this.disabledDaysOfWeek?.includes(date.getDay())) return true;
     return false;
@@ -1599,10 +1599,6 @@ export class CalendarComponent implements CalendarProps, OnInit, OnChanges {
 
 // Export all components and utilities
 export {
-  CalendarComponent as Calendar,
-  CalendarHeaderComponent as CalendarHeader,
-  CalendarGridComponent as CalendarGrid,
-  CalendarTimePickerComponent as CalendarTimePicker,
   calendarVariants,
   monthHeaderVariants,
   dayVariants,

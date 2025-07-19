@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, computed, signal, forwardRef } 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
-import { ButtonComponent } from '../button';
+import { Button } from '../button';
 
 /**
  * Checkbox component variants using Class Variance Authority (CVA)
@@ -81,13 +81,13 @@ export interface CheckboxAccessibility {
 
 /**
  * Checkbox Component
- * 
+ *
  * A control that allows the user to toggle between checked and not checked.
  * Supports three states: checked, unchecked, and indeterminate.
- * 
+ *
  * @example
  * ```html
- * <Checkbox 
+ * <Checkbox
  *   [(ngModel)]="isChecked"
  *   [disabled]="false"
  *   [indeterminate]="false"
@@ -99,11 +99,11 @@ export interface CheckboxAccessibility {
 @Component({
   selector: 'Checkbox',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [Button],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxComponent),
+      useExisting: forwardRef(() => Checkbox),
       multi: true,
     },
   ],
@@ -129,23 +129,23 @@ export interface CheckboxAccessibility {
       [attr.tabindex]="isDisabled() ? -1 : 0"
       (click)="toggle()"
       (keydown)="onKeyDown($event)"
-      (focused)="onFocus()"
-      (blurred)="onBlur()">
-      
+    >
+
       <!-- Check Icon -->
       @if (state() === 'checked') {
-        <svg 
+        <svg
           class="h-3 w-3 fill-current pointer-events-none"
           viewBox="0 0 16 16"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true">
-          <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+          <path
+            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
         </svg>
       }
-      
+
       <!-- Indeterminate Icon -->
       @if (state() === 'indeterminate') {
-        <svg 
+        <svg
           class="h-3 w-3 fill-current pointer-events-none"
           viewBox="0 0 16 16"
           xmlns="http://www.w3.org/2000/svg"
@@ -156,11 +156,11 @@ export interface CheckboxAccessibility {
     </Button>
   `,
 })
-export class CheckboxComponent implements ControlValueAccessor {
+export class Checkbox implements ControlValueAccessor {
   /**
    * Visual variant of the checkbox
    */
-  @Input() 
+  @Input()
   set variant(value: CheckboxVariant['variant']) {
     this._variant.set(value);
   }
@@ -172,7 +172,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   /**
    * Size variant of the checkbox
    */
-  @Input() 
+  @Input()
   set size(value: CheckboxVariant['size']) {
     this._size.set(value);
   }
@@ -184,7 +184,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   /**
    * Whether the checkbox is disabled
    */
-  @Input() 
+  @Input()
   set disabled(value: boolean | string) {
     this._disabled.set(!!value);
   }
@@ -196,7 +196,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   /**
    * Whether the checkbox is in indeterminate state
    */
-  @Input() 
+  @Input()
   set indeterminate(value: boolean | string) {
     this._indeterminate.set(!!value);
   }
@@ -208,7 +208,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   /**
    * Accessibility configuration
    */
-  @Input() 
+  @Input()
   set accessibility(value: CheckboxAccessibility) {
     this._accessibility.set(value);
   }
@@ -220,7 +220,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   /**
    * CSS classes to apply to the checkbox
    */
-  @Input() 
+  @Input()
   set class(value: string) {
     this._class.set(value);
   }
@@ -324,10 +324,10 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   setChecked(checked: boolean): void {
     if (this._disabled()) return;
-    
+
     this._checked.set(checked);
     this._indeterminate.set(false);
-    
+
     this.checkedChange.emit(checked);
     this.stateChange.emit(this.state());
     this._onChange()(checked);
@@ -338,7 +338,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   toggle(): void {
     if (this._disabled()) return;
-    
+
     if (this._indeterminate()) {
       this.setChecked(true);
     } else {
@@ -351,7 +351,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   setIndeterminate(indeterminate: boolean): void {
     if (this._disabled()) return;
-    
+
     this._indeterminate.set(indeterminate);
     this.stateChange.emit(this.state());
   }
@@ -376,7 +376,7 @@ export class CheckboxComponent implements ControlValueAccessor {
    */
   onFocus(): void {
     if (this._disabled()) return;
-    
+
     this._focused.set(true);
     this.focused.emit();
   }
@@ -413,4 +413,3 @@ export class CheckboxComponent implements ControlValueAccessor {
 /**
  * Export the checkbox component for easier importing
  */
-export { CheckboxComponent as Checkbox };

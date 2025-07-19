@@ -34,7 +34,7 @@ const buttonVariants = cva(
           'before:bg-accent/20 before:opacity-0 hover:before:opacity-100',
         ],
         secondary: [
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:text-background',
           'before:bg-foreground/5 before:opacity-0 hover:before:opacity-100',
         ],
         ghost: [
@@ -168,9 +168,9 @@ export interface ButtonLoadingState {
           ></path>
         </svg>
       }
-      
+
       <!-- Button content -->
-      <span 
+      <span
         [class.sr-only]="loading().loading && loading().loadingText"
         class="relative z-10"
       >
@@ -180,7 +180,7 @@ export interface ButtonLoadingState {
           <ng-content></ng-content>
         }
       </span>
-      
+
       <!-- Screen reader loading announcement -->
       @if (loading().loading && accessibility.ariaLive) {
         <span class="sr-only" [attr.aria-live]="accessibility.ariaLive">
@@ -190,25 +190,25 @@ export interface ButtonLoadingState {
     </button>
   `,
 })
-export class ButtonComponent {
+export class Button {
   /** Button variant styling */
   @Input() variant: ButtonVariant['variant'] = 'default';
-  
+
   /** Button size */
   @Input() size: ButtonVariant['size'] = 'default';
-  
+
   /** Button type attribute */
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  
+
   /** Disable the button */
   @Input() disabled = false;
-  
+
   /** Custom CSS classes */
   @Input() class = '';
-  
+
   /** Accessibility configuration */
   @Input() accessibility: ButtonAccessibility = {};
-  
+
   /** Loading state configuration */
   @Input() set loadingState(value: boolean | ButtonLoadingState) {
     if (typeof value === 'boolean') {
@@ -225,16 +225,16 @@ export class ButtonComponent {
       });
     }
   }
-  
+
   /** Click event emitter */
   @Output() buttonClick = new EventEmitter<MouseEvent>();
-  
+
   /** Keydown event emitter for custom keyboard handling */
   @Output() buttonKeydown = new EventEmitter<KeyboardEvent>();
-  
+
   /** Focus event emitter */
   @Output() buttonFocus = new EventEmitter<FocusEvent>();
-  
+
   /** Blur event emitter */
   @Output() buttonBlur = new EventEmitter<FocusEvent>();
 
@@ -272,7 +272,7 @@ export class ButtonComponent {
       event.stopPropagation();
       return;
     }
-    
+
     this.buttonClick.emit(event);
   }
 
@@ -283,7 +283,7 @@ export class ButtonComponent {
   protected handleKeydown(event: KeyboardEvent): void {
     // Emit custom keydown event
     this.buttonKeydown.emit(event);
-    
+
     // Handle space and enter keys for accessibility
     if (event.code === 'Space' || event.code === 'Enter') {
       if (!this.computedDisabled()) {
@@ -291,14 +291,14 @@ export class ButtonComponent {
         if (event.code === 'Space') {
           event.preventDefault();
         }
-        
+
         // Create a synthetic click event
         const clickEvent = new MouseEvent('click', {
           bubbles: true,
           cancelable: true,
           view: window,
         });
-        
+
         this.handleClick(clickEvent);
       }
     }

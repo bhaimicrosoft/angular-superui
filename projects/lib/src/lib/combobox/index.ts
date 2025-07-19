@@ -31,8 +31,8 @@ export class ComboboxService {
   readonly filteredOptions = computed(() => {
     const query = this._searchQuery().toLowerCase();
     if (!query) return this._options();
-    return this._options().filter(option => 
-      option.label.toLowerCase().includes(query) || 
+    return this._options().filter(option =>
+      option.label.toLowerCase().includes(query) ||
       option.value.toLowerCase().includes(query) ||
       (option.description && option.description.toLowerCase().includes(query))
     );
@@ -42,7 +42,7 @@ export class ComboboxService {
   readonly selectedOptions = computed(() => {
     const selectedValues = this._selectedValues();
     const options = this._options();
-    return selectedValues.map(value => 
+    return selectedValues.map(value =>
       options.find(opt => opt.value === value)
     ).filter(Boolean) as ComboboxOption[];
   });
@@ -51,7 +51,7 @@ export class ComboboxService {
   readonly groupedOptions = computed(() => {
     const options = this.filteredOptions();
     const grouped = new Map<string, ComboboxOption[]>();
-    
+
     options.forEach(option => {
       const group = option.group || 'default';
       if (!grouped.has(group)) {
@@ -59,7 +59,7 @@ export class ComboboxService {
       }
       grouped.get(group)!.push(option);
     });
-    
+
     return grouped;
   });
 
@@ -103,7 +103,7 @@ export class ComboboxService {
     if (isMultiple) {
       const currentValues = this._selectedValues();
       const valueExists = currentValues.includes(option.value);
-      
+
       if (valueExists) {
         // Remove from selection
         const newValues = currentValues.filter(v => v !== option.value);
@@ -120,7 +120,7 @@ export class ComboboxService {
       this._selectedLabel.set(option.label);
       this._searchQuery.set('');
       this.close();
-      
+
       // Notify value change
       this.onValueChangeCallback?.(option.value);
     }
@@ -147,14 +147,14 @@ export class ComboboxService {
     const currentValues = this._selectedValues();
     const newValues = currentValues.filter(v => v !== value);
     this._selectedValues.set(newValues);
-    
+
     // Update display label
     if (newValues.length > 0) {
       this._selectedLabel.set(`${newValues.length} selected`);
     } else {
       this._selectedLabel.set('');
     }
-    
+
     // Notify value change
     this.onValueChangeCallback?.(newValues);
   }
@@ -163,7 +163,7 @@ export class ComboboxService {
     this._selectedValue.set(null);
     this._selectedLabel.set('');
     this._searchQuery.set('');
-    
+
     // Notify value change
     this.onValueChangeCallback?.(null);
   }
@@ -223,12 +223,12 @@ export interface ComboboxOption {
     ComboboxService,
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ComboboxComponent),
+      useExisting: forwardRef(() => Combobox),
       multi: true
     }
   ],
   template: `
-    <div 
+    <div
       class="relative w-full"
       [class]="cn('combobox', className)"
     >
@@ -236,7 +236,7 @@ export interface ComboboxOption {
     </div>
   `
 })
-export class ComboboxComponent implements ControlValueAccessor, OnInit, OnChanges {
+export class Combobox implements ControlValueAccessor, OnInit, OnChanges {
   @Input() className: string = '';
   @Input() placeholder: string = 'Select an option...';
   @Input() searchPlaceholder: string = 'Search...';
@@ -248,7 +248,7 @@ export class ComboboxComponent implements ControlValueAccessor, OnInit, OnChange
   @Input() ariaLabelledBy: string = '';
   @Input() ariaDescribedBy: string = '';
   @Input() required: boolean = false;
-  
+
   // Phase 1: Core improvements
   @Input() multiple: boolean = false;
   @Input() maxSelections?: number;
@@ -256,13 +256,13 @@ export class ComboboxComponent implements ControlValueAccessor, OnInit, OnChange
   @Input() loadingMessage: string = 'Loading options...';
   @Input() error: string = '';
   @Input() validationState: 'valid' | 'invalid' | 'pending' = 'valid';
-  
+
   // Phase 2: Advanced features
   @Input() groupBy?: string;
   @Input() showGroupLabels: boolean = true;
   @Input() autoComplete: boolean = false;
   @Input() debounceTime: number = 300;
-  
+
   @Output() valueChange = new EventEmitter<string | string[] | null>();
   @Output() openChange = new EventEmitter<boolean>();
   @Output() searchChange = new EventEmitter<string>();
@@ -278,7 +278,7 @@ export class ComboboxComponent implements ControlValueAccessor, OnInit, OnChange
     this.comboboxService.setOptions(this.options);
     this.comboboxService.setLoading(this.loadingState);
     this.comboboxService.setError(this.error);
-    
+
     // Set up value change callback
     this.comboboxService.setValueChangeCallback((value: string | string[] | null) => {
       this.onValueChange(value);
@@ -370,11 +370,11 @@ export class ComboboxComponent implements ControlValueAccessor, OnInit, OnChange
       (keydown)="handleKeydown($event)"
     >
       <!-- Multi-select chips display -->
-      <div 
-        *ngIf="multiple && comboboxService.selectedOptions().length > 0" 
+      <div
+        *ngIf="multiple && comboboxService.selectedOptions().length > 0"
         class="flex flex-wrap gap-1 items-center flex-1 mr-2"
       >
-        <div 
+        <div
           *ngFor="let option of comboboxService.selectedOptions(); trackBy: trackByValue"
           class="inline-flex items-center gap-1 px-2 py-1 bg-secondary text-secondary-foreground rounded-md text-xs font-medium"
         >
@@ -391,35 +391,35 @@ export class ComboboxComponent implements ControlValueAccessor, OnInit, OnChange
           </button>
         </div>
         <!-- Show placeholder when no chips -->
-        <span 
-          *ngIf="comboboxService.selectedOptions().length === 0" 
+        <span
+          *ngIf="comboboxService.selectedOptions().length === 0"
           class="truncate text-muted-foreground"
         >
           {{ placeholder }}
         </span>
       </div>
-      
+
       <!-- Single select display -->
-      <span 
-        *ngIf="!multiple" 
+      <span
+        *ngIf="!multiple"
         class="truncate flex-1"
       >
         {{ comboboxService.selectedLabel() || placeholder }}
       </span>
-      
+
       <!-- Placeholder for multi-select when no selections -->
-      <span 
-        *ngIf="multiple && comboboxService.selectedOptions().length === 0" 
+      <span
+        *ngIf="multiple && comboboxService.selectedOptions().length === 0"
         class="truncate flex-1 text-muted-foreground"
       >
         {{ placeholder }}
       </span>
-      
-      <svg 
+
+      <svg
         class="ml-2 h-4 w-4 shrink-0 opacity-50 transition-transform duration-200"
         [class.rotate-180]="comboboxService.isOpen()"
-        fill="none" 
-        stroke="currentColor" 
+        fill="none"
+        stroke="currentColor"
         viewBox="0 0 24 24"
       >
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -427,7 +427,7 @@ export class ComboboxComponent implements ControlValueAccessor, OnInit, OnChange
     </button>
   `
 })
-export class ComboboxTriggerComponent {
+export class ComboboxTrigger {
   @Input() className: string = '';
   @Input() placeholder: string = 'Select an option...';
   @Input() disabled: boolean = false;
@@ -437,11 +437,11 @@ export class ComboboxTriggerComponent {
   @Input() ariaDescribedBy: string = '';
   @Input() required: boolean = false;
   @Input() multiple: boolean = false;
-  
+
   @ViewChild('triggerButton', { read: ElementRef }) triggerElement?: ElementRef;
 
   protected comboboxService = inject(ComboboxService);
-  private comboboxComponent = inject(ComboboxComponent);
+  private combobox = inject(Combobox);
   protected cn = cn;
 
   trackByValue(index: number, option: ComboboxOption): string {
@@ -455,9 +455,9 @@ export class ComboboxTriggerComponent {
 
   handleClick() {
     if (this.disabled) return;
-    
+
     this.comboboxService.toggle();
-    this.comboboxComponent.onOpenChange(this.comboboxService.isOpen());
+    this.combobox.onOpenChange(this.comboboxService.isOpen());
   }
 
   handleKeydown(event: KeyboardEvent) {
@@ -468,7 +468,7 @@ export class ComboboxTriggerComponent {
         event.preventDefault();
         if (!this.comboboxService.isOpen()) {
           this.comboboxService.open();
-          this.comboboxComponent.onOpenChange(true);
+          this.combobox.onOpenChange(true);
         } else {
           this.comboboxService.highlightNext();
         }
@@ -487,13 +487,13 @@ export class ComboboxTriggerComponent {
           // The service will handle the value change callback
         } else {
           this.comboboxService.open();
-          this.comboboxComponent.onOpenChange(true);
+          this.combobox.onOpenChange(true);
         }
         break;
       case 'Escape':
         event.preventDefault();
         this.comboboxService.close();
-        this.comboboxComponent.onOpenChange(false);
+        this.combobox.onOpenChange(false);
         break;
     }
   }
@@ -509,7 +509,7 @@ export class ComboboxTriggerComponent {
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div 
+    <div
       *ngIf="comboboxService.isOpen()"
       [id]="contentId"
       role="listbox"
@@ -582,11 +582,11 @@ export class ComboboxTriggerComponent {
               (click)="selectOption(option)"
               (mouseenter)="highlightOption(option)"
             >
-              <svg 
+              <svg
                 *ngIf="isSelected(option)"
                 class="mr-2 h-4 w-4"
-                fill="none" 
-                stroke="currentColor" 
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -620,11 +620,11 @@ export class ComboboxTriggerComponent {
             (click)="selectOption(option)"
             (mouseenter)="comboboxService.highlightOption(i)"
           >
-            <svg 
+            <svg
               *ngIf="isSelected(option)"
               class="mr-2 h-4 w-4"
-              fill="none" 
-              stroke="currentColor" 
+              fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
             >
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -639,7 +639,7 @@ export class ComboboxTriggerComponent {
         </div>
 
         <!-- Empty State -->
-        <div 
+        <div
           *ngIf="!comboboxService.loading() && !comboboxService.error() && comboboxService.filteredOptions().length === 0"
           class="py-6 text-center text-sm text-muted-foreground"
         >
@@ -649,7 +649,7 @@ export class ComboboxTriggerComponent {
     </div>
   `
 })
-export class ComboboxContentComponent implements OnInit {
+export class ComboboxContent implements OnInit {
   @Input() className: string = '';
   @Input() contentId: string = 'combobox-content';
   @Input() triggerId: string = 'combobox-trigger';
@@ -659,11 +659,11 @@ export class ComboboxContentComponent implements OnInit {
   @Input() loadingMessage: string = 'Loading options...';
   @Input() showGroupLabels: boolean = true;
   @Input() multiple: boolean = false;
-  
+
   @ViewChild('searchInput', { read: ElementRef }) searchInput?: ElementRef;
 
   protected comboboxService = inject(ComboboxService);
-  private comboboxComponent = inject(ComboboxComponent);
+  private combobox = inject(Combobox);
   protected cn = cn;
 
   ngOnInit() {
@@ -678,7 +678,7 @@ export class ComboboxContentComponent implements OnInit {
   handleSearchInput(event: Event) {
     const target = event.target as HTMLInputElement;
     this.comboboxService.setSearchQuery(target.value);
-    this.comboboxComponent.onSearchChange(target.value);
+    this.combobox.onSearchChange(target.value);
   }
 
   handleSearchKeydown(event: KeyboardEvent) {
@@ -699,7 +699,7 @@ export class ComboboxContentComponent implements OnInit {
       case 'Escape':
         event.preventDefault();
         this.comboboxService.close();
-        this.comboboxComponent.onOpenChange(false);
+        this.combobox.onOpenChange(false);
         break;
     }
   }
@@ -709,14 +709,14 @@ export class ComboboxContentComponent implements OnInit {
       case 'Escape':
         event.preventDefault();
         this.comboboxService.close();
-        this.comboboxComponent.onOpenChange(false);
+        this.combobox.onOpenChange(false);
         break;
     }
   }
 
   selectOption(option: ComboboxOption) {
     if (option.disabled) return;
-    
+
     this.comboboxService.selectOption(option, this.multiple);
     // The service will handle the value change callback
   }
@@ -757,7 +757,7 @@ export class ComboboxContentComponent implements OnInit {
     const target = event.target as HTMLElement;
     if (!target.closest('Combobox')) {
       this.comboboxService.close();
-      this.comboboxComponent.onOpenChange(false);
+      this.combobox.onOpenChange(false);
     }
   }
 }
@@ -768,7 +768,7 @@ export class ComboboxContentComponent implements OnInit {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div 
+    <div
       class="py-6 text-center text-sm"
       [class]="cn('text-muted-foreground', className)"
     >
@@ -776,17 +776,9 @@ export class ComboboxContentComponent implements OnInit {
     </div>
   `
 })
-export class ComboboxEmptyComponent {
+export class ComboboxEmpty {
   @Input() className: string = '';
   @Input() defaultMessage: string = 'No options found.';
-  
+
   protected cn = cn;
 }
-
-// Export all components
-export {
-  ComboboxComponent as Combobox,
-  ComboboxTriggerComponent as ComboboxTrigger,
-  ComboboxContentComponent as ComboboxContent,
-  ComboboxEmptyComponent as ComboboxEmpty
-};

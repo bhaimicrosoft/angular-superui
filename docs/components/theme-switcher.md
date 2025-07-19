@@ -4,12 +4,21 @@ A component that allows users to switch between light, dark, and system themes. 
 
 ## Features
 
+- **Multiple Display Modes**: Choose between toggle button, cycle button, or 3-button slider
 - **Multiple Theme Support**: Switch between light, dark, and system themes
 - **System Theme Detection**: Automatically detects and responds to system theme changes
 - **Local Storage Persistence**: Remembers user's theme preference across sessions
 - **Accessibility**: Full keyboard navigation and screen reader support
 - **Customizable**: Multiple variants, sizes, and styling options
 - **Zero Dependencies**: No external dependencies required
+
+## Display Modes
+
+The ThemeSwitcher component supports three different display modes:
+
+1. **Toggle Mode** (`mode="toggle"`): Classic single button that toggles between light and dark
+2. **Cycle Mode** (`mode="cycle"`): Single button that cycles through light → dark → system
+3. **Slider Mode** (`mode="slider"`): Three separate buttons for light, dark, and system themes
 
 ## Installation
 
@@ -18,6 +27,18 @@ ngsui-cli add theme-switcher
 ```
 
 This will add the `ThemeSwitcher` component to your project.
+
+**Note:**  
+To enable custom class-based dark mode variants in Tailwind v4, add the following line to your `styles.css` **immediately after the Tailwind import**:
+
+```css
+@import "tailwindcss";
+
+/*To enable class based dark mode for the application*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+```
+This allows you to target dark mode using the `.dark` class more flexibly in your styles.
 
 ## Usage
 
@@ -45,6 +66,9 @@ This will add the `ThemeSwitcher` component to your project.
 
 <!-- Cycle mode: cycles through light, dark, and system -->
 <ThemeSwitcher mode="cycle" />
+
+<!-- Slider mode: three separate buttons for each theme -->
+<ThemeSwitcher mode="slider" />
 ```
 
 ### Customization
@@ -70,7 +94,7 @@ This will add the `ThemeSwitcher` component to your project.
 |----------|------|---------|-------------|
 | `variant` | `'default' \| 'outline' \| 'ghost'` | `'default'` | Visual variant of the theme switcher |
 | `size` | `'sm' \| 'default' \| 'lg' \| 'xl'` | `'default'` | Size of the theme switcher |
-| `mode` | `'toggle' \| 'cycle'` | `'toggle'` | Switching behavior mode |
+| `mode` | `'toggle' \| 'cycle' \| 'slider'` | `'toggle'` | Switching behavior mode |
 | `showLabel` | `boolean` | `false` | Whether to show the current theme label |
 | `disabled` | `boolean` | `false` | Whether the theme switcher is disabled |
 | `class` | `string` | `''` | Additional CSS classes to apply |
@@ -231,3 +255,5 @@ The theme switcher component works in all modern browsers:
 - System theme detection uses the `prefers-color-scheme` media query
 - Theme preferences are stored in localStorage and persist across sessions
 - The component is fully reactive and updates immediately when the theme changes
+
+

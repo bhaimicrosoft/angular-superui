@@ -12,7 +12,7 @@ const breadcrumbVariants = cva(
 );
 
 /**
- * Breadcrumb List Variants  
+ * Breadcrumb List Variants
  */
 const breadcrumbListVariants = cva(
   'flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground'
@@ -73,7 +73,7 @@ const breadcrumbSeparatorVariants = cva(
 );
 
 /**
- * Breadcrumb Ellipsis Variants  
+ * Breadcrumb Ellipsis Variants
  */
 const breadcrumbEllipsisVariants = cva(
   'flex h-9 w-9 items-center justify-center'
@@ -99,7 +99,7 @@ export interface BreadcrumbAccessibility {
   standalone: true,
   imports: [NgClass],
   template: `
-    <nav 
+    <nav
       [ngClass]="cn(breadcrumbVariants(), class)"
       [attr.aria-label]="accessibility.ariaLabel || 'breadcrumb'"
       [attr.aria-live]="accessibility.ariaLive"
@@ -109,7 +109,7 @@ export interface BreadcrumbAccessibility {
     </nav>
   `
 })
-export class BreadcrumbComponent {
+export class Breadcrumb {
   @Input() class = '';
   @Input() accessibility: BreadcrumbAccessibility = {
     ariaLabel: 'breadcrumb',
@@ -128,7 +128,7 @@ export class BreadcrumbComponent {
   standalone: true,
   imports: [NgClass],
   template: `
-    <ol 
+    <ol
       [ngClass]="cn(breadcrumbListVariants(), class)"
       role="list"
     >
@@ -136,7 +136,7 @@ export class BreadcrumbComponent {
     </ol>
   `
 })
-export class BreadcrumbListComponent {
+export class BreadcrumbList {
   @Input() class = '';
 
   protected breadcrumbListVariants = breadcrumbListVariants;
@@ -151,7 +151,7 @@ export class BreadcrumbListComponent {
   standalone: true,
   imports: [NgClass],
   template: `
-    <li 
+    <li
       [ngClass]="cn(breadcrumbItemVariants(), class)"
       role="listitem"
     >
@@ -159,7 +159,7 @@ export class BreadcrumbListComponent {
     </li>
   `
 })
-export class BreadcrumbItemComponent {
+export class BreadcrumbItem {
   @Input() class = '';
 
   protected breadcrumbItemVariants = breadcrumbItemVariants;
@@ -213,7 +213,7 @@ export class BreadcrumbItemComponent {
     }
   `
 })
-export class BreadcrumbLinkComponent {
+export class BreadcrumbLink {
   @Input() href?: string;
   @Input() routerLink?: string | string[];
   @Input() target?: '_blank' | '_self' | '_parent' | '_top';
@@ -266,7 +266,7 @@ export class BreadcrumbLinkComponent {
     </span>
   `
 })
-export class BreadcrumbPageComponent {
+export class BreadcrumbPage {
   @Input() current = true;
   @Input() class = '';
   @Input() accessibility: { ariaLabel?: string } = {};
@@ -283,8 +283,8 @@ export class BreadcrumbPageComponent {
   standalone: true,
   imports: [NgClass],
   template: `
-    <li 
-      role="presentation" 
+    <li
+      role="presentation"
       [attr.aria-hidden]="true"
       [ngClass]="cn(breadcrumbSeparatorVariants(), class)"
     >
@@ -311,7 +311,7 @@ export class BreadcrumbPageComponent {
     </li>
   `
 })
-export class BreadcrumbSeparatorComponent {
+export class BreadcrumbSeparator {
   @Input() customSeparator = false;
   @Input() class = '';
 
@@ -355,7 +355,7 @@ export class BreadcrumbSeparatorComponent {
     </span>
   `
 })
-export class BreadcrumbEllipsisComponent {
+export class BreadcrumbEllipsis {
   @Input() customEllipsis = false;
   @Input() class = '';
 

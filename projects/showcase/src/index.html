@@ -6,6 +6,82 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- Prevent FOUC and initialize theme -->
+  <script>
+    (function() {
+      console.log('🎬 Initializing theme before Angular app loads...');
+      
+      try {
+        // Get stored theme preference
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Determine theme to apply
+        let shouldBeDark = false;
+        let themeValue = 'light'; // Default to light instead of system
+        
+        if (storedTheme === 'dark') {
+          shouldBeDark = true;
+          themeValue = 'dark';
+        } else if (storedTheme === 'light') {
+          shouldBeDark = false;
+          themeValue = 'light';
+        } else if (storedTheme === 'system') {
+          shouldBeDark = systemPrefersDark;
+          themeValue = 'system';
+        } else {
+          // No preference stored, default to light mode
+          shouldBeDark = false;
+          themeValue = 'light';
+        }
+        
+        // Apply theme class immediately to prevent FOUC
+        const root = document.documentElement;
+        const body = document.body;
+        const themeClass = shouldBeDark ? 'dark' : 'light';
+        
+        // Remove any existing theme classes
+        root.classList.remove('light', 'dark');
+        body.classList.remove('light', 'dark');
+        
+        // Add the correct theme class
+        root.classList.add(themeClass);
+        body.classList.add(themeClass);
+        
+        // Set data attributes
+        root.setAttribute('data-theme', themeClass);
+        root.setAttribute('data-theme-value', themeValue);
+        body.setAttribute('data-theme', themeClass);
+        body.setAttribute('data-theme-value', themeValue);
+        
+        // Set color scheme
+        root.style.colorScheme = themeClass;
+        body.style.colorScheme = themeClass;
+        
+        // Update theme color meta
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeColorMeta) {
+          themeColorMeta.setAttribute('content', shouldBeDark ? '#0f172a' : '#ffffff');
+        }
+        
+        console.log(`✅ Pre-init theme applied: ${themeClass} (value: ${themeValue}, stored: ${storedTheme}, system: ${systemPrefersDark})`);
+        
+        // Store the pre-initialization state for Angular to pick up
+        window.__THEME_PRELOAD__ = {
+          themeClass,
+          themeValue,
+          shouldBeDark,
+          storedTheme,
+          systemPrefersDark
+        };
+        
+      } catch (e) {
+        console.warn('❌ Failed to initialize theme:', e);
+      }
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

@@ -48,7 +48,7 @@ import {CommonModule} from '@angular/common';
     }
   `]
 })
-export class ContextMenuComponent implements AfterViewInit{
+export class ContextMenu implements AfterViewInit{
   isVisible = signal(false);
 
   // Store the current position for the context menu

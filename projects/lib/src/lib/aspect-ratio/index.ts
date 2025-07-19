@@ -43,7 +43,7 @@ export interface AspectRatioProps extends VariantProps<typeof aspectRatioVariant
     '[style.aspect-ratio]': 'customRatio'
   }
 })
-export class AspectRatioComponent implements AspectRatioProps {
+export class AspectRatio implements AspectRatioProps {
   @Input() ratio: AspectRatioProps['ratio'] = 'video';
   @Input() customRatio?: string;
   @Input() class?: string;

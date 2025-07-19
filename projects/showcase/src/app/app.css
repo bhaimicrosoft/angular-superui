@@ -1,0 +1,53 @@
+/* Enhanced Header Styles */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 30px); }
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enhanced backdrop blur support */
+@supports (backdrop-filter: blur(10px)) {
+  .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+  .backdrop-blur-sm {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  [data-theme="dark"] .backdrop-blur-sm {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Component showcase specific styles */
+.showcase-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure proper containment for all components */
+section {
+  position: relative;
+  contain: layout style;
+}

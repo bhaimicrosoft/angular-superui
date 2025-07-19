@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, signal, computed, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, computed, OnDestroy, ElementRef, ViewChild, AfterViewInit, effect } from '@angular/core';
 import { NgClass, NgIf } from '@angular/common';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
@@ -70,9 +70,9 @@ const alertDialogActionVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        default: 'bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:text-destructive-foreground',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:text-secondary-foreground',
       }
     },
     defaultVariants: {
@@ -88,7 +88,7 @@ const alertDialogCancelVariants = cva(
   [
     'mt-2 inline-flex h-10 items-center justify-center rounded-md border border-input',
     'bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors',
-    'hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2',
+    'text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2',
     'focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
     'sm:mt-0'
   ]
@@ -123,13 +123,13 @@ export interface AlertDialogAccessibility {
     @if (isDialogOpen()) {
       <div class="fixed inset-0 z-50" [attr.data-state]="isDialogOpen() ? 'open' : 'closed'">
         <!-- Overlay -->
-        <div 
+        <div
           [ngClass]="cn(alertDialogOverlayVariants(), overlayClass)"
           [attr.data-state]="isDialogOpen() ? 'open' : 'closed'"
           (click)="handleOverlayClick($event)"
           [attr.aria-hidden]="true"
         ></div>
-        
+
         <!-- Content Container -->
         <div
           #contentElement
@@ -149,7 +149,7 @@ export interface AlertDialogAccessibility {
     }
   `
 })
-export class AlertDialogComponent implements OnDestroy, AfterViewInit {
+export class AlertDialog implements OnDestroy, AfterViewInit {
   @ViewChild('contentElement') contentElement?: ElementRef<HTMLElement>;
 
   /** Whether the alert dialog is open */
@@ -188,7 +188,24 @@ export class AlertDialogComponent implements OnDestroy, AfterViewInit {
 
   private previousActiveElement: Element | null = null;
 
+  constructor() {
+    // Watch for dialog open/close changes
+    effect(() => {
+      if (this.isDialogOpen()) {
+        // Dialog opened
+        setTimeout(() => {
+          this.trapFocus();
+          this.announceToScreenReader();
+        });
+      } else {
+        // Dialog closed
+        this.restoreFocus();
+      }
+    });
+  }
+
   ngAfterViewInit() {
+    // Initial setup if dialog is already open
     if (this.isDialogOpen()) {
       this.trapFocus();
       this.announceToScreenReader();
@@ -214,7 +231,7 @@ export class AlertDialogComponent implements OnDestroy, AfterViewInit {
   protected handleKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.escapeKeyDown.emit(event);
-      
+
       if (!this.preventCloseOnEscape && !event.defaultPrevented) {
         this.close();
       }
@@ -257,14 +274,14 @@ export class AlertDialogComponent implements OnDestroy, AfterViewInit {
    */
   private trapFocus(): void {
     this.previousActiveElement = document.activeElement;
-    
+
     // Focus the first focusable element
     setTimeout(() => {
       if (this.contentElement) {
         const firstFocusable = this.contentElement.nativeElement.querySelector(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         ) as HTMLElement;
-        
+
         if (firstFocusable) {
           firstFocusable.focus();
         } else {
@@ -293,9 +310,9 @@ export class AlertDialogComponent implements OnDestroy, AfterViewInit {
     announcement.setAttribute('aria-atomic', 'true');
     announcement.className = 'sr-only';
     announcement.textContent = this.accessibility.announceText || 'Alert dialog opened';
-    
+
     document.body.appendChild(announcement);
-    
+
     // Remove the announcement after it's been read
     setTimeout(() => {
       if (document.body.contains(announcement)) {
@@ -334,9 +351,9 @@ export class AlertDialogComponent implements OnDestroy, AfterViewInit {
     </div>
   `
 })
-export class AlertDialogHeaderComponent {
+export class AlertDialogHeader {
   @Input() class = '';
-  
+
   protected alertDialogHeaderVariants = alertDialogHeaderVariants;
   protected cn = cn;
 }
@@ -354,9 +371,9 @@ export class AlertDialogHeaderComponent {
     </div>
   `
 })
-export class AlertDialogFooterComponent {
+export class AlertDialogFooter {
   @Input() class = '';
-  
+
   protected alertDialogFooterVariants = alertDialogFooterVariants;
   protected cn = cn;
 }
@@ -374,10 +391,10 @@ export class AlertDialogFooterComponent {
     </h2>
   `
 })
-export class AlertDialogTitleComponent {
+export class AlertDialogTitle {
   @Input() class = '';
   @Input() id = 'alert-dialog-title';
-  
+
   protected alertDialogTitleVariants = alertDialogTitleVariants;
   protected cn = cn;
 }
@@ -395,10 +412,10 @@ export class AlertDialogTitleComponent {
     </p>
   `
 })
-export class AlertDialogDescriptionComponent {
+export class AlertDialogDescription {
   @Input() class = '';
   @Input() id = 'alert-dialog-description';
-  
+
   protected alertDialogDescriptionVariants = alertDialogDescriptionVariants;
   protected cn = cn;
 }
@@ -424,13 +441,13 @@ export class AlertDialogDescriptionComponent {
     </button>
   `
 })
-export class AlertDialogActionComponent {
+export class AlertDialogAction {
   @Input() variant: VariantProps<typeof alertDialogActionVariants>['variant'] = 'default';
   @Input() type: 'button' | 'submit' = 'button';
   @Input() disabled = false;
   @Input() class = '';
   @Input() accessibility: { ariaLabel?: string; ariaDescribedBy?: string } = {};
-  
+
   @Output() actionClick = new EventEmitter<MouseEvent>();
   @Output() actionKeyDown = new EventEmitter<KeyboardEvent>();
 
@@ -473,11 +490,11 @@ export class AlertDialogActionComponent {
     </button>
   `
 })
-export class AlertDialogCancelComponent {
+export class AlertDialogCancel {
   @Input() type: 'button' | 'submit' = 'button';
   @Input() disabled = false;
   @Input() class = '';
-  
+
   @Output() cancelClick = new EventEmitter<MouseEvent>();
   @Output() cancelKeyDown = new EventEmitter<KeyboardEvent>();
 
@@ -496,7 +513,7 @@ export class AlertDialogCancelComponent {
 }
 
 // Export variants for external use
-export { 
+export {
   alertDialogOverlayVariants,
   alertDialogContentVariants,
   alertDialogHeaderVariants,

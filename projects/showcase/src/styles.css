@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/*To enable class based dark mode for the application*/
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     /* Base Theme Variables */
@@ -61,9 +64,16 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Force proper inheritance for all elements */
+  * {
+    border-color: hsl(var(--border));
   }
 
   .dark {
+    color-scheme: dark;
     --background: hsl(222.2 84% 4.9%);
     --foreground: hsl(210 40% 98%);
     --card: hsl(222.2 84% 4.9%);
