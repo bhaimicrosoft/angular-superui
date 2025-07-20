@@ -26,6 +26,11 @@ export interface DataTableColumn<T = any> {
   resizable?: boolean;
   hidden?: boolean;
   reorderable?: boolean;
+  pinned?: 'left' | 'right' | null;
+  groupable?: boolean;
+  cellRenderer?: (value: any, row: T, column: DataTableColumn<T>) => string;
+  filterOptions?: any[];
+  multiSelectFilter?: boolean;
 }
 
 export interface DataTableSort {
@@ -33,10 +38,19 @@ export interface DataTableSort {
   direction: 'asc' | 'desc' | null;
 }
 
+export interface DataTableMultiSort {
+  sorts: DataTableSort[];
+}
+
 export interface DataTableFilter {
   column: string;
   value: any;
-  operator: 'equals' | 'contains' | 'startsWith' | 'endsWith' | 'gt' | 'gte' | 'lt' | 'lte' | 'between';
+  operator: 'equals' | 'contains' | 'startsWith' | 'endsWith' | 'gt' | 'gte' | 'lt' | 'lte' | 'between' | 'in';
+}
+
+export interface DataTableAdvancedFilter extends DataTableFilter {
+  values?: any[]; // For multi-select filters
+  logic?: 'and' | 'or'; // For combining multiple filters on same column
 }
 
 export interface DataTablePagination {
@@ -62,6 +76,29 @@ export interface DataTableColumnReorderEvent<T = any> {
   columns: DataTableColumn<T>[];
 }
 
+export interface DataTableGrouping<T = any> {
+  enabled: boolean;
+  column?: string;
+  groups?: DataTableGroup<T>[];
+  expanded?: { [key: string]: boolean };
+}
+
+export interface DataTableGroup<T = any> {
+  key: string;
+  value: any;
+  label: string;
+  count: number;
+  items: T[];
+  expanded: boolean;
+}
+
+export interface DataTableVirtualScrolling {
+  enabled: boolean;
+  itemHeight: number;
+  bufferSize: number;
+  scrollContainer?: HTMLElement;
+}
+
 export interface DataTableConfig {
   sortable: boolean;
   filterable: boolean;
@@ -82,6 +119,11 @@ export interface DataTableConfig {
   hoverable: boolean;
   compact: boolean;
   elevated: boolean;
+  multiSort: boolean;
+  grouping: boolean;
+  pinColumns: boolean;
+  customRenderers: boolean;
+  advancedFiltering: boolean;
 }
 
 // Component variant styles
@@ -342,6 +384,104 @@ function cn(...inputs: any[]) {
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
+
+            <!-- Advanced Multi-Select Filter -->
+            <div *ngIf="config().advancedFiltering && column.multiSelectFilter" class="space-y-2">
+              <div class="text-xs text-gray-500 dark:text-gray-400">Multi-select filter</div>
+              <div class="max-h-32 overflow-y-auto border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800">
+                <label 
+                  *ngFor="let option of getColumnFilterOptions(column.key); trackBy: trackByFilterOption"
+                  class="flex items-center gap-2 px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    [value]="option"
+                    [checked]="isFilterOptionSelected(column.key, option)"
+                    (change)="toggleFilterOption(column.key, option, $event)"
+                    class="h-3 w-3 text-blue-600 border-gray-300 dark:border-gray-600 rounded focus:ring-blue-500"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300 truncate">{{ option }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Grouping Controls -->
+        <div *ngIf="config().grouping" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">Grouping</h4>
+            <div class="flex items-center gap-2">
+              <button
+                *ngIf="grouping().enabled"
+                type="button"
+                (click)="expandAllGroups()"
+                class="px-2 py-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Expand All
+              </button>
+              <button
+                *ngIf="grouping().enabled"
+                type="button"
+                (click)="collapseAllGroups()"
+                class="px-2 py-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                Collapse All
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <select
+              [value]="grouping().column || ''"
+              (change)="onGroupingChange($event)"
+              class="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+            >
+              <option value="">No grouping</option>
+              <option *ngFor="let column of groupableColumns(); trackBy: trackByColumn" [value]="column.key">
+                Group by {{ column.label }}
+              </option>
+            </select>
+            <button
+              *ngIf="grouping().enabled"
+              type="button"
+              (click)="toggleGrouping()"
+              class="px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 border border-red-300 dark:border-red-600 rounded"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Multi-Sort Controls -->
+        <div *ngIf="config().multiSort && multiSort().sorts.length > 0" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-3">
+            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">Active Sorts</h4>
+            <button
+              type="button"
+              (click)="clearMultiSort()"
+              class="px-2 py-1 text-xs text-red-600 dark:text-red-400 hover:underline"
+            >
+              Clear All
+            </button>
+          </div>
+          <div class="space-y-1">
+            <div 
+              *ngFor="let sortItem of multiSort().sorts; let i = index"
+              class="flex items-center gap-2 text-sm"
+            >
+              <span class="w-4 h-4 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded text-xs flex items-center justify-center">
+                {{ i + 1 }}
+              </span>
+              <span class="text-gray-700 dark:text-gray-300">{{ getColumnLabel(sortItem.column) }}</span>
+              <span class="text-gray-500 dark:text-gray-400">{{ sortItem.direction === 'asc' ? '↑' : '↓' }}</span>
+              <button
+                type="button"
+                (click)="removeSort(sortItem.column)"
+                class="ml-auto text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+              >
+                ×
+              </button>
+            </div>
           </div>
         </div>
         
@@ -364,34 +504,38 @@ function cn(...inputs: any[]) {
       <!-- Selection Info -->
       <div *ngIf="selection().selectedRows.length > 0" class="px-4 py-3 bg-blue-50 dark:bg-blue-900/20 border-b border-gray-200 dark:border-gray-700">
         <div class="flex items-center justify-between">
-          <span class="text-sm text-blue-700 dark:text-blue-300 font-medium">
-            {{ selection().selectedRows.length }} row(s) selected
-          </span>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-4">
             <button
               type="button"
               (click)="confirmBulkDelete()"
-              class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors"
+              class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors cursor-pointer"
             >
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
               </svg>
               Delete All
             </button>
-            <button
-              type="button"
-              (click)="clearSelection()"
-              class="text-sm text-blue-700 dark:text-blue-300 hover:underline"
-            >
-              Clear selection
-            </button>
+            <span class="text-sm text-blue-700 dark:text-blue-300 font-medium">
+              {{ selection().selectedRows.length }} row(s) selected
+            </span>
           </div>
+          <button
+            type="button"
+            (click)="clearSelection()"
+            class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-yellow-700 dark:text-yellow-300 border border-yellow-400 dark:border-yellow-500 bg-transparent hover:bg-yellow-50 dark:hover:bg-yellow-900/20 rounded-md transition-colors cursor-pointer"
+          >
+            Clear selection
+          </button>
         </div>
       </div>
 
       <!-- Table Container -->
-      <div class="relative overflow-auto" [style.max-height]="maxHeight()">
-        <table [class]="tableClasses()">
+      <div 
+        class="relative overflow-auto" 
+        [style.max-height]="maxHeight()"
+        (scroll)="config().virtualScrolling && virtualScrolling().enabled ? onVirtualScroll($event) : null"
+      >
+        <table [class]="tableClasses()" [style.min-width]="config().resizable ? '100%' : null">
           <!-- Header -->
           <thead [class.sticky]="config().stickyHeader" [class.top-0]="config().stickyHeader" [class.z-10]="config().stickyHeader" class="bg-white dark:bg-gray-900">
             <tr>
@@ -419,7 +563,7 @@ function cn(...inputs: any[]) {
                 [style.max-width]="column.maxWidth"
                 [style.text-align]="column.align || 'left'"
                 [draggable]="column.reorderable !== false && config().reorderable"
-                (click)="column.sortable && config().sortable && !isDragging() ? onSort(column.key) : null"
+                (click)="column.sortable && config().sortable && !isDragging() ? onSort(column.key, $event) : null"
                 (dragstart)="onColumnDragStart($event, columnIndex)"
                 (dragover)="onColumnDragOver($event, columnIndex)"
                 (dragenter)="onColumnDragEnter($event, columnIndex)"
@@ -428,52 +572,99 @@ function cn(...inputs: any[]) {
                 (dragend)="onColumnDragEnd($event)"
                 [class.cursor-pointer]="(column.sortable && config().sortable && !isDragging()) || (column.reorderable !== false && config().reorderable)"
                 [class.select-none]="column.sortable && config().sortable"
-                [attr.title]="column.reorderable !== false && config().reorderable ? 'Drag to reorder columns' : ''"
+                [attr.title]="getColumnTooltip(column)"
               >
-                <div class="flex items-center gap-2">
-                  <!-- Drag handle indicator -->
-                  <svg 
-                    *ngIf="column.reorderable !== false && config().reorderable"
-                    class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8M8 15h8"/>
-                  </svg>
-                  
-                  <span class="truncate">{{ column.label }}</span>
-                  
-                  <!-- Sort indicator -->
-                  <div *ngIf="column.sortable && config().sortable" class="flex flex-col flex-shrink-0">
-                    <svg
-                      class="h-3 w-3 text-gray-400 dark:text-gray-500"
-                      [class.text-blue-600]="sort().column === column.key && sort().direction === 'asc'"
-                      [class.dark:text-blue-400]="sort().column === column.key && sort().direction === 'asc'"
+                <div class="flex items-center justify-between gap-2 relative">
+                  <!-- Left side: Drag handle and Sort indicators -->
+                  <div class="flex items-center gap-1">
+                    <!-- Drag handle indicator -->
+                    <svg 
+                      *ngIf="column.reorderable !== false && config().reorderable"
+                      class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8M8 15h8"/>
                     </svg>
-                    <svg
-                      class="h-3 w-3 -mt-1 text-gray-400 dark:text-gray-500"
-                      [class.text-blue-600]="sort().column === column.key && sort().direction === 'desc'"
-                      [class.dark:text-blue-400]="sort().column === column.key && sort().direction === 'desc'"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                    
+                    <!-- Single sort indicator -->
+                    <div *ngIf="!config().multiSort && column.sortable && config().sortable" class="flex flex-col flex-shrink-0">
+                      <svg
+                        class="h-3 w-3 text-gray-400 dark:text-gray-500"
+                        [class.text-blue-600]="getSortDirection(column.key) === 'asc'"
+                        [class.dark:text-blue-400]="getSortDirection(column.key) === 'asc'"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 14l3-3 3 3"/>
+                      </svg>
+                      <svg
+                        class="h-3 w-3 -mt-1 text-gray-400 dark:text-gray-500"
+                        [class.text-blue-600]="getSortDirection(column.key) === 'desc'"
+                        [class.dark:text-blue-400]="getSortDirection(column.key) === 'desc'"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10l3 3 3-3"/>
+                      </svg>
+                    </div>
+                    
+                    <!-- Multi-sort indicator -->
+                    <div *ngIf="config().multiSort && getSortIndex(column.key) >= 0" 
+                         class="flex items-center gap-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-1 py-0.5 rounded">
+                      <span>{{ getSortIndex(column.key) + 1 }}</span>
+                      <svg
+                        class="h-3 w-3"
+                        [class.rotate-180]="getSortDirection(column.key) === 'desc'"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 14l3-3 3 3"/>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <!-- Center: Column label -->
+                  <span class="truncate text-center flex-1">{{ column.label }}</span>
+                  
+                  <!-- Right side: Filter indicator and Grouping button -->
+                  <div class="flex items-center gap-1">
+                    <!-- Filter indicator -->
+                    <div
+                      *ngIf="hasFilter(column.key)"
+                      class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full flex-shrink-0"
+                      [title]="'Filtered'"
+                    ></div>
+                    
+                    <!-- Grouping toggle -->
+                    <button
+                      *ngIf="column.groupable !== false && config().grouping"
+                      type="button"
+                      (click)="toggleGrouping(column.key); $event.stopPropagation()"
+                      [class.text-blue-600]="grouping().enabled && grouping().column === column.key"
+                      [class.dark:text-blue-400]="grouping().enabled && grouping().column === column.key"
+                      class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 dark:text-gray-500"
+                      title="Group by this column"
                     >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/>
-                    </svg>
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h4V4a1 1 0 011-1h6a1 1 0 011 1v4h4l-8 8-8-8z"/>
+                      </svg>
+                    </button>
                   </div>
 
-                  <!-- Filter indicator -->
+                  <!-- Column resizer -->
                   <div
-                    *ngIf="hasFilter(column.key)"
-                    class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full flex-shrink-0"
-                    [title]="'Filtered'"
-                  ></div>
+                    *ngIf="column.resizable !== false && config().resizable"
+                    class="absolute -right-1 top-0 bottom-0 w-3 cursor-col-resize bg-transparent hover:bg-blue-500/10 active:bg-blue-500/20 transition-colors group flex items-center justify-center"
+                    (mousedown)="onColumnResizeStart($event, column)"
+                    title="Resize column"
+                  >
+                    <div class="w-0.5 h-4 bg-gray-300 dark:bg-gray-600 group-hover:bg-blue-500 dark:group-hover:bg-blue-400 group-hover:w-1 transition-all duration-150 rounded-full"></div>
+                  </div>
                 </div>
               </th>
 
@@ -503,76 +694,272 @@ function cn(...inputs: any[]) {
               </td>
             </tr>
 
-            <!-- Data rows -->
-            <tr
-              *ngFor="let row of displayedData(); let i = index; trackBy: trackByRow"
-              [class]="rowClasses(row, i)"
-              (click)="onRowClick(row, i)"
-            >
-              <!-- Selection column -->
-              <td
-                *ngIf="config().selectable && selection().mode === 'multiple'"
-                [class]="dataCellClasses()"
-                class="w-12"
-              >
-                <input
-                  type="checkbox"
-                  [checked]="isRowSelected(row)"
-                  (change)="toggleRowSelection(row)"
-                  (click)="$event.stopPropagation()"
-                  class="h-4 w-4 text-primary border-border rounded focus:ring-primary"
-                />
-              </td>
+            <!-- Grouped Data Display -->
+            <ng-container *ngIf="config().grouping && grouping().enabled && groupedData() && !loading()">
+              <ng-container *ngFor="let group of groupedData(); trackBy: trackByGroup">
+                <!-- Group Header -->
+                <tr class="bg-gray-100 dark:bg-gray-800 border-t-2 border-gray-300 dark:border-gray-600">
+                  <td [attr.colspan]="totalColumns()" class="px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <button
+                        type="button"
+                        (click)="toggleGroupExpansion(group.key)"
+                        class="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+                      >
+                        <svg
+                          class="w-4 h-4 transition-transform"
+                          [class.rotate-90]="group.expanded"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                      </button>
+                      <span class="font-semibold text-gray-900 dark:text-gray-100">
+                        {{ group.label }} ({{ group.count }} items)
+                      </span>
+                    </div>
+                  </td>
+                </tr>
 
-              <!-- Data columns -->
-              <td
-                *ngFor="let column of visibleColumns(); trackBy: trackByColumn"
-                [class]="dataCellClasses(column)"
-                [style.width]="column.width"
-                [style.min-width]="column.minWidth"
-                [style.max-width]="column.maxWidth"
-                [style.text-align]="column.align || 'center'"
-                (dblclick)="startEdit(i, column.key)"
-              >
-                <!-- Edit mode -->
-                <div *ngIf="isEditing(i, column.key)" class="w-full">
-                  <input
-                    #editInput
-                    [type]="getInputType(column)"
-                    [value]="getCellValue(row, column)"
-                    (blur)="saveEdit(i, column.key, $event)"
-                    (keydown.enter)="saveEdit(i, column.key, $event)"
-                    (keydown.escape)="cancelEdit()"
-                    class="w-full px-2 py-1 text-sm border border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none"
-                  />
-                </div>
-
-                <!-- Display mode -->
-                <div *ngIf="!isEditing(i, column.key)" class="truncate">
-                  {{ formatCellValue(row, column) }}
-                </div>
-              </td>
-
-              <!-- Actions column -->
-              <td
-                *ngIf="config().editable"
-                [class]="dataCellClasses()"
-                class="w-24"
-              >
-                <div class="flex items-center justify-center gap-1">
-                  <button
-                    type="button"
-                    (click)="confirmDeleteRow(i); $event.stopPropagation()"
-                    class="p-1 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors cursor-pointer"
-                    title="Delete row"
+                <!-- Group Items -->
+                <ng-container *ngIf="group.expanded">
+                  <tr
+                    *ngFor="let row of group.items; let i = index; trackBy: trackByRow"
+                    [class]="rowClasses(row, i)"
+                    (click)="onRowClick(row, i)"
                   >
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                    </svg>
-                  </button>
-                </div>
-              </td>
-            </tr>
+                    <!-- Selection column -->
+                    <td
+                      *ngIf="config().selectable && selection().mode === 'multiple'"
+                      [class]="dataCellClasses()"
+                      class="w-12"
+                    >
+                      <input
+                        type="checkbox"
+                        [checked]="isRowSelected(row)"
+                        (change)="toggleRowSelection(row)"
+                        (click)="$event.stopPropagation()"
+                        class="h-4 w-4 text-primary border-border rounded focus:ring-primary"
+                      />
+                    </td>
+
+                    <!-- Data columns -->
+                    <td
+                      *ngFor="let column of visibleColumns(); trackBy: trackByColumn"
+                      [class]="dataCellClasses(column)"
+                      [style.width]="column.width"
+                      [style.min-width]="column.minWidth"
+                      [style.max-width]="column.maxWidth"
+                      [style.text-align]="column.align || 'center'"
+                      [style.left]="column.pinned === 'left' ? getColumnPinnedOffset(column, 'left') : null"
+                      [style.right]="column.pinned === 'right' ? getColumnPinnedOffset(column, 'right') : null"
+                      [class.sticky]="column.pinned"
+                      [class.z-10]="column.pinned"
+                      [class.bg-white]="column.pinned"
+                      [class.dark:bg-gray-900]="column.pinned"
+                      [class.border-r-2]="column.pinned === 'left'"
+                      [class.border-l-2]="column.pinned === 'right'"
+                      [class.border-gray-300]="column.pinned"
+                      [class.dark:border-gray-600]="column.pinned"
+                      (dblclick)="startEdit(i, column.key)"
+                    >
+                      <!-- Edit mode -->
+                      <div *ngIf="isEditing(i, column.key)" class="w-full">
+                        <input
+                          #editInput
+                          [type]="getInputType(column)"
+                          [value]="getCellValue(row, column)"
+                          (blur)="saveEdit(i, column.key, $event)"
+                          (keydown.enter)="saveEdit(i, column.key, $event)"
+                          (keydown.escape)="cancelEdit()"
+                          class="w-full px-2 py-1 text-sm border border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none"
+                        />
+                      </div>
+
+                      <!-- Display mode -->
+                      <div *ngIf="!isEditing(i, column.key)" class="truncate">
+                        {{ renderCellValue(row, column) }}
+                      </div>
+                    </td>
+
+                    <!-- Actions column -->
+                    <td
+                      *ngIf="config().editable"
+                      [class]="dataCellClasses()"
+                      class="w-24"
+                    >
+                      <div class="flex items-center justify-center gap-1">
+                        <button
+                          type="button"
+                          (click)="confirmDeleteRow(i); $event.stopPropagation()"
+                          class="p-1 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors cursor-pointer"
+                          title="Delete row"
+                        >
+                          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+
+            <!-- Regular Data Display (Non-grouped) -->
+            <ng-container *ngIf="!config().grouping || !grouping().enabled">
+              <!-- Virtual Scrolling Container -->
+              <tr 
+                *ngIf="config().virtualScrolling && virtualScrolling().enabled"
+                [style.height.px]="virtualScrollHeight()"
+                class="relative"
+              >
+                <td [attr.colspan]="totalColumns()" class="p-0">
+                  <div class="relative w-full h-full">
+                    <!-- Virtual rows -->
+                    <div
+                      *ngFor="let row of virtualDisplayedData(); let i = index; trackBy: trackByRow"
+                      [style.transform]="getVirtualRowTransform(i)"
+                      [style.height.px]="virtualScrolling().itemHeight"
+                      class="absolute w-full flex"
+                      [class]="rowClasses(row, visibleStartIndex() + i)"
+                      (click)="onRowClick(row, visibleStartIndex() + i)"
+                    >
+                      <!-- Virtual row content -->
+                      <div 
+                        *ngIf="config().selectable && selection().mode === 'multiple'"
+                        [class]="dataCellClasses()"
+                        class="w-12 flex items-center px-4"
+                      >
+                        <input
+                          type="checkbox"
+                          [checked]="isRowSelected(row)"
+                          (change)="toggleRowSelection(row)"
+                          (click)="$event.stopPropagation()"
+                          class="h-4 w-4 text-primary border-border rounded focus:ring-primary"
+                        />
+                      </div>
+
+                      <div
+                        *ngFor="let column of visibleColumns(); trackBy: trackByColumn"
+                        [class]="dataCellClasses(column)"
+                        [style.width]="column.width"
+                        [style.min-width]="column.minWidth"
+                        [style.max-width]="column.maxWidth"
+                        [style.text-align]="column.align || 'center'"
+                        class="flex items-center px-4"
+                        (dblclick)="startEdit(visibleStartIndex() + i, column.key)"
+                      >
+                        <div class="truncate w-full">
+                          {{ renderCellValue(row, column) }}
+                        </div>
+                      </div>
+
+                      <div
+                        *ngIf="config().editable"
+                        [class]="dataCellClasses()"
+                        class="w-24 flex items-center justify-center"
+                      >
+                        <button
+                          type="button"
+                          (click)="confirmDeleteRow(visibleStartIndex() + i); $event.stopPropagation()"
+                          class="p-1 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors cursor-pointer"
+                          title="Delete row"
+                        >
+                          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Regular Data rows (Non-virtual) -->
+              <tr
+                *ngFor="let row of displayedData(); let i = index; trackBy: trackByRow"
+                [class]="rowClasses(row, i)"
+                (click)="onRowClick(row, i)"
+                [hidden]="config().virtualScrolling && virtualScrolling().enabled"
+              >
+                <!-- Selection column -->
+                <td
+                  *ngIf="config().selectable && selection().mode === 'multiple'"
+                  [class]="dataCellClasses()"
+                  class="w-12"
+                >
+                  <input
+                    type="checkbox"
+                    [checked]="isRowSelected(row)"
+                    (change)="toggleRowSelection(row)"
+                    (click)="$event.stopPropagation()"
+                    class="h-4 w-4 text-primary border-border rounded focus:ring-primary"
+                  />
+                </td>
+
+                <!-- Data columns -->
+                <td
+                  *ngFor="let column of visibleColumns(); trackBy: trackByColumn"
+                  [class]="dataCellClasses(column)"
+                  [style.width]="column.width"
+                  [style.min-width]="column.minWidth"
+                  [style.max-width]="column.maxWidth"
+                  [style.text-align]="column.align || 'center'"
+                  [style.left]="column.pinned === 'left' ? getColumnPinnedOffset(column, 'left') : null"
+                  [style.right]="column.pinned === 'right' ? getColumnPinnedOffset(column, 'right') : null"
+                  [class.sticky]="column.pinned"
+                  [class.z-10]="column.pinned"
+                  [class.bg-white]="column.pinned"
+                  [class.dark:bg-gray-900]="column.pinned"
+                  [class.border-r-2]="column.pinned === 'left'"
+                  [class.border-l-2]="column.pinned === 'right'"
+                  [class.border-gray-300]="column.pinned"
+                  [class.dark:border-gray-600]="column.pinned"
+                  (dblclick)="startEdit(i, column.key)"
+                >
+                  <!-- Edit mode -->
+                  <div *ngIf="isEditing(i, column.key)" class="w-full">
+                    <input
+                      #editInput
+                      [type]="getInputType(column)"
+                      [value]="getCellValue(row, column)"
+                      (blur)="saveEdit(i, column.key, $event)"
+                      (keydown.enter)="saveEdit(i, column.key, $event)"
+                      (keydown.escape)="cancelEdit()"
+                      class="w-full px-2 py-1 text-sm border border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none"
+                    />
+                  </div>
+
+                  <!-- Display mode -->
+                  <div *ngIf="!isEditing(i, column.key)" class="truncate">
+                    {{ renderCellValue(row, column) }}
+                  </div>
+                </td>
+
+                <!-- Actions column -->
+                <td
+                  *ngIf="config().editable"
+                  [class]="dataCellClasses()"
+                  class="w-24"
+                >
+                  <div class="flex items-center justify-center gap-1">
+                    <button
+                      type="button"
+                      (click)="confirmDeleteRow(i); $event.stopPropagation()"
+                      class="p-1 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors cursor-pointer"
+                      title="Delete row"
+                    >
+                      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
 
             <!-- Empty state -->
             <tr *ngIf="displayedData().length === 0 && !loading()">
@@ -764,7 +1151,11 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   @Input() size = signal<VariantProps<typeof dataTableVariants>['size']>('default');
   @Input() density = signal<VariantProps<typeof dataTableVariants>['density']>('default');
 
-  @Input() config = signal<Partial<DataTableConfig>>({
+  // Internal config signal
+  private _configInput = signal<Partial<DataTableConfig>>({});
+
+  // Computed config with defaults
+  config = computed(() => ({
     sortable: true,
     filterable: true,
     searchable: true,
@@ -784,7 +1175,18 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     hoverable: true,
     compact: false,
     elevated: false,
-  });
+    multiSort: false,
+    grouping: false,
+    pinColumns: false,
+    customRenderers: false,
+    advancedFiltering: false,
+    ...this._configInput(),
+  }));
+
+  @Input() 
+  set configInput(value: Partial<DataTableConfig>) {
+    this._configInput.set(value);
+  }
 
   @Input() maxHeight = signal<string>('600px');
   
@@ -839,6 +1241,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   @Output() dataChange = new EventEmitter<T[]>();
   @Output() selectionChange = new EventEmitter<T[]>();
   @Output() sortChange = new EventEmitter<DataTableSort>();
+  @Output() multiSortChange = new EventEmitter<DataTableMultiSort>();
   @Output() filterChange = new EventEmitter<DataTableFilter[]>();
   @Output() pageChange = new EventEmitter<number>();
   @Output() cellEdit = new EventEmitter<{ row: T; column: string; oldValue: any; newValue: any }>();
@@ -847,16 +1250,46 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   @Output() refreshRequested = new EventEmitter<boolean>();
   @Output() export = new EventEmitter<string>();
   @Output() columnReorder = new EventEmitter<DataTableColumnReorderEvent<T>>();
+  @Output() columnResize = new EventEmitter<{ column: DataTableColumn<T>; width: string }>();
+  @Output() groupChange = new EventEmitter<DataTableGrouping<T>>();
 
   // Internal state
   searchTerm = signal<string>('');
   sort = signal<DataTableSort>({ column: '', direction: null });
+  multiSort = signal<DataTableMultiSort>({ sorts: [] });
   filters = signal<DataTableFilter[]>([]);
+  advancedFilters = signal<DataTableAdvancedFilter[]>([]);
   
   // Column reordering state
   draggedColumnIndex = signal<number>(-1);
   dragOverColumnIndex = signal<number>(-1);
   isDragging = signal<boolean>(false);
+  
+  // Column resizing state
+  resizingColumn = signal<{ column: DataTableColumn<T>; startX: number; startWidth: number } | null>(null);
+  isResizing = signal<boolean>(false);
+  
+  // Grouping state
+  grouping = signal<DataTableGrouping<T>>({
+    enabled: false,
+    column: undefined,
+    groups: [],
+    expanded: {}
+  });
+  
+  // Virtual scrolling state
+  virtualScrolling = signal<DataTableVirtualScrolling>({
+    enabled: false,
+    itemHeight: 40,
+    bufferSize: 10,
+    scrollContainer: undefined
+  });
+  
+  // Virtual scroll viewport
+  virtualScrollTop = signal<number>(0);
+  virtualScrollHeight = signal<number>(0);
+  visibleStartIndex = signal<number>(0);
+  visibleEndIndex = signal<number>(0);
   
   pagination = signal<DataTablePagination>({
     page: 0,
@@ -887,6 +1320,29 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   // Computed values
   visibleColumns = computed(() => 
     this._columns().filter(col => !col.hidden)
+  );
+
+  // Pinned columns computed properties
+  leftPinnedColumns = computed(() =>
+    this.visibleColumns().filter(col => col.pinned === 'left')
+  );
+
+  rightPinnedColumns = computed(() =>
+    this.visibleColumns().filter(col => col.pinned === 'right')
+  );
+
+  unpinnedColumns = computed(() =>
+    this.visibleColumns().filter(col => !col.pinned)
+  );
+
+  // Groupable columns
+  groupableColumns = computed(() =>
+    this.visibleColumns().filter(col => col.groupable !== false && this.config().grouping)
+  );
+
+  // Resizable columns
+  resizableColumns = computed(() =>
+    this.visibleColumns().filter(col => col.resizable !== false && this.config().resizable)
   );
 
   // Public computed properties for template access
@@ -941,8 +1397,41 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   sortedData = computed(() => {
     const data = [...this.filteredData()];
-    const sortConfig = this.sort();
+    
+    // Multi-sort support
+    if (this.config().multiSort && this.multiSort().sorts.length > 0) {
+      return data.sort((a, b) => {
+        for (const sortConfig of this.multiSort().sorts) {
+          if (!sortConfig.column || !sortConfig.direction) continue;
+          
+          const column = this._columns().find(col => col.key === sortConfig.column);
+          if (!column) continue;
 
+          const aVal = this.getCellValue(a, column);
+          const bVal = this.getCellValue(b, column);
+
+          let result = 0;
+          
+          if (column.type === 'number') {
+            result = (Number(aVal) || 0) - (Number(bVal) || 0);
+          } else if (column.type === 'date') {
+            result = new Date(aVal).getTime() - new Date(bVal).getTime();
+          } else if (column.type === 'boolean') {
+            result = (aVal === bVal) ? 0 : aVal ? 1 : -1;
+          } else {
+            result = String(aVal || '').localeCompare(String(bVal || ''));
+          }
+
+          if (result !== 0) {
+            return sortConfig.direction === 'desc' ? -result : result;
+          }
+        }
+        return 0;
+      });
+    }
+
+    // Single sort (fallback)
+    const sortConfig = this.sort();
     if (!sortConfig.column || !sortConfig.direction || !this.config().sortable) {
       return data;
     }
@@ -970,7 +1459,73 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     });
   });
 
+  groupedData = computed(() => {
+    if (!this.config().grouping || !this.grouping().enabled || !this.grouping().column) {
+      return null;
+    }
+
+    const data = this.sortedData();
+    const groupColumn = this.grouping().column!;
+    const column = this._columns().find(col => col.key === groupColumn);
+    if (!column) return null;
+
+    const groups = new Map<any, T[]>();
+    
+    data.forEach(row => {
+      const value = this.getCellValue(row, column);
+      const key = value?.toString() || 'null';
+      if (!groups.has(key)) {
+        groups.set(key, []);
+      }
+      groups.get(key)!.push(row);
+    });
+
+    const groupArray: DataTableGroup<T>[] = Array.from(groups.entries()).map(([key, items]) => ({
+      key,
+      value: key,
+      label: key === 'null' ? '(No value)' : key,
+      count: items.length,
+      items,
+      expanded: this.grouping().expanded?.[key] ?? true
+    }));
+
+    // Don't update signals in computed - return the data
+    return groupArray;
+  });
+
+  virtualDisplayedData = computed(() => {
+    if (!this.config().virtualScrolling || !this.virtualScrolling().enabled) {
+      return this.displayedData();
+    }
+
+    const data = this.displayedData();
+    const startIndex = this.visibleStartIndex();
+    const endIndex = this.visibleEndIndex();
+    
+    return data.slice(startIndex, endIndex);
+  });
+
   displayedData = computed(() => {
+    // If grouping is enabled, return flattened grouped data
+    if (this.config().grouping && this.grouping().enabled && this.groupedData()) {
+      const flatData: T[] = [];
+      this.groupedData()!.forEach(group => {
+        if (group.expanded) {
+          flatData.push(...group.items);
+        }
+      });
+      
+      if (!this.config().paginated) {
+        return flatData;
+      }
+
+      const { page, pageSize } = this.pagination();
+      const start = page * pageSize;
+      const end = start + pageSize;
+      
+      return flatData.slice(start, end);
+    }
+
     const data = this.sortedData();
     
     if (!this.config().paginated) {
@@ -1067,7 +1622,8 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       size: this.size(),
       density: this.density(),
     }),
-    'table-auto'
+    // Use table-fixed for better column width control when resizing is enabled
+    this.config().resizable ? 'table-fixed' : 'table-auto'
   ));
 
   headerCellClasses = (column?: DataTableColumn<T>, columnIndex?: number) => cn(
@@ -1076,7 +1632,9 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       align: column?.align,
       sticky: column?.sticky,
     }),
-    'px-4 py-3 font-semibold text-left transition-all duration-200',
+    'px-4 py-3 font-semibold text-left transition-all duration-200 relative',
+    // Add extra padding-right for resizable columns
+    column?.resizable !== false && this.config().resizable && 'pr-6',
     column?.cssClass,
     // Reordering styles
     column?.reorderable !== false && this.config().reorderable && 'cursor-move select-none',
@@ -1104,8 +1662,16 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   );
 
   // Event handlers
-  onSort(columnKey: string | keyof T) {
+  onSort(columnKey: string | keyof T, event?: Event) {
     if (!this.config().sortable) return;
+
+    // Check for multi-sort (Ctrl/Cmd key held)
+    const isMultiSort = this.config().multiSort && event && (event as KeyboardEvent | MouseEvent).ctrlKey;
+
+    if (isMultiSort) {
+      this.onMultiSort(columnKey);
+      return;
+    }
 
     const currentSort = this.sort();
     let direction: 'asc' | 'desc' | null = 'asc';
@@ -1117,6 +1683,64 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     const newSort = { column: String(columnKey), direction };
     this.sort.set(newSort);
     this.sortChange.emit(newSort);
+
+    // Clear multi-sort when single sort is used
+    if (this.config().multiSort) {
+      this.multiSort.set({ sorts: direction ? [newSort] : [] });
+      this.multiSortChange.emit(this.multiSort());
+    }
+  }
+
+  onMultiSort(columnKey: string | keyof T) {
+    if (!this.config().multiSort) return;
+
+    const column = String(columnKey);
+    const currentSorts = [...this.multiSort().sorts];
+    const existingIndex = currentSorts.findIndex(s => s.column === column);
+
+    if (existingIndex >= 0) {
+      // Update existing sort
+      const currentDirection = currentSorts[existingIndex].direction;
+      const newDirection: 'asc' | 'desc' | null = 
+        currentDirection === 'asc' ? 'desc' : 
+        currentDirection === 'desc' ? null : 'asc';
+
+      if (newDirection) {
+        currentSorts[existingIndex] = { column, direction: newDirection };
+      } else {
+        currentSorts.splice(existingIndex, 1);
+      }
+    } else {
+      // Add new sort
+      currentSorts.push({ column, direction: 'asc' });
+    }
+
+    const newMultiSort = { sorts: currentSorts };
+    this.multiSort.set(newMultiSort);
+    this.multiSortChange.emit(newMultiSort);
+
+    // Update single sort to match primary sort
+    if (currentSorts.length > 0) {
+      this.sort.set(currentSorts[0]);
+      this.sortChange.emit(currentSorts[0]);
+    } else {
+      this.sort.set({ column: '', direction: null });
+      this.sortChange.emit({ column: '', direction: null });
+    }
+  }
+
+  getSortIndex(columnKey: string): number {
+    if (!this.config().multiSort) return -1;
+    return this.multiSort().sorts.findIndex(s => s.column === columnKey);
+  }
+
+  getSortDirection(columnKey: string): 'asc' | 'desc' | null {
+    if (this.config().multiSort) {
+      const sort = this.multiSort().sorts.find(s => s.column === columnKey);
+      return sort?.direction || null;
+    }
+    const sort = this.sort();
+    return sort.column === columnKey ? sort.direction : null;
   }
 
   onSearch(event: Event) {
@@ -1277,6 +1901,344 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       default:
         return true;
     }
+  }
+
+  // Column resizing methods
+  onColumnResizeStart(event: MouseEvent, column: DataTableColumn<T>) {
+    if (!this.config().resizable || column.resizable === false) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const startX = event.clientX;
+    const headerElement = (event.target as HTMLElement).closest('th');
+    const startWidth = headerElement?.offsetWidth || 0;
+
+    this.resizingColumn.set({ column, startX, startWidth });
+    this.isResizing.set(true);
+
+    // Add a visual indicator during resize
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+
+    // Find the column index more reliably
+    const columnIndex = this.visibleColumns().findIndex(col => col === column);
+    const table = headerElement?.closest('table');
+
+    const onMouseMove = (e: MouseEvent) => {
+      const deltaX = e.clientX - startX;
+      const newWidth = Math.max(50, startWidth + deltaX); // Minimum width of 50px
+      const newWidthPx = `${newWidth}px`;
+      
+      // Update the header cell width immediately
+      if (headerElement) {
+        headerElement.style.width = newWidthPx;
+        headerElement.style.minWidth = newWidthPx;
+        headerElement.style.maxWidth = newWidthPx;
+      }
+      
+      // Update all data cells in the same column
+      if (table && columnIndex >= 0) {
+        // Calculate the actual column position accounting for selection column
+        const actualColumnIndex = columnIndex + (this.config().selectable && this.selection().mode === 'multiple' ? 1 : 0);
+        
+        // Update all rows' cells in this column
+        const rows = table.querySelectorAll('tbody tr:not([hidden])');
+        rows.forEach((row) => {
+          const cells = row.querySelectorAll('td');
+          const targetCell = cells[actualColumnIndex] as HTMLElement;
+          if (targetCell) {
+            targetCell.style.width = newWidthPx;
+            targetCell.style.minWidth = newWidthPx;
+            targetCell.style.maxWidth = newWidthPx;
+          }
+        });
+      }
+    };
+
+    const onMouseUp = () => {
+      // Reset cursor and selection
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      
+      this.isResizing.set(false);
+      const resizing = this.resizingColumn();
+      
+      if (resizing && headerElement) {
+        const finalWidth = headerElement.offsetWidth;
+        const finalWidthPx = `${finalWidth}px`;
+        
+        // Update the column object and trigger signal update
+        const updatedColumns = this._columns().map(col => {
+          if (col === resizing.column) {
+            return { ...col, width: finalWidthPx };
+          }
+          return col;
+        });
+        
+        // Update the columns signal to trigger change detection
+        this._columns.set(updatedColumns);
+        
+        // Emit the resize event
+        this.columnResize.emit({ column: resizing.column, width: finalWidthPx });
+      }
+      
+      this.resizingColumn.set(null);
+      
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  }
+
+  // Grouping methods
+  toggleGrouping(columnKey?: string | keyof T) {
+    if (!this.config().grouping) return;
+
+    const column = columnKey ? String(columnKey) : undefined;
+    const currentGrouping = this.grouping();
+
+    if (currentGrouping.enabled && currentGrouping.column === column) {
+      // Disable grouping
+      this.grouping.set({
+        enabled: false,
+        column: undefined,
+        groups: [],
+        expanded: {}
+      });
+    } else {
+      // Enable grouping with new column
+      this.grouping.set({
+        enabled: true,
+        column,
+        groups: [],
+        expanded: {}
+      });
+    }
+
+    this.groupChange.emit(this.grouping());
+  }
+
+  toggleGroupExpansion(groupKey: string) {
+    if (!this.config().grouping || !this.grouping().enabled) return;
+
+    this.grouping.update(g => ({
+      ...g,
+      expanded: {
+        ...g.expanded,
+        [groupKey]: !g.expanded?.[groupKey]
+      }
+    }));
+
+    this.groupChange.emit(this.grouping());
+  }
+
+  expandAllGroups() {
+    if (!this.config().grouping || !this.grouping().enabled) return;
+
+    const expanded: { [key: string]: boolean } = {};
+    this.groupedData()?.forEach(group => {
+      expanded[group.key] = true;
+    });
+
+    this.grouping.update(g => ({ ...g, expanded }));
+    this.groupChange.emit(this.grouping());
+  }
+
+  collapseAllGroups() {
+    if (!this.config().grouping || !this.grouping().enabled) return;
+
+    const expanded: { [key: string]: boolean } = {};
+    this.groupedData()?.forEach(group => {
+      expanded[group.key] = false;
+    });
+
+    this.grouping.update(g => ({ ...g, expanded }));
+    this.groupChange.emit(this.grouping());
+  }
+
+  // Virtual scrolling methods
+  onVirtualScroll(event: Event) {
+    if (!this.config().virtualScrolling || !this.virtualScrolling().enabled) return;
+
+    const target = event.target as HTMLElement;
+    const scrollTop = target.scrollTop;
+    this.virtualScrollTop.set(scrollTop);
+
+    const { itemHeight, bufferSize } = this.virtualScrolling();
+    const containerHeight = target.clientHeight;
+    const totalItems = this.displayedData().length;
+
+    const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - bufferSize);
+    const visibleCount = Math.ceil(containerHeight / itemHeight) + (2 * bufferSize);
+    const endIndex = Math.min(totalItems, startIndex + visibleCount);
+
+    this.visibleStartIndex.set(startIndex);
+    this.visibleEndIndex.set(endIndex);
+    this.virtualScrollHeight.set(totalItems * itemHeight);
+  }
+
+  getVirtualRowTransform(index: number): string {
+    if (!this.config().virtualScrolling || !this.virtualScrolling().enabled) return '';
+    
+    const { itemHeight } = this.virtualScrolling();
+    const actualIndex = this.visibleStartIndex() + index;
+    return `translateY(${actualIndex * itemHeight}px)`;
+  }
+
+  // Advanced filtering methods
+  onAdvancedFilter(columnKey: string | keyof T, values: any[], operator: DataTableAdvancedFilter['operator'] = 'in') {
+    if (!this.config().advancedFiltering) return;
+
+    const column = String(columnKey);
+    
+    if (!values || values.length === 0) {
+      // Remove filter if no values selected
+      this.advancedFilters.update(filters => filters.filter(f => f.column !== column));
+    } else {
+      // Add or update advanced filter
+      const existingFilterIndex = this.advancedFilters().findIndex(f => f.column === column);
+      
+      const newFilter: DataTableAdvancedFilter = { 
+        column, 
+        value: values.length === 1 ? values[0] : values,
+        values,
+        operator,
+        logic: 'or'
+      };
+      
+      if (existingFilterIndex >= 0) {
+        this.advancedFilters.update(filters => {
+          const updated = [...filters];
+          updated[existingFilterIndex] = newFilter;
+          return updated;
+        });
+      } else {
+        this.advancedFilters.update(filters => [...filters, newFilter]);
+      }
+    }
+
+    this.goToPage(0); // Reset to first page when filtering
+    this.filterChange.emit([...this.filters(), ...this.advancedFilters()]);
+  }
+
+  getColumnFilterOptions(columnKey: string): any[] {
+    const column = this._columns().find(col => col.key === columnKey);
+    if (!column || !column.filterOptions) {
+      // Generate unique values from data
+      const uniqueValues = new Set();
+      this._data().forEach(row => {
+        const value = this.getCellValue(row, column!);
+        if (value !== null && value !== undefined) {
+          uniqueValues.add(value);
+        }
+      });
+      return Array.from(uniqueValues).sort();
+    }
+    return column.filterOptions;
+  }
+
+  // Custom cell renderer method
+  renderCellValue(row: T, column: DataTableColumn<T>): string {
+    if (this.config().customRenderers && column.cellRenderer) {
+      return column.cellRenderer(this.getCellValue(row, column), row, column);
+    }
+    return this.formatCellValue(row, column);
+  }
+
+  // Advanced filtering methods
+  isFilterOptionSelected(columnKey: string, option: any): boolean {
+    const filter = this.advancedFilters().find(f => f.column === columnKey);
+    return filter?.values?.includes(option) || false;
+  }
+
+  toggleFilterOption(columnKey: string, option: any, event: Event) {
+    const target = event.target as HTMLInputElement;
+    const isChecked = target.checked;
+    
+    this.advancedFilters.update(filters => {
+      const existingIndex = filters.findIndex(f => f.column === columnKey);
+      
+      if (existingIndex >= 0) {
+        const existing = filters[existingIndex];
+        const values = existing.values || [];
+        
+        const newValues = isChecked 
+          ? [...values, option]
+          : values.filter(v => v !== option);
+          
+        if (newValues.length === 0) {
+          // Remove filter if no values selected
+          return filters.filter((_, i) => i !== existingIndex);
+        } else {
+          // Update filter with new values
+          const updated = [...filters];
+          updated[existingIndex] = {
+            ...existing,
+            values: newValues,
+            value: newValues.length === 1 ? newValues[0] : newValues
+          };
+          return updated;
+        }
+      } else if (isChecked) {
+        // Add new filter
+        return [...filters, {
+          column: columnKey,
+          value: option,
+          values: [option],
+          operator: 'in' as const,
+          logic: 'or' as const
+        }];
+      }
+      
+      return filters;
+    });
+
+    this.goToPage(0);
+    this.filterChange.emit([...this.filters(), ...this.advancedFilters()]);
+  }
+
+  trackByFilterOption = (index: number, option: any) => option;
+
+  // Grouping control methods
+  onGroupingChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const columnKey = target.value;
+    
+    if (columnKey) {
+      this.toggleGrouping(columnKey);
+    } else {
+      this.toggleGrouping();
+    }
+  }
+
+  // Multi-sort control methods
+  clearMultiSort() {
+    this.multiSort.set({ sorts: [] });
+    this.sort.set({ column: '', direction: null });
+    this.multiSortChange.emit({ sorts: [] });
+    this.sortChange.emit({ column: '', direction: null });
+  }
+
+  removeSort(columnKey: string) {
+    const currentSorts = this.multiSort().sorts.filter(s => s.column !== columnKey);
+    this.multiSort.set({ sorts: currentSorts });
+    this.multiSortChange.emit({ sorts: currentSorts });
+    
+    if (currentSorts.length > 0) {
+      this.sort.set(currentSorts[0]);
+      this.sortChange.emit(currentSorts[0]);
+    } else {
+      this.sort.set({ column: '', direction: null });
+      this.sortChange.emit({ column: '', direction: null });
+    }
+  }
+
+  getColumnLabel(columnKey: string): string {
+    const column = this._columns().find(c => c.key === columnKey);
+    return column?.label || columnKey;
   }
 
   // Selection methods
@@ -1539,6 +2501,29 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     return value;
   }
 
+  getColumnTooltip(column: DataTableColumn<T>): string {
+    const tips: string[] = [];
+    
+    if (column.reorderable !== false && this.config().reorderable) {
+      tips.push('Drag to reorder');
+    }
+    if (column.sortable !== false && this.config().sortable) {
+      if (this.config().multiSort) {
+        tips.push('Click to sort, Ctrl+Click for multi-sort');
+      } else {
+        tips.push('Click to sort');
+      }
+    }
+    if (column.resizable !== false && this.config().resizable) {
+      tips.push('Drag right edge to resize');
+    }
+    if (column.groupable !== false && this.config().grouping) {
+      tips.push('Click group icon to group by this column');
+    }
+    
+    return tips.join(', ') || column.label;
+  }
+
   formatCellValue(row: T, column: DataTableColumn<T>): string {
     const value = this.getCellValue(row, column);
     
@@ -1793,7 +2778,36 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     this.isDragging.set(false);
   }
 
+  // Column pinning methods
+  getColumnPinnedOffset(column: DataTableColumn<T>, side: 'left' | 'right'): string {
+    if (!this.config().pinColumns || !column.pinned) return '0px';
+
+    const columns = this.visibleColumns();
+    let offset = 0;
+
+    if (side === 'left' && column.pinned === 'left') {
+      const leftColumns = columns.filter(col => col.pinned === 'left');
+      const currentIndex = leftColumns.findIndex(col => col.key === column.key);
+      
+      for (let i = 0; i < currentIndex; i++) {
+        const width = leftColumns[i].width || '150px';
+        offset += parseInt(width.replace('px', '')) || 150;
+      }
+    } else if (side === 'right' && column.pinned === 'right') {
+      const rightColumns = columns.filter(col => col.pinned === 'right');
+      const currentIndex = rightColumns.findIndex(col => col.key === column.key);
+      
+      for (let i = rightColumns.length - 1; i > currentIndex; i--) {
+        const width = rightColumns[i].width || '150px';
+        offset += parseInt(width.replace('px', '')) || 150;
+      }
+    }
+
+    return `${offset}px`;
+  }
+
   // Track by functions
   trackByColumn = (index: number, column: DataTableColumn<T>) => column.key;
   trackByRow = (index: number, row: T) => index;
+  trackByGroup = (index: number, group: DataTableGroup<T>) => group.key;
 }
