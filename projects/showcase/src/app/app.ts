@@ -150,102 +150,106 @@ export class App implements OnInit {
   ]);
 
   // Column configuration for the DataTable
+  // This configuration demonstrates ALL THREE TIERS of features:
+  // 🏗️ CORE: sortable, filterable, searchable, editable, width, type
+  // 🚀 ADVANCED: reorderable, resizable, groupable, multiSelectFilter
+  // 💎 PREMIUM: pinned, cellRenderer, custom templates
   columns = signal<DataTableColumn<User>[]>([
     {
       key: 'id',
       label: 'ID',
-      sortable: true,
-      filterable: true,
-      width: '80px',
-      type: 'number',
-      reorderable: true,
-      resizable: true,
-      pinned: 'left'
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering  
+      width: '80px',         // 🏗️ Core: Column width
+      type: 'number',        // 🏗️ Core: Data type
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true,       // 🚀 Advanced: Column resizing
+      pinned: 'left'         // 💎 Premium: Column pinning
     },
     {
       key: 'name',
       label: 'Name',
-      sortable: true,
-      filterable: true,
-      searchable: true,
-      editable: true,
-      minWidth: '150px',
-      reorderable: true,
-      resizable: true,
-      groupable: true
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering
+      searchable: true,      // 🏗️ Core: Global search inclusion
+      editable: true,        // 🏗️ Core: Inline editing
+      minWidth: '150px',     // 🏗️ Core: Min width constraint
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true,       // 🚀 Advanced: Column resizing
+      groupable: true        // 💎 Premium: Row grouping capability
     },
     {
       key: 'email',
       label: 'Email',
-      sortable: true,
-      filterable: true,
-      searchable: true,
-      editable: true,
-      type: 'email',
-      minWidth: '200px',
-      reorderable: true,
-      resizable: true
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering
+      searchable: true,      // 🏗️ Core: Global search inclusion
+      editable: true,        // 🏗️ Core: Inline editing
+      type: 'email',         // 🏗️ Core: Email data type
+      minWidth: '200px',     // 🏗️ Core: Min width constraint
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true        // 🚀 Advanced: Column resizing
     },
     {
       key: 'role',
       label: 'Role',
-      sortable: true,
-      filterable: true,
-      editable: true,
-      width: '120px',
-      reorderable: true,
-      resizable: true,
-      groupable: true,
-      multiSelectFilter: true,
-      filterOptions: ['Admin', 'Manager', 'Developer', 'Designer', 'Product Manager', 'Senior Developer', 'QA Engineer', 'Sales Rep', 'Marketing Specialist']
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering
+      editable: true,        // 🏗️ Core: Inline editing
+      width: '120px',        // 🏗️ Core: Fixed width
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true,       // 🚀 Advanced: Column resizing
+      groupable: true,       // 💎 Premium: Row grouping capability
+      multiSelectFilter: true, // 🚀 Advanced: Multi-select dropdown filter
+      filterOptions: ['Admin', 'Manager', 'Developer', 'Designer', 'Product Manager', 'Senior Developer', 'QA Engineer', 'Sales Rep', 'Marketing Specialist'] // 🚀 Advanced: Predefined filter options
     },
     {
       key: 'status',
       label: 'Status',
-      sortable: true,
-      filterable: true,
-      editable: true,
-      width: '100px',
-      reorderable: true,
-      resizable: true,
-      type: 'boolean',
-      groupable: true,
-      multiSelectFilter: true,
-      cellRenderer: (value: any) => value === 'active' ? '🟢 Active' : '🔴 Inactive'
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering
+      editable: true,        // 🏗️ Core: Inline editing
+      width: '100px',        // 🏗️ Core: Fixed width
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true,       // 🚀 Advanced: Column resizing
+      type: 'boolean',       // 🏗️ Core: Boolean data type
+      groupable: true,       // 💎 Premium: Row grouping capability
+      multiSelectFilter: true, // 🚀 Advanced: Multi-select dropdown filter
+      cellRenderer: (value: any) => value === 'active' ? '🟢 Active' : '🔴 Inactive' // 💎 Premium: Custom cell rendering
     },
     {
       key: 'lastLogin',
       label: 'Last Login',
-      sortable: true,
-      filterable: true,
-      type: 'date',
-      width: '140px',
-      reorderable: true,
-      resizable: true,
-      formatter: (value: Date) => new Date(value).toLocaleDateString()
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering
+      type: 'date',          // 🏗️ Core: Date data type
+      width: '140px',        // 🏗️ Core: Fixed width
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true,       // 🚀 Advanced: Column resizing
+      formatter: (value: Date) => new Date(value).toLocaleDateString() // 🏗️ Core: Data formatting
     },
     {
       key: 'department',
       label: 'Department',
-      sortable: true,
-      filterable: true,
-      width: '120px',
-      reorderable: true,
-      resizable: true,
-      groupable: true,
-      multiSelectFilter: true
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering
+      width: '120px',        // 🏗️ Core: Fixed width
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true,       // 🚀 Advanced: Column resizing
+      groupable: true,       // 💎 Premium: Row grouping capability
+      multiSelectFilter: true // 🚀 Advanced: Multi-select dropdown filter
     },
     {
       key: 'salary',
       label: 'Salary',
-      sortable: true,
-      filterable: true,
-      type: 'number',
-      width: '120px',
-      reorderable: true,
-      resizable: true,
-      pinned: 'right',
-      cellRenderer: (value: number) => `$${value.toLocaleString()}`
+      sortable: true,        // 🏗️ Core: Basic sorting
+      filterable: true,      // 🏗️ Core: Basic filtering
+      type: 'number',        // 🏗️ Core: Number data type
+      width: '120px',        // 🏗️ Core: Fixed width
+      reorderable: true,     // 🚀 Advanced: Drag & drop reordering
+      resizable: true,       // 🚀 Advanced: Column resizing
+      pinned: 'right',       // 💎 Premium: Column pinning (right side)
+      cellRenderer: (value: number) => `$${value.toLocaleString()}` // 💎 Premium: Custom cell rendering
     }
   ]);
 

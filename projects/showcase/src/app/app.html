@@ -3,7 +3,7 @@
   <button
     #goToTopBtn
     (click)="scrollToTop()"
-    class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+    class="fixed bottom-4 left-4 sm:bottom-6 sm:right-6 sm:left-auto z-50 w-12 h-12 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-full shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
     [class.opacity-0]="!showGoToTop()"
     [class.pointer-events-none]="!showGoToTop()"
     [class.opacity-100]="showGoToTop()"
@@ -4790,112 +4790,151 @@
             <div class="text-center mb-6">
               <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-800/50 dark:to-purple-800/50 border border-blue-200 dark:border-blue-700 mb-4">
                 <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-                <span class="text-sm font-semibold text-blue-600 dark:text-blue-400">Enterprise Grade Features</span>
+                <span class="text-sm font-semibold text-blue-600 dark:text-blue-400">🏢 Enterprise DataTable • All Premium Features Enabled</span>
                 <span class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
               </div>
+              
+              <!-- FREE Premium Features Highlight -->
+              <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-green-100 via-emerald-100 to-teal-100 dark:from-green-900/30 dark:via-emerald-900/30 dark:to-teal-900/30 border-2 border-green-300 dark:border-green-600 mb-4 shadow-lg">
+                <span class="text-2xl animate-bounce">🎉</span>
+                <span class="text-lg font-bold text-green-700 dark:text-green-300">ALL PREMIUM FEATURES FREE!</span>
+                <span class="text-2xl animate-bounce">🎉</span>
+              </div>
+              
               <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                Advanced Data Management
+                Complete Feature Showcase
               </h3>
-              <p class="text-base text-muted-foreground">
-                Try the new column reordering feature - drag column headers to rearrange them
+              <p class="text-base text-muted-foreground mb-3">
+                Experience all Core, Advanced & Premium features in action - drag columns, try multi-select filters, test grouping & more
+              </p>
+              <p class="text-sm text-green-600 dark:text-green-400 font-semibold">
+                💎 All Enterprise features including Column Pinning, Row Grouping, Virtual Scrolling & Custom Renderers are available at no cost!
               </p>
             </div>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
-                <div class="text-2xl mb-2">↕️</div>
-                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Column Reordering</div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-green-200/30 dark:border-green-700/30">
+                <div class="text-xl mb-1">🏗️</div>
+                <div class="text-xs font-medium text-green-700 dark:text-green-400">Core Features</div>
+                <div class="text-xs text-green-600 dark:text-green-300">9 Active</div>
               </div>
               <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
-                <div class="text-2xl mb-2">🔍</div>
-                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Smart Filtering</div>
+                <div class="text-xl mb-1">🚀</div>
+                <div class="text-xs font-medium text-blue-700 dark:text-blue-400">Advanced Features</div>
+                <div class="text-xs text-blue-600 dark:text-blue-300">8 Active</div>
               </div>
-              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
-                <div class="text-2xl mb-2">✏️</div>
-                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Inline Editing</div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-purple-200/30 dark:border-purple-700/30">
+                <div class="text-xl mb-1">💎</div>
+                <div class="text-xs font-medium text-purple-700 dark:text-purple-400">Premium Features</div>
+                <div class="text-xs text-purple-600 dark:text-purple-300">8 Active</div>
               </div>
-              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
-                <div class="text-2xl mb-2">📊</div>
-                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Export Data</div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-amber-200/30 dark:border-amber-700/30">
+                <div class="text-xl mb-1">⚡</div>
+                <div class="text-xs font-medium text-amber-700 dark:text-amber-400">Performance</div>
+                <div class="text-xs text-amber-600 dark:text-amber-300">Optimized</div>
               </div>
-              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
-                <div class="text-2xl mb-2">⚡</div>
-                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Virtual Scrolling</div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-emerald-200/30 dark:border-emerald-700/30">
+                <div class="text-xl mb-1">🎨</div>
+                <div class="text-xs font-medium text-emerald-700 dark:text-emerald-400">Custom UI</div>
+                <div class="text-xs text-emerald-600 dark:text-emerald-300">Enabled</div>
+              </div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-rose-200/30 dark:border-rose-700/30">
+                <div class="text-xl mb-1">♿</div>
+                <div class="text-xs font-medium text-rose-700 dark:text-rose-400">Accessibility</div>
+                <div class="text-xs text-rose-600 dark:text-rose-300">A11Y Ready</div>
+              </div>
+            </div>
+
+            <!-- Interactive Feature Demo Notice -->
+            <div class="mt-6 p-4 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-lg border border-indigo-200 dark:border-indigo-700">
+              <div class="flex items-start gap-3">
+                <div class="text-xl flex-shrink-0">💡</div>
+                <div>
+                  <h4 class="font-semibold text-indigo-900 dark:text-indigo-200 mb-1">Try These Interactive Features:</h4>
+                  <div class="text-sm text-indigo-700 dark:text-indigo-300 space-y-1">
+                    <div>• <strong>Column Reordering:</strong> Drag column headers to rearrange them</div>
+                    <div>• <strong>Column Resizing:</strong> Drag column borders to resize</div>
+                    <div>• <strong>Multi-Select Filters:</strong> Use Department and Role dropdowns</div>
+                    <div>• <strong>Multi-Sort:</strong> Hold Ctrl+Click on multiple column headers</div>
+                    <div>• <strong>Row Grouping:</strong> Use the grouping controls in the toolbar</div>
+                    <div>• <strong>Column Pinning:</strong> ID and Salary columns are pinned (left/right)</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- DataTable Demo -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-0">
+        <div class="w-full mx-auto px-1 sm:px-2 lg:px-0 max-w-full lg:max-w-7xl">
           <div
-            class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-slate-200/50 dark:border-slate-700/50 p-4 sm:p-6 lg:p-8 shadow-2xl"
+            class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-lg sm:rounded-xl lg:rounded-2xl xl:rounded-3xl border border-slate-200/50 dark:border-slate-700/50 p-1 sm:p-2 lg:p-4 xl:p-6 shadow-2xl overflow-hidden"
           >
-            <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6">
+            <h3 class="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-slate-900 dark:text-white mb-3 sm:mb-4 lg:mb-6 px-2 sm:px-0">
               User Management Table
             </h3>
 
             <!-- Pagination Configuration Panel -->
-            <div class="mb-6 p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">
+            <div class="mb-4 sm:mb-6 p-2 sm:p-3 lg:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 mx-1 sm:mx-0">
+              <h4 class="text-sm sm:text-base lg:text-lg font-semibold text-slate-900 dark:text-white mb-2 sm:mb-3 lg:mb-4">
                 Pagination Configuration
               </h4>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4">
-                <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 sm:gap-3 lg:gap-4">
+                <div class="w-full">
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Initial Page Size
                   </label>
                   <select 
                     [value]="customPageSize()" 
                     (change)="updatePageSize(+$any($event.target).value)"
                     aria-label="Select initial page size"
-                    class="w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    class="w-full px-2 py-1.5 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                   >
                     <option *ngFor="let size of customPageSizeOptions()" [value]="size">{{ size }}</option>
                   </select>
                 </div>
-                <div class="flex items-center">
-                  <label class="flex items-center gap-1 sm:gap-2">
+                <div class="flex items-center justify-center sm:justify-start">
+                  <label class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
                     <input 
                       type="checkbox" 
                       [checked]="showFirstLastButtons()" 
                       (change)="showFirstLastButtons.set($any($event.target).checked)"
                       class="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
-                    <span class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">Show First/Last</span>
+                    <span class="text-gray-700 dark:text-gray-300">Show First/Last</span>
                   </label>
                 </div>
-                <div class="flex items-center">
-                  <label class="flex items-center gap-1 sm:gap-2">
+                <div class="flex items-center justify-center sm:justify-start">
+                  <label class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
                     <input 
                       type="checkbox" 
                       [checked]="showPageInfoText()" 
                       (change)="showPageInfoText.set($any($event.target).checked)"
                       class="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
-                    <span class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">Show Page Info</span>
+                    <span class="text-gray-700 dark:text-gray-300">Show Page Info</span>
                   </label>
                 </div>
-                <div class="flex items-center">
-                  <label class="flex items-center gap-1 sm:gap-2">
+                <div class="flex items-center justify-center sm:justify-start">
+                  <label class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
                     <input 
                       type="checkbox" 
                       [checked]="showPageSizePicker()" 
                       (change)="showPageSizePicker.set($any($event.target).checked)"
                       class="h-3 w-3 sm:h-4 sm:w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
-                    <span class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">Show Page Size Selector</span>
+                    <span class="text-gray-700 dark:text-gray-300">Show Page Size Selector</span>
                   </label>
                 </div>
-                <div>
-                  <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                <div class="w-full">
+                  <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Page Size Options
                   </label>
                   <select 
                     [value]="customPageSizeOptions().join(',')" 
                     (change)="updatePageSizeOptions($any($event.target).value)"
                     aria-label="Select page size options"
-                    class="w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    class="w-full px-2 py-1.5 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
                   >
                     <option value="3,7,15,25,50">3, 7, 15, 25, 50</option>
                     <option value="5,10,20,50,100">5, 10, 20, 50, 100</option>
@@ -4907,8 +4946,18 @@
             </div>
 
             <!-- DataTable Component -->
-            <div class="overflow-x-auto -mx-4 sm:mx-0">
+            <!-- This configuration demonstrates ALL THREE TIERS of DataTable features:
+                 🏗️ CORE: sortable, filterable, searchable, paginated, selectable, editable, striped, hoverable, showToolbar, showFooter
+                 🚀 ADVANCED: multiSort, resizable, reorderable, advancedFiltering, exportable, stickyHeader  
+                 💎 PREMIUM: pinColumns, grouping, customRenderers, virtualScrolling, lazyLoading
+                 🎨 UI: bordered, compact, elevated (customization options)
+            -->
+            <div class="overflow-x-auto -mx-1 sm:mx-0 rounded-lg">
               <div class="min-w-full inline-block align-middle">
+                <!-- Mobile scroll hint -->
+                <div class="mb-2 text-center text-xs text-slate-500 dark:text-slate-400 sm:hidden">
+                  ← Swipe to explore all columns and features →
+                </div>
                 <DataTable
                   [data]="users()"
                   [columns]="columns()"
@@ -4924,24 +4973,24 @@
                     paginated: true,
                     selectable: true,
                     editable: true,
-                    resizable: true,
-                    reorderable: true,
-                    exportable: true,
-                    virtualScrolling: false,
-                    lazyLoading: false,
-                    stickyHeader: true,
+                    striped: true,
+                    hoverable: true,
                     showToolbar: true,
                     showFooter: true,
-                    striped: true,
-                    bordered: false,
-                    hoverable: true,
-                    compact: false,
-                    elevated: false,
                     multiSort: true,
-                    grouping: true,
+                    resizable: true,
+                    reorderable: true,
+                    advancedFiltering: true,
+                    exportable: true,
+                    stickyHeader: true,
                     pinColumns: true,
+                    grouping: true,
                     customRenderers: true,
-                    advancedFiltering: true
+                    virtualScrolling: false,
+                    lazyLoading: false,
+                    bordered: false,
+                    compact: false,
+                    elevated: false
                   }"
                   (cellEdit)="onCellEdit($event)"
                   (rowEdit)="onRowEdit($event)"
@@ -4961,81 +5010,298 @@
               </div>
             </div>
 
-            <!-- Features Showcase -->
-            <div class="mt-6 sm:mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              <div class="text-center p-3 sm:p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
-                <div class="text-lg sm:text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+            <!-- Enhanced Features Showcase -->
+            <div class="mt-4 sm:mt-6 lg:mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4 px-1 sm:px-0">
+              <div class="text-center p-2 sm:p-3 lg:p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg sm:rounded-xl border border-emerald-200 dark:border-emerald-800">
+                <div class="text-sm sm:text-lg lg:text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                   {{ users().length }}
                 </div>
-                <div class="text-xs sm:text-sm text-muted-foreground">Total Records</div>
+                <div class="text-xs sm:text-sm text-emerald-700 dark:text-emerald-300">Total Records</div>
               </div>
-              <div class="text-center p-3 sm:p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-                <div class="text-lg sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div class="text-center p-2 sm:p-3 lg:p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg sm:rounded-xl border border-blue-200 dark:border-blue-800">
+                <div class="text-sm sm:text-lg lg:text-2xl font-bold text-blue-600 dark:text-blue-400">
                   {{ columns().length }}
                 </div>
-                <div class="text-xs sm:text-sm text-muted-foreground">Columns</div>
+                <div class="text-xs sm:text-sm text-blue-700 dark:text-blue-300">Columns</div>
               </div>
-              <div class="text-center p-3 sm:p-4 bg-violet-50 dark:bg-violet-900/20 rounded-xl">
-                <div class="text-lg sm:text-2xl font-bold text-violet-600 dark:text-violet-400">
+              <div class="text-center p-2 sm:p-3 lg:p-4 bg-violet-50 dark:bg-violet-900/20 rounded-lg sm:rounded-xl border border-violet-200 dark:border-violet-800">
+                <div class="text-sm sm:text-lg lg:text-2xl font-bold text-violet-600 dark:text-violet-400">
+                  25+
+                </div>
+                <div class="text-xs sm:text-sm text-violet-700 dark:text-violet-300">Features</div>
+              </div>
+              <div class="text-center p-2 sm:p-3 lg:p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg sm:rounded-xl border border-amber-200 dark:border-amber-800">
+                <div class="text-sm sm:text-lg lg:text-2xl font-bold text-amber-600 dark:text-amber-400">
                   100%
                 </div>
-                <div class="text-xs sm:text-sm text-muted-foreground">Responsive</div>
+                <div class="text-xs sm:text-sm text-amber-700 dark:text-amber-300">Responsive</div>
               </div>
-              <div class="text-center p-3 sm:p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl">
-                <div class="text-lg sm:text-2xl font-bold text-amber-600 dark:text-amber-400">
+              <div class="text-center p-2 sm:p-3 lg:p-4 bg-pink-50 dark:bg-pink-900/20 rounded-lg sm:rounded-xl border border-pink-200 dark:border-pink-800">
+                <div class="text-sm sm:text-lg lg:text-2xl font-bold text-pink-600 dark:text-pink-400">
+                  A11Y
+                </div>
+                <div class="text-xs sm:text-sm text-pink-700 dark:text-pink-300">Accessible</div>
+              </div>
+              <div class="text-center p-2 sm:p-3 lg:p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg sm:rounded-xl border border-indigo-200 dark:border-indigo-800">
+                <div class="text-sm sm:text-lg lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">
                   ∞
                 </div>
-                <div class="text-xs sm:text-sm text-muted-foreground">Customizable</div>
+                <div class="text-xs sm:text-sm text-indigo-700 dark:text-indigo-300">Customizable</div>
               </div>
             </div>
 
-            <!-- Feature List -->
-            <div class="mt-6 sm:mt-8 grid sm:grid-cols-2 gap-4 sm:gap-6">
-              <div>
-                <h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">
-                  Core Features
-                </h4>
-                <ul class="space-y-1.5 sm:space-y-2 text-muted-foreground">
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Column Sorting (Asc/Desc)</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Advanced Filtering</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-violet-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Global Search</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-amber-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Pagination Control</span>
-                  </li>
-                </ul>
+            <!-- Comprehensive Feature List -->
+            <div class="mt-4 sm:mt-6 lg:mt-8 px-1 sm:px-0">
+              <!-- Feature Tier Headers -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+                <div class="text-center p-3 sm:p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg sm:rounded-xl border border-green-200 dark:border-green-800">
+                  <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🏗️</div>
+                  <h4 class="text-base sm:text-lg font-bold text-green-700 dark:text-green-400 mb-1">Core Features</h4>
+                  <p class="text-xs sm:text-sm text-green-600 dark:text-green-300">Essential data management</p>
+                </div>
+                <div class="text-center p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg sm:rounded-xl border border-blue-200 dark:border-blue-800">
+                  <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🚀</div>
+                  <h4 class="text-base sm:text-lg font-bold text-blue-700 dark:text-blue-400 mb-1">Advanced Features</h4>
+                  <p class="text-xs sm:text-sm text-blue-600 dark:text-blue-300">Enhanced productivity</p>
+                </div>
+                <div class="text-center p-3 sm:p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 rounded-lg sm:rounded-xl border border-purple-200 dark:border-purple-800 sm:col-span-2 lg:col-span-1">
+                  <div class="text-xl sm:text-2xl mb-1 sm:mb-2">💎</div>
+                  <h4 class="text-base sm:text-lg font-bold text-purple-700 dark:text-purple-400 mb-1">Premium Features</h4>
+                  <p class="text-xs sm:text-sm text-purple-600 dark:text-purple-300">Enterprise capabilities</p>
+                  <div class="mt-2 px-2 sm:px-3 py-1 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-600">
+                    <span class="text-xs font-bold text-green-700 dark:text-green-300">100% FREE!</span>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 class="text-base sm:text-lg font-semibold text-slate-900 dark:text-white mb-3 sm:mb-4">
-                  Advanced Features
+
+              <!-- Feature Details -->
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Core Features -->
+                <div class="bg-gradient-to-br from-green-50/50 to-emerald-50/50 dark:from-green-900/10 dark:to-emerald-900/10 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200/50 dark:border-green-800/50">
+                  <div class="flex items-center gap-2 mb-3 sm:mb-4">
+                    <span class="text-lg sm:text-xl">🏗️</span>
+                    <h4 class="text-base sm:text-lg font-bold text-green-700 dark:text-green-400">Core Features</h4>
+                  </div>
+                  <ul class="space-y-1.5 sm:space-y-2 text-muted-foreground">
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Data Display & Rendering</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Column Sorting (Asc/Desc)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Basic Column Filtering</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Global Search</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Pagination Controls</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Row Selection (Single/Multi)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Inline Cell Editing</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Responsive Design</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Data Formatters</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Advanced Features -->
+                <div class="bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-900/10 dark:to-indigo-900/10 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-blue-200/50 dark:border-blue-800/50">
+                  <div class="flex items-center gap-2 mb-3 sm:mb-4">
+                    <span class="text-lg sm:text-xl">🚀</span>
+                    <h4 class="text-base sm:text-lg font-bold text-blue-700 dark:text-blue-400">Advanced Features</h4>
+                  </div>
+                  <ul class="space-y-1.5 sm:space-y-2 text-muted-foreground">
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Multi-Column Sorting</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Column Resizing</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Column Reordering (Drag & Drop)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Advanced Filtering & Operators</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Multi-Select Filters</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Data Export (CSV, JSON)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Sticky Header</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Toolbar & Footer</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Premium Features -->
+                <div class="bg-gradient-to-br from-purple-50/50 to-violet-50/50 dark:from-purple-900/10 dark:to-violet-900/10 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-purple-200/50 dark:border-purple-800/50">
+                  <div class="flex items-center gap-2 mb-3 sm:mb-4">
+                    <span class="text-lg sm:text-xl">💎</span>
+                    <h4 class="text-base sm:text-lg font-bold text-purple-700 dark:text-purple-400">Premium Features</h4>
+                    <div class="ml-auto px-2 sm:px-3 py-0.5 sm:py-1 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-600">
+                      <span class="text-xs font-bold text-green-700 dark:text-green-300">ALL FREE!</span>
+                    </div>
+                  </div>
+                  <ul class="space-y-1.5 sm:space-y-2 text-muted-foreground">
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Column Pinning (Left/Right)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Dynamic Row Grouping</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Virtual Scrolling</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Custom Cell Renderers</span>
+                      <span 
+                        class="ml-auto text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-1.5 sm:px-2 py-0.5 rounded-full font-semibold cursor-help"
+                        title="Custom Cell Renderers allow you to display data with charts, images, buttons, badges, and interactive elements instead of plain text"
+                      >
+                        💎 Premium
+                      </span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Lazy Loading</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Custom Templates</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Performance Optimization</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                      <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full flex-shrink-0"></span>
+                      <span class="text-xs sm:text-sm">Accessibility Features</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Feature Comparison Matrix -->
+              <div class="mt-8 bg-white/90 dark:bg-slate-900/90 rounded-xl p-4 sm:p-6 border border-slate-200 dark:border-slate-700">
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-4 text-center">
+                  ⭐ Feature Availability Matrix
                 </h4>
-                <ul class="space-y-1.5 sm:space-y-2 text-muted-foreground">
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-pink-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Inline Cell Editing</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-indigo-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Row Selection</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-cyan-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Export Options (CSV, JSON)</span>
-                  </li>
-                  <li class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-orange-500 rounded-full flex-shrink-0"></span>
-                    <span class="text-sm sm:text-base">Lazy Loading Support</span>
-                  </li>
-                </ul>
+                <!-- Mobile-optimized scrollable table with sticky first column -->
+                <div class="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-100 dark:scrollbar-track-gray-800">
+                  <div class="relative">
+                    <table class="w-full text-sm min-w-[600px]">
+                      <thead class="sticky top-0 bg-white dark:bg-slate-900 z-10">
+                        <tr class="border-b-2 border-slate-200 dark:border-slate-700">
+                          <th class="sticky left-0 bg-white dark:bg-slate-900 text-left py-3 px-4 font-semibold text-slate-600 dark:text-slate-400 border-r border-slate-200 dark:border-slate-700 z-20 min-w-[200px]">Feature</th>
+                          <th class="text-center py-3 px-4 font-semibold text-green-600 dark:text-green-400 min-w-[120px]">🏗️ Core</th>
+                          <th class="text-center py-3 px-4 font-semibold text-blue-600 dark:text-blue-400 min-w-[120px]">🚀 Advanced</th>
+                          <th class="text-center py-3 px-4 font-semibold text-purple-600 dark:text-purple-400 min-w-[120px]">💎 Premium</th>
+                        </tr>
+                      </thead>
+                      <tbody class="text-slate-700 dark:text-slate-300">
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Data Display & Sorting</td>
+                          <td class="text-center py-3 px-4 text-green-500">✅</td>
+                          <td class="text-center py-3 px-4 text-blue-500">✅</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Basic Filtering & Search</td>
+                          <td class="text-center py-3 px-4 text-green-500">✅</td>
+                          <td class="text-center py-3 px-4 text-blue-500">✅</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Pagination & Selection</td>
+                          <td class="text-center py-3 px-4 text-green-500">✅</td>
+                          <td class="text-center py-3 px-4 text-blue-500">✅</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Multi-Column Sorting</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-blue-500">✅</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Column Management</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-blue-500">✅</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Advanced Filtering</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-blue-500">✅</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Column Pinning</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Row Grouping</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Virtual Scrolling</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                        <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td class="sticky left-0 bg-white dark:bg-slate-900 py-3 px-4 border-r border-slate-200 dark:border-slate-700 z-10">Custom Renderers</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-slate-400">❌</td>
+                          <td class="text-center py-3 px-4 text-purple-500">✅</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- Mobile scroll hint -->
+                  <div class="mt-3 text-center text-xs text-slate-500 dark:text-slate-400 sm:hidden">
+                    ← Scroll horizontally to see all feature tiers →
+                  </div>
+                </div>
               </div>
             </div>
 

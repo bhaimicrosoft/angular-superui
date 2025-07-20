@@ -211,117 +211,102 @@ export class PremiumTableComponent {
 
 ## ⭐ Enterprise Features
 
-### 🎯 **Core Enterprise Capabilities**
+The DataTable component offers a comprehensive feature set organized into three tiers to meet different business needs:
 
-#### 1. **🔄 Multi-Column Sorting**
-Sort by multiple columns simultaneously with visual indicators and priority ordering.
+| �️ **Core Features** | 🚀 **Advanced Features** | 💎 **Premium Features** |
+|----------------------|---------------------------|--------------------------|
+| Essential data management | Enhanced productivity tools | Enterprise-grade capabilities |
+| ✅ Always included | ✅ Standard enterprise license | ✅ Premium enterprise license |
+
+---
+
+### 🏗️ **Core Features** 
+*Essential data management capabilities included with every implementation*
+
+#### 1. **� Data Display & Sorting**
+- ✅ **Column Sorting** - Click to sort by any column
+- ✅ **Responsive Design** - Works perfectly on all screen sizes
+- ✅ **Data Formatting** - Built-in formatters for dates, numbers, currency
+- ✅ **Row Selection** - Single and multiple row selection modes
+- ✅ **Pagination** - Configurable page sizes with navigation controls
+
+```typescript
+// Basic sorting and pagination
+[configInput]="{
+  sortable: true,
+  paginated: true,
+  selectable: true,
+  responsive: true
+}"
+```
+
+#### 2. **🔍 Search & Basic Filtering**
+- ✅ **Global Search** - Search across all columns instantly
+- ✅ **Column Filters** - Individual column filtering
+- ✅ **Filter Operators** - Contains, equals, starts with, ends with
+- ✅ **Clear Filters** - Reset all filters with one click
+
+```typescript
+// Enable search and filtering
+[configInput]="{
+  searchable: true,
+  filterable: true,
+  showToolbar: true
+}"
+```
+
+#### 3. **✏️ Basic Editing**
+- ✅ **Inline Editing** - Double-click to edit cells
+- ✅ **Row Actions** - Delete and modify rows
+- ✅ **Validation** - Built-in and custom validation rules
+- ✅ **Undo/Redo** - Revert changes easily
+
+```typescript
+// Enable basic editing
+[configInput]="{
+  editable: true,
+  showFooter: true
+}"
+```
+
+---
+
+### 🚀 **Advanced Features**
+*Enhanced productivity tools for professional applications*
+
+#### 4. **🔄 Multi-Column Sorting**
+Sort by multiple columns simultaneously with visual priority indicators.
 
 ```typescript
 // Enable multi-column sorting
 [configInput]="{ multiSort: true }"
-
-// Handle sort changes
 (multiSortChange)="onMultiSortChange($event)"
 ```
 
-**Features:**
+**Capabilities:**
 - ✅ Visual sort indicators with priority numbers
-- ✅ Drag & drop sort priority reordering
 - ✅ Ctrl+Click to add/remove sort columns
+- ✅ Drag & drop sort priority reordering
 - ✅ Clear all sorts functionality
 
-#### 2. **📌 Column Pinning**
-Pin important columns to left or right for better data visibility.
+#### 5. **↔️ Column Management**
+Interactive column customization with drag & drop capabilities.
 
 ```typescript
-// Pin columns in column configuration
-{
-  key: 'id',
-  label: 'ID',
-  pinned: 'left'  // 'left' | 'right' | null
-}
-```
-
-**Features:**
-- ✅ Left/Right pinning support
-- ✅ Smooth animations
-- ✅ Responsive behavior
-- ✅ Visual pinning indicators
-
-#### 3. **↔️ Column Resizing**
-Interactive column width adjustment with visual feedback.
-
-```typescript
-// Enable column resizing
-[configInput]="{ resizable: true }"
-
-// Handle resize events
-(columnResize)="onColumnResize($event)"
-```
-
-**Features:**
-- ✅ Drag handles on column borders
-- ✅ Min/Max width constraints
-- ✅ Real-time width updates
-- ✅ Persist sizing preferences
-
-#### 4. **🔀 Column Reordering**
-Drag and drop columns to customize layout.
-
-```typescript
-// Enable column reordering
-[configInput]="{ reorderable: true }"
-
-// Handle reorder events
-(columnReorder)="onColumnReorder($event)"
-```
-
-**Features:**
-- ✅ Drag & drop interface
-- ✅ Visual drop indicators
-- ✅ Animation effects
-- ✅ Maintain column relationships
-
-#### 5. **🗂️ Row Grouping**
-Group data by column values with expandable sections.
-
-```typescript
-// Enable grouping
-[configInput]="{ grouping: true }"
-
-// Configure groupable columns
-{
-  key: 'department',
-  label: 'Department',
-  groupable: true
-}
-```
-
-**Features:**
-- ✅ Dynamic grouping controls
-- ✅ Expand/collapse all
-- ✅ Group item counts
-- ✅ Nested grouping support
-
-#### 6. **⚡ Virtual Scrolling**
-Handle massive datasets with smooth performance.
-
-```typescript
-// Enable virtual scrolling
-[configInput]="{ 
-  virtualScrolling: true,
-  virtualScrollingItemHeight: 50,
-  virtualScrollingBufferSize: 10
+// Enable column management
+[configInput]="{
+  resizable: true,
+  reorderable: true
 }"
 ```
 
-**Features:**
-- ✅ Render only visible rows
-- ✅ Configurable item height
-- ✅ Smart buffer management
-- ✅ Smooth scrolling experience
+**Capabilities:**
+- ✅ **Column Resizing** - Drag handles on column borders
+- ✅ **Column Reordering** - Drag and drop to reorder
+- ✅ **Width Constraints** - Min/Max width limits
+- ✅ **Visual Feedback** - Real-time resize and drop indicators
 
-#### 7. **🔍 Advanced Filtering**
+#### 6. **🔍 Advanced Filtering**
 Sophisticated filtering with multiple operators and multi-select options.
 
 ```typescript
@@ -337,15 +322,173 @@ Sophisticated filtering with multiple operators and multi-select options.
 }
 ```
 
-**Features:**
-- ✅ Multiple filter operators (contains, equals, starts with, etc.)
+**Capabilities:**
+- ✅ Multiple filter operators (contains, equals, greater than, etc.)
 - ✅ Multi-select dropdown filters
 - ✅ Date range filtering
 - ✅ Number range filtering
 - ✅ Combined filter logic
 
-#### 8. **🎨 Custom Cell Renderers**
-Create rich, interactive cell content with custom rendering functions.
+#### 7. **� Data Export**
+Export filtered and sorted data in multiple formats.
+
+```typescript
+// Enable data export
+[configInput]="{ exportable: true }"
+(exportData)="onExportData($event)"
+```
+
+**Capabilities:**
+- ✅ CSV export with custom formatting
+- ✅ JSON export with selected columns
+- ✅ Export current view (filtered/sorted)
+- ✅ Custom export templates
+
+---
+
+### 💎 **Premium Features**
+*Enterprise-grade capabilities for mission-critical applications*
+
+#### 8. **📌 Column Pinning**
+Pin critical columns to ensure they're always visible during horizontal scrolling.
+
+```typescript
+// Pin columns in configuration
+{
+  key: 'id',
+  label: 'ID',
+  pinned: 'left'  // 'left' | 'right' | null
+}
+```
+
+**Enterprise Capabilities:**
+- ✅ Left/Right pinning support
+- ✅ Smooth pinning animations
+- ✅ Responsive pinning behavior
+- ✅ Visual pinning indicators
+- ✅ Multiple pinned columns support
+
+#### 9. **🗂️ Dynamic Row Grouping**
+Group data by any column with expandable/collapsible sections.
+
+```typescript
+// Enable dynamic grouping
+[configInput]="{ grouping: true }"
+
+// Configure groupable columns
+{
+  key: 'department',
+  label: 'Department',
+  groupable: true
+}
+```
+
+**Enterprise Capabilities:**
+- ✅ Dynamic grouping controls in filter panel
+- ✅ Expand/collapse all functionality
+- ✅ Group item counts and statistics
+- ✅ Nested grouping support
+- ✅ Group-level actions and operations
+
+#### 10. **⚡ Virtual Scrolling**
+Handle massive datasets (100k+ rows) with smooth performance.
+
+```typescript
+// Enable virtual scrolling for large datasets
+[configInput]="{
+  virtualScrolling: true,
+  virtualScrollingItemHeight: 50,
+  virtualScrollingBufferSize: 10
+}"
+```
+
+**Enterprise Capabilities:**
+- ✅ Render only visible rows for optimal performance
+- ✅ Configurable item height and buffer size
+- ✅ Smart buffer management
+- ✅ Smooth scrolling with momentum
+- ✅ Memory-efficient for massive datasets
+
+#### 11. **🎨 Custom Cell Renderers**
+Create rich, interactive cell content with unlimited customization.
+
+```typescript
+// Enable custom rendering
+[configInput]="{ customRenderers: true }"
+
+// Define sophisticated cell renderer
+{
+  key: 'status',
+  label: 'Status',
+  cellRenderer: (value, row, column) => {
+    const statusConfig = {
+      active: { color: 'green', icon: '✅', label: 'Active' },
+      inactive: { color: 'red', icon: '❌', label: 'Inactive' },
+      pending: { color: 'orange', icon: '⏳', label: 'Pending' }
+    };
+    const config = statusConfig[value] || statusConfig.inactive;
+    return `
+      <div class="status-cell">
+        <span class="status-icon">${config.icon}</span>
+        <span class="status-label text-${config.color}">${config.label}</span>
+        <button class="status-action" onclick="updateStatus('${row.id}')">Update</button>
+      </div>
+    `;
+  }
+}
+```
+
+**Enterprise Capabilities:**
+- ✅ HTML content rendering with full styling
+- ✅ Interactive elements (buttons, links, forms)
+- ✅ Dynamic styling based on data
+- ✅ Context-aware rendering with row/column data
+- ✅ Performance-optimized rendering pipeline
+
+#### 12. **🔄 Lazy Loading & Caching**
+Intelligent data loading for optimal performance and user experience.
+
+```typescript
+// Enable lazy loading with caching
+[configInput]="{
+  lazyLoading: true,
+  cacheStrategy: 'smart',
+  prefetchSize: 100
+}"
+```
+
+**Enterprise Capabilities:**
+- ✅ On-demand data loading as user scrolls
+- ✅ Intelligent caching strategies
+- ✅ Prefetch optimization
+- ✅ Loading state management
+- ✅ Error handling and retry logic
+
+---
+
+### 🎯 **Feature Comparison Matrix**
+
+| Feature | Core | Advanced | Premium |
+|---------|------|----------|---------|
+| **Data Display** | ✅ | ✅ | ✅ |
+| **Basic Sorting** | ✅ | ✅ | ✅ |
+| **Global Search** | ✅ | ✅ | ✅ |
+| **Column Filtering** | ✅ | ✅ | ✅ |
+| **Row Selection** | ✅ | ✅ | ✅ |
+| **Inline Editing** | ✅ | ✅ | ✅ |
+| **Pagination** | ✅ | ✅ | ✅ |
+| **Multi-Sort** | ❌ | ✅ | ✅ |
+| **Column Resize** | ❌ | ✅ | ✅ |
+| **Column Reorder** | ❌ | ✅ | ✅ |
+| **Advanced Filters** | ❌ | ✅ | ✅ |
+| **Data Export** | ❌ | ✅ | ✅ |
+| **Column Pinning** | ❌ | ❌ | ✅ |
+| **Row Grouping** | ❌ | ❌ | ✅ |
+| **Virtual Scrolling** | ❌ | ❌ | ✅ |
+| **Custom Renderers** | ❌ | ❌ | ✅ |
+| **Lazy Loading** | ❌ | ❌ | ✅ |
+
+---
 
 ```typescript
 // Configure custom renderers
@@ -372,30 +515,34 @@ Create rich, interactive cell content with custom rendering functions.
 
 ## 🔧 Configuration
 
-### **Complete Configuration Options**
+### **Tiered Configuration Options**
 
 ```typescript
 interface DataTableConfig {
-  // 🏗️ Core Features
+  // 🏗️ Core Features (Always Available)
   sortable: boolean;              // Enable column sorting
   filterable: boolean;            // Enable column filtering
   searchable: boolean;            // Enable global search
   paginated: boolean;             // Enable pagination
   selectable: boolean;            // Enable row selection
   editable: boolean;              // Enable inline editing
-  exportable: boolean;            // Enable data export
+  responsive: boolean;            // Responsive design
 
-  // 🚀 Enterprise Features
+  // 🚀 Advanced Features (Standard Enterprise)
+  multiSort: boolean;             // Enable multi-column sorting
   resizable: boolean;             // Enable column resizing
   reorderable: boolean;           // Enable column reordering
-  multiSort: boolean;             // Enable multi-column sorting
-  grouping: boolean;              // Enable row grouping
-  pinColumns: boolean;            // Enable column pinning
-  customRenderers: boolean;       // Enable custom cell rendering
   advancedFiltering: boolean;     // Enable advanced filters
-  virtualScrolling: boolean;      // Enable virtual scrolling
+  exportable: boolean;            // Enable data export
 
-  // 🎨 UI & UX
+  // 💎 Premium Features (Premium Enterprise)
+  pinColumns: boolean;            // Enable column pinning
+  grouping: boolean;              // Enable row grouping
+  virtualScrolling: boolean;      // Enable virtual scrolling
+  customRenderers: boolean;       // Enable custom cell rendering
+  lazyLoading: boolean;           // Enable lazy loading
+
+  // 🎨 UI & UX Options
   stickyHeader: boolean;          // Sticky table header
   showToolbar: boolean;           // Show top toolbar
   showFooter: boolean;            // Show bottom footer
@@ -404,47 +551,144 @@ interface DataTableConfig {
   hoverable: boolean;             // Row hover effects
   compact: boolean;               // Compact row spacing
   elevated: boolean;              // Shadow elevation
-
-  // ⚡ Performance
-  lazyLoading: boolean;           // Lazy load data
 }
 ```
 
-### **Quick Configuration Presets**
+### **Tier-Based Configuration Presets**
 
 ```typescript
-// 📊 Analytics Dashboard
-const analyticsConfig = {
+// 🏗️ Core Implementation (Essential Features)
+const coreConfig = {
+  // Basic data management
   sortable: true,
   filterable: true,
   searchable: true,
-  exportable: true,
-  multiSort: true,
-  grouping: true,
-  virtualScrolling: true,
-  stickyHeader: true
+  paginated: true,
+  selectable: true,
+  editable: true,
+  responsive: true,
+  
+  // Clean UI
+  showToolbar: true,
+  showFooter: true,
+  hoverable: true,
+  striped: true
 };
 
-// 📝 Content Management
-const cmsConfig = {
-  editable: true,
-  selectable: true,
+// 🚀 Advanced Implementation (Enhanced Productivity)
+const advancedConfig = {
+  ...coreConfig,
+  
+  // Advanced functionality
+  multiSort: true,
   resizable: true,
   reorderable: true,
-  customRenderers: true,
-  showToolbar: true,
-  hoverable: true
+  advancedFiltering: true,
+  exportable: true,
+  
+  // Enhanced UI
+  stickyHeader: true,
+  elevated: true
 };
 
-// 📱 Mobile Optimized
-const mobileConfig = {
-  compact: true,
-  striped: true,
-  responsive: true,
+// 💎 Premium Implementation (Enterprise Grade)
+const premiumConfig = {
+  ...advancedConfig,
+  
+  // Premium enterprise features
   pinColumns: true,
-  advancedFiltering: false,
-  showFooter: false
+  grouping: true,
+  virtualScrolling: true,
+  customRenderers: true,
+  lazyLoading: true,
+  
+  // Optimized for performance
+  compact: false,
+  bordered: false
 };
+```
+
+### **Use Case Specific Configurations**
+
+```typescript
+// 📊 Analytics Dashboard (Premium)
+const analyticsConfig = {
+  ...premiumConfig,
+  grouping: true,
+  virtualScrolling: true,
+  exportable: true,
+  multiSort: true,
+  pinColumns: true,
+  customRenderers: true
+};
+
+// 📝 Content Management (Advanced)
+const cmsConfig = {
+  ...advancedConfig,
+  editable: true,
+  selectable: true,
+  multiSort: false,
+  exportable: true,
+  resizable: true,
+  reorderable: true
+};
+
+// 📱 Mobile Dashboard (Core)
+const mobileConfig = {
+  ...coreConfig,
+  compact: true,
+  bordered: false,
+  virtualScrolling: false,
+  pinColumns: false,
+  advancedFiltering: false
+};
+
+// 🏢 Enterprise Admin Panel (Premium)
+const enterpriseConfig = {
+  ...premiumConfig,
+  lazyLoading: true,
+  virtualScrolling: true,
+  grouping: true,
+  customRenderers: true,
+  advancedFiltering: true,
+  multiSort: true,
+  pinColumns: true
+};
+```
+
+### **License-Based Feature Access**
+
+```typescript
+// Feature availability by license tier
+const FeatureAccess = {
+  core: [
+    'sortable', 'filterable', 'searchable', 'paginated', 
+    'selectable', 'editable', 'responsive', 'showToolbar', 
+    'showFooter', 'hoverable', 'striped'
+  ],
+  
+  advanced: [
+    ...core,
+    'multiSort', 'resizable', 'reorderable', 
+    'advancedFiltering', 'exportable', 'stickyHeader', 'elevated'
+  ],
+  
+  premium: [
+    ...advanced,
+    'pinColumns', 'grouping', 'virtualScrolling', 
+    'customRenderers', 'lazyLoading'
+  ]
+};
+
+// Validate configuration based on license
+function validateConfig(config: DataTableConfig, license: 'core' | 'advanced' | 'premium') {
+  const allowedFeatures = FeatureAccess[license];
+  const configKeys = Object.keys(config);
+  
+  return configKeys.every(key => 
+    allowedFeatures.includes(key) || config[key] === false
+  );
+}
 ```
 
 ---
