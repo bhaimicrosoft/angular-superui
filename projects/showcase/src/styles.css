@@ -402,7 +402,7 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Optimize table cells for mobile readability */
   table td, table th {
     min-width: 100px;

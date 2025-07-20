@@ -1,0 +1,449 @@
+<!-- Button Demo Showcase -->
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900">
+  
+  <!-- Hero Section -->
+  <div class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <div class="relative max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+          Button Showcase
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12">
+          Discover the power of interactive buttons with stunning animations, multiple variants, and accessibility features
+        </p>
+
+        <!-- Hero Interactive Buttons -->
+        <div class="flex flex-wrap justify-center gap-4 mb-16">
+          <Button
+            variant="default"
+            size="xl"
+            [loadingState]="{ loading: loadingStates().primary }"
+            (click)="handlePrimaryAction()"
+            class="transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            🚀 Get Started
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="xl"
+            (click)="handleLearnMore()"
+            class="transform hover:scale-105 transition-all duration-300">
+            📖 Learn More
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variants Showcase -->
+  <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Button Variants</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300">Choose from our carefully crafted button styles</p>
+    </div>
+
+    <!-- Variant Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      
+      <!-- Default Variant -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">✨</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Default</h3>
+          <div class="space-y-3 flex flex-col items-center">
+            <Button variant="default" size="sm">Small</Button>
+            <Button variant="default" size="default">Default</Button>
+            <Button variant="default" size="lg">Large</Button>
+            <Button variant="default" size="xl">Extra Large</Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destructive Variant -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">⚠️</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Destructive</h3>
+          <div class="space-y-3 flex flex-col items-center">
+            <Button variant="destructive" size="sm">Delete</Button>
+            <Button variant="destructive" size="default">Remove</Button>
+            <Button variant="destructive" size="lg" [loadingState]="{ loading: loadingStates().delete }" (click)="handleDelete()">Destroy</Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outline Variant -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🔲</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Outline</h3>
+          <div class="space-y-3 flex flex-col items-center">
+            <Button variant="outline" size="sm">Outline</Button>
+            <Button variant="outline" size="default">Border</Button>
+            <Button variant="outline" size="lg">Secondary</Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Variant -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🎨</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Secondary</h3>
+          <div class="space-y-3 flex flex-col items-center">
+            <Button variant="secondary" size="sm">Secondary</Button>
+            <Button variant="secondary" size="default">Alternative</Button>
+            <Button variant="secondary" size="lg">Option</Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ghost Variant -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">👻</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Ghost</h3>
+          <div class="space-y-3 flex flex-col items-center">
+            <Button variant="ghost" size="sm">Ghost</Button>
+            <Button variant="ghost" size="default">Subtle</Button>
+            <Button variant="ghost" size="lg">Minimal</Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Link Variant -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🔗</span>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Link</h3>
+          <div class="space-y-3 flex flex-col items-center">
+            <Button variant="link" size="sm">Link Style</Button>
+            <Button variant="link" size="default">Text Link</Button>
+            <Button variant="link" size="lg">Underlined</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color Variants Section -->
+  <div class="bg-white dark:bg-gray-800 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Semantic Colors</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Express meaning through color</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <Button variant="success" size="lg" class="w-full mb-3">Success</Button>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Positive actions</p>
+        </div>
+        
+        <div class="text-center">
+          <Button variant="warning" size="lg" class="w-full mb-3">Warning</Button>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Caution required</p>
+        </div>
+        
+        <div class="text-center">
+          <Button variant="info" size="lg" class="w-full mb-3">Info</Button>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Informational</p>
+        </div>
+        
+        <div class="text-center">
+          <Button variant="destructive" size="lg" class="w-full mb-3">Danger</Button>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Destructive actions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Features -->
+  <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Interactive Features</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300">Experience the full functionality</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      
+      <!-- Loading States -->
+      <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-purple-900 rounded-3xl p-8">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Loading States</h3>
+        
+        <div class="space-y-4">
+          <Button
+            variant="default"
+            size="lg"
+            [loadingState]="{ loading: loadingStates().download }"
+            (click)="handleDownload()"
+            class="w-full">
+            📥 {{ loadingStates().download ? 'Downloading...' : 'Download File' }}
+          </Button>
+          
+          <Button
+            variant="success"
+            size="lg"
+            [loadingState]="{ loading: loadingStates().save }"
+            (click)="handleSave()"
+            class="w-full">
+            💾 {{ loadingStates().save ? 'Saving...' : 'Save Changes' }}
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="lg"
+            [disabled]="loadingStates().download || loadingStates().save"
+            (click)="handleDependentAction()"
+            class="w-full">
+            🔄 Dependent Action
+          </Button>
+        </div>
+      </div>
+
+      <!-- Animation Effects -->
+      <div class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-blue-900 rounded-3xl p-8">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Animation Effects</h3>
+        
+        <div class="space-y-4">
+          <Button
+            variant="default"
+            size="lg"
+            (click)="triggerBounce()"
+            [ngClass]="{
+              'w-full transition-all duration-300': true,
+              'animate-bounce': animationStates().bounceButton
+            }">
+            🎾 Bounce Effect
+          </Button>
+          
+          <Button
+            variant="secondary"
+            size="lg"
+            (click)="triggerPulse()"
+            [ngClass]="{
+              'w-full transition-all duration-300': true,
+              'animate-pulse': animationStates().pulseButton
+            }">
+            💓 Pulse Effect
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="lg"
+            (click)="triggerShake()"
+            [ngClass]="{
+              'w-full transition-all duration-300': true,
+              'animate-ping': animationStates().shakeButton
+            }">
+            📳 Shake Effect
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icon Buttons Section -->
+  <div class="bg-gradient-to-r from-purple-100 to-pink-100 dark:from-gray-900 dark:to-purple-900 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Icon Buttons</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">Perfect for compact interfaces</p>
+      </div>
+
+      <!-- Icon Button Sizes -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="text-center">
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Small Icons</h4>
+          <div class="flex justify-center space-x-2">
+            <Button variant="default" size="icon-sm">❤️</Button>
+            <Button variant="outline" size="icon-sm">👍</Button>
+            <Button variant="ghost" size="icon-sm">⭐</Button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Default Icons</h4>
+          <div class="flex justify-center space-x-2">
+            <Button variant="default" size="icon">🔥</Button>
+            <Button variant="outline" size="icon">💡</Button>
+            <Button variant="ghost" size="icon">🎯</Button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Large Icons</h4>
+          <div class="flex justify-center space-x-2">
+            <Button variant="default" size="icon-lg">🚀</Button>
+            <Button variant="outline" size="icon-lg">⚡</Button>
+            <Button variant="ghost" size="icon-lg">🎨</Button>
+          </div>
+        </div>
+        
+        <div class="text-center">
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Extra Large</h4>
+          <div class="flex justify-center space-x-2">
+            <Button variant="default" size="icon-xl">🎭</Button>
+            <Button variant="outline" size="icon-xl">🎪</Button>
+            <Button variant="ghost" size="icon-xl">🎨</Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Media Icons -->
+      <div class="text-center">
+        <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Social Media Actions</h4>
+        <div class="flex flex-wrap justify-center gap-3">
+          <Button variant="outline" size="icon-lg" class="hover:bg-blue-50 dark:hover:bg-blue-900">📘</Button>
+          <Button variant="outline" size="icon-lg" class="hover:bg-sky-50 dark:hover:bg-sky-900">🐦</Button>
+          <Button variant="outline" size="icon-lg" class="hover:bg-pink-50 dark:hover:bg-pink-900">📷</Button>
+          <Button variant="outline" size="icon-lg" class="hover:bg-blue-50 dark:hover:bg-blue-900">💼</Button>
+          <Button variant="outline" size="icon-lg" class="hover:bg-red-50 dark:hover:bg-red-900">🎬</Button>
+          <Button variant="outline" size="icon-lg" class="hover:bg-green-50 dark:hover:bg-green-900">💬</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advanced Examples -->
+  <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Advanced Examples</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300">Real-world usage patterns</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      
+      <!-- Button Groups -->
+      <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Button Groups</h3>
+        
+        <div class="space-y-6">
+          <!-- Toolbar -->
+          <div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Toolbar Actions</p>
+            <div class="flex space-x-1">
+              <Button variant="outline" size="sm">Bold</Button>
+              <Button variant="outline" size="sm">Italic</Button>
+              <Button variant="outline" size="sm">Underline</Button>
+              <div class="w-px bg-gray-300 mx-2"></div>
+              <Button variant="outline" size="sm">Left</Button>
+              <Button variant="outline" size="sm">Center</Button>
+              <Button variant="outline" size="sm">Right</Button>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Navigation</p>
+            <div class="flex space-x-1">
+              <Button variant="outline" size="default">← Previous</Button>
+              <Button variant="ghost" size="default">1</Button>
+              <Button variant="default" size="default">2</Button>
+              <Button variant="ghost" size="default">3</Button>
+              <Button variant="outline" size="default">Next →</Button>
+            </div>
+          </div>
+
+          <!-- Filter Actions -->
+          <div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Filter Controls</p>
+            <div class="flex flex-wrap gap-2">
+              <Button variant="secondary" size="sm">All</Button>
+              <Button variant="outline" size="sm">Active</Button>
+              <Button variant="outline" size="sm">Pending</Button>
+              <Button variant="outline" size="sm">Completed</Button>
+              <Button variant="ghost" size="sm">Clear</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Counter -->
+      <div class="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-gray-800 dark:to-orange-900 rounded-3xl p-8">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Interactive Counter</h3>
+        
+        <div class="text-center">
+          <div class="bg-white dark:bg-gray-700 rounded-2xl p-8 mb-6 shadow-inner">
+            <div class="text-6xl font-bold text-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text mb-4">
+              {{ clickCount() }}
+            </div>
+            <p class="text-gray-600 dark:text-gray-300">Times clicked</p>
+          </div>
+          
+          <Button
+            variant="default"
+            size="xl"
+            (click)="handleCount()"
+            class="transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            🎯 Click Me!
+          </Button>
+          
+          <div class="mt-4 space-x-2">
+            <Button variant="ghost" size="sm" (click)="resetCount()">Reset</Button>
+            <Button variant="outline" size="sm" (click)="addTen()">+10</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 py-20">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+        Ready to Build Amazing UIs?
+      </h2>
+      <p class="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+        Start using our button components in your Angular applications today. Perfect for modern, accessible, and beautiful interfaces.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button
+          variant="secondary"
+          size="xl"
+          (click)="handleDocumentation()"
+          class="bg-white text-gray-900 hover:bg-gray-100 shadow-2xl transform hover:scale-105 transition-all duration-300">
+          📚 View Documentation
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  @if (showToast()) {
+    <div class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 ease-in-out"
+         [class]="showToast() ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'">
+      <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4 min-w-[300px]">
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0">
+            <span class="text-2xl">✅</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm font-medium text-gray-900 dark:text-white">{{ toastMessage() }}</p>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            (click)="showToast.set(false)"
+            class="text-gray-400 hover:text-gray-600">
+            ✕
+          </Button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

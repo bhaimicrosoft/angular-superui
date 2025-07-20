@@ -9,7 +9,7 @@ import { cn } from '../utils/cn';
 const buttonVariants = cva(
   // Base styles - consistent across all variants
   [
-    'inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium',
+    'inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer',
     'transition-colors duration-200 ease-in-out',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
     'disabled:pointer-events-none disabled:opacity-50',

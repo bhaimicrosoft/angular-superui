@@ -1,0 +1,227 @@
+<!-- Carousel Component Section -->
+<section id="carousel" class="relative">
+  <!-- Section Header -->
+  <div class="bg-gradient-to-br from-emerald-400 via-cyan-500 to-blue-500 text-white rounded-lg p-6 mb-8">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">
+        Carousel Component
+        <span class="ml-3 inline-flex items-center px-3 py-1 rounded-full text-sm bg-white/20 backdrop-blur-sm">
+          Image Gallery
+        </span>
+      </h2>
+      <p class="text-white/90 text-lg leading-relaxed">
+        Responsive image galleries with auto-play, navigation controls, and smooth transitions. Perfect for showcasing products, portfolios, and content highlights.
+      </p>
+      <div class="flex flex-wrap gap-2 mt-4">
+        <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm">Auto-play</span>
+        <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm">Touch/Swipe</span>
+        <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm">Indicators</span>
+        <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm">Responsive</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel Examples -->
+  <div class="grid grid-cols-1 gap-8">
+
+    <!-- Standard Carousel -->
+    <div class="demo-container">
+      <h3 class="demo-title">Standard Carousel</h3>
+      <p class="demo-description">Full-featured carousel with navigation controls and indicators.</p>
+      <div class="demo-content">
+
+        <div class="carousel-wrapper relative bg-gray-100 rounded-lg overflow-hidden">
+          <!-- Carousel Container -->
+          <div class="relative h-80 overflow-hidden">
+            <div
+              class="flex transition-transform duration-500 ease-in-out h-full"
+              [style.transform]="'translateX(-' + (currentSlide() * 100) + '%)'"
+            >
+              <div
+                *ngFor="let slide of slides"
+                class="w-full flex-shrink-0 relative"
+              >
+                <img
+                  [src]="slide.image"
+                  [alt]="slide.title"
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+                  <div class="p-6 text-white">
+                    <h4 class="text-xl font-bold mb-2">{{ slide.title }}</h4>
+                    <p class="text-white/90">{{ slide.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button
+            (click)="prevSlide()"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-colors"
+            aria-label="Previous slide"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <button
+            (click)="nextSlide()"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-colors"
+            aria-label="Next slide"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+
+          <!-- Indicators -->
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <button
+              *ngFor="let slide of slides; let i = index"
+              (click)="goToSlide(i)"
+              class="w-3 h-3 rounded-full transition-colors"
+              [class.bg-white]="currentSlide() === i"
+              [class.bg-opacity-50]="currentSlide() !== i"
+              [attr.aria-label]="'Go to slide ' + (i + 1)">
+            </button>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <div class="mt-4 flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <button
+              (click)="prevSlide()"
+              class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+            >
+              Previous
+            </button>
+            <button
+              (click)="nextSlide()"
+              class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+            >
+              Next
+            </button>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <span class="text-sm text-gray-600">Auto-play</span>
+            <button
+              (click)="toggleAutoplay()"
+              class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors"
+              [class.bg-blue-500]="autoplayEnabled()"
+              [class.bg-gray-300]="!autoplayEnabled()"
+            >
+              <span
+                class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform"
+                [class.translate-x-6]="autoplayEnabled()"
+                [class.translate-x-1]="!autoplayEnabled()"
+              ></span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Product Carousel -->
+    <div class="demo-container">
+      <h3 class="demo-title">Product Carousel</h3>
+      <p class="demo-description">Horizontal scrolling carousel for products or cards.</p>
+      <div class="demo-content">
+
+        <div class="product-carousel-wrapper">
+          <div class="flex space-x-4 overflow-x-auto pb-4">
+            <div
+              *ngFor="let product of productSlides"
+              class="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <img
+                [src]="product.image"
+                [alt]="product.title"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-4">
+                <h4 class="font-semibold text-gray-900 mb-1">{{ product.title }}</h4>
+                <p class="text-lg font-bold text-blue-600">{{ product.price }}</p>
+                <button class="mt-3 w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Thumbnail Carousel -->
+    <div class="demo-container">
+      <h3 class="demo-title">Thumbnail Carousel</h3>
+      <p class="demo-description">Carousel with thumbnail navigation.</p>
+      <div class="demo-content">
+
+        <div class="thumbnail-carousel-wrapper">
+          <!-- Main Image -->
+          <div class="mb-4 relative bg-gray-100 rounded-lg overflow-hidden">
+            <div class="h-64 relative">
+              <img
+                [src]="slides[currentSlide()].image"
+                [alt]="slides[currentSlide()].title"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent flex items-end">
+                <div class="p-4 text-white">
+                  <h4 class="text-lg font-bold">{{ slides[currentSlide()].title }}</h4>
+                  <p class="text-white/90 text-sm">{{ slides[currentSlide()].description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thumbnails -->
+          <div class="flex space-x-2 overflow-x-auto">
+            <button
+              *ngFor="let slide of slides; let i = index"
+              (click)="goToSlide(i)"
+              class="flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden border-2 transition-colors"
+              [class.border-blue-500]="currentSlide() === i"
+              [class.border-gray-200]="currentSlide() !== i"
+            >
+              <img
+                [src]="slide.image"
+                [alt]="slide.title"
+                class="w-full h-full object-cover"
+              />
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Installation Guide -->
+  <div class="mt-12 p-6 bg-gradient-to-br from-emerald-50 to-cyan-100 rounded-xl border border-emerald-200">
+    <div class="flex items-center space-x-3 mb-4">
+      <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+      </div>
+      <h4 class="text-xl font-bold text-emerald-900">Quick Start</h4>
+    </div>
+    <div class="bg-white/70 rounded-lg p-4 font-mono text-lg mb-3">
+      <div class="text-emerald-600 mb-2 text-lg font-semibold">
+        npx ngsui-cli add carousel
+      </div>
+      <div class="text-gray-600 text-sm">
+        Installs Carousel component with auto-play, navigation, and touch support
+      </div>
+    </div>
+  </div>
+</section>

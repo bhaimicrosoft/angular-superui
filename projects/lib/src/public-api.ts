@@ -21,5 +21,6 @@ export * from './lib/collapsible';
 export * from './lib/combobox';
 export * from './lib/context-menu';
 export * from './lib/data-table';
+export * from './lib/dialog';
 export * from './lib/theme-switcher';
 

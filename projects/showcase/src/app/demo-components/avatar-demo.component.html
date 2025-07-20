@@ -1,0 +1,278 @@
+<!-- Avatar Component Section -->
+<section id="avatar"
+         class="relative py-24 bg-gradient-to-br from-violet-50 via-purple-50 to-indigo-50 dark:bg-gradient-to-br dark:from-violet-950/30 dark:via-purple-950/30 dark:to-indigo-950/30">
+  <!-- Animated Background Pattern -->
+  <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/20 dark:to-transparent"></div>
+
+  <div class="relative z-10 container mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <div
+        class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-violet-500 via-purple-500 to-indigo-500 rounded-3xl mb-8 shadow-2xl shadow-purple-500/25 dark:shadow-purple-500/10">
+        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+      </div>
+      <h2
+        class="text-5xl md:text-6xl font-black bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 dark:from-violet-400 dark:via-purple-400 dark:to-indigo-400 bg-clip-text text-transparent mb-6">
+        Avatar
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+        Display user profile pictures with fallback initials, status indicators, and group layouts. Perfect for user interfaces, comments, and team
+        displays.
+      </p>
+
+      <!-- Feature Badges -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <span
+          class="px-4 py-2 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full text-sm font-semibold border border-violet-200 dark:border-violet-800">
+          🎯 Multiple Sizes
+        </span>
+        <span
+          class="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold border border-purple-200 dark:border-purple-800">
+          🔤 Fallback Initials
+        </span>
+        <span
+          class="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-semibold border border-indigo-200 dark:border-indigo-800">
+          📊 Status Indicators
+        </span>
+        <span
+          class="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold border border-blue-200 dark:border-blue-800">
+          👥 Group Stacking
+        </span>
+      </div>
+    </div>
+
+    <!-- Avatar Examples -->
+    <div class="grid grid-cols-1 gap-8">
+
+      <!-- Basic Avatar Sizes -->
+      <div
+        class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Avatar Sizes</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">Different avatar sizes for various use cases.</p>
+        <div class="flex flex-col space-y-6">
+          <div class="flex items-end space-x-6">
+
+            <!-- Small -->
+            <div class="text-center">
+              <Avatar size="sm" class="mb-2 transition-transform duration-200 hover:scale-105">
+                <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=24&h=24&fit=crop&crop=face" alt="User"/>
+                <AvatarFallback>JD</AvatarFallback>
+              </Avatar>
+              <p class="text-xs text-gray-600 dark:text-gray-400">SM (24px)</p>
+            </div>
+
+            <!-- Medium -->
+            <div class="text-center">
+              <Avatar class="mb-2 transition-transform duration-200 hover:scale-105">
+                <AvatarImage src="https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=32&h=32&fit=crop&crop=face" alt="User"/>
+                <AvatarFallback>JS</AvatarFallback>
+              </Avatar>
+              <p class="text-xs text-gray-600 dark:text-gray-400">MD (32px)</p>
+            </div>
+
+            <!-- Large (Default) -->
+            <div class="text-center">
+              <Avatar size="lg" class="mb-2 transition-transform duration-200 hover:scale-105">
+                <AvatarImage src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="User"/>
+                <AvatarFallback>SW</AvatarFallback>
+              </Avatar>
+              <p class="text-xs text-gray-600 dark:text-gray-400">LG (40px)</p>
+            </div>
+
+            <!-- Extra Large -->
+            <div class="text-center">
+              <Avatar size="xl" class="mb-2 transition-transform duration-200 hover:scale-105">
+                <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=56&h=56&fit=crop&crop=face" alt="User"/>
+                <AvatarFallback>MB</AvatarFallback>
+              </Avatar>
+              <p class="text-xs text-gray-600 dark:text-gray-400">XL (56px)</p>
+            </div>
+
+            <!-- 2XL -->
+            <div class="text-center">
+              <Avatar size="2xl" class="mb-2 transition-transform duration-200 hover:scale-105">
+                <AvatarImage src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="User"/>
+                <AvatarFallback>DM</AvatarFallback>
+              </Avatar>
+              <p class="text-xs text-gray-600 dark:text-gray-400">2XL (80px)</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Avatar with Status Indicators -->
+      <div
+        class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-8 shadow-sm hover:shadow-lg transition-all duration-300">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">Status Indicators</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">Show user presence with status indicators.</p>
+        <div class="flex flex-col space-y-6">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+            <div *ngFor="let user of users" class="text-center">
+              <div class="relative inline-block mb-2">
+                <Avatar>
+                  <AvatarImage *ngIf="user.avatar" [src]="user.avatar" [alt]="user.name"/>
+                  <AvatarFallback>{{ user.initials }}</AvatarFallback>
+                </Avatar>
+
+                <!-- Status Indicator -->
+                <span
+                  class="absolute bottom-0 right-0 block h-3 w-3 rounded-full border-2 border-white"
+                  [ngClass]="{
+                  'bg-green-400': user.status === 'online',
+                  'bg-gray-400': user.status === 'offline',
+                  'bg-yellow-400': user.status === 'away',
+                  'bg-red-400': user.status === 'busy'
+                }"
+                  [title]="user.status"
+                ></span>
+              </div>
+              <p class="text-sm font-medium text-gray-900">{{ user.name }}</p>
+              <p class="text-xs text-gray-600 capitalize">{{ user.status }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Fallback Initials -->
+      <div class="demo-container">
+        <h3 class="demo-title">Fallback Initials</h3>
+        <p class="demo-description">When images fail to load, initials are displayed with colorful backgrounds.</p>
+        <div class="demo-content">
+          <div class="flex space-x-4 items-center">
+
+            <div *ngFor="let member of teamMembers" class="text-center">
+              <Avatar class="mb-2" [class]="member.color + ' text-white'">
+                <AvatarImage src="invalid-url" [alt]="member.name"/>
+                <AvatarFallback [class]="member.color + ' text-white'">{{ member.initials }}</AvatarFallback>
+              </Avatar>
+              <p class="text-xs text-gray-600">{{ member.name }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Avatar Group/Stack -->
+      <div class="demo-container">
+        <h3 class="demo-title">Avatar Groups</h3>
+        <p class="demo-description">Stack multiple avatars to show team members or participants.</p>
+        <div class="demo-content space-y-6">
+
+          <!-- Overlapping Avatars -->
+          <div>
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Team Members (5)</h4>
+            <div class="flex -space-x-2">
+              <Avatar class="border-2 border-white">
+                <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Member 1"/>
+                <AvatarFallback>M1</AvatarFallback>
+              </Avatar>
+              <Avatar class="border-2 border-white">
+                <AvatarImage src="https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face" alt="Member 2"/>
+                <AvatarFallback>M2</AvatarFallback>
+              </Avatar>
+              <Avatar class="border-2 border-white">
+                <AvatarImage src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Member 3"/>
+                <AvatarFallback>M3</AvatarFallback>
+              </Avatar>
+              <Avatar class="border-2 border-white bg-gray-500 text-white">
+                <AvatarFallback class="bg-gray-500 text-white text-xs">+2</AvatarFallback>
+              </Avatar>
+            </div>
+          </div>
+
+          <!-- Horizontal List -->
+          <div>
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Project Contributors</h4>
+            <div class="flex space-x-3">
+              <Avatar size="sm">
+                <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face" alt="Contributor 1"/>
+                <AvatarFallback>C1</AvatarFallback>
+              </Avatar>
+              <Avatar size="sm">
+                <AvatarImage src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&h=32&fit=crop&crop=face" alt="Contributor 2"/>
+                <AvatarFallback>C2</AvatarFallback>
+              </Avatar>
+              <Avatar size="sm" class="bg-blue-500 text-white">
+                <AvatarFallback class="bg-blue-500 text-white">AB</AvatarFallback>
+              </Avatar>
+              <Avatar size="sm" class="bg-green-500 text-white">
+                <AvatarFallback class="bg-green-500 text-white">CD</AvatarFallback>
+              </Avatar>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Real-world Usage -->
+      <div class="demo-container">
+        <h3 class="demo-title">Real-world Examples</h3>
+        <p class="demo-description">Common patterns using avatars in application interfaces.</p>
+        <div class="demo-content space-y-6">
+
+          <!-- User Profile Card -->
+          <div class="bg-gray-50 rounded-lg p-4 border">
+            <div class="flex items-center space-x-3">
+              <Avatar size="lg">
+                <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=56&h=56&fit=crop&crop=face" alt="John Doe"/>
+                <AvatarFallback>JD</AvatarFallback>
+              </Avatar>
+              <div>
+                <h4 class="text-lg font-semibold text-gray-900">John Doe</h4>
+                <p class="text-gray-600">Senior Developer</p>
+                <p class="text-sm text-gray-500">john.doe&#64;company.com</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification List -->
+          <div class="space-y-3">
+            <h4 class="text-sm font-medium text-gray-900">Recent Notifications</h4>
+            <div *ngFor="let notification of notifications" class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+              <Avatar size="sm">
+                <AvatarImage *ngIf="notification.avatar" [src]="notification.avatar" [alt]="notification.user"/>
+                <AvatarFallback>{{ notification.initials }}</AvatarFallback>
+              </Avatar>
+              <div class="flex-1">
+                <p class="text-sm text-gray-900">
+                  <span class="font-medium">{{ notification.user }}</span>
+                  {{ notification.action }}
+                </p>
+                <p class="text-xs text-gray-500">{{ notification.time }}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Installation Guide -->
+    <div class="mt-12 p-6 bg-gradient-to-br from-violet-50 to-purple-100 rounded-xl border border-violet-200">
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-8 h-8 bg-violet-500 rounded-lg flex items-center justify-center">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+        </div>
+        <h4 class="text-xl font-bold text-violet-900">Quick Start</h4>
+      </div>
+      <div class="bg-white/70 rounded-lg p-4 font-mono text-lg mb-3">
+        <div class="text-violet-600 mb-2 text-lg font-semibold">
+          npx ngsui-cli add avatar
+        </div>
+        <div class="text-gray-600 text-sm">
+          Installs Avatar component with image loading, fallbacks, and status indicators
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
