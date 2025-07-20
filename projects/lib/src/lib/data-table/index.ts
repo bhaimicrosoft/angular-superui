@@ -144,9 +144,9 @@ function cn(...inputs: any[]) {
   template: `
     <div [class]="containerClasses()">
       <!-- Toolbar -->
-      <div *ngIf="config().showToolbar" class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+      <div *ngIf="config().showToolbar" class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
         <!-- Search -->
-        <div *ngIf="config().searchable" class="flex-1 max-w-md">
+        <div *ngIf="config().searchable" class="w-full sm:flex-1 sm:max-w-md">
           <div class="relative">
             <svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/>
@@ -173,7 +173,7 @@ function cn(...inputs: any[]) {
         </div>
 
         <!-- Actions -->
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <!-- Filters Toggle -->
           <button
             *ngIf="config().filterable"
@@ -181,7 +181,7 @@ function cn(...inputs: any[]) {
             (click)="toggleFilters()"
             [class.bg-blue-600]="showFilters()"
             [class.text-white]="showFilters()"
-            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            class="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z"/>
@@ -197,12 +197,12 @@ function cn(...inputs: any[]) {
             <button
               type="button"
               (click)="toggleExportMenu()"
-              class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              class="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="h-3 w-3 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
-              Export
+              <span class="hidden sm:inline">Export</span>
               <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
@@ -235,10 +235,10 @@ function cn(...inputs: any[]) {
             type="button"
             (click)="refresh()"
             [disabled]="loading()"
-            class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
+            class="inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
           >
             <svg
-              class="h-4 w-4"
+              class="h-3 w-3 sm:h-4 sm:w-4"
               [class.animate-spin]="loading()"
               fill="none"
               stroke="currentColor"
@@ -246,21 +246,21 @@ function cn(...inputs: any[]) {
             >
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
             </svg>
-            Refresh
+            <span class="hidden sm:inline">Refresh</span>
           </button>
         </div>
       </div>
 
       <!-- Filters Panel -->
-      <div *ngIf="showFilters() && config().filterable" class="p-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
-        <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <div *ngFor="let column of filterableColumns(); trackBy: trackByColumn" class="space-y-2">
-            <label class="text-sm font-medium text-gray-600 dark:text-gray-300">
+      <div *ngIf="showFilters() && config().filterable" class="p-3 sm:p-4 bg-gray-50 dark:bg-gray-800/30 border-b border-gray-200 dark:border-gray-700">
+        <div class="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div *ngFor="let column of filterableColumns(); trackBy: trackByColumn" class="space-y-1.5 sm:space-y-2">
+            <label class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
               {{ column.label }}
             </label>
             
             <!-- Text Filter -->
-            <div *ngIf="column.type === 'string' || column.type === 'email' || !column.type" class="space-y-2">
+            <div *ngIf="column.type === 'string' || column.type === 'email' || !column.type" class="space-y-1.5 sm:space-y-2">
               <select
                 [value]="getFilterOperator(column.key)"
                 (change)="setFilterOperator(column.key, $event)"
@@ -276,7 +276,7 @@ function cn(...inputs: any[]) {
                 [placeholder]="'Filter ' + column.label.toLowerCase()"
                 [value]="getFilterValue(column.key)"
                 (input)="onFilter(column.key, $event)"
-                class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                class="w-full px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
 
@@ -563,41 +563,42 @@ function cn(...inputs: any[]) {
       <!-- Pagination -->
       <div
         *ngIf="config().paginated && (pagination().total > 0 || dataLength() > 0)"
-        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-4 py-3 border-t border-gray-200 dark:border-gray-700"
+        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 px-3 sm:px-4 py-3 border-t border-gray-200 dark:border-gray-700"
       >
         <!-- Page info -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div *ngIf="pagination().showPageInfo" class="text-sm text-gray-600 dark:text-gray-400">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+          <div *ngIf="pagination().showPageInfo" class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
             Showing {{ getPageStart() + 1 }} to {{ getPageEnd() }} of {{ pagination().total }} entries
           </div>
 
           <!-- Page size selector -->
-          <div *ngIf="pagination().showPageSizeSelector" class="flex items-center gap-2">
-            <span class="text-sm text-gray-600 dark:text-gray-400">Show</span>
+          <div *ngIf="pagination().showPageSizeSelector" class="flex items-center gap-1 sm:gap-2">
+            <span class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Show</span>
             <select
               [value]="pagination().pageSize"
               (change)="onPageSizeChange($event)"
-              class="px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+              class="px-1.5 sm:px-2 py-1 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
-              <option *ngFor="let size of pageSizeOptions" [value]="size">
+              <option *ngFor="let size of pageSizeOptionsForTemplate()" [value]="size">
                 {{ size }}
               </option>
             </select>
-            <span class="text-sm text-gray-600 dark:text-gray-400">entries</span>
+            <span class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">entries</span>
           </div>
         </div>
 
         <!-- Pagination controls -->
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-0.5 sm:gap-1 overflow-x-auto">
           <!-- First page -->
           <button
             *ngIf="pagination().showFirstLast"
             type="button"
             [disabled]="pagination().page === 0"
             (click)="goToPage(0)"
-            class="px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-l-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-l-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
           >
-            First
+            <span class="hidden sm:inline">First</span>
+            <span class="sm:hidden">‹‹</span>
           </button>
 
           <!-- Previous page -->
@@ -605,10 +606,11 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="pagination().page === 0"
             (click)="goToPage(pagination().page - 1)"
-            class="px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             [class.rounded-l-md]="!pagination().showFirstLast"
           >
-            Previous
+            <span class="hidden sm:inline">Previous</span>
+            <span class="sm:hidden">‹</span>
           </button>
 
           <!-- Page numbers -->
@@ -617,7 +619,7 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="page === '...'"
             (click)="page !== '...' ? goToPage(+page - 1) : null"
-            class="px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:cursor-default"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:cursor-default whitespace-nowrap"
             [class.bg-blue-600]="page === (pagination().page + 1).toString()"
             [class.dark:bg-blue-600]="page === (pagination().page + 1).toString()"
             [class.text-white]="page === (pagination().page + 1).toString()"
@@ -630,10 +632,11 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="pagination().page >= mathUtil.ceil(pagination().total / pagination().pageSize) - 1"
             (click)="goToPage(pagination().page + 1)"
-            class="px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
             [class.rounded-r-md]="!pagination().showFirstLast"
           >
-            Next
+            <span class="hidden sm:inline">Next</span>
+            <span class="sm:hidden">›</span>
           </button>
 
           <!-- Last page -->
@@ -642,9 +645,10 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="pagination().page >= mathUtil.ceil(pagination().total / pagination().pageSize) - 1"
             (click)="goToPage(mathUtil.ceil(pagination().total / pagination().pageSize) - 1)"
-            class="px-3 py-2 text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-r-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-r-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
           >
-            Last
+            <span class="hidden sm:inline">Last</span>
+            <span class="sm:hidden">››</span>
           </button>
         </div>
       </div>
@@ -731,12 +735,52 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   @Input() maxHeight = signal<string>('600px');
   
-  // Pagination configuration inputs
-  @Input() initialPageSize: number = 5;
-  @Input() pageSizeOptions: number[] = [5, 10, 20, 50, 100];
-  @Input() showFirstLast: boolean = true;
-  @Input() showPageInfo: boolean = true;
-  @Input() showPageSizeSelector: boolean = true;
+  // Pagination configuration inputs as signals for reactivity
+  private _initialPageSize = signal<number>(5);
+  private _pageSizeOptions = signal<number[]>([5, 10, 20, 50, 100]);
+  private _showFirstLast = signal<boolean>(true);
+  private _showPageInfo = signal<boolean>(true);
+  private _showPageSizeSelector = signal<boolean>(true);
+
+  @Input() 
+  set initialPageSize(value: number) {
+    this._initialPageSize.set(value);
+  }
+  get initialPageSize() {
+    return this._initialPageSize();
+  }
+
+  @Input() 
+  set pageSizeOptions(value: number[]) {
+    this._pageSizeOptions.set(value);
+  }
+  get pageSizeOptions() {
+    return this._pageSizeOptions();
+  }
+
+  @Input() 
+  set showFirstLast(value: boolean) {
+    this._showFirstLast.set(value);
+  }
+  get showFirstLast() {
+    return this._showFirstLast();
+  }
+
+  @Input() 
+  set showPageInfo(value: boolean) {
+    this._showPageInfo.set(value);
+  }
+  get showPageInfo() {
+    return this._showPageInfo();
+  }
+
+  @Input() 
+  set showPageSizeSelector(value: boolean) {
+    this._showPageSizeSelector.set(value);
+  }
+  get showPageSizeSelector() {
+    return this._showPageSizeSelector();
+  }
 
   // Outputs
   @Output() dataChange = new EventEmitter<T[]>();
@@ -757,12 +801,12 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   
   pagination = signal<DataTablePagination>({
     page: 0,
-    pageSize: this.initialPageSize,
+    pageSize: 5, // Will be updated by effect
     total: 0,
-    pageSizeOptions: this.pageSizeOptions,
-    showFirstLast: this.showFirstLast,
-    showPageInfo: this.showPageInfo,
-    showPageSizeSelector: this.showPageSizeSelector,
+    pageSizeOptions: [5, 10, 20, 50, 100], // Will be updated by effect
+    showFirstLast: true, // Will be updated by effect
+    showPageInfo: true, // Will be updated by effect
+    showPageSizeSelector: true, // Will be updated by effect
   });
 
   selection = signal<DataTableSelection<T>>({
@@ -789,6 +833,9 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   dataLength = computed(() => this._data().length);
   columnsValue = computed(() => this._columns());
   dataValue = computed(() => this._data());
+  
+  // Computed properties for pagination inputs (for template access)
+  pageSizeOptionsForTemplate = computed(() => this._pageSizeOptions());
 
   filterableColumns = computed(() =>
     this.visibleColumns().filter(col => col.filterable !== false && this.config().filterable)
@@ -903,11 +950,21 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     effect(() => {
       this.pagination.update(p => ({
         ...p,
-        pageSize: this.initialPageSize,
-        pageSizeOptions: this.pageSizeOptions,
-        showFirstLast: this.showFirstLast,
-        showPageInfo: this.showPageInfo,
-        showPageSizeSelector: this.showPageSizeSelector,
+        pageSize: this._initialPageSize(),
+        pageSizeOptions: this._pageSizeOptions(),
+        showFirstLast: this._showFirstLast(),
+        showPageInfo: this._showPageInfo(),
+        showPageSizeSelector: this._showPageSizeSelector(),
+      }));
+    });
+
+    // Reset to first page when page size changes
+    effect(() => {
+      const pageSize = this._initialPageSize();
+      // Reset to page 0 when page size changes
+      this.pagination.update(p => ({
+        ...p,
+        page: 0
       }));
     });
   }

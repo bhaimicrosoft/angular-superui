@@ -394,3 +394,18 @@
 .modal-popover-panel {
   z-index: 1000;
 }
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  /* Ensure DataTable scrolls horizontally on mobile */
+  .data-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimize table cells for mobile readability */
+  table td, table th {
+    min-width: 100px;
+    font-size: 0.875rem;
+  }
+}

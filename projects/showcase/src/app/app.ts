@@ -1,4 +1,4 @@
-import {afterNextRender, Component, HostListener, inject, OnInit, signal,} from '@angular/core';
+import {afterNextRender, Component, HostListener, inject, OnInit, signal, computed, effect,} from '@angular/core';
 import {ThemeService, ThemeSwitcher} from '@lib/theme-switcher';
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from '@lib/accordion';
 import {
@@ -219,12 +219,35 @@ export class App implements OnInit {
     }
   ]);
 
-  // Pagination configuration for DataTable demonstration
-  customPageSize = signal<number>(3);
+  // Internal base page size signal for manual updates
+  private _basePageSize = signal<number>(3);
+  
+  // Pagination configuration signals
   customPageSizeOptions = signal<number[]>([3, 7, 15, 25, 50]);
   showFirstLastButtons = signal<boolean>(true);
   showPageInfoText = signal<boolean>(true);
   showPageSizePicker = signal<boolean>(true);
+  
+  // Reactive page size that automatically updates when options change
+  customPageSize = computed(() => {
+    const options = this.customPageSizeOptions();
+    const currentSize = this._basePageSize();
+    
+    // Always ensure we have a valid page size from the available options
+    if (options.length > 0) {
+      // If current size is valid in new options, keep it
+      if (options.includes(currentSize)) {
+        return currentSize;
+      }
+      // Otherwise, use the first option and update the base
+      const firstOption = options[0];
+      // Use setTimeout to avoid circular updates
+      setTimeout(() => this._basePageSize.set(firstOption), 0);
+      return firstOption;
+    }
+    
+    return 5; // fallback
+  });
 
   // AlertDialog states
   isDeleteDialogOpen = signal(false);
@@ -391,6 +414,20 @@ export class App implements OnInit {
     // Force theme service initialization after render
     afterNextRender(() => {
       // Theme service initialized after render
+    });
+
+    // Reactive effect to automatically update page size when options change
+    effect(() => {
+      const options = this.customPageSizeOptions();
+      const currentSize = this._basePageSize();
+      
+      // If current page size is not in the new options, automatically select the first option
+      if (options.length > 0 && !options.includes(currentSize)) {
+        // Use a slight delay to prevent circular updates
+        queueMicrotask(() => {
+          this._basePageSize.set(options[0]);
+        });
+      }
     });
   }
 
@@ -635,10 +672,11 @@ export class App implements OnInit {
   updatePageSizeOptions(value: string) {
     const options = value.split(',').map(v => Number(v.trim()));
     this.customPageSizeOptions.set(options);
-    
-    // Ensure current page size is in the new options
-    if (!options.includes(this.customPageSize())) {
-      this.customPageSize.set(options[0]);
-    }
+    // The effect will automatically handle updating the page size if needed
+  }
+
+  // Method to handle manual page size selection
+  updatePageSize(value: number) {
+    this._basePageSize.set(value);
   }
 }

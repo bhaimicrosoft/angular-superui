@@ -1,0 +1,54 @@
+/* Mobile-specific optimizations for Angular SuperUI showcase */
+
+@media (max-width: 640px) {
+  /* Ensure DataTable scrolls horizontally on mobile */
+  .data-table-container {
+    overflow-x: auto;
+  }
+  
+  /* Optimize table cells for mobile */
+  table td, table th {
+    min-width: 120px;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+  }
+  
+  /* Ensure mobile text doesn't break layouts */
+  h1, h2, h3, h4, h5, h6 {
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  
+  /* Mobile-optimized cards and containers */
+  .bg-card, .rounded-3xl {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 1rem !important;
+  }
+  
+  /* Mobile pagination controls */
+  .pagination-controls {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .pagination-controls button {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tablet optimizations */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Better spacing for mobile sections */
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}

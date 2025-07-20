@@ -364,6 +364,21 @@ export class WelcomeComponent {}
 </td>
 </tr>
 
+<tr>
+<td>
+  <strong>📊 DataTable</strong>
+</td>
+<td>
+  Enterprise-grade data table with sorting, filtering, pagination, inline editing, row selection, export capabilities, and mobile responsiveness. Perfect for admin dashboards and data management.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/data-table.md">📖 Docs</a>
+</td>
+</tr>
+
 </table>
 
 ---
