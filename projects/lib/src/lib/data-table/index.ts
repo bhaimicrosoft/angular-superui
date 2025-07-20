@@ -25,6 +25,7 @@ export interface DataTableColumn<T = any> {
   sticky?: boolean;
   resizable?: boolean;
   hidden?: boolean;
+  reorderable?: boolean;
 }
 
 export interface DataTableSort {
@@ -52,6 +53,13 @@ export interface DataTableSelection<T = any> {
   mode: 'none' | 'single' | 'multiple';
   selectedRows: T[];
   selectAll: boolean;
+}
+
+export interface DataTableColumnReorderEvent<T = any> {
+  fromIndex: number;
+  toIndex: number;
+  column: DataTableColumn<T>;
+  columns: DataTableColumn<T>[];
 }
 
 export interface DataTableConfig {
@@ -359,13 +367,25 @@ function cn(...inputs: any[]) {
           <span class="text-sm text-blue-700 dark:text-blue-300 font-medium">
             {{ selection().selectedRows.length }} row(s) selected
           </span>
-          <button
-            type="button"
-            (click)="clearSelection()"
-            class="text-sm text-blue-700 dark:text-blue-300 hover:underline"
-          >
-            Clear selection
-          </button>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              (click)="confirmBulkDelete()"
+              class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+              Delete All
+            </button>
+            <button
+              type="button"
+              (click)="clearSelection()"
+              class="text-sm text-blue-700 dark:text-blue-300 hover:underline"
+            >
+              Clear selection
+            </button>
+          </div>
         </div>
       </div>
 
@@ -392,21 +412,40 @@ function cn(...inputs: any[]) {
 
               <!-- Data columns -->
               <th
-                *ngFor="let column of visibleColumns(); trackBy: trackByColumn"
-                [class]="headerCellClasses(column)"
+                *ngFor="let column of visibleColumns(); trackBy: trackByColumn; let columnIndex = index"
+                [class]="headerCellClasses(column, columnIndex)"
                 [style.width]="column.width"
                 [style.min-width]="column.minWidth"
                 [style.max-width]="column.maxWidth"
                 [style.text-align]="column.align || 'left'"
-                (click)="column.sortable && config().sortable ? onSort(column.key) : null"
-                [class.cursor-pointer]="column.sortable && config().sortable"
+                [draggable]="column.reorderable !== false && config().reorderable"
+                (click)="column.sortable && config().sortable && !isDragging() ? onSort(column.key) : null"
+                (dragstart)="onColumnDragStart($event, columnIndex)"
+                (dragover)="onColumnDragOver($event, columnIndex)"
+                (dragenter)="onColumnDragEnter($event, columnIndex)"
+                (dragleave)="onColumnDragLeave($event, columnIndex)"
+                (drop)="onColumnDrop($event, columnIndex)"
+                (dragend)="onColumnDragEnd($event)"
+                [class.cursor-pointer]="(column.sortable && config().sortable && !isDragging()) || (column.reorderable !== false && config().reorderable)"
                 [class.select-none]="column.sortable && config().sortable"
+                [attr.title]="column.reorderable !== false && config().reorderable ? 'Drag to reorder columns' : ''"
               >
                 <div class="flex items-center gap-2">
-                  <span>{{ column.label }}</span>
+                  <!-- Drag handle indicator -->
+                  <svg 
+                    *ngIf="column.reorderable !== false && config().reorderable"
+                    class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8M8 15h8"/>
+                  </svg>
+                  
+                  <span class="truncate">{{ column.label }}</span>
                   
                   <!-- Sort indicator -->
-                  <div *ngIf="column.sortable && config().sortable" class="flex flex-col">
+                  <div *ngIf="column.sortable && config().sortable" class="flex flex-col flex-shrink-0">
                     <svg
                       class="h-3 w-3 text-gray-400 dark:text-gray-500"
                       [class.text-blue-600]="sort().column === column.key && sort().direction === 'asc'"
@@ -432,7 +471,7 @@ function cn(...inputs: any[]) {
                   <!-- Filter indicator -->
                   <div
                     *ngIf="hasFilter(column.key)"
-                    class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full"
+                    class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full flex-shrink-0"
                     [title]="'Filtered'"
                   ></div>
                 </div>
@@ -492,7 +531,7 @@ function cn(...inputs: any[]) {
                 [style.width]="column.width"
                 [style.min-width]="column.minWidth"
                 [style.max-width]="column.maxWidth"
-                [style.text-align]="column.align || 'left'"
+                [style.text-align]="column.align || 'center'"
                 (dblclick)="startEdit(i, column.key)"
               >
                 <!-- Edit mode -->
@@ -681,6 +720,20 @@ function cn(...inputs: any[]) {
           <AlertDialogAction (click)="confirmDelete()" variant="destructive">Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialog>
+
+      <!-- Bulk Delete Confirmation Dialog -->
+      <AlertDialog [isOpen]="showBulkDeleteConfirm()">
+        <AlertDialogHeader>
+          <AlertDialogTitle>Confirm Bulk Delete</AlertDialogTitle>
+          <AlertDialogDescription>
+            Are you sure you want to delete {{ selection().selectedRows.length }} selected record(s)? This action cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel (click)="cancelBulkDelete()">Cancel</AlertDialogCancel>
+          <AlertDialogAction (click)="executeBulkDelete()" variant="destructive">Delete All</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialog>
     </div>
   `,
 })
@@ -719,7 +772,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     selectable: true,
     editable: true,
     resizable: false,
-    reorderable: false,
+    reorderable: true,
     exportable: true,
     virtualScrolling: false,
     lazyLoading: false,
@@ -793,11 +846,17 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   @Output() rowDelete = new EventEmitter<{ row: T; index: number }>();
   @Output() refreshRequested = new EventEmitter<boolean>();
   @Output() export = new EventEmitter<string>();
+  @Output() columnReorder = new EventEmitter<DataTableColumnReorderEvent<T>>();
 
   // Internal state
   searchTerm = signal<string>('');
   sort = signal<DataTableSort>({ column: '', direction: null });
   filters = signal<DataTableFilter[]>([]);
+  
+  // Column reordering state
+  draggedColumnIndex = signal<number>(-1);
+  dragOverColumnIndex = signal<number>(-1);
+  isDragging = signal<boolean>(false);
   
   pagination = signal<DataTablePagination>({
     page: 0,
@@ -818,6 +877,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   showFilters = signal<boolean>(false);
   showExportMenu = signal<boolean>(false);
   showDeleteConfirm = signal<boolean>(false);
+  showBulkDeleteConfirm = signal<boolean>(false);
   pendingDeleteIndex = signal<number>(-1);
   loading = signal<boolean>(false);
   
@@ -1010,14 +1070,19 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     'table-auto'
   ));
 
-  headerCellClasses = (column?: DataTableColumn<T>) => cn(
+  headerCellClasses = (column?: DataTableColumn<T>, columnIndex?: number) => cn(
     cellVariants({
       type: 'header',
       align: column?.align,
       sticky: column?.sticky,
     }),
-    'px-4 py-3 font-semibold text-left',
-    column?.cssClass
+    'px-4 py-3 font-semibold text-left transition-all duration-200',
+    column?.cssClass,
+    // Reordering styles
+    column?.reorderable !== false && this.config().reorderable && 'cursor-move select-none',
+    this.isDragging() && columnIndex === this.draggedColumnIndex() && 'opacity-50 scale-95 z-10',
+    this.isDragging() && columnIndex === this.dragOverColumnIndex() && 'bg-blue-100 dark:bg-blue-900/30 border-l-4 border-blue-500',
+    this.isDragging() && 'transition-all duration-200'
   );
 
   dataCellClasses = (column?: DataTableColumn<T>) => cn(
@@ -1431,6 +1496,37 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     this.dataChange.emit(this._data());
   }
 
+  // Bulk delete confirmation methods
+  confirmBulkDelete() {
+    this.showBulkDeleteConfirm.set(true);
+  }
+
+  cancelBulkDelete() {
+    this.showBulkDeleteConfirm.set(false);
+  }
+
+  executeBulkDelete() {
+    const selectedRows = this.selection().selectedRows;
+    const deletedRows: T[] = [...selectedRows];
+    
+    // Remove selected rows from data
+    this._data.update(data => {
+      return data.filter(item => !selectedRows.includes(item));
+    });
+
+    // Clear selection
+    this.clearSelection();
+
+    // Emit events for each deleted row
+    deletedRows.forEach(row => {
+      this.rowDelete.emit({ row, index: -1 }); // Index not available in bulk delete
+    });
+    this.dataChange.emit(this._data());
+
+    // Close dialog
+    this.cancelBulkDelete();
+  }
+
   // Utility methods
   getCellValue(row: T, column: DataTableColumn<T>): any {
     const keys = String(column.key).split('.');
@@ -1574,6 +1670,127 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.loading.set(false);
     }, 1000);
+  }
+
+  // Column reordering methods
+  onColumnDragStart(event: DragEvent, columnIndex: number) {
+    if (!this.config().reorderable) return;
+    
+    const column = this.visibleColumns()[columnIndex];
+    if (column?.reorderable === false) {
+      event.preventDefault();
+      return;
+    }
+
+    this.draggedColumnIndex.set(columnIndex);
+    this.isDragging.set(true);
+    
+    // Set drag data
+    event.dataTransfer!.effectAllowed = 'move';
+    event.dataTransfer!.setData('text/plain', columnIndex.toString());
+    
+    // Add a slight delay to ensure proper visual feedback
+    setTimeout(() => {
+      const target = event.target as HTMLElement;
+      target.style.opacity = '0.5';
+    }, 0);
+  }
+
+  onColumnDragOver(event: DragEvent, columnIndex: number) {
+    if (!this.config().reorderable || !this.isDragging()) return;
+    
+    event.preventDefault();
+    event.dataTransfer!.dropEffect = 'move';
+    
+    if (columnIndex !== this.draggedColumnIndex()) {
+      this.dragOverColumnIndex.set(columnIndex);
+    }
+  }
+
+  onColumnDragEnter(event: DragEvent, columnIndex: number) {
+    if (!this.config().reorderable || !this.isDragging()) return;
+    
+    event.preventDefault();
+    this.dragOverColumnIndex.set(columnIndex);
+  }
+
+  onColumnDragLeave(event: DragEvent, columnIndex: number) {
+    if (!this.config().reorderable || !this.isDragging()) return;
+    
+    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+    const x = event.clientX;
+    const y = event.clientY;
+    
+    // Only clear if we're actually leaving the element
+    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
+      if (this.dragOverColumnIndex() === columnIndex) {
+        this.dragOverColumnIndex.set(-1);
+      }
+    }
+  }
+
+  onColumnDrop(event: DragEvent, targetColumnIndex: number) {
+    if (!this.config().reorderable || !this.isDragging()) return;
+    
+    event.preventDefault();
+    
+    const fromIndex = this.draggedColumnIndex();
+    const toIndex = targetColumnIndex;
+    
+    if (fromIndex !== -1 && fromIndex !== toIndex) {
+      // Create new column array with reordered columns
+      const currentColumns = [...this._columns()];
+      const visibleColumns = [...this.visibleColumns()];
+      
+      // Get the column being moved
+      const movedColumn = visibleColumns[fromIndex];
+      
+      // Remove from old position and insert at new position
+      const reorderedVisible = [...visibleColumns];
+      reorderedVisible.splice(fromIndex, 1);
+      reorderedVisible.splice(toIndex, 0, movedColumn);
+      
+      // Rebuild the full columns array maintaining hidden columns in their positions
+      const newColumns = [...currentColumns];
+      let visibleIndex = 0;
+      
+      for (let i = 0; i < newColumns.length; i++) {
+        if (!newColumns[i].hidden) {
+          newColumns[i] = reorderedVisible[visibleIndex];
+          visibleIndex++;
+        }
+      }
+      
+      // Update the columns
+      this._columns.set(newColumns);
+      
+      // Emit the reorder event
+      const reorderEvent: DataTableColumnReorderEvent<T> = {
+        fromIndex,
+        toIndex,
+        column: movedColumn,
+        columns: newColumns
+      };
+      
+      this.columnReorder.emit(reorderEvent);
+    }
+    
+    // Reset drag state
+    this.resetDragState();
+  }
+
+  onColumnDragEnd(event: DragEvent) {
+    // Reset visual state
+    const target = event.target as HTMLElement;
+    target.style.opacity = '';
+    
+    this.resetDragState();
+  }
+
+  private resetDragState() {
+    this.draggedColumnIndex.set(-1);
+    this.dragOverColumnIndex.set(-1);
+    this.isDragging.set(false);
   }
 
   // Track by functions

@@ -29,7 +29,7 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger,} from '@lib/collaps
 import {Combobox, ComboboxContent, ComboboxOption, ComboboxTrigger,} from '@lib/combobox';
 import {ContextMenu, IContextMenuItem} from '@lib/context-menu';
 import {Avatar, AvatarImage} from '@lib/avatar';
-import {DataTable, type DataTableColumn, type DataTableSort, type DataTableFilter} from '@lib/data-table';
+import {DataTable, type DataTableColumn, type DataTableSort, type DataTableFilter, type DataTableColumnReorderEvent} from '@lib/data-table';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
@@ -157,7 +157,8 @@ export class App implements OnInit {
       sortable: true,
       filterable: true,
       width: '80px',
-      type: 'number'
+      type: 'number',
+      reorderable: true
     },
     {
       key: 'name',
@@ -166,7 +167,8 @@ export class App implements OnInit {
       filterable: true,
       searchable: true,
       editable: true,
-      minWidth: '150px'
+      minWidth: '150px',
+      reorderable: true
     },
     {
       key: 'email',
@@ -176,7 +178,8 @@ export class App implements OnInit {
       searchable: true,
       editable: true,
       type: 'email',
-      minWidth: '200px'
+      minWidth: '200px',
+      reorderable: true
     },
     {
       key: 'role',
@@ -184,7 +187,8 @@ export class App implements OnInit {
       sortable: true,
       filterable: true,
       editable: true,
-      width: '120px'
+      width: '120px',
+      reorderable: true
     },
     {
       key: 'status',
@@ -192,7 +196,8 @@ export class App implements OnInit {
       sortable: true,
       filterable: true,
       editable: true,
-      width: '100px'
+      width: '100px',
+      reorderable: true
     },
     {
       key: 'lastLogin',
@@ -200,14 +205,16 @@ export class App implements OnInit {
       sortable: true,
       filterable: true,
       type: 'date',
-      width: '140px'
+      width: '140px',
+      reorderable: true
     },
     {
       key: 'department',
       label: 'Department',
       sortable: true,
       filterable: true,
-      width: '120px'
+      width: '120px',
+      reorderable: true
     },
     {
       key: 'salary',
@@ -215,7 +222,8 @@ export class App implements OnInit {
       sortable: true,
       filterable: true,
       type: 'number',
-      width: '120px'
+      width: '120px',
+      reorderable: true
     }
   ]);
 
@@ -590,6 +598,15 @@ export class App implements OnInit {
   }
 
   // DataTable event handlers
+  onColumnReorder(event: DataTableColumnReorderEvent) {
+    console.log('Column reordered:', event);
+    // Update the columns order
+    const newColumns = [...this.columns()];
+    const [reorderedItem] = newColumns.splice(event.fromIndex, 1);
+    newColumns.splice(event.toIndex, 0, reorderedItem);
+    this.columns.set(newColumns);
+  }
+
   onDataTableSort(event: any) {
     console.log('DataTable sort changed:', event);
   }
@@ -666,6 +683,13 @@ export class App implements OnInit {
 
   onExport(event: string) {
     console.log('Export requested:', event);
+  }
+
+  onRowDelete(event: { row: User; index: number }) {
+    console.log('Row deleted:', event);
+    // Remove the deleted row from data
+    const updatedUsers = this.users().filter(user => user.id !== event.row.id);
+    this.users.set(updatedUsers);
   }
 
   // Pagination configuration method

@@ -4784,6 +4784,48 @@
           </p>
         </div>
 
+        <!-- New: Premium Features Highlight -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-0 mb-8 sm:mb-12">
+          <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl p-6 sm:p-8 border border-blue-200/50 dark:border-blue-700/50">
+            <div class="text-center mb-6">
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-800/50 dark:to-purple-800/50 border border-blue-200 dark:border-blue-700 mb-4">
+                <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                <span class="text-sm font-semibold text-blue-600 dark:text-blue-400">Enterprise Grade Features</span>
+                <span class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                Advanced Data Management
+              </h3>
+              <p class="text-base text-muted-foreground">
+                Try the new column reordering feature - drag column headers to rearrange them
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
+                <div class="text-2xl mb-2">↕️</div>
+                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Column Reordering</div>
+              </div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
+                <div class="text-2xl mb-2">🔍</div>
+                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Smart Filtering</div>
+              </div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
+                <div class="text-2xl mb-2">✏️</div>
+                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Inline Editing</div>
+              </div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
+                <div class="text-2xl mb-2">📊</div>
+                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Export Data</div>
+              </div>
+              <div class="text-center p-3 bg-white/60 dark:bg-slate-800/60 rounded-lg border border-blue-200/30 dark:border-blue-700/30">
+                <div class="text-2xl mb-2">⚡</div>
+                <div class="text-xs font-medium text-slate-700 dark:text-slate-300">Virtual Scrolling</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- DataTable Demo -->
         <div class="max-w-7xl mx-auto px-4 sm:px-0">
           <div
@@ -4877,10 +4919,12 @@
                   [showPageSizeSelector]="showPageSizePicker()"
                   (cellEdit)="onCellEdit($event)"
                   (rowEdit)="onRowEdit($event)"
+                  (rowDelete)="onRowDelete($event)"
                   (selectionChange)="onSelectionChange($event)"
                   (sortChange)="onSortChange($event)"
                   (filterChange)="onFilterChange($event)"
                   (pageChange)="onPageChange($event)"
+                  (columnReorder)="onColumnReorder($event)"
                   (export)="onExport($event)"
                   class="w-full"
                 >
