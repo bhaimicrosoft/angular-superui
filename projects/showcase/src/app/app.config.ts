@@ -9,7 +9,6 @@ import { routes } from './app.routes';
 // Theme service initializer function
 function initializeThemeService(themeService: ThemeServiceImpl) {
   return () => {
-    console.log('🚀 Theme service initialized through APP_INITIALIZER');
     // The service initialization happens in its constructor
     return Promise.resolve();
   };
