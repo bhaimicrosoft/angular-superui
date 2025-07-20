@@ -158,7 +158,9 @@ export class App implements OnInit {
       filterable: true,
       width: '80px',
       type: 'number',
-      reorderable: true
+      reorderable: true,
+      resizable: true,
+      pinned: 'left'
     },
     {
       key: 'name',
@@ -168,7 +170,9 @@ export class App implements OnInit {
       searchable: true,
       editable: true,
       minWidth: '150px',
-      reorderable: true
+      reorderable: true,
+      resizable: true,
+      groupable: true
     },
     {
       key: 'email',
@@ -179,7 +183,8 @@ export class App implements OnInit {
       editable: true,
       type: 'email',
       minWidth: '200px',
-      reorderable: true
+      reorderable: true,
+      resizable: true
     },
     {
       key: 'role',
@@ -188,7 +193,11 @@ export class App implements OnInit {
       filterable: true,
       editable: true,
       width: '120px',
-      reorderable: true
+      reorderable: true,
+      resizable: true,
+      groupable: true,
+      multiSelectFilter: true,
+      filterOptions: ['Admin', 'Manager', 'Developer', 'Designer', 'Product Manager', 'Senior Developer', 'QA Engineer', 'Sales Rep', 'Marketing Specialist']
     },
     {
       key: 'status',
@@ -197,7 +206,12 @@ export class App implements OnInit {
       filterable: true,
       editable: true,
       width: '100px',
-      reorderable: true
+      reorderable: true,
+      resizable: true,
+      type: 'boolean',
+      groupable: true,
+      multiSelectFilter: true,
+      cellRenderer: (value: any) => value === 'active' ? '🟢 Active' : '🔴 Inactive'
     },
     {
       key: 'lastLogin',
@@ -206,7 +220,9 @@ export class App implements OnInit {
       filterable: true,
       type: 'date',
       width: '140px',
-      reorderable: true
+      reorderable: true,
+      resizable: true,
+      formatter: (value: Date) => new Date(value).toLocaleDateString()
     },
     {
       key: 'department',
@@ -214,7 +230,10 @@ export class App implements OnInit {
       sortable: true,
       filterable: true,
       width: '120px',
-      reorderable: true
+      reorderable: true,
+      resizable: true,
+      groupable: true,
+      multiSelectFilter: true
     },
     {
       key: 'salary',
@@ -223,7 +242,10 @@ export class App implements OnInit {
       filterable: true,
       type: 'number',
       width: '120px',
-      reorderable: true
+      reorderable: true,
+      resizable: true,
+      pinned: 'right',
+      cellRenderer: (value: number) => `$${value.toLocaleString()}`
     }
   ]);
 
@@ -687,9 +709,29 @@ export class App implements OnInit {
 
   onRowDelete(event: { row: User; index: number }) {
     console.log('Row deleted:', event);
-    // Remove the deleted row from data
+    // Remove the row from data
     const updatedUsers = this.users().filter(user => user.id !== event.row.id);
     this.users.set(updatedUsers);
+  }
+
+  // New event handlers for enhanced features
+  onMultiSortChange(event: any) {
+    console.log('Multi-sort changed:', event);
+  }
+
+  onColumnResize(event: { column: any; width: string }) {
+    console.log('Column resized:', event);
+    // Update column width
+    const updatedColumns = this.columns().map(col => 
+      col.key === event.column.key 
+        ? { ...col, width: event.width }
+        : col
+    );
+    this.columns.set(updatedColumns);
+  }
+
+  onGroupChange(event: any) {
+    console.log('Grouping changed:', event);
   }
 
   // Pagination configuration method

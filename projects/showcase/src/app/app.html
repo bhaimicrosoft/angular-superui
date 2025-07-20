@@ -4917,14 +4917,43 @@
                   [showFirstLast]="showFirstLastButtons()"
                   [showPageInfo]="showPageInfoText()"
                   [showPageSizeSelector]="showPageSizePicker()"
+                  [configInput]="{
+                    sortable: true,
+                    filterable: true,
+                    searchable: true,
+                    paginated: true,
+                    selectable: true,
+                    editable: true,
+                    resizable: true,
+                    reorderable: true,
+                    exportable: true,
+                    virtualScrolling: false,
+                    lazyLoading: false,
+                    stickyHeader: true,
+                    showToolbar: true,
+                    showFooter: true,
+                    striped: true,
+                    bordered: false,
+                    hoverable: true,
+                    compact: false,
+                    elevated: false,
+                    multiSort: true,
+                    grouping: true,
+                    pinColumns: true,
+                    customRenderers: true,
+                    advancedFiltering: true
+                  }"
                   (cellEdit)="onCellEdit($event)"
                   (rowEdit)="onRowEdit($event)"
                   (rowDelete)="onRowDelete($event)"
                   (selectionChange)="onSelectionChange($event)"
                   (sortChange)="onSortChange($event)"
+                  (multiSortChange)="onMultiSortChange($event)"
                   (filterChange)="onFilterChange($event)"
                   (pageChange)="onPageChange($event)"
                   (columnReorder)="onColumnReorder($event)"
+                  (columnResize)="onColumnResize($event)"
+                  (groupChange)="onGroupChange($event)"
                   (export)="onExport($event)"
                   class="w-full"
                 >

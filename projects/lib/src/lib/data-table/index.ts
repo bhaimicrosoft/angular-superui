@@ -1379,7 +1379,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       );
     }
 
-    // Apply filters
+    // Apply regular filters
     if (this.config().filterable) {
       this.filters().forEach(filter => {
         data = data.filter(row => {
@@ -1388,6 +1388,27 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           
           const value = this.getCellValue(row, column);
           return this.applyFilter(value, filter);
+        });
+      });
+    }
+
+    // Apply advanced filters (multi-select filters)
+    if (this.config().advancedFiltering) {
+      this.advancedFilters().forEach(filter => {
+        data = data.filter(row => {
+          const column = this._columns().find(col => col.key === filter.column);
+          if (!column) return true;
+          
+          const value = this.getCellValue(row, column);
+          
+          // Convert advanced filter to regular filter format for processing
+          const regularFilter: DataTableFilter = {
+            column: filter.column,
+            value: filter.values || [filter.value],
+            operator: filter.operator
+          };
+          
+          return this.applyFilter(value, regularFilter);
         });
       });
     }
@@ -1539,7 +1560,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     return data.slice(start, end);
   });
 
-  activeFilters = computed(() => this.filters());
+  activeFilters = computed(() => [...this.filters(), ...this.advancedFilters()]);
 
   totalColumns = computed(() => {
     let count = this.visibleColumns().length;
@@ -1820,7 +1841,8 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   }
 
   hasFilter(columnKey: string): boolean {
-    return this.filters().some(f => f.column === columnKey);
+    return this.filters().some(f => f.column === columnKey) || 
+           this.advancedFilters().some(f => f.column === columnKey);
   }
 
   toggleFilters() {
@@ -1833,6 +1855,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   clearAllFilters() {
     this.filters.set([]);
+    this.advancedFilters.set([]);
     this.filterChange.emit([]);
     this.goToPage(0);
   }
@@ -1897,6 +1920,15 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           return new Date(value) <= new Date(filterValue);
         }
         return String(value) <= String(filterValue);
+      
+      case 'in':
+        // Handle multi-select filter (array of values)
+        if (Array.isArray(filterValue)) {
+          return filterValue.some(fv => 
+            String(value).toLowerCase() === String(fv).toLowerCase()
+          );
+        }
+        return String(value).toLowerCase() === String(filterValue).toLowerCase();
       
       default:
         return true;
