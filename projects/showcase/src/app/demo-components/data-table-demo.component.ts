@@ -699,8 +699,7 @@ export class DataTableDemoComponent implements OnInit {
       label: 'ID',
       type: 'number',
       sortable: true,
-      width: '70px',
-      pinned: 'left'
+      width: '70px'
     },
     {
       key: 'avatar',
@@ -759,8 +758,7 @@ export class DataTableDemoComponent implements OnInit {
       type: 'number',
       sortable: true,
       filterable: true,
-      formatter: (value) => `$${value.toLocaleString()}`,
-      pinned: 'right'
+      formatter: (value) => `$${value.toLocaleString()}`
     },
     {
       key: 'status',
@@ -801,8 +799,7 @@ export class DataTableDemoComponent implements OnInit {
       type: 'string',
       sortable: true,
       filterable: true,
-      width: '120px',
-      pinned: 'left'
+      width: '120px'
     },
     {
       key: 'name',
@@ -881,8 +878,7 @@ export class DataTableDemoComponent implements OnInit {
       type: 'string',
       sortable: true,
       filterable: true,
-      width: '180px',
-      pinned: 'left'
+      width: '180px'
     },
     {
       key: 'date',
@@ -950,8 +946,7 @@ export class DataTableDemoComponent implements OnInit {
       label: 'Balance',
       type: 'number',
       sortable: true,
-      formatter: (value) => `$${value.toFixed(2)}`,
-      pinned: 'right'
+      formatter: (value) => `$${value.toFixed(2)}`
     }
   ];
 

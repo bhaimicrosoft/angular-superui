@@ -10,20 +10,24 @@ export async function listCommand() {
   const totalComponents = Object.keys(COMPONENTS).length;
   
   console.log('');
-  console.log(chalk.cyan('╔═══════════════════════════════════════════════════════════════╗'));
-  console.log(chalk.cyan('║') + chalk.bold.magenta('   📦 Angular SuperUI - Modern Component Library   ') + chalk.cyan('║'));
-  console.log(chalk.cyan('║') + chalk.yellow(`                      v${CLI_VERSION} • ${totalComponents} Components Ready                    `) + chalk.cyan('║'));
-  console.log(chalk.cyan('║') + chalk.gray('           ⚡ TailwindCSS • 🎨 Customizable • 🔥 Production Ready        ') + chalk.cyan('║'));
-  console.log(chalk.cyan('╚═══════════════════════════════════════════════════════════════╝'));
+  console.log(chalk.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899').bold('              📦 Angular SuperUI Component Library v' + CLI_VERSION + '              ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#F59E0B')('                  🎯 ' + totalComponents + ' Production-Ready Components Available 🎯                   ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('              ⚡ TailwindCSS • 🎨 Customizable • 🔥 TypeScript ⚡               ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899')('                    ✨ Enterprise-Grade • Zero Dependencies ✨                     ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
   console.log('');
 
   // Group components by category with actually implemented components only
   const categories = {
-    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox'],
+    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox'],
     '🧭 Navigation': ['breadcrumb'],
-    '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu'],
+    '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog'],
     '🎨 Media & Display': ['carousel', 'aspect-ratio'],
-    '⚙️ User Interface': ['theme-switcher', 'checkbox', 'collapsible'],
+    '📊 Data & Tables': ['data-table'],
+    '⚙️ User Interface': ['theme-switcher', 'collapsible'],
     '📅 Featured Component': ['calendar']
   };
 

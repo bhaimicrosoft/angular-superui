@@ -13,19 +13,23 @@ async function listCommand() {
     // Get total component count from actually implemented components
     const totalComponents = Object.keys(add_1.COMPONENTS).length;
     console.log('');
-    console.log(chalk_1.default.cyan('╔═══════════════════════════════════════════════════════════════╗'));
-    console.log(chalk_1.default.cyan('║') + chalk_1.default.bold.magenta('   📦 Angular SuperUI - Modern Component Library   ') + chalk_1.default.cyan('║'));
-    console.log(chalk_1.default.cyan('║') + chalk_1.default.yellow(`                      v${CLI_VERSION} • ${totalComponents} Components Ready                    `) + chalk_1.default.cyan('║'));
-    console.log(chalk_1.default.cyan('║') + chalk_1.default.gray('           ⚡ TailwindCSS • 🎨 Customizable • 🔥 Production Ready        ') + chalk_1.default.cyan('║'));
-    console.log(chalk_1.default.cyan('╚═══════════════════════════════════════════════════════════════╝'));
+    console.log(chalk_1.default.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('              📦 Angular SuperUI Component Library v' + CLI_VERSION + '              ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('                  🎯 ' + totalComponents + ' Production-Ready Components Available 🎯                   ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('              ⚡ TailwindCSS • 🎨 Customizable • 🔥 TypeScript ⚡               ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899')('                    ✨ Enterprise-Grade • Zero Dependencies ✨                     ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
     console.log('');
     // Group components by category with actually implemented components only
     const categories = {
-        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox'],
+        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox'],
         '🧭 Navigation': ['breadcrumb'],
-        '💫 Overlays & Dialogs': ['alert-dialog'],
+        '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog'],
         '🎨 Media & Display': ['carousel', 'aspect-ratio'],
-        '⚙️ User Interface': ['theme-switcher', 'checkbox', 'collapsible'],
+        '📊 Data & Tables': ['data-table'],
+        '⚙️ User Interface': ['theme-switcher', 'collapsible'],
         '📅 Featured Component': ['calendar']
     };
     for (const [category, componentList] of Object.entries(categories)) {

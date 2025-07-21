@@ -11,6 +11,14 @@ const chalk_1 = __importDefault(require("chalk"));
 const ora_1 = __importDefault(require("ora"));
 const inquirer_1 = __importDefault(require("inquirer"));
 const axios_1 = __importDefault(require("axios"));
+// Utility function for padding text in banners
+function padding(text, totalWidth) {
+    const textLength = text.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '').length;
+    const paddingNeeded = Math.max(0, totalWidth - textLength);
+    const leftPad = Math.floor(paddingNeeded / 2);
+    const rightPad = paddingNeeded - leftPad;
+    return ' '.repeat(leftPad) + text + ' '.repeat(rightPad);
+}
 // Define available components based on actual library structure (currently implemented)
 exports.COMPONENTS = {
     // 🎯 Core Components
@@ -98,6 +106,24 @@ exports.COMPONENTS = {
         dependencies: ['cn'],
         files: ['index.ts']
     },
+    'context-menu': {
+        name: 'Context Menu',
+        description: 'Right-click context menus with keyboard shortcuts and accessibility.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'data-table': {
+        name: 'Data Table',
+        description: 'Enterprise-grade data table with sorting, filtering, pagination, and inline editing.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'dialog': {
+        name: 'Dialog',
+        description: 'A modal dialog window with accessibility features and focus management.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
     'theme-switcher': {
         name: 'Theme Switcher',
         description: 'A component that allows users to switch between light, dark, and system themes.',
@@ -111,11 +137,30 @@ async function addCommand(componentNames, options) {
     // Handle --all flag
     if (options.all) {
         componentsToAdd = Object.keys(exports.COMPONENTS);
-        console.log(chalk_1.default.cyan('🚀 Installing all Angular SuperUI components...'));
+        // Show banner for all components
+        console.log('');
+        console.log(chalk_1.default.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('                🚀 Installing All Angular SuperUI Components 🚀                ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('                      ✨ ' + componentsToAdd.length + ' Premium Components Ready! ✨                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('              🎯 TailwindCSS • TypeScript • Zero Dependencies 🎯               ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
+        console.log('');
     }
     else {
         // Handle single component or multiple components
         componentsToAdd = Array.isArray(componentNames) ? componentNames : [componentNames];
+        // Show banner for selective installation
+        console.log('');
+        console.log(chalk_1.default.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('              📦 Adding Angular SuperUI Components 📦                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('                    ⚡ Installing: ' + componentsToAdd.join(', ') + ' ⚡                        ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('               🎨 Local-First • Production-Ready • TypeScript 🎨               ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
+        console.log('');
     }
     const spinner = (0, ora_1.default)(`Adding ${componentsToAdd.length} component(s)...`).start();
     try {

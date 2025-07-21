@@ -1,14 +1,14 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v1.0.4
+# 🎨 Angular SuperUI v1.0.5
 
 **The Modern Angular UI Component Library That Developers Love**
 
 ### 🌟 **[🚀 LIVE DEMO - See All Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 50+ Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
+**✨ Interactive Showcase • 18 Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
 
-[![🎯 View Live Demo](https://img.shields.io/badge/🎯-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![🎯 View Live Demo](https://img.shields.io/badge/🎯-View%20Live%20Demo-FF6B6B?style=for-t- 🚀 **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 18 components**e-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Interactive Demo](https://img.shields.io/badge/🎮-Interactive%20Demo-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Mobile Ready](https://img.shields.io/badge/📱-Mobile%20Ready-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![♿ Accessible](https://img.shields.io/badge/♿-WCAG%20AA%20Compliant-9B59B6?style=for-the-badge&logo=accessibility&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -79,7 +79,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 
 [![Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white)](https://angular-superui.vercel.app/)
 
-*See all 16 components in action with dark mode, mobile responsiveness, and interactive examples!*
+*See all 18 components in action with dark mode, mobile responsiveness, and interactive examples!*
 
 </div>
 
@@ -88,7 +88,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui-cli@1.0.4
+npm install -g ngsui-cli@1.0.5
 ```
 
 ### 2️⃣ Initialize Your Project

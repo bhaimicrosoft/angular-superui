@@ -1037,7 +1037,7 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="pagination().page === 0"
             (click)="goToPage(0)"
-            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-l-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-l-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer"
           >
             <span class="hidden sm:inline">First</span>
             <span class="sm:hidden">‹‹</span>
@@ -1048,7 +1048,7 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="pagination().page === 0"
             (click)="goToPage(pagination().page - 1)"
-            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer"
             [class.rounded-l-md]="!pagination().showFirstLast"
           >
             <span class="hidden sm:inline">Previous</span>
@@ -1071,7 +1071,7 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="pagination().page >= mathUtil.ceil(pagination().total / pagination().pageSize) - 1"
             (click)="goToPage(pagination().page + 1)"
-            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer"
             [class.rounded-r-md]="!pagination().showFirstLast"
           >
             <span class="hidden sm:inline">Next</span>
@@ -1084,7 +1084,7 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="pagination().page >= mathUtil.ceil(pagination().total / pagination().pageSize) - 1"
             (click)="goToPage(mathUtil.ceil(pagination().total / pagination().pageSize) - 1)"
-            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-r-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-r-md hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap cursor-pointer"
           >
             <span class="hidden sm:inline">Last</span>
             <span class="sm:hidden">››</span>
@@ -2431,17 +2431,17 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   getPageButtonClasses(page: string | number): string {
     const isActive = page !== '...' && +page === (this.pagination().page + 1);
     const isDisabled = page === '...';
-    
-    const baseClasses = 'px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border whitespace-nowrap transition-colors';
-    
+
+    const baseClasses = 'px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border whitespace-nowrap transition-colors cursor-pointer';
+
     if (isActive) {
       return `${baseClasses} bg-blue-600 dark:bg-blue-600 text-white dark:text-white border-blue-600 dark:border-blue-600 hover:bg-blue-700 dark:hover:bg-blue-700`;
     }
-    
+
     if (isDisabled) {
       return `${baseClasses} border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 cursor-default`;
     }
-    
+
     return `${baseClasses} border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700`;
   }
 

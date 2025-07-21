@@ -4,7 +4,7 @@
 
 ### 🌟 **[🚀 LIVE INTERACTIVE DEMO!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Experience All 16 Components Live • Dark Mode • Mobile Responsive ✨**
+**✨ Experience All 18 Components Live • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Interactive Components](https://img.shields.io/badge/🎮-Interactive%20Components-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -113,7 +113,7 @@ export class WelcomeComponent {}
 ## 🎨 Components Library
 
 <div align="center">
-  <h3>🌟 16 Production-Ready Components • Growing Every Week</h3>
+  <h3>🌟 18 Production-Ready Components • Growing Every Week</h3>
 </div>
 
 ### 🎯 **Core Components**

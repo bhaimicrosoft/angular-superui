@@ -1,16 +1,25 @@
-# Button
+# Button Component 🔘
 
-Displays a button or a component that looks like a button.
+Interactive button component with multiple variants, sizes, loading states, and accessibility features.
+
+## Features
+
+- 🎯 **9 Variants** - Default, Secondary, Destructive, Outline, Ghost, Link, and more
+- 📏 **4 Sizes** - Small, Default, Large, Icon
+- ⏳ **Loading States** - Built-in spinner and disabled states
+- ♿ **Accessibility** - ARIA compliant with keyboard navigation
+- 🎨 **Customizable** - Easy styling with Tailwind CSS
+- 🔧 **TypeScript** - Full type safety with CVA variants
 
 ## Installation
 
-The Button component is available as part of Angular SuperUI. If you haven't initialized Angular SuperUI in your project yet, run:
+Initialize Angular SuperUI in your project:
 
 ```bash
 ngsui-cli init
 ```
 
-Then add the Button component to your project:
+Add the Button component:
 
 ```bash
 ngsui-cli add button

@@ -13,30 +13,102 @@ const child_process_1 = require("child_process");
 // Get version from package.json
 const packageJson = require('../../package.json');
 const CLI_VERSION = packageJson.version;
+// Utility function for padding text in banners
+function padding(text, totalWidth) {
+    const textLength = text.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '').length;
+    const paddingNeeded = Math.max(0, totalWidth - textLength);
+    const leftPad = Math.floor(paddingNeeded / 2);
+    const rightPad = paddingNeeded - leftPad;
+    return ' '.repeat(leftPad) + text + ' '.repeat(rightPad);
+}
+// Robust function to remove JSON comments while preserving strings
+function removeJsonComments(jsonString) {
+    let result = '';
+    let i = 0;
+    let inString = false;
+    let stringDelimiter = '';
+    let inSingleLineComment = false;
+    let inMultiLineComment = false;
+    while (i < jsonString.length) {
+        const char = jsonString[i];
+        const nextChar = jsonString[i + 1];
+        // Handle string detection
+        if (!inSingleLineComment && !inMultiLineComment) {
+            if (!inString && (char === '"' || char === "'")) {
+                inString = true;
+                stringDelimiter = char;
+                result += char;
+                i++;
+                continue;
+            }
+            else if (inString && char === stringDelimiter && jsonString[i - 1] !== '\\') {
+                inString = false;
+                stringDelimiter = '';
+                result += char;
+                i++;
+                continue;
+            }
+        }
+        // Skip comment processing if we're inside a string
+        if (inString) {
+            result += char;
+            i++;
+            continue;
+        }
+        // Handle single-line comments
+        if (!inMultiLineComment && char === '/' && nextChar === '/') {
+            inSingleLineComment = true;
+            i += 2;
+            continue;
+        }
+        // Handle multi-line comments
+        if (!inSingleLineComment && char === '/' && nextChar === '*') {
+            inMultiLineComment = true;
+            i += 2;
+            continue;
+        }
+        // End multi-line comments
+        if (inMultiLineComment && char === '*' && nextChar === '/') {
+            inMultiLineComment = false;
+            i += 2;
+            continue;
+        }
+        // End single-line comments
+        if (inSingleLineComment && (char === '\n' || char === '\r')) {
+            inSingleLineComment = false;
+            result += char; // Keep the newline
+            i++;
+            continue;
+        }
+        // Add character if not in comment
+        if (!inSingleLineComment && !inMultiLineComment) {
+            result += char;
+        }
+        i++;
+    }
+    // Clean up trailing commas and extra whitespace
+    return result
+        .replace(/,(\s*[}\]])/g, '$1') // Remove trailing commas
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
+}
 async function initCommand() {
-    // Create dynamic attractive banner
     const version = CLI_VERSION;
-    const padding = (text, width) => {
-        const spaces = width - text.length;
-        const leftPad = Math.floor(spaces / 2);
-        const rightPad = spaces - leftPad;
-        return ' '.repeat(leftPad) + text + ' '.repeat(rightPad);
-    };
     console.log('');
-    console.log(chalk_1.default.hex('#FF6B6B')('╔════════════════════════════════════════════════════════════════════╗'));
-    console.log(chalk_1.default.hex('#FF6B6B')('║') + chalk_1.default.hex('#4ECDC4')('                                                                    ') + chalk_1.default.hex('#FF6B6B')('║'));
-    console.log(chalk_1.default.hex('#FF6B6B')('║') + chalk_1.default.hex('#4ECDC4')(padding('🎨 Angular SuperUI CLI', 68)) + chalk_1.default.hex('#FF6B6B')('║'));
-    console.log(chalk_1.default.hex('#FF6B6B')('║') + chalk_1.default.hex('#FFE66D')(padding('✨ Beautiful • Accessible • Local-First ✨', 68)) + chalk_1.default.hex('#FF6B6B')('║'));
-    console.log(chalk_1.default.hex('#FF6B6B')('║') + chalk_1.default.hex('#A8E6CF')(padding('', 68)) + chalk_1.default.hex('#FF6B6B')('║'));
-    console.log(chalk_1.default.hex('#FF6B6B')('║') + chalk_1.default.hex('#FF8B94')(padding(`🚀 Version ${version} 🚀`, 68)) + chalk_1.default.hex('#FF6B6B')('║'));
-    console.log(chalk_1.default.hex('#FF6B6B')('║') + chalk_1.default.hex('#C7CEEA')(padding('Local-First Component Library for Angular', 68)) + chalk_1.default.hex('#FF6B6B')('║'));
-    console.log(chalk_1.default.hex('#FF6B6B')('║') + chalk_1.default.hex('#4ECDC4')(padding('', 68)) + chalk_1.default.hex('#FF6B6B')('║'));
-    console.log(chalk_1.default.hex('#FF6B6B')('╚════════════════════════════════════════════════════════════════════╝'));
-    // Add loading animation
+    console.log(chalk_1.default.hex('#8B5CF6')('╔══════════════════════════════════════════════════════════════════════╗'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('                    🎨 Angular SuperUI CLI v' + version + '                     ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('                                                                      ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('        ✨ 18 Beautiful Components • TypeScript • Local-First ✨       ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('              🚀 TailwindCSS v4 • Angular 18+ • Zero NPM 🚀              ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('                                                                      ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899')('                ⚡ Enterprise-Grade • Production-Ready ⚡                ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('╚══════════════════════════════════════════════════════════════════════╝'));
     console.log('');
-    console.log(chalk_1.default.hex('#A8E6CF')('┌─ ') + chalk_1.default.bold.hex('#FF6B6B')('Initializing Angular SuperUI...') + chalk_1.default.hex('#A8E6CF')(' ─┐'));
-    console.log(chalk_1.default.hex('#A8E6CF')('│  ') + chalk_1.default.hex('#FFE66D')('⚡ Installing dependencies and configuring project') + chalk_1.default.hex('#A8E6CF')(' │'));
-    console.log(chalk_1.default.hex('#A8E6CF')('└─ ') + chalk_1.default.hex('#4ECDC4')('This will set up Tailwind CSS v4 and CLI tools') + chalk_1.default.hex('#A8E6CF')(' ─┘'));
+    console.log(chalk_1.default.hex('#10B981')('┌─ ') + chalk_1.default.bold.hex('#EC4899')('🎉 Initializing Your Angular SuperUI Project...') + chalk_1.default.hex('#10B981')(' ─┐'));
+    console.log(chalk_1.default.hex('#10B981')('│  ') + chalk_1.default.hex('#F59E0B')('⚙️  Installing TailwindCSS v4, class-variance-authority, and clsx') + chalk_1.default.hex('#10B981')(' │'));
+    console.log(chalk_1.default.hex('#10B981')('│  ') + chalk_1.default.hex('#8B5CF6')('🔧 Configuring Tailwind, CSS variables, and TypeScript paths') + chalk_1.default.hex('#10B981')('     │'));
+    console.log(chalk_1.default.hex('#10B981')('│  ') + chalk_1.default.hex('#06B6D4')('📁 Setting up project structure for component installation') + chalk_1.default.hex('#10B981')('       │'));
+    console.log(chalk_1.default.hex('#10B981')('└─ ') + chalk_1.default.hex('#EC4899')('✨ Ready to add beautiful components with ') + chalk_1.default.yellow('ngsui-cli add [component]') + chalk_1.default.hex('#10B981')(' ─┘'));
     console.log('');
     const spinner = (0, ora_1.default)(chalk_1.default.cyan('🚀 Initializing Angular SuperUI...')).start();
     try {
@@ -142,12 +214,12 @@ export function cn(...inputs: ClassValue[]) {
                 ...packageJson.dependencies,
                 'class-variance-authority': '^0.7.0',
                 'clsx': '^2.0.0',
-                'tailwind-merge': '^1.14.0'
+                'tailwind-merge': '^3.3.1'
             },
             devDependencies: {
                 ...packageJson.devDependencies,
-                'tailwindcss': '^4.0.0',
-                '@tailwindcss/postcss': '^4.0.0',
+                'tailwindcss': '^4.1.11',
+                '@tailwindcss/postcss': '^4.1.11',
                 'postcss': '^8.4.0',
                 'autoprefixer': '^10.4.0'
             }
@@ -165,24 +237,39 @@ export function cn(...inputs: ClassValue[]) {
             const tsconfigPath = './tsconfig.json';
             if (await fs_extra_1.default.pathExists(tsconfigPath)) {
                 spinner.text = 'Updating tsconfig.json with path aliases...';
-                // Read as text and strip comments/trailing commas for JSON parsing
+                // Read the file content
                 let tsconfigContent = await fs_extra_1.default.readFile(tsconfigPath, 'utf8');
-                // Remove single line comments
-                tsconfigContent = tsconfigContent.replace(/\/\/.*$/gm, '');
-                // Remove multi-line comments
-                tsconfigContent = tsconfigContent.replace(/\/\*[\s\S]*?\*\//g, '');
-                // Remove trailing commas
-                tsconfigContent = tsconfigContent.replace(/,(\s*[}\]])/g, '$1');
-                const tsconfig = JSON.parse(tsconfigContent);
+                // Use our robust comment removal function
+                const cleanedContent = removeJsonComments(tsconfigContent);
+                let tsconfig;
+                try {
+                    tsconfig = JSON.parse(cleanedContent);
+                }
+                catch (parseError) {
+                    // If parsing still fails, try a more aggressive approach
+                    spinner.text = 'Attempting alternative tsconfig.json parsing...';
+                    // Fallback: try to extract just the JSON object
+                    const jsonMatch = cleanedContent.match(/\{[\s\S]*\}/);
+                    if (jsonMatch) {
+                        try {
+                            tsconfig = JSON.parse(jsonMatch[0]);
+                        }
+                        catch (fallbackError) {
+                            throw new Error(`Unable to parse tsconfig.json: ${fallbackError instanceof Error ? fallbackError.message : String(fallbackError)}`);
+                        }
+                    }
+                    else {
+                        throw new Error('Could not find valid JSON structure in tsconfig.json');
+                    }
+                }
                 // Ensure compilerOptions exists
                 if (!tsconfig.compilerOptions) {
                     tsconfig.compilerOptions = {};
                 }
                 // Add baseUrl and paths
-                tsconfig.compilerOptions.baseUrl = "./src";
+                tsconfig.compilerOptions.baseUrl = "src";
                 tsconfig.compilerOptions.paths = {
-                    "@utils/*": ["lib/utils/*"],
-                    "@components/*": ["lib/components/*"],
+                    "@lib/*": ["lib/*"],
                     ...(tsconfig.compilerOptions.paths || {})
                 };
                 await fs_extra_1.default.writeJson(tsconfigPath, tsconfig, { spaces: 2 });
@@ -197,7 +284,11 @@ export function cn(...inputs: ClassValue[]) {
         catch (error) {
             console.log('');
             console.log(chalk_1.default.bgYellow.black(' WARNING ') + ' ' + chalk_1.default.yellow(`Could not update tsconfig.json: ${error instanceof Error ? error.message : String(error)}`));
-            console.log(chalk_1.default.gray('You may need to manually add path aliases to your tsconfig.json'));
+            console.log(chalk_1.default.gray('You may need to manually add path aliases to your tsconfig.json:'));
+            console.log(chalk_1.default.gray('  "baseUrl": "src",'));
+            console.log(chalk_1.default.gray('  "paths": {'));
+            console.log(chalk_1.default.gray('    "@lib/*": ["lib/*"]'));
+            console.log(chalk_1.default.gray('  }'));
             console.log('');
         }
         // Create or update styles.scss/styles.css with Tailwind CSS v4 syntax
@@ -580,7 +671,7 @@ export function cn(...inputs: ClassValue[]) {
         console.log('');
         console.log(chalk_1.default.hex('#A8E6CF')('┌─ ') + chalk_1.default.bold.hex('#FF6B6B')('🎨 FEATURES CONFIGURED') + chalk_1.default.hex('#A8E6CF')(' ─┐'));
         console.log(chalk_1.default.hex('#A8E6CF')('│  ') + chalk_1.default.hex('#4ECDC4')('✓ Local component structure in ./src/lib/components/') + chalk_1.default.hex('#A8E6CF')('        │'));
-        console.log(chalk_1.default.hex('#A8E6CF')('│  ') + chalk_1.default.hex('#4ECDC4')('✓ TypeScript path aliases (@components/*, @utils/*)') + chalk_1.default.hex('#A8E6CF')('           │'));
+        console.log(chalk_1.default.hex('#A8E6CF')('│  ') + chalk_1.default.hex('#4ECDC4')('✓ TypeScript path aliases (@lib/*)') + chalk_1.default.hex('#A8E6CF')('                         │'));
         console.log(chalk_1.default.hex('#A8E6CF')('│  ') + chalk_1.default.hex('#4ECDC4')('✓ Tailwind CSS v4 with @import and @theme directive') + chalk_1.default.hex('#A8E6CF')('         │'));
         console.log(chalk_1.default.hex('#A8E6CF')('│  ') + chalk_1.default.hex('#4ECDC4')('✓ PostCSS configuration with .postcssrc.json') + chalk_1.default.hex('#A8E6CF')('               │'));
         console.log(chalk_1.default.hex('#A8E6CF')('│  ') + chalk_1.default.hex('#4ECDC4')('✓ Angular SuperUI theme variables and extended colors') + chalk_1.default.hex('#A8E6CF')('       │'));

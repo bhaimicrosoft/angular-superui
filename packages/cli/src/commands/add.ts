@@ -5,6 +5,15 @@ import ora from 'ora';
 import inquirer from 'inquirer';
 import axios from 'axios';
 
+// Utility function for padding text in banners
+function padding(text: string, totalWidth: number): string {
+  const textLength = text.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '').length;
+  const paddingNeeded = Math.max(0, totalWidth - textLength);
+  const leftPad = Math.floor(paddingNeeded / 2);
+  const rightPad = paddingNeeded - leftPad;
+  return ' '.repeat(leftPad) + text + ' '.repeat(rightPad);
+}
+
 // Define available components based on actual library structure (currently implemented)
 export const COMPONENTS = {
   // 🎯 Core Components
@@ -98,6 +107,18 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'data-table': {
+    name: 'Data Table',
+    description: 'Enterprise-grade data table with sorting, filtering, pagination, and inline editing.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'dialog': {
+    name: 'Dialog',
+    description: 'A modal dialog window with accessibility features and focus management.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'theme-switcher': {
     name: 'Theme Switcher',
     description: 'A component that allows users to switch between light, dark, and system themes.',
@@ -114,10 +135,32 @@ export async function addCommand(componentNames: string | string[], options: { f
   // Handle --all flag
   if (options.all) {
     componentsToAdd = Object.keys(COMPONENTS);
-    console.log(chalk.cyan('🚀 Installing all Angular SuperUI components...'));
+    
+    // Show banner for all components
+    console.log('');
+    console.log(chalk.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899').bold('                🚀 Installing All Angular SuperUI Components 🚀                ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#F59E0B')('                      ✨ ' + componentsToAdd.length + ' Premium Components Ready! ✨                       ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('              🎯 TailwindCSS • TypeScript • Zero Dependencies 🎯               ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
+    console.log('');
+    
   } else {
     // Handle single component or multiple components
     componentsToAdd = Array.isArray(componentNames) ? componentNames : [componentNames];
+    
+    // Show banner for selective installation
+    console.log('');
+    console.log(chalk.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899').bold('              📦 Adding Angular SuperUI Components 📦                       ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#F59E0B')('                    ⚡ Installing: ' + componentsToAdd.join(', ') + ' ⚡                        ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('               🎨 Local-First • Production-Ready • TypeScript 🎨               ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
+    console.log(chalk.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
+    console.log('');
   }
 
   const spinner = ora(`Adding ${componentsToAdd.length} component(s)...`).start();

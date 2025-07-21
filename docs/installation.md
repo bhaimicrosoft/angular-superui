@@ -1,151 +1,162 @@
-# Installation Guide (v1.0.1)
+<div align="center">
 
-Complete guide to installing and setting up Angular SuperUI in your project.
+# 🚀 Installation Guide - Angular SuperUI v1.0.5
 
-## 📚 **[🎨 Complete Component Demos & Examples →](./demo.md)**
-> 🚀 **Step-by-step guides** for all 10 production-ready components with **practical examples** and **usage instructions**!
 
-## 🚀 **Recommended: CLI Installation (Local Components)**
 
-The recommended way to get started with Angular SuperUI v1.0.1 is using our CLI for local component installation:
+### 🌟 **[🎮 LIVE DEMO - Try All Components!](https://angular-superui.vercel.app/)** 🌟
+
+**✨ 18 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
+
+[![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![⚡ Get Started](https://img.shields.io/badge/⚡-Get%20Started-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+
+</div>
+
+---
+
+## 📚 **[🎨 Complete Component Demos & Examples →](./README.md)**
+
+> 🚀 **Step-by-step examples** for all 18 components with **interactive showcases**, **code snippets**, and **best practices**!
+
+---
+
+## ✨ **Why Choose Angular SuperUI?**
+
+- 🎯 **Zero NPM Dependencies** - No angular-superui package required, components are installed locally
+- 🛠️ **Selective Installation** - Install only what you need with our CLI tool
+- 🎨 **TailwindCSS v4** - Latest Tailwind features with @import syntax
+- 📦 **Local-First** - Full control over component code and customization
+- ⚡ **TypeScript Native** - Built with TypeScript from the ground up
+- ♿ **Accessibility First** - WCAG AA compliant components
+- 🔧 **Angular 18+** - Modern Angular features and standalone components
+
+---
+## ✨ **What does the SuperUI CLI do?**
+
+- ✅ **Installs Dependencies**: `tailwindcss@^4.1.11`, `class-variance-authority`, `clsx`, `tailwind-merge@^3.3.1`
+- ✅ **Configures TailwindCSS v4**: Modern @import syntax and PostCSS setup
+- ✅ **Updates Styles**: Adds CSS variables and theme configuration
+- ✅ **TypeScript Paths**: Sets up @components/* and @utils/* aliases
+- ✅ **Ready to Use**: Instantly ready for component installation
+
+
+---
+
+## 🚀 **Quick Start (Recommended)**
+
+### Step 1: Install CLI Tool
 
 ```bash
-# Install CLI globally
-npm install -g ngsui-cli@1.0.1
+# Install globally for easy access
+npm install -g ngsui-cli@1.0.5
 
-# Initialize in your Angular project
-ngsui-cli init
-
-# Add specific components locally
-ngsui-cli add accordion alert card aspect-ratio
+# Or use with npx (no installation)
+npx ngsui-cli@1.0.5 --help
 ```
 
-**Benefits of CLI Installation:**
-- ✅ **Zero NPM Dependencies** - No angular-superui package required
-- ✅ **Local Components** - Installed directly in `./src/lib/components/`
-- ✅ **50%+ Smaller Bundle** - Only the components you use
-- ✅ **Full Control** - Modify components freely
-- ✅ **TypeScript Path Aliases** - Automatic @lib/* setup
-- ✅ **Simplified Component Names** - Clean PascalCase selectors!
-
-## 📦 **Alternative: NPM Package Installation**
-
-You can also install the complete package via NPM:
-
-### Automatic Installation
+### Step 2: Initialize Your Project
 
 ```bash
-ng add angular-superui@1.0.1
-```
+# Navigate to your Angular project root
+cd your-angular-project
 
-### Manual Installation
+npx ngsui-cli init
 
-```bash
-npm install angular-superui@1.0.1
-```
+### Step 3: Add Components
 
-## CLI Installation Details
+# Add individual components
+npx ngsui-cli add button
+npx ngsui-cli add button card badge alert
 
-### What `ngsui-cli init` does:
-
-1. **Creates Local Structure**:
-   - `./src/lib/components/` - Component installation directory
-   - `./src/lib/utils/` - Utility functions (cn, etc.)
-
-2. **Installs Dependencies**:
-   - `class-variance-authority`
-   - `clsx` 
-   - `tailwind-merge`
-   - `tailwindcss` (if not present)
-
-3. **Configures TypeScript**:
-   - Adds path aliases: `@lib/*`, `@utils/*`
-   - Updates `tsconfig.json` automatically
-
-4. **Sets Up Tailwind**:
-   - Configures `styles.css` with required CSS variables
-
-## Available Components (v1.0.1)
-
-Angular SuperUI v1.0.1 includes **10 production-ready components**:
-
-### 🎯 Core Components
-- **🪗 [Accordion](./components/accordion.md)** - Collapsible content sections with single or multiple modes
-- **🚨 [Alert](./components/alert.md)** - Contextual feedback messages with 5 variants
-- **🚨 [AlertDialog](./components/alert-dialog.md)** - Modal dialogs with accessibility and focus management
-- **👤 [Avatar](./components/avatar.md)** - User profile images with automatic fallback support
-- **🏷️ [Badge](./components/badge.md)** - Status indicators and labels with 4 variants
-- **🔘 [Button](./components/button.md)** - Interactive buttons with 9 variants and loading states
-
-### 🧭 Navigation & Layout
-- **🍞 [Breadcrumb](./components/breadcrumb.md)** - Navigation breadcrumbs with accessibility
-- **🃏 [Card](./components/card.md)** - Flexible content containers with header, content, and footer
-- **📐 [AspectRatio](./components/aspect-ratio.md)** - Maintains consistent proportions for responsive content
-
-### 📅 Advanced Components
-- **📅 [Calendar](./components/calendar.md)** - Date picker with month/year navigation and time selection
-
-### CLI Commands
-
-```bash
-# Add single component
-ngsui-cli add accordion
-
-# Add multiple components
-ngsui-cli add accordion alert avatar badge
-
-# Add all components
-ngsui-cli add --all
+# Add all components at once
+npx ngsui-cli add --all
 
 # List available components
-ngsui-cli list
+npx ngsui-cli list
 ```
 
-## NPM Package Installation (Alternative)
+---
 
-You can also install the complete component library as an NPM package:
+## 🧩 **Available Components (18 Total)**
 
-### Step 1: Install the Package
+### 🎯 **Core Components**
+- **🔘 [Button](./components/button.md)** - Interactive buttons with 9 variants and loading states
+- **🏷️ [Badge](./components/badge.md)** - Status indicators and labels with 4 variants  
+- **🚨 [Alert](./components/alert.md)** - Contextual feedback messages with 5 variants
+- **👤 [Avatar](./components/avatar.md)** - User profile images with automatic fallback support
+- **🗂️ [Accordion](./components/accordion.md)** - Collapsible content sections with single or multiple modes
+- **🃏 [Card](./components/card.md)** - Flexible content containers with header, content, and footer
+- **☑️ [Checkbox](./components/checkbox.md)** - Boolean input control with multiple states and form integration
+- **🔽 [ComboBox](./components/combobox.md)** - Advanced dropdown with search, multi-select, and loading states
+
+### 🧭 **Navigation & Layout**
+- **🍞 [Breadcrumb](./components/breadcrumb.md)** - Navigation breadcrumbs with accessibility and custom separators
+- **📐 [AspectRatio](./components/aspect-ratio.md)** - Maintains consistent proportions for responsive content
+
+### 💫 **Overlay & Dialog Components**
+- **🚨 [AlertDialog](./components/alert-dialog.md)** - Modal dialogs with accessibility and focus management
+- **🖱️ [ContextMenu](./components/context-menu.md)** - Right-click context menus with keyboard shortcuts
+- **🪟 [Dialog](./components/dialog.md)** - Modal dialog windows with accessibility features
+
+### 🎨 **Media & Display**
+- **🎠 [Carousel](./components/carousel.md)** - Content slider with auto-play, navigation, and pagination
+- **🗃️ [Collapsible](./components/collapsible.md)** - Expandable content sections with smooth animations
+
+### 📊 **Data & Tables**
+- **📊 [DataTable](./components/data-table.md)** - Enterprise-grade data table with sorting, filtering, and pagination
+
+### 📅 **Featured Components**
+- **📅 [Calendar](./components/calendar.md)** - Advanced calendar with date range selection and time picker
+
+### ⚙️ **Utility Components**
+- **🌓 [ThemeSwitcher](./components/theme-switcher.md)** - Toggle between light, dark, and system themes
+
+---
+
+## 📋 **Prerequisites**
+
+| Tool | Version | Status | Notes |
+|------|---------|--------|-------|
+| **Node.js** | 18+ | ✅ Required | LTS version recommended |
+| **Angular CLI** | 17+ | ✅ Required | `npm install -g @angular/cli` |
+| **Angular** | 17+ | ✅ Required | Standalone components support |
+| **TypeScript** | 5.0+ | ✅ Required | Included with Angular |
+
+---
+
+## 🛠️ **Alternative Installation Methods**
+
+### Method 2: NPM Package (Full Library)
 
 ```bash
-npm install angular-superui@1.0.1
-```
+# Install complete library with all components
+npm install angular-superui@1.0.5
 
-### Step 2: Install Peer Dependencies
-
-```bash
+# Install peer dependencies
 npm install class-variance-authority clsx tailwind-merge
 ```
 
-### Step 3: Install Tailwind CSS (if not already installed)
+### Method 3: Manual Setup
+
+For maximum control over your setup:
+
+#### 1. Install Dependencies
 
 ```bash
-npm install -D @tailwindcss/postcss autoprefixer
+npm install class-variance-authority clsx tailwind-merge tailwindcss@^4.1.11
 ```
 
-### Step 4: Configure PostCSS
+#### 2. Configure TailwindCSS v4
 
-Create a `postcss.config.js` file in your project root:
-
-```javascript
-module.exports = {
-  plugins: {
-    '@tailwindcss/postcss': {},
-    autoprefixer: {},
-  },
-};
-```
-
-### Step 5: Update Base Styles
-
-Replace the content of your `src/styles.css` with:
+Create or update your `styles.css`:
 
 ```css
 @import "tailwindcss";
 
 @layer base {
   :root {
-    /* Base Theme Variables */
+    /* Light Theme Variables */
     --background: hsl(0 0% 100%);
     --foreground: hsl(222.2 84% 4.9%);
     --card: hsl(0 0% 100%);
@@ -166,41 +177,10 @@ Replace the content of your `src/styles.css` with:
     --input: hsl(214.3 31.8% 91.4%);
     --ring: hsl(222.2 84% 4.9%);
     --radius: 0.5rem;
-
-    /* Extended Color Palette */
-    --success: hsl(142 76% 36%);
-    --success-foreground: hsl(355 7% 97%);
-    --warning: hsl(43 89% 38%);
-    --warning-foreground: hsl(355 7% 97%);
-    --info: hsl(217 91% 60%);
-    --info-foreground: hsl(355 7% 97%);
-    --purple: hsl(262 83% 58%);
-    --purple-foreground: hsl(355 7% 97%);
-    --pink: hsl(336 84% 57%);
-    --pink-foreground: hsl(355 7% 97%);
-    --orange: hsl(25 95% 53%);
-    --orange-foreground: hsl(355 7% 97%);
-    --teal: hsl(173 58% 39%);
-    --teal-foreground: hsl(355 7% 97%);
-    --indigo: hsl(234 89% 74%);
-    --indigo-foreground: hsl(355 7% 97%);
-    --cyan: hsl(188 94% 43%);
-    --cyan-foreground: hsl(355 7% 97%);
-    --rose: hsl(351 83% 61%);
-    --rose-foreground: hsl(355 7% 97%);
-    --emerald: hsl(160 84% 39%);
-    --emerald-foreground: hsl(355 7% 97%);
-    --amber: hsl(43 96% 56%);
-    --amber-foreground: hsl(26 83% 14%);
-    --lime: hsl(84 81% 44%);
-    --lime-foreground: hsl(20 14% 4%);
-    --violet: hsl(258 90% 66%);
-    --violet-foreground: hsl(355 7% 97%);
-    --sky: hsl(199 89% 48%);
-    --sky-foreground: hsl(355 7% 97%);
   }
 
   .dark {
+    /* Dark Theme Variables */
     --background: hsl(222.2 84% 4.9%);
     --foreground: hsl(210 40% 98%);
     --card: hsl(222.2 84% 4.9%);
@@ -220,132 +200,284 @@ Replace the content of your `src/styles.css` with:
     --border: hsl(217.2 32.6% 17.5%);
     --input: hsl(217.2 32.6% 17.5%);
     --ring: hsl(212.7 26.8% 83.9%);
-
-    /* Dark Mode Extended Colors */
-    --success: hsl(142 69% 58%);
-    --success-foreground: hsl(144 61% 20%);
-    --warning: hsl(43 89% 70%);
-    --warning-foreground: hsl(43 100% 11%);
-    --info: hsl(217 91% 60%);
-    --info-foreground: hsl(215 25% 27%);
-    --purple: hsl(262 83% 70%);
-    --purple-foreground: hsl(263 69% 12%);
-    --pink: hsl(336 84% 70%);
-    --pink-foreground: hsl(336 69% 14%);
-    --orange: hsl(25 95% 65%);
-    --orange-foreground: hsl(25 100% 6%);
-    --teal: hsl(173 58% 55%);
-    --teal-foreground: hsl(173 100% 11%);
-    --indigo: hsl(234 89% 74%);
-    --indigo-foreground: hsl(234 100% 9%);
-    --cyan: hsl(188 94% 60%);
-    --cyan-foreground: hsl(188 100% 9%);
-    --rose: hsl(351 83% 70%);
-    --rose-foreground: hsl(351 100% 14%);
-    --emerald: hsl(160 84% 55%);
-    --emerald-foreground: hsl(160 100% 9%);
-    --amber: hsl(43 96% 70%);
-    --amber-foreground: hsl(43 100% 11%);
-    --lime: hsl(84 81% 60%);
-    --lime-foreground: hsl(84 100% 10%);
-    --violet: hsl(258 90% 75%);
-    --violet-foreground: hsl(258 100% 10%);
-    --sky: hsl(199 89% 65%);
-    --sky-foreground: hsl(199 100% 6%);
   }
 
-  /* Theme Color Classes */
-  .theme-blue {
-    --primary: hsl(217 91% 60%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-green {
-    --primary: hsl(142 76% 36%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-purple {
-    --primary: hsl(262 83% 58%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-pink {
-    --primary: hsl(336 84% 57%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-orange {
-    --primary: hsl(25 95% 53%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-teal {
-    --primary: hsl(173 58% 39%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-red {
-    --primary: hsl(0 84% 60%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-yellow {
-    --primary: hsl(43 96% 56%);
-    --primary-foreground: hsl(26 83% 14%);
-  }
-
-  .theme-indigo {
-    --primary: hsl(234 89% 74%);
-    --primary-foreground: hsl(355 7% 97%);
-  }
-
-  .theme-cyan {
-    --primary: hsl(188 94% 43%);
-    --primary-foreground: hsl(355 7% 97%);
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
+```
 
-@theme {
-  /* Base Colors */
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+#### 3. Create PostCSS Config
 
-  /* Semantic Colors */
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+Create `.postcssrc.json`:
 
-  /* Extended Color Palette */
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-info: var(--info);
-  --color-info-foreground: var(--info-foreground);
-  --color-purple: var(--purple);
-  --color-purple-foreground: var(--purple-foreground);
-  --color-pink: var(--pink);
-  --color-pink-foreground: var(--pink-foreground);
-  --color-orange: var(--orange);
-  --color-orange-foreground: var(--orange-foreground);
-  --color-teal: var(--teal);
-  --color-teal-foreground: var(--teal-foreground);
-  --color-indigo: var(--indigo);
+```json
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}
+```
+
+#### 4. Update TypeScript Paths
+
+Add to your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["lib/components/*"],
+      "@utils/*": ["lib/utils/*"]
+    }
+  }
+}
+```
+
+---
+
+## 🎯 **Usage Examples**
+
+### Basic Component Usage
+
+```typescript
+import { Component } from '@angular/core';
+import { Button } from '@components/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@components/card';
+import { Badge } from '@components/badge';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [Button, Card, CardHeader, CardTitle, CardContent, Badge],
+  template: `
+    <Card class="w-96">
+      <CardHeader>
+        <CardTitle>Welcome to Angular SuperUI</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div class="space-y-4">
+          <Badge variant="default">v1.0.5</Badge>
+          <Button variant="default" (click)="handleClick()">
+            Get Started
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  `
+})
+export class ExampleComponent {
+  handleClick() {
+    console.log('Button clicked!');
+  }
+}
+```
+
+### Advanced Dashboard Example
+
+```typescript
+import { Component } from '@angular/core';
+import { Button } from '@components/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@components/card';
+import { Badge } from '@components/badge';
+import { Avatar } from '@components/avatar';
+import { Alert } from '@components/alert';
+import { ThemeSwitcher } from '@components/theme-switcher';
+
+@Component({
+  selector: 'app-dashboard',
+  standalone: true,
+  imports: [
+    Button, Card, CardHeader, CardTitle, CardContent, 
+    Badge, Avatar, Alert, ThemeSwitcher
+  ],
+  template: `
+    <div class="p-6 space-y-6">
+      <!-- Header -->
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <div class="flex items-center gap-4">
+          <ThemeSwitcher />
+          <Avatar 
+            size="default" 
+            [src]="'https://github.com/shadcn.png'"
+            [alt]="'User Avatar'" />
+        </div>
+      </div>
+
+      <!-- Alert -->
+      <Alert variant="default">
+        <h4 class="font-medium">Welcome back!</h4>
+        <p class="text-sm">You have 3 new notifications.</p>
+      </Alert>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Card>
+          <CardHeader>
+            <CardTitle>Total Sales</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div class="text-2xl font-bold">$12,345</div>
+            <Badge variant="default" class="mt-2">+12%</Badge>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>Orders</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div class="text-2xl font-bold">1,234</div>
+            <Badge variant="secondary" class="mt-2">+8%</Badge>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div class="text-2xl font-bold">5,678</div>
+            <Badge variant="destructive" class="mt-2">-3%</Badge>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex gap-2">
+        <Button variant="default">Create New</Button>
+        <Button variant="secondary">Export Data</Button>
+        <Button variant="outline">Settings</Button>
+      </div>
+    </div>
+  `
+})
+export class DashboardComponent {}
+```
+
+---
+
+## 🔧 **CLI Commands Reference**
+
+### Basic Commands
+
+```bash
+# Initialize project
+ngsui-cli init
+
+# Add single component
+ngsui-cli add button
+
+# Add multiple components
+ngsui-cli add button card badge alert
+
+# Add all components
+ngsui-cli add --all
+
+# List available components
+ngsui-cli list
+
+# Get help
+ngsui-cli --help
+```
+
+### Advanced Options
+
+```bash
+# Force overwrite existing components
+ngsui-cli add button --force
+
+# Use with npx (no global installation)
+npx ngsui-cli@1.0.5 init
+npx ngsui-cli@1.0.5 add button
+```
+
+---
+
+## 🌍 **Framework Compatibility**
+
+| Framework | Version | Status | Notes |
+|-----------|---------|--------|-------|
+| **Angular** | 18+ | ✅ Fully Supported | Standalone components |
+| **Angular** | 17 | ✅ Supported | Standalone components |
+| **Angular** | 16 | ⚠️ Limited | May require adjustments |
+| **Angular** | 15 | ❌ Not Supported | Standalone components required |
+
+---
+
+## ❓ **Troubleshooting**
+
+### Common Issues
+
+#### **TailwindCSS Not Working**
+```bash
+# Ensure TailwindCSS v4 is installed
+npm install tailwindcss@^4.1.11 @tailwindcss/postcss
+
+# Check .postcssrc.json exists
+cat .postcssrc.json
+
+# Restart development server
+ng serve
+```
+
+#### **Components Not Found**
+```bash
+# Ensure path aliases are configured in tsconfig.json
+# Check components were installed in src/lib/components/
+ls src/lib/components/
+
+# Re-run init if needed
+ngsui-cli init
+```
+
+#### **TypeScript Errors**
+```bash
+# Ensure all dependencies are installed
+npm install class-variance-authority clsx tailwind-merge
+
+# Check TypeScript version
+npx tsc --version  # Should be 5.0+
+```
+
+#### **CSS Variables Not Applied**
+- ✅ Ensure styles.css has the @import "tailwindcss" at the top
+- ✅ Check that CSS variables are defined in :root and .dark
+- ✅ Restart your development server after changes
+---
+
+## 🚀 **Next Steps**
+
+1. **📖 Explore Components**: Visit our [Component Documentation](./README.md)
+2. **🎮 Try Live Demo**: See all components in action at [angular-superui.vercel.app](https://angular-superui.vercel.app/)
+3. **💡 Get Inspired**: Check out our [Examples Gallery](./examples.md)
+4. **🤝 Contribute**: Join our [GitHub Community](https://github.com/bhaimicrosoft/angular-superui)
+
+---
+
+## 📧 **Support & Community**
+
+- 🐙 **GitHub**: [bhaimicrosoft/angular-superui](https://github.com/bhaimicrosoft/angular-superui)
+- 📧 **Email**: [bhaikaju@gmail.com](mailto:bhaikaju@gmail.com)
+- 💬 **Issues**: [Report bugs or request features](https://github.com/bhaimicrosoft/angular-superui/issues)
+
+---
+
+<div align="center">
+
+### 🌟 **Star us on GitHub if Angular SuperUI helped you!** 🌟
+
+[![GitHub Stars](https://img.shields.io/github/stars/bhaimicrosoft/angular-superui?style=for-the-badge&logo=github&color=FFD700)](https://github.com/bhaimicrosoft/angular-superui)
+
+</div>
+
+---
+
+*Built with ❤️ by the Angular SuperUI Team*
   --color-indigo-foreground: var(--indigo-foreground);
   --color-cyan: var(--cyan);
   --color-cyan-foreground: var(--cyan-foreground);

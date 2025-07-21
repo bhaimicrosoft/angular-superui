@@ -6,6 +6,81 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.5] - 2025-01-11
+
+### 🚀 **Major Enhancement Release - TailwindCSS v4, Enhanced Components & Comprehensive Updates**
+
+#### 🆕 New Components Added
+- 📊 **DataTable Component**: Enterprise-grade data table with sorting, filtering, and pagination
+- 🪟 **Dialog Component**: Modal dialog windows with accessibility features and focus management
+- ☑️ **Checkbox Component**: Boolean input control with multiple states and form integration
+- 🗃️ **Collapsible Component**: Expandable content sections with smooth animations
+- 🔽 **ComboBox Component**: Advanced dropdown with search, multi-select, and loading states
+- 🎠 **Carousel Component**: Content slider with auto-play, navigation, and pagination
+- 🌓 **ThemeSwitcher Component**: Toggle between light, dark, and system themes
+
+#### ⬆️ **Framework & Dependencies Updates**
+- 🎨 **TailwindCSS v4.1.11**: Updated to latest TailwindCSS with modern @import syntax
+- 🔧 **tailwind-merge v3.3.1**: Enhanced utility class merging capabilities
+- 🛠️ **Enhanced tsconfig.json Parsing**: Robust comment removal for Angular JSON files
+- 📦 **Dependency Management**: Streamlined installation process with improved version management
+
+#### 🎯 **Component Library Expansion**
+- 📈 **18 Total Components**: Expanded from 16 to 18 production-ready components
+- 🔄 **CLI Component Support**: Added all new components to ngsui-cli installation system
+- 🎨 **Improved Component Categories**: Enhanced organization with new categories:
+  - 🎯 Core Components (8): Button, Badge, Alert, Avatar, Accordion, Card, Checkbox, ComboBox
+  - 🧭 Navigation & Layout (2): Breadcrumb, AspectRatio
+  - 💫 Overlay & Dialog Components (3): AlertDialog, ContextMenu, Dialog
+  - 🎨 Media & Display (2): Carousel, Collapsible
+  - 📊 Data & Tables (1): DataTable
+  - 📅 Featured Components (1): Calendar
+  - ⚙️ Utility Components (1): ThemeSwitcher
+
+#### 🛠️ **CLI Tool Major Enhancements**
+- 🌟 **Stunning Visual Banners**: Added beautiful hex-colored banners for INIT, ADD, and LIST commands
+  - **INIT**: Modern teal banner with setup instructions
+  - **ADD**: Professional blue banner with installation feedback
+  - **LIST**: Elegant purple banner with component categorization
+- 🔧 **Enhanced tsconfig.json Handling**: Multi-stage comment removal with string-aware parsing
+- 📦 **New Component Integration**: Added data-table and dialog to installation options
+- 🎨 **Component Count Display**: Real-time component count showing in installation banners
+- ⚡ **Error Handling**: Improved fallback mechanisms for JSON parsing failures
+
+#### 📖 **Documentation Complete Overhaul**
+- 🎨 **installation.md Rewrite**: Completely rewritten with:
+  - Modern visual layout with badges and banners
+  - Comprehensive 18-component showcase
+  - TailwindCSS v4 setup instructions
+  - Advanced usage examples and dashboard demos
+  - Troubleshooting guide and framework compatibility matrix
+- 📚 **README Updates**: All README files updated with:
+  - Version bumped to v1.0.5 across all markdown files
+  - Component count corrected to 18 in all locations
+  - CLI command examples updated to use v1.0.5
+  - Enhanced feature descriptions and benefits
+- 🔧 **Technical Documentation**: Updated CLI installation guides and dependency versions
+
+#### 🎨 **User Experience Improvements**
+- ✨ **Enhanced CLI Banners**: Beautiful visual feedback during component installation
+- 🎯 **Component Discovery**: Improved component categorization and descriptions
+- 📊 **Installation Feedback**: Real-time progress and status during CLI operations
+- 🔍 **Better Organization**: Clearer component grouping by functionality and use case
+
+#### 🔧 **Technical Architecture Enhancements**
+- 🏗️ **Robust JSON Parsing**: Enhanced tsconfig.json parsing with comment handling
+- 📦 **Version Management**: Systematic version updates across all package.json files
+- 🔄 **Dependency Optimization**: Updated to latest stable versions of all dependencies
+- ⚡ **Performance**: Improved CLI performance with better error handling
+
+#### 📱 **Compatibility & Support**
+- 🌍 **Angular 18+**: Full support for latest Angular features
+- 🎨 **TailwindCSS v4**: Complete migration to modern Tailwind architecture
+- 📦 **Node.js 18+**: Updated minimum requirements for optimal performance
+- 🔧 **TypeScript 5.0+**: Enhanced type safety and modern TypeScript features
+
+---
+
 ## [1.0.4] - 2025-07-20
 
 ### 🎉 **Feature Release - Context Menu Component & Enhanced Architecture**

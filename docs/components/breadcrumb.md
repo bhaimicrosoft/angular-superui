@@ -1,8 +1,26 @@
-# Breadcrumb Component
+# Breadcrumb Component 🍞
 
-A navigation breadcrumb component that shows the current page's location within a navigational hierarchy.
+Navigation breadcrumb component that shows the current page's location within a navigational hierarchy with full accessibility support.
+
+## Features
+
+- 🧭 **Navigation Hierarchy** - Clear path indication for complex navigation
+- ♿ **Accessibility First** - ARIA compliant with screen reader support
+- 🎨 **Customizable Separators** - Choose from various separator styles
+- 📱 **Responsive Design** - Works seamlessly on all screen sizes
+- 🔗 **Link Integration** - Full Angular Router support
+- 🎭 **Ellipsis Support** - Truncation for long breadcrumb trails
+- 🔧 **TypeScript** - Complete type safety
 
 ## Installation
+
+Initialize Angular SuperUI in your project:
+
+```bash
+ngsui-cli init
+```
+
+Add the Breadcrumb component:
 
 ```bash
 ngsui-cli add breadcrumb

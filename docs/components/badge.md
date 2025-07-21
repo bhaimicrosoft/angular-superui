@@ -1,16 +1,26 @@
-# Badge Component
+# Badge Component 🏷️
 
-A modern, accessible badge component for displaying status, labels, and notifications.
+Modern, accessible badge component for displaying status indicators, labels, and notifications with multiple variants.
 
 ## Features
 
 - 🎯 **4 Variants** - Default, Secondary, Destructive, Outline
+- 📏 **Multiple Sizes** - Small, Default, Large for different contexts
 - ♿ **Accessibility First** - ARIA compliant with semantic roles
 - 📱 **Responsive Design** - Consistent sizing across all screen sizes
 - 🎨 **Customizable** - Easy to style with Tailwind CSS classes
 - 🔧 **TypeScript** - Full type safety with CVA variants
+- 🎭 **Animation Ready** - Smooth transitions and hover effects
 
 ## Installation
+
+Initialize Angular SuperUI in your project:
+
+```bash
+ngsui-cli init
+```
+
+Add the Badge component:
 
 ```bash
 ngsui-cli add badge

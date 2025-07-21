@@ -1,6 +1,6 @@
 {
   "name": "angular-superui",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A comprehensive, modern Angular UI component library with 50+ components including dialogs, forms, navigation, data display, and more. Built with TypeScript, Tailwind CSS, and accessibility in mind.",
   "keywords": [
     "angular",
@@ -84,8 +84,11 @@
     "@angular/router": "^20.1.0",
     "@internationalized/date": "^3.8.2",
     "@radix-ng/primitives": "^0.42.0",
+    "axios": "^1.10.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "fs-extra": "^11.3.0",
+    "inquirer": "^12.8.1",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^3.3.1",
     "tslib": "^2.3.0",
@@ -96,6 +99,7 @@
     "@angular/cli": "^20.1.0",
     "@angular/compiler-cli": "^20.1.0",
     "@tailwindcss/postcss": "^4.1.11",
+    "@types/fs-extra": "^11.0.4",
     "@types/jasmine": "~5.1.0",
     "autoprefixer": "^10.4.21",
     "jasmine-core": "~5.8.0",

@@ -83,6 +83,24 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
+    'context-menu': {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    'data-table': {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    dialog: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
     'theme-switcher': {
         name: string;
         description: string;

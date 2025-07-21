@@ -1,16 +1,26 @@
-# Checkbox
+# Checkbox Component ☑️
 
-A control that allows the user to toggle between checked and not checked. Supports three states: checked, unchecked, and indeterminate.
+Interactive checkbox control with support for checked, unchecked, and indeterminate states, multiple variants, and full form integration.
+
+## Features
+
+- ✅ **3 States** - Checked, Unchecked, and Indeterminate support
+- 🎯 **4 Variants** - Default, Destructive, Success, Warning
+- 📏 **4 Sizes** - Small, Default, Large, Extra Large
+- ♿ **Accessibility** - Full ARIA compliance and keyboard navigation
+- 📝 **Form Integration** - ControlValueAccessor for reactive forms
+- 🎨 **Customizable** - Easy styling with Tailwind CSS
+- 🔧 **TypeScript** - Complete type safety and IntelliSense
 
 ## Installation
 
-The Checkbox component is available as part of Angular SuperUI. If you haven't initialized Angular SuperUI in your project yet, run:
+Initialize Angular SuperUI in your project:
 
 ```bash
 ngsui-cli init
 ```
 
-Then add the Checkbox component to your project:
+Add the Checkbox component:
 
 ```bash
 ngsui-cli add checkbox
