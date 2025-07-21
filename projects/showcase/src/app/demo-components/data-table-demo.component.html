@@ -1,0 +1,389 @@
+<!-- Hero Section with Gradient Background -->
+<div class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+  <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    <div class="text-center">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-sm font-medium mb-6">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4"></path>
+        </svg>
+        Enterprise Data Management
+      </div>
+
+      <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+        <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          DataTable Component
+        </span>
+      </h1>
+
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
+        The most comprehensive data management solution for Angular applications. Built with enterprise-grade features,
+        uncompromising performance, and beautiful design.
+      </p>
+
+      <!-- Statistics Grid -->
+      <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-8">
+        <div class="bg-white bg-opacity-70 dark:bg-gray-800 dark:bg-opacity-70 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+          <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">{{ employeeActiveCount() }}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Active Employees</div>
+        </div>
+        <div class="bg-white bg-opacity-70 dark:bg-gray-800 dark:bg-opacity-70 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+          <div class="text-2xl font-bold text-green-600 dark:text-green-400">{{ productAvailableCount() }}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Available Products</div>
+        </div>
+        <div class="bg-white bg-opacity-70 dark:bg-gray-800 dark:bg-opacity-70 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+          <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">{{ transactionCompletedCount() }}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Completed Transactions</div>
+        </div>
+      </div>
+
+      <!-- Demo Navigation -->
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <button
+          (click)="switchDemo('employees')"
+          [class.bg-blue-600]="currentDemo() === 'employees'"
+          [class.text-white]="currentDemo() === 'employees'"
+          [class.bg-white]="currentDemo() !== 'employees'"
+          [class.bg-opacity-70]="currentDemo() !== 'employees'"
+          [class.text-gray-700]="currentDemo() !== 'employees'"
+          class="px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:bg-opacity-70 dark:text-gray-200">
+          👥 Employee Management
+        </button>
+        <button
+          (click)="switchDemo('products')"
+          [class.bg-blue-600]="currentDemo() === 'products'"
+          [class.text-white]="currentDemo() === 'products'"
+          [class.bg-white]="currentDemo() !== 'products'"
+          [class.bg-opacity-70]="currentDemo() !== 'products'"
+          [class.text-gray-700]="currentDemo() !== 'products'"
+          class="px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:bg-opacity-70 dark:text-gray-200">
+          📦 Product Inventory
+        </button>
+        <button
+          (click)="switchDemo('transactions')"
+          [class.bg-blue-600]="currentDemo() === 'transactions'"
+          [class.text-white]="currentDemo() === 'transactions'"
+          [class.bg-white]="currentDemo() !== 'transactions'"
+          [class.bg-opacity-70]="currentDemo() !== 'transactions'"
+          [class.text-gray-700]="currentDemo() !== 'transactions'"
+          class="px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-800 dark:bg-opacity-70 dark:text-gray-200">
+          💳 Financial Transactions
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+  <!-- Current Demo Title -->
+  <div class="mb-8">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      @switch (currentDemo()) {
+        @case ('employees') {
+          👥 Employee Management Dashboard
+        }
+        @case ('products') {
+          📦 Product Inventory System
+        }
+        @case ('transactions') {
+          💳 Financial Transaction History
+        }
+      }
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400">
+      @switch (currentDemo()) {
+        @case ('employees') {
+          Comprehensive employee data management with advanced filtering, sorting, and analytics capabilities.
+        }
+        @case ('products') {
+          Complete product catalog management with inventory tracking and multi-category organization.
+        }
+        @case ('transactions') {
+          Detailed financial transaction monitoring with real-time balance tracking and categorization.
+        }
+      }
+    </p>
+  </div>
+
+  <!-- Action Bar -->
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div class="flex items-center gap-3">
+      <span class="text-sm text-gray-600 dark:text-gray-400">
+        {{ selectedRows().length }} of {{ currentData().length }} selected
+      </span>
+      @if (selectedRows().length > 0) {
+        <Button
+          (click)="deleteSelected()"
+          variant="destructive"
+          size="sm"
+        >
+          🗑️ Delete Selected
+        </Button>
+      }
+    </div>
+    <div class="flex items-center gap-3">
+      <Button
+        (click)="addNew()"
+        variant="default"
+        size="sm"
+      >
+        ➕ Add New
+      </Button>
+      <Button
+        (click)="refresh()"
+        variant="outline"
+        size="sm"
+        [disabled]="loading()"
+      >
+        @if (loading()) {
+          <div class="flex items-center">
+            <svg class="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Refreshing...</span>
+          </div>
+        } @else {
+          🔄 Refresh
+        }
+      </Button>
+    </div>
+  </div>
+
+  <!-- Main DataTable -->
+  <div class="w-full bg-white dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden mb-16">
+    <DataTable
+      [data]="currentData()"
+      [columns]="currentColumns()"
+      [configInput]="{
+        sortable: true,
+        filterable: true,
+        searchable: true,
+        paginated: true,
+        selectable: true,
+        editable: true,
+        resizable: true,
+        reorderable: true,
+        exportable: true,
+        virtualScrolling: false,
+        lazyLoading: false,
+        stickyHeader: true,
+        showToolbar: true,
+        showFooter: true,
+        striped: true,
+        bordered: false,
+        hoverable: true,
+        compact: false,
+        elevated: false,
+        multiSort: true,
+        grouping: true,
+        pinColumns: true,
+        customRenderers: true,
+        advancedFiltering: true
+      }"
+      [initialPageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 50, 100]"
+      [showFirstLast]="true"
+      [showPageInfo]="true"
+      [showPageSizeSelector]="true"
+      [variant]="tableVariant()"
+      [size]="tableSize()"
+      [density]="tableDensity()"
+      [maxHeight]="tableMaxHeight()"
+      (selectionChange)="onSelectionChange($event)"
+      (cellEdit)="onCellEdit($event)"
+      (sortChange)="onSort($event)"
+      (filterChange)="onFilter($event)"
+      (export)="onExport($event)"
+      (pageChange)="onPageChange($event)"
+    />
+  </div>
+
+  <!-- Feature Showcase -->
+  <div class="grid grid-cols-1 gap-8 mb-16">
+
+    <!-- Core Features -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+      <div class="flex items-center mb-4">
+        <div class="p-2 bg-blue-600 rounded-lg mr-3">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 00-2 2m-3 7h3m0 0h3m-3 0v3m0-3V9"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Core Features</h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-4">Essential data management capabilities</p>
+      <div class="w-full">
+        <DataTable
+          [data]="currentData().slice(0, 5)"
+          [columns]="currentColumns().slice(0, 4)"
+          [configInput]="{ sortable: true, filterable: false, searchable: false, paginated: false, showToolbar: false }"
+          [maxHeight]="smallTableMaxHeight()"
+          [variant]="smallTableVariant()"
+          [size]="smallTableSize()"
+          [density]="smallTableDensityCompact()"
+        />
+      </div>
+    </div>
+
+    <!-- Advanced Features -->
+    <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
+      <div class="flex items-center mb-4">
+        <div class="p-2 bg-purple-600 rounded-lg mr-3">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Advanced Features</h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-4">Enhanced productivity tools</p>
+      <div class="w-full">
+        <DataTable
+          [data]="currentData().slice(0, 5)"
+          [columns]="currentColumns().slice(0, 3)"
+          [configInput]="{ sortable: true, multiSort: true, grouping: true, reorderable: true, showToolbar: false, paginated: false }"
+          [maxHeight]="smallTableMaxHeight()"
+          [variant]="smallTableVariant()"
+          [size]="smallTableSize()"
+          [density]="smallTableDensityCompact()"
+        />
+      </div>
+    </div>
+
+    <!-- Premium Features -->
+    <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
+      <div class="flex items-center mb-4">
+        <div class="p-2 bg-green-600 rounded-lg mr-3">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Premium Features</h3>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 mb-4">Enterprise-grade capabilities</p>
+      <div class="w-full">
+        <DataTable
+          [data]="currentData().slice(0, 5)"
+          [columns]="currentColumns().slice(0, 4)"
+          [configInput]="{ selectable: true, editable: true, exportable: true, advancedFiltering: true, showToolbar: false, paginated: false }"
+          [maxHeight]="smallTableMaxHeight()"
+          [variant]="smallTableVariant()"
+          [size]="smallTableSize()"
+          [density]="smallTableDensityDefault()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuration Examples -->
+  <div class="mb-16">
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-8">Configuration Examples</h3>
+
+    <div class="grid gap-8 lg:grid-cols-2">
+
+      <!-- Basic Configuration -->
+      <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6">
+        <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Basic Configuration</h4>
+        <div class="bg-gray-900 dark:bg-gray-900 rounded-lg p-4 overflow-x-auto">
+          <pre class="text-sm text-gray-100"><code class="language-typescript">// Essential features for basic data display
+const basicConfig = &#123;
+  sortable: true,
+  filterable: true,
+  searchable: true,
+  paginated: true,
+  showToolbar: true
+&#125;;</code></pre>
+        </div>
+      </div>
+
+      <!-- Enterprise Configuration -->
+      <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6">
+        <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Enterprise Configuration</h4>
+        <div class="bg-gray-900 dark:bg-gray-900 rounded-lg p-4 overflow-x-auto">
+          <pre class="text-sm text-gray-100"><code class="language-typescript">// Full enterprise feature set
+const enterpriseConfig = &#123;
+  multiSort: true,
+  grouping: true,
+  advancedFiltering: true,
+  virtualScrolling: true,
+  pinColumns: true,
+  exportable: true,
+  editable: true
+&#125;;</code></pre>
+        </div>
+      </div>
+
+      <!-- Column Definition -->
+      <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 lg:col-span-2">
+        <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Advanced Column Definition</h4>
+        <div class="bg-gray-900 dark:bg-gray-900 rounded-lg p-4 overflow-x-auto">
+          <pre class="text-sm text-gray-100"><code class="language-typescript">const advancedColumn: DataTableColumn = &#123;
+  key: 'salary',
+  label: 'Annual Salary',
+  type: 'number',
+  sortable: true,
+  filterable: true,
+  editable: true,
+  formatter: (value) => `$&#123;value.toLocaleString()&#125;`,
+  validator: (value) => value > 0 && value < 1000000,
+  pinned: 'right',
+  width: '150px',
+  resizable: true
+&#125;;</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance Metrics -->
+  <div class="bg-gradient-to-r from-indigo-50 via-blue-50 to-cyan-50 dark:from-indigo-900/20 dark:via-blue-900/20 dark:to-cyan-900/20 rounded-xl p-8 border border-blue-200 dark:border-blue-800 mb-16">
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Performance & Capabilities</h3>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="text-center">
+        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">1M+</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Rows Supported</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">15+</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Enterprise Features</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">60fps</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Smooth Scrolling</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">100%</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">WCAG Compliant</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documentation Link -->
+  <div class="text-center">
+    <div class="inline-flex items-center justify-center p-8 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl shadow-2xl">
+      <div class="mr-6">
+        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+        </svg>
+      </div>
+      <div class="text-left">
+        <h4 class="text-xl font-bold mb-2">Complete Documentation</h4>
+        <p class="text-blue-100 mb-4">Explore the full DataTable API, advanced examples, and best practices</p>
+        <a
+          href="https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components/data-table.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-300"
+        >
+          📚 View Documentation
+          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

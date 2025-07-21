@@ -1,4 +1,20 @@
-import { Component, Input, Output, EventEmitter, signal, computed, effect, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, HostBinding, HostListener } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  signal,
+  computed,
+  effect,
+  ChangeDetectionStrategy,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  OnDestroy,
+  HostBinding,
+  HostListener,
+  input
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -257,9 +273,9 @@ function cn(...inputs: any[]) {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
-            
+
             <!-- Export Dropdown Menu -->
-            <div 
+            <div
               *ngIf="showExportMenu()"
               class="absolute right-0 top-full mt-1 w-32 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50"
             >
@@ -308,7 +324,7 @@ function cn(...inputs: any[]) {
             <label class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300">
               {{ column.label }}
             </label>
-            
+
             <!-- Text Filter -->
             <div *ngIf="column.type === 'string' || column.type === 'email' || !column.type" class="space-y-1.5 sm:space-y-2">
               <select
@@ -389,7 +405,7 @@ function cn(...inputs: any[]) {
             <div *ngIf="config().advancedFiltering && column.multiSelectFilter" class="space-y-2">
               <div class="text-xs text-gray-500 dark:text-gray-400">Multi-select filter</div>
               <div class="max-h-32 overflow-y-auto border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800">
-                <label 
+                <label
                   *ngFor="let option of getColumnFilterOptions(column.key); trackBy: trackByFilterOption"
                   class="flex items-center gap-2 px-2 py-1 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
                 >
@@ -406,7 +422,7 @@ function cn(...inputs: any[]) {
             </div>
           </div>
         </div>
-        
+
         <!-- Grouping Controls -->
         <div *ngIf="config().grouping" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
           <div class="flex items-center justify-between mb-3">
@@ -465,7 +481,7 @@ function cn(...inputs: any[]) {
             </button>
           </div>
           <div class="space-y-1">
-            <div 
+            <div
               *ngFor="let sortItem of multiSort().sorts; let i = index"
               class="flex items-center gap-2 text-sm"
             >
@@ -484,7 +500,7 @@ function cn(...inputs: any[]) {
             </div>
           </div>
         </div>
-        
+
         <!-- Filter Actions -->
         <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
           <button
@@ -530,8 +546,8 @@ function cn(...inputs: any[]) {
       </div>
 
       <!-- Table Container -->
-      <div 
-        class="relative overflow-auto" 
+      <div
+        class="relative overflow-auto"
         [style.max-height]="maxHeight()"
         (scroll)="config().virtualScrolling && virtualScrolling().enabled ? onVirtualScroll($event) : null"
       >
@@ -578,7 +594,7 @@ function cn(...inputs: any[]) {
                   <!-- Left side: Drag handle and Sort indicators -->
                   <div class="flex items-center gap-1">
                     <!-- Drag handle indicator -->
-                    <svg 
+                    <svg
                       *ngIf="column.reorderable !== false && config().reorderable"
                       class="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0"
                       fill="none"
@@ -587,7 +603,7 @@ function cn(...inputs: any[]) {
                     >
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8M8 15h8"/>
                     </svg>
-                    
+
                     <!-- Single sort indicator -->
                     <div *ngIf="!config().multiSort && column.sortable && config().sortable" class="flex flex-col flex-shrink-0">
                       <svg
@@ -611,9 +627,9 @@ function cn(...inputs: any[]) {
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 10l3 3 3-3"/>
                       </svg>
                     </div>
-                    
+
                     <!-- Multi-sort indicator -->
-                    <div *ngIf="config().multiSort && getSortIndex(column.key) >= 0" 
+                    <div *ngIf="config().multiSort && getSortIndex(column.key) >= 0"
                          class="flex items-center gap-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-1 py-0.5 rounded">
                       <span>{{ getSortIndex(column.key) + 1 }}</span>
                       <svg
@@ -627,10 +643,10 @@ function cn(...inputs: any[]) {
                       </svg>
                     </div>
                   </div>
-                  
+
                   <!-- Center: Column label -->
                   <span class="truncate text-center flex-1">{{ column.label }}</span>
-                  
+
                   <!-- Right side: Filter indicator and Grouping button -->
                   <div class="flex items-center gap-1">
                     <!-- Filter indicator -->
@@ -639,7 +655,7 @@ function cn(...inputs: any[]) {
                       class="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full flex-shrink-0"
                       [title]="'Filtered'"
                     ></div>
-                    
+
                     <!-- Grouping toggle -->
                     <button
                       *ngIf="column.groupable !== false && config().grouping"
@@ -811,7 +827,7 @@ function cn(...inputs: any[]) {
             <!-- Regular Data Display (Non-grouped) -->
             <ng-container *ngIf="!config().grouping || !grouping().enabled">
               <!-- Virtual Scrolling Container -->
-              <tr 
+              <tr
                 *ngIf="config().virtualScrolling && virtualScrolling().enabled"
                 [style.height.px]="virtualScrollHeight()"
                 class="relative"
@@ -828,7 +844,7 @@ function cn(...inputs: any[]) {
                       (click)="onRowClick(row, visibleStartIndex() + i)"
                     >
                       <!-- Virtual row content -->
-                      <div 
+                      <div
                         *ngIf="config().selectable && selection().mode === 'multiple'"
                         [class]="dataCellClasses()"
                         class="w-12 flex items-center px-4"
@@ -1130,26 +1146,26 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   // Inputs
   private _data = signal<T[]>([]);
   private _columns = signal<DataTableColumn<T>[]>([]);
-  
-  @Input() 
+
+  @Input()
   set data(value: T[]) {
     this._data.set(value);
   }
   get data() {
     return this._data();
   }
-  
-  @Input() 
+
+  @Input()
   set columns(value: DataTableColumn<T>[]) {
     this._columns.set(value);
   }
   get columns() {
     return this._columns();
   }
-  
-  @Input() variant = signal<VariantProps<typeof dataTableVariants>['variant']>('default');
-  @Input() size = signal<VariantProps<typeof dataTableVariants>['size']>('default');
-  @Input() density = signal<VariantProps<typeof dataTableVariants>['density']>('default');
+
+   variant = input<VariantProps<typeof dataTableVariants>['variant']>('default');
+   size = input<VariantProps<typeof dataTableVariants>['size']>('default');
+  density = input<VariantProps<typeof dataTableVariants>['density']>('default');
 
   // Internal config signal
   private _configInput = signal<Partial<DataTableConfig>>({});
@@ -1183,13 +1199,13 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     ...this._configInput(),
   }));
 
-  @Input() 
+  @Input()
   set configInput(value: Partial<DataTableConfig>) {
     this._configInput.set(value);
   }
 
-  @Input() maxHeight = signal<string>('600px');
-  
+  maxHeight = input<string>('600px');
+
   // Pagination configuration inputs as signals for reactivity
   private _initialPageSize = signal<number>(5);
   private _pageSizeOptions = signal<number[]>([5, 10, 20, 50, 100]);
@@ -1197,7 +1213,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   private _showPageInfo = signal<boolean>(true);
   private _showPageSizeSelector = signal<boolean>(true);
 
-  @Input() 
+  @Input()
   set initialPageSize(value: number) {
     this._initialPageSize.set(value);
   }
@@ -1205,7 +1221,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     return this._initialPageSize();
   }
 
-  @Input() 
+  @Input()
   set pageSizeOptions(value: number[]) {
     this._pageSizeOptions.set(value);
   }
@@ -1213,7 +1229,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     return this._pageSizeOptions();
   }
 
-  @Input() 
+  @Input()
   set showFirstLast(value: boolean) {
     this._showFirstLast.set(value);
   }
@@ -1221,7 +1237,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     return this._showFirstLast();
   }
 
-  @Input() 
+  @Input()
   set showPageInfo(value: boolean) {
     this._showPageInfo.set(value);
   }
@@ -1229,7 +1245,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     return this._showPageInfo();
   }
 
-  @Input() 
+  @Input()
   set showPageSizeSelector(value: boolean) {
     this._showPageSizeSelector.set(value);
   }
@@ -1259,16 +1275,16 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   multiSort = signal<DataTableMultiSort>({ sorts: [] });
   filters = signal<DataTableFilter[]>([]);
   advancedFilters = signal<DataTableAdvancedFilter[]>([]);
-  
+
   // Column reordering state
   draggedColumnIndex = signal<number>(-1);
   dragOverColumnIndex = signal<number>(-1);
   isDragging = signal<boolean>(false);
-  
+
   // Column resizing state
   resizingColumn = signal<{ column: DataTableColumn<T>; startX: number; startWidth: number } | null>(null);
   isResizing = signal<boolean>(false);
-  
+
   // Grouping state
   grouping = signal<DataTableGrouping<T>>({
     enabled: false,
@@ -1276,7 +1292,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     groups: [],
     expanded: {}
   });
-  
+
   // Virtual scrolling state
   virtualScrolling = signal<DataTableVirtualScrolling>({
     enabled: false,
@@ -1284,13 +1300,13 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     bufferSize: 10,
     scrollContainer: undefined
   });
-  
+
   // Virtual scroll viewport
   virtualScrollTop = signal<number>(0);
   virtualScrollHeight = signal<number>(0);
   visibleStartIndex = signal<number>(0);
   visibleEndIndex = signal<number>(0);
-  
+
   pagination = signal<DataTablePagination>({
     page: 0,
     pageSize: 5, // Will be updated by effect
@@ -1313,12 +1329,12 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   showBulkDeleteConfirm = signal<boolean>(false);
   pendingDeleteIndex = signal<number>(-1);
   loading = signal<boolean>(false);
-  
+
   // Editing state
   editingCell = signal<{ row: number; column: string } | null>(null);
 
   // Computed values
-  visibleColumns = computed(() => 
+  visibleColumns = computed(() =>
     this._columns().filter(col => !col.hidden)
   );
 
@@ -1349,7 +1365,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   dataLength = computed(() => this._data().length);
   columnsValue = computed(() => this._columns());
   dataValue = computed(() => this._data());
-  
+
   // Computed properties for pagination inputs (for template access)
   pageSizeOptionsForTemplate = computed(() => this._pageSizeOptions());
 
@@ -1385,7 +1401,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
         data = data.filter(row => {
           const column = this._columns().find(col => col.key === filter.column);
           if (!column) return true;
-          
+
           const value = this.getCellValue(row, column);
           return this.applyFilter(value, filter);
         });
@@ -1398,16 +1414,16 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
         data = data.filter(row => {
           const column = this._columns().find(col => col.key === filter.column);
           if (!column) return true;
-          
+
           const value = this.getCellValue(row, column);
-          
+
           // Convert advanced filter to regular filter format for processing
           const regularFilter: DataTableFilter = {
             column: filter.column,
             value: filter.values || [filter.value],
             operator: filter.operator
           };
-          
+
           return this.applyFilter(value, regularFilter);
         });
       });
@@ -1418,13 +1434,13 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   sortedData = computed(() => {
     const data = [...this.filteredData()];
-    
+
     // Multi-sort support
     if (this.config().multiSort && this.multiSort().sorts.length > 0) {
       return data.sort((a, b) => {
         for (const sortConfig of this.multiSort().sorts) {
           if (!sortConfig.column || !sortConfig.direction) continue;
-          
+
           const column = this._columns().find(col => col.key === sortConfig.column);
           if (!column) continue;
 
@@ -1432,7 +1448,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           const bVal = this.getCellValue(b, column);
 
           let result = 0;
-          
+
           if (column.type === 'number') {
             result = (Number(aVal) || 0) - (Number(bVal) || 0);
           } else if (column.type === 'date') {
@@ -1465,7 +1481,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       const bVal = this.getCellValue(b, column);
 
       let result = 0;
-      
+
       if (column.type === 'number') {
         result = (Number(aVal) || 0) - (Number(bVal) || 0);
       } else if (column.type === 'date') {
@@ -1491,7 +1507,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     if (!column) return null;
 
     const groups = new Map<any, T[]>();
-    
+
     data.forEach(row => {
       const value = this.getCellValue(row, column);
       const key = value?.toString() || 'null';
@@ -1522,7 +1538,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     const data = this.displayedData();
     const startIndex = this.visibleStartIndex();
     const endIndex = this.visibleEndIndex();
-    
+
     return data.slice(startIndex, endIndex);
   });
 
@@ -1535,7 +1551,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           flatData.push(...group.items);
         }
       });
-      
+
       if (!this.config().paginated) {
         return flatData;
       }
@@ -1543,12 +1559,12 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       const { page, pageSize } = this.pagination();
       const start = page * pageSize;
       const end = start + pageSize;
-      
+
       return flatData.slice(start, end);
     }
 
     const data = this.sortedData();
-    
+
     if (!this.config().paginated) {
       return data;
     }
@@ -1556,7 +1572,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     const { page, pageSize } = this.pagination();
     const start = page * pageSize;
     const end = start + pageSize;
-    
+
     return data.slice(start, end);
   });
 
@@ -1644,7 +1660,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       density: this.density(),
     }),
     // Use table-fixed for better column width control when resizing is enabled
-    this.config().resizable ? 'table-fixed' : 'table-auto'
+    this.config().resizable ? 'table-auto' : 'table-auto'
   ));
 
   headerCellClasses = (column?: DataTableColumn<T>, columnIndex?: number) => cn(
@@ -1722,8 +1738,8 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     if (existingIndex >= 0) {
       // Update existing sort
       const currentDirection = currentSorts[existingIndex].direction;
-      const newDirection: 'asc' | 'desc' | null = 
-        currentDirection === 'asc' ? 'desc' : 
+      const newDirection: 'asc' | 'desc' | null =
+        currentDirection === 'asc' ? 'desc' :
         currentDirection === 'desc' ? null : 'asc';
 
       if (newDirection) {
@@ -1787,9 +1803,9 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       // Add or update filter
       const operator = this.getFilterOperator(column);
       const existingFilterIndex = this.filters().findIndex(f => f.column === column);
-      
+
       const newFilter: DataTableFilter = { column, value, operator };
-      
+
       if (existingFilterIndex >= 0) {
         this.filters.update(filters => {
           const updated = [...filters];
@@ -1808,9 +1824,9 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   getFilterOperator(columnKey: string): DataTableFilter['operator'] {
     const filter = this.filters().find(f => f.column === columnKey);
     const column = this._columns().find(c => c.key === columnKey);
-    
+
     if (filter) return filter.operator;
-    
+
     // Default operators based on column type
     switch (column?.type) {
       case 'number': return 'equals';
@@ -1823,7 +1839,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   setFilterOperator(columnKey: string, event: Event) {
     const target = event.target as HTMLSelectElement;
     const operator = target.value as DataTableFilter['operator'];
-    
+
     this.filters.update(filters => {
       const filterIndex = filters.findIndex(f => f.column === columnKey);
       if (filterIndex >= 0) {
@@ -1841,7 +1857,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   }
 
   hasFilter(columnKey: string): boolean {
-    return this.filters().some(f => f.column === columnKey) || 
+    return this.filters().some(f => f.column === columnKey) ||
            this.advancedFilters().some(f => f.column === columnKey);
   }
 
@@ -1862,29 +1878,29 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   applyFilter(value: any, filter: DataTableFilter): boolean {
     const filterValue = filter.value;
-    
+
     if (filterValue === null || filterValue === undefined || filterValue === '') {
       return true;
     }
 
     const column = this._columns().find(c => c.key === filter.column);
-    
+
     switch (filter.operator) {
       case 'equals':
         if (column?.type === 'boolean') {
           return Boolean(value) === (filterValue === 'true');
         }
         return String(value).toLowerCase() === String(filterValue).toLowerCase();
-      
+
       case 'contains':
         return String(value).toLowerCase().includes(String(filterValue).toLowerCase());
-      
+
       case 'startsWith':
         return String(value).toLowerCase().startsWith(String(filterValue).toLowerCase());
-      
+
       case 'endsWith':
         return String(value).toLowerCase().endsWith(String(filterValue).toLowerCase());
-      
+
       case 'gt':
         if (column?.type === 'number') {
           return Number(value) > Number(filterValue);
@@ -1893,7 +1909,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           return new Date(value) > new Date(filterValue);
         }
         return String(value) > String(filterValue);
-      
+
       case 'gte':
         if (column?.type === 'number') {
           return Number(value) >= Number(filterValue);
@@ -1902,7 +1918,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           return new Date(value) >= new Date(filterValue);
         }
         return String(value) >= String(filterValue);
-      
+
       case 'lt':
         if (column?.type === 'number') {
           return Number(value) < Number(filterValue);
@@ -1911,7 +1927,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           return new Date(value) < new Date(filterValue);
         }
         return String(value) < String(filterValue);
-      
+
       case 'lte':
         if (column?.type === 'number') {
           return Number(value) <= Number(filterValue);
@@ -1920,16 +1936,16 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           return new Date(value) <= new Date(filterValue);
         }
         return String(value) <= String(filterValue);
-      
+
       case 'in':
         // Handle multi-select filter (array of values)
         if (Array.isArray(filterValue)) {
-          return filterValue.some(fv => 
+          return filterValue.some(fv =>
             String(value).toLowerCase() === String(fv).toLowerCase()
           );
         }
         return String(value).toLowerCase() === String(filterValue).toLowerCase();
-      
+
       default:
         return true;
     }
@@ -1941,7 +1957,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
     event.preventDefault();
     event.stopPropagation();
-    
+
     const startX = event.clientX;
     const headerElement = (event.target as HTMLElement).closest('th');
     const startWidth = headerElement?.offsetWidth || 0;
@@ -1961,19 +1977,19 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       const deltaX = e.clientX - startX;
       const newWidth = Math.max(50, startWidth + deltaX); // Minimum width of 50px
       const newWidthPx = `${newWidth}px`;
-      
+
       // Update the header cell width immediately
       if (headerElement) {
         headerElement.style.width = newWidthPx;
         headerElement.style.minWidth = newWidthPx;
         headerElement.style.maxWidth = newWidthPx;
       }
-      
+
       // Update all data cells in the same column
       if (table && columnIndex >= 0) {
         // Calculate the actual column position accounting for selection column
         const actualColumnIndex = columnIndex + (this.config().selectable && this.selection().mode === 'multiple' ? 1 : 0);
-        
+
         // Update all rows' cells in this column
         const rows = table.querySelectorAll('tbody tr:not([hidden])');
         rows.forEach((row) => {
@@ -1992,14 +2008,14 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       // Reset cursor and selection
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
-      
+
       this.isResizing.set(false);
       const resizing = this.resizingColumn();
-      
+
       if (resizing && headerElement) {
         const finalWidth = headerElement.offsetWidth;
         const finalWidthPx = `${finalWidth}px`;
-        
+
         // Update the column object and trigger signal update
         const updatedColumns = this._columns().map(col => {
           if (col === resizing.column) {
@@ -2007,16 +2023,16 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           }
           return col;
         });
-        
+
         // Update the columns signal to trigger change detection
         this._columns.set(updatedColumns);
-        
+
         // Emit the resize event
         this.columnResize.emit({ column: resizing.column, width: finalWidthPx });
       }
-      
+
       this.resizingColumn.set(null);
-      
+
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
@@ -2114,7 +2130,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   getVirtualRowTransform(index: number): string {
     if (!this.config().virtualScrolling || !this.virtualScrolling().enabled) return '';
-    
+
     const { itemHeight } = this.virtualScrolling();
     const actualIndex = this.visibleStartIndex() + index;
     return `translateY(${actualIndex * itemHeight}px)`;
@@ -2125,22 +2141,22 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     if (!this.config().advancedFiltering) return;
 
     const column = String(columnKey);
-    
+
     if (!values || values.length === 0) {
       // Remove filter if no values selected
       this.advancedFilters.update(filters => filters.filter(f => f.column !== column));
     } else {
       // Add or update advanced filter
       const existingFilterIndex = this.advancedFilters().findIndex(f => f.column === column);
-      
-      const newFilter: DataTableAdvancedFilter = { 
-        column, 
+
+      const newFilter: DataTableAdvancedFilter = {
+        column,
         value: values.length === 1 ? values[0] : values,
         values,
         operator,
         logic: 'or'
       };
-      
+
       if (existingFilterIndex >= 0) {
         this.advancedFilters.update(filters => {
           const updated = [...filters];
@@ -2189,18 +2205,18 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   toggleFilterOption(columnKey: string, option: any, event: Event) {
     const target = event.target as HTMLInputElement;
     const isChecked = target.checked;
-    
+
     this.advancedFilters.update(filters => {
       const existingIndex = filters.findIndex(f => f.column === columnKey);
-      
+
       if (existingIndex >= 0) {
         const existing = filters[existingIndex];
         const values = existing.values || [];
-        
-        const newValues = isChecked 
+
+        const newValues = isChecked
           ? [...values, option]
           : values.filter(v => v !== option);
-          
+
         if (newValues.length === 0) {
           // Remove filter if no values selected
           return filters.filter((_, i) => i !== existingIndex);
@@ -2224,7 +2240,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
           logic: 'or' as const
         }];
       }
-      
+
       return filters;
     });
 
@@ -2238,7 +2254,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   onGroupingChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     const columnKey = target.value;
-    
+
     if (columnKey) {
       this.toggleGrouping(columnKey);
     } else {
@@ -2258,7 +2274,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     const currentSorts = this.multiSort().sorts.filter(s => s.column !== columnKey);
     this.multiSort.set({ sorts: currentSorts });
     this.multiSortChange.emit({ sorts: currentSorts });
-    
+
     if (currentSorts.length > 0) {
       this.sort.set(currentSorts[0]);
       this.sortChange.emit(currentSorts[0]);
@@ -2306,21 +2322,21 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       const newSelectedRows = isSelected
         ? s.selectedRows.filter(r => r !== row)
         : [...s.selectedRows, row];
-      
+
       return {
         ...s,
         selectedRows: newSelectedRows,
         selectAll: newSelectedRows.length === this.displayedData().length
       };
     });
-    
+
     this.selectionChange.emit(this.selection().selectedRows);
   }
 
   toggleSelectAll() {
     const allSelected = this.isAllSelected();
     const displayed = this.displayedData();
-    
+
     this.selection.update(s => {
       if (allSelected) {
         // Deselect all displayed rows
@@ -2345,7 +2361,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
         };
       }
     });
-    
+
     this.selectionChange.emit(this.selection().selectedRows);
   }
 
@@ -2362,7 +2378,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   goToPage(page: number) {
     const maxPage = Math.ceil(this.pagination().total / this.pagination().pageSize) - 1;
     const validPage = Math.max(0, Math.min(page, maxPage));
-    
+
     this.pagination.update(p => ({ ...p, page: validPage }));
     this.pageChange.emit(validPage);
   }
@@ -2370,7 +2386,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   onPageSizeChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     const pageSize = Number(target.value);
-    
+
     this.pagination.update(p => ({ ...p, pageSize, page: 0 }));
     this.pageChange.emit(0);
   }
@@ -2423,7 +2439,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   startEdit(rowIndex: number, columnKey: string | keyof T) {
     if (!this.config().editable) return;
-    
+
     const column = this._columns().find(c => c.key === columnKey);
     if (column?.editable === false) return;
 
@@ -2433,11 +2449,11 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   saveEdit(rowIndex: number, columnKey: string | keyof T, event: Event) {
     const target = event.target as HTMLInputElement;
     const newValue = this.parseValue(target.value, columnKey);
-    
+
     const actualIndex = this.getActualRowIndex(rowIndex);
     const oldRow = this._data()[actualIndex];
     const oldValue = this.getCellValue(oldRow, { key: columnKey } as DataTableColumn<T>);
-    
+
     // Validate if validator exists
     const column = this._columns().find(c => c.key === columnKey);
     if (column?.validator && !column.validator(newValue)) {
@@ -2484,7 +2500,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   deleteRow(rowIndex: number) {
     const actualIndex = this.getActualRowIndex(rowIndex);
     const row = this._data()[actualIndex];
-    
+
     this._data.update(data => data.filter((_, i) => i !== actualIndex));
     this.rowDelete.emit({ row, index: actualIndex });
     this.dataChange.emit(this._data());
@@ -2502,7 +2518,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   executeBulkDelete() {
     const selectedRows = this.selection().selectedRows;
     const deletedRows: T[] = [...selectedRows];
-    
+
     // Remove selected rows from data
     this._data.update(data => {
       return data.filter(item => !selectedRows.includes(item));
@@ -2525,17 +2541,17 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   getCellValue(row: T, column: DataTableColumn<T>): any {
     const keys = String(column.key).split('.');
     let value: any = row;
-    
+
     for (const key of keys) {
       value = value?.[key as keyof typeof value];
     }
-    
+
     return value;
   }
 
   getColumnTooltip(column: DataTableColumn<T>): string {
     const tips: string[] = [];
-    
+
     if (column.reorderable !== false && this.config().reorderable) {
       tips.push('Drag to reorder');
     }
@@ -2552,19 +2568,19 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     if (column.groupable !== false && this.config().grouping) {
       tips.push('Click group icon to group by this column');
     }
-    
+
     return tips.join(', ') || column.label;
   }
 
   formatCellValue(row: T, column: DataTableColumn<T>): string {
     const value = this.getCellValue(row, column);
-    
+
     if (value == null) return '';
-    
+
     if (column.formatter) {
       return column.formatter(value);
     }
-    
+
     switch (column.type) {
       case 'date':
         return new Date(value).toLocaleDateString();
@@ -2590,7 +2606,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   parseValue(value: string, columnKey: string | keyof T): any {
     const column = this._columns().find(c => c.key === columnKey);
-    
+
     switch (column?.type) {
       case 'number':
         return Number(value) || 0;
@@ -2612,7 +2628,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   exportData(format: 'csv' | 'json' = 'csv') {
     this.showExportMenu.set(false); // Close the menu
     const data = this.filteredData();
-    
+
     if (format === 'json') {
       const json = this.convertToJSON(data);
       this.downloadJSON(json, 'data-export.json');
@@ -2620,13 +2636,13 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
       const csv = this.convertToCSV(data);
       this.downloadCSV(csv, 'data-export.csv');
     }
-    
+
     this.export.emit(format);
   }
 
   convertToCSV(data: T[]): string {
     if (data.length === 0) return '';
-    
+
     const headers = this.visibleColumns().map(col => col.label);
     const rows = data.map(row =>
       this.visibleColumns().map(col => {
@@ -2634,7 +2650,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
         return `"${String(value || '').replace(/"/g, '""')}"`;
       })
     );
-    
+
     return [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
   }
 
@@ -2652,7 +2668,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   downloadCSV(csv: string, filename: string) {
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
-    
+
     if (link.download !== undefined) {
       const url = URL.createObjectURL(blob);
       link.setAttribute('href', url);
@@ -2667,7 +2683,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   downloadJSON(json: string, filename: string) {
     const blob = new Blob([json], { type: 'application/json;charset=utf-8;' });
     const link = document.createElement('a');
-    
+
     if (link.download !== undefined) {
       const url = URL.createObjectURL(blob);
       link.setAttribute('href', url);
@@ -2682,7 +2698,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   refresh() {
     this.loading.set(true);
     this.refreshRequested.emit(true);
-    
+
     // Simulate loading delay
     setTimeout(() => {
       this.loading.set(false);
@@ -2692,7 +2708,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
   // Column reordering methods
   onColumnDragStart(event: DragEvent, columnIndex: number) {
     if (!this.config().reorderable) return;
-    
+
     const column = this.visibleColumns()[columnIndex];
     if (column?.reorderable === false) {
       event.preventDefault();
@@ -2701,11 +2717,11 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
     this.draggedColumnIndex.set(columnIndex);
     this.isDragging.set(true);
-    
+
     // Set drag data
     event.dataTransfer!.effectAllowed = 'move';
     event.dataTransfer!.setData('text/plain', columnIndex.toString());
-    
+
     // Add a slight delay to ensure proper visual feedback
     setTimeout(() => {
       const target = event.target as HTMLElement;
@@ -2715,10 +2731,10 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   onColumnDragOver(event: DragEvent, columnIndex: number) {
     if (!this.config().reorderable || !this.isDragging()) return;
-    
+
     event.preventDefault();
     event.dataTransfer!.dropEffect = 'move';
-    
+
     if (columnIndex !== this.draggedColumnIndex()) {
       this.dragOverColumnIndex.set(columnIndex);
     }
@@ -2726,18 +2742,18 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   onColumnDragEnter(event: DragEvent, columnIndex: number) {
     if (!this.config().reorderable || !this.isDragging()) return;
-    
+
     event.preventDefault();
     this.dragOverColumnIndex.set(columnIndex);
   }
 
   onColumnDragLeave(event: DragEvent, columnIndex: number) {
     if (!this.config().reorderable || !this.isDragging()) return;
-    
+
     const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
     const x = event.clientX;
     const y = event.clientY;
-    
+
     // Only clear if we're actually leaving the element
     if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) {
       if (this.dragOverColumnIndex() === columnIndex) {
@@ -2748,39 +2764,39 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
 
   onColumnDrop(event: DragEvent, targetColumnIndex: number) {
     if (!this.config().reorderable || !this.isDragging()) return;
-    
+
     event.preventDefault();
-    
+
     const fromIndex = this.draggedColumnIndex();
     const toIndex = targetColumnIndex;
-    
+
     if (fromIndex !== -1 && fromIndex !== toIndex) {
       // Create new column array with reordered columns
       const currentColumns = [...this._columns()];
       const visibleColumns = [...this.visibleColumns()];
-      
+
       // Get the column being moved
       const movedColumn = visibleColumns[fromIndex];
-      
+
       // Remove from old position and insert at new position
       const reorderedVisible = [...visibleColumns];
       reorderedVisible.splice(fromIndex, 1);
       reorderedVisible.splice(toIndex, 0, movedColumn);
-      
+
       // Rebuild the full columns array maintaining hidden columns in their positions
       const newColumns = [...currentColumns];
       let visibleIndex = 0;
-      
+
       for (let i = 0; i < newColumns.length; i++) {
         if (!newColumns[i].hidden) {
           newColumns[i] = reorderedVisible[visibleIndex];
           visibleIndex++;
         }
       }
-      
+
       // Update the columns
       this._columns.set(newColumns);
-      
+
       // Emit the reorder event
       const reorderEvent: DataTableColumnReorderEvent<T> = {
         fromIndex,
@@ -2788,10 +2804,10 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
         column: movedColumn,
         columns: newColumns
       };
-      
+
       this.columnReorder.emit(reorderEvent);
     }
-    
+
     // Reset drag state
     this.resetDragState();
   }
@@ -2800,7 +2816,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     // Reset visual state
     const target = event.target as HTMLElement;
     target.style.opacity = '';
-    
+
     this.resetDragState();
   }
 
@@ -2820,7 +2836,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     if (side === 'left' && column.pinned === 'left') {
       const leftColumns = columns.filter(col => col.pinned === 'left');
       const currentIndex = leftColumns.findIndex(col => col.key === column.key);
-      
+
       for (let i = 0; i < currentIndex; i++) {
         const width = leftColumns[i].width || '150px';
         offset += parseInt(width.replace('px', '')) || 150;
@@ -2828,7 +2844,7 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     } else if (side === 'right' && column.pinned === 'right') {
       const rightColumns = columns.filter(col => col.pinned === 'right');
       const currentIndex = rightColumns.findIndex(col => col.key === column.key);
-      
+
       for (let i = rightColumns.length - 1; i > currentIndex; i--) {
         const width = rightColumns[i].width || '150px';
         offset += parseInt(width.replace('px', '')) || 150;

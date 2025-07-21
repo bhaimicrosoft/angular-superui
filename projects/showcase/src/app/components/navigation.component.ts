@@ -79,6 +79,12 @@ export class NavigationComponent {
       category: 'Form'
     },
     { 
+      name: 'DataTable', 
+      route: '/components/dataTable', 
+      description: 'Feature-rich data tables',
+      category: 'Display'
+    },
+    { 
       name: 'Dialog', 
       route: '/components/dialog', 
       description: 'Modal dialogs and overlays',

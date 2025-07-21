@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter, computed, signal, forwardRef } 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
-import { Button } from '../button';
 
 /**
  * Checkbox component variants using Class Variance Authority (CVA)
@@ -15,10 +14,10 @@ const checkboxVariants = cva(
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
     'disabled:cursor-not-allowed disabled:opacity-50',
     'transition-colors duration-200 ease-in-out',
-    'data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
-    'data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground',
-    'relative overflow-hidden',
-    'cursor-pointer select-none',
+    'checked:bg-primary checked:text-primary-foreground',
+    'indeterminate:bg-primary indeterminate:text-primary-foreground',
+    'cursor-pointer',
+    'accent-primary',
   ],
   {
     variants: {
@@ -26,18 +25,21 @@ const checkboxVariants = cva(
         default: '',
         destructive: [
           'border-destructive',
-          'data-[state=checked]:bg-destructive data-[state=checked]:text-destructive-foreground',
-          'data-[state=indeterminate]:bg-destructive data-[state=indeterminate]:text-destructive-foreground',
+          'checked:bg-destructive checked:text-destructive-foreground',
+          'indeterminate:bg-destructive indeterminate:text-destructive-foreground',
+          'accent-destructive',
         ],
         success: [
           'border-success',
-          'data-[state=checked]:bg-success data-[state=checked]:text-success-foreground',
-          'data-[state=indeterminate]:bg-success data-[state=indeterminate]:text-success-foreground',
+          'checked:bg-success checked:text-success-foreground',
+          'indeterminate:bg-success indeterminate:text-success-foreground',
+          'accent-success',
         ],
         warning: [
           'border-warning',
-          'data-[state=checked]:bg-warning data-[state=checked]:text-warning-foreground',
-          'data-[state=indeterminate]:bg-warning data-[state=indeterminate]:text-warning-foreground',
+          'checked:bg-warning checked:text-warning-foreground',
+          'indeterminate:bg-warning indeterminate:text-warning-foreground',
+          'accent-warning',
         ],
       },
       size: {
@@ -99,7 +101,7 @@ export interface CheckboxAccessibility {
 @Component({
   selector: 'Checkbox',
   standalone: true,
-  imports: [Button],
+  imports: [],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -108,55 +110,69 @@ export interface CheckboxAccessibility {
     },
   ],
   template: `
-    <Button
-      type="button"
-      variant="ghost"
-      size="icon"
-      [customClasses]="checkboxClasses()"
-      [disabled]="isDisabled()"
-      [accessibility]="{
-        ariaLabel: accessibilityConfig().ariaLabel,
-        ariaDescription: accessibilityConfig().ariaDescription,
-        ariaLabelledBy: accessibilityConfig().ariaLabelledBy,
-        ariaDescribedBy: accessibilityConfig().ariaDescribedBy
-      }"
-      [attr.role]="'checkbox'"
-      [attr.aria-checked]="ariaChecked()"
-      [attr.aria-required]="accessibilityConfig().ariaRequired"
-      [attr.aria-invalid]="accessibilityConfig().ariaInvalid"
-      [attr.data-state]="dataState()"
-      [attr.data-disabled]="isDisabled() ? '' : null"
-      [attr.tabindex]="isDisabled() ? -1 : 0"
-      (click)="toggle()"
-      (keydown)="onKeyDown($event)"
-    >
+    <div class="relative inline-flex items-center">
+      <input
+        type="checkbox"
+        [id]="checkboxId()"
+        [class]="checkboxClasses()"
+        [checked]="isChecked()"
+        [indeterminate]="isIndeterminate()"
+        [disabled]="isDisabled()"
+        [attr.aria-label]="accessibilityConfig().ariaLabel"
+        [attr.aria-description]="accessibilityConfig().ariaDescription"
+        [attr.aria-labelledby]="accessibilityConfig().ariaLabelledBy"
+        [attr.aria-describedby]="accessibilityConfig().ariaDescribedBy"
+        [attr.aria-required]="accessibilityConfig().ariaRequired"
+        [attr.aria-invalid]="accessibilityConfig().ariaInvalid"
+        (change)="onInputChange($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+      />
+      
+      <!-- Custom checkbox overlay for better styling -->
+      <div 
+        class="absolute inset-0 pointer-events-none flex items-center justify-center"
+        [class.opacity-0]="!isChecked() && !isIndeterminate()"
+        [class.opacity-100]="isChecked() || isIndeterminate()">
+        
+        <!-- Check Icon -->
+        @if (isChecked() && !isIndeterminate()) {
+          <svg
+            class="h-3 w-3 fill-current text-primary-foreground"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <path
+              d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        }
 
-      <!-- Check Icon -->
-      @if (state() === 'checked') {
-        <svg
-          class="h-3 w-3 fill-current pointer-events-none"
-          viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true">
-          <path
-            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-        </svg>
-      }
-
-      <!-- Indeterminate Icon -->
-      @if (state() === 'indeterminate') {
-        <svg
-          class="h-3 w-3 fill-current pointer-events-none"
-          viewBox="0 0 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true">
-          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-        </svg>
-      }
-    </Button>
+        <!-- Indeterminate Icon -->
+        @if (isIndeterminate()) {
+          <svg
+            class="h-3 w-3 fill-current text-primary-foreground"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+          </svg>
+        }
+      </div>
+    </div>
   `,
 })
 export class Checkbox implements ControlValueAccessor {
+  /**
+   * Whether the checkbox is checked
+   */
+  @Input()
+  set checked(value: boolean | string) {
+    this._checked.set(!!value);
+  }
+  get checked() {
+    return this._checked();
+  }
+
   /**
    * Visual variant of the checkbox
    */
@@ -204,6 +220,18 @@ export class Checkbox implements ControlValueAccessor {
     return this._indeterminate();
   }
   private _indeterminate = signal(false);
+
+  /**
+   * Unique ID for the checkbox input
+   */
+  @Input()
+  set id(value: string) {
+    this._id.set(value);
+  }
+  get id() {
+    return this._id();
+  }
+  private _id = signal(`checkbox-${Math.random().toString(36).substr(2, 9)}`);
 
   /**
    * Accessibility configuration
@@ -274,20 +302,19 @@ export class Checkbox implements ControlValueAccessor {
   });
 
   /**
-   * Computed data-state attribute
+   * Computed checkbox ID for template
    */
-  dataState = computed(() => {
-    return this.state();
-  });
+  checkboxId = computed(() => this._id());
 
   /**
-   * Computed aria-checked attribute
+   * Computed checked state for template
    */
-  ariaChecked = computed(() => {
-    const state = this.state();
-    if (state === 'indeterminate') return 'mixed';
-    return state === 'checked' ? 'true' : 'false';
-  });
+  isChecked = computed(() => this._checked());
+
+  /**
+   * Computed indeterminate state for template
+   */
+  isIndeterminate = computed(() => this._indeterminate());
 
   /**
    * Computed CSS classes
@@ -315,7 +342,7 @@ export class Checkbox implements ControlValueAccessor {
   /**
    * Get the current checked state
    */
-  checked(): boolean {
+  getChecked(): boolean {
     return this._checked();
   }
 
@@ -331,6 +358,16 @@ export class Checkbox implements ControlValueAccessor {
     this.checkedChange.emit(checked);
     this.stateChange.emit(this.state());
     this._onChange()(checked);
+  }
+
+  /**
+   * Handle input change events
+   */
+  onInputChange(event: Event): void {
+    if (this._disabled()) return;
+
+    const target = event.target as HTMLInputElement;
+    this.setChecked(target.checked);
   }
 
   /**
@@ -354,21 +391,6 @@ export class Checkbox implements ControlValueAccessor {
 
     this._indeterminate.set(indeterminate);
     this.stateChange.emit(this.state());
-  }
-
-  /**
-   * Handle keyboard events
-   */
-  onKeyDown(event: KeyboardEvent): void {
-    if (this._disabled()) return;
-
-    switch (event.key) {
-      case ' ':
-      case 'Enter':
-        event.preventDefault();
-        this.toggle();
-        break;
-    }
   }
 
   /**

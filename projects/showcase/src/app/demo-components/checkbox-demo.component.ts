@@ -343,6 +343,90 @@ import { SEOService } from '../services/seo.service';
           </div>
         </div>
 
+        <!-- Checked Property Test -->
+        <div class="mt-8 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 overflow-hidden">
+          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 p-6">
+            <h2 class="text-2xl font-bold text-white mb-2">Checked Property Control</h2>
+            <p class="text-cyan-100">Testing the new checked property for programmatic control</p>
+          </div>
+          <div class="p-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <!-- Controlled Checkbox -->
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Controlled via Checked Property</h3>
+                <div class="p-4 rounded-lg bg-gray-50 dark:bg-slate-700/50">
+                  <div class="flex items-center space-x-3 mb-4">
+                    <Checkbox [checked]="checkedPropertyTest.controlled" />
+                    <label class="text-sm font-medium text-gray-900 dark:text-white">
+                      Controlled checkbox (read-only)
+                    </label>
+                  </div>
+                  <button
+                    type="button"
+                    (click)="toggleCheckedProperty()"
+                    class="w-full px-4 py-2 text-sm font-medium text-white bg-cyan-600 hover:bg-cyan-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-colors duration-200">
+                    Toggle Checked: {{ checkedPropertyTest.controlled ? 'ON' : 'OFF' }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Dynamic Control -->
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Dynamic Control</h3>
+                <div class="p-4 rounded-lg bg-gray-50 dark:bg-slate-700/50">
+                  <div class="flex items-center space-x-3 mb-4">
+                    <Checkbox [checked]="checkedPropertyTest.dynamic" />
+                    <label class="text-sm font-medium text-gray-900 dark:text-white">
+                      Dynamic checkbox
+                    </label>
+                  </div>
+                  <div class="space-y-2">
+                    <button
+                      type="button"
+                      (click)="setCheckedTrue()"
+                      class="w-full px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                      Set Checked True
+                    </button>
+                    <button
+                      type="button"
+                      (click)="setCheckedFalse()"
+                      class="w-full px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+                      Set Checked False
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Two-way Binding -->
+              <div class="space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Two-way Binding</h3>
+                <div class="p-4 rounded-lg bg-gray-50 dark:bg-slate-700/50">
+                  <div class="flex items-center space-x-3 mb-4">
+                    <Checkbox [(ngModel)]="checkedPropertyTest.uncontrolled" />
+                    <label class="text-sm font-medium text-gray-900 dark:text-white">
+                      Two-way bound checkbox
+                    </label>
+                  </div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400">
+                    <p><strong>Current value:</strong> {{ checkedPropertyTest.uncontrolled ? 'Checked' : 'Unchecked' }}</p>
+                    <p class="text-xs mt-1">Click checkbox to change value</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="mt-6 p-4 bg-cyan-50 dark:bg-cyan-900/20 rounded-lg border border-cyan-200 dark:border-cyan-800">
+              <h4 class="font-medium text-cyan-900 dark:text-cyan-100 mb-2">Property Values Summary:</h4>
+              <div class="text-sm text-cyan-800 dark:text-cyan-200 space-y-1">
+                <p><strong>Controlled:</strong> {{ checkedPropertyTest.controlled ? '✓ Checked' : '✗ Unchecked' }}</p>
+                <p><strong>Dynamic:</strong> {{ checkedPropertyTest.dynamic ? '✓ Checked' : '✗ Unchecked' }}</p>
+                <p><strong>Two-way bound:</strong> {{ checkedPropertyTest.uncontrolled ? '✓ Checked' : '✗ Unchecked' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <!-- Accessibility Features -->
         <div class="mt-8 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-gray-200 dark:border-slate-700 overflow-hidden">
@@ -483,6 +567,13 @@ export class CheckboxDemoComponent implements OnInit {
     disabledChecked: true
   };
 
+  // Test checked property
+  checkedPropertyTest = {
+    controlled: true,
+    uncontrolled: false,
+    dynamic: false
+  };
+
   // Interactive demo - using signals for better reactivity
   interactiveDemo = signal({
     size: 'default' as 'sm' | 'default' | 'lg' | 'xl',
@@ -543,6 +634,19 @@ export class CheckboxDemoComponent implements OnInit {
     return field ? field.invalid && (field.dirty || field.touched) : false;
   }
 
+  // Test methods for checked property
+  toggleCheckedProperty() {
+    this.checkedPropertyTest.controlled = !this.checkedPropertyTest.controlled;
+  }
+
+  setCheckedTrue() {
+    this.checkedPropertyTest.dynamic = true;
+  }
+
+  setCheckedFalse() {
+    this.checkedPropertyTest.dynamic = false;
+  }
+
   resetForm() {
     this.checkboxForm.reset({
       termsAccepted: false,
@@ -551,6 +655,8 @@ export class CheckboxDemoComponent implements OnInit {
       smsNotifications: false,
       marketingEmails: false
     });
+    this.checkboxForm.markAsPristine();
+    this.checkboxForm.markAsUntouched();
   }
 
   onCheckedChange(checked: boolean) {

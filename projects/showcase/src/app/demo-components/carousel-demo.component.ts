@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-carousel-demo',

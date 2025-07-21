@@ -71,8 +71,7 @@ import {CommonModule} from '@angular/common';
       @if (isLoading()) {
         <div class="absolute inset-0 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
           <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-        </div>
-      }
+        </div>      }
     </div>
   `,
 })
@@ -100,13 +99,13 @@ export class Carousel {
 
   // Responsive CSS classes
   containerClasses = computed(() => {
-    const base = this.aspectRatio === 'auto' 
-      ? `h-48 sm:h-64 md:h-80 lg:h-96` 
+    const base = this.aspectRatio === 'auto'
+      ? `h-48 sm:h-64 md:h-80 lg:h-96`
       : this.getAspectRatioClass();
-    
+
     const sizeClasses = {
       sm: 'max-w-sm',
-      md: 'max-w-2xl', 
+      md: 'max-w-2xl',
       lg: 'max-w-4xl'
     };
 
@@ -114,8 +113,8 @@ export class Carousel {
   });
 
   imageClasses = computed(() => {
-    const aspectClass = this.aspectRatio === 'auto' 
-      ? 'h-48 sm:h-64 md:h-80 lg:h-96' 
+    const aspectClass = this.aspectRatio === 'auto'
+      ? 'h-48 sm:h-64 md:h-80 lg:h-96'
       : this.getAspectRatioClass();
     return aspectClass;
   });
@@ -123,7 +122,7 @@ export class Carousel {
   buttonClasses = computed(() => {
     const sizeClasses = {
       sm: 'w-6 h-6 sm:w-8 sm:h-8',
-      md: 'w-8 h-8 sm:w-10 sm:h-10', 
+      md: 'w-8 h-8 sm:w-10 sm:h-10',
       lg: 'w-10 h-10 sm:w-12 sm:h-12'
     };
     return sizeClasses[this.size];
@@ -136,7 +135,7 @@ export class Carousel {
       md: isActive ? 'w-2.5 h-2.5 sm:w-3 sm:h-3' : 'w-2 h-2 sm:w-2.5 sm:h-2.5',
       lg: isActive ? 'w-3 h-3 sm:w-4 sm:h-4' : 'w-2.5 h-2.5 sm:w-3 sm:h-3'
     };
-    
+
     const colorClass = isActive ? 'bg-white shadow-lg' : 'bg-white/40 hover:bg-white/60';
     return `${sizeClasses[this.size]} ${colorClass}`;
   };
@@ -144,7 +143,7 @@ export class Carousel {
   private getAspectRatioClass(): string {
     const ratioMap = {
       '16:9': 'aspect-video',
-      '4:3': 'aspect-[4/3]', 
+      '4:3': 'aspect-[4/3]',
       '1:1': 'aspect-square',
       '3:2': 'aspect-[3/2]',
       'auto': 'h-48 sm:h-64 md:h-80 lg:h-96'
@@ -171,13 +170,13 @@ export class Carousel {
 
   private handleSwipe() {
     const swipeDistance = this.touchStartX - this.touchEndX;
-    
+
     if (Math.abs(swipeDistance) > this.minSwipeDistance) {
       if (swipeDistance > 0) {
         // Swiped left - go to next
         this.next();
       } else {
-        // Swiped right - go to previous  
+        // Swiped right - go to previous
         this.prev();
       }
     }
