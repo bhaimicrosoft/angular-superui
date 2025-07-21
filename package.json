@@ -1,6 +1,56 @@
 {
   "name": "angular-superui",
   "version": "1.0.4",
+  "description": "A comprehensive, modern Angular UI component library with 50+ components including dialogs, forms, navigation, data display, and more. Built with TypeScript, Tailwind CSS, and accessibility in mind.",
+  "keywords": [
+    "angular",
+    "angular-components",
+    "ui-components",
+    "component-library",
+    "angular-ui",
+    "tailwind-css",
+    "typescript",
+    "accessibility",
+    "design-system",
+    "angular-library",
+    "ui-framework",
+    "frontend",
+    "web-components",
+    "angular17",
+    "angular18",
+    "signals",
+    "standalone-components",
+    "dialog",
+    "forms",
+    "navigation",
+    "responsive",
+    "dark-mode",
+    "wcag",
+    "aria",
+    "modern-ui",
+    "enterprise",
+    "dashboard",
+    "admin",
+    "saas"
+  ],
+  "homepage": "https://angular-superui.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bhaimicrosoft/angular-superui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bhaimicrosoft/angular-superui/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Angular SuperUI Team",
+    "email": "contact@angular-superui.com",
+    "url": "https://angular-superui.vercel.app"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

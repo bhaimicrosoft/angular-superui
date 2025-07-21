@@ -52,6 +52,26 @@
               {
                 "glob": "**/*",
                 "input": "projects/showcase/public"
+              },
+              {
+                "glob": "sitemap.xml",
+                "input": "projects/showcase/src",
+                "output": "/"
+              },
+              {
+                "glob": "robots.txt",
+                "input": "projects/showcase/src",
+                "output": "/"
+              },
+              {
+                "glob": ".htaccess",
+                "input": ".",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/showcase/src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [

@@ -10,9 +10,18 @@ import { ThemeService } from '@lib/theme-switcher';
   standalone: true,
   imports: [CommonModule, RouterOutlet, NavigationComponent, Avatar, AvatarImage, AvatarFallback],
   template: `
-    <div class="min-h-screen bg-background text-foreground scroll-smooth">
+    <!-- SEO-friendly semantic structure -->
+    <div class="min-h-screen bg-background text-foreground scroll-smooth" itemscope itemtype="https://schema.org/WebApplication">
+      <!-- Skip to main content for accessibility -->
+      <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary text-primary-foreground rounded-lg">
+        Skip to main content
+      </a>
+      
+      <!-- Navigation -->
       <app-navigation></app-navigation>
-      <main class="relative bg-background">
+      
+      <!-- Main Content Area -->
+      <main id="main-content" class="relative bg-background" role="main">
         <router-outlet></router-outlet>
       </main>
 

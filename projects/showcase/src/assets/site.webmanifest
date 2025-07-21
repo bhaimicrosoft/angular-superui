@@ -1,0 +1,114 @@
+{
+  "name": "Angular SuperUI - Modern Angular Component Library",
+  "short_name": "Angular SuperUI",
+  "description": "A comprehensive, modern Angular component library with 50+ components including dialogs, forms, navigation, data display, and more. Built with TypeScript, Tailwind CSS, and accessibility in mind.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "categories": ["developer", "productivity", "utilities"],
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "assets/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshot-desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/screenshot-mobile-1.png",
+      "sizes": "375x667",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Component Gallery",
+      "short_name": "Components",
+      "description": "Browse all available components",
+      "url": "/components",
+      "icons": [
+        {
+          "src": "assets/shortcut-components.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Dialog Components",
+      "short_name": "Dialogs",
+      "description": "View dialog component examples",
+      "url": "/components/dialog",
+      "icons": [
+        {
+          "src": "assets/shortcut-dialogs.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Getting Started",
+      "short_name": "Get Started",
+      "description": "Installation and setup guide",
+      "url": "/installation",
+      "icons": [
+        {
+          "src": "assets/shortcut-install.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}

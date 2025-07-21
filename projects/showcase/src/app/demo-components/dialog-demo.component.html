@@ -1,8 +1,42 @@
 <!-- 🎨 Stunning Dialog Demo - Pure Tailwind CSS -->
-<div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+<!-- SEO-friendly semantic structure with structured data -->
+<article class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+         itemscope itemtype="https://schema.org/TechArticle">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Dialog Component Examples - Angular SuperUI",
+      "description": "Interactive examples and demos of dialog components from Angular SuperUI. Learn how to create modals, forms, confirmations, and notifications with beautiful animations and accessibility features.",
+      "author": {
+        "@type": "Organization",
+        "name": "Angular SuperUI Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Angular SuperUI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://angular-superui.vercel.app/assets/logo.png"
+        }
+      },
+      "datePublished": "2025-07-21",
+      "dateModified": "2025-07-21",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://angular-superui.vercel.app/components/dialog"
+      },
+      "keywords": "Angular dialog, modal component, Angular UI, dialog examples, accessibility, Angular SuperUI",
+      "articleSection": "Components",
+      "inLanguage": "en-US"
+    }
+  </script>
 
   <!-- Hero Section -->
-  <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-800 dark:via-purple-800 dark:to-indigo-800">
+  <header
+    class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-800 dark:via-purple-800 dark:to-indigo-800">
     <!-- Animated Background -->
     <div class="absolute inset-0 bg-black opacity-20"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 animate-pulse"></div>
@@ -21,7 +55,7 @@
         </div>
 
         <!-- Title -->
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight" itemprop="headline">
           Beautiful
           <span class="block bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent pb-8">
             Dialog Components
@@ -29,7 +63,7 @@
         </h1>
 
         <!-- Description -->
-        <p class="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p class="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed" itemprop="description">
           Create stunning modal dialogs with perfect accessibility, smooth animations, and modern design patterns.
         </p>
 
@@ -49,7 +83,7 @@
               <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 🎉 Welcome to Dialog Heaven!
               </DialogTitle>
-              <DialogDescription className="text-muted-foreground text-lg">
+              <DialogDescription className="text-gray-600 dark:text-gray-400 text-lg">
                 Discover the power of our dialog system with beautiful animations, perfect accessibility, and seamless user experience.
               </DialogDescription>
             </DialogHeader>
@@ -61,7 +95,9 @@
                     <div class="flex items-center mb-2">
                       <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
                         <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4z"
+                                clip-rule="evenodd"/>
                         </svg>
                       </div>
                       <h4 class="font-semibold text-blue-900 dark:text-blue-100">Accessible</h4>
@@ -73,7 +109,9 @@
                     <div class="flex items-center mb-2">
                       <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mr-3">
                         <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                                clip-rule="evenodd"/>
                         </svg>
                       </div>
                       <h4 class="font-semibold text-purple-900 dark:text-purple-100">Fast</h4>
@@ -82,11 +120,14 @@
                   </div>
                 </div>
 
-                <div class="p-6 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl border border-emerald-200 dark:border-emerald-800">
+                <div
+                  class="p-6 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl border border-emerald-200 dark:border-emerald-800">
                   <div class="text-center">
                     <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
                       <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clip-rule="evenodd"/>
                       </svg>
                     </div>
                     <h4 class="font-bold text-emerald-900 dark:text-emerald-100 mb-2">Production Ready</h4>
@@ -100,7 +141,8 @@
               <DialogClose
                 dialogId="hero-dialog"
                 className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
-                <span class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 cursor-pointer">
+                <span
+                  class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 cursor-pointer">
                   Let's Build Something Amazing!
                 </span>
               </DialogClose>
@@ -109,37 +151,87 @@
         </DialogRoot>
       </div>
     </div>
-  </div>
+  </header>
+
+  <!-- Breadcrumb Navigation -->
+  <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700" aria-label="Breadcrumb">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://angular-superui.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Components",
+            "item": "https://angular-superui.vercel.app/components"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Dialog",
+            "item": "https://angular-superui.vercel.app/components/dialog"
+          }
+        ]
+      }
+    </script>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center space-x-4 py-4">
+        <a href="/" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">Home</a>
+        <svg class="flex-shrink-0 h-4 w-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd"/>
+        </svg>
+        <a href="/components" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">Components</a>
+        <svg class="flex-shrink-0 h-4 w-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd"/>
+        </svg>
+        <span class="text-gray-900 dark:text-gray-100 font-medium">Dialog</span>
+      </div>
+    </div>
+  </nav>
 
   <!-- Main Content -->
-  <div class="py-20">
+  <main class="py-20">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
       <!-- Section Header -->
-      <div class="text-center mb-16">
+      <section class="text-center mb-16">
         <h2 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-6">
           Dialog
           <span class="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
             Showcase
           </span>
         </h2>
-        <p class="text-xl text-muted-foreground max-w-3xl mx-auto pb-8">
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto pb-8">
           Explore different dialog patterns and use cases with beautiful examples and interactive demonstrations.
         </p>
-      </div>
+      </section>
 
       <!-- Dialog Examples Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20" aria-labelledby="examples-heading">
+        <h2 id="examples-heading" class="sr-only">Dialog Examples</h2>
 
         <!-- Basic Dialog -->
-        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
-          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+        <article
+          class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
+          <div
+            class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Basic Dialog</h3>
-          <p class="text-muted-foreground mb-6">Simple information dialog with clean design and smooth animations.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Simple information dialog with clean design and smooth animations.</p>
 
           <DialogRoot dialogId="basic-dialog">
             <DialogTrigger
@@ -150,26 +242,31 @@
 
             <DialogContent dialogId="basic-dialog" size="md" className="max-w-lg">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
                   <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
                     <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                      <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd"/>
                     </svg>
                   </div>
                   System Information
                 </DialogTitle>
-                <DialogDescription className="text-muted-foreground">
+                <DialogDescription className="text-gray-600 dark:text-gray-400">
                   Here's some important information about your system status and current operations.
                 </DialogDescription>
               </DialogHeader>
 
               <div class="pb-8">
                 <div class="space-y-4">
-                  <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                  <div
+                    class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
                     <div class="flex items-center">
                       <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mr-3">
                         <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"/>
                         </svg>
                       </div>
                       <div>
@@ -180,11 +277,14 @@
                     <span class="text-green-600 font-bold">100%</span>
                   </div>
 
-                  <div class="flex items-center justify-between p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                  <div
+                    class="flex items-center justify-between p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
                     <div class="flex items-center">
                       <div class="w-8 h-8 bg-yellow-600 rounded-lg flex items-center justify-center mr-3">
                         <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                clip-rule="evenodd"/>
                         </svg>
                       </div>
                       <div>
@@ -201,24 +301,29 @@
                 <DialogClose
                   dialogId="basic-dialog"
                   className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
-                  <span class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 cursor-pointer">
+                  <span
+                    class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 cursor-pointer">
                     Got it!
                   </span>
                 </DialogClose>
               </DialogFooter>
             </DialogContent>
           </DialogRoot>
-        </div>
 
+        </article>
         <!-- Form Dialog -->
-        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600">
-          <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+
+        <article
+          class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600">
+          <div
+            class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
             </svg>
           </div>
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Form Dialog</h3>
-          <p class="text-muted-foreground mb-6">Interactive form with validation and beautiful input styling.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Interactive form with validation and beautiful input styling.</p>
 
           <DialogRoot dialogId="form-dialog">
             <DialogTrigger
@@ -229,7 +334,7 @@
 
             <DialogContent dialogId="form-dialog" size="lg" className="max-w-2xl">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
                   <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
                     <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6z"/>
@@ -237,7 +342,7 @@
                   </div>
                   Create New Account
                 </DialogTitle>
-                <DialogDescription className="text-muted-foreground">
+                <DialogDescription className="text-gray-600 dark:text-gray-400">
                   Fill out the form below to create your new account. All fields are required.
                 </DialogDescription>
               </DialogHeader>
@@ -246,7 +351,7 @@
                 <form class="space-y-6">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label class="block text-sm font-semibold text-foreground mb-2">
+                      <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
                         Full Name *
                       </label>
                       <input
@@ -254,11 +359,11 @@
                         [(ngModel)]="formData.name"
                         name="name"
                         placeholder="Enter your full name"
-                        class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground placeholder:text-muted-foreground">
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-600 dark:text-gray-400">
                     </div>
 
                     <div>
-                      <label class="block text-sm font-semibold text-foreground mb-2">
+                      <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
                         Email Address *
                       </label>
                       <input
@@ -266,18 +371,18 @@
                         [(ngModel)]="formData.email"
                         name="email"
                         placeholder="your@email.com"
-                        class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground placeholder:text-muted-foreground">
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-600 dark:text-gray-400">
                     </div>
                   </div>
 
                   <div>
-                    <label class="block text-sm font-semibold text-foreground mb-2">
+                    <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
                       Role
                     </label>
                     <select
                       [(ngModel)]="formData.role"
                       name="role"
-                      class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground">
+                      class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                       <option value="">Select a role</option>
                       <option value="admin">Administrator</option>
                       <option value="user">User</option>
@@ -286,7 +391,7 @@
                   </div>
 
                   <div>
-                    <label class="block text-sm font-semibold text-foreground mb-2">
+                    <label class="block text-sm font-semibold text-gray-900 dark:text-white mb-2">
                       Message
                     </label>
                     <textarea
@@ -294,7 +399,7 @@
                       name="message"
                       rows="4"
                       placeholder="Tell us about yourself..."
-                      class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground placeholder:text-muted-foreground resize-none"></textarea>
+                      class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-600 dark:text-gray-400 resize-none"></textarea>
                   </div>
                 </form>
               </div>
@@ -303,7 +408,8 @@
                 <DialogClose
                   dialogId="form-dialog"
                   className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
-                  <span class="inline-flex items-center px-6 py-3 border border-input text-foreground font-semibold rounded-lg hover:bg-muted transition-colors duration-200 cursor-pointer">
+                  <span
+                    class="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer">
                     Cancel
                   </span>
                 </DialogClose>
@@ -315,17 +421,21 @@
               </DialogFooter>
             </DialogContent>
           </DialogRoot>
-        </div>
+        </article>
+
 
         <!-- Confirmation Dialog -->
-        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-red-300 dark:hover:border-red-600">
-          <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+        <article
+          class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-red-300 dark:hover:border-red-600">
+          <div
+            class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
             </svg>
           </div>
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Confirmation Dialog</h3>
-          <p class="text-muted-foreground mb-6">Get user confirmation before performing destructive actions.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Get user confirmation before performing destructive actions.</p>
 
           <DialogRoot dialogId="confirm-dialog">
             <DialogTrigger
@@ -336,15 +446,17 @@
 
             <DialogContent dialogId="confirm-dialog" size="md" className="max-w-lg">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
                   <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
                     <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                      <path fill-rule="evenodd"
+                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                            clip-rule="evenodd"/>
                     </svg>
                   </div>
                   Confirm Deletion
                 </DialogTitle>
-                <DialogDescription className="text-muted-foreground">
+                <DialogDescription className="text-gray-600 dark:text-gray-400">
                   This action cannot be undone. This will permanently delete your account and remove all your data.
                 </DialogDescription>
               </DialogHeader>
@@ -354,7 +466,9 @@
                   <div class="flex">
                     <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                       <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd"
+                              d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                              clip-rule="evenodd"/>
                       </svg>
                     </div>
                     <div>
@@ -377,7 +491,8 @@
                 <DialogClose
                   dialogId="confirm-dialog"
                   className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
-                  <span class="inline-flex items-center px-6 py-3 border border-input text-foreground font-semibold rounded-lg hover:bg-muted transition-colors duration-200 cursor-pointer">
+                  <span
+                    class="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 cursor-pointer">
                     Cancel
                   </span>
                 </DialogClose>
@@ -389,37 +504,39 @@
               </DialogFooter>
             </DialogContent>
           </DialogRoot>
-        </div>
+        </article>
 
-      </div>
+      </section>
 
       <!-- Advanced Examples Section -->
-      <div class="text-center mb-16">
+      <section class="text-center mb-16">
         <h2 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-6">
           Advanced
           <span class="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
             Examples
           </span>
         </h2>
-        <p class="text-xl text-muted-foreground max-w-3xl mx-auto pb-8">
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto pb-8">
           Explore complex dialog patterns including notifications, nested dialogs, and custom layouts.
         </p>
-      </div>
+      </section>
 
       <!-- Advanced Examples Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-12" aria-labelledby="advanced-examples-heading">
+        <h2 id="advanced-examples-heading" class="sr-only">Advanced Dialog Examples</h2>
 
         <!-- Notifications Dialog -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+        <article class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
           <div class="flex items-center mb-6">
             <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-2xl flex items-center justify-center mr-4">
               <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM15 17H9a6 6 0 01-6-6V7a6 6 0 016-6h6a6 6 0 016 6v4.5"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 17h5l-5 5v-5zM15 17H9a6 6 0 01-6-6V7a6 6 0 016-6h6a6 6 0 016 6v4.5"/>
               </svg>
             </div>
             <div>
               <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Notifications Center</h3>
-              <p class="text-muted-foreground">Interactive notification management with different types and actions.</p>
+              <p class="text-gray-600 dark:text-gray-400">Interactive notification management with different types and actions.</p>
             </div>
           </div>
 
@@ -432,25 +549,28 @@
 
             <DialogContent dialogId="notifications-dialog" size="lg" className="max-w-3xl">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
                   <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
                     <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                      <path
+                        d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
                     </svg>
                   </div>
                   Notifications
-                  <span class="ml-auto text-sm font-normal bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full">
+                  <span
+                    class="ml-auto text-sm font-normal bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full">
                     {{ notifications.length }} new
                   </span>
                 </DialogTitle>
-                <DialogDescription className="text-muted-foreground">
+                <DialogDescription className="text-gray-600 dark:text-gray-400">
                   Manage your notifications and stay updated with the latest activities.
                 </DialogDescription>
               </DialogHeader>
 
               <div class="pb-8">
                 <div class="space-y-4 max-h-96 overflow-y-auto">
-                  <div *ngFor="let notification of notifications" class="flex items-start p-4 rounded-lg border transition-colors hover:bg-muted/50"
+                  <div *ngFor="let notification of notifications"
+                       class="flex items-start p-4 rounded-lg border transition-colors hover:bg-gray-100 dark:hover:bg-gray-700/50"
                        [ngClass]="{
                          'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20': notification.type === 'success',
                          'border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-900/20': notification.type === 'warning',
@@ -467,28 +587,36 @@
                            }">
                         <!-- Success Icon -->
                         <svg *ngIf="notification.type === 'success'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"/>
                         </svg>
                         <!-- Warning Icon -->
                         <svg *ngIf="notification.type === 'warning'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                clip-rule="evenodd"/>
                         </svg>
                         <!-- Info Icon -->
                         <svg *ngIf="notification.type === 'info'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"/>
                         </svg>
                         <!-- Error Icon -->
                         <svg *ngIf="notification.type === 'error'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                          <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd"/>
                         </svg>
                       </div>
                     </div>
                     <div class="flex-1 min-w-0">
                       <div class="flex items-center justify-between mb-2">
-                        <h4 class="font-semibold text-foreground">{{ notification.title }}</h4>
-                        <span class="text-xs text-muted-foreground">{{ notification.time }}</span>
+                        <h4 class="font-semibold text-gray-900 dark:text-white">{{ notification.title }}</h4>
+                        <span class="text-xs text-gray-600 dark:text-gray-400">{{ notification.time }}</span>
                       </div>
-                      <p class="text-sm text-muted-foreground mb-3">{{ notification.message }}</p>
+                      <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{{ notification.message }}</p>
                       <div class="flex gap-2">
                         <button class="text-xs px-3 py-1 rounded-md font-medium transition-colors"
                                 [ngClass]="{
@@ -499,7 +627,8 @@
                                 }">
                           View Details
                         </button>
-                        <button class="text-xs px-3 py-1 border border-input rounded-md font-medium text-muted-foreground hover:bg-muted transition-colors">
+                        <button
+                          class="text-xs px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                           Dismiss
                         </button>
                       </div>
@@ -509,32 +638,35 @@
               </div>
 
               <DialogFooter>
-                <button class="px-6 py-3 border border-input text-foreground font-semibold rounded-lg hover:bg-muted transition-colors duration-200">
+                <button
+                  class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                   Mark All as Read
                 </button>
                 <DialogClose
                   dialogId="notifications-dialog"
                   className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
-                  <span class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200 cursor-pointer">
+                  <span
+                    class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200 cursor-pointer">
                     Close
                   </span>
                 </DialogClose>
               </DialogFooter>
             </DialogContent>
           </DialogRoot>
-        </div>
+        </article>
 
         <!-- Size Variations -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+        <article class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
           <div class="flex items-center mb-6">
             <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-2xl flex items-center justify-center mr-4">
               <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
               </svg>
             </div>
             <div>
               <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Dialog Sizes</h3>
-              <p class="text-muted-foreground">Different dialog sizes for various content types and use cases.</p>
+              <p class="text-gray-600 dark:text-gray-400">Different dialog sizes for various content types and use cases.</p>
             </div>
           </div>
 
@@ -549,14 +681,14 @@
 
               <DialogContent dialogId="small-dialog" size="sm" className="max-w-sm">
                 <DialogHeader>
-                  <DialogTitle className="text-lg font-bold text-foreground">Small Dialog</DialogTitle>
-                  <DialogDescription className="text-muted-foreground">
+                  <DialogTitle className="text-lg font-bold text-gray-900 dark:text-white">Small Dialog</DialogTitle>
+                  <DialogDescription className="text-gray-600 dark:text-gray-400">
                     Perfect for simple confirmations and alerts.
                   </DialogDescription>
                 </DialogHeader>
 
                 <div class="pb-8">
-                  <p class="text-sm text-muted-foreground">
+                  <p class="text-sm text-gray-600 dark:text-gray-400">
                     This is a small dialog example. It's great for quick messages and simple interactions.
                   </p>
                 </div>
@@ -565,7 +697,8 @@
                   <DialogClose
                     dialogId="small-dialog"
                     className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
-                    <span class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 cursor-pointer">
+                    <span
+                      class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 cursor-pointer">
                       OK
                     </span>
                   </DialogClose>
@@ -583,8 +716,8 @@
 
               <DialogContent dialogId="large-dialog" size="2xl" className="max-w-4xl">
                 <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold text-foreground">Large Content Dialog</DialogTitle>
-                  <DialogDescription className="text-muted-foreground">
+                  <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white">Large Content Dialog</DialogTitle>
+                  <DialogDescription className="text-gray-600 dark:text-gray-400">
                     Spacious layout for complex content, forms, and detailed information.
                   </DialogDescription>
                 </DialogHeader>
@@ -609,8 +742,8 @@
                   </div>
 
                   <div class="mt-6 p-4 bg-muted rounded-xl">
-                    <h5 class="font-semibold text-foreground mb-2">Recent Activity</h5>
-                    <div class="space-y-2 text-sm text-muted-foreground">
+                    <h5 class="font-semibold text-gray-900 dark:text-white mb-2">Recent Activity</h5>
+                    <div class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                       <p>• New user registration: john.doe&#64;example.com</p>
                       <p>• Premium subscription activated: premium_user_001</p>
                       <p>• System backup completed successfully</p>
@@ -623,7 +756,8 @@
                   <DialogClose
                     dialogId="large-dialog"
                     className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
-                    <span class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 cursor-pointer">
+                    <span
+                      class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 cursor-pointer">
                       Close Dashboard
                     </span>
                   </DialogClose>
@@ -631,20 +765,20 @@
               </DialogContent>
             </DialogRoot>
           </div>
-        </div>
+        </article>
 
-      </div>
-
+      </section>
     </div>
-  </div>
+  </main>
 
   <!-- Documentation Reference -->
-  <div class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+  <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
     <div class="mx-auto max-w-7xl px-6 lg:px-8 py-12">
       <div class="text-center">
         <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-2xl mb-6">
           <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
           </svg>
         </div>
 
@@ -652,7 +786,7 @@
           Need More Information?
         </h3>
 
-        <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
           Check out our comprehensive documentation for detailed API reference, advanced examples, and best practices.
         </p>
 
@@ -662,7 +796,8 @@
           rel="noopener noreferrer"
           class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-2xl hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
           <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
           </svg>
           View Documentation
           <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -670,16 +805,19 @@
           </svg>
         </a>
 
-        <div class="mt-6 text-sm text-muted-foreground">
+        <div class="mt-6 text-sm text-gray-600 dark:text-gray-400">
           <span class="inline-flex items-center">
             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd"
+                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"/>
             </svg>
             Complete API Reference • Examples • Best Practices
           </span>
         </div>
       </div>
     </div>
-  </div>
+  </footer>
+</article>
 
-</div>
+

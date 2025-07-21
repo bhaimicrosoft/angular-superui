@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# XML Sitemap
+Sitemap: https://angular-superui.vercel.app/sitemap.xml
+
+# Important pages
+Allow: /components
+Allow: /components/*
+Allow: /installation
+Allow: /getting-started
+
+# Disallow admin or development pages (if any)
+Disallow: /admin
+Disallow: /*.json$
+Disallow: /api/
+
+# Crawl delay
+Crawl-delay: 1

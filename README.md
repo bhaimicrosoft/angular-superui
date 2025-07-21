@@ -2,17 +2,21 @@
 
 # 🎨 Angular SuperUI v1.0.4
 
-</div>
-
-<div align="center">
+**The Modern Angular UI Component Library That Developers Love**
 
 ### 🌟 **[🚀 LIVE DEMO - See All Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 16 Components • Dark Mode • Mobile Responsive ✨**
+**✨ Interactive Showcase • 50+ Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
 
 [![🎯 View Live Demo](https://img.shields.io/badge/🎯-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Interactive Demo](https://img.shields.io/badge/🎮-Interactive%20Demo-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Mobile Ready](https://img.shields.io/badge/📱-Mobile%20Ready-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![♿ Accessible](https://img.shields.io/badge/♿-WCAG%20AA%20Compliant-9B59B6?style=for-the-badge&logo=accessibility&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+
+[![NPM Version](https://img.shields.io/npm/v/@angular-superui/components?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@angular-superui/components)
+[![Downloads](https://img.shields.io/npm/dt/@angular-superui/components?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@angular-superui/components)
+[![GitHub Stars](https://img.shields.io/github/stars/bhaimicrosoft/angular-superui?style=for-the-badge&logo=github&color=181717)](https://github.com/bhaimicrosoft/angular-superui)
+[![License](https://img.shields.io/github/license/bhaimicrosoft/angular-superui?style=for-the-badge&color=green)](https://github.com/bhaimicrosoft/angular-superui/blob/main/LICENSE)
 
 </div>
 
@@ -24,30 +28,44 @@
 </div>
 
 <div align="center">
-  <h3>🚀 The Modern Angular UI Component Library</h3>
-  <p><strong>Beautiful • Accessible • Local-First • Zero Dependencies</strong></p>
+  <h2>🚀 The Modern Angular UI Component Library</h2>
+  <p><strong>Beautiful • Accessible • Type-Safe • Zero External Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/16%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/50%2B%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
+  ![Angular 17+](https://img.shields.io/badge/Angular-17%2B-red?style=flat-square)
 </div>
 
 ---
 
 ## ✨ What is Angular SuperUI?
 
-Angular SuperUI is a **modern, beautiful, and accessible** Angular UI component library that revolutionizes how you build Angular applications. Built with **Tailwind CSS v4** and **TypeScript**, it provides a comprehensive set of reusable components with **local-first architecture**.
+Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI component library that transforms how you build Angular applications. Built with **Tailwind CSS v4**, **TypeScript**, and **Angular 17+ Signals**, it provides 50+ production-ready components with **local-first architecture**.
 
-### 🎯 **Why Choose Angular SuperUI?**
+### 🎯 **Why Angular SuperUI is the Best Choice for Your Project?**
 
-🔥 **Local-First Architecture** - No NPM dependencies, components live in your project  
-⚡ **Smaller Bundles** - Only install what you need  
-🎨 **Beautiful Components** - Modern design system with dark mode support  
-🛠️ **CLI-Powered** - Effortless installation and management  
-📱 **Fully Responsive** - Works perfectly on all devices  
-♿ **Accessibility First** - ARIA compliant and keyboard friendly  
-🎭 **Themeable** - Customize colors, spacing, and appearance  
-🚀 **Angular 17+** - Built for modern Angular with signals support  
+🔥 **Local-First Architecture** - No external NPM dependencies, components live directly in your project  
+⚡ **Smaller Bundles** - Tree-shakable components, only install what you use  
+🎨 **Stunning Design System** - Modern, beautiful components with built-in dark mode  
+🛠️ **CLI-Powered Development** - Effortless installation, updates, and component management  
+📱 **Mobile-First Responsive** - Perfect on phones, tablets, desktops, and ultra-wide screens  
+♿ **Accessibility Champion** - WCAG AA compliant, full ARIA support, keyboard navigation  
+🎭 **Fully Customizable** - Easy theming, custom colors, spacing, and component variants  
+🚀 **Modern Angular** - Built for Angular 17+ with signals, standalone components, and modern APIs  
+🔒 **Type-Safe Everything** - Full TypeScript support with comprehensive IntelliSense  
+⚙️ **Zero Config Setup** - Works out of the box with sensible defaults  
+🎪 **Interactive Playground** - Live demo with 50+ component examples  
+📚 **Comprehensive Docs** - Detailed API reference, examples, and best practices
+
+### 🏆 **Perfect for:**
+- ✅ **Enterprise Applications** - Scalable, maintainable component architecture
+- ✅ **Rapid Prototyping** - Quick setup with beautiful defaults
+- ✅ **Design Systems** - Consistent, reusable component patterns
+- ✅ **SaaS Products** - Professional UI that users love
+- ✅ **Admin Dashboards** - Rich data displays and form components
+- ✅ **E-commerce Sites** - Product displays, forms, and user interfaces
+- ✅ **Portfolio Sites** - Showcase your work with stunning components  
 
 ---
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -12,6 +12,7 @@ import {
   DialogClose,
   DialogService
 } from '@lib/dialog';
+import { SEOService } from '../services/seo.service';
 
 interface FormData {
   name: string;
@@ -37,8 +38,14 @@ interface FormData {
   ],
   templateUrl: './dialog-demo.component.html'
 })
-export class DialogDemoComponent {
+export class DialogDemoComponent implements OnInit {
   private dialogService = inject(DialogService);
+  private seoService = inject(SEOService);
+
+  ngOnInit() {
+    // Update SEO for dialog component page
+    this.seoService.updateSEO(this.seoService.getComponentSEO('dialog'));
+  }
 
   formData: FormData = {
     name: '',

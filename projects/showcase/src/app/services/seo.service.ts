@@ -1,0 +1,123 @@
+import { Injectable, inject } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+
+export interface SEOData {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+  author?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SEOService {
+  private meta = inject(Meta);
+  private title = inject(Title);
+
+  private readonly defaultSEO: SEOData = {
+    title: 'Angular SuperUI - Modern Angular Component Library | UI Framework',
+    description: 'Build stunning Angular applications with our comprehensive component library. 50+ components, TypeScript support, Tailwind CSS integration, and full accessibility compliance.',
+    keywords: 'Angular UI, Angular components, Angular library, Angular framework, UI components, TypeScript components, Tailwind CSS, Angular design system, dialog components, form components, navigation, accessibility, modern UI, component library, Angular SuperUI',
+    image: 'https://angular-superui.vercel.app/assets/angular-superui-social.png',
+    url: 'https://angular-superui.vercel.app',
+    type: 'website',
+    author: 'Angular SuperUI Team'
+  };
+
+  updateSEO(seoData: Partial<SEOData>) {
+    const data = { ...this.defaultSEO, ...seoData };
+
+    // Update title
+    if (data.title) {
+      this.title.setTitle(data.title);
+    }
+
+    // Update meta tags
+    this.updateMetaTag('description', data.description);
+    this.updateMetaTag('keywords', data.keywords);
+    this.updateMetaTag('author', data.author);
+    
+    // Open Graph tags
+    this.updateMetaTag('og:title', data.title, 'property');
+    this.updateMetaTag('og:description', data.description, 'property');
+    this.updateMetaTag('og:image', data.image, 'property');
+    this.updateMetaTag('og:url', data.url, 'property');
+    this.updateMetaTag('og:type', data.type, 'property');
+    
+    // Twitter Card tags
+    this.updateMetaTag('twitter:title', data.title);
+    this.updateMetaTag('twitter:description', data.description);
+    this.updateMetaTag('twitter:image', data.image);
+    
+    // Article specific tags
+    if (data.publishedTime) {
+      this.updateMetaTag('article:published_time', data.publishedTime, 'property');
+    }
+    if (data.modifiedTime) {
+      this.updateMetaTag('article:modified_time', data.modifiedTime, 'property');
+    }
+
+    // Canonical URL
+    this.updateCanonicalUrl(data.url);
+  }
+
+  private updateMetaTag(name: string, content: string | undefined, attribute: string = 'name') {
+    if (content) {
+      if (this.meta.getTag(`${attribute}="${name}"`)) {
+        this.meta.updateTag({ [attribute]: name, content });
+      } else {
+        this.meta.addTag({ [attribute]: name, content });
+      }
+    }
+  }
+
+  private updateCanonicalUrl(url: string | undefined) {
+    if (url) {
+      const existingLink = document.querySelector('link[rel="canonical"]');
+      if (existingLink) {
+        existingLink.setAttribute('href', url);
+      } else {
+        const link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        link.setAttribute('href', url);
+        document.head.appendChild(link);
+      }
+    }
+  }
+
+  // Predefined SEO data for common pages
+  getHomepageSEO(): SEOData {
+    return {
+      title: 'Angular SuperUI - Modern Angular Component Library | UI Framework',
+      description: 'Build stunning Angular applications with our comprehensive component library. 50+ components, TypeScript support, Tailwind CSS integration, and full accessibility compliance.',
+      keywords: 'Angular UI, Angular components, Angular library, Angular framework, UI components, TypeScript components, Tailwind CSS, modern UI, component library',
+      url: 'https://angular-superui.vercel.app'
+    };
+  }
+
+  getComponentSEO(componentName: string): SEOData {
+    const componentTitle = componentName.charAt(0).toUpperCase() + componentName.slice(1);
+    return {
+      title: `${componentTitle} Component - Angular SuperUI | Modern Angular UI Library`,
+      description: `Learn how to use the ${componentTitle} component from Angular SuperUI. Complete examples, API reference, and best practices for building modern Angular applications.`,
+      keywords: `Angular ${componentName}, ${componentName} component, Angular UI, ${componentName} examples, Angular SuperUI ${componentName}`,
+      url: `https://angular-superui.vercel.app/components/${componentName}`
+    };
+  }
+
+  getDocumentationSEO(docName: string): SEOData {
+    const docTitle = docName.charAt(0).toUpperCase() + docName.slice(1);
+    return {
+      title: `${docTitle} - Angular SuperUI Documentation | Modern Angular UI Library`,
+      description: `Complete ${docTitle} guide for Angular SuperUI. Learn how to install, configure, and use our modern Angular component library effectively.`,
+      keywords: `Angular SuperUI ${docName}, Angular UI documentation, ${docName} guide, Angular component library setup`,
+      url: `https://angular-superui.vercel.app/${docName}`
+    };
+  }
+}
