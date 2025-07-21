@@ -1,7 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Alert, AlertDescription, AlertTitle, AlertIcon } from '@lib/alert';
-import { Button } from '@lib/button';
+import {Component, signal} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Button} from '@lib/button';
 
 interface AlertExample {
   id: string;
@@ -19,14 +18,14 @@ interface AlertExample {
 @Component({
   selector: 'app-alert-demo',
   standalone: true,
-  imports: [CommonModule, Alert, AlertDescription, AlertTitle, AlertIcon, Button],
+  imports: [CommonModule, Button],
   templateUrl: './alert-demo.component.html',
   styles: []
 })
 export class AlertDemoComponent {
   // Dynamic alerts array
   dynamicAlerts = signal<AlertExample[]>([]);
-  
+
   // Static example alerts
   exampleAlerts: AlertExample[] = [
     {
@@ -129,9 +128,9 @@ export class AlertDemoComponent {
 
     const randomTitle = template.titles[Math.floor(Math.random() * template.titles.length)];
     const randomMessage = template.messages[Math.floor(Math.random() * template.messages.length)];
-    
+
     const alertConfig = this.getAlertConfig(type);
-    
+
     const newAlert: AlertExample = {
       id: `${type}-${Date.now()}`,
       type,
@@ -152,6 +151,34 @@ export class AlertDemoComponent {
     setTimeout(() => {
       this.dismissAlert(newAlert.id);
     }, 5000);
+  }
+
+  dismissAlert(id: string) {
+    const currentAlerts = this.dynamicAlerts();
+    this.dynamicAlerts.set(currentAlerts.filter(alert => alert.id !== id));
+  }
+
+  dismissExampleAlert(id: string) {
+    const alert = this.exampleAlerts.find(a => a.id === id);
+    if (alert) {
+      alert.visible = false;
+    }
+  }
+
+  restoreExampleAlerts() {
+    this.exampleAlerts.forEach(alert => alert.visible = true);
+  }
+
+  clearAllDynamicAlerts() {
+    this.dynamicAlerts.set([]);
+  }
+
+  trackByFn(index: number, item: AlertExample): string {
+    return item.id;
+  }
+
+  trackByExampleFn(index: number, item: AlertExample): string {
+    return item.id;
   }
 
   private getAlertConfig(type: string) {
@@ -186,33 +213,5 @@ export class AlertDemoComponent {
       }
     };
     return configs[type as keyof typeof configs];
-  }
-
-  dismissAlert(id: string) {
-    const currentAlerts = this.dynamicAlerts();
-    this.dynamicAlerts.set(currentAlerts.filter(alert => alert.id !== id));
-  }
-
-  dismissExampleAlert(id: string) {
-    const alert = this.exampleAlerts.find(a => a.id === id);
-    if (alert) {
-      alert.visible = false;
-    }
-  }
-
-  restoreExampleAlerts() {
-    this.exampleAlerts.forEach(alert => alert.visible = true);
-  }
-
-  clearAllDynamicAlerts() {
-    this.dynamicAlerts.set([]);
-  }
-
-  trackByFn(index: number, item: AlertExample): string {
-    return item.id;
-  }
-
-  trackByExampleFn(index: number, item: AlertExample): string {
-    return item.id;
   }
 }

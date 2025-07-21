@@ -191,7 +191,7 @@ import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
                   <span>Report Issues</span>
                 </a>
                 <a
-                  href="https://github.com/imukherjee/angular-superui/blob/main/CONTRIBUTING.md"
+                  href="https://github.com/bhaimicrosoft/angular-superui/blob/main/CONTRIBUTING.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
