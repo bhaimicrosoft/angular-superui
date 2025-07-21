@@ -16,10 +16,10 @@ import { ThemeService } from '@lib/theme-switcher';
       <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary text-primary-foreground rounded-lg">
         Skip to main content
       </a>
-      
+
       <!-- Navigation -->
       <app-navigation></app-navigation>
-      
+
       <!-- Main Content Area -->
       <main id="main-content" class="relative bg-background" role="main">
         <router-outlet></router-outlet>
@@ -46,251 +46,218 @@ import { ThemeService } from '@lib/theme-switcher';
         <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-75 animate-ping"></div>
       </button>
 
-      <!-- Stunning Footer -->
-      <footer
-        class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900 dark:from-slate-950 dark:via-gray-950 dark:to-black"
-      >
-        <!-- Background Effects -->
-        <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
-        ></div>
+      <!-- � MICROSOFT-INSPIRED PROFESSIONAL FOOTER � -->
+      <footer class="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900 border-t border-gray-200/50 dark:border-gray-800/50">
+        <!-- Subtle Grid Pattern -->
+        <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]">
+          <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgb(0 0 0) 1px, transparent 0); background-size: 20px 20px;"></div>
+        </div>
 
-        <div class="relative z-10 container mx-auto px-6 py-16">
-          <!-- Main Footer Content -->
-          <div class="grid lg:grid-cols-3 gap-12 mb-12">
-            <!-- Brand Section -->
+        <!-- Geometric Accent Lines -->
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent animate-pulse"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+          <!-- Main Content Grid -->
+          <div class="grid lg:grid-cols-3 gap-12 lg:gap-16 mb-16">
+
+            <!-- Left Column: Personal Brand -->
             <div class="lg:col-span-1">
-              <div class="flex items-center space-x-3 mb-6">
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
-                >
-                  <span class="text-white font-bold text-xl">⚡</span>
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold text-white">Angular SuperUI</h3>
-                  <p class="text-gray-400 text-sm">Modern Component Library</p>
-                </div>
-              </div>
-              <p class="text-gray-300 leading-relaxed mb-6">
-                A comprehensive, accessible, and beautifully designed component
-                library for Angular applications. Built with TypeScript, Tailwind
-                CSS, and modern best practices.
-              </p>
-
-              <!-- Social Links -->
-              <div class="flex items-center space-x-4">
-                <a
-                  href="https://github.com/bhaimicrosoft/angular-superui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-200 group"
-                  aria-label="GitHub Repository"
-                >
-                  <svg
-                    class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.npmjs.com/package/angular-superui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 hover:bg-red-500/20 hover:border-red-400/30 transition-all duration-200 group"
-                  aria-label="NPM Package"
-                >
-                  <svg
-                    class="w-5 h-5 text-gray-400 group-hover:text-red-400 transition-colors"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113L5.13 5.323z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="lg:col-span-1">
-              <h4 class="text-lg font-semibold text-white mb-6">Components</h4>
-              <div class="space-y-3">
-                <a
-                  href="#accordion"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-                  <span class="text-blue-400 group-hover:text-blue-300">📂</span>
-                  <span>Accordion</span>
-                </a>
-                <a
-                  href="#alert"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-                  <span class="text-amber-400 group-hover:text-amber-300">🚨</span>
-                  <span>Alert</span>
-                </a>
-                <a
-                  href="#alert-dialog"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-              <span class="text-yellow-400 group-hover:text-yellow-300"
-              >⚠️</span
-              >
-                  <span>Alert Dialog</span>
-                </a>
-                <a
-                  href="#card"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-                  <span class="text-green-400 group-hover:text-green-300">🃏</span>
-                  <span>Card</span>
-                </a>
-                <a
-                  href="#button"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-                  <span class="text-blue-400 group-hover:text-blue-300">🔘</span>
-                  <span>Button</span>
-                </a>
-                <a
-                  href="#badge-breadcrumb"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-              <span class="text-purple-400 group-hover:text-purple-300"
-              >🏷️</span
-              >
-                  <span>Badge & Breadcrumb</span>
-                </a>
-                <a
-                  href="#calendar"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-              <span class="text-indigo-400 group-hover:text-indigo-300"
-              >📅</span
-              >
-                  <span>Calendar</span>
-                </a>
-              </div>
-
-              <h4 class="text-lg font-semibold text-white mb-4 mt-8">Resources</h4>
-              <div class="space-y-3">
-                <a
-                  href="https://github.com/imukherjee/angular-superui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-              <span class="text-purple-400 group-hover:text-purple-300"
-              >📚</span
-              >
-                  <span>Documentation</span>
-                </a>
-                <a
-                  href="https://github.com/imukherjee/angular-superui/issues"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-                  <span class="text-red-400 group-hover:text-red-300">🐛</span>
-                  <span>Report Issues</span>
-                </a>
-                <a
-                  href="https://github.com/bhaimicrosoft/angular-superui/blob/main/CONTRIBUTING.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                >
-                  <span class="text-teal-400 group-hover:text-teal-300">🤝</span>
-                  <span>Contributing</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Developer Info -->
-            <div class="lg:col-span-1">
-              <h4 class="text-lg font-semibold text-white mb-6">Developer</h4>
-              <div
-                class="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
-              >
-                <div class="flex items-center space-x-4 mb-4">
-                  <Avatar size="2xl">
-                    <AvatarImage src="/me.jpg" alt="BK"/>
-                    <AvatarFallback>BK</AvatarFallback>
+              <div class="flex items-center gap-8 mb-6">
+                <div class="relative">
+                  <Avatar size="2xl" class="border-2 border-gray-200 dark:border-gray-700 shadow-lg">
+                    <AvatarImage src="/me.jpg" alt="Indranil Mukherjee" class="object-cover"/>
+                    <AvatarFallback class="bg-gradient-to-br from-blue-600 to-purple-600 text-white font-semibold">BK</AvatarFallback>
                   </Avatar>
-
-                  <div>
-                    <h5 class="text-white font-semibold">Bhai Kaju</h5>
-                    <p class="text-gray-400 text-sm">Full Stack Developer</p>
+                  <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-gray-900 rounded-full">
+                    <div class="w-full h-full bg-green-400 rounded-full animate-pulse"></div>
                   </div>
                 </div>
-                <p class="text-gray-300 text-sm mb-4">
-                  Passionate about creating beautiful, accessible, and performant
-                  user interfaces with modern web technologies.
-                </p>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-1">Indranil Mukherjee</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Senior Full Stack Developer</p>
+                  <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-500">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Available for collaboration</span>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                Crafting exceptional digital experiences with modern web technologies.
+                Passionate about building scalable, accessible, and performant applications.
+              </p>
+
+              <!-- Quick Actions -->
+              <div class="flex gap-3">
                 <a
                   href="https://bhaikaju.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:scale-105 hover:shadow-lg"
+                  class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors duration-200"
                 >
-                  <span>Visit Portfolio</span>
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    ></path>
+                  <span>Portfolio</span>
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                   </svg>
                 </a>
+                <a
+                  href="mailto:bhaikaju@gmail.com"
+                  class="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors duration-200"
+                >
+                  <span>Contact</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Center Column: Links -->
+            <div class="lg:col-span-1">
+              <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-6 uppercase tracking-wider">Connect</h4>
+              <div class="space-y-4">
+                <a
+                  href="https://github.com/bhaimicrosoft/angular-superui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                >
+                  <div class="w-5 h-5 flex-shrink-0">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                  </div>
+                  <span class="text-sm">GitHub</span>
+                  <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+
+                <a
+                  href="https://www.npmjs.com/package/angular-superui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                >
+                  <div class="w-5 h-5 flex-shrink-0">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0H1.763zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113L5.13 5.323z"/>
+                    </svg>
+                  </div>
+                  <span class="text-sm">NPM Package</span>
+                  <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+
+                <a
+                  href="https://www.youtube.com/@ProgrammingIsFun"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                >
+                  <div class="w-5 h-5 flex-shrink-0">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </div>
+                  <span class="text-sm">YouTube</span>
+                  <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/bhaikaju/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+                >
+                  <div class="w-5 h-5 flex-shrink-0">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </div>
+                  <span class="text-sm">LinkedIn</span>
+                  <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Column: Project Info -->
+            <div class="lg:col-span-1">
+              <h4 class="text-sm font-semibold text-gray-900 dark:text-white mb-6 uppercase tracking-wider">Angular SuperUI</h4>
+              <div class="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">⚡</span>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-gray-900 dark:text-white text-sm">v1.0.5</h5>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Latest Release</p>
+                  </div>
+                </div>
+
+                <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                  Production-ready Angular component library with 18 accessible components, built with TypeScript and TailwindCSS v4.
+                </p>
+
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span class="text-gray-600 dark:text-gray-400">18 Components</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span class="text-gray-600 dark:text-gray-400">TailwindCSS v4</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span class="text-gray-600 dark:text-gray-400">TypeScript</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <span class="text-gray-600 dark:text-gray-400">Zero Dependencies</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Bottom Bar -->
-          <div class="border-t border-white/10 pt-8">
-            <div
-              class="flex flex-col md:flex-row items-center justify-between gap-4"
-            >
-              <div
-                class="flex flex-col md:flex-row items-center gap-4 text-sm text-gray-400"
-              >
-                <span>© 2025 Angular SuperUI. All rights reserved.</span>
-                <div class="flex items-center gap-1">
-                  <span>Made with</span>
-                  <span class="text-red-400 animate-pulse">❤️</span>
-                  <span>using Angular & Tailwind CSS</span>
-                </div>
+          <div class="flex flex-col lg:flex-row items-center justify-between pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4 lg:mb-0">
+              <span>© 2025 Angular SuperUI</span>
+              <div class="w-1 h-4 bg-gray-300 dark:bg-gray-600"></div>
+              <span>MIT License</span>
+              <div class="w-1 h-4 bg-gray-300 dark:bg-gray-600"></div>
+              <div class="flex items-center gap-2">
+                <span>Built with</span>
+                <span class="text-red-500">♥</span>
+                <span>by Indranil Mukherjee</span>
               </div>
+            </div>
 
-              <!-- Version Badge -->
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span>Active Development</span>
+              </div>
               <div class="flex items-center gap-3">
-                <span class="text-xs text-gray-500">v1.0.4</span>
-                <div
-                  class="px-3 py-1 bg-green-500/20 border border-green-400/30 rounded-full text-green-400 text-xs font-medium"
-                >
-                  ✨ Latest
+                <span class="text-xs text-gray-400 dark:text-gray-500">Powered by</span>
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9.931 12.645h4.138l-2.07-4.908m0-7.737L24 24H0l11.999-19.5z"/>
+                  </svg>
+                  <span class="text-xs font-medium text-gray-600 dark:text-gray-300">Angular</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Decorative Elements -->
-        <div
-          class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
-        ></div>
+        <!-- Subtle Accent Line -->
+        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-pink-500/50"></div>
       </footer>
     </div>
   `,

@@ -14,6 +14,11 @@ const avatarVariants = cva(
         lg: 'h-12 w-12',
         xl: 'h-16 w-16',
         '2xl': 'h-20 w-20',
+        '3xl': 'h-24 w-24',
+        '4xl': 'h-32 w-32',
+        '5xl': 'h-40 w-40',
+        '6xl': 'h-48 w-48',
+        '7xl': 'h-50 w-50',
       },
     },
     defaultVariants: {
@@ -60,7 +65,7 @@ export interface AvatarFallbackProps extends VariantProps<typeof avatarFallbackV
 @Injectable()
 export class AvatarStateService {
   private _imageLoaded = signal<boolean>(false);
-  
+
   // Read-only computed signal for external consumption
   readonly imageLoaded = this._imageLoaded.asReadonly();
 
@@ -79,7 +84,7 @@ export class AvatarStateService {
   imports: [CommonModule],
   providers: [AvatarStateService],
   template: `
-    <div 
+    <div
       [attr.role]="'img'"
       [attr.aria-label]="ariaLabel || 'User avatar'"
       [class]="cn(avatarVariants({ size }), className)"
