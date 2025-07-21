@@ -1061,10 +1061,7 @@ function cn(...inputs: any[]) {
             type="button"
             [disabled]="page === '...'"
             (click)="page !== '...' ? goToPage(+page - 1) : null"
-            class="px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:cursor-default whitespace-nowrap"
-            [class.bg-blue-600]="page === (pagination().page + 1).toString()"
-            [class.dark:bg-blue-600]="page === (pagination().page + 1).toString()"
-            [class.text-white]="page === (pagination().page + 1).toString()"
+            [class]="getPageButtonClasses(page)"
           >
             {{ page }}
           </button>
@@ -2429,6 +2426,23 @@ export class DataTable<T = any> implements AfterViewInit, OnDestroy {
     }
 
     return pages;
+  }
+
+  getPageButtonClasses(page: string | number): string {
+    const isActive = page !== '...' && +page === (this.pagination().page + 1);
+    const isDisabled = page === '...';
+    
+    const baseClasses = 'px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border whitespace-nowrap transition-colors';
+    
+    if (isActive) {
+      return `${baseClasses} bg-blue-600 dark:bg-blue-600 text-white dark:text-white border-blue-600 dark:border-blue-600 hover:bg-blue-700 dark:hover:bg-blue-700`;
+    }
+    
+    if (isDisabled) {
+      return `${baseClasses} border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 cursor-default`;
+    }
+    
+    return `${baseClasses} border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700`;
   }
 
   // Editing methods
