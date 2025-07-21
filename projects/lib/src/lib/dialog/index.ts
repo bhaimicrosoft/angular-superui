@@ -1,7 +1,21 @@
-import { Component, Input, Output, EventEmitter, signal, computed, OnDestroy, ElementRef, ViewChild, AfterViewInit, effect, Injectable, inject, TemplateRef, ContentChild } from '@angular/core';
-import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../utils/cn';
+import {
+  AfterViewInit,
+  Component,
+  effect,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  inject,
+  Injectable,
+  Input,
+  OnDestroy,
+  Output,
+  signal,
+  ViewChild
+} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {cva, type VariantProps} from 'class-variance-authority';
+import {cn} from '../utils/cn';
 
 /**
  * Dialog Service for managing dialog state globally
@@ -11,28 +25,28 @@ import { cn } from '../utils/cn';
 })
 export class DialogService {
   private openDialogs = signal<Set<string>>(new Set());
-  
+
   open(id: string) {
     this.openDialogs.update(dialogs => new Set([...dialogs, id]));
     document.body.style.overflow = 'hidden';
   }
-  
+
   close(id: string) {
     this.openDialogs.update(dialogs => {
       const newDialogs = new Set(dialogs);
       newDialogs.delete(id);
       return newDialogs;
     });
-    
+
     if (this.openDialogs().size === 0) {
       document.body.style.overflow = '';
     }
   }
-  
+
   isOpen(id: string) {
     return this.openDialogs().has(id);
   }
-  
+
   closeAll() {
     this.openDialogs.set(new Set());
     document.body.style.overflow = '';
@@ -118,7 +132,8 @@ const dialogCloseVariants = cva(
     'ring-offset-background transition-opacity',
     'hover:opacity-100 focus:outline-none focus:ring-2',
     'focus:ring-ring focus:ring-offset-2',
-    'disabled:pointer-events-none'
+    'disabled:pointer-events-none',
+    'h-6 w-6 p-0'
   ]
 );
 
@@ -128,11 +143,10 @@ const dialogCloseVariants = cva(
 @Component({
   selector: 'DialogClose',
   standalone: true,
-  imports: [NgClass, NgIf],
+  imports: [CommonModule],
   template: `
     <button
       type="button"
-      [class]="cn(dialogCloseVariants(), className)"
       (click)="closeDialog()"
       [attr.aria-label]="ariaLabel"
       [disabled]="disabled"
@@ -162,26 +176,29 @@ export class DialogClose {
   @Input() disabled: boolean = false;
   @Input() dialogId: string = '';
   @Input() ariaLabel: string = 'Close dialog';
-  
   hasContent = false;
-  
+  protected readonly cn = cn;
+  protected readonly dialogCloseVariants = dialogCloseVariants;
   private dialogService = inject(DialogService);
-  
+
+  constructor(private elementRef: ElementRef) {
+  }
+
+  @HostBinding('class')
+  get hostClasses() {
+    return cn(dialogCloseVariants(), this.className);
+  }
+
   ngAfterContentInit() {
     // Check if there's any content projected
     this.hasContent = this.elementRef.nativeElement.children.length > 0;
   }
-  
-  constructor(private elementRef: ElementRef) {}
-  
+
   closeDialog() {
     if (!this.disabled && this.dialogId) {
       this.dialogService.close(this.dialogId);
     }
   }
-  
-  protected readonly cn = cn;
-  protected readonly dialogCloseVariants = dialogCloseVariants;
 }
 
 /**
@@ -190,7 +207,7 @@ export class DialogClose {
 @Component({
   selector: 'DialogTrigger',
   standalone: true,
-  imports: [NgClass],
+  imports: [CommonModule],
   template: `
     <button
       type="button"
@@ -208,20 +225,18 @@ export class DialogTrigger {
   @Input() className: string = '';
   @Input() disabled: boolean = false;
   @Input() dialogId: string = '';
-  
+  protected readonly cn = cn;
   private dialogService = inject(DialogService);
-  
+
   openDialog() {
     if (!this.disabled && this.dialogId) {
       this.dialogService.open(this.dialogId);
     }
   }
-  
+
   isOpen() {
     return this.dialogService.isOpen(this.dialogId);
   }
-  
-  protected readonly cn = cn;
 }
 
 /**
@@ -230,7 +245,7 @@ export class DialogTrigger {
 @Component({
   selector: 'DialogHeader',
   standalone: true,
-  imports: [NgClass],
+  imports: [CommonModule],
   template: `
     <div [class]="cn(dialogHeaderVariants(), className)">
       <ng-content></ng-content>
@@ -239,7 +254,7 @@ export class DialogTrigger {
 })
 export class DialogHeader {
   @Input() className: string = '';
-  
+
   protected readonly cn = cn;
   protected readonly dialogHeaderVariants = dialogHeaderVariants;
 }
@@ -250,7 +265,7 @@ export class DialogHeader {
 @Component({
   selector: 'DialogFooter',
   standalone: true,
-  imports: [NgClass],
+  imports: [CommonModule],
   template: `
     <div [class]="cn(dialogFooterVariants(), className)">
       <ng-content></ng-content>
@@ -259,7 +274,7 @@ export class DialogHeader {
 })
 export class DialogFooter {
   @Input() className: string = '';
-  
+
   protected readonly cn = cn;
   protected readonly dialogFooterVariants = dialogFooterVariants;
 }
@@ -270,9 +285,9 @@ export class DialogFooter {
 @Component({
   selector: 'DialogTitle',
   standalone: true,
-  imports: [NgClass],
+  imports: [CommonModule],
   template: `
-    <h2 
+    <h2
       [class]="cn(dialogTitleVariants(), className)"
       [id]="titleId"
     >
@@ -283,7 +298,7 @@ export class DialogFooter {
 export class DialogTitle {
   @Input() className: string = '';
   @Input() titleId: string = '';
-  
+
   protected readonly cn = cn;
   protected readonly dialogTitleVariants = dialogTitleVariants;
 }
@@ -294,9 +309,9 @@ export class DialogTitle {
 @Component({
   selector: 'DialogDescription',
   standalone: true,
-  imports: [NgClass],
+  imports: [CommonModule],
   template: `
-    <p 
+    <p
       [class]="cn(dialogDescriptionVariants(), className)"
       [id]="descriptionId"
     >
@@ -307,7 +322,7 @@ export class DialogTitle {
 export class DialogDescription {
   @Input() className: string = '';
   @Input() descriptionId: string = '';
-  
+
   protected readonly cn = cn;
   protected readonly dialogDescriptionVariants = dialogDescriptionVariants;
 }
@@ -318,7 +333,7 @@ export class DialogDescription {
 @Component({
   selector: 'DialogContent',
   standalone: true,
-  imports: [NgClass, NgIf, DialogClose],
+  imports: [CommonModule, DialogClose],
   template: `
     <div
       *ngIf="isOpen()"
@@ -333,9 +348,9 @@ export class DialogDescription {
       #contentElement
     >
       <ng-content></ng-content>
-      
+
       <!-- Default close button if showCloseButton is true -->
-      <DialogClose 
+      <DialogClose
         *ngIf="showCloseButton"
         [dialogId]="dialogId"
         [className]="closeButtonClass"
@@ -348,23 +363,24 @@ export class DialogContent implements AfterViewInit, OnDestroy {
   @Input() dialogId: string = '';
   @Input() size: VariantProps<typeof dialogContentVariants>['size'] = 'md';
   @Input() showCloseButton: boolean = true;
-  @Input() closeButtonClass: string = '';
+  @Input() closeButtonClass: string = 'text-gray-400 hover:text-gray-600';
   @Input() ariaLabelledby: string = '';
   @Input() ariaDescribedby: string = '';
   @Input() closeOnEscape: boolean = true;
   @Input() closeOnOverlayClick: boolean = true;
-  
+
   @ViewChild('contentElement') contentElement!: ElementRef;
-  
+  protected readonly cn = cn;
+  protected readonly dialogContentVariants = dialogContentVariants;
   private dialogService = inject(DialogService);
   private previousActiveElement: HTMLElement | null = null;
   private wasOpenPreviously = false;
-  
+
   constructor() {
     // Watch for dialog state changes in constructor (injection context)
     effect(() => {
       const isCurrentlyOpen = this.isOpen();
-      
+
       if (isCurrentlyOpen && !this.wasOpenPreviously) {
         // Dialog just opened
         setTimeout(() => this.handleDialogOpen());
@@ -372,29 +388,29 @@ export class DialogContent implements AfterViewInit, OnDestroy {
         // Dialog just closed
         this.handleDialogClose();
       }
-      
+
       this.wasOpenPreviously = isCurrentlyOpen;
     });
   }
-  
+
   ngAfterViewInit() {
     // Initial check if dialog is already open
     if (this.isOpen()) {
       this.handleDialogOpen();
     }
   }
-  
+
   ngOnDestroy() {
     if (this.isOpen()) {
       this.dialogService.close(this.dialogId);
     }
     this.restoreFocus();
   }
-  
+
   isOpen() {
     return this.dialogService.isOpen(this.dialogId);
   }
-  
+
   onEscapeKey(event: Event) {
     const keyboardEvent = event as KeyboardEvent;
     if (this.closeOnEscape && keyboardEvent.key === 'Escape') {
@@ -402,39 +418,39 @@ export class DialogContent implements AfterViewInit, OnDestroy {
       this.dialogService.close(this.dialogId);
     }
   }
-  
+
   private handleDialogOpen() {
     // Store the currently focused element
     this.previousActiveElement = document.activeElement as HTMLElement;
-    
+
     // Focus the dialog content
     setTimeout(() => {
       if (this.contentElement?.nativeElement) {
         this.contentElement.nativeElement.focus();
       }
     });
-    
+
     // Trap focus within the dialog
     this.trapFocus();
   }
-  
+
   private handleDialogClose() {
     this.restoreFocus();
   }
-  
+
   private trapFocus() {
     if (!this.contentElement?.nativeElement) return;
-    
+
     const focusableElements = this.contentElement.nativeElement.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
-    
+
     const firstElement = focusableElements[0] as HTMLElement;
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-    
+
     const handleTabKey = (event: KeyboardEvent) => {
       if (event.key !== 'Tab') return;
-      
+
       if (event.shiftKey) {
         if (document.activeElement === firstElement) {
           event.preventDefault();
@@ -447,24 +463,24 @@ export class DialogContent implements AfterViewInit, OnDestroy {
         }
       }
     };
-    
+
     this.contentElement.nativeElement.addEventListener('keydown', handleTabKey);
-    
+
     // Clean up event listener when dialog closes
     const cleanup = () => {
       this.contentElement.nativeElement?.removeEventListener('keydown', handleTabKey);
     };
-    
+
     // Store cleanup function for later use
     (this.contentElement.nativeElement as any).__focusTrapCleanup = cleanup;
   }
-  
+
   private restoreFocus() {
     if (this.previousActiveElement) {
       this.previousActiveElement.focus();
       this.previousActiveElement = null;
     }
-    
+
     // Clean up focus trap
     if (this.contentElement?.nativeElement) {
       const cleanup = (this.contentElement.nativeElement as any).__focusTrapCleanup;
@@ -474,9 +490,6 @@ export class DialogContent implements AfterViewInit, OnDestroy {
       }
     }
   }
-  
-  protected readonly cn = cn;
-  protected readonly dialogContentVariants = dialogContentVariants;
 }
 
 /**
@@ -485,7 +498,7 @@ export class DialogContent implements AfterViewInit, OnDestroy {
 @Component({
   selector: 'DialogOverlay',
   standalone: true,
-  imports: [NgClass, NgIf],
+  imports: [CommonModule],
   template: `
     <div
       *ngIf="isOpen()"
@@ -499,35 +512,33 @@ export class DialogOverlay {
   @Input() className: string = '';
   @Input() dialogId: string = '';
   @Input() closeOnClick: boolean = true;
-  
+  protected readonly cn = cn;
+  protected readonly dialogOverlayVariants = dialogOverlayVariants;
   private dialogService = inject(DialogService);
-  
+
   isOpen() {
     return this.dialogService.isOpen(this.dialogId);
   }
-  
+
   onOverlayClick() {
     if (this.closeOnClick) {
       this.dialogService.close(this.dialogId);
     }
   }
-  
-  protected readonly cn = cn;
-  protected readonly dialogOverlayVariants = dialogOverlayVariants;
 }
 
 /**
  * Main Dialog Component
  */
 @Component({
-  selector: 'Dialog',
+  selector: 'DialogRoot',
   standalone: true,
-  imports: [NgClass, NgIf, DialogOverlay, DialogContent],
+  imports: [CommonModule, DialogOverlay],
   template: `
     <div>
       <!-- Dialog Trigger -->
       <ng-content select="DialogTrigger"></ng-content>
-      
+
       <!-- Dialog Portal -->
       <div *ngIf="isOpen()">
         <!-- Overlay -->
@@ -536,24 +547,24 @@ export class DialogOverlay {
           [className]="overlayClassName"
           [closeOnClick]="closeOnOverlayClick"
         />
-        
+
         <!-- Content -->
         <ng-content select="DialogContent"></ng-content>
       </div>
     </div>
   `
 })
-export class Dialog implements OnDestroy {
+export class DialogRoot implements OnDestroy {
   @Input() dialogId: string = '';
   @Input() overlayClassName: string = '';
   @Input() closeOnOverlayClick: boolean = true;
   @Input() defaultOpen: boolean = false;
-  
+
   @Output() openChange = new EventEmitter<boolean>();
-  
+
   private dialogService = inject(DialogService);
   private dialogIdGenerated = `dialog-${Math.random().toString(36).substr(2, 9)}`;
-  
+
   constructor() {
     // Watch for dialog state changes in constructor (injection context)
     effect(() => {
@@ -561,37 +572,37 @@ export class Dialog implements OnDestroy {
       this.openChange.emit(isOpen);
     });
   }
-  
+
   ngAfterViewInit() {
     // Generate ID if not provided
     if (!this.dialogId) {
       this.dialogId = this.dialogIdGenerated;
     }
-    
+
     // Open dialog if defaultOpen is true
     if (this.defaultOpen) {
       this.dialogService.open(this.dialogId);
     }
   }
-  
+
   ngOnDestroy() {
     if (this.isOpen()) {
       this.dialogService.close(this.dialogId);
     }
   }
-  
+
   isOpen() {
     return this.dialogService.isOpen(this.dialogId);
   }
-  
+
   open() {
     this.dialogService.open(this.dialogId);
   }
-  
+
   close() {
     this.dialogService.close(this.dialogId);
   }
-  
+
   toggle() {
     if (this.isOpen()) {
       this.close();

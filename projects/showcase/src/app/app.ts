@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, HostBinding, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './components/navigation.component';
 import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
+import { ThemeService } from '@lib/theme-switcher';
 
 @Component({
   selector: 'app-root',
@@ -289,6 +290,12 @@ import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Angular SuperUI';
   showGoToTop = false;
+  private themeService = inject(ThemeService);
+
+  @HostBinding('class.dark')
+  get isDarkMode() {
+    return this.themeService.isDarkMode();
+  }
 
   ngOnInit() {
     // Initialize scroll detection

@@ -1,8 +1,19 @@
-import { Component, Input, Output, EventEmitter, computed, signal, inject, PLATFORM_ID, afterNextRender, InjectionToken } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  computed,
+  signal,
+  inject,
+  PLATFORM_ID,
+  afterNextRender,
+  InjectionToken
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../utils/cn';
-import { Button } from '../button';
+import { Button } from '../button'; // Assuming this is your custom Button component
 
 /**
  * Theme types
@@ -101,23 +112,16 @@ class ThemeServiceImpl {
    * Initialize theme from localStorage or system preference
    */
   private initializeTheme(): void {
-
-
     const savedTheme = localStorage.getItem('theme') as Theme;
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-
 
     this._systemTheme.set(systemTheme);
 
     if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
-
       this._currentTheme.set(savedTheme);
     } else {
-
       this._currentTheme.set('system');
     }
-
 
     this.applyTheme();
   }
@@ -135,6 +139,8 @@ class ThemeServiceImpl {
       }
     };
 
+    // Use addEventListener with a cleanup in a real Angular service if it were to be destroyed
+    // For a root-provided service, this is generally fine as it lives for the app's lifetime.
     mediaQuery.addEventListener('change', handleChange);
   }
 
@@ -147,14 +153,17 @@ class ThemeServiceImpl {
     const root = document.documentElement;
     const isDark = this._isDarkMode();
 
-    // Remove existing theme classes
+    // Remove existing theme classes from html and body
     root.classList.remove('light', 'dark');
+    document.body.classList.remove('light', 'dark');
 
-    // Add the appropriate theme class
+    // Add the appropriate theme class to html and body
     if (isDark) {
       root.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
       root.classList.add('light');
+      document.body.classList.add('light');
     }
 
     // Update meta theme-color for mobile browsers
@@ -163,11 +172,8 @@ class ThemeServiceImpl {
       themeColorMeta.setAttribute('content', isDark ? '#020617' : '#ffffff');
     }
 
-    // Ensure body has proper background and text color
-    document.body.classList.remove('light', 'dark');
-    document.body.classList.add(isDark ? 'dark' : 'light');
-
     // Apply theme to body for complete coverage
+    // These styles are often better managed in global CSS, but included here for completeness
     document.body.style.backgroundColor = isDark ? 'hsl(222.2 84% 4.9%)' : 'hsl(0 0% 100%)';
     document.body.style.color = isDark ? 'hsl(210 40% 98%)' : 'hsl(222.2 84% 4.9%)';
   }
@@ -176,21 +182,16 @@ class ThemeServiceImpl {
    * Set theme
    */
   setTheme(theme: Theme): void {
-
-
     this._currentTheme.set(theme);
-
-
 
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('theme', theme);
-
       this.applyTheme();
     }
   }
 
   /**
-   * Toggle between light and dark themes
+   * Toggle between light and dark themes (if current is system, toggle based on system's current)
    */
   toggleTheme(): void {
     const current = this._currentTheme();
@@ -221,17 +222,13 @@ class ThemeServiceImpl {
  *
  * @example
  * ```html
- * <!-- Simple toggle button -->
- * <ThemeSwitcher />
+ * * <ThemeSwitcher />
  *
- * <!-- With custom variant and size -->
- * <ThemeSwitcher variant="outline" size="lg" />
+ * * <ThemeSwitcher variant="outline" size="lg" />
  *
- * <!-- Show current theme -->
- * <ThemeSwitcher [showLabel]="true" />
+ * * <ThemeSwitcher [showLabel]="true" />
  *
- * <!-- Cycle through all themes -->
- * <ThemeSwitcher mode="cycle" />
+ * * <ThemeSwitcher mode="cycle" />
  * ```
  */
 @Component({
@@ -240,16 +237,12 @@ class ThemeServiceImpl {
   imports: [Button],
   template: `
     @if (mode === 'slider') {
-      <!-- Slider Mode: 3-Button Layout -->
-      <div class="flex items-center bg-background/50 backdrop-blur-sm rounded-lg p-1 border border-input shadow-sm">
-        <!-- Light Theme Button -->
+      <div [class]="getSliderContainerClasses()">
         <button
           type="button"
           [class]="getThemeButtonClasses('light')"
           [attr.aria-label]="'Switch to light theme'"
           [attr.aria-pressed]="isThemeActive('light')"
-          [attr.data-theme]="'light'"
-          [attr.data-current]="currentTheme()"
           (click)="selectTheme('light')">
           <svg
             class="h-4 w-4 transition-all duration-200"
@@ -261,18 +254,16 @@ class ThemeServiceImpl {
             stroke-linejoin="round"
             aria-hidden="true">
             <circle cx="12" cy="12" r="5"/>
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            <path
+              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
           </svg>
         </button>
 
-        <!-- Dark Theme Button -->
         <button
           type="button"
           [class]="getThemeButtonClasses('dark')"
           [attr.aria-label]="'Switch to dark theme'"
           [attr.aria-pressed]="isThemeActive('dark')"
-          [attr.data-theme]="'dark'"
-          [attr.data-current]="currentTheme()"
           (click)="selectTheme('dark')">
           <svg
             class="h-4 w-4 transition-all duration-200"
@@ -287,14 +278,11 @@ class ThemeServiceImpl {
           </svg>
         </button>
 
-        <!-- System Theme Button -->
         <button
           type="button"
           [class]="getThemeButtonClasses('system')"
           [attr.aria-label]="'Switch to system theme'"
           [attr.aria-pressed]="isThemeActive('system')"
-          [attr.data-theme]="'system'"
-          [attr.data-current]="currentTheme()"
           (click)="selectTheme('system')">
           <svg
             class="h-4 w-4 transition-all duration-200"
@@ -312,25 +300,21 @@ class ThemeServiceImpl {
         </button>
       </div>
     } @else {
-      <!-- Toggle/Cycle Mode: Single Button -->
       <Button
         type="button"
         [variant]="buttonVariant()"
         [size]="size"
-        [customClasses]="themeSwitcherClasses()"
+        [class]="themeSwitcherClasses()"
         [accessibility]="{
           ariaLabel: ariaLabel(),
           ariaDescription: 'Toggle between light and dark themes'
         }"
-        [attr.aria-pressed]="isDarkMode() ? 'true' : 'false'"
-        [attr.data-theme]="currentTheme()"
+        [attr.aria-pressed]="themeService.isDarkMode() ? 'true' : 'false'"
         (click)="handleClick()"
-        >
+      >
 
-        <!-- Theme Icons -->
         <div class="relative flex items-center justify-center">
-          @if (isDarkMode()) {
-            <!-- Dark Mode Icon -->
+          @if (themeService.isDarkMode()) {
             <svg
               class="h-4 w-4 transition-all duration-200"
               viewBox="0 0 24 24"
@@ -343,7 +327,6 @@ class ThemeServiceImpl {
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
             </svg>
           } @else {
-            <!-- Light Mode Icon -->
             <svg
               class="h-4 w-4 transition-all duration-200"
               viewBox="0 0 24 24"
@@ -354,17 +337,16 @@ class ThemeServiceImpl {
               stroke-linejoin="round"
               aria-hidden="true">
               <circle cx="12" cy="12" r="5"/>
-              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              <path
+                d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
             </svg>
           }
 
-          <!-- System Theme Indicator -->
-          @if (currentTheme() === 'system') {
+          @if (themeService.currentTheme() === 'system') {
             <div class="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
           }
         </div>
 
-        <!-- Optional Label -->
         @if (showLabel) {
           <span class="ml-2 text-sm font-medium">
             {{ themeLabel() }}
@@ -375,67 +357,33 @@ class ThemeServiceImpl {
   `,
 })
 export class ThemeSwitcher {
-  private themeService = inject(ThemeService);
+  // Inject the theme service directly
+  protected themeService = inject(ThemeService);
 
   /**
    * Visual variant of the theme switcher
    */
-  @Input()
-  set variant(value: ThemeSwitcherVariant['variant']) {
-    this._variant.set(value);
-  }
-  get variant() {
-    return this._variant();
-  }
-  private _variant = signal<ThemeSwitcherVariant['variant']>('default');
+  @Input() variant: ThemeSwitcherVariant['variant'] = 'default';
 
   /**
    * Size variant of the theme switcher
    */
-  @Input()
-  set size(value: ThemeSwitcherVariant['size']) {
-    this._size.set(value);
-  }
-  get size() {
-    return this._size();
-  }
-  private _size = signal<ThemeSwitcherVariant['size']>('default');
+  @Input() size: ThemeSwitcherVariant['size'] = 'default';
 
   /**
    * Whether to show the theme label
    */
-  @Input()
-  set showLabel(value: boolean) {
-    this._showLabel.set(value);
-  }
-  get showLabel() {
-    return this._showLabel();
-  }
-  private _showLabel = signal(false);
+  @Input() showLabel = false;
 
   /**
    * Switching mode: 'toggle' (light/dark), 'cycle' (light/dark/system), or 'slider' (3-button layout)
    */
-  @Input()
-  set mode(value: 'toggle' | 'cycle' | 'slider') {
-    this._mode.set(value);
-  }
-  get mode() {
-    return this._mode();
-  }
-  private _mode = signal<'toggle' | 'cycle' | 'slider'>('toggle');
+  @Input() mode: 'toggle' | 'cycle' | 'slider' = 'toggle';
 
   /**
-   * CSS classes to apply to the theme switcher
+   * CSS classes to apply to the theme switcher container (if mode is slider) or button (if mode is toggle/cycle)
    */
-  @Input()
-  set class(value: string) {
-    this._class.set(value);
-  }
-  get class() {
-    return this._class();
-  }
-  private _class = signal('');
+  @Input() class = '';
 
   /**
    * Event emitted when theme changes
@@ -453,40 +401,28 @@ export class ThemeSwitcher {
   @Output() blurred = new EventEmitter<void>();
 
   /**
-   * Current theme from service
-   */
-  readonly currentTheme = this.themeService.currentTheme;
-
-  /**
-   * Is dark mode active
-   */
-  readonly isDarkMode = this.themeService.isDarkMode;
-
-  /**
    * Check if a specific theme is currently active
    */
   isThemeActive(theme: Theme): string {
-    const isActive = this.currentTheme() === theme;
-
-    return isActive ? 'true' : 'false';
+    return this.themeService.currentTheme() === theme ? 'true' : 'false';
   }
 
   /**
    * Get CSS classes for theme button based on active state
    */
   getThemeButtonClasses(theme: Theme): string {
-    const isActive = this.currentTheme() === theme;
+    const isActive = this.themeService.currentTheme() === theme;
 
-    // Base classes for button behavior and styling
     const baseClasses = [
       'inline-flex items-center justify-center',
-      'h-8 w-8 rounded-md',
+      // Apply size here using cva
+      themeSwitcherVariants({ size: this.size }),
       'transition-all duration-200',
       'border border-transparent',
-      'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50',
       'cursor-pointer'
-    ].join(' ');
+    ];
 
     let activeClasses = '';
     let inactiveClasses = 'text-muted-foreground hover:text-foreground hover:bg-accent/50';
@@ -504,37 +440,38 @@ export class ThemeSwitcher {
         break;
     }
 
-    const classes = cn(baseClasses, isActive ? activeClasses : inactiveClasses);
-
-
-
-    return classes;
+    return cn(baseClasses, isActive ? activeClasses : inactiveClasses);
   }
 
   /**
-   * Computed CSS classes
+   * Computed CSS classes for the main switcher element (used for toggle/cycle mode)
    */
   themeSwitcherClasses = computed(() => {
     return cn(
       themeSwitcherVariants({
-        variant: this._variant(),
-        size: this._size(),
+        variant: this.variant,
+        size: this.size,
       }),
-      this._class()
+      this.class
     );
   });
 
   /**
-   * CSS utility function for class merging (exposed for template use)
+   * Get CSS classes for the slider container.
+   * This ensures the outer container also respects the 'class' input.
    */
-  cn = cn;
+  getSliderContainerClasses(): string {
+    const baseSliderClasses = [
+      'flex items-center bg-background/50 backdrop-blur-sm rounded-lg p-1 border border-input shadow-sm'
+    ];
+    return cn(baseSliderClasses, this.class);
+  }
 
   /**
    * Convert theme switcher variant to button variant
    */
   buttonVariant = computed(() => {
-    const variant = this._variant();
-    switch (variant) {
+    switch (this.variant) {
       case 'default':
         return 'outline';
       case 'outline':
@@ -550,8 +487,8 @@ export class ThemeSwitcher {
    * Computed aria-label for accessibility
    */
   ariaLabel = computed(() => {
-    const theme = this.currentTheme();
-    const isDark = this.isDarkMode();
+    const theme = this.themeService.currentTheme();
+    const isDark = this.themeService.isDarkMode();
 
     if (theme === 'system') {
       return `Current theme: System (${isDark ? 'Dark' : 'Light'}). Click to ${this.mode === 'cycle' ? 'cycle themes' : 'toggle theme'}`;
@@ -561,11 +498,11 @@ export class ThemeSwitcher {
   });
 
   /**
-   * Computed theme label
+   * Computed theme label for display
    */
   themeLabel = computed(() => {
-    const theme = this.currentTheme();
-    const isDark = this.isDarkMode();
+    const theme = this.themeService.currentTheme();
+    const isDark = this.themeService.isDarkMode();
 
     if (theme === 'system') {
       return `System (${isDark ? 'Dark' : 'Light'})`;
@@ -575,10 +512,10 @@ export class ThemeSwitcher {
   });
 
   /**
-   * Handle click event
+   * Handle click event for toggle/cycle modes
    */
   handleClick(): void {
-    const oldTheme = this.currentTheme();
+    const oldTheme = this.themeService.currentTheme();
 
     if (this.mode === 'cycle') {
       this.themeService.cycleTheme();
@@ -586,7 +523,7 @@ export class ThemeSwitcher {
       this.themeService.toggleTheme();
     }
 
-    const newTheme = this.currentTheme();
+    const newTheme = this.themeService.currentTheme();
     if (oldTheme !== newTheme) {
       this.themeChange.emit(newTheme);
     }
@@ -596,24 +533,14 @@ export class ThemeSwitcher {
    * Handle theme selection for slider mode
    */
   selectTheme(theme: Theme): void {
-
-
-    const oldTheme = this.currentTheme();
-
-    // Set the theme
+    const oldTheme = this.themeService.currentTheme();
     this.themeService.setTheme(theme);
 
-    // Force a re-check after a small delay to ensure signals update
-    setTimeout(() => {
-      const newTheme = this.currentTheme();
-
-
-      if (oldTheme !== newTheme) {
-        this.themeChange.emit(newTheme);
-      }
-
-
-    }, 0);
+    // Check if the theme actually changed after setting
+    const newTheme = this.themeService.currentTheme();
+    if (oldTheme !== newTheme) {
+      this.themeChange.emit(newTheme);
+    }
   }
 
   /**
@@ -642,14 +569,14 @@ export class ThemeSwitcher {
    * Get current theme
    */
   getTheme(): Theme {
-    return this.currentTheme();
+    return this.themeService.currentTheme();
   }
 
   /**
    * Check if dark mode is active
    */
   isDark(): boolean {
-    return this.isDarkMode();
+    return this.themeService.isDarkMode();
   }
 }
 

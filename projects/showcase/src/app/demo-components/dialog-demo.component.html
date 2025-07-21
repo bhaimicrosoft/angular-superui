@@ -1,0 +1,641 @@
+<!-- 🎨 Stunning Dialog Demo - Pure Tailwind CSS -->
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+
+  <!-- Hero Section -->
+  <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-800 dark:via-purple-800 dark:to-indigo-800">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 bg-black opacity-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 animate-pulse"></div>
+
+    <!-- Floating Elements -->
+    <div class="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full animate-bounce delay-75"></div>
+    <div class="absolute top-40 right-32 w-24 h-24 bg-white/10 rounded-full animate-bounce delay-150"></div>
+    <div class="absolute bottom-32 left-1/3 w-20 h-20 bg-white/10 rounded-full animate-bounce delay-300"></div>
+
+    <div class="relative z-10 px-6 py-20 sm:py-32">
+      <div class="mx-auto max-w-4xl text-center">
+        <!-- Badge -->
+        <div class="mb-8 inline-flex items-center rounded-full bg-white/10 px-6 py-2 text-sm font-semibold text-white backdrop-blur-sm">
+          <span class="mr-2 h-2 w-2 bg-green-400 rounded-full animate-pulse"></span>
+          Angular SuperUI Dialog System
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight">
+          Beautiful
+          <span class="block bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent pb-8">
+            Dialog Components
+          </span>
+        </h1>
+
+        <!-- Description -->
+        <p class="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+          Create stunning modal dialogs with perfect accessibility, smooth animations, and modern design patterns.
+        </p>
+
+        <!-- Hero CTA -->
+        <DialogRoot dialogId="hero-dialog">
+          <DialogTrigger
+            dialogId="hero-dialog"
+            className="inline-flex items-center px-8 py-4 bg-white text-purple-600 font-bold rounded-2xl hover:bg-gray-50 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-white/25">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Explore Dialog Magic
+          </DialogTrigger>
+
+          <DialogContent dialogId="hero-dialog" size="lg" className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                🎉 Welcome to Dialog Heaven!
+              </DialogTitle>
+              <DialogDescription className="text-muted-foreground text-lg">
+                Discover the power of our dialog system with beautiful animations, perfect accessibility, and seamless user experience.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div class="pb-8">
+              <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800">
+                    <div class="flex items-center mb-2">
+                      <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4z" clip-rule="evenodd"/>
+                        </svg>
+                      </div>
+                      <h4 class="font-semibold text-blue-900 dark:text-blue-100">Accessible</h4>
+                    </div>
+                    <p class="text-sm text-blue-700 dark:text-blue-300">Full ARIA support with keyboard navigation</p>
+                  </div>
+
+                  <div class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl border border-purple-200 dark:border-purple-800">
+                    <div class="flex items-center mb-2">
+                      <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                        </svg>
+                      </div>
+                      <h4 class="font-semibold text-purple-900 dark:text-purple-100">Fast</h4>
+                    </div>
+                    <p class="text-sm text-purple-700 dark:text-purple-300">Optimized performance with smooth animations</p>
+                  </div>
+                </div>
+
+                <div class="p-6 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl border border-emerald-200 dark:border-emerald-800">
+                  <div class="text-center">
+                    <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <h4 class="font-bold text-emerald-900 dark:text-emerald-100 mb-2">Production Ready</h4>
+                    <p class="text-emerald-700 dark:text-emerald-300">Built with Angular signals, TypeScript, and modern best practices</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <DialogFooter>
+              <DialogClose
+                dialogId="hero-dialog"
+                className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                <span class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 cursor-pointer">
+                  Let's Build Something Amazing!
+                </span>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </DialogRoot>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-6">
+          Dialog
+          <span class="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+            Showcase
+          </span>
+        </h2>
+        <p class="text-xl text-muted-foreground max-w-3xl mx-auto pb-8">
+          Explore different dialog patterns and use cases with beautiful examples and interactive demonstrations.
+        </p>
+      </div>
+
+      <!-- Dialog Examples Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+
+        <!-- Basic Dialog -->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
+          <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Basic Dialog</h3>
+          <p class="text-muted-foreground mb-6">Simple information dialog with clean design and smooth animations.</p>
+
+          <DialogRoot dialogId="basic-dialog">
+            <DialogTrigger
+              dialogId="basic-dialog"
+              className="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200">
+              Open Basic Dialog
+            </DialogTrigger>
+
+            <DialogContent dialogId="basic-dialog" size="md" className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                  <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                  System Information
+                </DialogTitle>
+                <DialogDescription className="text-muted-foreground">
+                  Here's some important information about your system status and current operations.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div class="pb-8">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                    <div class="flex items-center">
+                      <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p class="font-semibold text-green-900 dark:text-green-100">System Status</p>
+                        <p class="text-sm text-green-700 dark:text-green-300">All systems operational</p>
+                      </div>
+                    </div>
+                    <span class="text-green-600 font-bold">100%</span>
+                  </div>
+
+                  <div class="flex items-center justify-between p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                    <div class="flex items-center">
+                      <div class="w-8 h-8 bg-yellow-600 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <p class="font-semibold text-yellow-900 dark:text-yellow-100">Storage Usage</p>
+                        <p class="text-sm text-yellow-700 dark:text-yellow-300">Approaching limit</p>
+                      </div>
+                    </div>
+                    <span class="text-yellow-600 font-bold">85%</span>
+                  </div>
+                </div>
+              </div>
+
+              <DialogFooter>
+                <DialogClose
+                  dialogId="basic-dialog"
+                  className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                  <span class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 cursor-pointer">
+                    Got it!
+                  </span>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </DialogRoot>
+        </div>
+
+        <!-- Form Dialog -->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-600">
+          <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Form Dialog</h3>
+          <p class="text-muted-foreground mb-6">Interactive form with validation and beautiful input styling.</p>
+
+          <DialogRoot dialogId="form-dialog">
+            <DialogTrigger
+              dialogId="form-dialog"
+              className="w-full px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-200">
+              Create Account
+            </DialogTrigger>
+
+            <DialogContent dialogId="form-dialog" size="lg" className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                  <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6z"/>
+                    </svg>
+                  </div>
+                  Create New Account
+                </DialogTitle>
+                <DialogDescription className="text-muted-foreground">
+                  Fill out the form below to create your new account. All fields are required.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div class="pb-8">
+                <form class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label class="block text-sm font-semibold text-foreground mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        [(ngModel)]="formData.name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground placeholder:text-muted-foreground">
+                    </div>
+
+                    <div>
+                      <label class="block text-sm font-semibold text-foreground mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        [(ngModel)]="formData.email"
+                        name="email"
+                        placeholder="your@email.com"
+                        class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground placeholder:text-muted-foreground">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-semibold text-foreground mb-2">
+                      Role
+                    </label>
+                    <select
+                      [(ngModel)]="formData.role"
+                      name="role"
+                      class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground">
+                      <option value="">Select a role</option>
+                      <option value="admin">Administrator</option>
+                      <option value="user">User</option>
+                      <option value="moderator">Moderator</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-semibold text-foreground mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      [(ngModel)]="formData.message"
+                      name="message"
+                      rows="4"
+                      placeholder="Tell us about yourself..."
+                      class="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors bg-background text-foreground placeholder:text-muted-foreground resize-none"></textarea>
+                  </div>
+                </form>
+              </div>
+
+              <DialogFooter>
+                <DialogClose
+                  dialogId="form-dialog"
+                  className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                  <span class="inline-flex items-center px-6 py-3 border border-input text-foreground font-semibold rounded-lg hover:bg-muted transition-colors duration-200 cursor-pointer">
+                    Cancel
+                  </span>
+                </DialogClose>
+                <button
+                  (click)="handleFormSubmit('form-dialog')"
+                  class="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-200">
+                  Create Account
+                </button>
+              </DialogFooter>
+            </DialogContent>
+          </DialogRoot>
+        </div>
+
+        <!-- Confirmation Dialog -->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 hover:border-red-300 dark:hover:border-red-600">
+          <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Confirmation Dialog</h3>
+          <p class="text-muted-foreground mb-6">Get user confirmation before performing destructive actions.</p>
+
+          <DialogRoot dialogId="confirm-dialog">
+            <DialogTrigger
+              dialogId="confirm-dialog"
+              className="w-full px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors duration-200">
+              Delete Account
+            </DialogTrigger>
+
+            <DialogContent dialogId="confirm-dialog" size="md" className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                  <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                    </svg>
+                  </div>
+                  Confirm Deletion
+                </DialogTitle>
+                <DialogDescription className="text-muted-foreground">
+                  This action cannot be undone. This will permanently delete your account and remove all your data.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div class="pb-8">
+                <div class="p-6 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                  <div class="flex">
+                    <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                      <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-red-900 dark:text-red-100 mb-2">⚠️ Warning</h4>
+                      <p class="text-sm text-red-700 dark:text-red-300 mb-4">
+                        By proceeding, you will lose access to:
+                      </p>
+                      <ul class="text-sm text-red-700 dark:text-red-300 space-y-1 list-disc list-inside">
+                        <li>All your saved projects and files</li>
+                        <li>Account settings and preferences</li>
+                        <li>Subscription benefits and features</li>
+                        <li>Chat history and conversations</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <DialogFooter>
+                <DialogClose
+                  dialogId="confirm-dialog"
+                  className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                  <span class="inline-flex items-center px-6 py-3 border border-input text-foreground font-semibold rounded-lg hover:bg-muted transition-colors duration-200 cursor-pointer">
+                    Cancel
+                  </span>
+                </DialogClose>
+                <button
+                  (click)="handleConfirmDelete('confirm-dialog')"
+                  class="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors duration-200">
+                  Yes, Delete Everything
+                </button>
+              </DialogFooter>
+            </DialogContent>
+          </DialogRoot>
+        </div>
+
+      </div>
+
+      <!-- Advanced Examples Section -->
+      <div class="text-center mb-16">
+        <h2 class="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-6">
+          Advanced
+          <span class="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+            Examples
+          </span>
+        </h2>
+        <p class="text-xl text-muted-foreground max-w-3xl mx-auto pb-8">
+          Explore complex dialog patterns including notifications, nested dialogs, and custom layouts.
+        </p>
+      </div>
+
+      <!-- Advanced Examples Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <!-- Notifications Dialog -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-2xl flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM15 17H9a6 6 0 01-6-6V7a6 6 0 016-6h6a6 6 0 016 6v4.5"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Notifications Center</h3>
+              <p class="text-muted-foreground">Interactive notification management with different types and actions.</p>
+            </div>
+          </div>
+
+          <DialogRoot dialogId="notifications-dialog">
+            <DialogTrigger
+              dialogId="notifications-dialog"
+              className="w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200">
+              View Notifications ({{ notifications.length }})
+            </DialogTrigger>
+
+            <DialogContent dialogId="notifications-dialog" size="lg" className="max-w-3xl">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-bold text-foreground flex items-center gap-3">
+                  <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                    </svg>
+                  </div>
+                  Notifications
+                  <span class="ml-auto text-sm font-normal bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full">
+                    {{ notifications.length }} new
+                  </span>
+                </DialogTitle>
+                <DialogDescription className="text-muted-foreground">
+                  Manage your notifications and stay updated with the latest activities.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div class="pb-8">
+                <div class="space-y-4 max-h-96 overflow-y-auto">
+                  <div *ngFor="let notification of notifications" class="flex items-start p-4 rounded-lg border transition-colors hover:bg-muted/50"
+                       [ngClass]="{
+                         'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20': notification.type === 'success',
+                         'border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-900/20': notification.type === 'warning',
+                         'border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/20': notification.type === 'info',
+                         'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20': notification.type === 'error'
+                       }">
+                    <div class="flex-shrink-0 mr-4">
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center"
+                           [ngClass]="{
+                             'bg-green-600': notification.type === 'success',
+                             'bg-yellow-600': notification.type === 'warning',
+                             'bg-blue-600': notification.type === 'info',
+                             'bg-red-600': notification.type === 'error'
+                           }">
+                        <!-- Success Icon -->
+                        <svg *ngIf="notification.type === 'success'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <!-- Warning Icon -->
+                        <svg *ngIf="notification.type === 'warning'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <!-- Info Icon -->
+                        <svg *ngIf="notification.type === 'info'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                        <!-- Error Icon -->
+                        <svg *ngIf="notification.type === 'error'" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-semibold text-foreground">{{ notification.title }}</h4>
+                        <span class="text-xs text-muted-foreground">{{ notification.time }}</span>
+                      </div>
+                      <p class="text-sm text-muted-foreground mb-3">{{ notification.message }}</p>
+                      <div class="flex gap-2">
+                        <button class="text-xs px-3 py-1 rounded-md font-medium transition-colors"
+                                [ngClass]="{
+                                  'bg-green-600 text-white hover:bg-green-700': notification.type === 'success',
+                                  'bg-yellow-600 text-white hover:bg-yellow-700': notification.type === 'warning',
+                                  'bg-blue-600 text-white hover:bg-blue-700': notification.type === 'info',
+                                  'bg-red-600 text-white hover:bg-red-700': notification.type === 'error'
+                                }">
+                          View Details
+                        </button>
+                        <button class="text-xs px-3 py-1 border border-input rounded-md font-medium text-muted-foreground hover:bg-muted transition-colors">
+                          Dismiss
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <DialogFooter>
+                <button class="px-6 py-3 border border-input text-foreground font-semibold rounded-lg hover:bg-muted transition-colors duration-200">
+                  Mark All as Read
+                </button>
+                <DialogClose
+                  dialogId="notifications-dialog"
+                  className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                  <span class="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200 cursor-pointer">
+                    Close
+                  </span>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </DialogRoot>
+        </div>
+
+        <!-- Size Variations -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-2xl flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Dialog Sizes</h3>
+              <p class="text-muted-foreground">Different dialog sizes for various content types and use cases.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Small Dialog -->
+            <DialogRoot dialogId="small-dialog">
+              <DialogTrigger
+                dialogId="small-dialog"
+                className="w-full px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 text-sm">
+                Small Dialog
+              </DialogTrigger>
+
+              <DialogContent dialogId="small-dialog" size="sm" className="max-w-sm">
+                <DialogHeader>
+                  <DialogTitle className="text-lg font-bold text-foreground">Small Dialog</DialogTitle>
+                  <DialogDescription className="text-muted-foreground">
+                    Perfect for simple confirmations and alerts.
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div class="pb-8">
+                  <p class="text-sm text-muted-foreground">
+                    This is a small dialog example. It's great for quick messages and simple interactions.
+                  </p>
+                </div>
+
+                <DialogFooter>
+                  <DialogClose
+                    dialogId="small-dialog"
+                    className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                    <span class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 cursor-pointer">
+                      OK
+                    </span>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </DialogRoot>
+
+            <!-- Large Dialog -->
+            <DialogRoot dialogId="large-dialog">
+              <DialogTrigger
+                dialogId="large-dialog"
+                className="w-full px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 text-sm">
+                Large Dialog
+              </DialogTrigger>
+
+              <DialogContent dialogId="large-dialog" size="2xl" className="max-w-4xl">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold text-foreground">Large Content Dialog</DialogTitle>
+                  <DialogDescription className="text-muted-foreground">
+                    Spacious layout for complex content, forms, and detailed information.
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div class="pb-8">
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                      <h4 class="font-bold text-blue-900 dark:text-blue-100 mb-2">Analytics</h4>
+                      <p class="text-3xl font-black text-blue-700 dark:text-blue-300 mb-1">12,847</p>
+                      <p class="text-sm text-blue-600 dark:text-blue-400">Total Users</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800">
+                      <h4 class="font-bold text-green-900 dark:text-green-100 mb-2">Revenue</h4>
+                      <p class="text-3xl font-black text-green-700 dark:text-green-300 mb-1">$45,230</p>
+                      <p class="text-sm text-green-600 dark:text-green-400">This Month</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                      <h4 class="font-bold text-purple-900 dark:text-purple-100 mb-2">Growth</h4>
+                      <p class="text-3xl font-black text-purple-700 dark:text-purple-300 mb-1">+23%</p>
+                      <p class="text-sm text-purple-600 dark:text-purple-400">vs Last Month</p>
+                    </div>
+                  </div>
+
+                  <div class="mt-6 p-4 bg-muted rounded-xl">
+                    <h5 class="font-semibold text-foreground mb-2">Recent Activity</h5>
+                    <div class="space-y-2 text-sm text-muted-foreground">
+                      <p>• New user registration: john.doe&#64;example.com</p>
+                      <p>• Premium subscription activated: premium_user_001</p>
+                      <p>• System backup completed successfully</p>
+                      <p>• 15 support tickets resolved today</p>
+                    </div>
+                  </div>
+                </div>
+
+                <DialogFooter>
+                  <DialogClose
+                    dialogId="large-dialog"
+                    className="static w-auto h-auto p-0 opacity-100 ring-offset-0 focus:ring-0 focus:ring-offset-0">
+                    <span class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 cursor-pointer">
+                      Close Dashboard
+                    </span>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </DialogRoot>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
