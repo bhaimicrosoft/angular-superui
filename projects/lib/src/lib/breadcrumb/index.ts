@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, computed, OnInit, OnChanges, SimpleChanges, HostBinding} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, HostBinding} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { cva, type VariantProps } from 'class-variance-authority';
@@ -32,19 +32,9 @@ const breadcrumbLinkVariants = cva(
   [
     'transition-colors hover:text-foreground focus-visible:outline-none',
     'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-    'rounded-sm px-1 py-0.5 -mx-1 -my-0.5'
-  ],
-  {
-    variants: {
-      asChild: {
-        true: '', // No default styles when acting as a child, user applies them
-        false: 'cursor-pointer'
-      }
-    },
-    defaultVariants: {
-      asChild: false
-    }
-  }
+    'rounded-sm px-1 py-0.5 -mx-1 -my-0.5',
+    'cursor-pointer' // Always apply cursor-pointer
+  ]
 );
 
 /**
@@ -190,80 +180,69 @@ export class BreadcrumbItem {
   selector: 'a[BreadcrumbLink]',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    @if (asChild) {
-      <ng-content></ng-content>
-    } @else {
-      <a
-        [attr.href]="href"
-        [attr.target]="target"
-        [attr.rel]="rel"
-        [attr.aria-label]="accessibility.ariaLabel"
-        [attr.aria-describedby]="accessibility.ariaDescribedBy"
-        [class]="hostClasses"
-        (click)="handleClick($event)"
-        (keydown)="handleKeyDown($event)">
-        <ng-content></ng-content>
-      </a>
-    }
-  `
+  template: `<ng-content></ng-content>` // Content is projected directly into the host <a>
 })
-export class BreadcrumbLink implements OnInit {
+export class BreadcrumbLink implements OnInit, OnChanges {
   @Input() href?: string;
   @Input() target?: '_blank' | '_self' | '_parent' | '_top';
   @Input() rel?: string;
-  @Input() asChild = false;
-  @Input() class = '';
+  @Input() customCss = '';
   @Input() accessibility: { ariaLabel?: string; ariaDescribedBy?: string } = {};
 
   @Output() linkClick = new EventEmitter<MouseEvent>();
   @Output() linkKeyDown = new EventEmitter<KeyboardEvent>();
 
-  // Only apply classes to the host element if not asChild, or if asChild is true, it means
-  // the user will apply the classes to their projected element
   @HostBinding('class')
   get hostClasses() {
-    return cn(breadcrumbLinkVariants({ asChild: this.asChild }), this.class);
+    return cn(breadcrumbLinkVariants(), this.customCss); // No asChild variant needed
   }
 
-  // Remove direct host bindings for href, target, rel.
-  // These will be applied in the template when asChild is false.
-  // @HostBinding('attr.href') get hrefAttr() { return this.href; }
-  // @HostBinding('attr.target') get targetAttr() { return this.target; }
-  // @HostBinding('attr.rel') get relAttr() { return this.rel; }
+  @HostBinding('attr.href')
+  get hrefAttr() {
+    return this.href;
+  }
 
-  // Keep these for consistency, but if asChild is true, the user needs to apply them to their element.
-  // The host element `<a>` will only render if `asChild` is false.
+  @HostBinding('attr.target')
+  get targetAttr() {
+    return this.target;
+  }
+
+  @HostBinding('attr.rel')
+  get relAttr() {
+    return this.rel;
+  }
+
   @HostBinding('attr.aria-label')
   get ariaLabel() {
-    return this.asChild ? undefined : this.accessibility.ariaLabel; // Only apply to host if not asChild
+    return this.accessibility.ariaLabel;
   }
 
   @HostBinding('attr.aria-describedby')
   get ariaDescribedBy() {
-    return this.asChild ? undefined : this.accessibility.ariaDescribedBy; // Only apply to host if not asChild
+    return this.accessibility.ariaDescribedBy;
   }
 
   ngOnInit() {
-
+    console.log('BreadcrumbLink Init - href:', this.href);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['href']) {
+      console.log('BreadcrumbLink ngOnChanges - href:', changes['href'].currentValue);
+    }
+  }
 
-
+  @HostBinding('click')
   protected handleClick(event: MouseEvent): void {
-    if (!this.asChild) { // Only emit if the component itself handles the click
-      this.linkClick.emit(event);
-    }
+    this.linkClick.emit(event);
   }
 
+  @HostBinding('keydown')
   protected handleKeyDown(event: KeyboardEvent): void {
-    if (!this.asChild) { // Only emit if the component itself handles the keydown
-      this.linkKeyDown.emit(event);
-    }
+    this.linkKeyDown.emit(event);
   }
 
   protected cn = cn;
-  protected breadcrumbLinkVariants = breadcrumbLinkVariants; // Expose for template
 }
 
 /**
@@ -273,25 +252,10 @@ export class BreadcrumbLink implements OnInit {
   selector: 'a[BreadcrumbRouterLink]',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  template: `
-    @if (asChild) {
-      <ng-content></ng-content>
-    } @else {
-      <a
-        [routerLink]="routerLink"
-        [attr.aria-label]="accessibility.ariaLabel"
-        [attr.aria-describedby]="accessibility.ariaDescribedBy"
-        [class]="hostClasses"
-        (click)="handleClick($event)"
-        (keydown)="handleKeyDown($event)">
-        <ng-content></ng-content>
-      </a>
-    }
-  `
+  template: `<ng-content></ng-content>` // Content is projected directly into the host <a>
 })
-export class BreadcrumbRouterLink {
+export class BreadcrumbRouterLink implements OnInit, OnChanges {
   @Input() routerLink?: string | string[];
-  @Input() asChild = false;
   @Input() class = '';
   @Input() accessibility: { ariaLabel?: string; ariaDescribedBy?: string } = {};
 
@@ -300,41 +264,45 @@ export class BreadcrumbRouterLink {
 
   @HostBinding('class')
   get hostClasses() {
-    return cn(breadcrumbLinkVariants({ asChild: this.asChild }), this.class);
+    return cn(breadcrumbLinkVariants(), this.class); // No asChild variant needed
   }
 
-  // Remove direct host binding for routerLink.
-  // It will be applied in the template when asChild is false.
-  // @HostBinding('routerLink') get routerLinkAttr() { return this.routerLink; }
+  @HostBinding('routerLink')
+  get routerLinkAttr() {
+    return this.routerLink;
+  }
 
   @HostBinding('attr.aria-label')
   get ariaLabel() {
-    return this.asChild ? undefined : this.accessibility.ariaLabel;
+    return this.accessibility.ariaLabel;
   }
 
   @HostBinding('attr.aria-describedby')
   get ariaDescribedBy() {
-    return this.asChild ? undefined : this.accessibility.ariaDescribedBy;
+    return this.accessibility.ariaDescribedBy;
   }
 
+  ngOnInit() {
+    console.log('BreadcrumbRouterLink Init - routerLink:', this.routerLink);
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['routerLink']) {
+      console.log('BreadcrumbRouterLink ngOnChanges - routerLink:', changes['routerLink'].currentValue);
+    }
+  }
 
-
-
+  @HostBinding('click')
   protected handleClick(event: MouseEvent): void {
-    if (!this.asChild) {
-      this.linkClick.emit(event);
-    }
+    this.linkClick.emit(event);
   }
 
+  @HostBinding('keydown')
   protected handleKeyDown(event: KeyboardEvent): void {
-    if (!this.asChild) {
-      this.linkKeyDown.emit(event);
-    }
+    this.linkKeyDown.emit(event);
   }
 
   protected cn = cn;
-  protected breadcrumbLinkVariants = breadcrumbLinkVariants; // Expose for template
 }
 
 /**
@@ -344,26 +312,9 @@ export class BreadcrumbRouterLink {
   selector: 'span[BreadcrumbPage]',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    @if (asChild) {
-      <ng-content></ng-content>
-    } @else {
-      <span
-        [attr.aria-label]="accessibility.ariaLabel"
-        [attr.aria-describedby]="accessibility.ariaDescribedBy"
-        [attr.tabindex]="tabIndex"
-        [attr.role]="role"
-        [attr.aria-current]="ariaCurrent"
-        [class]="hostClasses"
-        (click)="handleClick($event)"
-        (keydown)="handleKeyDown($event)">
-        <ng-content></ng-content>
-      </span>
-    }
-  `
+  template: `<ng-content></ng-content>` // Content is projected directly into the host <span>
 })
 export class BreadcrumbPage {
-  @Input() asChild = false;
   @Input() class = '';
   @Input() accessibility: { ariaLabel?: string; ariaDescribedBy?: string } = {};
 
@@ -377,43 +328,45 @@ export class BreadcrumbPage {
 
   @HostBinding('attr.aria-label')
   get ariaLabel() {
-    return this.asChild ? undefined : this.accessibility.ariaLabel;
+    return this.accessibility.ariaLabel;
   }
 
   @HostBinding('attr.aria-describedby')
   get ariaDescribedBy() {
-    return this.asChild ? undefined : this.accessibility.ariaDescribedBy;
+    return this.accessibility.ariaDescribedBy;
   }
 
   @HostBinding('attr.tabindex')
   get tabIndex() {
-    return this.asChild ? undefined : '0';
+    // Current page is often non-interactive but focusable for accessibility if needed
+    // Setting to '0' allows it to be focusable. Adjust if it should never be focusable.
+    return '0';
   }
 
   @HostBinding('attr.role')
   get role() {
-    return this.asChild ? undefined : 'button';
+    // Current page can have a role of 'link' if it's conceptually a link to itself
+    // or 'text'/'presentation' if purely display. 'button' provides interactivity.
+    // 'link' is often appropriate for a current breadcrumb page.
+    return 'link';
   }
 
   @HostBinding('attr.aria-current')
   get ariaCurrent() {
-    return 'page'; // Always 'page' for the host element when it renders
+    return 'page';
   }
 
+  @HostBinding('click')
   protected handleClick(event: MouseEvent): void {
-    if (!this.asChild) {
-      this.linkClick.emit(event);
-    }
+    this.linkClick.emit(event);
   }
 
+  @HostBinding('keydown')
   protected handleKeyDown(event: KeyboardEvent): void {
-    if (!this.asChild) {
-      this.linkKeyDown.emit(event);
-    }
+    this.linkKeyDown.emit(event);
   }
 
   protected cn = cn;
-  protected breadcrumbPageVariants = breadcrumbPageVariants; // Expose for template
 }
 
 /**

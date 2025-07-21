@@ -194,7 +194,7 @@
           <nav Breadcrumb>
             <ol BreadcrumbList>
               <li BreadcrumbItem>
-                <a BreadcrumbLink href="/" class="hover:text-indigo-600 transition-colors">Home</a>
+                <a BreadcrumbLink href="/" customCss="hover:text-indigo-600 transition-colors">Home</a>
               </li>
               <li BreadcrumbSeparator></li>
               <li BreadcrumbItem>
@@ -352,20 +352,18 @@
                   Root
                 </button>
               </li>
-              <ng-template ngFor let-segment [ngForOf]="currentPath().segments" [ngForTrackBy]="trackByName">
-                <li BreadcrumbSeparator [customSeparator]="true" class="text-emerald-400">
-                  📁
-                </li>
-                <li BreadcrumbItem>
-                  <button *ngIf="!segment.isLast" (click)="navigateToPath(segment.path)"
-                          class="hover:text-emerald-600 transition-colors">
-                    {{ segment.name }}
-                  </button>
-                  <span *ngIf="segment.isLast" BreadcrumbPage class="font-semibold text-emerald-600">
-                    {{ segment.name }}
-                  </span>
-                </li>
-              </ng-template>
+              <li *ngFor="let segment of currentPath().segments; trackBy: trackByName" BreadcrumbSeparator [customSeparator]="true" class="text-emerald-400">
+                📁
+              </li>
+              <li *ngFor="let segment of currentPath().segments; trackBy: trackByName" BreadcrumbItem>
+                <button *ngIf="!segment.isLast" (click)="navigateToPath(segment.path)"
+                        class="hover:text-emerald-600 transition-colors">
+                  {{ segment.name }}
+                </button>
+                <span *ngIf="segment.isLast" BreadcrumbPage class="font-semibold text-emerald-600">
+                  {{ segment.name }}
+                </span>
+              </li>
             </ol>
           </nav>
           <!-- File Explorer Actions -->
@@ -423,23 +421,21 @@
                   Store
                 </button>
               </li>
-              <ng-container *ngFor="let category of currentCategory().path; trackBy: trackById">
-                <li BreadcrumbSeparator [customSeparator]="true" class="text-orange-400">
-                  {{ category.separator }}
-                </li>
-                <li BreadcrumbItem>
-                  <button *ngIf="!category.isLast" (click)="navigateToCategory(category.id)"
-                          class="hover:text-orange-600 transition-colors flex items-center gap-1">
-                    <span>{{ category.icon }}</span>
-                    {{ category.name }}
-                  </button>
-                  <span *ngIf="category.isLast" BreadcrumbPage class="font-semibold text-orange-600 flex items-center gap-1">
-                    <span>{{ category.icon }}</span>
-                    {{ category.name }}
-                    <Badge class="ml-2 bg-orange-100 text-orange-800">{{ category.count }}</Badge>
-                  </span>
-                </li>
-              </ng-container>
+              <li *ngFor="let category of currentCategory().path; trackBy: trackById" BreadcrumbSeparator [customSeparator]="true" class="text-orange-400">
+                {{ category.separator }}
+              </li>
+              <li *ngFor="let category of currentCategory().path; trackBy: trackById" BreadcrumbItem>
+                <button *ngIf="!category.isLast" (click)="navigateToCategory(category.id)"
+                        class="hover:text-orange-600 transition-colors flex items-center gap-1">
+                  <span>{{ category.icon }}</span>
+                  {{ category.name }}
+                </button>
+                <span *ngIf="category.isLast" BreadcrumbPage class="font-semibold text-orange-600 flex items-center gap-1">
+                  <span>{{ category.icon }}</span>
+                  {{ category.name }}
+                  <Badge class="ml-2 bg-orange-100 text-orange-800">{{ category.count }}</Badge>
+                </span>
+              </li>
             </ol>
           </nav>
 
@@ -495,14 +491,44 @@
                 </a>
               </li>
               <li BreadcrumbSeparator></li>
-              <li BreadcrumbItem>
+
+              <!-- Collapsed state: show ellipsis -->
+              <li *ngIf="!isEllipsisExpanded()" BreadcrumbItem>
                 <span BreadcrumbEllipsis [customEllipsis]="true"
+                      (click)="expandEllipsis()"
                       class="text-cyan-500 cursor-pointer hover:text-cyan-700 transition-colors"
                       title="Click to expand: Level 2 > Level 3 > Level 4">
                   ⋯
                 </span>
               </li>
-              <li BreadcrumbSeparator></li>
+              <li *ngIf="!isEllipsisExpanded()" BreadcrumbSeparator></li>
+
+              <!-- Expanded state: show all hidden segments -->
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbItem>
+                <a BreadcrumbRouterLink routerLink="/level2"
+                   class="hover:text-cyan-600 transition-colors">Level 2</a>
+              </li>
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbSeparator></li>
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbItem>
+                <a BreadcrumbRouterLink routerLink="/level2/level3"
+                   class="hover:text-cyan-600 transition-colors">Level 3</a>
+              </li>
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbSeparator></li>
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbItem>
+                <a BreadcrumbRouterLink routerLink="/level2/level3/level4"
+                   class="hover:text-cyan-600 transition-colors">Level 4</a>
+              </li>
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbSeparator></li>
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbItem>
+                <span BreadcrumbEllipsis [customEllipsis]="true"
+                      (click)="expandEllipsis()"
+                      class="text-cyan-500 cursor-pointer hover:text-cyan-700 transition-colors"
+                      title="Click to collapse">
+                  ⋯
+                </span>
+              </li>
+              <li *ngIf="isEllipsisExpanded()" BreadcrumbSeparator></li>
+
               <li BreadcrumbItem>
                 <a BreadcrumbRouterLink [routerLink]="['/very', 'deep', 'nested', 'folder']"
                    class="hover:text-cyan-600 transition-colors">Deep Folder</a>
@@ -517,7 +543,7 @@
           <div class="mt-4 p-4 bg-cyan-50 dark:bg-cyan-900/20 rounded-lg border border-cyan-200 dark:border-cyan-800">
             <p class="text-sm text-cyan-700 dark:text-cyan-300">
               💡 <strong>Pro Tip:</strong> Long breadcrumb paths are automatically collapsed using the BreadcrumbEllipsis component.
-              Click the ellipsis to expand the full path!
+              Click the ellipsis (⋯) above to expand and show the hidden breadcrumb segments!
             </p>
           </div>
         </div>

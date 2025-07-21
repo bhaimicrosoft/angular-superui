@@ -55,6 +55,9 @@ export class BreadcrumbDemoComponent {
   // E-commerce State
   currentCategory = signal<{ path: CategoryInfo[] }>({ path: [] });
 
+  // Ellipsis expansion state
+  isEllipsisExpanded = signal<boolean>(false);
+
   // File System Structure
   private fileSystem = {
     '/': { name: 'Root', children: ['documents', 'downloads', 'pictures'] },
@@ -212,14 +215,81 @@ export class BreadcrumbDemoComponent {
    * Handle ellipsis expansion
    */
   expandEllipsis(): void {
-    this.showToast('Expanding breadcrumb path...');
-    // In a real implementation, this would show the full path
+    this.isEllipsisExpanded.set(!this.isEllipsisExpanded());
+    const action = this.isEllipsisExpanded() ? 'Expanded' : 'Collapsed';
+    this.showToast(`${action} breadcrumb path`);
+  }
+
+  /**
+   * Get the complete ellipsis breadcrumb structure
+   */
+  getEllipsisBreadcrumbs(): Array<{type: 'item' | 'separator' | 'ellipsis' | 'page', content: any}> {
+    const breadcrumbs = [];
+    
+    // Home page
+    breadcrumbs.push({
+      type: 'item' as const,
+      content: { name: 'Home Page', routerLink: '/' }
+    });
+    breadcrumbs.push({ type: 'separator' as const, content: null });
+    
+    if (!this.isEllipsisExpanded()) {
+      // Show ellipsis in collapsed state
+      breadcrumbs.push({
+        type: 'ellipsis' as const,
+        content: { title: 'Click to expand: Level 2 > Level 3 > Level 4' }
+      });
+      breadcrumbs.push({ type: 'separator' as const, content: null });
+    } else {
+      // Show expanded segments
+      const segments = this.getCollapsedSegments();
+      segments.forEach(segment => {
+        breadcrumbs.push({
+          type: 'item' as const,
+          content: { name: segment.name, routerLink: segment.path }
+        });
+        breadcrumbs.push({ type: 'separator' as const, content: null });
+      });
+      
+      // Show collapse ellipsis
+      breadcrumbs.push({
+        type: 'ellipsis' as const,
+        content: { title: 'Click to collapse' }
+      });
+      breadcrumbs.push({ type: 'separator' as const, content: null });
+    }
+    
+    // Deep folder
+    breadcrumbs.push({
+      type: 'item' as const,
+      content: { name: 'Deep Folder', routerLink: ['/very', 'deep', 'nested', 'folder'] }
+    });
+    breadcrumbs.push({ type: 'separator' as const, content: null });
+    
+    // Current page
+    breadcrumbs.push({
+      type: 'page' as const,
+      content: { name: 'Current Page' }
+    });
+    
+    return breadcrumbs;
+  }
+
+  /**
+   * Get the collapsed breadcrumb segments (for ellipsis demo)
+   */
+  getCollapsedSegments(): { name: string; path: string }[] {
+    return [
+      { name: 'Level 2', path: '/level2' },
+      { name: 'Level 3', path: '/level2/level3' },
+      { name: 'Level 4', path: '/level2/level3/level4' }
+    ];
   }
 
   /**
    * TrackBy function for path segments
    */
-  trackByName(index: number, item: PathSegment): string {
+  trackByName(index: number, item: PathSegment | { name: string; path: string }): string {
     return item.name;
   }
 
@@ -228,6 +298,13 @@ export class BreadcrumbDemoComponent {
    */
   trackById(index: number, item: CategoryInfo): string {
     return item.id;
+  }
+
+  /**
+   * TrackBy function for breadcrumb types
+   */
+  trackByType(index: number, item: {type: string, content: any}): string {
+    return `${item.type}-${index}`;
   }
 
   protected readonly cn = cn;
