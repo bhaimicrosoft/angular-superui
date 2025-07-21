@@ -1,0 +1,550 @@
+<!-- Stunning Breadcrumb Demo Showcase -->
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-indigo-950 dark:to-purple-950">
+
+  <!-- Hero Section with Animated Background -->
+  <div class="relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 dark:from-black dark:via-indigo-950 dark:to-purple-950">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <!-- Gradient Overlays -->
+      <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20"></div>
+
+      <!-- Floating Navigation Orbs -->
+      <div class="absolute top-20 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute top-1/2 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div class="absolute bottom-20 left-1/3 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+
+      <!-- Breadcrumb Path Animation -->
+      <div class="absolute inset-0 opacity-20">
+        <svg class="w-full h-full" viewBox="0 0 1200 800">
+          <defs>
+            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#6366f1" stop-opacity="1" />
+              <stop offset="50%" stop-color="#8b5cf6" stop-opacity="1" />
+              <stop offset="100%" stop-color="#ec4899" stop-opacity="1" />
+            </linearGradient>
+          </defs>
+          <path d="M100,400 L300,200 L500,400 L700,250 L900,400 L1100,150"
+                stroke="url(#pathGradient)" stroke-width="3" fill="none">
+            <animate attributeName="stroke-dasharray" values="0,2000;2000,0;0,2000" dur="12s" repeatCount="indefinite"/>
+          </path>
+          <!-- Breadcrumb Dots -->
+          <circle cx="100" cy="400" r="8" fill="#6366f1">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="300" cy="200" r="8" fill="#8b5cf6">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+          </circle>
+          <circle cx="500" cy="400" r="8" fill="#ec4899">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="1s"/>
+          </circle>
+          <circle cx="700" cy="250" r="8" fill="#6366f1">
+            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="1.5s"/>
+          </circle>
+        </svg>
+      </div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-3 mb-8">
+          <div class="w-3 h-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-ping"></div>
+          <span class="text-sm font-bold text-indigo-200 uppercase tracking-widest">Angular SuperUI Navigation</span>
+          <div class="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-ping delay-300"></div>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-7xl md:text-9xl font-black mb-8 relative">
+          <span class="relative z-10 bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-transparent drop-shadow-2xl">
+            Breadcrumb
+          </span>
+          <br>
+          <span class="relative z-10 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent drop-shadow-2xl">
+            Mastery
+          </span>
+          <!-- Glowing backdrop -->
+          <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/30 to-purple-600/30 blur-3xl scale-110"></div>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-indigo-100/90 mb-12 max-w-4xl mx-auto leading-relaxed">
+          Navigate with style using <span class="text-indigo-300 font-semibold">&#64;HostBinding</span> powered breadcrumbs.
+          <br>Beautiful, accessible, and blazingly fast navigation components.
+        </p>
+
+        <!-- Interactive Preview Breadcrumb -->
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 p-8 shadow-2xl">
+            <nav Breadcrumb class="justify-center">
+              <ol BreadcrumbList>
+                <li BreadcrumbItem>
+                  <a BreadcrumbRouterLink [routerLink]="['/']" class="text-indigo-200 hover:text-white transition-all duration-300 flex items-center gap-2 text-lg">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                    </svg>
+                    Home
+                  </a>
+                </li>
+                <li BreadcrumbSeparator [customSeparator]="true" class="text-indigo-300 text-2xl">
+                  ✦
+                </li>
+                <li BreadcrumbItem>
+                  <a BreadcrumbRouterLink [routerLink]="['/components']" class="text-indigo-200 hover:text-white transition-all duration-300 flex items-center gap-2 text-lg">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
+                    </svg>
+                    Components
+                  </a>
+                </li>
+                <li BreadcrumbSeparator [customSeparator]="true" class="text-indigo-300 text-2xl">
+                  ✦
+                </li>
+                <li BreadcrumbItem>
+                  <span BreadcrumbPage class="text-white font-bold flex items-center gap-2 text-lg bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 rounded-full">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                    Breadcrumb
+                  </span>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+      <!-- Feature 1: @HostBinding Power -->
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-8 border border-indigo-200/50 dark:border-indigo-800/50 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+          <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">&#64;HostBinding Architecture</h3>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Revolutionary approach using Angular's &#64;HostBinding decorator for direct DOM manipulation,
+            eliminating wrapper elements and providing cleaner HTML output.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 2: Semantic HTML -->
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-8 border border-purple-200/50 dark:border-purple-800/50 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Semantic HTML</h3>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Uses proper semantic HTML elements: &lt;nav&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;a&gt;, and &lt;span&gt;
+            with correct ARIA attributes for perfect accessibility and SEO.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 3: Router Integration -->
+      <div class="group relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-indigo-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-3xl p-8 border border-pink-200/50 dark:border-pink-800/50 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+          <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Router Integration</h3>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+            Seamless Angular Router integration with dedicated BreadcrumbRouterLink component
+            for SPA navigation and BreadcrumbLink for external links.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breadcrumb Examples Section -->
+    <div class="space-y-16">
+
+      <!-- Classic Style Example -->
+      <div class="group">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/>
+              </svg>
+            </div>
+            Classic Breadcrumbs
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Traditional breadcrumb navigation with clean styling
+          </p>
+        </div>
+
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+          <nav Breadcrumb>
+            <ol BreadcrumbList>
+              <li BreadcrumbItem>
+                <a BreadcrumbLink href="/" class="hover:text-indigo-600 transition-colors">Home</a>
+              </li>
+              <li BreadcrumbSeparator></li>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/products']" class="hover:text-indigo-600 transition-colors">Products</a>
+              </li>
+              <li BreadcrumbSeparator></li>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/products', 'electronics']" class="hover:text-indigo-600 transition-colors">Electronics</a>
+              </li>
+              <li BreadcrumbSeparator></li>
+              <li BreadcrumbItem>
+                <span BreadcrumbPage class="font-semibold text-indigo-600">Smartphones</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Icon Style Example -->
+      <div class="group">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            </div>
+            Icon-Enhanced Breadcrumbs
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Breadcrumbs with beautiful icons for better visual hierarchy
+          </p>
+        </div>
+
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+          <nav Breadcrumb>
+            <ol BreadcrumbList>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/']" class="hover:text-purple-600 transition-colors flex items-center gap-2">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                  </svg>
+                  Dashboard
+                </a>
+              </li>
+              <li BreadcrumbSeparator [customSeparator]="true" class="text-purple-400">
+                →
+              </li>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/analytics']" class="hover:text-purple-600 transition-colors flex items-center gap-2">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                  </svg>
+                  Analytics
+                </a>
+              </li>
+              <li BreadcrumbSeparator [customSeparator]="true" class="text-purple-400">
+                →
+              </li>
+              <li BreadcrumbItem>
+                <span BreadcrumbPage class="font-semibold text-purple-600 flex items-center gap-2">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                  </svg>
+                  Reports
+                </span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Pill Style Example -->
+      <div class="group">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-indigo-600 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            Pill-Style Breadcrumbs
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Modern pill-style breadcrumbs with hover effects and gradients
+          </p>
+        </div>
+
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+          <nav Breadcrumb>
+            <ol BreadcrumbList class="gap-3">
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/']"
+                   class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-600 hover:text-white rounded-full transition-all duration-300 transform hover:scale-105">
+                  Home
+                </a>
+              </li>
+              <li BreadcrumbSeparator [customSeparator]="true" class="text-gray-400 text-sm">
+                /
+              </li>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/workspace']"
+                   class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-600 hover:text-white rounded-full transition-all duration-300 transform hover:scale-105">
+                  Workspace
+                </a>
+              </li>
+              <li BreadcrumbSeparator [customSeparator]="true" class="text-gray-400 text-sm">
+                /
+              </li>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/workspace', 'projects']"
+                   class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gradient-to-r hover:from-pink-500 hover:to-indigo-600 hover:text-white rounded-full transition-all duration-300 transform hover:scale-105">
+                  Projects
+                </a>
+              </li>
+              <li BreadcrumbSeparator [customSeparator]="true" class="text-gray-400 text-sm">
+                /
+              </li>
+              <li BreadcrumbItem>
+                <span BreadcrumbPage class="px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-semibold shadow-lg">
+                  Project Alpha
+                </span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Interactive File Explorer Example -->
+      <div class="group">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
+              </svg>
+            </div>
+            Interactive File Explorer
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Clickable file path navigation with dynamic breadcrumb updates
+          </p>
+        </div>
+
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+          <!-- Current Path Display -->
+          <nav Breadcrumb class="mb-6">
+            <ol BreadcrumbList>
+              <li BreadcrumbItem>
+                <button (click)="navigateToPath('/')"
+                        class="hover:text-emerald-600 transition-colors flex items-center gap-1">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  Root
+                </button>
+              </li>
+              <ng-template ngFor let-segment [ngForOf]="currentPath().segments" [ngForTrackBy]="trackByName">
+                <li BreadcrumbSeparator [customSeparator]="true" class="text-emerald-400">
+                  📁
+                </li>
+                <li BreadcrumbItem>
+                  <button *ngIf="!segment.isLast" (click)="navigateToPath(segment.path)"
+                          class="hover:text-emerald-600 transition-colors">
+                    {{ segment.name }}
+                  </button>
+                  <span *ngIf="segment.isLast" BreadcrumbPage class="font-semibold text-emerald-600">
+                    {{ segment.name }}
+                  </span>
+                </li>
+              </ng-template>
+            </ol>
+          </nav>
+          <!-- File Explorer Actions -->
+          <div class="flex flex-wrap gap-2 mb-4">
+            <Button
+              (click)="navigateToPath('/documents')"
+              class="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-800/50">
+              📄 Documents
+            </Button>
+            <Button
+              (click)="navigateToPath('/documents/projects')"
+              class="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-800/50">
+              🚀 Projects
+            </Button>
+            <Button
+              (click)="navigateToPath('/documents/projects/angular-app')"
+              class="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-800/50">
+              🅰️ Angular App
+            </Button>
+            <Button
+              (click)="navigateToPath('/documents/projects/angular-app/src')"
+              class="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-800/50">
+              📂 Source
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- E-commerce Navigation Example -->
+      <div class="group">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+              </svg>
+            </div>
+            E-commerce Store Navigation
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Dynamic shopping category navigation with visual indicators
+          </p>
+        </div>
+
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+          <!-- Store Navigation -->
+          <nav Breadcrumb class="mb-6">
+            <ol BreadcrumbList>
+              <li BreadcrumbItem>
+                <button (click)="navigateToCategory('home')"
+                        class="hover:text-orange-600 transition-colors flex items-center gap-2">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                  </svg>
+                  Store
+                </button>
+              </li>
+              <ng-container *ngFor="let category of currentCategory().path; trackBy: trackById">
+                <li BreadcrumbSeparator [customSeparator]="true" class="text-orange-400">
+                  {{ category.separator }}
+                </li>
+                <li BreadcrumbItem>
+                  <button *ngIf="!category.isLast" (click)="navigateToCategory(category.id)"
+                          class="hover:text-orange-600 transition-colors flex items-center gap-1">
+                    <span>{{ category.icon }}</span>
+                    {{ category.name }}
+                  </button>
+                  <span *ngIf="category.isLast" BreadcrumbPage class="font-semibold text-orange-600 flex items-center gap-1">
+                    <span>{{ category.icon }}</span>
+                    {{ category.name }}
+                    <Badge class="ml-2 bg-orange-100 text-orange-800">{{ category.count }}</Badge>
+                  </span>
+                </li>
+              </ng-container>
+            </ol>
+          </nav>
+
+
+          <!-- Category Quick Access -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <Button
+              (click)="navigateToCategory('electronics')"
+              class="bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-800/50 text-left justify-start">
+              📱 Electronics
+            </Button>
+            <Button
+              (click)="navigateToCategory('electronics-phones')"
+              class="bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-800/50 text-left justify-start">
+              📞 Smartphones
+            </Button>
+            <Button
+              (click)="navigateToCategory('electronics-phones-iphone')"
+              class="bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-800/50 text-left justify-start">
+              🍎 iPhone
+            </Button>
+            <Button
+              (click)="navigateToCategory('electronics-phones-iphone-15')"
+              class="bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-800/50 text-left justify-start">
+              📱 iPhone 15
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ellipsis/Collapsed Example -->
+      <div class="group">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/>
+              </svg>
+            </div>
+            Collapsed/Ellipsis Breadcrumbs
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Smart breadcrumbs that collapse long paths for better UX
+          </p>
+        </div>
+
+        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
+          <nav Breadcrumb>
+            <ol BreadcrumbList>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink routerLink="/">
+                 Home Page
+                </a>
+              </li>
+              <li BreadcrumbSeparator></li>
+              <li BreadcrumbItem>
+                <span BreadcrumbEllipsis [customEllipsis]="true"
+                      class="text-cyan-500 cursor-pointer hover:text-cyan-700 transition-colors"
+                      title="Click to expand: Level 2 > Level 3 > Level 4">
+                  ⋯
+                </span>
+              </li>
+              <li BreadcrumbSeparator></li>
+              <li BreadcrumbItem>
+                <a BreadcrumbRouterLink [routerLink]="['/very', 'deep', 'nested', 'folder']"
+                   class="hover:text-cyan-600 transition-colors">Deep Folder</a>
+              </li>
+              <li BreadcrumbSeparator></li>
+              <li BreadcrumbItem>
+                <span BreadcrumbPage class="font-semibold text-cyan-600">Current Page</span>
+              </li>
+            </ol>
+          </nav>
+
+          <div class="mt-4 p-4 bg-cyan-50 dark:bg-cyan-900/20 rounded-lg border border-cyan-200 dark:border-cyan-800">
+            <p class="text-sm text-cyan-700 dark:text-cyan-300">
+              💡 <strong>Pro Tip:</strong> Long breadcrumb paths are automatically collapsed using the BreadcrumbEllipsis component.
+              Click the ellipsis to expand the full path!
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="text-center mt-20 py-16 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl border border-indigo-200/20 dark:border-indigo-800/20">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">
+        Ready to Navigate with Style?
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+        Implement these stunning breadcrumb components in your Angular application today.
+      </p>
+      <div class="flex justify-center">
+        <a href="https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components/breadcrumb.md"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8 py-3 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+          </svg>
+          View Documentation
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
