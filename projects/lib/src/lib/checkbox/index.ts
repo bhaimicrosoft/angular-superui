@@ -112,7 +112,7 @@ export interface CheckboxAccessibility {
       type="button"
       variant="ghost"
       size="icon"
-      [class]="checkboxClasses()"
+      [customClasses]="checkboxClasses()"
       [disabled]="isDisabled()"
       [accessibility]="{
         ariaLabel: accessibilityConfig().ariaLabel,

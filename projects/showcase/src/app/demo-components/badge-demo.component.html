@@ -1,0 +1,592 @@
+<!-- Clean Badge Demo Showcase -->
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+
+  <!-- Hero Section -->
+  <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 dark:from-black dark:via-blue-950 dark:to-black">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <!-- Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20"></div>
+
+      <!-- Floating Orbs -->
+      <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute top-3/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 py-32 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <!-- Main Title -->
+        <div class="mb-8">
+          <div class="inline-flex items-center gap-4 mb-6">
+            <div class="w-3 h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full animate-ping"></div>
+            <span class="text-sm font-semibold text-blue-300 uppercase tracking-wider">Angular SuperUI</span>
+            <div class="w-3 h-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-ping delay-200"></div>
+          </div>
+
+          <h1 class="text-6xl md:text-8xl font-black mb-6 relative">
+            <span class="relative z-10 bg-gradient-to-r from-white via-blue-200 to-indigo-200 bg-clip-text text-transparent">
+              Badge
+            </span>
+            <br>
+            <span class="relative z-10 bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              Showcase
+            </span>
+            <!-- Glowing backdrop -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 blur-3xl"></div>
+          </h1>
+        </div>
+
+        <!-- Enhanced Description -->
+        <p class="text-xl md:text-2xl text-slate-300 mb-16 max-w-4xl mx-auto leading-relaxed font-light">
+          Explore our comprehensive collection of <span class="text-blue-300 font-semibold">badge components</span> with
+          <span class="text-indigo-300 font-semibold">multiple variants</span>, interactive features, and
+          <span class="text-purple-300 font-semibold">accessibility support</span>
+        </p>
+
+        <!-- Interactive Badge Previews -->
+        <div class="flex flex-wrap justify-center gap-8 mb-20">
+          <div class="flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-2xl px-8 py-4">
+            <span class="text-white font-medium">Notifications</span>
+            <Badge variant="destructive" className="animate-pulse">
+              {{ notificationCount() }}
+            </Badge>
+          </div>
+
+          <div class="flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-2xl px-8 py-4">
+            <span class="text-white font-medium">Messages</span>
+            <Badge variant="default" className="bg-blue-600 text-white">
+              {{ messageCount() }}
+            </Badge>
+          </div>
+
+          <div class="flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-2xl px-8 py-4">
+            <span class="text-white font-medium">Status</span>
+            <Badge
+              [variant]="serverStatus() === 'online' ? 'default' : serverStatus() === 'maintenance' ? 'outline' : 'destructive'"
+              className="capitalize">
+              {{ serverStatus() }}
+            </Badge>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="mt-20 animate-bounce">
+          <div class="w-6 h-10 border-2 border-white/30 rounded-full mx-auto flex justify-center">
+            <div class="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+          </div>
+          <p class="text-white/40 text-sm mt-2 font-medium">Explore badges below</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Badge Variants Section -->
+  <div class="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-6 pb-8">
+        Badge Variants
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Discover our collection of badge styles, each designed for specific use cases and visual hierarchy
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+
+      <!-- Default Badges -->
+      <div
+        class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700">
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900 dark:to-indigo-900 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl">🏷️</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Default</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Primary:</span>
+              <Badge variant="default">Default</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">With Number:</span>
+              <Badge variant="default">42</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Status:</span>
+              <Badge variant="default">Active</Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Badges -->
+      <div
+        class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700">
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-gray-100 to-slate-100 dark:from-gray-700 dark:to-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl">🔖</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Secondary</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Subtle:</span>
+              <Badge variant="secondary">Beta</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Version:</span>
+              <Badge variant="secondary">v2.1.0</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Draft:</span>
+              <Badge variant="secondary">Draft</Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destructive Badges -->
+      <div
+        class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700">
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-900 dark:to-pink-900 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl">⚠️</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Destructive</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Error:</span>
+              <Badge variant="destructive">Error</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Issues:</span>
+              <Badge variant="destructive">{{ issueCount() }}</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Urgent:</span>
+              <Badge variant="destructive">Urgent</Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outline Badges -->
+      <div
+        class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700">
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900 dark:to-indigo-900 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl">🔍</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Outline</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Filter:</span>
+              <Badge variant="outline">All</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Category:</span>
+              <Badge variant="outline">Tech</Badge>
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Tag:</span>
+              <Badge variant="outline">Featured</Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Dashboard Section -->
+  <div class="bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-800 dark:to-slate-900 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-600 to-gray-600 bg-clip-text text-transparent mb-6 pb-8">
+          Interactive Dashboard
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Experience badges in real-world scenarios with interactive counters and status indicators
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Notification Center -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-900 dark:to-pink-900 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">🔔</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Notifications</h3>
+
+            <div class="flex items-center justify-center gap-3 mb-6">
+              <span class="text-lg font-medium text-gray-700 dark:text-gray-300">Unread:</span>
+              <Badge
+                variant="destructive"
+                className="text-lg px-4 py-1 animate-pulse"
+                [attr.aria-live]="'polite'">
+                {{ notificationCount() }}
+              </Badge>
+            </div>
+
+            <div class="flex gap-2 justify-center">
+              <Button
+                variant="default"
+                size="sm"
+                (click)="incrementNotifications()"
+                customClasses="bg-blue-600 hover:bg-blue-700">
+                Add
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                (click)="clearNotifications()">
+                Clear
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Message Center -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900 dark:to-indigo-900 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">💬</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Messages</h3>
+
+            <div class="flex items-center justify-center gap-3 mb-6">
+              <span class="text-lg font-medium text-gray-700 dark:text-gray-300">New:</span>
+              <Badge
+                variant="default"
+                className="text-lg px-4 py-1 bg-blue-600 text-white"
+                [attr.aria-live]="'polite'">
+                {{ messageCount() }}
+              </Badge>
+            </div>
+
+            <div class="flex gap-2 justify-center">
+              <Button
+                variant="default"
+                size="sm"
+                (click)="addMessage()"
+                customClasses="bg-indigo-600 hover:bg-indigo-700">
+                New Message
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shopping Cart -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900 dark:to-emerald-900 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">🛒</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Shopping Cart</h3>
+
+            <div class="flex items-center justify-center gap-3 mb-6">
+              <span class="text-lg font-medium text-gray-700 dark:text-gray-300">Items:</span>
+              <Badge
+                variant="default"
+                className="text-lg px-4 py-1 bg-green-600 text-white"
+                [attr.aria-live]="'polite'">
+                {{ cartItems() }}
+              </Badge>
+            </div>
+
+            <div class="flex gap-2 justify-center">
+              <Button
+                variant="default"
+                size="sm"
+                (click)="addToCart()"
+                customClasses="bg-green-600 hover:bg-green-700">
+                Add Item
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                (click)="removeFromCart()"
+                [disabled]="cartItems() === 0">
+                Remove
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900 dark:to-indigo-900 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">🖥️</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Server Status</h3>
+
+            <div class="flex items-center justify-center gap-3 mb-6">
+              <span class="text-lg font-medium text-gray-700 dark:text-gray-300">Status:</span>
+              <Badge
+                [variant]="serverStatus() === 'online' ? 'success' : serverStatus() === 'maintenance' ? 'warning' : 'destructive'"
+                className="text-lg px-4 py-1 capitalize"
+                [class]="serverStatus()==='online' ? '': ''"
+                [attr.aria-live]="'polite'">
+                {{ serverStatus() }}
+              </Badge>
+            </div>
+
+            <div class="flex gap-2 justify-center">
+              <Button
+                variant="outline"
+                size="sm"
+                (click)="toggleServerStatus()">
+                Toggle Status
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Build Status -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-orange-100 to-yellow-100 dark:from-orange-900 dark:to-yellow-900 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">🔧</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Build Status</h3>
+
+            <div class="flex items-center justify-center gap-3 mb-6">
+              <span class="text-lg font-medium text-gray-700 dark:text-gray-300">Build:</span>
+              <Badge
+                [variant]="buildStatus() === 'success' ? 'success' : buildStatus() === 'pending' ? 'warning' : 'destructive'"
+                className="text-lg px-4 py-1 capitalize"
+                [attr.aria-live]="'polite'">
+                {{ buildStatus() }}
+              </Badge>
+            </div>
+
+            <div class="flex gap-2 justify-center">
+              <Button
+                variant="outline"
+                size="sm"
+                (click)="cycleBuildStatus()">
+                Cycle Build
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Activity -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500">
+          <div class="text-center">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-teal-900 dark:to-cyan-900 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-3xl">👥</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 pb-8">Users Online</h3>
+
+            <div class="flex items-center justify-center gap-3 mb-6">
+              <span class="text-lg font-medium text-gray-700 dark:text-gray-300">Active:</span>
+              <Badge
+                variant="default"
+                className="text-lg px-4 py-1 bg-teal-600 text-white"
+                [attr.aria-live]="'polite'">
+                {{ onlineUsers() }}
+              </Badge>
+            </div>
+
+            <div class="flex gap-2 justify-center">
+              <Button
+                variant="outline"
+                size="sm"
+                (click)="simulateUserActivity()">
+                Simulate Activity
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Badge with Links Section -->
+  <div class="bg-white dark:bg-gray-900 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6 pb-8">
+          Badge Variants & Styling
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Different badge styles for various use cases with clean, consistent backgrounds
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Product Categories -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">Categories</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <Badge variant="outline" className="border-blue-500 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+              Electronics
+            </Badge>
+            <Badge variant="outline" className="border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+              Clothing
+            </Badge>
+            <Badge variant="outline" className="border-purple-500 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors">
+              Books
+            </Badge>
+            <Badge variant="outline" className="border-orange-500 text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors">
+              Home & Garden
+            </Badge>
+          </div>
+        </div>
+
+        <!-- Status Badges -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">Status</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <Badge variant="default" className="bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+              Active
+            </Badge>
+            <Badge variant="secondary"
+                   className="bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors">
+              Pending
+            </Badge>
+            <Badge variant="destructive" className="bg-red-600 text-white hover:bg-red-700 transition-colors">
+              Blocked
+            </Badge>
+          </div>
+        </div>
+
+        <!-- Notification Badges -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">Notifications</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Messages:</span>
+              <Badge variant="default" className="bg-blue-600 text-white">
+                {{ messageCount() }}
+              </Badge>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Alerts:</span>
+              <Badge variant="destructive" className="bg-red-600 text-white animate-pulse">
+                {{ issueCount() }}
+              </Badge>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Updates:</span>
+              <Badge variant="secondary" className="bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200">
+                New
+              </Badge>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Styled Badges -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">Custom Styles</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <Badge variant="default" className="bg-gradient-to-r from-pink-500 to-purple-600 text-white">
+              Premium
+            </Badge>
+            <Badge variant="outline" className="border-2 border-yellow-500 text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20">
+              Featured
+            </Badge>
+            <Badge variant="default" className="bg-green-600 text-white">
+              Available
+            </Badge>
+          </div>
+        </div>
+
+        <!-- Size Variations -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">Sizes</h3>
+          <div class="flex flex-wrap gap-3 justify-center items-center">
+            <Badge variant="outline" className="text-xs px-2 py-0.5">
+              Small
+            </Badge>
+            <Badge variant="default" className="bg-blue-600 text-white">
+              Default
+            </Badge>
+            <Badge variant="secondary" className="text-lg px-4 py-1 bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200">
+              Large
+            </Badge>
+          </div>
+        </div>
+
+        <!-- Interactive Badges -->
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">Interactive</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Server:</span>
+              <Badge
+                [variant]="serverStatus() === 'online' ? 'default' : serverStatus() === 'maintenance' ? 'outline' : 'destructive'"
+                [className]="
+                  serverStatus() === 'online' ? 'bg-green-600 text-white' :
+                  serverStatus() === 'maintenance' ? 'border-yellow-500 text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20' :
+                  'bg-red-600 text-white'
+                "
+                [attr.aria-live]="'polite'">
+                {{ serverStatus() }}
+              </Badge>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Build:</span>
+              <Badge
+                [variant]="buildStatus() === 'success' ? 'default' : buildStatus() === 'pending' ? 'outline' : 'destructive'"
+                [className]="
+                  buildStatus() === 'success' ? 'bg-green-600 text-white' :
+                  buildStatus() === 'pending' ? 'border-blue-500 text-blue-600 bg-blue-50 dark:bg-blue-900/20 animate-pulse' :
+                  'bg-red-600 text-white'
+                "
+                [attr.aria-live]="'polite'">
+                {{ buildStatus() }}
+              </Badge>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-600 dark:text-gray-400">Users:</span>
+              <Badge variant="default" className="bg-teal-600 text-white" [attr.aria-live]="'polite'">
+                {{ onlineUsers() }}
+              </Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  @if (showToast()) {
+    <div class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 ease-in-out animate-in slide-in-from-right">
+      <div
+        class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl p-6 min-w-[320px] max-w-md backdrop-blur-sm">
+        <div class="flex items-center space-x-4">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center">
+              <span class="text-white text-lg">🏷️</span>
+            </div>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm font-semibold text-gray-900 dark:text-white mb-1">Badge Action</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300">{{ toastMessage() }}</p>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            (click)="showToast.set(false)"
+            customClasses="text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full">
+            ✕
+          </Button>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

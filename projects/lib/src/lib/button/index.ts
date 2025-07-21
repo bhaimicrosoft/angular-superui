@@ -1,10 +1,22 @@
-import { Component, Input, Output, EventEmitter, computed, signal, HostBinding, HostListener } from '@angular/core';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../utils/cn';
+import {Component, computed, EventEmitter, HostBinding, HostListener, Input, Output, signal} from '@angular/core';
+import {cva, type VariantProps} from 'class-variance-authority';
+import {cn} from '../utils/cn';
 
 /**
  * Button component variants using Class Variance Authority (CVA)
  * Provides consistent styling patterns with Tailwind CSS
+ *
+ * Variants:
+ * - default: Primary button with theme colors
+ * - destructive: Red button for dangerous actions
+ * - outline: Bordered button with transparent background
+ * - secondary: Subtle button with muted colors
+ * - ghost: Minimal button with hover effects
+ * - link: Text button with underline on hover
+ * - success: Green button for positive actions
+ * - warning: Orange/yellow button for warnings
+ * - info: Blue button for informational actions
+ * - plain: Unstyled button for complete customization without !important
  */
 const buttonVariants = cva(
   // Base styles - consistent across all variants
@@ -55,6 +67,14 @@ const buttonVariants = cva(
         info: [
           'bg-info text-info-foreground shadow hover:bg-info/90',
           'before:bg-white/10 before:opacity-0 hover:before:opacity-100',
+        ],
+        plain: [
+          // Minimal styling for maximum customization flexibility
+          // Only essential button behavior, no colors or backgrounds
+          // Perfect for custom designs without needing !important
+          'bg-transparent border-0 text-current shadow-none',
+          'hover:bg-transparent hover:text-current',
+          'before:hidden', // Remove overlay effects
         ],
       },
       size: {
@@ -182,10 +202,39 @@ export class Button {
   @Input() disabled = false;
 
   /** Custom CSS classes */
-  @Input() class = '';
+  @Input() customClasses = '';
 
   /** Accessibility configuration */
   @Input() accessibility: ButtonAccessibility = {};
+  /** Click event emitter */
+  @Output() buttonClick = new EventEmitter<MouseEvent>();
+  /** Keydown event emitter for custom keyboard handling */
+  @Output() buttonKeydown = new EventEmitter<KeyboardEvent>();
+  /** Focus event emitter */
+  @Output() buttonFocus = new EventEmitter<FocusEvent>();
+  /** Blur event emitter */
+  @Output() buttonBlur = new EventEmitter<FocusEvent>();
+  /** Loading state signal */
+  protected loading = signal<Required<ButtonLoadingState>>({
+    loading: false,
+    loadingText: null,
+    disableOnLoading: true,
+  });
+  /** Computed classes for the button */
+  protected computedClasses = computed(() => {
+    return cn(
+      buttonVariants({
+        variant: this.variant,
+        size: this.size,
+        loading: this.loading().loading,
+      }),
+      this.customClasses
+    );
+  });
+  /** Computed disabled state */
+  protected computedDisabled = computed(() => {
+    return this.disabled || (this.loading().loading && this.loading().disableOnLoading);
+  });
 
   /** Loading state configuration */
   @Input() set loadingState(value: boolean | ButtonLoadingState) {
@@ -204,35 +253,70 @@ export class Button {
     }
   }
 
-  /** Click event emitter */
-  @Output() buttonClick = new EventEmitter<MouseEvent>();
-
-  /** Keydown event emitter for custom keyboard handling */
-  @Output() buttonKeydown = new EventEmitter<KeyboardEvent>();
-
-  /** Focus event emitter */
-  @Output() buttonFocus = new EventEmitter<FocusEvent>();
-
-  /** Blur event emitter */
-  @Output() buttonBlur = new EventEmitter<FocusEvent>();
-
   // Host Bindings - Apply button attributes directly to the component element
-  @HostBinding('attr.role') get hostRole() { return 'button'; }
-  @HostBinding('class') get hostClasses() { return this.computedClasses(); }
-  @HostBinding('attr.type') get hostType() { return this.type; }
-  @HostBinding('disabled') get hostDisabled() { return this.computedDisabled(); }
-  @HostBinding('attr.aria-label') get hostAriaLabel() { return this.accessibility.ariaLabel; }
-  @HostBinding('attr.aria-description') get hostAriaDescription() { return this.accessibility.ariaDescription; }
-  @HostBinding('attr.aria-labelledby') get hostAriaLabelledBy() { return this.accessibility.ariaLabelledBy; }
-  @HostBinding('attr.aria-describedby') get hostAriaDescribedBy() { return this.accessibility.ariaDescribedBy; }
-  @HostBinding('attr.aria-haspopup') get hostAriaHasPopup() { return this.accessibility.ariaHasPopup; }
-  @HostBinding('attr.aria-expanded') get hostAriaExpanded() { return this.accessibility.ariaExpanded; }
-  @HostBinding('attr.aria-pressed') get hostAriaPressed() { return this.accessibility.ariaPressed; }
-  @HostBinding('attr.aria-live') get hostAriaLive() { return this.accessibility.ariaLive; }
-  @HostBinding('attr.tabindex') get hostTabIndex() { return this.accessibility.tabIndex; }
-  @HostBinding('attr.data-loading') get hostDataLoading() { return this.loading().loading; }
-  @HostBinding('attr.data-variant') get hostDataVariant() { return this.variant; }
-  @HostBinding('attr.data-size') get hostDataSize() { return this.size; }
+  @HostBinding('attr.role') get hostRole() {
+    return 'button';
+  }
+
+  @HostBinding('attr.class') get hostClasses() {
+    return this.computedClasses();
+  }
+
+  @HostBinding('attr.type') get hostType() {
+    return this.type;
+  }
+
+  @HostBinding('attr.disabled') get hostDisabled() {
+    return this.computedDisabled() ? true : null;
+  }
+
+  @HostBinding('attr.aria-label') get hostAriaLabel() {
+    return this.accessibility.ariaLabel;
+  }
+
+  @HostBinding('attr.aria-description') get hostAriaDescription() {
+    return this.accessibility.ariaDescription;
+  }
+
+  @HostBinding('attr.aria-labelledby') get hostAriaLabelledBy() {
+    return this.accessibility.ariaLabelledBy;
+  }
+
+  @HostBinding('attr.aria-describedby') get hostAriaDescribedBy() {
+    return this.accessibility.ariaDescribedBy;
+  }
+
+  @HostBinding('attr.aria-haspopup') get hostAriaHasPopup() {
+    return this.accessibility.ariaHasPopup;
+  }
+
+  @HostBinding('attr.aria-expanded') get hostAriaExpanded() {
+    return this.accessibility.ariaExpanded;
+  }
+
+  @HostBinding('attr.aria-pressed') get hostAriaPressed() {
+    return this.accessibility.ariaPressed;
+  }
+
+  @HostBinding('attr.aria-live') get hostAriaLive() {
+    return this.accessibility.ariaLive;
+  }
+
+  @HostBinding('attr.tabindex') get hostTabIndex() {
+    return this.accessibility.tabIndex;
+  }
+
+  @HostBinding('attr.data-loading') get hostDataLoading() {
+    return this.loading().loading;
+  }
+
+  @HostBinding('attr.data-variant') get hostDataVariant() {
+    return this.variant;
+  }
+
+  @HostBinding('attr.data-size') get hostDataSize() {
+    return this.size;
+  }
 
   // Host Listeners - Handle events on the component element
   @HostListener('click', ['$event']) onHostClick(event: MouseEvent): void {
@@ -251,29 +335,29 @@ export class Button {
     this.handleBlur(event);
   }
 
-  /** Loading state signal */
-  protected loading = signal<Required<ButtonLoadingState>>({
-    loading: false,
-    loadingText: null,
-    disableOnLoading: true,
-  });
+  /**
+   * Public method to set loading state
+   * @param loading - Loading configuration
+   */
+  public setLoading(loading: boolean | ButtonLoadingState): void {
+    this.loadingState = loading;
+  }
 
-  /** Computed classes for the button */
-  protected computedClasses = computed(() => {
-    return cn(
-      buttonVariants({
-        variant: this.variant,
-        size: this.size,
-        loading: this.loading().loading,
-      }),
-      this.class
-    );
-  });
+  /**
+   * Public method to focus the button
+   */
+  public focus(): void {
+    // This would need to be implemented with ViewChild in a real scenario
+    // For now, it's a placeholder for the API
+  }
 
-  /** Computed disabled state */
-  protected computedDisabled = computed(() => {
-    return this.disabled || (this.loading().loading && this.loading().disableOnLoading);
-  });
+  /**
+   * Public method to blur the button
+   */
+  public blur(): void {
+    // This would need to be implemented with ViewChild in a real scenario
+    // For now, it's a placeholder for the API
+  }
 
   /**
    * Handle button click events
@@ -332,31 +416,7 @@ export class Button {
   protected handleBlur(event: FocusEvent): void {
     this.buttonBlur.emit(event);
   }
-
-  /**
-   * Public method to set loading state
-   * @param loading - Loading configuration
-   */
-  public setLoading(loading: boolean | ButtonLoadingState): void {
-    this.loadingState = loading;
-  }
-
-  /**
-   * Public method to focus the button
-   */
-  public focus(): void {
-    // This would need to be implemented with ViewChild in a real scenario
-    // For now, it's a placeholder for the API
-  }
-
-  /**
-   * Public method to blur the button
-   */
-  public blur(): void {
-    // This would need to be implemented with ViewChild in a real scenario
-    // For now, it's a placeholder for the API
-  }
 }
 
 // Export types for external use
-export { buttonVariants };
+export {buttonVariants};

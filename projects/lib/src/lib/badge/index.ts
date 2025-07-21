@@ -15,6 +15,8 @@ const badgeVariants = cva(
           'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
         destructive:
           'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
+        success: 'border-transparent bg-success text-success-foreground hover:bg-success/80',
+        warning: 'border-transparent bg-warning text-warning-foreground hover:bg-warning/80',
         outline: 'text-foreground',
       },
     },
@@ -50,7 +52,7 @@ export interface BadgeProps extends VariantProps<typeof badgeVariants> {
     >
       <ng-content></ng-content>
     </a>
-    
+
     <span
       *ngIf="!asLink || !href"
       [class]="cn(badgeVariants({ variant }), className)"
@@ -81,7 +83,7 @@ export class Badge implements BadgeProps {
     if (this.role && this.role !== 'generic') {
       return this.role;
     }
-    
+
     // Smart role assignment based on variant
     switch (this.variant) {
       case 'destructive':

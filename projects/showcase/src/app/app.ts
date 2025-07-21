@@ -2,19 +2,19 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './components/navigation.component';
-import {Avatar, AvatarImage} from '@lib/avatar';
+import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavigationComponent, Avatar, AvatarImage],
+  imports: [CommonModule, RouterOutlet, NavigationComponent, Avatar, AvatarImage, AvatarFallback],
   template: `
     <div class="min-h-screen bg-background text-foreground scroll-smooth">
       <app-navigation></app-navigation>
       <main class="relative bg-background">
         <router-outlet></router-outlet>
       </main>
-      
+
       <!-- Go to Top Button -->
       <button
         *ngIf="showGoToTop"
@@ -23,19 +23,19 @@ import {Avatar, AvatarImage} from '@lib/avatar';
         title="Go to top"
         aria-label="Scroll to top"
       >
-        <svg 
-          class="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
-          fill="none" 
-          stroke="currentColor" 
+        <svg
+          class="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300"
+          fill="none"
+          stroke="currentColor"
           viewBox="0 0 24 24"
         >
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
         </svg>
-        
+
         <!-- Animated Ring -->
         <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-75 animate-ping"></div>
       </button>
-      
+
       <!-- Stunning Footer -->
       <footer
         class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900 dark:from-slate-950 dark:via-gray-950 dark:to-black"
@@ -209,8 +209,9 @@ import {Avatar, AvatarImage} from '@lib/avatar';
                 class="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
               >
                 <div class="flex items-center space-x-4 mb-4">
-                  <Avatar>
+                  <Avatar size="2xl">
                     <AvatarImage src="/me.jpg" alt="BK"/>
+                    <AvatarFallback>BK</AvatarFallback>
                   </Avatar>
 
                   <div>

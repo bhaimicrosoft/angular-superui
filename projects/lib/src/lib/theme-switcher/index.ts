@@ -317,7 +317,7 @@ class ThemeServiceImpl {
         type="button"
         [variant]="buttonVariant()"
         [size]="size"
-        [class]="themeSwitcherClasses()"
+        [customClasses]="themeSwitcherClasses()"
         [accessibility]="{
           ariaLabel: ariaLabel(),
           ariaDescription: 'Toggle between light and dark themes'
