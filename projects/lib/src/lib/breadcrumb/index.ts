@@ -1,8 +1,8 @@
-import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, HostBinding} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../utils/cn'; // Assuming cn utility is correctly imported
+import {Component, EventEmitter, HostBinding, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {cva} from 'class-variance-authority';
+import {cn} from '../utils/cn';
+import {RouterLink} from '@angular/router';
 
 /**
  * Breadcrumb Variants
@@ -88,7 +88,8 @@ export interface BreadcrumbAccessibility {
   selector: 'nav[Breadcrumb]',
   standalone: true,
   imports: [CommonModule],
-  template: `<ng-content></ng-content>`
+  template: `
+    <ng-content></ng-content>`
 })
 export class Breadcrumb {
   @Input() class = '';
@@ -96,6 +97,8 @@ export class Breadcrumb {
     ariaLabel: 'breadcrumb',
     ariaLive: 'polite'
   };
+  protected breadcrumbVariants = breadcrumbVariants;
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -116,9 +119,6 @@ export class Breadcrumb {
   get role() {
     return 'navigation';
   }
-
-  protected breadcrumbVariants = breadcrumbVariants;
-  protected cn = cn;
 }
 
 /**
@@ -128,10 +128,13 @@ export class Breadcrumb {
   selector: 'ol[BreadcrumbList]',
   standalone: true,
   imports: [CommonModule],
-  template: `<ng-content></ng-content>`
+  template: `
+    <ng-content></ng-content>`
 })
 export class BreadcrumbList {
   @Input() class = '';
+  protected breadcrumbListVariants = breadcrumbListVariants;
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -142,9 +145,6 @@ export class BreadcrumbList {
   get role() {
     return 'list';
   }
-
-  protected breadcrumbListVariants = breadcrumbListVariants;
-  protected cn = cn;
 }
 
 /**
@@ -154,10 +154,13 @@ export class BreadcrumbList {
   selector: 'li[BreadcrumbItem]',
   standalone: true,
   imports: [CommonModule],
-  template: `<ng-content></ng-content>`
+  template: `
+    <ng-content></ng-content>`
 })
 export class BreadcrumbItem {
   @Input() class = '';
+  protected breadcrumbItemVariants = breadcrumbItemVariants;
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -168,9 +171,6 @@ export class BreadcrumbItem {
   get role() {
     return 'listitem';
   }
-
-  protected breadcrumbItemVariants = breadcrumbItemVariants;
-  protected cn = cn;
 }
 
 /**
@@ -180,7 +180,8 @@ export class BreadcrumbItem {
   selector: 'a[BreadcrumbLink]',
   standalone: true,
   imports: [CommonModule],
-  template: `<ng-content></ng-content>` // Content is projected directly into the host <a>
+  template: `
+    <ng-content></ng-content>` // Content is projected directly into the host <a>
 })
 export class BreadcrumbLink implements OnInit, OnChanges {
   @Input() href?: string;
@@ -191,6 +192,7 @@ export class BreadcrumbLink implements OnInit, OnChanges {
 
   @Output() linkClick = new EventEmitter<MouseEvent>();
   @Output() linkKeyDown = new EventEmitter<KeyboardEvent>();
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -241,8 +243,6 @@ export class BreadcrumbLink implements OnInit, OnChanges {
   protected handleKeyDown(event: KeyboardEvent): void {
     this.linkKeyDown.emit(event);
   }
-
-  protected cn = cn;
 }
 
 /**
@@ -252,7 +252,8 @@ export class BreadcrumbLink implements OnInit, OnChanges {
   selector: 'a[BreadcrumbRouterLink]',
   standalone: true,
   imports: [CommonModule, RouterLink],
-  template: `<ng-content></ng-content>` // Content is projected directly into the host <a>
+  template: `
+    <ng-content></ng-content>` // Content is projected directly into the host <a>
 })
 export class BreadcrumbRouterLink implements OnInit, OnChanges {
   @Input() routerLink?: string | string[];
@@ -261,6 +262,7 @@ export class BreadcrumbRouterLink implements OnInit, OnChanges {
 
   @Output() linkClick = new EventEmitter<MouseEvent>();
   @Output() linkKeyDown = new EventEmitter<KeyboardEvent>();
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -301,8 +303,6 @@ export class BreadcrumbRouterLink implements OnInit, OnChanges {
   protected handleKeyDown(event: KeyboardEvent): void {
     this.linkKeyDown.emit(event);
   }
-
-  protected cn = cn;
 }
 
 /**
@@ -312,7 +312,8 @@ export class BreadcrumbRouterLink implements OnInit, OnChanges {
   selector: 'span[BreadcrumbPage]',
   standalone: true,
   imports: [CommonModule],
-  template: `<ng-content></ng-content>` // Content is projected directly into the host <span>
+  template: `
+    <ng-content></ng-content>` // Content is projected directly into the host <span>
 })
 export class BreadcrumbPage {
   @Input() class = '';
@@ -320,6 +321,7 @@ export class BreadcrumbPage {
 
   @Output() linkClick = new EventEmitter<MouseEvent>();
   @Output() linkKeyDown = new EventEmitter<KeyboardEvent>();
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -365,8 +367,6 @@ export class BreadcrumbPage {
   protected handleKeyDown(event: KeyboardEvent): void {
     this.linkKeyDown.emit(event);
   }
-
-  protected cn = cn;
 }
 
 /**
@@ -402,6 +402,8 @@ export class BreadcrumbPage {
 export class BreadcrumbSeparator {
   @Input() customSeparator = false;
   @Input() class = '';
+  protected breadcrumbSeparatorVariants = breadcrumbSeparatorVariants;
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -417,9 +419,6 @@ export class BreadcrumbSeparator {
   get ariaHidden() {
     return 'true';
   }
-
-  protected breadcrumbSeparatorVariants = breadcrumbSeparatorVariants;
-  protected cn = cn;
 }
 
 /**
@@ -455,6 +454,8 @@ export class BreadcrumbSeparator {
 export class BreadcrumbEllipsis {
   @Input() customEllipsis = false;
   @Input() class = '';
+  protected breadcrumbEllipsisVariants = breadcrumbEllipsisVariants;
+  protected cn = cn;
 
   @HostBinding('class')
   get hostClasses() {
@@ -470,9 +471,6 @@ export class BreadcrumbEllipsis {
   get ariaHidden() {
     return 'true';
   }
-
-  protected breadcrumbEllipsisVariants = breadcrumbEllipsisVariants;
-  protected cn = cn;
 }
 
 // Export variants for external use
