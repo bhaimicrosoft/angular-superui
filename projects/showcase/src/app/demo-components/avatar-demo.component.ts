@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-avatar-demo',
@@ -8,7 +9,14 @@ import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
   imports: [CommonModule, Avatar, AvatarImage, AvatarFallback],
   templateUrl: './avatar-demo.component.html'
 })
-export class AvatarDemoComponent {
+export class AvatarDemoComponent implements OnInit {
+  private seoService = inject(SEOService);
+
+  ngOnInit() {
+    // Update SEO for avatar component page
+    this.seoService.updateSEO(this.seoService.getComponentSEO('avatar'));
+    this.seoService.addComponentStructuredData('avatar');
+  }
   users = [
     {
       name: 'John Doe',

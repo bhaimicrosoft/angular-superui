@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '../../../../lib/src/lib/card';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-card-demo',
@@ -8,7 +9,14 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
   imports: [CommonModule, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter],
   templateUrl: './card-demo.component.html'
 })
-export class CardDemoComponent {
+export class CardDemoComponent implements OnInit {
+  private seoService = inject(SEOService);
+
+  ngOnInit() {
+    // Update SEO for card component page
+    this.seoService.updateSEO(this.seoService.getComponentSEO('card'));
+    this.seoService.addComponentStructuredData('card');
+  }
   // Sample data for card examples
   products = [
     {

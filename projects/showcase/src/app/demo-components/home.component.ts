@@ -1,6 +1,7 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Router, RouterModule} from '@angular/router';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -235,8 +236,14 @@ ng serve
   `,
   styles: []
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   router = inject(Router);
+  private seoService = inject(SEOService);
+
+  ngOnInit() {
+    // Update SEO for homepage
+    this.seoService.updateSEO(this.seoService.getHomepageSEO());
+  }
 
   stats = {
     components: 16,

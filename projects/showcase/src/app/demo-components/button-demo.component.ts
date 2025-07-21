@@ -1,6 +1,7 @@
-import {Component, computed, effect, signal} from '@angular/core';
+import {Component, computed, effect, signal, OnInit, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Button } from '@lib/button';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-button-demo',
@@ -8,7 +9,14 @@ import { Button } from '@lib/button';
   imports: [CommonModule, Button],
   templateUrl: './button-demo.component.html'
 })
-export class ButtonDemoComponent {
+export class ButtonDemoComponent implements OnInit {
+  private seoService = inject(SEOService);
+
+  ngOnInit() {
+    // Update SEO for button component page
+    this.seoService.updateSEO(this.seoService.getComponentSEO('button'));
+    this.seoService.addComponentStructuredData('button');
+  }
   // Loading states for interactive demos
   loadingStates = signal({
     primary: false,

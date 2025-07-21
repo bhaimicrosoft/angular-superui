@@ -1,6 +1,7 @@
-import {Component, signal} from '@angular/core';
+import {Component, signal, OnInit, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Button} from '@lib/button';
+import { SEOService } from '../services/seo.service';
 
 interface AlertExample {
   id: string;
@@ -22,7 +23,14 @@ interface AlertExample {
   templateUrl: './alert-demo.component.html',
   styles: []
 })
-export class AlertDemoComponent {
+export class AlertDemoComponent implements OnInit {
+  private seoService = inject(SEOService);
+
+  ngOnInit() {
+    // Update SEO for alert component page
+    this.seoService.updateSEO(this.seoService.getComponentSEO('alert'));
+    this.seoService.addComponentStructuredData('alert');
+  }
   // Dynamic alerts array
   dynamicAlerts = signal<AlertExample[]>([]);
 
