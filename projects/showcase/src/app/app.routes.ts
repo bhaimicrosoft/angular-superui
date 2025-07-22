@@ -29,6 +29,11 @@ export const routes: Routes = [
     data: { componentName: 'alert', category: 'Feedback', description: 'Display important messages' }
   },
   {
+    path: 'components/aspect-ratio',
+    loadComponent: () => import('./demo-components/aspect-ratio-demo.component').then(c => c.AspectRatioDemo),
+    data: { componentName: 'aspect-ratio', category: 'Layout', description: 'Responsive aspect ratio containers' }
+  },
+  {
     path: 'components/avatar',
     loadComponent: () => import('./demo-components/avatar-demo.component').then(c => c.AvatarDemoComponent),
     data: { componentName: 'avatar', category: 'Display', description: 'User profile pictures' }

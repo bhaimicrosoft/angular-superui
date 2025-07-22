@@ -441,6 +441,15 @@ export class HomeComponent implements OnInit {
       iconColor: 'text-yellow-600 dark:text-yellow-400'
     },
     {
+      name: 'Aspect Ratio',
+      route: '/components/aspect-ratio',
+      description: 'Maintain consistent proportions for media and content containers across all screen sizes',
+      category: 'Layout',
+      icon: 'M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4',
+      bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
+      iconColor: 'text-emerald-600 dark:text-emerald-400'
+    },
+    {
       name: 'Avatar',
       route: '/components/avatar',
       description: 'User profile pictures with fallbacks',

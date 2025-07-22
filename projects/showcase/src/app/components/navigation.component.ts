@@ -37,6 +37,12 @@ export class NavigationComponent {
       category: 'Feedback'
     },
     { 
+      name: 'Aspect Ratio', 
+      route: '/components/aspect-ratio', 
+      description: 'Responsive aspect ratio containers',
+      category: 'Layout'
+    },
+    { 
       name: 'Avatar', 
       route: '/components/avatar', 
       description: 'User profile pictures',
