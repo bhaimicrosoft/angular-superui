@@ -297,6 +297,15 @@ export class HomeComponent implements OnInit {
 
   components = [
     {
+      name: 'Dropdown Menu',
+      route: '/components/dropdown-menu',
+      description: 'Stunning, accessible dropdown menus with variants, animations, and mobile-first design.',
+      category: 'Navigation',
+      icon: 'M19 9l-7 7-7-7',
+      bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+      iconColor: 'text-purple-600 dark:text-purple-400'
+    },
+    {
       name: 'Button',
       route: '/components/button',
       description: 'Interactive buttons with various styles and states',

@@ -1,334 +1,500 @@
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
+  computed,
+  DOCUMENT,
+  effect,
   ElementRef,
   EventEmitter,
   HostListener,
-  Input, // Still needed for some cases like direct component inputs
-  Output,
-  ViewChild,
-  ViewContainerRef,
-  computed,
-  effect,
   inject,
-  signal,
-  input, // Preferred for component inputs
-  DestroyRef,
-  Injectable,
-  TemplateRef,
-  forwardRef,
-  OnInit,
+  Input,
   OnDestroy,
-  HostBinding // <-- New Import
+  Output,
+  signal,
+  ViewChild
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Overlay, OverlayModule, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FocusMonitor } from '@angular/cdk/a11y';
-import { cn } from '../utils/cn'; // Assuming this utility is available
+import {CommonModule} from '@angular/common';
+import {cva, type VariantProps} from 'class-variance-authority';
+import {cn} from '../utils/cn';
 
-// Dropdown Menu Service for global state management
-@Injectable({
-  providedIn: 'root'
-})
-export class DropdownMenuService {
-  private currentOverlayRef: OverlayRef | null = null;
-  private currentDropdownComponent: DropdownMenu | null = null;
-
-  // Global state signals
-  private isMenuOpen = signal(false);
-  private menuPosition = signal<{ x: number; y: number } | null>(null);
-  private activeComponent = signal<DropdownMenu | null>(null);
-  private openDirection = signal<'down' | 'up' | 'left' | 'right'>('down');
-
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly overlay = inject(Overlay);
-  private readonly focusMonitor = inject(FocusMonitor);
-
-  // Public readonly signals
-  readonly isOpen = this.isMenuOpen.asReadonly();
-  readonly position = this.menuPosition.asReadonly();
-  readonly direction = this.openDirection.asReadonly();
-  readonly activeDropdown = this.activeComponent.asReadonly();
-
-  // Check if a specific dropdown is open
-  isDropdownOpen(dropdown: DropdownMenu): boolean {
-    return this.isMenuOpen() && this.activeComponent() === dropdown;
-  }
-
-  constructor() {
-    // Global click listener to close dropdowns
-    document.addEventListener('click', (event) => {
-      if (this.isMenuOpen()) {
-        const target = event.target as HTMLElement;
-        // Don't close if clicking on a trigger or menu content
-        if (!target.closest('.dropdown-menu-trigger') && !target.closest('.dropdown-menu-panel')) {
-          this.closeCurrentMenu();
-        }
+// Dropdown Menu variants - Enhanced design inspired by Button and Card components
+const dropdownMenuVariants = cva(
+  [
+    'min-w-48 max-w-[calc(100vw-2rem)] sm:min-w-56 overflow-hidden rounded-xl border bg-popover text-popover-foreground shadow-xl',
+    'animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200',
+    'data-[state=closed]:animate-out data-[state=closed]:fade-out-0',
+    'data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-top-2',
+    'data-[side=bottom]:slide-in-from-top-2',
+    'data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2',
+    'data-[side=top]:slide-in-from-bottom-2',
+    'will-change-transform transform-gpu',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+  ],
+  {
+    variants: {
+      variant: {
+        default: [
+          'bg-popover border-border shadow-lg',
+          'ring-1 ring-black/5 dark:ring-white/10'
+        ],
+        glass: [
+          'bg-white/90 dark:bg-gray-900/90 border-white/20 dark:border-gray-700/20',
+          'backdrop-blur-md shadow-2xl ring-1 ring-black/5 dark:ring-white/10'
+        ],
+        elevated: [
+          'bg-popover border-border shadow-2xl',
+          'ring-1 ring-black/10 dark:ring-white/20'
+        ],
+        minimal: [
+          'bg-popover border-border/50 shadow-md',
+          'ring-0'
+        ],
+        blur: [
+          'bg-white/80 dark:bg-gray-900/80 border-white/30 dark:border-gray-700/30',
+          'backdrop-blur-xl shadow-xl ring-1 ring-black/5 dark:ring-white/10'
+        ],
+        floating: [
+          'bg-gradient-to-b from-white to-gray-50/80 dark:from-gray-900 dark:to-gray-800/80',
+          'border-white/40 dark:border-gray-700/40 shadow-2xl ring-1 ring-black/5 dark:ring-white/10'
+        ],
+        neon: [
+          'bg-gradient-to-br from-blue-50/95 via-purple-50/95 to-pink-50/95',
+          'dark:from-blue-900/30 dark:via-purple-900/30 dark:to-pink-900/30',
+          'border-purple-200/50 dark:border-purple-700/50',
+          'shadow-2xl shadow-purple-500/20 ring-1 ring-purple-500/10'
+        ]
+      },
+      size: {
+        sm: 'min-w-32 max-w-[calc(100vw-2rem)] sm:min-w-40 p-1 text-xs',
+        default: 'min-w-48 max-w-[calc(100vw-2rem)] sm:min-w-56 p-1.5 text-sm',
+        lg: 'min-w-56 max-w-[calc(100vw-2rem)] sm:min-w-64 p-2 text-base'
       }
-    });
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default'
+    }
+  }
+);
 
-    // Global keyboard listener
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && this.isMenuOpen()) {
-        this.closeCurrentMenu();
+const dropdownMenuItemVariants = cva(
+  [
+    'group relative flex w-full cursor-pointer select-none items-center rounded-lg px-3 py-2.5 text-sm',
+    'outline-none transition-all duration-200 ease-out',
+    'focus:bg-accent focus:text-accent-foreground focus:shadow-sm',
+    'disabled:pointer-events-none disabled:opacity-50',
+    'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+    'hover:scale-[1.02] active:scale-[0.98] transform-gpu',
+    'before:absolute before:inset-0 before:rounded-lg before:transition-all before:duration-200',
+    'overflow-hidden'
+  ],
+  {
+    variants: {
+      variant: {
+        default: [
+          'text-foreground hover:bg-accent/80 hover:text-accent-foreground',
+          'before:bg-gradient-to-r before:from-transparent before:via-accent/20 before:to-transparent',
+          'before:opacity-0 hover:before:opacity-100',
+          'focus:bg-accent focus:text-accent-foreground'
+        ],
+        destructive: [
+          'text-destructive hover:bg-destructive/10 hover:text-destructive',
+          'focus:bg-destructive/10 focus:text-destructive',
+          'before:bg-gradient-to-r before:from-red-500/10 before:to-pink-500/10',
+          'before:opacity-0 hover:before:opacity-100'
+        ]
+      },
+      inset: {
+        true: 'pl-8',
+        false: ''
       }
-    });
+    },
+    defaultVariants: {
+      variant: 'default',
+      inset: false
+    }
+  }
+);
 
-    // Effect to handle menu state changes
-    effect(() => {
-      const isOpen = this.isMenuOpen();
-      const position = this.menuPosition();
-      const component = this.activeComponent();
-      const direction = this.openDirection();
-
-      if (isOpen && position && component) {
-        this.actuallyOpenMenu(component, position.x, position.y, direction);
-      } else if (!isOpen) {
-        this.actuallyCloseMenu();
+const dropdownMenuTriggerVariants = cva(
+  [
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium',
+    'transition-all duration-200 ease-out cursor-pointer select-none transform-gpu',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+    'disabled:pointer-events-none disabled:opacity-50',
+    'hover:scale-[1.02] active:scale-[0.98]',
+    'relative overflow-hidden',
+    'before:absolute before:inset-0 before:rounded-lg before:transition-all before:duration-200'
+  ],
+  {
+    variants: {
+      variant: {
+        default: [
+          'bg-primary text-primary-foreground shadow-md hover:bg-primary/90',
+          'hover:shadow-lg before:bg-white/10 before:opacity-0 hover:before:opacity-100'
+        ],
+        destructive: [
+          'bg-destructive text-destructive-foreground shadow-md hover:bg-destructive/90',
+          'hover:shadow-lg before:bg-white/10 before:opacity-0 hover:before:opacity-100'
+        ],
+        outline: [
+          'border-2 border-input bg-background hover:bg-accent hover:text-accent-foreground',
+          'shadow-sm hover:shadow-md before:bg-accent/20 before:opacity-0 hover:before:opacity-100'
+        ],
+        secondary: [
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+          'shadow-sm hover:shadow-md before:bg-primary/10 before:opacity-0 hover:before:opacity-100'
+        ],
+        ghost: [
+          'hover:bg-accent hover:text-accent-foreground',
+          'before:bg-accent/30 before:opacity-0 hover:before:opacity-100'
+        ],
+        link: [
+          'text-primary underline-offset-4 hover:underline',
+          'before:bg-primary/10 before:opacity-0 hover:before:opacity-100'
+        ],
+        gradient: [
+          'bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white shadow-lg',
+          'hover:shadow-xl hover:from-blue-500 hover:via-purple-500 hover:to-blue-500',
+          'before:bg-white/20 before:opacity-0 hover:before:opacity-100'
+        ],
+        glass: [
+          'bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-700/20',
+          'backdrop-blur-md text-foreground shadow-lg hover:bg-white/90 dark:hover:bg-gray-900/90',
+          'before:bg-gradient-to-r before:from-blue-500/10 before:to-purple-500/10 before:opacity-0 hover:before:opacity-100'
+        ],
+        neon: [
+          'bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 text-white shadow-lg',
+          'hover:shadow-xl hover:shadow-blue-500/25',
+          'before:bg-white/20 before:opacity-0 hover:before:opacity-100'
+        ],
+        rainbow: [
+          'bg-gradient-to-r from-pink-500 via-purple-500 via-blue-500 via-green-500 to-yellow-500 text-white shadow-lg',
+          'hover:shadow-xl hover:shadow-purple-500/25 animate-pulse',
+          'before:bg-white/20 before:opacity-0 hover:before:opacity-100'
+        ]
+      },
+      size: {
+        sm: 'h-8 px-3 text-xs',
+        default: 'h-10 px-4 py-2',
+        lg: 'h-12 px-6 py-3 text-base'
       }
-    });
-  }
-
-  openDropdownMenu(
-    menuComponent: DropdownMenu,
-    triggerElement: HTMLElement,
-    direction: 'down' | 'up' | 'left' | 'right' = 'down'
-  ): void {
-    // Close any existing menu first
-    if (this.isMenuOpen()) {
-      this.closeCurrentMenu();
-    }
-
-    const rect = triggerElement.getBoundingClientRect();
-    let x = rect.left;
-    let y = rect.bottom;
-
-    // Calculate position based on direction
-    switch (direction) {
-      case 'up':
-        y = rect.top;
-        break;
-      case 'left':
-        x = rect.left;
-        y = rect.top;
-        break;
-      case 'right':
-        x = rect.right;
-        y = rect.top;
-        break;
-      case 'down':
-      default:
-        // Already set above
-        break;
-    }
-
-    // Update signals to trigger menu opening
-    this.activeComponent.set(menuComponent);
-    this.menuPosition.set({ x, y });
-    this.openDirection.set(direction);
-    this.isMenuOpen.set(true);
-  }
-
-  closeCurrentMenu(): void {
-    this.isMenuOpen.set(false);
-  }
-
-  private actuallyOpenMenu(
-    menuComponent: DropdownMenu,
-    x: number,
-    y: number,
-    direction: 'down' | 'up' | 'left' | 'right'
-  ): void {
-    // Close any existing menu
-    if (this.currentOverlayRef) {
-      this.actuallyCloseMenu();
-    }
-
-    const { template, viewContainerRef } = menuComponent.getMenuData();
-
-    // Create position strategy based on direction
-    let positionStrategy: PositionStrategy;
-
-    switch (direction) {
-      case 'up':
-        positionStrategy = this.overlay.position()
-          .global()
-          .left(`${x}px`)
-          .bottom(`${window.innerHeight - y}px`);
-        break;
-      case 'left':
-        positionStrategy = this.overlay.position()
-          .global()
-          .right(`${window.innerWidth - x}px`)
-          .top(`${y}px`);
-        break;
-      case 'right':
-        positionStrategy = this.overlay.position()
-          .global()
-          .left(`${x}px`)
-          .top(`${y}px`);
-        break;
-      case 'down':
-      default:
-        positionStrategy = this.overlay.position()
-          .global()
-          .left(`${x}px`)
-          .top(`${y}px`);
-        break;
-    }
-
-    this.currentOverlayRef = this.overlay.create({
-      positionStrategy,
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
-      scrollStrategy: this.overlay.scrollStrategies.reposition(),
-      panelClass: 'dropdown-menu-panel'
-    });
-
-    // Attach the template portal
-    const portal = new TemplatePortal(template, viewContainerRef);
-    this.currentOverlayRef.attach(portal);
-
-    this.currentDropdownComponent = menuComponent;
-
-    // Handle backdrop clicks
-    this.currentOverlayRef.backdropClick()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.closeCurrentMenu();
-      });
-
-    // Handle keyboard events
-    this.currentOverlayRef.keydownEvents()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(event => {
-        if (event.key === 'Escape') {
-          this.closeCurrentMenu();
-        }
-        // Handle arrow key navigation
-        this.handleKeyboardNavigation(event);
-      });
-  }
-
-  private actuallyCloseMenu(): void {
-    if (this.currentOverlayRef) {
-      this.currentOverlayRef.dispose();
-      this.currentOverlayRef = null;
-    }
-    this.currentDropdownComponent = null;
-    this.activeComponent.set(null);
-    this.menuPosition.set(null);
-  }
-
-  private handleKeyboardNavigation(event: KeyboardEvent): void {
-    if (!this.currentDropdownComponent) return;
-
-    const items = this.currentDropdownComponent.getNavigableItems();
-    const currentIndex = this.currentDropdownComponent.getFocusedIndex();
-
-    switch (event.key) {
-      case 'ArrowDown':
-        event.preventDefault();
-        this.currentDropdownComponent.focusNextItem();
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        this.currentDropdownComponent.focusPreviousItem();
-        break;
-      case 'Enter':
-      case ' ':
-        event.preventDefault();
-        this.currentDropdownComponent.activateCurrentItem();
-        break;
-      case 'Home':
-        event.preventDefault();
-        this.currentDropdownComponent.focusFirstItem();
-        break;
-      case 'End':
-        event.preventDefault();
-        this.currentDropdownComponent.focusLastItem();
-        break;
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default'
     }
   }
+);
+
+export type DropdownMenuVariant = VariantProps<typeof dropdownMenuVariants>;
+export type DropdownMenuItemVariant = VariantProps<typeof dropdownMenuItemVariants>;
+export type DropdownMenuTriggerVariant = VariantProps<typeof dropdownMenuTriggerVariants>;
+
+export interface DropdownMenuItemData {
+  label?: string;
+  value?: string;
+  icon?: string;
+  disabled?: boolean;
+  variant?: 'default' | 'destructive';
+  separator?: boolean;
+  shortcut?: string;
+  description?: string;
+  badge?: string;
+  action?: () => void;
 }
 
-// Dropdown Menu Trigger Component
+export interface DropdownMenuGroupData {
+  label?: string;
+  items: DropdownMenuItemData[];
+}
+
+// Main Dropdown Menu Component
 @Component({
-  selector: 'DropdownMenuTrigger',
+  selector: 'DropdownMenu',
   standalone: true,
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-content></ng-content>
+    <div 
+      class="relative inline-block text-left"
+      [attr.data-testid]="'dropdown-menu-container'"
+    >
+      <!-- Trigger -->
+      <button
+        #trigger
+        type="button"
+        [class]="triggerClasses()"
+        [attr.aria-expanded]="isOpen()"
+        [attr.aria-haspopup]="'menu'"
+        [attr.aria-controls]="menuId"
+        [attr.aria-describedby]="menuId + '-description'"
+        [attr.aria-label]="triggerText + (isOpen() ? ' (expanded)' : ' (collapsed)')"
+        [disabled]="disabled"
+        (click)="toggle()"
+        (keydown)="onTriggerKeydown($event)"
+        (focus)="onTriggerFocus()"
+        (blur)="onTriggerBlur()"
+      >
+        <span class="sr-only" [id]="menuId + '-description'">
+          Press Enter or Space to {{ isOpen() ? 'close' : 'open' }} menu
+        </span>
+        <ng-content select="[slot=trigger]">
+          {{ triggerText }}
+        </ng-content>
+        @if (!hideChevron) {
+          <svg
+            class="ml-2 h-4 w-4 transition-all duration-300 ease-out transform"
+            [class.rotate-180]="isOpen()"
+            [class.scale-110]="isOpen()"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M19 9l-7 7-7-7"
+              class="drop-shadow-sm"
+            />
+          </svg>
+        }
+      </button>
+
+      <!-- Enhanced Menu with Stunning Design (No Backdrop) -->
+      @if (isOpen()) {
+        <div
+          #menu
+          [id]="menuId"
+          role="menu"
+          [attr.aria-labelledby]="trigger.id"
+          [attr.aria-orientation]="'vertical'"
+          [attr.aria-activedescendant]="getActiveDescendant()"
+          [class]="menuClasses()"
+          [style.z-index]="50"
+          [attr.data-state]="isOpen() ? 'open' : 'closed'"
+          [attr.data-side]="placement"
+          [attr.data-testid]="'dropdown-menu'"
+          (keydown)="onMenuKeydown($event)"
+          (focusout)="onMenuFocusOut($event)"
+        >
+          @if (groups().length > 0) {
+            @for (group of groups(); track group.label || $index; let groupIndex = $index) {
+              @if (group.label) {
+                <div 
+                  class="px-3 py-2 text-xs font-semibold text-muted-foreground/80 bg-gradient-to-r from-muted/10 to-transparent border-b border-border/5 animate-in slide-in-from-top-1 duration-200"
+                  [style.animation-delay]="(groupIndex * 50) + 'ms'"
+                  role="group"
+                  [attr.aria-label]="group.label"
+                >
+                  {{ group.label }}
+                </div>
+              }
+              @for (item of group.items; track item.value || item.label; let itemIndex = $index) {
+                @if (item.separator) {
+                  <div 
+                    class="my-1 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent animate-in fade-in-0 duration-300" 
+                    role="separator"
+                    [style.animation-delay]="((groupIndex * group.items.length + itemIndex) * 30) + 'ms'"
+                    [attr.aria-hidden]="'true'"
+                  ></div>
+                } @else {
+                  <button
+                    type="button"
+                    role="menuitem"
+                    [class]="getItemClasses(item)"
+                    [attr.data-disabled]="item.disabled || null"
+                    [attr.data-focused]="focusedIndex() === getItemGlobalIndex(groupIndex, itemIndex) || null"
+                    [attr.id]="menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex)"
+                    [disabled]="item.disabled"
+                    [attr.tabindex]="item.disabled ? -1 : 0"
+                    [attr.aria-describedby]="item.description ? menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex) + '-desc' : null"
+                    [style.animation-delay]="((groupIndex * group.items.length + itemIndex) * 30) + 'ms'"
+                    class="animate-in slide-in-from-top-1 duration-200"
+                    (click)="selectItem(item)"
+                    (keydown)="onItemKeydown($event, item)"
+                    (focus)="setFocusedIndex(getItemGlobalIndex(groupIndex, itemIndex))"
+                    (mouseenter)="setFocusedIndex(getItemGlobalIndex(groupIndex, itemIndex))"
+                    (mouseleave)="clearFocusedIndex()"
+                  >
+                    <div class="flex items-center gap-2 sm:gap-3 w-full">
+                      @if (item.icon) {
+                        <span 
+                          class="flex-shrink-0 h-4 w-4 transition-transform duration-200 group-hover:scale-110" 
+                          [innerHTML]="item.icon"
+                          aria-hidden="true"
+                        ></span>
+                      }
+                      <div class="flex-1 flex flex-col items-start text-left min-w-0">
+                        <span class="font-medium text-sm truncate w-full">{{ item.label }}</span>
+                        @if (item.description) {
+                          <span 
+                            class="text-xs text-muted-foreground/70 truncate w-full hidden sm:block"
+                            [id]="menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex) + '-desc'"
+                          >
+                            {{ item.description }}
+                          </span>
+                        }
+                      </div>
+                      <div class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                        @if (item.shortcut) {
+                          <span 
+                            class="text-xs tracking-widest text-muted-foreground/70 bg-muted/30 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md font-mono transition-all duration-200 group-hover:bg-muted/50 group-hover:scale-105 hidden sm:inline-block"
+                            [attr.aria-label]="'Keyboard shortcut: ' + item.shortcut"
+                          >
+                            {{ item.shortcut }}
+                          </span>
+                        }
+                        @if (item.badge) {
+                          <span 
+                            class="inline-flex items-center rounded-full bg-gradient-to-r from-primary/10 to-primary/20 px-1.5 sm:px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 animate-pulse"
+                            [attr.aria-label]="'Badge: ' + item.badge"
+                          >
+                            {{ item.badge }}
+                          </span>
+                        }
+                      </div>
+                    </div>
+                  </button>
+                }
+              }
+              @if (!$last && group.items.length > 0) {
+                <div 
+                  class="my-1 h-px bg-gradient-to-r from-transparent via-border/30 to-transparent animate-in fade-in-0 duration-300" 
+                  role="separator"
+                  [attr.aria-hidden]="'true'"
+                ></div>
+              }
+            }
+          } @else {
+            <div class="animate-in slide-in-from-top-2 duration-300">
+              <ng-content></ng-content>
+            </div>
+          }
+        </div>
+      }
+    </div>
   `
 })
-export class DropdownMenuTrigger {
-  @ViewChild('triggerElement', { static: false }) triggerElement!: ElementRef<HTMLElement>; // Changed to static: false as it's not a direct element in template
+export class DropdownMenu implements AfterViewInit, OnDestroy {
+  @ViewChild('menu', {static: false}) menuElement?: ElementRef<HTMLElement>;
+  @ViewChild('trigger', {static: false}) triggerElement?: ElementRef<HTMLElement>;
+  @Input() variant: DropdownMenuVariant['variant'] = 'default';
+  @Input() size: DropdownMenuVariant['size'] = 'default';
+  @Input() triggerVariant: DropdownMenuTriggerVariant['variant'] = 'default';
+  @Input() triggerSize: DropdownMenuTriggerVariant['size'] = 'default';
+  @Input() triggerText = 'Open menu';
+  @Input() hideChevron = false;
+  @Input() disabled = false;
+  @Input() placement: 'bottom' | 'top' | 'left' | 'right' = 'bottom';
+  @Input() closeOnSelect = true;
+  // Outputs
+  @Output() openChange = new EventEmitter<boolean>();
+  @Output() itemSelect = new EventEmitter<DropdownMenuItemData>();
+  isOpen = signal(false);
+  focusedIndex = signal(-1);
+  menuId = `dropdown-menu-${Math.random().toString(36).substr(2, 9)}`;
+  allItems = computed(() => {
+    return this.groups().flatMap(group => group.items.filter(item => !item.separator));
+  });
+  triggerClasses = computed(() =>
+    cn(dropdownMenuTriggerVariants({
+      variant: this.triggerVariant,
+      size: this.triggerSize
+    }))
+  );
+  menuClasses = computed(() => {
+    const position = this.placement;
+    const positionClasses = {
+      bottom: 'absolute top-full mt-1 max-w-[calc(100vw-2rem)] sm:max-w-none',
+      top: 'absolute bottom-full mb-1 max-w-[calc(100vw-2rem)] sm:max-w-none',
+      left: 'absolute top-0 right-full mr-1 max-w-[calc(100vw-2rem)] sm:max-w-none',
+      right: 'absolute top-0 left-full ml-1 max-w-[calc(100vw-2rem)] sm:max-w-none'
+    };
 
-  // Signal inputs
-  readonly disabled = input<boolean>(false);
-  readonly direction = input<'down' | 'up' | 'left' | 'right'>('down');
+    return cn(
+      dropdownMenuVariants({
+        variant: this.variant,
+        size: this.size
+      }),
+      positionClasses[position],
+      // Mobile responsive positioning with smart right-edge detection
+      'max-h-[60vh] overflow-y-auto',
+      // Smart mobile positioning - align to right edge when close to screen boundary
+      'left-0 right-auto sm:left-auto sm:right-auto',
+      // For dropdowns that would overflow on mobile, align to right edge
+      '[&[data-side=bottom]]:left-auto [&[data-side=bottom]]:right-0 sm:[&[data-side=bottom]]:left-0 sm:[&[data-side=bottom]]:right-auto',
+      '[&[data-side=top]]:left-auto [&[data-side=top]]:right-0 sm:[&[data-side=top]]:left-0 sm:[&[data-side=top]]:right-auto',
+      // Additional mobile constraints
+      'min-w-[200px] max-w-[calc(100vw-1rem)]'
+    );
+  });
+  private document = inject(DOCUMENT);
+  private elementRef = inject(ElementRef);
+  private _groups = signal<DropdownMenuGroupData[]>([]);
 
-  // Output events
-  @Output() readonly openChange = new EventEmitter<boolean>();
+  constructor() {
+    // Close on outside click
+    effect(() => {
+      if (this.isOpen()) {
+        this.addOutsideClickListener();
+      } else {
+        this.removeOutsideClickListener();
+      }
+    });
+  }
+
+  @Input() set menuGroups(value: DropdownMenuGroupData[]) {
+    this._groups.set(value || []);
+  }
 
   // Internal state
-  readonly triggerId = signal(`dropdown-trigger-${Math.random().toString(36).substring(2, 9)}`);
-  readonly menuId = signal(`dropdown-menu-${Math.random().toString(36).substring(2, 9)}`);
+  private _items = signal<DropdownMenuItemData[]>([]);
 
-  private readonly dropdownMenuService = inject(DropdownMenuService);
-  private readonly parentDropdown = inject(DropdownMenu, { optional: true });
-  private readonly hostElementRef = inject(ElementRef); // Inject ElementRef to get the host element
+  // Inputs
+  @Input() set items(value: DropdownMenuItemData[]) {
+    this._items.set(value || []);
+  }
 
-  // Computed state
-  readonly isOpen = computed(() => {
-    if (!this.parentDropdown) return false;
-    return this.dropdownMenuService.isDropdownOpen(this.parentDropdown);
+  // Computed properties
+  groups = computed(() => {
+    const groups = this._groups();
+    if (groups.length > 0) {
+      return groups;
+    }
+    const items = this._items();
+    if (items.length > 0) {
+      return [{items}];
+    }
+    return [];
   });
 
-  // Host Bindings
-  @HostBinding('attr.aria-haspopup') readonly ariaHasPopup = true;
-  @HostBinding('attr.aria-expanded') get ariaExpanded() { return this.isOpen(); }
-  @HostBinding('attr.aria-controls') get ariaControls() { return this.isOpen() ? this.menuId() : null; }
-  @HostBinding('attr.id') get id() { return this.triggerId(); }
-  @HostBinding('attr.role') readonly role = 'button';
-  @HostBinding('attr.tabindex') readonly tabindex = 0;
-  @HostBinding('class') readonly hostClass = 'dropdown-menu-trigger';
-
-  @HostListener('click', ['$event'])
-  onClick(event: Event): void {
-    this.toggle(event);
-  }
-
-  @HostListener('keydown', ['$event'])
-  onKeyDown(event: KeyboardEvent): void {
-    if (this.disabled()) return;
-
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-      case 'ArrowDown':
-        event.preventDefault();
-        this.open();
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        this.open();
-        break;
-      case 'Escape':
-        event.preventDefault();
-        this.close();
-        break;
+  ngAfterViewInit() {
+    // Set trigger ID for accessibility
+    if (this.triggerElement) {
+      this.triggerElement.nativeElement.id = `${this.menuId}-trigger`;
     }
   }
 
-  toggle(event?: Event): void {
-    if (this.disabled()) return;
+  ngOnDestroy() {
+    this.removeOutsideClickListener();
+  }
 
-    if (event) {
-      event.stopPropagation();
+  @HostListener('document:keydown.escape')
+  onEscape() {
+    if (this.isOpen()) {
+      this.close();
     }
+  }
 
+  toggle() {
+    if (this.disabled) return;
+    
     if (this.isOpen()) {
       this.close();
     } else {
@@ -336,377 +502,196 @@ export class DropdownMenuTrigger {
     }
   }
 
-  open(): void {
-    if (this.disabled() || !this.parentDropdown) return;
-
-    this.dropdownMenuService.openDropdownMenu(
-      this.parentDropdown,
-      this.hostElementRef.nativeElement, // Use the injected ElementRef
-      this.direction()
-    );
+  open() {
+    if (this.disabled) return;    this.isOpen.set(true);
+    this.focusedIndex.set(-1);
     this.openChange.emit(true);
+
+    // Focus first item after menu opens
+    setTimeout(() => {
+      this.focusFirstItem();
+    }, 0);
   }
 
-  close(): void {
-    this.dropdownMenuService.closeCurrentMenu();
+  close() {
+    this.isOpen.set(false);
+    this.focusedIndex.set(-1);
     this.openChange.emit(false);
-  }
-}
 
-// Dropdown Menu Content Component
-@Component({
-  selector: 'DropdownMenuContent',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
-    <ng-content></ng-content>
-  `
-})
-export class DropdownMenuContent {
-  // Signal inputs
-  readonly className = input<string>('');
-  readonly sideOffset = input<number>(4);
-  readonly align = input<'start' | 'center' | 'end'>('start');
-
-  // Internal properties
-  readonly menuId = signal(`dropdown-content-${Math.random().toString(36).substring(2, 9)}`);
-  readonly triggerId = inject(DropdownMenuTrigger, { optional: true })?.triggerId;
-
-  private readonly parentDropdown = inject(DropdownMenu, { optional: true });
-  private readonly dropdownService = inject(DropdownMenuService);
-
-  // Computed classes
-  readonly computedClasses = computed(() => cn(
-    'z-50 min-w-32 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md',
-    'data-[state=open]:animate-in data-[state=closed]:animate-out',
-    'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-    'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
-    'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
-    'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-    this.className()
-  ));
-
-  // Host Bindings
-  @HostBinding('attr.id') get id() { return this.menuId(); }
-  @HostBinding('attr.aria-labelledby') get ariaLabelledBy() { return this.triggerId?.(); }
-  @HostBinding('attr.role') readonly role = 'menu';
-  @HostBinding('class') get classes() { return this.computedClasses(); }
-  // Bind data-state based on service's active dropdown state
-  @HostBinding('attr.data-state') get dataState() {
-    return this.dropdownService.isDropdownOpen(this.parentDropdown!) ? 'open' : 'closed';
-  }
-  // Bind data-side based on service's open direction
-  @HostBinding('attr.data-side') get dataSide() {
-    return this.dropdownService.direction();
-  }
-
-  @HostListener('click', ['$event'])
-  onClick(event: Event): void {
-    event.stopPropagation();
-  }
-}
-
-// Dropdown Menu Item Component
-@Component({
-  selector: 'DropdownMenuItem',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
-    @if (itemHref()) {
-      <a
-        [href]="itemHref()"
-        [target]="itemTarget()"
-        [class]="linkClasses()"
-        [attr.rel]="itemTarget() === '_blank' ? 'noopener noreferrer' : null"
-      >
-        @if (itemIcon()) {
-          <span [innerHTML]="itemIcon()" class="mr-2 h-4 w-4"></span>
-        }
-        <span>{{ itemLabel() }}</span>
-        @if (itemShortcut()) {
-          <span class="ml-auto text-xs tracking-widest opacity-60">
-            {{ itemShortcut() }}
-          </span>
-        }
-      </a>
-    } @else {
-      @if (itemIcon()) {
-        <span [innerHTML]="itemIcon()" class="mr-2 h-4 w-4"></span>
-      }
-      <span>{{ itemLabel() }}</span>
-      @if (itemShortcut()) {
-        <span class="ml-auto text-xs tracking-widest opacity-60">
-          {{ itemShortcut() }}
-        </span>
-      }
-    }
-  `
-})
-export class DropdownMenuItem implements OnInit, OnDestroy {
-  private readonly hostElementRef = inject(ElementRef);
-
-  // Signal inputs with unique names
-  readonly itemLabel = input.required<string>();
-  readonly itemValue = input<string>('');
-  readonly itemIcon = input<string>('');
-  readonly itemShortcut = input<string>('');
-  readonly itemDisabled = input<boolean>(false);
-  readonly itemDanger = input<boolean>(false);
-  readonly itemHref = input<string>('');
-  readonly itemTarget = input<'_blank' | '_self' | '_parent' | '_top'>('_self');
-  readonly itemClassName = input<string>('');
-
-  // Output events
-  @Output() readonly select = new EventEmitter<DropdownMenuItem>();
-
-  // Internal state
-  private readonly isFocused = signal(false);
-  private readonly parentDropdown = inject(DropdownMenu, { optional: true });
-  private readonly dropdownMenuService = inject(DropdownMenuService);
-
-  // Computed classes
-  readonly computedItemClasses = computed(() => cn(
-    'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
-    'focus:bg-accent focus:text-accent-foreground',
-    'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-    this.itemDanger() && 'text-destructive focus:bg-destructive focus:text-destructive-foreground',
-    this.itemClassName()
-  ));
-
-  readonly linkClasses = computed(() => cn(
-    'flex items-center w-full',
-    this.itemDanger() && 'text-destructive'
-  ));
-
-  // Host Bindings
-  @HostBinding('attr.role') get role() { return this.itemHref() ? null : 'menuitem'; }
-  @HostBinding('attr.tabindex') readonly tabindex = -1;
-  @HostBinding('attr.data-disabled') get dataDisabled() { return this.itemDisabled() || null; }
-  @HostBinding('attr.data-danger') get dataDanger() { return this.itemDanger() || null; }
-  @HostBinding('class') get classes() { return this.computedItemClasses(); }
-
-  @HostListener('click', ['$event'])
-  handleClick(event: Event): void {
-    if (this.itemDisabled()) {
-      event.preventDefault();
-      return;
-    }
-
-    if (!this.itemHref()) {
-      event.preventDefault();
-      this.select.emit(this);
-      this.dropdownMenuService.closeCurrentMenu();
+    // Return focus to trigger
+    if (this.triggerElement) {
+      this.triggerElement.nativeElement.focus();
     }
   }
 
-  @HostListener('keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent): void {
-    if (this.itemDisabled()) return;
+  selectItem(item: DropdownMenuItemData) {
+    if (item.disabled) return;
 
+    this.itemSelect.emit(item);
+
+    if (item.action) {
+      item.action();
+    }
+
+    if (this.closeOnSelect) {
+      this.close();
+    }
+  }
+
+  getItemClasses(item: DropdownMenuItemData): string {
+    return cn(dropdownMenuItemVariants({
+      variant: item.variant || 'default',
+      inset: false
+    }));
+  }
+
+  onTriggerKeydown(event: KeyboardEvent) {
     switch (event.key) {
       case 'Enter':
       case ' ':
+      case 'ArrowDown':
         event.preventDefault();
-        this.handleClick(event);
+        this.open();
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.open();
+        setTimeout(() => this.focusLastItem(), 0);
         break;
     }
   }
 
-  @HostListener('focus')
-  onFocus(): void {
-    this.isFocused.set(true);
-    this.parentDropdown?.setFocusedItem(this);
-  }
-
-  @HostListener('blur')
-  onBlur(): void {
-    this.isFocused.set(false);
-  }
-
-  focus(): void {
-    this.hostElementRef.nativeElement.focus();
-  }
-
-  getValue(): string {
-    return this.itemValue() || this.itemLabel();
-  }
-
-  ngOnInit(): void {
-    if (this.parentDropdown) {
-      this.parentDropdown.registerMenuItem(this);
+  onMenuKeydown(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this.focusNextItem();
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.focusPreviousItem();
+        break;
+      case 'Home':
+        event.preventDefault();
+        this.focusFirstItem();
+        break;
+      case 'End':
+        event.preventDefault();
+        this.focusLastItem();
+        break;
+      case 'Escape':
+        event.preventDefault();
+        this.close();
+        break;
+      case 'Tab':
+        this.close();
+        break;
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.parentDropdown) {
-      this.parentDropdown.unregisterMenuItem(this);
-    }
-  }
-}
-
-// Dropdown Menu Separator Component
-@Component({
-  selector: 'DropdownMenuSeparator',
-  standalone: true,
-  template: ` ` // No internal template content needed
-})
-export class DropdownMenuSeparator {
-  readonly className = input<string>('');
-
-  readonly computedSeparatorClasses = computed(() => cn(
-    '-mx-1 my-1 h-px bg-muted',
-    this.className()
-  ));
-
-  // Host Bindings
-  @HostBinding('attr.role') readonly role = 'separator';
-  @HostBinding('class') get classes() { return this.computedSeparatorClasses(); }
-}
-
-// Dropdown Menu Label Component
-@Component({
-  selector: 'DropdownMenuLabel',
-  standalone: true,
-  template: `
-    <ng-content></ng-content>
-  `
-})
-export class DropdownMenuLabel {
-  readonly className = input<string>('');
-
-  readonly computedLabelClasses = computed(() => cn(
-    'px-2 py-1.5 text-sm font-semibold',
-    this.className()
-  ));
-
-  // Host Bindings
-  @HostBinding('class') get classes() { return this.computedLabelClasses(); }
-}
-
-// Main Dropdown Menu Component
-@Component({
-  selector: 'DropdownMenu',
-  standalone: true,
-  imports: [CommonModule, OverlayModule],
-  template: `
-    <ng-content select="DropdownMenuTrigger"></ng-content>
-    
-    <ng-template #menuTemplate>
-      <ng-content select="DropdownMenuContent"></ng-content>
-    </ng-template>
-  `
-})
-export class DropdownMenu {
-  @ViewChild('menuTemplate', { static: true }) menuTemplate!: TemplateRef<any>;
-
-  // Signal inputs
-  readonly open = input<boolean>(false);
-  readonly modal = input<boolean>(true);
-
-  // Output events
-  @Output() readonly openChange = new EventEmitter<boolean>();
-
-  // Internal state
-  private readonly focusedItemIndex = signal<number>(-1);
-  private readonly menuItems = signal<DropdownMenuItem[]>([]);
-
-  private readonly viewContainerRef = inject(ViewContainerRef);
-  private readonly dropdownMenuService = inject(DropdownMenuService);
-
-  constructor() {
-    effect(() => {
-      const isOpen = this.open();
-      // This effect syncs external 'open' input with internal service state.
-      // If external 'open' is true, and service isn't open for *this* dropdown,
-      // it might imply an external desire to open. However, the trigger component
-      // handles the actual opening via `openDropdownMenu`.
-      // The current logic in `DropdownMenuService` ensures only one dropdown is open.
-      // So, if an external `open` is true, it might be more about *listening*
-      // to the service state rather than forcing it open from here,
-      // as the trigger is the primary opener.
-      // If `open` becomes false, ensure the menu is closed.
-      if (!isOpen && this.dropdownMenuService.isDropdownOpen(this)) {
-        this.dropdownMenuService.closeCurrentMenu();
-      }
-    });
-  }
-
-  // Host Binding for the wrapper class, if desired, but current template has a div wrapper.
-  // @HostBinding('class') readonly wrapperClass = 'dropdown-menu-wrapper';
-
-  getMenuData() {
-    return {
-      template: this.menuTemplate,
-      viewContainerRef: this.viewContainerRef
-    };
-  }
-
-  getNavigableItems(): DropdownMenuItem[] {
-    return this.menuItems().filter(item => !item.itemDisabled());
-  }
-
-  getFocusedIndex(): number {
-    return this.focusedItemIndex();
-  }
-
-  setFocusedItem(item: DropdownMenuItem): void {
-    const items = this.getNavigableItems();
-    const index = items.indexOf(item);
-    this.focusedItemIndex.set(index);
-  }
-
-  focusNextItem(): void {
-    const items = this.getNavigableItems();
-    if (items.length === 0) return;
-
-    const currentIndex = this.focusedItemIndex();
-    const nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
-    this.focusedItemIndex.set(nextIndex);
-    items[nextIndex].focus();
-  }
-
-  focusPreviousItem(): void {
-    const items = this.getNavigableItems();
-    if (items.length === 0) return;
-
-    const currentIndex = this.focusedItemIndex();
-    const prevIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
-    this.focusedItemIndex.set(prevIndex);
-    items[prevIndex].focus();
-  }
-
-  focusFirstItem(): void {
-    const items = this.getNavigableItems();
-    if (items.length === 0) return;
-
-    this.focusedItemIndex.set(0);
-    items[0].focus();
-  }
-
-  focusLastItem(): void {
-    const items = this.getNavigableItems();
-    if (items.length === 0) return;
-
-    const lastIndex = items.length - 1;
-    this.focusedItemIndex.set(lastIndex);
-    items[lastIndex].focus();
-  }
-
-  activateCurrentItem(): void {
-    const items = this.getNavigableItems();
-    const currentIndex = this.focusedItemIndex();
-    
-    if (currentIndex >= 0 && currentIndex < items.length) {
-      const currentItem = items[currentIndex];
-      currentItem.handleClick(new Event('click')); // Simulate click for activation
+  onItemKeydown(event: KeyboardEvent, item: DropdownMenuItemData) {
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        this.selectItem(item);
+        break;
     }
   }
 
-  registerMenuItem(item: DropdownMenuItem): void {
-    this.menuItems.update(items => [...items, item]);
+  private focusFirstItem() {
+    const items = this.allItems();
+    if (items.length > 0) {
+      this.focusedIndex.set(0);
+      this.focusItemAtIndex(0);
+    }
   }
 
-  unregisterMenuItem(item: DropdownMenuItem): void {
-    this.menuItems.update(items => items.filter(i => i !== item));
+  private focusLastItem() {
+    const items = this.allItems();
+    if (items.length > 0) {
+      const lastIndex = items.length - 1;
+      this.focusedIndex.set(lastIndex);
+      this.focusItemAtIndex(lastIndex);
+    }
+  }
+
+  private focusNextItem() {
+    const items = this.allItems();
+    const currentIndex = this.focusedIndex();
+    const nextIndex = (currentIndex + 1) % items.length;
+    this.focusedIndex.set(nextIndex);
+    this.focusItemAtIndex(nextIndex);
+  }
+
+  private focusPreviousItem() {
+    const items = this.allItems();
+    const currentIndex = this.focusedIndex();
+    const previousIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
+    this.focusedIndex.set(previousIndex);
+    this.focusItemAtIndex(previousIndex);
+  }
+
+  private focusItemAtIndex(index: number) {
+    if (!this.menuElement) return;
+
+    const menuItems = this.menuElement.nativeElement.querySelectorAll('[role="menuitem"]');
+    const item = menuItems[index] as HTMLElement;
+    if (item) {
+      item.focus();
+    }
+  }
+
+  private outsideClickListener = (event: Event) => {
+    if (!this.elementRef.nativeElement.contains(event.target as Node)) {
+      this.close();
+    }
+  };
+
+  private addOutsideClickListener() {
+    this.document.addEventListener('click', this.outsideClickListener);
+  }
+
+  private removeOutsideClickListener() {
+    this.document.removeEventListener('click', this.outsideClickListener);
+  }
+
+  // Additional helper methods for enhanced accessibility
+  getItemGlobalIndex(groupIndex: number, itemIndex: number): number {
+    let globalIndex = 0;
+    for (let i = 0; i < groupIndex; i++) {
+      globalIndex += this.groups()[i].items.filter(item => !item.separator).length;
+    }
+    return globalIndex + this.groups()[groupIndex].items.slice(0, itemIndex).filter(item => !item.separator).length;
+  }
+
+  getActiveDescendant(): string | null {
+    const focusIndex = this.focusedIndex();
+    return focusIndex >= 0 ? `${this.menuId}-item-${focusIndex}` : null;
+  }
+
+  setFocusedIndex(index: number) {
+    this.focusedIndex.set(index);
+  }
+
+  clearFocusedIndex() {
+    this.focusedIndex.set(-1);
+  }
+
+  onTriggerFocus() {
+    // Enhanced accessibility: announce focus state
+  }
+
+  onTriggerBlur() {
+    // Enhanced accessibility: manage focus state
+  }
+
+  onMenuFocusOut(event: FocusEvent) {
+    // Close menu if focus moves outside the menu
+    const relatedTarget = event.relatedTarget as HTMLElement;
+    if (!this.menuElement?.nativeElement.contains(relatedTarget) && 
+        !this.triggerElement?.nativeElement.contains(relatedTarget)) {
+      this.close();
+    }
   }
 }
