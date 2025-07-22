@@ -91,6 +91,12 @@ export class NavigationComponent {
       category: 'Overlay'
     },
     { 
+      name: 'Dropdown Menu', 
+      route: '/components/dropdown-menu', 
+      description: 'Contextual menu dropdowns',
+      category: 'Navigation'
+    },
+    { 
       name: 'Drawer', 
       route: '/components/slide-panel', 
       description: 'Slide-out panels from screen edges',

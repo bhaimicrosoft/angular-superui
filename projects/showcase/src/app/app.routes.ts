@@ -74,6 +74,11 @@ export const routes: Routes = [
     data: { componentName: 'dialog', category: 'Overlay', description: 'Modal dialogs and overlays' }
   },
   {
+    path: 'components/dropdown-menu',
+    loadComponent: () => import('./demo-components/dropdown-menu-demo.component').then(c => c.DropdownMenuDemoComponent),
+    data: { componentName: 'dropdown-menu', category: 'Navigation', description: 'Contextual menu dropdowns' }
+  },
+  {
     path: 'components/slide-panel',
     loadComponent: () => import('./demo-components/drawer-demo.component').then(c => c.DrawerDemoComponent),
     data: { componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges' }

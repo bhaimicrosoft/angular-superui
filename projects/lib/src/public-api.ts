@@ -23,5 +23,6 @@ export * from './lib/context-menu';
 export * from './lib/data-table';
 export * from './lib/dialog';
 export * from './lib/drawer';
+export * from './lib/dropdown-menu';
 export * from './lib/theme-switcher';
 
