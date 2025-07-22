@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'components/input',
+    loadComponent: () => import('./demo-components/input-demo.component').then(c => c.InputDemoComponent),
+    data: { componentName: 'input', category: 'Form', description: 'Accessible and customizable input fields' }
+  },
+  {
     path: '',
     loadComponent: () => import('./demo-components/home.component').then(c => c.HomeComponent),
     data: {

@@ -18,6 +18,12 @@ export class NavigationComponent {
   Object = Object;
 
   components = [
+    {
+      name: 'Input',
+      route: '/components/input',
+      description: 'Accessible and customizable input fields',
+      category: 'Form'
+    },
     { 
       name: 'Accordion', 
       route: '/components/accordion', 
@@ -104,7 +110,7 @@ export class NavigationComponent {
     }
   ];
 
-  // Group components by category
+  // Group components by category, always put Input first in Form
   get groupedComponents() {
     const grouped = this.components.reduce((acc, component) => {
       if (!acc[component.category]) {
@@ -113,8 +119,23 @@ export class NavigationComponent {
       acc[component.category].push(component);
       return acc;
     }, {} as Record<string, typeof this.components>);
-    
+    // Ensure Input is always first in Form
+    if (grouped['Form']) {
+      grouped['Form'].sort((a, b) => {
+        if (a.name === 'Input') return -1;
+        if (b.name === 'Input') return 1;
+        return 0;
+      });
+    }
     return grouped;
+  }
+
+  // For mobile menu: always put Input first
+  get sortedComponents() {
+    return [
+      ...this.components.filter(c => c.name === 'Input'),
+      ...this.components.filter(c => c.name !== 'Input')
+    ];
   }
 
   toggleMobileMenu() {

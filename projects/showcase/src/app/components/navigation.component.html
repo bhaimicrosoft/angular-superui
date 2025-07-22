@@ -223,7 +223,7 @@
         </h3>
         <div class="mt-2 space-y-1">
           <a
-            *ngFor="let component of components"
+            *ngFor="let component of sortedComponents"
             [routerLink]="component.route"
             (click)="closeMobileMenu()"
             routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400"
