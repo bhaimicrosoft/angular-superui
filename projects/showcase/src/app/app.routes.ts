@@ -29,6 +29,11 @@ export const routes: Routes = [
     data: { componentName: 'alert', category: 'Feedback', description: 'Display important messages' }
   },
   {
+    path: 'components/alert-dialog',
+    loadComponent: () => import('./demo-components/alert-demo.component').then(c => c.AlertDemoComponent),
+    data: { componentName: 'alert-dialog', category: 'Overlay', description: 'Modal dialogs and overlays' }
+  },
+  {
     path: 'components/aspect-ratio',
     loadComponent: () => import('./demo-components/aspect-ratio-demo.component').then(c => c.AspectRatioDemo),
     data: { componentName: 'aspect-ratio', category: 'Layout', description: 'Responsive aspect ratio containers' }
@@ -77,6 +82,16 @@ export const routes: Routes = [
     path: 'components/collapsible',
     loadComponent: () => import('./demo-components/collapsible-demo.component').then(c => c.CollapsibleDemo),
     data: { componentName: 'collapsible', category: 'Layout', description: 'Expandable content with smooth animations' }
+  },
+  {
+    path: 'components/combobox',
+    loadComponent: () => import('./demo-components/combobox-demo.component').then(c => c.ComboboxDemo),
+    data: { componentName: 'combobox', category: 'Form', description: 'Smart selection interface with search and multi-select' }
+  },
+  {
+    path: 'components/context-menu',
+    loadComponent: () => import('./demo-components/context-menu-demo.component').then(c => c.ContextMenuDemo),
+    data: { componentName: 'context-menu', category: 'Interaction', description: 'Right-click context menus with smart positioning and accessibility' }
   },
   {
     path: 'components/dataTable',

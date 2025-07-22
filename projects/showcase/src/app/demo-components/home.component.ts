@@ -188,10 +188,21 @@ import { SEOService } from '../services/seo.service';
           <a
             *ngFor="let component of components"
             [routerLink]="component.route"
-            class="group relative block p-8 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300/50 dark:hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02]"
+            class="group relative block p-8 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl border transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02]"
+            [ngClass]="component.isEnterprise ? 
+              'bg-gradient-to-br from-rose-50/95 via-pink-50/95 to-orange-50/95 dark:from-rose-950/95 dark:via-pink-950/95 dark:to-orange-950/95 border-rose-300/70 dark:border-rose-600/70 hover:border-rose-400/80 dark:hover:border-rose-500/80 ring-2 ring-rose-200/50 dark:ring-rose-800/50' : 
+              'bg-white/90 dark:bg-gray-900/90 border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300/50 dark:hover:border-blue-500/50'"
           >
-            <!-- Premium Badge Overlay -->
-            <div class="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <!-- Enterprise Badge Overlay for DataTable -->
+            <div *ngIf="component.isEnterprise" class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-rose-500 via-pink-500 to-orange-500 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 animate-pulse">
+              <div class="text-white font-bold text-xs text-center leading-tight">
+                <div>🏢</div>
+                <div>FREE</div>
+              </div>
+            </div>
+
+            <!-- Premium Badge Overlay for Regular Components -->
+            <div *ngIf="!component.isEnterprise" class="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
               <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
@@ -206,18 +217,28 @@ import { SEOService } from '../services/seo.service';
               </div>
               <div class="flex-1">
                 <div class="flex items-center gap-2 mb-1">
-                  <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  <h3 class="text-xl font-bold transition-colors"
+                      [ngClass]="component.isEnterprise ? 
+                        'text-rose-900 dark:text-rose-100 group-hover:text-rose-800 dark:group-hover:text-rose-200' : 
+                        'text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400'">
                     {{ component.name }}
                   </h3>
-                  <span class="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 rounded-full">
+                  <span class="px-2 py-1 text-xs font-semibold rounded-full"
+                        [ngClass]="component.isEnterprise ? 
+                          'bg-gradient-to-r from-rose-200 to-orange-200 dark:from-rose-800/50 dark:to-orange-800/50 text-rose-800 dark:text-rose-200' : 
+                          'bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300'">
                     {{ component.category }}
                   </span>
                 </div>
-                <div class="flex items-center text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                <div class="flex items-center text-xs font-semibold"
+                     [ngClass]="component.isEnterprise ? 
+                       'text-rose-700 dark:text-rose-300' : 
+                       'text-emerald-600 dark:text-emerald-400'">
                   <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                   </svg>
-                  FREE PREMIUM
+                  <span *ngIf="component.isEnterprise">🏢 ENTERPRISE GRADE FREE</span>
+                  <span *ngIf="!component.isEnterprise">FREE PREMIUM</span>
                 </div>
               </div>
             </div>
@@ -226,7 +247,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">{{ component.description }}</p>
 
             <!-- Premium Features List -->
-            <div class="grid grid-cols-2 gap-2 mb-6">
+            <div class="grid grid-cols-2 gap-2 mb-6" *ngIf="!component.isEnterprise">
               <div class="flex items-center text-xs text-gray-500 dark:text-gray-400">
                 <svg class="w-3 h-3 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
@@ -253,8 +274,49 @@ import { SEOService } from '../services/seo.service';
               </div>
             </div>
 
-            <!-- Premium CTA -->
-            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl border border-blue-200/50 dark:border-blue-800/50">
+            <!-- Enterprise Features List for DataTable -->
+            <div class="grid grid-cols-2 gap-2 mb-6" *ngIf="component.isEnterprise">
+              <div class="flex items-center text-xs text-rose-600 dark:text-rose-400 font-medium">
+                <svg class="w-3 h-3 mr-1 text-rose-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Advanced Sorting
+              </div>
+              <div class="flex items-center text-xs text-rose-600 dark:text-rose-400 font-medium">
+                <svg class="w-3 h-3 mr-1 text-rose-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Smart Filtering
+              </div>
+              <div class="flex items-center text-xs text-rose-600 dark:text-rose-400 font-medium">
+                <svg class="w-3 h-3 mr-1 text-rose-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Row Selection
+              </div>
+              <div class="flex items-center text-xs text-rose-600 dark:text-rose-400 font-medium">
+                <svg class="w-3 h-3 mr-1 text-rose-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Export Data
+              </div>
+            </div>
+
+            <!-- Enterprise CTA for DataTable -->
+            <div *ngIf="component.isEnterprise" class="flex items-center justify-between p-4 bg-gradient-to-r from-rose-50 to-orange-50 dark:from-rose-950/40 dark:to-orange-950/40 rounded-xl border border-rose-300/50 dark:border-rose-700/50">
+              <div class="flex items-center text-rose-700 dark:text-rose-300 font-bold group-hover:text-rose-800 dark:group-hover:text-rose-200">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+                🏢 Enterprise Demo
+              </div>
+              <svg class="w-5 h-5 text-rose-600 group-hover:translate-x-1 group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </div>
+
+            <!-- Premium CTA for Regular Components -->
+            <div *ngIf="!component.isEnterprise" class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl border border-blue-200/50 dark:border-blue-800/50">
               <div class="flex items-center text-blue-600 dark:text-blue-400 font-semibold group-hover:text-blue-700 dark:group-hover:text-blue-300">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -268,7 +330,10 @@ import { SEOService } from '../services/seo.service';
             </div>
 
             <!-- Hover Glow Effect -->
-            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/0 via-purple-400/0 to-indigo-400/0 group-hover:from-blue-400/10 group-hover:via-purple-400/10 group-hover:to-indigo-400/10 transition-all duration-500 pointer-events-none"></div>
+            <div class="absolute inset-0 rounded-2xl transition-all duration-500 pointer-events-none"
+                 [ngClass]="component.isEnterprise ? 
+                   'bg-gradient-to-r from-rose-400/0 via-pink-400/0 to-orange-400/0 group-hover:from-rose-400/10 group-hover:via-pink-400/10 group-hover:to-orange-400/10' : 
+                   'bg-gradient-to-r from-blue-400/0 via-purple-400/0 to-indigo-400/0 group-hover:from-blue-400/10 group-hover:via-purple-400/10 group-hover:to-indigo-400/10'"></div>
           </a>
         </div>
 
@@ -354,7 +419,7 @@ export class HomeComponent implements OnInit {
   }
 
   stats = {
-    components: 16,
+    components: 20,
     examples: 50
   };
 
@@ -441,6 +506,15 @@ export class HomeComponent implements OnInit {
       iconColor: 'text-yellow-600 dark:text-yellow-400'
     },
     {
+      name: 'Alert Dialog',
+      route: '/components/alert-dialog',
+      description: 'Modal confirmation dialogs with actions',
+      category: 'Overlay',
+      icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z',
+      bgColor: 'bg-red-100 dark:bg-red-900/30',
+      iconColor: 'text-red-600 dark:text-red-400'
+    },
+    {
       name: 'Aspect Ratio',
       route: '/components/aspect-ratio',
       description: 'Maintain consistent proportions for media and content containers across all screen sizes',
@@ -520,6 +594,43 @@ export class HomeComponent implements OnInit {
       icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
       bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
       iconColor: 'text-emerald-600 dark:text-emerald-400'
+    },
+    {
+      name: 'Collapsible',
+      route: '/components/collapsible',
+      description: 'Expandable content with smooth animations',
+      category: 'Layout',
+      icon: 'M19 14l-7 7m0 0l-7-7m7 7V3',
+      bgColor: 'bg-amber-100 dark:bg-amber-900/30',
+      iconColor: 'text-amber-600 dark:text-amber-400'
+    },
+    {
+      name: 'Combobox',
+      route: '/components/combobox',
+      description: 'Smart selection interface with search and multi-select',
+      category: 'Form',
+      icon: 'M8 9l4-4 4 4m0 6l-4 4-4-4',
+      bgColor: 'bg-lime-100 dark:bg-lime-900/30',
+      iconColor: 'text-lime-600 dark:text-lime-400'
+    },
+    {
+      name: 'Context Menu',
+      route: '/components/context-menu',
+      description: 'Right-click context menus with smart positioning and accessibility',
+      category: 'Interaction',
+      icon: 'M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z',
+      bgColor: 'bg-violet-100 dark:bg-violet-900/30',
+      iconColor: 'text-violet-600 dark:text-violet-400'
+    },
+    {
+      name: 'Data Table',
+      route: '/components/dataTable',
+      description: '🚀 Enterprise-grade data table with sorting, filtering, pagination, row selection, and export capabilities - All FREE!',
+      category: 'Enterprise',
+      icon: 'M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2z',
+      bgColor: 'bg-gradient-to-br from-rose-100 to-pink-100 dark:from-rose-900/40 dark:to-pink-900/40',
+      iconColor: 'text-rose-600 dark:text-rose-400',
+      isEnterprise: true
     },
     {
       name: 'Input',

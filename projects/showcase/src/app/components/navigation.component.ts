@@ -2,6 +2,7 @@ import { Component, signal, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ThemeSwitcher } from '../../../../lib/src/lib/theme-switcher';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-navigation',
@@ -11,143 +12,35 @@ import { ThemeSwitcher } from '../../../../lib/src/lib/theme-switcher';
   styles: []
 })
 export class NavigationComponent {
+  private navigationService = inject(NavigationService);
+  
   isMobileMenuOpen = signal(false);
   isMegaMenuOpen = signal(false);
+  
+  // Track which mobile menu categories are expanded (start with all collapsed for better UX)
+  expandedCategories = signal<Set<string>>(new Set());
   
   // Expose Object to template
   Object = Object;
 
-  components = [
-    {
-      name: 'Input',
-      route: '/components/input',
-      description: 'Accessible and customizable input fields',
-      category: 'Form'
-    },
-    { 
-      name: 'Accordion', 
-      route: '/components/accordion', 
-      description: 'Collapsible content sections',
-      category: 'Layout'
-    },
-    { 
-      name: 'Alert', 
-      route: '/components/alert', 
-      description: 'Display important messages',
-      category: 'Feedback'
-    },
-    { 
-      name: 'Aspect Ratio', 
-      route: '/components/aspect-ratio', 
-      description: 'Responsive aspect ratio containers',
-      category: 'Layout'
-    },
-    { 
-      name: 'Avatar', 
-      route: '/components/avatar', 
-      description: 'User profile pictures',
-      category: 'Display'
-    },
-    { 
-      name: 'Badge', 
-      route: '/components/badge', 
-      description: 'Small status indicators',
-      category: 'Display'
-    },
-    { 
-      name: 'Breadcrumb', 
-      route: '/components/breadcrumb', 
-      description: 'Navigation hierarchy',
-      category: 'Navigation'
-    },
-    { 
-      name: 'Button', 
-      route: '/components/button', 
-      description: 'Interactive elements',
-      category: 'Form'
-    },
-    { 
-      name: 'Calendar', 
-      route: '/components/calendar', 
-      description: 'Date picker and calendar',
-      category: 'Form'
-    },
-    { 
-      name: 'Card', 
-      route: '/components/card', 
-      description: 'Content containers',
-      category: 'Layout'
-    },
-    { 
-      name: 'Carousel', 
-      route: '/components/carousel', 
-      description: 'Image and content sliders',
-      category: 'Display'
-    },
-    { 
-      name: 'Checkbox', 
-      route: '/components/checkbox', 
-      description: 'Selection controls',
-      category: 'Form'
-    },
-    { 
-      name: 'Collapsible', 
-      route: '/components/collapsible', 
-      description: 'Expandable content with smooth animations',
-      category: 'Layout'
-    },
-    { 
-      name: 'DataTable', 
-      route: '/components/dataTable', 
-      description: 'Feature-rich data tables',
-      category: 'Display'
-    },
-    { 
-      name: 'Dialog', 
-      route: '/components/dialog', 
-      description: 'Modal dialogs and overlays',
-      category: 'Overlay'
-    },
-    { 
-      name: 'Dropdown Menu', 
-      route: '/components/dropdown-menu', 
-      description: 'Contextual menu dropdowns',
-      category: 'Navigation'
-    },
-    { 
-      name: 'Drawer', 
-      route: '/components/slide-panel', 
-      description: 'Slide-out panels from screen edges',
-      category: 'Navigation'
-    }
-  ];
+  // Get components from the navigation service (automatically generated from routes)
+  get components() {
+    return this.navigationService.components();
+  }
 
   // Group components by category, always put Input first in Form
   get groupedComponents() {
-    const grouped = this.components.reduce((acc, component) => {
-      if (!acc[component.category]) {
-        acc[component.category] = [];
-      }
-      acc[component.category].push(component);
-      return acc;
-    }, {} as Record<string, typeof this.components>);
-    // Ensure Input is always first in Form
-    if (grouped['Form']) {
-      grouped['Form'].sort((a, b) => {
-        if (a.name === 'Input') return -1;
-        if (b.name === 'Input') return 1;
-        return 0;
-      });
-    }
-    return grouped;
+    return this.navigationService.groupedComponents();
+  }
+
+  // Get all categories in preferred order
+  get categories() {
+    return this.navigationService.categories();
   }
 
   // For mobile menu: always put Input first
   get sortedComponents() {
-    return [
-      ...this.components.filter(c => c.name === 'Input'),
-      ...this.components.filter(c => c.name !== 'Input')
-    ];
+    return this.navigationService.sortedComponents();
   }
 
   toggleMobileMenu() {
@@ -156,6 +49,38 @@ export class NavigationComponent {
 
   closeMobileMenu() {
     this.isMobileMenuOpen.set(false);
+  }
+
+  toggleCategory(category: string) {
+    this.expandedCategories.update(expanded => {
+      const newExpanded = new Set(expanded);
+      if (newExpanded.has(category)) {
+        newExpanded.delete(category);
+      } else {
+        newExpanded.add(category);
+      }
+      return newExpanded;
+    });
+  }
+
+  isCategoryExpanded(category: string): boolean {
+    return this.expandedCategories().has(category);
+  }
+
+  expandAllCategories() {
+    this.expandedCategories.set(new Set(this.categories));
+  }
+
+  collapseAllCategories() {
+    this.expandedCategories.set(new Set());
+  }
+
+  get hasAnyExpanded(): boolean {
+    return this.expandedCategories().size > 0;
+  }
+
+  get allExpanded(): boolean {
+    return this.expandedCategories().size === this.categories.length;
   }
 
   toggleMegaMenu() {
@@ -168,5 +93,40 @@ export class NavigationComponent {
 
   openGitHub() {
     window.open('https://github.com/bhaimicrosoft/angular-superui', '_blank');
+  }
+
+  // Helper methods for mobile menu
+  trackByCategory(index: number, category: string): string {
+    return category;
+  }
+
+  trackByComponent(index: number, component: any): string {
+    return component.componentName;
+  }
+
+  getCategoryIcon(category: string): string {
+    const icons: Record<string, string> = {
+      'Form': '📝',
+      'Display': '👁️',
+      'Layout': '📐',
+      'Navigation': '🧭',
+      'Interaction': '👆',
+      'Feedback': '💬',
+      'Overlay': '🔳'
+    };
+    return icons[category] || '⭐';
+  }
+
+  getCategoryIconClasses(category: string): string {
+    const classes: Record<string, string> = {
+      'Form': 'bg-gradient-to-br from-blue-500 to-blue-600',
+      'Display': 'bg-gradient-to-br from-green-500 to-emerald-600',
+      'Layout': 'bg-gradient-to-br from-purple-500 to-purple-600',
+      'Navigation': 'bg-gradient-to-br from-indigo-500 to-indigo-600',
+      'Interaction': 'bg-gradient-to-br from-orange-500 to-orange-600',
+      'Feedback': 'bg-gradient-to-br from-pink-500 to-pink-600',
+      'Overlay': 'bg-gradient-to-br from-gray-500 to-gray-600'
+    };
+    return classes[category] || 'bg-gradient-to-br from-slate-500 to-slate-600';
   }
 }
