@@ -91,6 +91,12 @@ export class NavigationComponent {
       category: 'Form'
     },
     { 
+      name: 'Collapsible', 
+      route: '/components/collapsible', 
+      description: 'Expandable content with smooth animations',
+      category: 'Layout'
+    },
+    { 
       name: 'DataTable', 
       route: '/components/dataTable', 
       description: 'Feature-rich data tables',

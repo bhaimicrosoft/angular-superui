@@ -74,6 +74,11 @@ export const routes: Routes = [
     data: { componentName: 'checkbox', category: 'Form', description: 'Selection controls' }
   },
   {
+    path: 'components/collapsible',
+    loadComponent: () => import('./demo-components/collapsible-demo.component').then(c => c.CollapsibleDemo),
+    data: { componentName: 'collapsible', category: 'Layout', description: 'Expandable content with smooth animations' }
+  },
+  {
     path: 'components/dataTable',
     loadComponent: () => import('./demo-components/data-table-demo.component').then(c => c.DataTableDemoComponent),
     data: { componentName: 'datatable', category: 'Display', description: 'A feature-rich table for displaying large datasets.' }
