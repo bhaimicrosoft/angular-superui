@@ -6,6 +6,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.6] - 2025-01-22
+
+### 🚀 **Component Library Expansion - 21 Components Ready**
+
+#### 🆕 New Components Added
+- 📄 **Drawer Component**: Flexible drawer component that slides in from any side of the screen
+- ⬇️ **DropdownMenu Component**: Beautiful, accessible dropdown menu with multiple variants and advanced animations
+- 📝 **Input Component**: Flexible input component with multiple variants, validation states, and accessibility features
+
+#### ✨ CLI Enhancements
+- Added missing components to CLI add command (drawer, dropdown-menu, input)
+- Updated CLI banners with new component count (21 components)
+- Enhanced list command to include all available components
+- Improved component categorization in CLI interface
+
+#### 📚 Documentation Updates
+- Complete documentation for all 21 components
+- Updated version references across all markdown files
+- Enhanced component descriptions and examples
+- Updated installation guide with new component count
+
+#### 🛠️ Technical Improvements
+- Enhanced feature comparison page with responsive design
+- Improved navigation highlighting for comparison links
+- Optimized color schemes for better dark mode readability
+- Fixed RouterLink implementation in breadcrumb component
+
+#### 🎨 UI/UX Enhancements
+- Added comprehensive framework comparison page
+- Enhanced home page component showcase
+- Improved responsive table format for feature comparisons
+- Better color contrast and accessibility improvements
+
+---
+
 ## [1.0.5] - 2025-01-11
 
 ### 🚀 **Major Enhancement Release - TailwindCSS v4, Enhanced Components & Comprehensive Updates**

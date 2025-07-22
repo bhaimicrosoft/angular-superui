@@ -101,6 +101,24 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
+    drawer: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    'dropdown-menu': {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    input: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
     'theme-switcher': {
         name: string;
         description: string;

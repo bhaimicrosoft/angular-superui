@@ -22,9 +22,9 @@ export async function listCommand() {
 
   // Group components by category with actually implemented components only
   const categories = {
-    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox'],
+    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input'],
     '🧭 Navigation': ['breadcrumb'],
-    '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog'],
+    '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu'],
     '🎨 Media & Display': ['carousel', 'aspect-ratio'],
     '📊 Data & Tables': ['data-table'],
     '⚙️ User Interface': ['theme-switcher', 'collapsible'],

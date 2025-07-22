@@ -193,7 +193,7 @@ import { ThemeService } from '@lib/theme-switcher';
                     <span class="text-white font-bold text-sm">⚡</span>
                   </div>
                   <div>
-                    <h5 class="font-semibold text-gray-900 dark:text-white text-sm">v1.0.5</h5>
+                    <h5 class="font-semibold text-gray-900 dark:text-white text-sm">v1.0.6</h5>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Latest Release</p>
                   </div>
                 </div>

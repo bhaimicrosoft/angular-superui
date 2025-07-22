@@ -119,6 +119,24 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'drawer': {
+    name: 'Drawer',
+    description: 'A flexible drawer component that slides in from any side of the screen.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'dropdown-menu': {
+    name: 'Dropdown Menu',
+    description: 'Beautiful, accessible dropdown menu with multiple variants and advanced animations.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'input': {
+    name: 'Input',
+    description: 'Flexible input component with multiple variants, validation states, and accessibility.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'theme-switcher': {
     name: 'Theme Switcher',
     description: 'A component that allows users to switch between light, dark, and system themes.',

@@ -1,14 +1,14 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v1.0.5
+# 🎨 Angular SuperUI v1.0.6
 
 **The Modern Angular UI Component Library That Developers Love**
 
 ### 🌟 **[🚀 LIVE DEMO - See All Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 18 Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
+**✨ Interactive Showcase • 21 Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
 
-[![🎯 View Live Demo](https://img.shields.io/badge/🎯-View%20Live%20Demo-FF6B6B?style=for-t- 🚀 **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 18 components**e-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
+[![🎯 View Live Demo](https://img.shields.io/badge/🎯-View%20Live%20Demo-FF6B6B?style=for-t- 🚀 **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 21 components**e-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Interactive Demo](https://img.shields.io/badge/🎮-Interactive%20Demo-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Mobile Ready](https://img.shields.io/badge/📱-Mobile%20Ready-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![♿ Accessible](https://img.shields.io/badge/♿-WCAG%20AA%20Compliant-9B59B6?style=for-the-badge&logo=accessibility&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -79,7 +79,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 
 [![Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white)](https://angular-superui.vercel.app/)
 
-*See all 18 components in action with dark mode, mobile responsiveness, and interactive examples!*
+*See all 21 components in action with dark mode, mobile responsiveness, and interactive examples!*
 
 </div>
 
@@ -269,13 +269,12 @@ export class AppComponent {}
 | **🗃️ [Collapsible](./docs/components/collapsible.md)** | Expandable content sections with smooth animations and keyboard support | ✅ Available |
 | **🔽 [ComboBox](./docs/components/combobox.md)** | Dropdown selection with search, multi-select, and loading states | ✅ Available |
 | **🖱️ [ContextMenu](./docs/components/context-menu.md)** | Right-click context menus with keyboard shortcuts and accessibility | ✅ Available |
+| **📊 [DataTable](./docs/components/data-table.md)** | Enterprise-grade data table with sorting, filtering, pagination, and inline editing | ✅ Available |
+| **🪟 [Dialog](./docs/components/dialog.md)** | Modal dialog windows with accessibility features and focus management | ✅ Available |
+| **📄 [Drawer](./docs/components/drawer.md)** | Flexible drawer component that slides in from any side of the screen | ✅ Available |
+| **⬇️ [DropdownMenu](./docs/components/dropdown-menu.md)** | Beautiful, accessible dropdown menu with multiple variants and advanced animations | ✅ Available |
+| **📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |
 | **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
-
-### 🚀 **Coming Soon**
-
-- Input
-- Select
-- And many more...
 
 ---
 

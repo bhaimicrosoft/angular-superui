@@ -1,12 +1,18 @@
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v1.0.5: 18 Components Ready** 🎯
+## 🛠️ **v1.0.6:ngsui-cli add all
+```
+
+## 📦 Available Components (21 total)
+
+### 🎯 Core Components
+- `button` - Displays a button or a component that looks like a buttonponents Ready** 🎯
 
 <div align="center">
 
 ### 🌟 **[🎮 LIVE DEMO - See Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 18 Components • Dark Mode • Mobile Responsive ✨**
+**✨ Interactive Showcase • 21 Components • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 View Live Demo](https://img.shields.io/badge/🚀-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Try on Mobile](https://img.shields.io/badge/📱-Try%20on%20Mobile-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -98,7 +104,7 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (18 total)
+## 📦 Available Components (21 total)
 
 ### 🎯 Core Components
 - `button` - Displays a button or a component that looks like a button

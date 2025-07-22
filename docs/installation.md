@@ -1,12 +1,12 @@
 <div align="center">
 
-# 🚀 Installation Guide - Angular SuperUI v1.0.5
+# 🚀 Installation Guide - Angular SuperUI v1.0.6
 
 
 
 ### 🌟 **[🎮 LIVE DEMO - Try All Components!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ 18 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
+**✨ 21 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![⚡ Get Started](https://img.shields.io/badge/⚡-Get%20Started-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -49,10 +49,10 @@
 
 ```bash
 # Install globally for easy access
-npm install -g ngsui-cli@1.0.5
+npm install -g ngsui-cli@1.0.6
 
 # Or use with npx (no installation)
-npx ngsui-cli@1.0.5 --help
+npx ngsui-cli@1.0.6 --help
 ```
 
 ### Step 2: Initialize Your Project
@@ -78,7 +78,7 @@ npx ngsui-cli list
 
 ---
 
-## 🧩 **Available Components (18 Total)**
+## 🧩 **Available Components (21 Total)**
 
 ### 🎯 **Core Components**
 - **🔘 [Button](./components/button.md)** - Interactive buttons with 9 variants and loading states
@@ -89,6 +89,7 @@ npx ngsui-cli list
 - **🃏 [Card](./components/card.md)** - Flexible content containers with header, content, and footer
 - **☑️ [Checkbox](./components/checkbox.md)** - Boolean input control with multiple states and form integration
 - **🔽 [ComboBox](./components/combobox.md)** - Advanced dropdown with search, multi-select, and loading states
+- **📝 [Input](./components/input.md)** - Flexible input component with validation states and accessibility
 
 ### 🧭 **Navigation & Layout**
 - **🍞 [Breadcrumb](./components/breadcrumb.md)** - Navigation breadcrumbs with accessibility and custom separators
@@ -98,6 +99,8 @@ npx ngsui-cli list
 - **🚨 [AlertDialog](./components/alert-dialog.md)** - Modal dialogs with accessibility and focus management
 - **🖱️ [ContextMenu](./components/context-menu.md)** - Right-click context menus with keyboard shortcuts
 - **🪟 [Dialog](./components/dialog.md)** - Modal dialog windows with accessibility features
+- **📄 [Drawer](./components/drawer.md)** - Flexible drawer component that slides in from any side
+- **⬇️ [DropdownMenu](./components/dropdown-menu.md)** - Beautiful dropdown menus with multiple variants
 
 ### 🎨 **Media & Display**
 - **🎠 [Carousel](./components/carousel.md)** - Content slider with auto-play, navigation, and pagination
@@ -131,7 +134,7 @@ npx ngsui-cli list
 
 ```bash
 # Install complete library with all components
-npm install angular-superui@1.0.5
+npm install angular-superui@1.0.6
 
 # Install peer dependencies
 npm install class-variance-authority clsx tailwind-merge
@@ -260,7 +263,7 @@ import { Badge } from '@components/badge';
       </CardHeader>
       <CardContent>
         <div class="space-y-4">
-          <Badge variant="default">v1.0.5</Badge>
+          <Badge variant="default">v1.0.6</Badge>
           <Button variant="default" (click)="handleClick()">
             Get Started
           </Button>
@@ -392,8 +395,8 @@ ngsui-cli --help
 ngsui-cli add button --force
 
 # Use with npx (no global installation)
-npx ngsui-cli@1.0.5 init
-npx ngsui-cli@1.0.5 add button
+npx ngsui-cli@1.0.6 init
+npx ngsui-cli@1.0.6 add button
 ```
 
 ---

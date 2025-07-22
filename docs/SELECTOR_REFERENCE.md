@@ -1,10 +1,10 @@
-# Component Selectors Quick Reference (v1.0.1)
+# Component Selectors Quick Reference (v1.0.6)
 
-This document provides a quick reference for all Angular SuperUI component selectors and their correct usage in v1.0.1.
+This document provides a quick reference for all Angular SuperUI component selectors and their correct usage in v1.0.6.
 
-## 🎯 Available Components (10 Total)
+## 🎯 Available Components (21 Total)
 
-Angular SuperUI v1.0.1 includes **10 production-ready components** with clean PascalCase selectors.
+Angular SuperUI v1.0.6 includes **21 production-ready components** with clean PascalCase selectors.
 
 ## Component Selectors
 
