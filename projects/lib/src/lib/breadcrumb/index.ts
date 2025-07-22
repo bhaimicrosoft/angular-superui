@@ -251,9 +251,15 @@ export class BreadcrumbLink implements OnInit, OnChanges {
 @Component({
   selector: 'a[BreadcrumbRouterLink]',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   template: `
-    <ng-content></ng-content>` // Content is projected directly into the host <a>
+    <ng-content></ng-content>`,
+  hostDirectives: [
+    {
+      directive: RouterLink,
+      inputs: ['routerLink', 'queryParams', 'fragment', 'queryParamsHandling', 'preserveFragment', 'skipLocationChange', 'replaceUrl', 'state']
+    }
+  ]
 })
 export class BreadcrumbRouterLink implements OnInit, OnChanges {
   @Input() routerLink?: string | string[];
@@ -266,12 +272,7 @@ export class BreadcrumbRouterLink implements OnInit, OnChanges {
 
   @HostBinding('class')
   get hostClasses() {
-    return cn(breadcrumbLinkVariants(), this.class); // No asChild variant needed
-  }
-
-  @HostBinding('routerLink')
-  get routerLinkAttr() {
-    return this.routerLink;
+    return cn(breadcrumbLinkVariants(), this.class);
   }
 
   @HostBinding('attr.aria-label')

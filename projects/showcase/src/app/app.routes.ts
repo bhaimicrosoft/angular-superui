@@ -17,6 +17,17 @@ export const routes: Routes = [
       }
     }
   },
+  {
+    path: 'feature-comparison',
+    loadComponent: () => import('./demo-components/feature-comparison.component').then(c => c.FeatureComparisonComponent),
+    data: {
+      seo: {
+        title: 'Angular SuperUI vs Other UI Frameworks - Feature Comparison | Why Choose Angular SuperUI',
+        description: 'Comprehensive comparison of Angular SuperUI with Angular Material, PrimeNG, Ng-Bootstrap, and Ant Design. Discover why Angular SuperUI is the superior choice for modern Angular applications.',
+        keywords: 'Angular SuperUI comparison, Angular Material vs SuperUI, PrimeNG comparison, Angular UI framework comparison, best Angular UI library, modern Angular components'
+      }
+    }
+  },
   // UI Components
   {
     path: 'components/accordion',
