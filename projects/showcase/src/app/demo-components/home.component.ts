@@ -351,6 +351,15 @@ export class HomeComponent implements OnInit {
       iconColor: 'text-pink-600 dark:text-pink-400'
     },
     {
+      name: 'Drawer',
+      route: '/components/slide-panel',
+      description: 'Slide-out panels from screen edges',
+      category: 'Navigation',
+      icon: 'M4 6h16M4 12h16M4 18h16',
+      bgColor: 'bg-slate-100 dark:bg-slate-900/30',
+      iconColor: 'text-slate-600 dark:text-slate-400'
+    },
+    {
       name: 'Accordion',
       route: '/components/accordion',
       description: 'Collapsible content sections',

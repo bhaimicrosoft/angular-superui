@@ -8,7 +8,7 @@ export const routes: Routes = [
       seo: {
         title: 'Angular SuperUI - Modern Angular Component Library | UI Framework',
         description: 'Build stunning Angular applications with our comprehensive component library. 50+ components, TypeScript support, Tailwind CSS integration, and full accessibility compliance.',
-        keywords: 'Angular UI, Angular components, Angular library, Angular framework, UI components, TypeScript components, Tailwind CSS, modern UI, component library'
+        keywords: 'Angular UI, Angular components, Angular library, Angular framework, UI components, TypeScript components, Tailwind CSS, modern UI, component library, Angular UI library'
       }
     }
   },
@@ -49,11 +49,6 @@ export const routes: Routes = [
     data: { componentName: 'calendar', category: 'Form', description: 'Date picker and calendar' }
   },
   {
-    path: 'components/dataTable',
-    loadComponent: () => import('./demo-components/data-table-demo.component').then(c => c.DataTableDemoComponent),
-    data: { componentName: 'datatable', category: 'Display', description: 'A feature-rich table for displaying large datasets.' }
-  },
-  {
     path: 'components/card',
     loadComponent: () => import('./demo-components/card-demo.component').then(c => c.CardDemoComponent),
     data: { componentName: 'card', category: 'Layout', description: 'Content containers' }
@@ -69,9 +64,19 @@ export const routes: Routes = [
     data: { componentName: 'checkbox', category: 'Form', description: 'Selection controls' }
   },
   {
+    path: 'components/dataTable',
+    loadComponent: () => import('./demo-components/data-table-demo.component').then(c => c.DataTableDemoComponent),
+    data: { componentName: 'datatable', category: 'Display', description: 'A feature-rich table for displaying large datasets.' }
+  },
+  {
     path: 'components/dialog',
     loadComponent: () => import('./demo-components/dialog-demo.component').then(c => c.DialogDemoComponent),
     data: { componentName: 'dialog', category: 'Overlay', description: 'Modal dialogs and overlays' }
+  },
+  {
+    path: 'components/slide-panel',
+    loadComponent: () => import('./demo-components/drawer-demo.component').then(c => c.DrawerDemoComponent),
+    data: { componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges' }
   },
   {
     path: '**',

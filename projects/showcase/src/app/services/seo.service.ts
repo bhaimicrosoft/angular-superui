@@ -115,7 +115,8 @@ export class SEOService {
       'card': 'Container components for grouping related content. Perfect for displaying products, profiles, articles, and dashboard widgets.',
       'carousel': 'Image and content sliders with navigation controls. Responsive, touch-friendly, and highly customizable for any content type.',
       'checkbox': 'Form input controls for multiple selections. Includes indeterminate states, custom styling, and form validation support.',
-      'dialog': 'Modal dialogs and overlays for user interactions. Includes forms, confirmations, notifications, and custom content displays.'
+      'dialog': 'Modal dialogs and overlays for user interactions. Includes forms, confirmations, notifications, and custom content displays.',
+      'drawer': 'Slide-out panels from screen edges for navigation and content. Perfect for mobile menus, filters, settings panels, and sidebar navigation.'
     };
 
     const componentKeywords: Record<string, string> = {
@@ -129,7 +130,8 @@ export class SEOService {
       'card': 'Angular card, content containers, dashboard cards, product cards, information panels',
       'carousel': 'Angular carousel, image slider, content slider, responsive carousel, touch slider',
       'checkbox': 'Angular checkbox, form controls, multiple selection, checkboxes, form validation',
-      'dialog': 'Angular dialog, modal windows, popup dialogs, overlay components, form modals'
+      'dialog': 'Angular dialog, modal windows, popup dialogs, overlay components, form modals',
+      'drawer': 'Angular drawer, slide panels, sidebar navigation, mobile menu, slide-out panels, off-canvas navigation'
     };
 
     return {

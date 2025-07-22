@@ -89,6 +89,12 @@ export class NavigationComponent {
       route: '/components/dialog', 
       description: 'Modal dialogs and overlays',
       category: 'Overlay'
+    },
+    { 
+      name: 'Drawer', 
+      route: '/components/slide-panel', 
+      description: 'Slide-out panels from screen edges',
+      category: 'Navigation'
     }
   ];
 
