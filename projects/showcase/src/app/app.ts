@@ -246,8 +246,10 @@ import { ThemeService } from '@lib/theme-switcher';
               <div class="flex items-center gap-3">
                 <span class="text-xs text-gray-400 dark:text-gray-500">Powered by</span>
                 <div class="flex items-center gap-2">
-                  <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9.931 12.645h4.138l-2.07-4.908m0-7.737L24 24H0l11.999-19.5z"/>
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7L3 17L12 22L21 17L22 7L12 2Z" fill="#DD0031"/>
+                    <path d="M12 2V22L21 17L22 7L12 2Z" fill="#C3002F"/>
+                    <path d="M12 6.5L16.5 16H14.75L13.75 13.5H10.25L9.25 16H7.5L12 6.5ZM12 9.5L10.75 12H13.25L12 9.5Z" fill="white"/>
                   </svg>
                   <span class="text-xs font-medium text-gray-600 dark:text-gray-300">Angular</span>
                 </div>
