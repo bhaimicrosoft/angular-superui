@@ -8,11 +8,6 @@
 
 **✨ Interactive Showcase • 21 Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
 
-[![🎯 View Live Demo](https://img.shields.io/badge/🎯-View%20Live%20Demo-FF6B6B?style=for-t- 🚀 **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 21 components**e-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
-[![🎮 Interactive Demo](https://img.shields.io/badge/🎮-Interactive%20Demo-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
-[![📱 Mobile Ready](https://img.shields.io/badge/📱-Mobile%20Ready-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
-[![♿ Accessible](https://img.shields.io/badge/♿-WCAG%20AA%20Compliant-9B59B6?style=for-the-badge&logo=accessibility&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
-
 [![NPM Version](https://img.shields.io/npm/v/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
 [![CLI Version](https://img.shields.io/npm/v/ngsui-cli?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ngsui-cli)
 [![Downloads](https://img.shields.io/npm/dt/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
