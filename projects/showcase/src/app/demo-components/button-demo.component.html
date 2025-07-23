@@ -320,81 +320,60 @@
             <!-- Formatting Buttons -->
             <div class="flex flex-wrap gap-3 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
               <Button
-                [variant]="boldActive() ? 'default' : 'outline'"
+                variant="plain"
                 size="sm"
                 (click)="toggleBold()"
-                [ngClass]="{
-                  'bg-blue-600 text-white border-blue-600 shadow-lg scale-105 ring-2 ring-blue-200': boldActive()
-                }"
-                customClasses="transition-all duration-300 hover:scale-105 font-bold">
+                [class]="boldButtonClasses()">
                 <span class="font-black text-lg">B</span>
               </Button>
 
               <Button
-                [variant]="italicActive() ? 'default' : 'outline'"
+                variant="plain"
                 size="sm"
                 (click)="toggleItalic()"
-                [ngClass]="{
-                  'bg-green-600 text-white border-green-600 shadow-lg scale-105 ring-2 ring-green-200': italicActive()
-                }"
-                customClasses="transition-all duration-300 hover:scale-105 italic">
+                [class]="italicButtonClasses()">
                 <span class="text-lg">I</span>
               </Button>
 
               <Button
-                [variant]="underlineActive() ? 'default' : 'outline'"
+                variant="plain"
                 size="sm"
                 (click)="toggleUnderline()"
-                [ngClass]="{
-                  'bg-purple-600 text-white border-purple-600 shadow-lg scale-105 ring-2 ring-purple-200': underlineActive()
-                }"
-                customClasses="transition-all duration-300 hover:scale-105 underline">
+                [class]="underlineButtonClasses()">
                 <span class="text-lg">U</span>
               </Button>
 
               <div class="w-px bg-gray-300 dark:bg-gray-600 mx-2"></div>
 
               <Button
-                [variant]="currentAlignment() === 'left' ? 'default' : 'outline'"
+                variant="plain"
                 size="sm"
                 (click)="setAlignment('left')"
-                [ngClass]="{
-                  'bg-orange-600 text-white border-orange-600 shadow-lg scale-105': currentAlignment() === 'left'
-                }"
-                customClasses="transition-all duration-300 hover:scale-105">
+                [class]="alignLeftClasses()">
                 ⬅️
               </Button>
 
               <Button
-                [variant]="currentAlignment() === 'center' ? 'default' : 'outline'"
+                variant="plain"
                 size="sm"
                 (click)="setAlignment('center')"
-                [ngClass]="[
-                   currentAlignment() === 'center' ? `bg-orange-600 text-white border-orange-600 shadow-lg scale-105`: ''
-                ]"
-                customClasses="transition-all duration-300 hover:scale-105">
+                [class]="alignCenterClasses()">
                 🔄
               </Button>
 
               <Button
-                [variant]="currentAlignment() === 'right' ? 'default' : 'outline'"
+                variant="plain"
                 size="sm"
                 (click)="setAlignment('right')"
-                [ngClass]="[
-                   currentAlignment() === 'right' ? `bg-orange-600 text-white border-orange-600 shadow-lg scale-105`: ''
-                ]"
-                customClasses="transition-all duration-300 hover:scale-105">
+                [class]="alignRightClasses()">
                 ➡️
               </Button>
 
               <Button
-                [variant]="currentAlignment() === 'justify' ? 'default' : 'outline'"
+                variant="plain"
                 size="sm"
                 (click)="setAlignment('justify')"
-                [ngClass]="{
-                  'bg-orange-600 text-white border-orange-600 shadow-lg scale-105': currentAlignment() === 'justify'
-                }"
-                customClasses="transition-all duration-300 hover:scale-105">
+                [class]="alignJustifyClasses()">
                 📏
               </Button>
             </div>
@@ -411,8 +390,7 @@
                   'text-right': currentAlignment() === 'right',
                   'text-justify': currentAlignment() === 'justify'
                 }"
-                 class="text-gray-800 dark:text-gray-200"
-                 class="text-lg leading-relaxed">
+                 class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
                 This text demonstrates the formatting options.
                 Click the buttons above to see real-time changes applied to this preview text.
               </p>
@@ -432,46 +410,34 @@
               <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Filter Controls</h4>
               <div class="flex flex-wrap gap-2 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
                 <Button
-                  [variant]="activeFilter() === 'all' ? 'default' : 'secondary'"
+                  variant="plain"
                   size="sm"
                   (click)="setFilter('all')"
-                  [ngClass]="{
-                    'bg-gray-800 text-white shadow-lg scale-105 ring-2 ring-gray-400': activeFilter() === 'all'
-                  }"
-                  customClasses="transition-all duration-300 hover:scale-105">
+                  [class]="filterAllClasses()">
                   📋 All
                 </Button>
 
                 <Button
-                  [variant]="activeFilter() === 'active' ? 'default' : 'outline'"
+                  variant="plain"
                   size="sm"
                   (click)="setFilter('active')"
-                  [ngClass]="{
-                    'bg-green-600 text-white border-green-600 shadow-lg scale-105 ring-2 ring-green-300': activeFilter() === 'active'
-                  }"
-                  customClasses="transition-all duration-300 hover:scale-105">
+                  [class]="filterActiveClasses()">
                   🟢 Active
                 </Button>
 
                 <Button
-                  [variant]="activeFilter() === 'pending' ? 'default' : 'outline'"
+                  variant="plain"
                   size="sm"
                   (click)="setFilter('pending')"
-                  [ngClass]="{
-                    'bg-yellow-600 text-white border-yellow-600 shadow-lg scale-105 ring-2 ring-yellow-300': activeFilter() === 'pending'
-                  }"
-                  customClasses="transition-all duration-300 hover:scale-105">
+                  [class]="filterPendingClasses()">
                   🟡 Pending
                 </Button>
 
                 <Button
-                  [variant]="activeFilter() === 'completed' ? 'default' : 'outline'"
+                  variant="plain"
                   size="sm"
                   (click)="setFilter('completed')"
-                  [ngClass]="{
-                    'bg-emerald-600 text-white border-emerald-600 shadow-lg scale-105 ring-2 ring-emerald-300': activeFilter() === 'completed'
-                  }"
-                  customClasses="transition-all duration-300 hover:scale-105">
+                  [class]="filterCompletedClasses()">
                   ✅ Completed
                 </Button>
               </div>
@@ -486,33 +452,28 @@
               <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Pagination</h4>
               <div class="flex items-center justify-center gap-2">
                 <Button
-                  variant="outline"
+                  variant="plain"
                   size="sm"
-                  [disabled]="currentPage() === 1"
                   (click)="goToPreviousPage()"
-                  customClasses="transition-all duration-300 disabled:opacity-50">
+                  [class]="previousButtonClasses()">
                   ← Previous
                 </Button>
 
                 @for (page of [1, 2, 3, 4, 5]; track page) {
                   <Button
-                    [variant]="currentPage() === page ? 'default' : 'ghost'"
+                    variant="plain"
                     size="sm"
                     (click)="goToPage(page)"
-                    [ngClass]="{
-                      'bg-indigo-600 text-white shadow-lg scale-110 ring-2 ring-indigo-300': currentPage() === page
-                    }"
-                    customClasses="transition-all duration-300 min-w-[40px] hover:scale-105">
+                    [class]="getPageClasses(page)">
                     {{ page }}
                   </Button>
                 }
 
                 <Button
-                  variant="outline"
+                  variant="plain"
                   size="sm"
-                  [disabled]="currentPage() === totalPages()"
                   (click)="goToNextPage()"
-                  customClasses="transition-all duration-300 disabled:opacity-50">
+                  [class]="nextButtonClasses()">
                   Next →
                 </Button>
               </div>

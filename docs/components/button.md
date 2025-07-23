@@ -260,6 +260,323 @@ export class AccessibleButtonExample {
 }
 ```
 
+### Interactive Button Groups
+
+#### Text Formatting Toolbar
+
+```typescript
+@Component({
+  selector: 'app-text-formatting-example',
+  template: `
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold">Text Formatting</h3>
+      <div class="flex gap-1 p-2 border rounded-lg">
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="boldButtonClasses()"
+          (buttonClick)="toggleBold()"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+            <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+          </svg>
+        </Button>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="italicButtonClasses()"
+          (buttonClick)="toggleItalic()"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 4h-9M14 20H5M15 4L9 20"/>
+          </svg>
+        </Button>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="underlineButtonClasses()"
+          (buttonClick)="toggleUnderline()"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 4v6a6 6 0 0 0 12 0V4"/>
+            <line x1="4" y1="20" x2="20" y2="20"/>
+          </svg>
+        </Button>
+      </div>
+      
+      <div class="text-sm text-muted-foreground">
+        Selected: {{ getSelectedFormats() }}
+      </div>
+    </div>
+  `
+})
+export class TextFormattingExample {
+  // State signals
+  private isBold = signal(false);
+  private isItalic = signal(false);
+  private isUnderline = signal(false);
+
+  // Computed classes for reactive styling
+  boldButtonClasses = computed(() => 
+    this.isBold() 
+      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-500 shadow-md' 
+      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100'
+  );
+
+  italicButtonClasses = computed(() => 
+    this.isItalic() 
+      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-500 shadow-md' 
+      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100'
+  );
+
+  underlineButtonClasses = computed(() => 
+    this.isUnderline() 
+      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-500 shadow-md' 
+      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100'
+  );
+
+  // Toggle methods
+  toggleBold() {
+    this.isBold.set(!this.isBold());
+  }
+
+  toggleItalic() {
+    this.isItalic.set(!this.isItalic());
+  }
+
+  toggleUnderline() {
+    this.isUnderline.set(!this.isUnderline());
+  }
+
+  getSelectedFormats(): string {
+    const formats = [];
+    if (this.isBold()) formats.push('Bold');
+    if (this.isItalic()) formats.push('Italic');
+    if (this.isUnderline()) formats.push('Underline');
+    return formats.length > 0 ? formats.join(', ') : 'None';
+  }
+}
+```
+
+#### Filter Button Group
+
+```typescript
+@Component({
+  selector: 'app-filter-example',
+  template: `
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold">Task Filter</h3>
+      <div class="flex gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="filterAllClasses()"
+          (buttonClick)="setFilter('all')"
+        >
+          All Tasks ({{ taskCounts.all }})
+        </Button>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="filterActiveClasses()"
+          (buttonClick)="setFilter('active')"
+        >
+          Active ({{ taskCounts.active }})
+        </Button>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="filterPendingClasses()"
+          (buttonClick)="setFilter('pending')"
+        >
+          Pending ({{ taskCounts.pending }})
+        </Button>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="filterCompletedClasses()"
+          (buttonClick)="setFilter('completed')"
+        >
+          Completed ({{ taskCounts.completed }})
+        </Button>
+      </div>
+      
+      <div class="text-sm text-muted-foreground">
+        Current filter: <span class="font-medium">{{ currentFilter() }}</span>
+      </div>
+    </div>
+  `
+})
+export class FilterExample {
+  // Filter state
+  currentFilter = signal<'all' | 'active' | 'pending' | 'completed'>('all');
+
+  // Sample data
+  taskCounts = {
+    all: 12,
+    active: 5,
+    pending: 3,
+    completed: 4
+  };
+
+  // Computed classes for each filter button
+  filterAllClasses = computed(() => 
+    this.getFilterClasses('all')
+  );
+
+  filterActiveClasses = computed(() => 
+    this.getFilterClasses('active')
+  );
+
+  filterPendingClasses = computed(() => 
+    this.getFilterClasses('pending')
+  );
+
+  filterCompletedClasses = computed(() => 
+    this.getFilterClasses('completed')
+  );
+
+  private getFilterClasses(filter: string): string {
+    const isActive = this.currentFilter() === filter;
+    return isActive 
+      ? 'bg-gradient-to-r from-green-500 to-green-600 text-white border-green-500 shadow-md' 
+      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100';
+  }
+
+  setFilter(filter: 'all' | 'active' | 'pending' | 'completed') {
+    this.currentFilter.set(filter);
+  }
+}
+```
+
+#### Pagination Controls
+
+```typescript
+@Component({
+  selector: 'app-pagination-example',
+  template: `
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold">Pagination</h3>
+      <div class="flex items-center gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="previousButtonClasses()"
+          (buttonClick)="goToPrevious()"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1">
+            <polyline points="15,18 9,12 15,6"/>
+          </svg>
+          Previous
+        </Button>
+
+        <div class="flex gap-1">
+          @for (page of visiblePages(); track page) {
+            <Button
+              variant="outline"
+              size="sm"
+              [class]="getPageClasses(page)"
+              (buttonClick)="goToPage(page)"
+            >
+              {{ page }}
+            </Button>
+          }
+        </div>
+
+        <Button
+          variant="outline"
+          size="sm"
+          [class]="nextButtonClasses()"
+          (buttonClick)="goToNext()"
+        >
+          Next
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-1">
+            <polyline points="9,18 15,12 9,6"/>
+          </svg>
+        </Button>
+      </div>
+      
+      <div class="text-sm text-muted-foreground">
+        Page {{ currentPage() }} of {{ totalPages }}
+      </div>
+    </div>
+  `
+})
+export class PaginationExample {
+  // Pagination state
+  currentPage = signal(1);
+  totalPages = 10;
+
+  // Computed properties for disabled states
+  isPreviousDisabled = computed(() => this.currentPage() === 1);
+  isNextDisabled = computed(() => this.currentPage() === this.totalPages);
+
+  // Computed classes for navigation buttons
+  previousButtonClasses = computed(() => {
+    const disabled = this.isPreviousDisabled();
+    if (disabled) {
+      return 'opacity-50 cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200';
+    }
+    return 'hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:border-blue-300';
+  });
+
+  nextButtonClasses = computed(() => {
+    const disabled = this.isNextDisabled();
+    if (disabled) {
+      return 'opacity-50 cursor-not-allowed bg-gray-100 text-gray-400 border-gray-200';
+    }
+    return 'hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:border-blue-300';
+  });
+
+  // Visible pages calculation
+  visiblePages = computed(() => {
+    const current = this.currentPage();
+    const total = this.totalPages;
+    const pages = [];
+
+    // Show pages around current page
+    const start = Math.max(1, current - 2);
+    const end = Math.min(total, current + 2);
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  });
+
+  // Navigation methods
+  goToPrevious() {
+    if (!this.isPreviousDisabled()) {
+      this.currentPage.set(this.currentPage() - 1);
+    }
+  }
+
+  goToNext() {
+    if (!this.isNextDisabled()) {
+      this.currentPage.set(this.currentPage() + 1);
+    }
+  }
+
+  goToPage(page: number) {
+    this.currentPage.set(page);
+  }
+
+  getPageClasses(page: number): string {
+    const isActive = this.currentPage() === page;
+    return isActive 
+      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-500 shadow-md' 
+      : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100';
+  }
+}
+```
+
 ## API Reference
 
 ### Props

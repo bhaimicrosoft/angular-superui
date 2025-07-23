@@ -1,4 +1,4 @@
-import {Component, computed, EventEmitter, HostBinding, HostListener, Input, Output, signal} from '@angular/core';
+import {Component, computed, EventEmitter, HostBinding, HostListener, Input, Output, signal, OnInit, OnDestroy, OnChanges, SimpleChanges} from '@angular/core';
 import {cva, type VariantProps} from 'class-variance-authority';
 import {cn} from '../utils/cn';
 
@@ -75,6 +75,8 @@ const buttonVariants = cva(
           'bg-transparent border-0 text-current shadow-none',
           'hover:bg-transparent hover:text-current',
           'before:hidden', // Remove overlay effects
+          // Remove default focus rings for custom implementations
+          'focus-visible:ring-0 focus-visible:ring-offset-0',
         ],
       },
       size: {
@@ -188,7 +190,7 @@ export interface ButtonLoadingState {
     }
   `,
 })
-export class Button {
+export class Button implements OnInit, OnDestroy {
   /** Button variant styling */
   @Input() variant: ButtonVariant['variant'] = 'default';
 
@@ -201,11 +203,12 @@ export class Button {
   /** Disable the button */
   @Input() disabled = false;
 
-  /** Custom CSS classes */
+  /** Custom CSS classes - now reactive! */
   @Input() customClasses = '';
 
   /** Accessibility configuration */
   @Input() accessibility: ButtonAccessibility = {};
+  
   /** Click event emitter */
   @Output() buttonClick = new EventEmitter<MouseEvent>();
   /** Keydown event emitter for custom keyboard handling */
@@ -214,13 +217,18 @@ export class Button {
   @Output() buttonFocus = new EventEmitter<FocusEvent>();
   /** Blur event emitter */
   @Output() buttonBlur = new EventEmitter<FocusEvent>();
+  
   /** Loading state signal */
   protected loading = signal<Required<ButtonLoadingState>>({
     loading: false,
     loadingText: null,
     disableOnLoading: true,
   });
-  /** Computed classes for the button */
+
+  /** Signal for custom classes to ensure reactivity */
+  private customClassesSignal = signal('');
+  
+  /** Computed classes for the button - now properly reactive */
   protected computedClasses = computed(() => {
     return cn(
       buttonVariants({
@@ -228,13 +236,30 @@ export class Button {
         size: this.size,
         loading: this.loading().loading,
       }),
-      this.customClasses
+      this.customClassesSignal() // Use signal instead of direct property
     );
   });
+  
   /** Computed disabled state */
   protected computedDisabled = computed(() => {
     return this.disabled || (this.loading().loading && this.loading().disableOnLoading);
   });
+
+  ngOnInit() {
+    // Initialize the custom classes signal
+    this.customClassesSignal.set(this.customClasses);
+  }
+
+  ngOnDestroy() {
+    // Cleanup if needed
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // Update the signal when customClasses input changes
+    if (changes['customClasses']) {
+      this.customClassesSignal.set(this.customClasses);
+    }
+  }
 
   /** Loading state configuration */
   @Input() set loadingState(value: boolean | ButtonLoadingState) {
@@ -258,7 +283,7 @@ export class Button {
     return 'button';
   }
 
-  @HostBinding('attr.class') get hostClasses() {
+  @HostBinding('class') get hostClasses() {
     return this.computedClasses();
   }
 
