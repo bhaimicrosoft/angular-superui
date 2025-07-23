@@ -8,7 +8,7 @@
         <!-- Mobile Menu Button -->
         <button
           (click)="toggleMobileMenu()"
-          class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-800 transition-colors"
+          class="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-800 transition-colors"
           aria-label="Toggle mobile menu"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +55,7 @@
       </div>
 
       <!-- Center: Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
+      <nav class="hidden lg:flex items-center space-x-8">
         <a
           routerLink="/"
           routerLinkActive="text-blue-600 dark:text-blue-400"
@@ -178,7 +178,7 @@
   <!-- Mobile Menu -->
   <div
     *ngIf="isMobileMenuOpen()"
-    class="md:hidden fixed inset-x-0 top-16 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200/60 dark:border-gray-700/60 shadow-xl transform transition-all duration-300 ease-out"
+    class="lg:hidden fixed inset-x-0 top-16 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200/60 dark:border-gray-700/60 shadow-xl transform transition-all duration-300 ease-out"
   >
     <!-- Gradient Background Overlay -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-indigo-50/40 to-purple-50/80 dark:from-gray-900/80 dark:via-blue-900/20 dark:to-indigo-900/40"></div>
@@ -344,7 +344,7 @@
 <div
   *ngIf="isMobileMenuOpen()"
   (click)="closeMobileMenu()"
-  class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+  class="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
   aria-hidden="true"
 ></div>
 
