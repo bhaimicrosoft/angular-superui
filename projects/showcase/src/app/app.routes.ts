@@ -7,6 +7,11 @@ export const routes: Routes = [
     data: { componentName: 'input', category: 'Form', description: 'Accessible and customizable input fields' }
   },
   {
+    path: 'components/input-otp',
+    loadComponent: () => import('./demo-components/input-otp-demo.component').then(c => c.InputOTPDemoComponent),
+    data: { componentName: 'input-otp', category: 'Form', description: 'Secure one-time password input with accessibility and validation' }
+  },
+  {
     path: '',
     loadComponent: () => import('./demo-components/home.component').then(c => c.HomeComponent),
     data: {

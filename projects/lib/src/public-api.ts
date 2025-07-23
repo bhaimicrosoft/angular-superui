@@ -25,5 +25,6 @@ export * from './lib/dialog';
 export * from './lib/drawer';
 export * from './lib/dropdown-menu';
 export * from './lib/input';
+export * from './lib/input-otp';
 export * from './lib/theme-switcher';
 
