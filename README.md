@@ -13,8 +13,9 @@
 [![📱 Mobile Ready](https://img.shields.io/badge/📱-Mobile%20Ready-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![♿ Accessible](https://img.shields.io/badge/♿-WCAG%20AA%20Compliant-9B59B6?style=for-the-badge&logo=accessibility&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 
-[![NPM Version](https://img.shields.io/npm/v/@angular-superui/components?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@angular-superui/components)
-[![Downloads](https://img.shields.io/npm/dt/@angular-superui/components?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/@angular-superui/components)
+[![NPM Version](https://img.shields.io/npm/v/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
+[![CLI Version](https://img.shields.io/npm/v/ngsui-cli?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ngsui-cli)
+[![Downloads](https://img.shields.io/npm/dt/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
 [![GitHub Stars](https://img.shields.io/github/stars/bhaimicrosoft/angular-superui?style=for-the-badge&logo=github&color=181717)](https://github.com/bhaimicrosoft/angular-superui)
 [![License](https://img.shields.io/github/license/bhaimicrosoft/angular-superui?style=for-the-badge&color=green)](https://github.com/bhaimicrosoft/angular-superui/blob/main/LICENSE)
 
@@ -88,7 +89,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui-cli@1.0.5
+npm install -g ngsui-cli@1.0.6
 ```
 
 ### 2️⃣ Initialize Your Project
