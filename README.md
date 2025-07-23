@@ -17,7 +17,6 @@
 [![CLI Version](https://img.shields.io/npm/v/ngsui-cli?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ngsui-cli)
 [![Downloads](https://img.shields.io/npm/dt/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
 [![GitHub Stars](https://img.shields.io/github/stars/bhaimicrosoft/angular-superui?style=for-the-badge&logo=github&color=181717)](https://github.com/bhaimicrosoft/angular-superui)
-[![License](https://img.shields.io/github/license/bhaimicrosoft/angular-superui?style=for-the-badge&color=green)](https://github.com/bhaimicrosoft/angular-superui/blob/main/LICENSE)
 
 </div>
 
