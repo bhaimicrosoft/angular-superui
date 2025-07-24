@@ -419,7 +419,7 @@ export class HomeComponent implements OnInit {
   }
 
   stats = {
-    components: 21,
+    components: 22,
     examples: 55
   };
 
@@ -658,6 +658,15 @@ export class HomeComponent implements OnInit {
       icon: 'M7 16l-4-4m0 0l4-4m-4 4h18M17 8l4 4m0 0l-4 4m4-4H3',
       bgColor: 'bg-sky-100 dark:bg-sky-900/30',
       iconColor: 'text-sky-600 dark:text-sky-400'
+    },
+    {
+      name: 'Popover',
+      route: '/components/popover',
+      description: 'Floating content containers with intelligent positioning, accessibility features, and beautiful animations',
+      category: 'Overlay',
+      icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+      bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
+      iconColor: 'text-indigo-600 dark:text-indigo-400'
     }
   ];
 

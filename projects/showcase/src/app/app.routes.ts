@@ -130,6 +130,11 @@ export const routes: Routes = [
     data: { componentName: 'pagination', category: 'Navigation', description: 'Navigate through large datasets with intelligent page controls' }
   },
   {
+    path: 'components/popover',
+    loadComponent: () => import('./demo-components/popover-demo.component').then(c => c.PopoverDemoComponent),
+    data: { componentName: 'popover', category: 'Overlay', description: 'Floating content containers with intelligent positioning and accessibility' }
+  },
+  {
     path: 'components/slide-panel',
     loadComponent: () => import('./demo-components/drawer-demo.component').then(c => c.DrawerDemoComponent),
     data: { componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges' }

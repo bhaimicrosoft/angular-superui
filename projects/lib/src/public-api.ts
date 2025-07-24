@@ -27,4 +27,5 @@ export * from './lib/dropdown-menu';
 export * from './lib/input';
 export * from './lib/input-otp';
 export * from './lib/pagination';
+export * from './lib/popover';
 export * from './lib/theme-switcher';
