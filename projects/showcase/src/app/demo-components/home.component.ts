@@ -419,8 +419,8 @@ export class HomeComponent implements OnInit {
   }
 
   stats = {
-    components: 20,
-    examples: 50
+    components: 21,
+    examples: 55
   };
 
   features = [
@@ -649,6 +649,15 @@ export class HomeComponent implements OnInit {
       icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
       bgColor: 'bg-orange-100 dark:bg-orange-900/30',
       iconColor: 'text-orange-600 dark:text-orange-400'
+    },
+    {
+      name: 'Pagination',
+      route: '/components/pagination',
+      description: 'Responsive, accessible navigation for large datasets with mobile-first design and enterprise features',
+      category: 'Navigation',
+      icon: 'M7 16l-4-4m0 0l4-4m-4 4h18M17 8l4 4m0 0l-4 4m4-4H3',
+      bgColor: 'bg-sky-100 dark:bg-sky-900/30',
+      iconColor: 'text-sky-600 dark:text-sky-400'
     }
   ];
 

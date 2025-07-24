@@ -125,14 +125,9 @@ export const routes: Routes = [
     data: { componentName: 'dropdown-menu', category: 'Navigation', description: 'Contextual menu dropdowns' }
   },
   {
-    path: 'components/hover-card',
-    loadComponent: () => import('./demo-components/hover-card-demo.component').then(c => c.HoverCardDemoComponent),
-    data: { componentName: 'hover-card', category: 'Overlay', description: 'For sighted users to preview content available behind a link.' }
-  },
-  {
-    path: 'components/menubar',
-    loadComponent: () => import('./demo-components/menubar-demo.component').then(c => c.MenubarDemoComponent),
-    data: { componentName: 'menubar', category: 'Navigation', description: 'Dropdown menu bar' }
+    path: 'components/pagination',
+    loadComponent: () => import('./demo-components/pagination-demo.component').then(c => c.PaginationDemoComponent),
+    data: { componentName: 'pagination', category: 'Navigation', description: 'Navigate through large datasets with intelligent page controls' }
   },
   {
     path: 'components/slide-panel',
