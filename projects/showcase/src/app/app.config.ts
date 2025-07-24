@@ -6,6 +6,7 @@ import { ThemeService, ThemeServiceImpl } from '@lib/theme-switcher';
 import { RouteSEOService } from './services/route-seo.service';
 
 import { routes } from './app.routes';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 // Theme service initializer function
 function initializeThemeService(themeService: ThemeServiceImpl) {
@@ -25,6 +26,7 @@ function initializeRouteSEO(routeSEOService: RouteSEOService) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimationsAsync(),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),

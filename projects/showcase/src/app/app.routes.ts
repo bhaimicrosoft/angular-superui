@@ -125,6 +125,16 @@ export const routes: Routes = [
     data: { componentName: 'dropdown-menu', category: 'Navigation', description: 'Contextual menu dropdowns' }
   },
   {
+    path: 'components/hover-card',
+    loadComponent: () => import('./demo-components/hover-card-demo.component').then(c => c.HoverCardDemoComponent),
+    data: { componentName: 'hover-card', category: 'Overlay', description: 'For sighted users to preview content available behind a link.' }
+  },
+  {
+    path: 'components/menubar',
+    loadComponent: () => import('./demo-components/menubar-demo.component').then(c => c.MenubarDemoComponent),
+    data: { componentName: 'menubar', category: 'Navigation', description: 'Dropdown menu bar' }
+  },
+  {
     path: 'components/slide-panel',
     loadComponent: () => import('./demo-components/drawer-demo.component').then(c => c.DrawerDemoComponent),
     data: { componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges' }
@@ -132,5 +142,7 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: ''
-  }
+  },
+
+
 ];
