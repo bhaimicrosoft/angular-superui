@@ -630,6 +630,15 @@
   }
 }
 
+@keyframes progress-stripes {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 20px;
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
