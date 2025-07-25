@@ -1,14 +1,15 @@
 # RadioGroup
 
-A comprehensive radio group component with full accessibility support, multiple variants, and form integration.
+A comprehensive radio group component with full accessibility support, multiple variants, and form integration. 
 
 ## Features
 
-- **Multiple Variants**: Default, destructive, success, warning, and secondary styles
-- **Flexible Sizing**: Small, default, large, and extra-large options
+- **Multiple Variants**: Default, destructive, success, warning, and secondary styles with variant-specific focus rings
+- **Flexible Sizing**: Small, default, large, and extra-large options with proportional dot sizing
 - **Layout Options**: Vertical (default) and horizontal orientations
 - **Form Integration**: Full support for Angular reactive forms with validation
 - **Accessibility**: Complete keyboard navigation, screen reader support, and ARIA compliance
+- **Focus Management**: Variant-specific focus ring colors (blue, red, green, yellow, secondary)
 - **Customizable**: Extensive styling options and configuration
 - **TypeScript**: Full type safety with TypeScript support
 
@@ -94,30 +95,58 @@ subscriptionPlans: RadioOption[] = [
 
 ## Variants
 
+The RadioGroup component supports multiple visual variants, each with its own focus ring color for optimal accessibility and visual feedback.
+
 ### Default
+
 ```html
 <RadioGroup [options]="options" variant="default" />
 ```
 
+*Focus ring: Blue (`focus-visible:ring-primary`)*
+
 ### Destructive
+
 ```html
 <RadioGroup [options]="options" variant="destructive" />
 ```
 
+*Focus ring: Red (`focus-visible:ring-destructive`)*
+
 ### Success
+
 ```html
 <RadioGroup [options]="options" variant="success" />
 ```
 
+*Focus ring: Green (`focus-visible:ring-green-500`)*
+
 ### Warning
+
 ```html
 <RadioGroup [options]="options" variant="warning" />
 ```
 
+*Focus ring: Yellow (`focus-visible:ring-yellow-500`)*
+
 ### Secondary
+
 ```html
 <RadioGroup [options]="options" variant="secondary" />
 ```
+
+*Focus ring: Secondary (`focus-visible:ring-secondary`)*
+
+## Visual Design
+
+### Dot Sizing
+
+The inner dots are sized proportionally to create proper padding:
+
+- **Small (sm)**: `4px × 4px` dot in `12px × 12px` radio button
+- **Default**: `6px × 6px` dot in `16px × 16px` radio button  
+- **Large (lg)**: `8px × 8px` dot in `20px × 20px` radio button
+- **Extra Large (xl)**: `10px × 10px` dot in `24px × 24px` radio button
 
 ## Sizes
 
@@ -308,8 +337,8 @@ styledOptions: RadioOption[] = [
 | `disabled` | `boolean` | `false` | Whether the entire group is disabled |
 | `required` | `boolean` | `false` | Whether selection is required |
 | `name` | `string` | `undefined` | Form control name |
-| `variant` | `RadioVariant['variant']` | `'default'` | Visual variant |
-| `size` | `RadioVariant['size']` | `'default'` | Size variant |
+| `variant` | `'default' \| 'destructive' \| 'success' \| 'warning' \| 'secondary'` | `'default'` | Visual variant with specific focus ring colors |
+| `size` | `'sm' \| 'default' \| 'lg' \| 'xl'` | `'default'` | Size variant affecting radio button and dot dimensions |
 | `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout orientation |
 | `className` | `string` | `undefined` | Additional CSS classes |
 | `accessibility` | `RadioGroupAccessibility` | `{}` | Accessibility configuration |
@@ -329,7 +358,7 @@ interface RadioOption {
   label: string;           // Display label
   description?: string;    // Optional description text
   disabled?: boolean;      // Whether option is disabled
-  className?: string;      // Additional CSS classes
+  className?: string;      // Additional CSS classes for styling individual options
 }
 ```
 
@@ -342,9 +371,19 @@ interface RadioGroupAccessibility {
   ariaDescribedBy?: string;     // Element ID that describes the group
   ariaRequired?: boolean;       // Whether selection is required
   ariaInvalid?: boolean;        // Whether group has validation errors
-  ariaLive?: 'off' | 'polite' | 'assertive'; // Live region behavior
+  ariaLive?: 'off' | 'polite' | 'assertive'; // Live region behavior for announcements
 }
 ```
+
+### Focus Ring Colors by Variant
+
+| Variant | Focus Ring Color | CSS Class |
+|---------|------------------|-----------|
+| `default` | Blue | `focus-visible:ring-primary` |
+| `destructive` | Red | `focus-visible:ring-destructive` |
+| `success` | Green | `focus-visible:ring-green-500` |
+| `warning` | Yellow | `focus-visible:ring-yellow-500` |
+| `secondary` | Secondary | `focus-visible:ring-secondary` |
 
 ## Best Practices
 
