@@ -145,6 +145,11 @@ export const routes: Routes = [
     data: { componentName: 'radio-group', category: 'Form', description: 'Radio button groups with full accessibility and form integration' }
   },
   {
+    path: 'components/sidebar',
+    loadComponent: () => import('./demo-components/sidebar-demo.component').then(c => c.SidebarDemoComponent),
+    data: { componentName: 'sidebar', category: 'Navigation', description: 'Responsive sidebar navigation with multiple modes and full accessibility' }
+  },
+  {
     path: 'components/popover',
     loadComponent: () => import('./demo-components/popover-demo.component').then(c => c.PopoverDemoComponent),
     data: { componentName: 'popover', category: 'Overlay', description: 'Floating content containers with intelligent positioning and accessibility' }
