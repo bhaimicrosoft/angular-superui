@@ -1,12 +1,12 @@
 <div align="center">
 
-# 🚀 Installation Guide - Angular SuperUI v1.0.6
+# 🚀 Installation Guide - Angular SuperUI v1.0.7
 
 
 
 ### 🌟 **[🎮 LIVE DEMO - Try All Components!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ 21 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
+**✨ 26 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![⚡ Get Started](https://img.shields.io/badge/⚡-Get%20Started-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -17,7 +17,7 @@
 
 ## 📚 **[🎨 Complete Component Demos & Examples →](./README.md)**
 
-> 🚀 **Step-by-step examples** for all 18 components with **interactive showcases**, **code snippets**, and **best practices**!
+> 🚀 **Step-by-step examples** for all 26 components with **interactive showcases**, **code snippets**, and **best practices**!
 
 ---
 
@@ -49,10 +49,10 @@
 
 ```bash
 # Install globally for easy access
-npm install -g ngsui-cli@1.0.6
+npm install -g ngsui-cli@1.0.7
 
 # Or use with npx (no installation)
-npx ngsui-cli@1.0.6 --help
+npx ngsui-cli@1.0.7 --help
 ```
 
 ### Step 2: Initialize Your Project
@@ -78,7 +78,7 @@ npx ngsui-cli list
 
 ---
 
-## 🧩 **Available Components (21 Total)**
+## 🧩 **Available Components (26 Total)**
 
 ### 🎯 **Core Components**
 - **🔘 [Button](./components/button.md)** - Interactive buttons with 9 variants and loading states
@@ -90,10 +90,14 @@ npx ngsui-cli list
 - **☑️ [Checkbox](./components/checkbox.md)** - Boolean input control with multiple states and form integration
 - **🔽 [ComboBox](./components/combobox.md)** - Advanced dropdown with search, multi-select, and loading states
 - **📝 [Input](./components/input.md)** - Flexible input component with validation states and accessibility
+- **🔐 [InputOTP](./components/input-otp.md)** - One-time password input with multiple slots and validation
+- **🔘 [RadioGroup](./components/radio-group.md)** - Radio button group with accessible selection and validation
+- **📈 [Progress](./components/progress.md)** - Progress indicator with customizable appearance and animation
 
 ### 🧭 **Navigation & Layout**
 - **🍞 [Breadcrumb](./components/breadcrumb.md)** - Navigation breadcrumbs with accessibility and custom separators
 - **📐 [AspectRatio](./components/aspect-ratio.md)** - Maintains consistent proportions for responsive content
+- **📄 [Pagination](./components/pagination.md)** - Pagination controls with customizable page size and navigation
 
 ### 💫 **Overlay & Dialog Components**
 - **🚨 [AlertDialog](./components/alert-dialog.md)** - Modal dialogs with accessibility and focus management
@@ -101,6 +105,7 @@ npx ngsui-cli list
 - **🪟 [Dialog](./components/dialog.md)** - Modal dialog windows with accessibility features
 - **📄 [Drawer](./components/drawer.md)** - Flexible drawer component that slides in from any side
 - **⬇️ [DropdownMenu](./components/dropdown-menu.md)** - Beautiful dropdown menus with multiple variants
+- **📋 [Popover](./components/popover.md)** - Floating overlay that displays content relative to a trigger
 
 ### 🎨 **Media & Display**
 - **🎠 [Carousel](./components/carousel.md)** - Content slider with auto-play, navigation, and pagination
@@ -134,7 +139,7 @@ npx ngsui-cli list
 
 ```bash
 # Install complete library with all components
-npm install angular-superui@1.0.6
+npm install angular-superui@1.0.7
 
 # Install peer dependencies
 npm install class-variance-authority clsx tailwind-merge
@@ -263,7 +268,7 @@ import { Badge } from '@components/badge';
       </CardHeader>
       <CardContent>
         <div class="space-y-4">
-          <Badge variant="default">v1.0.6</Badge>
+          <Badge variant="default">v1.0.7</Badge>
           <Button variant="default" (click)="handleClick()">
             Get Started
           </Button>
@@ -395,8 +400,8 @@ ngsui-cli --help
 ngsui-cli add button --force
 
 # Use with npx (no global installation)
-npx ngsui-cli@1.0.6 init
-npx ngsui-cli@1.0.6 add button
+npx ngsui-cli@1.0.7 init
+npx ngsui-cli@1.0.7 add button
 ```
 
 ---

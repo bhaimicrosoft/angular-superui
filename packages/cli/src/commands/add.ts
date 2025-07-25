@@ -137,6 +137,36 @@ export const COMPONENTS = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'input-otp': {
+    name: 'Input OTP',
+    description: 'One-time password input component with multiple slots and validation.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'pagination': {
+    name: 'Pagination',
+    description: 'Pagination component with customizable page size and navigation controls.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'popover': {
+    name: 'Popover',
+    description: 'A floating overlay that displays content relative to a trigger element.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'progress': {
+    name: 'Progress',
+    description: 'Progress indicator component with customizable appearance and animation.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'radio-group': {
+    name: 'Radio Group',
+    description: 'Radio button group component with accessible selection and validation.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'theme-switcher': {
     name: 'Theme Switcher',
     description: 'A component that allows users to switch between light, dark, and system themes.',

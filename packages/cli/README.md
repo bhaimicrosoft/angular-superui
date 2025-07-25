@@ -1,18 +1,12 @@
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v1.0.6:ngsui-cli add all
-```
-
-## 📦 Available Components (21 total)
-
-### 🎯 Core Components
-- `button` - Displays a button or a component that looks like a buttonponents Ready** 🎯
+## 🛠️ **v1.0.7: 26 Components Ready** 🎯
 
 <div align="center">
 
 ### 🌟 **[🎮 LIVE DEMO - See Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 21 Components • Dark Mode • Mobile Responsive ✨**
+**✨ Interactive Showcase • 26 Components • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 View Live Demo](https://img.shields.io/badge/🚀-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Try on Mobile](https://img.shields.io/badge/📱-Try%20on%20Mobile-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -20,51 +14,6 @@
 </div>
 
 The **Angular SuperUI CLI** is your gateway to the most beautiful and accessible Angular component library. Install components locally with zero dependencies and full customization control.
-
-## 🚀 Quick Start
-
-### Install globally
-```bash
-npm install -g ngsui-cli@1.0.5
-```
-
-### Initialize your project
-```bash
-ngsui-cli init
-```
-
-### Add components
-```bash
-# Add a single component
-ngsui-cli add button
-
-# Add multiple components  
-ngsui-cli add button badge alert
-
-# List all available components
-ngsui-cli list
-
-# Add all available components
-ngsui-cli add --all
-
-# Interactive component selection
-ngsui-cli add
-```
-
-## 📦 Available Components (18 total)
-
-### 🎯 Core Components
-- `button` - Displays a button or a component that looks like a button
-- `badge` - Displays a badge or a component that looks like a badge  
-- `alert` - Displays a callout for user attention
-- `aspect-ratio` - Displays content within a desired ratio
-- `card` - Flexible content container with header, content, and footer
-- `checkbox` - A control that allows the user to toggle between checked and not checked
-- `collapsible` - Expandable content sections with smooth animations and keyboard support
-- `combobox` - Advanced dropdown selection with search, multi-select, and loading states
-- `theme-switcher` - Toggle between light, dark, and system themes with localStorage persistenceRelease**
-
-A powerful CLI tool for selective Angular SuperUI component installation. Install only the components you need, when you need them.
 
 ## ✨ Features
 
@@ -79,13 +28,13 @@ A powerful CLI tool for selective Angular SuperUI component installation. Instal
 
 ```bash
 # Install globally
-npm install -g ngsui-cli@1.0.5
+npm install -g ngsui-cli@1.0.7
 
 # Or use with npx (no installation required)
-npx ngsui-cli@1.0.5 --help
+npx ngsui-cli@1.0.7 --help
 ```
 
-## 🎯 Quick Start
+## 🚀 Quick Start
 
 ```bash
 # List all available components
@@ -104,32 +53,50 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (21 total)
+## 📦 Available Components (26 total)
 
 ### 🎯 Core Components
-- `button` - Displays a button or a component that looks like a button
-- `badge` - Displays a badge or a component that looks like a badge  
-- `alert` - Displays a callout for user attention
-- `aspect-ratio` - Displays content within a desired ratio
-- `card` - Flexible content container with header, content, and footer
-- `checkbox` - A control that allows the user to toggle between checked and not checked
-- `collapsible` - Expandable content sections with smooth animations and keyboard support
-- `combobox` - Dropdown selection with search, multi-select, and loading states
-- `theme-switcher` - Toggle between light, dark, and system themes with localStorage persistence
+
+- `button` - Interactive button component with multiple variants and loading states
+- `badge` - Status indicators and labels with color variants
+- `alert` - Display important messages and notifications
+- `aspect-ratio` - Responsive aspect ratio containers for media content
+- `card` - Flexible content containers with header, body, and footer
+- `checkbox` - Toggle controls with full accessibility support
+- `input` - Accessible and customizable input fields with validation
+- `radio-group` - Radio button groups with form integration
 
 ### 🧭 Navigation Components
-- `breadcrumb` - Displays the path to the current resource using a hierarchy of links
+
+- `breadcrumb` - Navigation hierarchy with custom separators
+- `dropdown-menu` - Contextual menu dropdowns with keyboard navigation
+- `pagination` - Navigate through large datasets with intelligent controls
+- `drawer` - Slide-out panels from screen edges
 
 ### 🖼️ Display Components
-- `avatar` - An image element with a fallback for representing the user
+
+- `avatar` - User profile pictures with fallback support
+- `carousel` - Image and content sliders with auto-play
+- `data-table` - Feature-rich table for displaying large datasets
+- `progress` - Progress indicators with accessibility
 
 ### 💫 Overlay Components
-- `alert-dialog` - A modal dialog that interrupts the user with important content
-- `context-menu` - Right-click context menus with keyboard shortcuts and accessibility
+
+- `alert-dialog` - Modal dialogs with focus management
+- `context-menu` - Right-click context menus with accessibility
+- `dialog` - Modal windows and overlays
+- `popover` - Floating content containers with smart positioning
+
+### 🔧 Form Components
+
+- `calendar` - Date picker with full keyboard navigation
+- `collapsible` - Expandable content sections with animations
+- `combobox` - Advanced dropdown with search and multi-select
+- `input-otp` - Secure one-time password input with validation
 
 ### ⚙️ Utility Components
-- `accordion` - A vertically stacked set of interactive headings
-- `calendar` - A date field component that allows users to enter and edit date
+
+- `accordion` - Vertically stacked interactive sections
 
 ## 🔧 Usage Examples
 
@@ -172,21 +139,9 @@ Most components support these beautiful color variants:
 - 🤍 gray
 - 🩵 cyan
 
-## 🚀 Coming Soon
+## � Documentation
 
-These components are planned for future releases:
-- Card - Display content in a card layout
-- Input - Form input fields
-- Checkbox - Toggle controls
-- Select - Dropdown selection
-- Tooltip - Hover information
-- Dialog - Modal windows
-- Tabs - Tabbed navigation
-- Table - Data tables
-- And many more...
-
-## 📚 Documentation
-
+- [🚀 Live Demo](https://angular-superui.vercel.app/) - Interactive component showcase
 - [GitHub Repository](https://github.com/bhaimicrosoft/angular-superui)
 - [Documentation](https://github.com/bhaimicrosoft/angular-superui/tree/main/docs)
 - [Components Guide](https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components)

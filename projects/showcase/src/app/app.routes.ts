@@ -110,14 +110,19 @@ export const routes: Routes = [
     data: { componentName: 'context-menu', category: 'Interaction', description: 'Right-click context menus with smart positioning and accessibility' }
   },
   {
-    path: 'components/dataTable',
+    path: 'components/data-table',
     loadComponent: () => import('./demo-components/data-table-demo.component').then(c => c.DataTableDemoComponent),
-    data: { componentName: 'datatable', category: 'Display', description: 'A feature-rich table for displaying large datasets.' }
+    data: { componentName: 'data-table', category: 'Display', description: 'A feature-rich table for displaying large datasets.' }
   },
   {
     path: 'components/dialog',
     loadComponent: () => import('./demo-components/dialog-demo.component').then(c => c.DialogDemoComponent),
     data: { componentName: 'dialog', category: 'Overlay', description: 'Modal dialogs and overlays' }
+  },
+  {
+    path: 'components/drawer',
+    loadComponent: () => import('./demo-components/drawer-demo.component').then(c => c.DrawerDemoComponent),
+    data: { componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges' }
   },
   {
     path: 'components/dropdown-menu',
@@ -143,11 +148,6 @@ export const routes: Routes = [
     path: 'components/popover',
     loadComponent: () => import('./demo-components/popover-demo.component').then(c => c.PopoverDemoComponent),
     data: { componentName: 'popover', category: 'Overlay', description: 'Floating content containers with intelligent positioning and accessibility' }
-  },
-  {
-    path: 'components/slide-panel',
-    loadComponent: () => import('./demo-components/drawer-demo.component').then(c => c.DrawerDemoComponent),
-    data: { componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges' }
   },
   {
     path: '**',

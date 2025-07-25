@@ -119,6 +119,36 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
+    'input-otp': {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    pagination: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    popover: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    progress: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    'radio-group': {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
     'theme-switcher': {
         name: string;
         description: string;

@@ -4,7 +4,7 @@
 
 ### 🌟 **[🚀 LIVE INTERACTIVE DEMO!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Experience All 21 Components Live • Dark Mode • Mobile Responsive ✨**
+**✨ Experience All 26 Components Live • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Interactive Components](https://img.shields.io/badge/🎮-Interactive%20Components-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -372,7 +372,7 @@ export class WelcomeComponent {}
   Enterprise-grade data table with sorting, filtering, pagination, inline editing, row selection, export capabilities, and mobile responsiveness. Perfect for admin dashboards and data management.
 </td>
 <td>
-  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+  <img src="https://img.shields.io/badge/✨-Premium-gold?style=flat-square" alt="Premium">
 </td>
 <td>
   <a href="./components/data-table.md">📖 Docs</a>

@@ -1,10 +1,17 @@
-# Angular SuperUI v1.0.6 🚀
+# Angular SuperUI v1.0.7 🚀
 
 <div align="center">
 
-### 🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
+🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ All 21 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
+**✨ All 26 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**r SuperUI v1.0.7 🚀
+
+<div align="center">
+
+###### � **Key Features in v1.0.7**
+- **25 Essential Components** - Production-ready UI components including new RadioGroup, InputOTP, and Progress🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
+
+**✨ All 26 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Try Now](https://img.shields.io/badge/🎮-Try%20Now-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -21,19 +28,19 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **21 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **26 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 21 components with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 26 components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v1.0.6: 21 Components Ready**
+## 🛠️ **v1.0.7: 26 Components Ready**
 
 ### 🚀 **CLI Tool (Recommended)**
 Install components directly in your project with our enhanced CLI:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli@1.0.5
+npm install -g ngsui-cli@1.0.7
 
 # Initialize project (sets up Tailwind CSS and TypeScript configs)
 ngsui-cli init
@@ -50,14 +57,14 @@ Install the complete component library:
 
 ```bash
 # Using Angular schematics (recommended)
-ng add angular-superui@1.0.5
+ng add angular-superui@1.0.7
 
 # Or using npm directly
-npm install angular-superui@1.0.5
+npm install angular-superui@1.0.7
 ```
 
-### 🌟 **Key Features in v1.0.6**
-- **21 Essential Components** - Production-ready UI components including new DropdownMenu, Drawer, and Input
+### 🌟 **Key Features in v1.0.7**
+- **26 Essential Components** - Production-ready UI components including new RadioGroup, InputOTP, and Progress
 - **Enhanced CLI** - Improved component selection and installation
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach

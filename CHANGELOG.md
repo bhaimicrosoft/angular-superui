@@ -6,6 +6,52 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.7] - 2025-01-25
+
+### 🚀 **Complete Component Library - 26 Components Ready & Documentation Overhaul**
+
+#### 🆕 New Components Added
+- 🔐 **InputOTP Component**: One-time password input component with multiple slots, validation, and accessibility features
+- 📄 **Pagination Component**: Comprehensive pagination component with customizable page size, navigation controls, and responsive design
+- 📋 **Popover Component**: Floating overlay component that displays content relative to a trigger element with positioning and accessibility
+- 📈 **Progress Component**: Progress indicator component with customizable appearance, animation, and multiple variants
+- 🔘 **RadioGroup Component**: Accessible radio button group with selection states and validation
+
+#### ✨ CLI Major Enhancements
+- 🎯 **Complete Component Coverage**: Added all missing components to CLI installation (input-otp, pagination, popover, progress, radio-group)
+- 📦 **26 Total Components**: Updated CLI banners and component count to reflect full library
+- 🔧 **Enhanced Component Discovery**: Improved component categorization and descriptions in CLI interface
+- 🌟 **Production-Ready Installation**: All 26 components now available through ngsui-cli installation
+
+#### 📚 Documentation Complete Overhaul
+- 🎯 **SELECTOR_REFERENCE.md Rewrite**: Completely rewritten with accurate component selectors extracted from actual implementations
+  - Fixed critical misinformation where documentation incorrectly assumed all components used "Component" suffix
+  - Added comprehensive quick reference table with all 26 components and their correct selectors
+  - Included real-world usage examples and best practices
+  - Added migration notes and common mistakes to avoid
+- 📊 **Component Count Updates**: Updated from 25 to 26 components across all documentation files
+- 📖 **Version Alignment**: Updated all version references to v1.0.7 across README files, installation guides, and demo app
+- 🎨 **Enhanced Examples**: Added comprehensive TypeScript usage examples for all component categories
+
+#### 🛠️ Technical Improvements
+- 🔍 **Accurate Selector Verification**: Extracted and verified all 79 component selectors from actual implementations
+- 📦 **Component Architecture**: Documented mixed selector patterns (Button → <Button>, InputComponent → <InputComponent>, etc.)
+- 🎨 **Breadcrumb Special Handling**: Documented unique attribute selector pattern for Breadcrumb components
+- ⚡ **CLI Performance**: Enhanced CLI performance with better component detection and installation
+
+#### 🎨 UI/UX Enhancements
+- 📱 **Showcase App Updates**: Updated demo application component count from 18 to 26 components
+- 🌙 **ThemeSwitcher Integration**: Properly documented and included ThemeSwitcher as part of the 26 component count
+- 🎯 **Consistent Branding**: Aligned all documentation to show accurate component counts and version numbers
+
+#### 🔧 Quality Assurance
+- ✅ **Documentation Accuracy**: Eliminated all misinformation from selector documentation
+- 🎯 **Component Completeness**: Ensured all library components are documented and available through CLI
+- 📊 **Count Verification**: Verified actual component count matches documentation across all files
+- 🚀 **Production Testing**: All 26 components tested and validated for production readiness
+
+---
+
 ## [1.0.6] - 2025-01-22
 
 ### 🚀 **Component Library Expansion - 21 Components Ready**

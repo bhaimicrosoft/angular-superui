@@ -466,7 +466,7 @@ import {
 **Selectors:** `<Collapsible>`, `<CollapsibleTrigger>`, `<CollapsibleContent>`  
 **Classes:** `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent`
 
-### 🔍 Combobox Components
+### � Combobox Components
 
 ```typescript
 import { 
@@ -560,134 +560,49 @@ import { ThemeSwitcher } from 'angular-superui';
 
 ---
 
-## 📚 Quick Reference Table
+---
 
-| Component | Selector | Import |
-|-----------|----------|---------|
-| **Core Components** | | |
-| Button | `<Button>` | `Button` |
-| Input | `<InputComponent>` | `InputComponent` |
-| Checkbox | `<Checkbox>` | `Checkbox` |
-| RadioGroup | `<RadioGroup>` | `RadioGroup` |
-| RadioGroupItem | `<RadioGroupItem>` | `RadioGroupItem` |
-| Badge | `<Badge>` | `Badge` |
-| Alert | `<Alert>` | `Alert` |
-| AlertTitle | `<AlertTitle>` | `AlertTitle` |
-| AlertDescription | `<AlertDescription>` | `AlertDescription` |
-| AlertIcon | `<AlertIcon>` | `AlertIcon` |
-| Card | `<Card>` | `Card` |
-| CardHeader | `<CardHeader>` | `CardHeader` |
-| CardTitle | `<CardTitle>` | `CardTitle` |
-| CardDescription | `<CardDescription>` | `CardDescription` |
-| CardContent | `<CardContent>` | `CardContent` |
-| CardFooter | `<CardFooter>` | `CardFooter` |
-| AspectRatio | `<AspectRatio>` | `AspectRatio` |
-| **Navigation Components** | | |
-| Breadcrumb | `nav[Breadcrumb]` | `Breadcrumb` |
-| BreadcrumbList | `ol[BreadcrumbList]` | `BreadcrumbList` |
-| BreadcrumbItem | `li[BreadcrumbItem]` | `BreadcrumbItem` |
-| BreadcrumbLink | `a[BreadcrumbLink]` | `BreadcrumbLink` |
-| BreadcrumbRouterLink | `a[BreadcrumbRouterLink]` | `BreadcrumbRouterLink` |
-| BreadcrumbPage | `span[BreadcrumbPage]` | `BreadcrumbPage` |
-| BreadcrumbSeparator | `li[BreadcrumbSeparator]` | `BreadcrumbSeparator` |
-| BreadcrumbEllipsis | `span[BreadcrumbEllipsis]` | `BreadcrumbEllipsis` |
-| DropdownMenu | `<DropdownMenu>` | `DropdownMenu` |
-| Pagination | `<Pagination>` | `Pagination` |
-| Drawer | `<Drawer>` | `Drawer` |
-| DrawerHeader | `<DrawerHeader>` | `DrawerHeader` |
-| DrawerFooter | `<DrawerFooter>` | `DrawerFooter` |
-| DrawerTitle | `<DrawerTitle>` | `DrawerTitle` |
-| DrawerDescription | `<DrawerDescription>` | `DrawerDescription` |
-| **Display Components** | | |
-| Avatar | `<Avatar>` | `Avatar` |
-| AvatarImage | `<AvatarImage>` | `AvatarImage` |
-| AvatarFallback | `<AvatarFallback>` | `AvatarFallback` |
-| Carousel | `<Carousel>` | `Carousel` |
-| DataTable | `<DataTable>` | `DataTable` |
-| Progress | `<ProgressComponent>` | `ProgressComponent` |
-| **Overlay Components** | | |
-| AlertDialog | `<AlertDialog>` | `AlertDialog` |
-| AlertDialogHeader | `<AlertDialogHeader>` | `AlertDialogHeader` |
-| AlertDialogFooter | `<AlertDialogFooter>` | `AlertDialogFooter` |
-| AlertDialogTitle | `<AlertDialogTitle>` | `AlertDialogTitle` |
-| AlertDialogDescription | `<AlertDialogDescription>` | `AlertDialogDescription` |
-| AlertDialogAction | `<AlertDialogAction>` | `AlertDialogAction` |
-| AlertDialogCancel | `<AlertDialogCancel>` | `AlertDialogCancel` |
-| ContextMenu | `<ContextMenu>` | `ContextMenu` |
-| DialogRoot | `<DialogRoot>` | `DialogRoot` |
-| DialogTrigger | `<DialogTrigger>` | `DialogTrigger` |
-| DialogOverlay | `<DialogOverlay>` | `DialogOverlay` |
-| DialogContent | `<DialogContent>` | `DialogContent` |
-| DialogHeader | `<DialogHeader>` | `DialogHeader` |
-| DialogFooter | `<DialogFooter>` | `DialogFooter` |
-| DialogTitle | `<DialogTitle>` | `DialogTitle` |
-| DialogDescription | `<DialogDescription>` | `DialogDescription` |
-| DialogClose | `<DialogClose>` | `DialogClose` |
-| Popover | `<Popover>` | `Popover` |
-| **Form Components** | | |
-| Calendar | `<Calendar>` | `Calendar` |
-| CalendarTimePicker | `<CalendarTimePicker>` | `CalendarTimePicker` |
-| CalendarHeader | `<CalendarHeader>` | `CalendarHeader` |
-| CalendarGrid | `<CalendarGrid>` | `CalendarGrid` |
-| Collapsible | `<Collapsible>` | `Collapsible` |
-| CollapsibleTrigger | `<CollapsibleTrigger>` | `CollapsibleTrigger` |
-| CollapsibleContent | `<CollapsibleContent>` | `CollapsibleContent` |
-| Combobox | `<Combobox>` | `Combobox` |
-| ComboboxTrigger | `<ComboboxTrigger>` | `ComboboxTrigger` |
-| ComboboxContent | `<ComboboxContent>` | `ComboboxContent` |
-| ComboboxEmpty | `<ComboboxEmpty>` | `ComboboxEmpty` |
-| InputOTP | `<InputOTP>` | `InputOTP` |
-| InputOTPGroup | `<InputOTPGroup>` | `InputOTPGroup` |
-| InputOTPSlot | `<InputOTPSlot>` | `InputOTPSlot` |
-| InputOTPSeparator | `<InputOTPSeparator>` | `InputOTPSeparator` |
-| **Utility Components** | | |
-| Accordion | `<Accordion>` | `Accordion` |
-| AccordionItem | `<AccordionItem>` | `AccordionItem` |
-| AccordionTrigger | `<AccordionTrigger>` | `AccordionTrigger` |
-| AccordionContent | `<AccordionContent>` | `AccordionContent` |
-| ThemeSwitcher | `<ThemeSwitcher>` | `ThemeSwitcher` |
-
-## 💡 Usage Examples
+## Usage Examples
 
 ### Basic Component Usage
 
 ```typescript
 import { Component } from '@angular/core';
 import { 
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent
-} from 'angular-superui';
-import { Button } from 'angular-superui';
-import { Badge } from 'angular-superui';
+  CardComponent,
+  CardHeaderComponent,
+  CardTitleComponent,
+  CardContentComponent
+} from '@lib/card';
+import { ButtonComponent } from '@lib/button';
+import { Badge } from '@lib/badge';
 
 @Component({
   selector: 'app-example',
   standalone: true,
   imports: [
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-    Button,
+    CardComponent,
+    CardHeaderComponent,
+    CardTitleComponent,
+    CardContentComponent,
+    ButtonComponent,
     Badge
   ],
   template: `
-    <Card>
-      <CardHeader>
-        <CardTitle>
+    <CardComponent>
+      <CardHeaderComponent>
+        <CardTitleComponent>
           Hello World
           <Badge variant="secondary" class="ml-2">New</Badge>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
+        </CardTitleComponent>
+      </CardHeaderComponent>
+      <CardContentComponent>
         <p>This is a simple example using Angular SuperUI components.</p>
-        <Button variant="default" class="mt-4">
+        <ButtonComponent variant="default" class="mt-4">
           Get Started
-        </Button>
-      </CardContent>
-    </Card>
+        </ButtonComponent>
+      </CardContentComponent>
+    </CardComponent>
   `
 })
 export class ExampleComponent {}
@@ -702,18 +617,18 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent
-} from 'angular-superui';
+} from '@lib/accordion';
 import {
   Alert,
   AlertTitle,
   AlertDescription,
   AlertIcon
-} from 'angular-superui';
+} from '@lib/alert';
 import {
   Avatar,
   AvatarImage,
   AvatarFallback
-} from 'angular-superui';
+} from '@lib/avatar';
 
 @Component({
   selector: 'app-complex',
@@ -767,27 +682,27 @@ import {
 export class ComplexExampleComponent {}
 ```
 
-## 🎯 Import Patterns
+## Import Patterns
 
-### Standard Import (Recommended)
-
-```typescript
-// Import individual components
-import { Button } from 'angular-superui';
-import { Card, CardHeader, CardTitle } from 'angular-superui';
-import { Alert, AlertTitle } from 'angular-superui';
-```
-
-### CLI Installation Import (Alternative)
+### CLI Installation Imports
 
 ```typescript
-// Using @lib/* path aliases (if using CLI installation)
-import { Button } from '@lib/button';
-import { Card, CardHeader, CardTitle } from '@lib/card';
-import { Alert, AlertTitle } from '@lib/alert';
+// Using @lib/* path aliases (CLI installation)
+import { Alert } from '@lib/alert';
+import { ButtonComponent } from '@lib/button';
+import { CardComponent } from '@lib/card';
 ```
 
-## ✅ Best Practices
+### NPM Package Imports
+
+```typescript
+// Using NPM package (alternative installation)
+import { Alert } from 'angular-superui';
+import { ButtonComponent } from 'angular-superui';
+import { CardComponent } from 'angular-superui';
+```
+
+## Best Practices
 
 ### 1. Use Standalone Components
 
@@ -795,7 +710,7 @@ import { Alert, AlertTitle } from '@lib/alert';
 @Component({
   selector: 'app-example',
   standalone: true, // ✅ Use standalone components
-  imports: [Card, Button], // ✅ Import what you need
+  imports: [CardComponent, ButtonComponent], // ✅ Import what you need
   template: `...`
 })
 ```
@@ -805,62 +720,233 @@ import { Alert, AlertTitle } from '@lib/alert';
 ```typescript
 // ✅ Good - Group related imports
 import { 
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent
-} from 'angular-superui';
+  CardComponent,
+  CardHeaderComponent,
+  CardTitleComponent,
+  CardContentComponent
+} from '@lib/card';
 
 // ❌ Avoid - Multiple separate imports
-import { Card } from 'angular-superui';
-import { CardHeader } from 'angular-superui';
+import { CardComponent } from '@lib/card';
+import { CardHeaderComponent } from '@lib/card';
 ```
 
-### 3. Use Correct Selectors
+### 3. Use Proper Naming
 
 ```typescript
-// ✅ Correct selectors
-<Button>Click me</Button>
-<InputComponent placeholder="Enter text" />
-<ProgressComponent [value]="75" />
+// ✅ Good - Clear, descriptive names
+<CardComponent>
+  <CardHeaderComponent>
+    <CardTitleComponent>User Profile</CardTitleComponent>
+  </CardHeaderComponent>
+</CardComponent>
 
-// ❌ Incorrect selectors
-<ButtonComponent>Click me</ButtonComponent>
-<Input placeholder="Enter text" />
-<Progress [value]="75" />
+// ❌ Avoid - Generic or unclear names
+<Card>
+  <Header>
+    <Title>User Profile</Title>
+  </Header>
+</Card>
 ```
 
-## 🔄 Migration Notes
+## Migration from v0.x
 
-### Key Selector Changes in v1.0.7
-
-- **Button**: `<Button>` (not `<ButtonComponent>`)
-- **Input**: `<InputComponent>` (has "Component" suffix)
-- **Progress**: `<ProgressComponent>` (has "Component" suffix)
-- **Breadcrumb**: Uses attribute selectors `nav[Breadcrumb]`
-- **Most other components**: Use simple PascalCase names
-
-### Common Mistakes to Avoid
+If you're upgrading from previous versions:
 
 ```typescript
-// ❌ Common mistakes
-<ButtonComponent>  // Wrong - use <Button>
-<Progress>         // Wrong - use <ProgressComponent>
-<CardComponent>    // Wrong - use <Card>
+// Old v0.x selectors (deprecated)
+<lib-alert>
+<lib-button>
+<lib-card>
 
-// ✅ Correct usage
-<Button>           // Correct
-<ProgressComponent> // Correct
-<Card>             // Correct
+// New v1.0.1 selectors
+<Alert>
+<ButtonComponent>
+<CardComponent>
 ```
 
-## 📖 Additional Resources
+## Additional Resources
 
-- [🚀 Live Demo](https://angular-superui.vercel.app/) - Interactive component showcase
-- [📚 Installation Guide](./installation.md) - Setup instructions
-- [🎨 Component Documentation](./components/) - Detailed component guides
-- [🔧 GitHub Repository](https://github.com/bhaimicrosoft/angular-superui) - Source code and issues
+- [Installation Guide](./installation.md)
+- [Component Documentation](./components/)
+- [Theming Guide](./theming.md)
+- [Migration Guide](./migration.md)
+| Tooltip | `<Tooltip>` | `Tooltip` |
+| Tooltip Trigger | `<TooltipTrigger>` | `TooltipTrigger` |
+| Tooltip Content | `<TooltipContent>` | `TooltipContent` |
+| Hover Card | `<HoverCard>` | `HoverCard` |
+| Hover Card Trigger | `<HoverCardTrigger>` | `HoverCardTrigger` |
+| Hover Card Content | `<HoverCardContent>` | `HoverCardContent` |
 
----
+### Navigation Components
 
-**Last Updated:** v1.0.7 - All selectors verified against actual component implementations ✅
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Navigation Menu | `<NavigationMenu>` | `NavigationMenu` |
+| Navigation Menu List | `<NavigationMenuList>` | `NavigationMenuList` |
+| Navigation Menu Item | `<NavigationMenuItem>` | `NavigationMenuItem` |
+| Navigation Menu Trigger | `<NavigationMenuTrigger>` | `NavigationMenuTrigger` |
+| Navigation Menu Content | `<NavigationMenuContent>` | `NavigationMenuContent` |
+| Navigation Menu Link | `<NavigationMenuLink>` | `NavigationMenuLink` |
+| Navigation Menu Indicator | `<NavigationMenuIndicator>` | `NavigationMenuIndicator` |
+| Navigation Menu Viewport | `<NavigationMenuViewport>` | `NavigationMenuViewport` |
+
+### Utility Components
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Scroll Area | `<ScrollArea>` | `ScrollArea` |
+| Scroll Bar | `<ScrollBar>` | `ScrollBar` |
+
+### Toast Components
+
+| Component | Selector | Import |
+|-----------|----------|---------|
+| Toast | `<Toast>` | `Toast` |
+| Toast Provider | `<ToastProvider>` | `ToastProvider` |
+| Toast Title | `<ToastTitle>` | `ToastTitle` |
+| Toast Description | `<ToastDescription>` | `ToastDescription` |
+| Toast Action | `<ToastAction>` | `ToastAction` |
+| Toast Close | `<ToastClose>` | `ToastClose` |
+
+## Common Import Patterns
+
+### Basic Component Import
+
+```typescript
+import { Button, Card, CardContent } from 'angular-superui';
+
+@Component({
+  standalone: true,
+  imports: [Button, Card, CardContent],
+  template: `
+    <Card>
+      <CardContent>
+        <Button>Click me</Button>
+      </CardContent>
+    </Card>
+  `
+})
+```
+
+### Tooltip Implementation
+
+```typescript
+import { 
+  TooltipProvider, 
+  Tooltip, 
+  TooltipTrigger, 
+  TooltipContent 
+} from 'angular-superui';
+
+@Component({
+  standalone: true,
+  imports: [TooltipProvider, Tooltip, TooltipTrigger, TooltipContent],
+  template: `
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <button>Hover me</button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Tooltip content</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  `
+})
+```
+
+### Navigation Menu Implementation
+
+```typescript
+import { 
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink
+} from 'angular-superui';
+
+@Component({
+  standalone: true,
+  imports: [
+    NavigationMenu,
+    NavigationMenuList,
+    NavigationMenuItem,
+    NavigationMenuTrigger,
+    NavigationMenuContent,
+    NavigationMenuLink
+  ],
+  template: `
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Menu</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink>Link 1</NavigationMenuLink>
+            <NavigationMenuLink>Link 2</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  `
+})
+```
+
+## Documentation Standards Applied
+
+All updated documentation follows these standards:
+
+1. **Correct Import Paths**: All use `'angular-superui'` instead of incorrect paths
+2. **Accurate Selectors**: All selectors match the actual component implementations
+3. **Step-by-Step Guides**: Every complex component has implementation steps
+4. **Complete Examples**: Working TypeScript examples with proper imports
+5. **API Reference**: Comprehensive property documentation
+6. **Best Practices**: Common pitfalls and usage recommendations
+7. **Accessibility Notes**: ARIA compliance and keyboard navigation info
+
+## Remaining Components to Update
+
+The following component documentation files should be reviewed and updated if they exist:
+
+- [ ] **Input** - Check selector (`InputComponent`)
+- [ ] **Select** - Multiple selectors need verification
+- [ ] **Toast** - Multiple toast-related selectors
+- [ ] **Switch** - Simple component (`Switch`)
+- [ ] **Separator** - Simple component (`Separator`)
+- [ ] **Accordion** - Multiple selectors if exists
+- [ ] **Dialog** - Multiple selectors if exists
+- [ ] **Alert Dialog** - Multiple selectors if exists
+- [ ] **Context Menu** - Multiple selectors if exists
+- [ ] **Popover** - Multiple selectors if exists
+- [ ] **Progress** - Simple component if exists
+- [ ] **Badge** - Simple component if exists
+- [ ] **Alert** - Simple component if exists
+- [ ] **Avatar** - Simple component if exists
+- [ ] **Calendar** - Component if exists
+- [ ] **Checkbox** - Simple component if exists
+- [ ] **Label** - Simple component if exists
+- [ ] **Textarea** - Component if exists
+- [ ] **Slider** - Component if exists
+- [ ] **Toggle** - Component if exists
+- [ ] **Tabs** - Multiple selectors if exists
+- [ ] **Table** - Multiple selectors if exists
+
+## Key Changes Made
+
+1. **Fixed Import Statements**: Changed from incorrect paths to `'angular-superui'`
+2. **Corrected Selectors**: Updated all HTML selectors to match actual component implementations
+3. **Added Implementation Guides**: Step-by-step instructions for complex components
+4. **Enhanced Examples**: More comprehensive and practical examples
+5. **Improved Structure**: Better organization and readability
+6. **Added Common Pitfalls**: Help developers avoid common mistakes
+
+## Next Steps
+
+1. Continue updating remaining component documentation files
+2. Verify all selectors against actual implementations
+3. Add more comprehensive examples for complex components
+4. Ensure all documentation follows the established patterns
+5. Add cross-references between related components

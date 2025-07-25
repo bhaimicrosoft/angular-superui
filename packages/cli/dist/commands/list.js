@@ -24,9 +24,9 @@ async function listCommand() {
     console.log('');
     // Group components by category with actually implemented components only
     const categories = {
-        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input'],
-        '🧭 Navigation': ['breadcrumb'],
-        '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu'],
+        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input', 'input-otp', 'progress', 'radio-group'],
+        '🧭 Navigation': ['breadcrumb', 'pagination'],
+        '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu', 'popover'],
         '🎨 Media & Display': ['carousel', 'aspect-ratio'],
         '📊 Data & Tables': ['data-table'],
         '⚙️ User Interface': ['theme-switcher', 'collapsible'],
