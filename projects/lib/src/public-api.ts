@@ -29,4 +29,5 @@ export * from './lib/input-otp';
 export * from './lib/pagination';
 export * from './lib/popover';
 export * from './lib/progress';
+export * from './lib/radio-group';
 export * from './lib/theme-switcher';

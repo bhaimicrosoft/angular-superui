@@ -135,6 +135,11 @@ export const routes: Routes = [
     data: { componentName: 'progress', category: 'Feedback', description: 'Displays completion progress with accessibility and smooth animations' }
   },
   {
+    path: 'components/radio-group',
+    loadComponent: () => import('./demo-components/radio-group-demo.component').then(c => c.RadioGroupDemoComponent),
+    data: { componentName: 'radio-group', category: 'Form', description: 'Radio button groups with full accessibility and form integration' }
+  },
+  {
     path: 'components/popover',
     loadComponent: () => import('./demo-components/popover-demo.component').then(c => c.PopoverDemoComponent),
     data: { componentName: 'popover', category: 'Overlay', description: 'Floating content containers with intelligent positioning and accessibility' }
