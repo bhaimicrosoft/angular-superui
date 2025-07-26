@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Typewriter Animation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom typewriter cursor */
+        .js-typewriter-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+            font-weight: bold;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .typewriter-container {
+            min-height: 1.5em;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Advanced Typewriter Animation</h1>
+        
+        <!-- CSS-based Typewriter (Improved) -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">CSS Typewriter (Character-by-Character)</h2>
+            <div class="typewriter-container">
+                <span class="typewriter-cursor animate-typewriter-cursor text-lg text-gray-800 dark:text-gray-200 inline-block">
+                    Welcome to Angular SuperUI Components!
+                </span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Uses CSS animations with steps() function for smooth character-by-character reveal
+            </p>
+        </div>
+        
+        <!-- JavaScript-based Typewriter -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">JavaScript Typewriter (True Character-by-Character)</h2>
+            <div class="typewriter-container">
+                <span id="js-typewriter" class="js-typewriter-cursor text-lg text-gray-800 dark:text-gray-200 font-mono"></span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                True character-by-character typing with realistic timing variations
+            </p>
+        </div>
+        
+        <!-- Multiple Lines Typewriter -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibant mb-4 text-gray-900 dark:text-white">Multi-line Typewriter</h2>
+            <div class="typewriter-container space-y-2">
+                <div id="line1" class="text-lg text-gray-800 dark:text-gray-200 font-mono opacity-0"></div>
+                <div id="line2" class="text-lg text-gray-800 dark:text-gray-200 font-mono opacity-0"></div>
+                <div id="line3" class="text-lg text-gray-800 dark:text-gray-200 font-mono opacity-0"></div>
+            </div>
+            <button id="restart-btn" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+                Restart Animation
+            </button>
+        </div>
+        
+        <!-- Usage Examples -->
+        <div class="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
+            <h2 class="text-xl font-semibold mb-4 text-green-900 dark:text-green-100">Implementation Examples</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-semibold text-green-800 dark:text-green-200 mb-2">CSS Approach (Recommended for simple text):</h3>
+                    <pre class="bg-green-100 dark:bg-green-800 p-3 rounded text-sm overflow-x-auto"><code>&lt;span class="typewriter-cursor animate-typewriter-cursor"&gt;
+  Your text here
+&lt;/span&gt;</code></pre>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-green-800 dark:text-green-200 mb-2">JavaScript Approach (For complex interactions):</h3>
+                    <pre class="bg-green-100 dark:bg-green-800 p-3 rounded text-sm overflow-x-auto"><code>function typeWriter(element, text, speed = 50) {
+  let i = 0;
+  element.innerHTML = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed + Math.random() * 50);
+    }
+  }
+  
+  type();
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript typewriter implementation
+        function typeWriter(element, text, speed = 50, callback = null) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    // Add random variation to typing speed for more realistic effect
+                    const randomDelay = speed + Math.random() * 50;
+                    setTimeout(type, randomDelay);
+                } else if (callback) {
+                    // Remove cursor and call callback
+                    element.classList.remove('js-typewriter-cursor');
+                    setTimeout(callback, 500);
+                }
+            }
+            
+            type();
+        }
+        
+        // Multi-line typewriter
+        function multiLineTypewriter() {
+            const lines = [
+                { element: document.getElementById('line1'), text: '> Initializing Angular SuperUI...' },
+                { element: document.getElementById('line2'), text: '> Loading components and animations...' },
+                { element: document.getElementById('line3'), text: '> Ready! 🚀 Your UI is now supercharged!' }
+            ];
+            
+            let currentLine = 0;
+            
+            function typeLine() {
+                if (currentLine < lines.length) {
+                    const line = lines[currentLine];
+                    line.element.classList.remove('opacity-0');
+                    line.element.classList.add('js-typewriter-cursor');
+                    
+                    typeWriter(line.element, line.text, 40, () => {
+                        currentLine++;
+                        setTimeout(typeLine, 300);
+                    });
+                }
+            }
+            
+            // Reset all lines
+            lines.forEach(line => {
+                line.element.innerHTML = '';
+                line.element.classList.add('opacity-0');
+                line.element.classList.remove('js-typewriter-cursor');
+            });
+            
+            currentLine = 0;
+            typeLine();
+        }
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start single line typewriter
+            const jsTypewriter = document.getElementById('js-typewriter');
+            typeWriter(jsTypewriter, 'console.log("Hello, Angular SuperUI! 🎉");', 60);
+            
+            // Start multi-line typewriter
+            setTimeout(() => {
+                multiLineTypewriter();
+            }, 1000);
+            
+            // Restart button
+            document.getElementById('restart-btn').addEventListener('click', multiLineTypewriter);
+        });
+    </script>
+</body>
+</html>

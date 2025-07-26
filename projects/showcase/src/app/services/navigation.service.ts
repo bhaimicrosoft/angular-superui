@@ -57,7 +57,7 @@ export class NavigationService {
   // Get all categories in a specific order
   readonly categories = computed(() => {
     const grouped = this.groupedComponents();
-    const categoryOrder = ['Form', 'Display', 'Layout', 'Navigation', 'Interaction', 'Feedback', 'Overlay'];
+    const categoryOrder = ['Showcase', 'Form', 'Display', 'Layout', 'Navigation', 'Interaction', 'Feedback', 'Overlay'];
     
     // Get all categories that have components
     const availableCategories = Object.keys(grouped);
@@ -73,6 +73,18 @@ export class NavigationService {
 
   constructor() {
     this.generateNavigationFromRoutes();
+    this.addSpecialRoutes();
+  }
+
+  /**
+   * Add special routes that don't follow the standard components/ pattern
+   */
+  private addSpecialRoutes() {
+    const specialItems: NavigationItem[] = [
+      // Add any special routes here if needed in the future
+    ];
+
+    this.navigationItems.update(items => [...items, ...specialItems]);
   }
 
   /**

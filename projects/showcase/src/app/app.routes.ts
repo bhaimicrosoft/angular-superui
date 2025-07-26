@@ -1,15 +1,19 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
     path: 'components/input',
     loadComponent: () => import('./demo-components/input-demo.component').then(c => c.InputDemoComponent),
-    data: { componentName: 'input', category: 'Form', description: 'Accessible and customizable input fields' }
+    data: {componentName: 'input', category: 'Form', description: 'Accessible and customizable input fields'}
   },
   {
     path: 'components/input-otp',
     loadComponent: () => import('./demo-components/input-otp-demo.component').then(c => c.InputOTPDemoComponent),
-    data: { componentName: 'input-otp', category: 'Form', description: 'Secure one-time password input with accessibility and validation' }
+    data: {
+      componentName: 'input-otp',
+      category: 'Form',
+      description: 'Secure one-time password input with accessibility and validation'
+    }
   },
   {
     path: '',
@@ -37,132 +41,175 @@ export const routes: Routes = [
   {
     path: 'components/accordion',
     loadComponent: () => import('./demo-components/accordion-demo.component').then(c => c.AccordionDemoComponent),
-    data: { componentName: 'accordion', category: 'Layout', description: 'Collapsible content sections' }
+    data: {componentName: 'accordion', category: 'Layout', description: 'Collapsible content sections'}
   },
   {
     path: 'components/alert',
     loadComponent: () => import('./demo-components/alert-demo.component').then(c => c.AlertDemoComponent),
-    data: { componentName: 'alert', category: 'Feedback', description: 'Display important messages' }
+    data: {componentName: 'alert', category: 'Feedback', description: 'Display important messages'}
   },
   {
     path: 'components/alert-dialog',
     loadComponent: () => import('./demo-components/alert-demo.component').then(c => c.AlertDemoComponent),
-    data: { componentName: 'alert-dialog', category: 'Overlay', description: 'Modal dialogs and overlays' }
+    data: {componentName: 'alert-dialog', category: 'Overlay', description: 'Modal dialogs and overlays'}
   },
   {
     path: 'components/aspect-ratio',
     loadComponent: () => import('./demo-components/aspect-ratio-demo.component').then(c => c.AspectRatioDemo),
-    data: { componentName: 'aspect-ratio', category: 'Layout', description: 'Responsive aspect ratio containers' }
+    data: {componentName: 'aspect-ratio', category: 'Layout', description: 'Responsive aspect ratio containers'}
   },
   {
     path: 'components/avatar',
     loadComponent: () => import('./demo-components/avatar-demo.component').then(c => c.AvatarDemoComponent),
-    data: { componentName: 'avatar', category: 'Display', description: 'User profile pictures' }
+    data: {componentName: 'avatar', category: 'Display', description: 'User profile pictures'}
   },
   {
     path: 'components/badge',
     loadComponent: () => import('./demo-components/badge-demo.component').then(c => c.BadgeDemoComponent),
-    data: { componentName: 'badge', category: 'Display', description: 'Small status indicators' }
+    data: {componentName: 'badge', category: 'Display', description: 'Small status indicators'}
   },
   {
     path: 'components/breadcrumb',
     loadComponent: () => import('./demo-components/breadcrumb-demo.component').then(c => c.BreadcrumbDemoComponent),
-    data: { componentName: 'breadcrumb', category: 'Navigation', description: 'Navigation hierarchy' }
+    data: {componentName: 'breadcrumb', category: 'Navigation', description: 'Navigation hierarchy'}
   },
   {
     path: 'components/button',
     loadComponent: () => import('./demo-components/button-demo.component').then(c => c.ButtonDemoComponent),
-    data: { componentName: 'button', category: 'Form', description: 'Interactive elements' }
+    data: {componentName: 'button', category: 'Form', description: 'Interactive elements'}
   },
   {
     path: 'components/calendar',
     loadComponent: () => import('./demo-components/calendar-demo.component').then(c => c.CalendarDemoComponent),
-    data: { componentName: 'calendar', category: 'Form', description: 'Date picker and calendar' }
+    data: {componentName: 'calendar', category: 'Form', description: 'Date picker and calendar'}
   },
   {
     path: 'components/card',
     loadComponent: () => import('./demo-components/card-demo.component').then(c => c.CardDemoComponent),
-    data: { componentName: 'card', category: 'Layout', description: 'Content containers' }
+    data: {componentName: 'card', category: 'Layout', description: 'Content containers'}
   },
   {
     path: 'components/carousel',
     loadComponent: () => import('./demo-components/carousel-demo.component').then(c => c.CarouselDemoComponent),
-    data: { componentName: 'carousel', category: 'Display', description: 'Image and content sliders' }
+    data: {componentName: 'carousel', category: 'Display', description: 'Image and content sliders'}
   },
   {
     path: 'components/checkbox',
     loadComponent: () => import('./demo-components/checkbox-demo.component').then(c => c.CheckboxDemoComponent),
-    data: { componentName: 'checkbox', category: 'Form', description: 'Selection controls' }
+    data: {componentName: 'checkbox', category: 'Form', description: 'Selection controls'}
   },
   {
     path: 'components/collapsible',
     loadComponent: () => import('./demo-components/collapsible-demo.component').then(c => c.CollapsibleDemo),
-    data: { componentName: 'collapsible', category: 'Layout', description: 'Expandable content with smooth animations' }
+    data: {componentName: 'collapsible', category: 'Layout', description: 'Expandable content with smooth animations'}
   },
   {
     path: 'components/combobox',
     loadComponent: () => import('./demo-components/combobox-demo.component').then(c => c.ComboboxDemo),
-    data: { componentName: 'combobox', category: 'Form', description: 'Smart selection interface with search and multi-select' }
+    data: {
+      componentName: 'combobox',
+      category: 'Form',
+      description: 'Smart selection interface with search and multi-select'
+    }
   },
   {
     path: 'components/context-menu',
     loadComponent: () => import('./demo-components/context-menu-demo.component').then(c => c.ContextMenuDemo),
-    data: { componentName: 'context-menu', category: 'Interaction', description: 'Right-click context menus with smart positioning and accessibility' }
+    data: {
+      componentName: 'context-menu',
+      category: 'Interaction',
+      description: 'Right-click context menus with smart positioning and accessibility'
+    }
   },
   {
     path: 'components/data-table',
     loadComponent: () => import('./demo-components/data-table-demo.component').then(c => c.DataTableDemoComponent),
-    data: { componentName: 'data-table', category: 'Display', description: 'A feature-rich table for displaying large datasets.' }
+    data: {
+      componentName: 'data-table',
+      category: 'Display',
+      description: 'A feature-rich table for displaying large datasets.'
+    }
   },
   {
     path: 'components/dialog',
     loadComponent: () => import('./demo-components/dialog-demo.component').then(c => c.DialogDemoComponent),
-    data: { componentName: 'dialog', category: 'Overlay', description: 'Modal dialogs and overlays' }
+    data: {componentName: 'dialog', category: 'Overlay', description: 'Modal dialogs and overlays'}
   },
   {
     path: 'components/drawer',
     loadComponent: () => import('./demo-components/drawer-demo.component').then(c => c.DrawerDemoComponent),
-    data: { componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges' }
+    data: {componentName: 'drawer', category: 'Navigation', description: 'Slide-out panels from screen edges'}
   },
   {
     path: 'components/dropdown-menu',
     loadComponent: () => import('./demo-components/dropdown-menu-demo.component').then(c => c.DropdownMenuDemoComponent),
-    data: { componentName: 'dropdown-menu', category: 'Navigation', description: 'Contextual menu dropdowns' }
+    data: {componentName: 'dropdown-menu', category: 'Navigation', description: 'Contextual menu dropdowns'}
   },
   {
     path: 'components/pagination',
     loadComponent: () => import('./demo-components/pagination-demo.component').then(c => c.PaginationDemoComponent),
-    data: { componentName: 'pagination', category: 'Navigation', description: 'Navigate through large datasets with intelligent page controls' }
+    data: {
+      componentName: 'pagination',
+      category: 'Navigation',
+      description: 'Navigate through large datasets with intelligent page controls'
+    }
   },
   {
     path: 'components/progress',
     loadComponent: () => import('./demo-components/progress-demo.component').then(c => c.ProgressDemoComponent),
-    data: { componentName: 'progress', category: 'Feedback', description: 'Displays completion progress with accessibility and smooth animations' }
+    data: {
+      componentName: 'progress',
+      category: 'Feedback',
+      description: 'Displays completion progress with accessibility and smooth animations'
+    }
   },
   {
     path: 'components/radio-group',
     loadComponent: () => import('./demo-components/radio-group-demo.component').then(c => c.RadioGroupDemoComponent),
-    data: { componentName: 'radio-group', category: 'Form', description: 'Radio button groups with full accessibility and form integration' }
+    data: {
+      componentName: 'radio-group',
+      category: 'Form',
+      description: 'Radio button groups with full accessibility and form integration'
+    }
   },
   {
     path: 'components/select',
     loadComponent: () => import('./demo-components/select-demo.component'),
-    data: { componentName: 'select', category: 'Form', description: 'Dropdown selection component with search, grouping, and accessibility features' }
+    data: {
+      componentName: 'select',
+      category: 'Form',
+      description: 'Dropdown selection component with search, grouping, and accessibility features'
+    }
   },
   {
     path: 'components/sidebar',
     loadComponent: () => import('./demo-components/sidebar-demo.component').then(c => c.SidebarDemoComponent),
-    data: { componentName: 'sidebar', category: 'Navigation', description: 'Responsive sidebar navigation with multiple modes and full accessibility' }
+    data: {
+      componentName: 'sidebar',
+      category: 'Navigation',
+      description: 'Responsive sidebar navigation with multiple modes and full accessibility'
+    }
+  },
+  {
+    path: 'components/skeleton',
+    loadComponent: () => import('./demo-components/skeleton-demo.component').then(c => c.SkeletonDemoComponent),
+    data: {
+      componentName: 'skeleton',
+      category: 'Feedback',
+      description: 'Loading placeholders with multiple variants, animations, and layouts for improved user experience'
+    }
   },
   {
     path: 'components/popover',
     loadComponent: () => import('./demo-components/popover-demo.component').then(c => c.PopoverDemoComponent),
-    data: { componentName: 'popover', category: 'Overlay', description: 'Floating content containers with intelligent positioning and accessibility' }
+    data: {
+      componentName: 'popover',
+      category: 'Overlay',
+      description: 'Floating content containers with intelligent positioning and accessibility'
+    }
   },
   {
     path: '**',
     redirectTo: ''
   },
-
-
 ];

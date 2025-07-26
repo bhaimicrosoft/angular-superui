@@ -17,7 +17,7 @@ import { SEOService } from '../services/seo.service';
           <div
             class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-8 backdrop-blur-sm">
             <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-            Angular 17+ Ready
+            Angular 17+ Ready | Tailwind CSS 4
           </div>
 
           <!-- Main Heading -->
@@ -66,7 +66,7 @@ import { SEOService } from '../services/seo.service';
               href="https://buymeacoffee.com/bhaikaju"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-medium rounded-xl hover:from-yellow-500 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-medium rounded-xl hover:from-yellow-500 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer animate-heartbeat"
             >
               ☕ Buy me a coffee
             </a>
@@ -138,7 +138,7 @@ import { SEOService } from '../services/seo.service';
       <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 1px 1px, rgba(156,146,172,0.05) 1px, transparent 0); background-size: 60px 60px;"></div>
       <div class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-cyan-400/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      
+
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <!-- Premium Header -->
         <div class="text-center mb-20">
@@ -151,14 +151,14 @@ import { SEOService } from '../services/seo.service';
           </div>
 
           <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
-            Explore Our 
+            Explore Our
             <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
               Premium Components
             </span>
           </h2>
-          
+
           <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
-            Enterprise-grade components with <span class="font-bold text-blue-600 dark:text-blue-400">premium features</span> 
+            Enterprise-grade components with <span class="font-bold text-blue-600 dark:text-blue-400">premium features</span>
             — all completely <span class="font-bold text-emerald-600 dark:text-emerald-400">FREE</span> and open source!
           </p>
 
@@ -189,8 +189,8 @@ import { SEOService } from '../services/seo.service';
             *ngFor="let component of components"
             [routerLink]="component.route"
             class="group relative block p-8 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl border transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.02]"
-            [ngClass]="component.isEnterprise ? 
-              'bg-gradient-to-br from-rose-50/95 via-pink-50/95 to-orange-50/95 dark:from-rose-950/95 dark:via-pink-950/95 dark:to-orange-950/95 border-rose-300/70 dark:border-rose-600/70 hover:border-rose-400/80 dark:hover:border-rose-500/80 ring-2 ring-rose-200/50 dark:ring-rose-800/50' : 
+            [ngClass]="component.isEnterprise ?
+              'bg-gradient-to-br from-rose-50/95 via-pink-50/95 to-orange-50/95 dark:from-rose-950/95 dark:via-pink-950/95 dark:to-orange-950/95 border-rose-300/70 dark:border-rose-600/70 hover:border-rose-400/80 dark:hover:border-rose-500/80 ring-2 ring-rose-200/50 dark:ring-rose-800/50' :
               'bg-white/90 dark:bg-gray-900/90 border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300/50 dark:hover:border-blue-500/50'"
           >
             <!-- Enterprise Badge Overlay for DataTable -->
@@ -218,21 +218,21 @@ import { SEOService } from '../services/seo.service';
               <div class="flex-1">
                 <div class="flex items-center gap-2 mb-1">
                   <h3 class="text-xl font-bold transition-colors"
-                      [ngClass]="component.isEnterprise ? 
-                        'text-rose-900 dark:text-rose-100 group-hover:text-rose-800 dark:group-hover:text-rose-200' : 
+                      [ngClass]="component.isEnterprise ?
+                        'text-rose-900 dark:text-rose-100 group-hover:text-rose-800 dark:group-hover:text-rose-200' :
                         'text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400'">
                     {{ component.name }}
                   </h3>
                   <span class="px-2 py-1 text-xs font-semibold rounded-full"
-                        [ngClass]="component.isEnterprise ? 
-                          'bg-gradient-to-r from-rose-200 to-orange-200 dark:from-rose-800/50 dark:to-orange-800/50 text-rose-800 dark:text-rose-200' : 
+                        [ngClass]="component.isEnterprise ?
+                          'bg-gradient-to-r from-rose-200 to-orange-200 dark:from-rose-800/50 dark:to-orange-800/50 text-rose-800 dark:text-rose-200' :
                           'bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300'">
                     {{ component.category }}
                   </span>
                 </div>
                 <div class="flex items-center text-xs font-semibold"
-                     [ngClass]="component.isEnterprise ? 
-                       'text-rose-700 dark:text-rose-300' : 
+                     [ngClass]="component.isEnterprise ?
+                       'text-rose-700 dark:text-rose-300' :
                        'text-emerald-600 dark:text-emerald-400'">
                   <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -331,8 +331,8 @@ import { SEOService } from '../services/seo.service';
 
             <!-- Hover Glow Effect -->
             <div class="absolute inset-0 rounded-2xl transition-all duration-500 pointer-events-none"
-                 [ngClass]="component.isEnterprise ? 
-                   'bg-gradient-to-r from-rose-400/0 via-pink-400/0 to-orange-400/0 group-hover:from-rose-400/10 group-hover:via-pink-400/10 group-hover:to-orange-400/10' : 
+                 [ngClass]="component.isEnterprise ?
+                   'bg-gradient-to-r from-rose-400/0 via-pink-400/0 to-orange-400/0 group-hover:from-rose-400/10 group-hover:via-pink-400/10 group-hover:to-orange-400/10' :
                    'bg-gradient-to-r from-blue-400/0 via-purple-400/0 to-indigo-400/0 group-hover:from-blue-400/10 group-hover:via-purple-400/10 group-hover:to-indigo-400/10'"></div>
           </a>
         </div>
@@ -346,7 +346,7 @@ import { SEOService } from '../services/seo.service';
             All Premium Features • Always Free • No Hidden Costs
           </div>
           <p class="text-sm text-gray-500 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
-            Join thousands of developers building amazing applications with our enterprise-grade components. 
+            Join thousands of developers building amazing applications with our enterprise-grade components.
             <span class="font-semibold">MIT License</span> ensures you can use them in any project, commercial or personal.
           </p>
         </div>

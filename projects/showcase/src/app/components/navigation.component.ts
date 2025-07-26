@@ -9,7 +9,7 @@ import { NavigationService } from '../services/navigation.service';
   standalone: true,
   imports: [CommonModule, RouterModule, ThemeSwitcher],
   templateUrl: './navigation.component.html',
-  styles: []
+  styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
   private navigationService = inject(NavigationService);

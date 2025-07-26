@@ -325,7 +325,7 @@ import { Badge } from '@lib/badge';
                     id="searchable"
                     class="rounded border-gray-300"
                     [checked]="playgroundSearchable()"
-                    (change)="playgroundSearchable.set($event.target.checked)"
+                    (change)="onSearchableCheckboxChange($event)"
                   />
                   <label for="searchable" class="text-sm text-slate-700 dark:text-slate-300">
                     Searchable
@@ -338,7 +338,7 @@ import { Badge } from '@lib/badge';
                     id="disabled"
                     class="rounded border-gray-300"
                     [checked]="playgroundDisabled()"
-                    (change)="playgroundDisabled.set($event.target.checked)"
+                    (change)="onDisabledCheckboxChange($event)"
                   />
                   <label for="disabled" class="text-sm text-slate-700 dark:text-slate-300">
                     Disabled
@@ -640,6 +640,16 @@ export default class SelectDemoComponent {
   
   onPlaygroundSizeChange(value: string | null) {
     this.playgroundSize.set(value as 'default' | 'sm' | 'lg');
+  }
+
+  onSearchableCheckboxChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.playgroundSearchable.set(target?.checked ?? false);
+  }
+
+  onDisabledCheckboxChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.playgroundDisabled.set(target?.checked ?? false);
   }
 
   resetPlayground() {

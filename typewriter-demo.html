@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriter Animation Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import your custom animations */
+        @import url('./projects/showcase/src/styles.css');
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Typewriter Animation Examples</h1>
+        
+        <!-- Basic Typewriter -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Basic Typewriter Effect</h2>
+            <p class="typewriter animate-typewriter text-lg text-gray-800 dark:text-gray-200">
+                This text appears character by character like a typewriter!
+            </p>
+        </div>
+        
+        <!-- Typewriter with Cursor -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Typewriter with Cursor</h2>
+            <p class="typewriter-cursor animate-typewriter-cursor text-lg text-gray-800 dark:text-gray-200">
+                This text shows with a blinking cursor effect as it types!
+            </p>
+        </div>
+        
+        <!-- Fast Typewriter -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Fast Typewriter</h2>
+            <p class="typewriter-cursor animate-typewriter-cursor-fast text-lg text-gray-800 dark:text-gray-200">
+                Fast typing speed for quick reveals!
+            </p>
+        </div>
+        
+        <!-- Slow Typewriter -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Slow Typewriter</h2>
+            <p class="typewriter-cursor animate-typewriter-cursor-slow text-lg text-gray-800 dark:text-gray-200">
+                Slow and deliberate typing for dramatic effect...
+            </p>
+        </div>
+        
+        <!-- Monospace Typewriter -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Monospace Typewriter</h2>
+            <p class="typewriter-cursor typewriter-mono animate-typewriter-cursor text-lg text-gray-800 dark:text-gray-200">
+                Monospace font for authentic typewriter look!
+            </p>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
+            <h2 class="text-xl font-semibold mb-4 text-blue-900 dark:text-blue-100">How to Use</h2>
+            <div class="space-y-2 text-blue-800 dark:text-blue-200">
+                <p><strong>Basic Usage:</strong> Add <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">typewriter animate-typewriter</code> classes</p>
+                <p><strong>With Cursor:</strong> Add <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">typewriter-cursor animate-typewriter-cursor</code> classes</p>
+                <p><strong>Speed Variants:</strong> Use <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">animate-typewriter-fast</code> or <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">animate-typewriter-slow</code></p>
+                <p><strong>Monospace:</strong> Add <code class="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">typewriter-mono</code> for authentic typewriter font</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
