@@ -676,6 +676,15 @@ export class HomeComponent implements OnInit {
       icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
       bgColor: 'bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40',
       iconColor: 'text-blue-600 dark:text-blue-400'
+    },
+    {
+      name: 'Sidebar',
+      route: '/components/sidebar',
+      description: 'Flexible navigation sidebars with responsive behavior, icon mode, nested navigation, and accessibility features',
+      category: 'Navigation',
+      icon: 'M4 6h16M4 12h8m-8 6h16',
+      bgColor: 'bg-gradient-to-br from-slate-100 to-gray-100 dark:from-slate-900/40 dark:to-gray-900/40',
+      iconColor: 'text-slate-600 dark:text-slate-400'
     }
   ];
 

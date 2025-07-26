@@ -7,6 +7,8 @@ import {
   ElementRef,
   HostListener,
   inject,
+  Injectable,
+  InjectionToken,
   input,
   NgZone,
   OnDestroy,
@@ -15,16 +17,56 @@ import {
   PLATFORM_ID,
   Renderer2,
   signal,
-  ViewChild
+  ViewChild,
+  WritableSignal
 } from '@angular/core';
 import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {A11yModule} from '@angular/cdk/a11y';
-import {OverlayModule} from '@angular/cdk/overlay';
+import {OverlayModule, ConnectedPosition} from '@angular/cdk/overlay';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {cva} from 'class-variance-authority';
 import {cn} from '../utils/cn';
+
+/**
+ * Service to manage sidebar instances and enable triggers to find them by ID
+ */
+@Injectable({
+  providedIn: 'root'
+})
+export class SidebarService {
+  private sidebarInstances = new Map<string, Sidebar>();
+
+  registerSidebar(id: string, sidebar: Sidebar) {
+    if (id) {
+      this.sidebarInstances.set(id, sidebar);
+    }
+  }
+
+  unregisterSidebar(id: string) {
+    if (id) {
+      this.sidebarInstances.delete(id);
+    }
+  }
+
+  getSidebar(id: string): Sidebar | undefined {
+    return this.sidebarInstances.get(id);
+  }
+
+  toggleSidebar(id: string): boolean {
+    const sidebar = this.getSidebar(id);
+    if (sidebar) {
+      sidebar.toggleExpanded();
+      return true;
+    }
+    return false;
+  }
+
+  getAllSidebars(): Sidebar[] {
+    return Array.from(this.sidebarInstances.values());
+  }
+}
 
 /**
  * Sidebar width mappings
@@ -39,51 +81,103 @@ const SIDEBAR_WIDTHS = {
 } as const;
 
 /**
- * Angular animations for smooth sidebar transitions
+ * Angular animations for buttery smooth sidebar transitions
+ * Optimized for GPU acceleration and consistent timing
  */
 const sidebarAnimations = [
   // Main sidebar width animation for push mode
   trigger('sidebarWidth', [
-    state('collapsed', style({ width: '0px', minWidth: '0px', opacity: '0' })),
-    state('sm', style({ width: '16rem', minWidth: '16rem', opacity: '1' })),
-    state('md', style({ width: '20rem', minWidth: '20rem', opacity: '1' })),
-    state('lg', style({ width: '24rem', minWidth: '24rem', opacity: '1' })),
-    state('xl', style({ width: '28rem', minWidth: '28rem', opacity: '1' })),
-    state('icon', style({ width: '4rem', minWidth: '4rem', opacity: '1' })),
+    state('collapsed', style({
+      width: '0px',
+      minWidth: '0px',
+      opacity: '0',
+      willChange: 'width, min-width, opacity'
+    })),
+    state('sm', style({
+      width: '16rem',
+      minWidth: '16rem',
+      opacity: '1',
+      willChange: 'auto'
+    })),
+    state('md', style({
+      width: '20rem',
+      minWidth: '20rem',
+      opacity: '1',
+      willChange: 'auto'
+    })),
+    state('lg', style({
+      width: '24rem',
+      minWidth: '24rem',
+      opacity: '1',
+      willChange: 'auto'
+    })),
+    state('xl', style({
+      width: '28rem',
+      minWidth: '28rem',
+      opacity: '1',
+      willChange: 'auto'
+    })),
+    state('icon', style({
+      width: '4rem',
+      minWidth: '4rem',
+      opacity: '1',
+      willChange: 'auto'
+    })),
     transition('* => *', [
-      animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+      animate('320ms cubic-bezier(0.4, 0.0, 0.2, 1)')
     ])
   ]),
-  
-  // Overlay positioning animation
+
+  // Overlay positioning animation - GPU accelerated
   trigger('overlaySlide', [
-    state('hiddenLeft', style({ transform: 'translateX(-100%)', opacity: '0' })),
-    state('hiddenRight', style({ transform: 'translateX(100%)', opacity: '0' })),
-    state('visible', style({ transform: 'translateX(0)', opacity: '1' })),
+    state('hiddenLeft', style({
+      transform: 'translateX(-100%) translateZ(0)',
+      opacity: '0',
+      willChange: 'transform, opacity'
+    })),
+    state('hiddenRight', style({
+      transform: 'translateX(100%) translateZ(0)',
+      opacity: '0',
+      willChange: 'transform, opacity'
+    })),
+    state('visible', style({
+      transform: 'translateX(0) translateZ(0)',
+      opacity: '1',
+      willChange: 'auto'
+    })),
     transition('* => *', [
-      animate('350ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+      animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)')
     ])
   ]),
-  
-  // Backdrop fade animation
+
+  // Backdrop fade animation - optimized for smooth fade
   trigger('backdropFade', [
-    state('hidden', style({ opacity: '0', pointerEvents: 'none' })),
-    state('visible', style({ opacity: '1', pointerEvents: 'auto' })),
+    state('hidden', style({
+      opacity: '0',
+      pointerEvents: 'none',
+      willChange: 'opacity'
+    })),
+    state('visible', style({
+      opacity: '1',
+      pointerEvents: 'auto',
+      willChange: 'auto'
+    })),
     transition('* => *', [
-      animate('300ms ease-in-out')
+      animate('250ms cubic-bezier(0.4, 0.0, 0.2, 1)')
     ])
   ]),
-  
+
   // Content animation for smooth transitions
   trigger('contentSlide', [
     transition('* => *', [
-      animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+      animate('320ms cubic-bezier(0.4, 0.0, 0.2, 1)')
     ])
   ])
 ];
 
 /**
  * Individual Sidebar component variants using CVA
+ * Optimized for smooth Angular animations
  */
 const sidebarVariants = cva(
   [
@@ -92,12 +186,16 @@ const sidebarVariants = cva(
     'relative z-10',
     'shadow-sm',
     'dark:bg-background dark:border-border',
+    // Optimize for GPU acceleration and smooth animations
+    'transform-gpu will-change-auto',
+    // Prevent layout shifts during animations
+    'backface-visibility-hidden',
   ],
   {
     variants: {
       side: {
-        left: 'border-r order-1',
-        right: 'border-l order-3',
+        left: 'border-r',
+        right: 'border-l',
       },
       mode: {
         push: 'h-full',
@@ -117,6 +215,12 @@ const sidebarVariants = cva(
       },
     },
     compoundVariants: [
+      // Push mode - no special positioning needed, flexbox handles it
+      // Overlay mode positioning (overlays the content)
+      {
+        mode: 'overlay',
+        class: 'absolute inset-y-0 z-50',
+      },
       // Push mode - collapsed state (width overrides)
       {
         mode: 'push',
@@ -231,6 +335,8 @@ const sidebarVariants = cva(
 const backdropVariants = cva([
   'fixed inset-0 bg-black/50 backdrop-blur-sm z-40',
   'dark:bg-black/70',
+  // Optimize for smooth animations
+  'transform-gpu will-change-auto',
 ]);
 
 /**
@@ -272,41 +378,49 @@ export class SidebarLayout {
 }
 
 /**
- * Sidebar Main Content Component - Auto-adjusting content area
+ * Context for sharing sidebar configuration between container and content components
  */
-@Component({
-  selector: 'SidebarMainContent',
-  standalone: true,
-  imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <main [class]="contentClasses()" role="main">
-      <ng-content></ng-content>
-    </main>
-  `,
-})
-export class SidebarMainContent {
-  readonly customClass = input<string>('');
-
-  readonly contentClasses = computed(() => {
-    return cn(
-      'flex-1 overflow-auto',
-      'transition-all duration-300 ease-in-out',
-      'min-w-0', // Prevents flex item from growing beyond container
-      this.customClass()
-    );
-  });
+export interface SidebarContainerContext {
+  side: 'left' | 'right';
+  mode: 'push' | 'overlay';
 }
 
 /**
- * Sidebar Container Component - Main wrapper that handles flex layout and positioning
- * This is the primary component users should use to create sidebar layouts
+ * Injection token for sidebar container context
+ */
+export const SIDEBAR_CONTAINER_CONTEXT = new InjectionToken<WritableSignal<SidebarContainerContext>>('SIDEBAR_CONTAINER_CONTEXT');
+
+/**
+ * Sidebar Container Component - Main wrapper that handles flexbox layout and positioning
+ * 
+ * Usage:
+ * <SidebarContainer>
+ *   <Sidebar>
+ *     <SidebarHeader>Header content</SidebarHeader>
+ *     <SidebarContent>
+ *       <SidebarNavGroup>
+ *         <SidebarNavItem>Item 1</SidebarNavItem>
+ *         <SidebarNavItem>Item 2</SidebarNavItem>
+ *       </SidebarNavGroup>
+ *     </SidebarContent>
+ *     <SidebarFooter>Footer content</SidebarFooter>
+ *   </Sidebar>
+ *   <div class="flex-1 overflow-auto">
+ *     <!-- Your main content here -->
+ *   </div>
+ * </SidebarContainer>
  */
 @Component({
   selector: 'SidebarContainer',
   standalone: true,
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: SIDEBAR_CONTAINER_CONTEXT,
+      useFactory: () => signal<SidebarContainerContext>({ side: 'left', mode: 'push' })
+    }
+  ],
   template: `
     <div [class]="containerClasses()" [attr.data-sidebar-container]="'true'">
       <ng-content></ng-content>
@@ -316,15 +430,34 @@ export class SidebarMainContent {
 export class SidebarContainer {
   readonly customClass = input<string>('');
   readonly height = input<string>('h-screen');
+  
+  // Inject the context signal
+  readonly sidebarContext = inject(SIDEBAR_CONTAINER_CONTEXT);
 
   readonly containerClasses = computed(() => {
+    const context = this.sidebarContext();
+    
     return cn(
-      'flex bg-background',
+      // Use flexbox for simple and reliable positioning
+      'flex bg-background w-full',
       this.height(),
-      'transition-all duration-300 ease-in-out',
+      // Ensure proper flex container behavior
+      'overflow-hidden',
+      // Direction controls the order: row = left sidebar first, row-reverse = right sidebar first
+      {
+        // Left sidebar: normal flex direction (sidebar, content)
+        'flex-row': context.mode === 'push' && context.side === 'left' || context.mode === 'overlay',
+        // Right sidebar: reverse flex direction (sidebar, content) -> (content, sidebar visually)
+        'flex-row-reverse': context.mode === 'push' && context.side === 'right',
+      },
       this.customClass()
     );
   });
+  
+  // Public method to update context when sidebar configuration changes
+  updateSidebarContext(side: 'left' | 'right', mode: 'push' | 'overlay') {
+    this.sidebarContext.set({ side, mode });
+  }
 }
 
 /**
@@ -378,7 +511,14 @@ export class SidebarContainer {
 
       <!-- Sidebar Footer (Sticky) -->
       <div [class]="footerClasses()" role="contentinfo">
-        <ng-content select="[slot=sidebar-footer]"></ng-content>
+        @if (!isIconOnly()) {
+          <ng-content select="[slot=sidebar-footer]"></ng-content>
+        } @else {
+          <!-- In icon mode, only show icons if any are provided -->
+          <div class="flex justify-center">
+            <ng-content select="[slot=sidebar-footer] [data-icon-only]"></ng-content>
+          </div>
+        }
       </div>
     </aside>
   `,
@@ -386,6 +526,7 @@ export class SidebarContainer {
 export class Sidebar implements OnInit, OnDestroy {
   @ViewChild('sidebarRef', {static: true}) sidebarRef!: ElementRef;
   // Input signals
+  readonly id = input<string>(''); // Unique identifier for this sidebar
   readonly side = input<'left' | 'right'>('left');
   readonly mode = input<'push' | 'overlay'>('push');
   readonly size = input<'sm' | 'md' | 'lg' | 'xl'>('md');
@@ -398,6 +539,7 @@ export class Sidebar implements OnInit, OnDestroy {
   readonly closeOnEscape = input<boolean>(true);
   readonly preventBodyScroll = input<boolean>(true);
   readonly mobileBreakpoint = input<number>(768);
+  readonly mediumBreakpoint = input<number>(1024); // Add medium screen breakpoint
   readonly ariaLabel = input<string>('Navigation sidebar');
   readonly customClass = input<string>('');
   readonly headerCustomClass = input<string>('');
@@ -416,8 +558,8 @@ export class Sidebar implements OnInit, OnDestroy {
   });
   // Mobile responsive computed properties
   readonly effectiveMode = computed(() => {
-    // Force overlay mode on mobile
-    return this.isMobile() ? 'overlay' : this.mode();
+    // Force overlay mode on mobile and medium screens (up to 1024px)
+    return this.isMobile() || this.isMediumScreen() ? 'overlay' : this.mode();
   });
   readonly showBackdrop = computed(() => {
     return this.showBackdropInOverlay() &&
@@ -428,8 +570,8 @@ export class Sidebar implements OnInit, OnDestroy {
     return this.effectiveMode() === 'overlay' && this.isExpandedComputed();
   });
   readonly canUseIconOnly = computed(() => {
-    // Disable icon-only mode on mobile
-    return this.allowIconOnly() && !this.isMobile();
+    // Disable icon-only mode on mobile and medium screens
+    return this.allowIconOnly() && !this.isMobile() && !this.isMediumScreen();
   });
 
   // Animation state computations
@@ -440,7 +582,7 @@ export class Sidebar implements OnInit, OnDestroy {
 
   readonly overlayAnimationState = computed(() => {
     if (this.effectiveMode() !== 'overlay') return 'visible';
-    
+
     if (!this.isExpandedComputed() && !this.isIconOnly()) {
       return this.side() === 'left' ? 'hiddenLeft' : 'hiddenRight';
     }
@@ -453,35 +595,57 @@ export class Sidebar implements OnInit, OnDestroy {
 
   // CSS class computations
   readonly sidebarClasses = computed(() => {
-    return cn(sidebarVariants({
+    const baseClasses = cn(sidebarVariants({
       side: this.side(),
       mode: this.effectiveMode(),
       state: this.currentState(),
       size: this.currentSize(),
     }), this.customClass());
+
+    // In icon mode, check if we need wider sidebar for submenus
+    if (this.isIconOnly()) {
+      // Check if any nav items have children (this would need to be passed from parent)
+      // For now, use a wider icon mode to accommodate vertical submenus
+      return cn(baseClasses, 'w-20 min-w-20'); // Slightly wider than default w-16
+    }
+
+    return baseClasses;
   });
   readonly headerClasses = computed(() => {
     return cn(
-      'flex-shrink-0 border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
+      // Make header sticky and non-shrinking
+      'flex-shrink-0 sticky top-0 z-10',
+      // Background and borders
+      'bg-background border-b border-border/50',
+      // Backdrop blur effect
+      'backdrop-blur supports-[backdrop-filter]:bg-background/95',
+      // Dark mode
       'dark:border-border dark:bg-background',
-      'transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
       this.headerCustomClass()
     );
   });
   readonly contentClasses = computed(() => {
     return cn(
-      'flex-1 overflow-y-auto overflow-x-hidden',
+      // Main scrollable area - takes remaining space
+      'flex-1 overflow-y-auto min-h-0',
+      // Allow horizontal overflow in icon mode for submenus, but hide it otherwise
+      this.isIconOnly() ? 'overflow-x-visible' : 'overflow-x-hidden',
+      // Custom scrollbar styling
       'scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border',
       'dark:scrollbar-thumb-border',
-      'transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
       this.contentCustomClass()
     );
   });
   readonly footerClasses = computed(() => {
     return cn(
-      'flex-shrink-0 border-t border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
-      'dark:border-border dark:bg-background',
-      'transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
+      // Make footer sticky and non-growing
+      'flex-shrink-0 sticky bottom-0 z-10',
+      // Background and borders
+      'bg-background border-t border-border/50',
+      // Backdrop blur effect
+      'backdrop-blur supports-[backdrop-filter]:bg-background/95',
+      // Dark mode
+      'dark:bg-background dark:border-border',
       this.footerCustomClass()
     );
   });
@@ -492,6 +656,11 @@ export class Sidebar implements OnInit, OnDestroy {
   private renderer = inject(Renderer2);
   private ngZone = inject(NgZone);
   private elementRef = inject(ElementRef);
+  private sidebarService = inject(SidebarService);
+  
+  // Optional container context for updating parent layout
+  private containerContext = inject(SIDEBAR_CONTAINER_CONTEXT, { optional: true });
+  
   // Internal state signals
   private readonly _isExpanded = signal<boolean>(true);
   // Computed state
@@ -503,29 +672,56 @@ export class Sidebar implements OnInit, OnDestroy {
   readonly isIconOnly = computed(() => this._isIconOnly());
   private readonly _isMobile = signal<boolean>(false);
   readonly isMobile = computed(() => this._isMobile());
+  private readonly _isMediumScreen = signal<boolean>(false);
+  readonly isMediumScreen = computed(() => this._isMediumScreen());
   // Media query listener
   private mediaQueryList?: MediaQueryList;
+  private mediumScreenQueryList?: MediaQueryList;
   private resizeHandler?: () => void;
+  private mediumResizeHandler?: () => void;
 
   constructor() {
+    // Immediate mobile detection for proper initial state
+    if (isPlatformBrowser(this.platformId)) {
+      const mobileQuery = `(max-width: ${this.mobileBreakpoint()}px)`;
+      const mediumQuery = `(max-width: ${this.mediumBreakpoint()}px)`;
+      const mobileMatches = window.matchMedia(mobileQuery).matches;
+      const mediumMatches = window.matchMedia(mediumQuery).matches;
+
+      this._isMobile.set(mobileMatches);
+      this._isMediumScreen.set(mediumMatches && !mobileMatches);
+    }
+    
+    // Update container context when sidebar configuration changes
+    effect(() => {
+      if (this.containerContext) {
+        this.containerContext.set({
+          side: this.side(),
+          mode: this.effectiveMode()
+        });
+      }
+    });
+    
     // Initialize default state
     effect(() => {
       if (this.isExpanded() !== undefined) {
         this._isExpanded.set(this.isExpanded()!);
       } else {
-        this._isExpanded.set(this.defaultExpanded());
+        // On smaller screens, always start collapsed for better UX
+        // On larger screens, use the defaultExpanded setting
+        const shouldStartCollapsed = this.isMobile() || this.isMediumScreen();
+        this._isExpanded.set(shouldStartCollapsed ? false : this.defaultExpanded());
       }
     });
 
-    // Handle mobile state changes
+    // Handle mobile/medium screen state changes
     effect(() => {
-      if (this.isMobile()) {
-        // On mobile, disable icon-only mode and collapse if in overlay mode
+      if (this.isMobile() || this.isMediumScreen()) {
+        // On mobile/medium screens, disable icon-only mode
         this._isIconOnly.set(false);
-        if (this.effectiveMode() === 'overlay' && this.isExpandedComputed()) {
-          // Auto-collapse on mobile overlay mode for better UX
-          this.collapse();
-        }
+
+        // Don't auto-collapse - let overlay mode handle positioning
+        // User controls when to open/close the sidebar
       }
     });
 
@@ -535,7 +731,8 @@ export class Sidebar implements OnInit, OnDestroy {
         const shouldLockScroll = this.preventBodyScroll() &&
           this.effectiveMode() === 'overlay' &&
           this.isExpandedComputed() &&
-          !this.isIconOnly();
+          !this.isIconOnly() &&
+          (this.isMobile() || this.isMediumScreen()); // Only lock scroll on smaller screens
 
         if (shouldLockScroll) {
           document.body.style.overflow = 'hidden';
@@ -567,10 +764,17 @@ export class Sidebar implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Initialization handled in constructor
+    // Register with sidebar service if ID is provided
+    if (this.id()) {
+      this.sidebarService.registerSidebar(this.id(), this);
+    }
   }
 
   ngOnDestroy() {
+    // Unregister from sidebar service
+    if (this.id()) {
+      this.sidebarService.unregisterSidebar(this.id());
+    }
     this.cleanup();
   }
 
@@ -629,31 +833,48 @@ export class Sidebar implements OnInit, OnDestroy {
 
   // Private methods
   private setupMediaQuery() {
-    const mediaQuery = `(max-width: ${this.mobileBreakpoint()}px)`;
-    this.mediaQueryList = window.matchMedia(mediaQuery);
+    // Mobile breakpoint
+    const mobileQuery = `(max-width: ${this.mobileBreakpoint()}px)`;
+    this.mediaQueryList = window.matchMedia(mobileQuery);
 
-    // Set initial state
+    // Medium screen breakpoint
+    const mediumQuery = `(max-width: ${this.mediumBreakpoint()}px)`;
+    this.mediumScreenQueryList = window.matchMedia(mediumQuery);
+
+    // Set initial states
     this._isMobile.set(this.mediaQueryList.matches);
+    this._isMediumScreen.set(this.mediumScreenQueryList.matches && !this.mediaQueryList.matches);
 
-    // Listen for changes
-    const listener = (e: MediaQueryListEvent) => {
+    // Listen for mobile changes
+    const mobileListener = (e: MediaQueryListEvent) => {
       this.ngZone.run(() => {
         this._isMobile.set(e.matches);
-
-        // Auto-collapse on mobile if overlay mode
-        if (e.matches && this.effectiveMode() === 'overlay' && this.isExpandedComputed()) {
-          this.collapse();
-        }
+        // Update medium screen state when mobile changes
+        this._isMediumScreen.set(this.mediumScreenQueryList!.matches && !e.matches);
       });
     };
 
-    this.mediaQueryList.addEventListener('change', listener);
-    this.resizeHandler = listener as any;
+    // Listen for medium screen changes
+    const mediumListener = (e: MediaQueryListEvent) => {
+      this.ngZone.run(() => {
+        // Medium screen is true only if medium query matches but mobile doesn't
+        this._isMediumScreen.set(e.matches && !this.mediaQueryList!.matches);
+      });
+    };
+
+    this.mediaQueryList.addEventListener('change', mobileListener);
+    this.mediumScreenQueryList.addEventListener('change', mediumListener);
+    this.resizeHandler = mobileListener as any;
+    this.mediumResizeHandler = mediumListener as any;
   }
 
   private cleanup() {
     if (this.mediaQueryList && this.resizeHandler) {
       this.mediaQueryList.removeEventListener('change', this.resizeHandler);
+    }
+
+    if (this.mediumScreenQueryList && this.mediumResizeHandler) {
+      this.mediumScreenQueryList.removeEventListener('change', this.mediumResizeHandler);
     }
 
     // Restore body scroll
@@ -684,10 +905,8 @@ export class SidebarHeader {
 
   readonly headerClasses = computed(() => {
     return cn(
+      // Removed redundant border and background - parent handles sticky positioning
       'p-4',
-      'border-b border-border/50',
-      'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
-      'dark:border-border dark:bg-background',
       'transition-colors duration-200',
       this.customClass()
     );
@@ -709,10 +928,12 @@ export class SidebarHeader {
 })
 export class SidebarContent {
   readonly customClass = input<string>('');
+  readonly isIconOnly = input<boolean>(false); // Add icon mode awareness
 
   readonly contentClasses = computed(() => {
     return cn(
-      'p-4 space-y-2',
+      // Conditional padding: minimal padding and spacing in icon mode, full padding otherwise
+      this.isIconOnly() ? 'p-1 space-y-0.5' : 'p-4 space-y-2',
       'scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border/30',
       'hover:scrollbar-thumb-border/50',
       'dark:scrollbar-thumb-border/30 dark:hover:scrollbar-thumb-border/50',
@@ -740,10 +961,8 @@ export class SidebarFooter {
 
   readonly footerClasses = computed(() => {
     return cn(
-      'p-4',
-      'border-t border-border/50',
-      'bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
-      'dark:border-border dark:bg-background',
+      // Simple padding - parent handles sticky positioning and background
+      'p-3',
       'transition-colors duration-200',
       this.customClass()
     );
@@ -756,7 +975,7 @@ export class SidebarFooter {
 @Component({
   selector: 'SidebarNavItem',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OverlayModule],
   hostDirectives: [
     {
       directive: RouterLink,
@@ -765,51 +984,89 @@ export class SidebarFooter {
   ],
   animations: [
     trigger('labelSlide', [
-      state('visible', style({ opacity: 1, width: '*', overflow: 'visible' })),
-      state('hidden', style({ opacity: 0, width: '0px', overflow: 'hidden' })),
+      state('visible', style({
+        opacity: 1,
+        width: '*',
+        overflow: 'visible',
+        willChange: 'auto'
+      })),
+      state('hidden', style({
+        opacity: 0,
+        width: '0px',
+        overflow: 'hidden',
+        willChange: 'opacity, width'
+      })),
       transition('visible <=> hidden', [
-        animate('300ms cubic-bezier(0.25, 0.8, 0.25, 1)')
+        animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)')
       ])
     ]),
     trigger('childrenSlide', [
-      state('expanded', style({ height: '*', opacity: 1 })),
-      state('collapsed', style({ height: '0px', opacity: 0 })),
+      state('expanded', style({
+        height: '*',
+        opacity: 1,
+        willChange: 'auto'
+      })),
+      state('collapsed', style({
+        height: '0px',
+        opacity: 0,
+        willChange: 'height, opacity'
+      })),
       transition('expanded <=> collapsed', [
-        animate('250ms ease-in-out')
+        animate('280ms cubic-bezier(0.4, 0.0, 0.2, 1)')
       ])
     ])
   ],
   template: `
-    <a
-      [class]="itemClasses()"
-      [attr.aria-current]="isActive() ? 'page' : null"
-      [attr.aria-expanded]="hasChildren() ? isExpanded() : null"
-      [attr.aria-label]="getAriaLabel()"
-      [attr.title]="showTooltip() ? label() : null"
-      role="menuitem"
-      tabindex="0"
-      (click)="onItemClick($event)"
-      (keydown.enter)="onItemClick($event)"
-      (keydown.space)="onItemClick($event)"
-    >
+    <div [class]="containerClasses()">
+      <a
+        #triggerElement
+        [class]="isSubmenuItem() && isIconOnly() ? submenuItemClasses() : itemClasses()"
+        [attr.aria-current]="isActive() ? 'page' : null"
+        [attr.aria-expanded]="hasChildren() ? isExpanded() : null"
+        [attr.aria-label]="getAriaLabel()"
+        role="menuitem"
+        tabindex="0"
+        (click)="onItemClick($event)"
+        (keydown.enter)="onItemClick($event)"
+        (keydown.space)="onItemClick($event)"
+        (keydown)="onKeyDown($event)"
+        (mouseenter)="onMouseEnter()"
+        (mouseleave)="onMouseLeave()"
+        cdkOverlayOrigin
+        #trigger="cdkOverlayOrigin"
+      >
       @if (icon()) {
-        <span
-          class="flex-shrink-0 flex items-center justify-center w-5 h-5"
-          [innerHTML]="sanitizedIcon()"
-          aria-hidden="true">
-        </span>
+        <div class="relative flex-shrink-0 flex items-center gap-2 justify-center w-6 h-6">
+          <span
+            [innerHTML]="sanitizedIcon()"
+            aria-hidden="true">
+          </span>
+
+          <!-- Small chevron indicator for submenu in icon mode -->
+          @if (hasChildren() && isIconOnly()) {
+            <svg
+              class="absolute bottom-1 -right-2.5 w-3 h-3 text-foreground bg-background rounded-full p-0.5 border border-foreground/90 shadow-sm  {{isExpanded() ? 'rotate-270': 'rotate-90'}}"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
+            </svg>
+          }
+        </div>
       }
 
       @if (showLabel()) {
-        <span 
+        <span
           class="flex-1 truncate text-sm font-medium"
           [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
         >{{ label() }}</span>
       }
 
       @if (badge() && showLabel()) {
-        <span 
-          [class]="badgeClasses()" 
+        <span
+          [class]="badgeClasses()"
           [attr.aria-label]="'Badge: ' + badge()"
           [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
         >{{ badge() }}</span>
@@ -817,7 +1074,7 @@ export class SidebarFooter {
 
       @if (hasChildren() && showLabel()) {
         <svg
-          class="w-4 h-4 flex-shrink-0 transition-transform duration-200"
+          class="w-4 h-4 flex-shrink-0 transform-gpu transition-transform duration-150 ease-out"
           [class.rotate-90]="isExpanded()"
           fill="none"
           stroke="currentColor"
@@ -828,18 +1085,33 @@ export class SidebarFooter {
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
       }
-    </a>
+      </a>
 
-    @if (hasChildren() && showLabel()) {
-      <div 
-        class="ml-6 mt-1 space-y-1 overflow-hidden" 
-        role="menu" 
-        [attr.aria-label]="label() + ' submenu'"
-        [@childrenSlide]="isExpanded() ? 'expanded' : 'collapsed'"
+      <!-- CDK Overlay Tooltip for Icon Mode -->
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="trigger"
+        [cdkConnectedOverlayOpen]="showTooltip() && isHovered()"
+        [cdkConnectedOverlayPositions]="tooltipPositions"
+        [cdkConnectedOverlayHasBackdrop]="false"
+        [cdkConnectedOverlayPanelClass]="'tooltip-panel'"
       >
-        <ng-content></ng-content>
-      </div>
-    }
+        <div class="px-2 py-1 text-xs font-medium text-white bg-gray-900 rounded shadow-lg whitespace-nowrap pointer-events-none z-[9999]">
+          {{ label() }}
+        </div>
+      </ng-template>
+
+      @if (hasChildren()) {
+        <div
+          [class]="childrenClasses()"
+          role="menu"
+          [attr.aria-label]="label() + ' submenu'"
+          [@childrenSlide]="isExpanded() ? 'expanded' : 'collapsed'"
+        >
+          <ng-content></ng-content>
+        </div>
+      }
+    </div>
   `,
 })
 export class SidebarNavItem {
@@ -851,27 +1123,61 @@ export class SidebarNavItem {
   readonly isActive = input<boolean>(false);
   readonly hasChildren = input<boolean>(false);
   readonly isIconOnly = input<boolean>(false);
+  readonly isSubmenuItem = input<boolean>(false); // New property to identify submenu items
   readonly customClass = input<string>('');
   readonly badgeCustomClass = input<string>('');
   // Output signals
   readonly onClick = output<Event>();
   readonly showLabel = computed(() => !this.isIconOnly());
-  readonly showTooltip = computed(() => this.isIconOnly() && this.label());
+  readonly showTooltip = computed(() => this.isIconOnly() && !!this.label());
+
   // CSS classes
+  readonly containerClasses = computed(() =>
+    cn(
+      'relative w-full', // Ensure full width for proper submenu expansion
+      {
+        'group': this.hasChildren() && this.isIconOnly(), // Enable hover effects for icon mode dropdowns
+        // Use flex column layout for inline submenu expansion
+        'flex flex-col': this.isIconOnly() && this.hasChildren(),
+      }
+    )
+  );
+
   readonly itemClasses = computed(() =>
     cn(
-      'group flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200',
-      'hover:bg-accent hover:text-accent-foreground',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1',
+      'group flex items-center gap-3 px-3 py-2 rounded-lg',
+      // Enhanced hover and focus transitions with better visibility
+      'hover:bg-accent hover:text-accent-foreground transition-all duration-200',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2',
+      'focus-visible:bg-primary/10 focus-visible:text-primary focus-visible:shadow-sm',
+      'focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2',
+      'focus:bg-primary/10 focus:text-primary focus:shadow-sm',
       'text-muted-foreground hover:text-foreground',
       'dark:hover:bg-accent/80 dark:hover:text-accent-foreground',
-      'active:scale-[0.98] transform transition-transform',
+      'dark:focus-visible:bg-primary/20 dark:focus:bg-primary/20',
+      // Optimize active state with GPU acceleration
+      'active:scale-[0.98] transform-gpu transition-transform duration-150',
       {
         'bg-accent text-accent-foreground dark:bg-accent/80': this.isActive(),
-        'justify-center px-2': this.isIconOnly(),
+        // Icon mode: center content and adjust padding
+        'justify-center px-2 w-12 h-12 mx-auto': this.isIconOnly(),
         'cursor-pointer': !this.routerLink() || this.hasChildren(),
       },
       this.customClass()
+    )
+  );
+
+  // Special styling for submenu items in icon mode
+  readonly submenuItemClasses = computed(() =>
+     cn(
+      'group flex items-center gap-2 px-2 py-1 rounded text-sm w-full',
+      // Different styling for submenu items - make them full width and prominent
+      'bg-background text-foreground',
+      'hover:bg-primary/10 hover:text-primary transition-colors duration-300',
+      'border border-transparent hover:border-primary/20',
+      {
+        'bg-primary/15 text-primary border-primary/30': this.isActive(),
+      }
     )
   );
   readonly badgeClasses = computed(() =>
@@ -881,6 +1187,27 @@ export class SidebarNavItem {
       'dark:bg-primary/90 dark:text-primary-foreground',
       'shadow-sm',
       this.badgeCustomClass()
+    )
+  );
+
+  readonly childrenClasses = computed(() =>
+    cn(
+      // Conditional spacing: no spacing in icon mode, normal spacing otherwise
+      this.isIconOnly() ? 'space-y-0' : 'space-y-1',
+      'overflow-visible',
+      {
+        // In icon mode, show submenu inline below parent (pushes other items down)
+        // Remove indentation and make it full width with clear visual separation
+        // Reduced padding for better centering
+        'mt-2 bg-accent/20 border border-border/50 rounded-lg px-1 py-1 w-full': this.isIconOnly(),
+        // In normal mode, show as nested indented list
+        'ml-6 mt-1 overflow-hidden': !this.isIconOnly(),
+        // Animation states for icon mode - show on hover or when manually expanded
+        'opacity-0 invisible pointer-events-none max-h-0 transition-all duration-200': this.isIconOnly(),
+        'group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:max-h-96': this.isIconOnly(),
+        // When manually expanded, override hover states
+        'opacity-100 visible pointer-events-auto max-h-96': this.isIconOnly() && this.isExpanded(),
+      }
     )
   );
   private sanitizer = inject(DomSanitizer);
@@ -893,7 +1220,44 @@ export class SidebarNavItem {
   private readonly _isExpanded = signal<boolean>(false);
   readonly isExpanded = computed(() => this._isExpanded());
 
+  private readonly _isHovered = signal<boolean>(false);
+  readonly isHovered = computed(() => this._isHovered());
+
+  // Tooltip positioning for CDK overlay
+  readonly tooltipPositions: ConnectedPosition[] = [
+    {
+      originX: 'end',
+      originY: 'center',
+      overlayX: 'start',
+      overlayY: 'center',
+      offsetX: 8,
+    },
+    {
+      originX: 'start',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: -8,
+    },
+    {
+      originX: 'center',
+      originY: 'bottom',
+      overlayX: 'center',
+      overlayY: 'top',
+      offsetY: 8,
+    },
+  ];
+
   // Methods
+  onMouseEnter() {
+    if (this.isIconOnly()) {
+      this._isHovered.set(true);
+    }
+  }
+
+  onMouseLeave() {
+    this._isHovered.set(false);
+  }
   getAriaLabel(): string {
     let label = this.label();
     if (this.isActive()) {
@@ -917,6 +1281,299 @@ export class SidebarNavItem {
       event.preventDefault();
     }
     this.onClick.emit(event);
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    const target = event.target as HTMLElement;
+    console.log('⌨️ KeyDown event:', {
+      key: event.key,
+      target: target,
+      targetLabel: target.textContent?.trim(),
+      hasChildren: this.hasChildren(),
+      isExpanded: this.isExpanded()
+    });
+
+    switch (event.key) {
+      case 'ArrowDown':
+        console.log('⬇️ Arrow Down pressed');
+        event.preventDefault();
+        this.focusNextVisibleItem(target);
+        break;
+      case 'ArrowUp':
+        console.log('⬆️ Arrow Up pressed');
+        event.preventDefault();
+        this.focusPreviousVisibleItem(target);
+        break;
+      case 'ArrowRight':
+        console.log('➡️ Arrow Right pressed');
+        event.preventDefault();
+        if (this.hasChildren() && !this.isExpanded()) {
+          console.log('🔓 Expanding submenu');
+          this._isExpanded.set(true);
+        } else {
+          console.log('➡️ Moving to next item (no submenu or already expanded)');
+          // If already expanded or no children, move to next item
+          this.focusNextVisibleItem(target);
+        }
+        break;
+      case 'ArrowLeft':
+        console.log('⬅️ Arrow Left pressed');
+        event.preventDefault();
+        if (this.hasChildren() && this.isExpanded()) {
+          console.log('🔒 Collapsing submenu');
+          this._isExpanded.set(false);
+        } else {
+          console.log('⬅️ Moving to previous item (no submenu or already collapsed)');
+          // If already collapsed or no children, move to previous item
+          this.focusPreviousVisibleItem(target);
+        }
+        break;
+      case 'Home':
+        console.log('🏠 Home pressed');
+        event.preventDefault();
+        this.focusFirstItem();
+        break;
+      case 'End':
+        console.log('🔚 End pressed');
+        event.preventDefault();
+        this.focusLastItem();
+        break;
+      default:
+        console.log('🔍 Other key pressed:', event.key);
+        break;
+    }
+  }
+
+  private focusNextItem(currentElement: HTMLElement) {
+    const sidebarContent = currentElement.closest('[role="navigation"]');
+    if (!sidebarContent) return;
+
+    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
+    const currentIndex = allItems.indexOf(currentElement);
+
+    if (currentIndex >= 0 && currentIndex < allItems.length - 1) {
+      allItems[currentIndex + 1].focus();
+    }
+  }
+
+  private focusNextVisibleItem(currentElement: HTMLElement) {
+    console.log('🔍 focusNextVisibleItem called with:', currentElement);
+
+    const sidebarContent = currentElement.closest('[role="navigation"]');
+    console.log('🎯 Found sidebar content:', sidebarContent);
+
+    if (!sidebarContent) {
+      console.warn('❌ No navigation role found!');
+      return;
+    }
+
+    // Only get visible menu items (not hidden by collapsed parent groups)
+    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]:not([hidden])')) as HTMLElement[];
+    console.log('📋 All menu items found:', allItems.length, allItems);
+
+    const visibleItems = allItems.filter(item => {
+      const rect = item.getBoundingClientRect();
+      const style = window.getComputedStyle(item);
+      const isVisible = rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
+
+      // Check if item is in a collapsed submenu by traversing up the DOM
+      let isInCollapsedSubmenu = false;
+      let parent = item.parentElement;
+
+      while (parent && parent !== sidebarContent) {
+        // Check if parent has collapsed state or hidden styles
+        const parentStyle = window.getComputedStyle(parent);
+        const parentRect = parent.getBoundingClientRect();
+
+        // If parent container is collapsed (height 0 or hidden)
+        if (parentRect.height === 0 || parentStyle.display === 'none' || parentStyle.visibility === 'hidden') {
+          isInCollapsedSubmenu = true;
+          break;
+        }
+
+        // Check for animation states that indicate collapsed
+        if (parent.hasAttribute('data-state') && parent.getAttribute('data-state') === 'collapsed') {
+          isInCollapsedSubmenu = true;
+          break;
+        }
+
+        // Check for Angular animation classes that indicate collapsed state
+        if (parent.style.height === '0px' || parent.classList.contains('ng-animating')) {
+          const computedHeight = parseFloat(parentStyle.height);
+          if (computedHeight <= 1) { // Allow for sub-pixel rendering
+            isInCollapsedSubmenu = true;
+            break;
+          }
+        }
+
+        parent = parent.parentElement;
+      }
+
+      console.log('🔍 Item visibility check:', {
+        element: item,
+        label: item.textContent?.trim(),
+        rect: { height: rect.height, width: rect.width },
+        style: { visibility: style.visibility, display: style.display },
+        isVisible,
+        isInCollapsedSubmenu
+      });
+
+      return isVisible && !isInCollapsedSubmenu;
+    });
+
+    console.log('👁️ Visible items after filtering:', visibleItems.length, visibleItems);
+
+    const currentIndex = visibleItems.indexOf(currentElement);
+    console.log('📍 Current index:', currentIndex, 'Current element:', currentElement);
+
+    if (currentIndex >= 0 && currentIndex < visibleItems.length - 1) {
+      const nextItem = visibleItems[currentIndex + 1];
+      console.log('➡️ Focusing next item:', nextItem, nextItem.textContent?.trim());
+      nextItem.focus();
+    } else {
+      console.log('🚫 No next item to focus');
+    }
+  }
+
+  private focusPreviousItem(currentElement: HTMLElement) {
+    const sidebarContent = currentElement.closest('[role="navigation"]');
+    if (!sidebarContent) return;
+
+    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
+    const currentIndex = allItems.indexOf(currentElement);
+
+    if (currentIndex > 0) {
+      allItems[currentIndex - 1].focus();
+    }
+  }
+
+  private focusPreviousVisibleItem(currentElement: HTMLElement) {
+    console.log('🔍 focusPreviousVisibleItem called with:', currentElement);
+
+    const sidebarContent = currentElement.closest('[role="navigation"]');
+    console.log('🎯 Found sidebar content:', sidebarContent);
+
+    if (!sidebarContent) {
+      console.warn('❌ No navigation role found!');
+      return;
+    }
+
+    // Only get visible menu items (not hidden by collapsed parent groups)
+    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]:not([hidden])')) as HTMLElement[];
+    console.log('📋 All menu items found:', allItems.length, allItems);
+
+    const visibleItems = allItems.filter(item => {
+      const rect = item.getBoundingClientRect();
+      const style = window.getComputedStyle(item);
+      const isVisible = rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
+
+      // Check if item is in a collapsed submenu by traversing up the DOM
+      let isInCollapsedSubmenu = false;
+      let parent = item.parentElement;
+
+      while (parent && parent !== sidebarContent) {
+        // Check if parent has collapsed state or hidden styles
+        const parentStyle = window.getComputedStyle(parent);
+        const parentRect = parent.getBoundingClientRect();
+
+        // If parent container is collapsed (height 0 or hidden)
+        if (parentRect.height === 0 || parentStyle.display === 'none' || parentStyle.visibility === 'hidden') {
+          isInCollapsedSubmenu = true;
+          break;
+        }
+
+        // Check for animation states that indicate collapsed
+        if (parent.hasAttribute('data-state') && parent.getAttribute('data-state') === 'collapsed') {
+          isInCollapsedSubmenu = true;
+          break;
+        }
+
+        // Check for Angular animation classes that indicate collapsed state
+        if (parent.style.height === '0px' || parent.classList.contains('ng-animating')) {
+          const computedHeight = parseFloat(parentStyle.height);
+          if (computedHeight <= 1) { // Allow for sub-pixel rendering
+            isInCollapsedSubmenu = true;
+            break;
+          }
+        }
+
+        parent = parent.parentElement;
+      }
+
+      console.log('🔍 Item visibility check:', {
+        element: item,
+        label: item.textContent?.trim(),
+        rect: { height: rect.height, width: rect.width },
+        style: { visibility: style.visibility, display: style.display },
+        isVisible,
+        isInCollapsedSubmenu
+      });
+
+      return isVisible && !isInCollapsedSubmenu;
+    });
+
+    console.log('👁️ Visible items after filtering:', visibleItems.length, visibleItems);
+
+    const currentIndex = visibleItems.indexOf(currentElement);
+    console.log('📍 Current index:', currentIndex, 'Current element:', currentElement);
+
+    if (currentIndex > 0) {
+      const prevItem = visibleItems[currentIndex - 1];
+      console.log('⬅️ Focusing previous item:', prevItem, prevItem.textContent?.trim());
+      prevItem.focus();
+    } else {
+      console.log('🚫 No previous item to focus');
+    }
+  }
+
+  private focusFirstItem() {
+    console.log('🏠 Focusing first item');
+    const sidebarContent = document.querySelector('[role="navigation"]');
+    if (!sidebarContent) {
+      console.log('❌ Navigation element not found');
+      return;
+    }
+
+    console.log('🔍 Navigation element found:', sidebarContent);
+    const firstItem = sidebarContent.querySelector('[role="menuitem"]') as HTMLElement;
+    console.log('🔍 First menuitem found:', {
+      element: firstItem,
+      textContent: firstItem?.textContent?.trim()
+    });
+
+    if (firstItem) {
+      console.log('🎯 Focusing first item:', firstItem.textContent?.trim());
+      firstItem.focus();
+    } else {
+      console.log('❌ No first menuitem found');
+    }
+  }
+
+  private focusLastItem() {
+    console.log('🔚 Focusing last item');
+    const sidebarContent = document.querySelector('[role="navigation"]');
+    if (!sidebarContent) {
+      console.log('❌ Navigation element not found');
+      return;
+    }
+
+    console.log('🔍 Navigation element found:', sidebarContent);
+    const allItems = sidebarContent.querySelectorAll('[role="menuitem"]');
+    console.log('🔍 All menuitems found:', {
+      count: allItems.length,
+      items: Array.from(allItems).map(item => ({
+        element: item,
+        textContent: item.textContent?.trim()
+      }))
+    });
+
+    const lastItem = allItems[allItems.length - 1] as HTMLElement;
+    if (lastItem) {
+      console.log('🎯 Focusing last item:', lastItem.textContent?.trim());
+      lastItem.focus();
+    } else {
+      console.log('❌ No last menuitem found');
+    }
   }
 }
 
@@ -965,7 +1622,7 @@ export class SidebarNavGroup {
 
   readonly groupClasses = computed(() => {
     return cn(
-      'space-y-1',
+      'space-y-0.5',
       'transition-all duration-200',
       this.customClass()
     );
@@ -983,51 +1640,92 @@ export class SidebarNavGroup {
 
 /**
  * Sidebar Trigger Component (External Button)
+ * Supports automatic target discovery by sidebar ID and custom templates
  */
 @Component({
   selector: 'SidebarTrigger',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <button
-      type="button"
-      [class]="triggerClasses()"
-      (click)="onTriggerClick()"
-      [attr.aria-label]="getAriaLabel()"
-      [attr.aria-expanded]="isExpanded()"
-      [attr.title]="getAriaLabel()"
-    >
-      @if (showIcon()) {
-        <svg
-          class="w-5 h-5 transition-transform duration-200"
-          [class.rotate-180]="isExpanded()"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      }
+    <!-- Check if custom template is provided -->
+    <ng-content select="[slot=custom-trigger]"></ng-content>
 
-      @if (showLabel()) {
-        <span class="ml-2 text-sm font-medium">{{ label() }}</span>
-      }
-    </button>
+    <!-- Default trigger button (shown only if no custom template) -->
+    @if (!hasCustomTrigger()) {
+      <button
+        type="button"
+        [class]="triggerClasses()"
+        (click)="onTriggerClick()"
+        [attr.aria-label]="getAriaLabel()"
+        [attr.aria-expanded]="getTargetExpandedState()"
+        [attr.title]="getAriaLabel()"
+      >
+        @if (showIcon()) {
+          <svg
+            class="w-5 h-5 transition-transform duration-200"
+            [class.rotate-180]="getTargetExpandedState()"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        }
+
+        @if (showLabel()) {
+          <span class="ml-2 text-sm font-medium">{{ label() }}</span>
+        }
+      </button>
+    }
   `,
 })
-export class SidebarTrigger {
+export class SidebarTrigger implements OnInit {
   // Input signals
+  readonly target = input<string>(''); // ID of the sidebar to control
   readonly label = input<string>('');
   readonly showIcon = input<boolean>(true);
   readonly showLabel = input<boolean>(false);
-  readonly isExpanded = input<boolean>(false);
+  readonly isExpanded = input<boolean>(false); // Fallback if no target is specified
   readonly variant = input<'default' | 'outline' | 'ghost'>('outline');
   readonly size = input<'sm' | 'md' | 'lg'>('md');
   readonly customClass = input<string>('');
 
   // Output signals
   readonly onTrigger = output<void>();
+
+  // Injected dependencies
+  private sidebarService = inject(SidebarService);
+  private elementRef = inject(ElementRef);
+  private platformId = inject(PLATFORM_ID);
+
+  // Internal state for custom trigger detection
+  private readonly _hasCustomTrigger = signal<boolean>(false);
+  readonly hasCustomTrigger = computed(() => this._hasCustomTrigger());
+
+  ngOnInit() {
+    // Check for custom trigger template only in browser
+    if (isPlatformBrowser(this.platformId)) {
+      const customSlot = this.elementRef.nativeElement.querySelector('[slot="custom-trigger"]');
+      this._hasCustomTrigger.set(customSlot !== null);
+
+      // Set up click handler for custom trigger template
+      if (customSlot) {
+        customSlot.addEventListener('click', () => this.onTriggerClick());
+      }
+    }
+  }
+
+  // Get the expanded state from the target sidebar if available
+  getTargetExpandedState(): boolean {
+    if (this.target()) {
+      const targetSidebar = this.sidebarService.getSidebar(this.target());
+      if (targetSidebar) {
+        return targetSidebar.isExpandedComputed() ?? false;
+      }
+    }
+    return this.isExpanded();
+  }
 
   // CSS classes
   readonly triggerClasses = computed(() => {
@@ -1071,6 +1769,18 @@ export class SidebarTrigger {
 
   // Methods
   onTriggerClick() {
+    // First try to toggle the target sidebar
+    if (this.target()) {
+      const success = this.sidebarService.toggleSidebar(this.target());
+      if (success) {
+        this.onTrigger.emit();
+        return;
+      }
+      // If target sidebar not found, log a warning
+      console.warn(`SidebarTrigger: Target sidebar with ID "${this.target()}" not found.`);
+    }
+
+    // Fallback to emitting the trigger event for manual handling
     this.onTrigger.emit();
   }
 
@@ -1078,9 +1788,10 @@ export class SidebarTrigger {
     if (this.label()) {
       return this.label();
     }
-    return this.isExpanded() ? 'Close sidebar' : 'Open sidebar';
+    const isExpanded = this.getTargetExpandedState();
+    return isExpanded ? 'Close sidebar' : 'Open sidebar';
   }
 }
 
-// Export main components  
+// Export main components
 export { Sidebar as default };

@@ -12,6 +12,16 @@
   z-index: 1000;
 }
 
+/* Tooltip Panel Styles */
+.tooltip-panel {
+  z-index: 9999 !important;
+  pointer-events: none;
+}
+
+.tooltip-panel .cdk-overlay-pane {
+  pointer-events: none;
+}
+
 @layer base {
   :root {
     /* Base Theme Variables */

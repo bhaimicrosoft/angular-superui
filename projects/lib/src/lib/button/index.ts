@@ -173,7 +173,7 @@ export interface ButtonLoadingState {
     <!-- Button content -->
     <span
       [class.sr-only]="loading().loading && loading().loadingText"
-      class="relative z-10"
+      class="relative z-10 flex items-center gap-2"
     >
       @if (loading().loading && loading().loadingText) {
         {{ loading().loadingText }}
@@ -208,7 +208,7 @@ export class Button implements OnInit, OnDestroy {
 
   /** Accessibility configuration */
   @Input() accessibility: ButtonAccessibility = {};
-  
+
   /** Click event emitter */
   @Output() buttonClick = new EventEmitter<MouseEvent>();
   /** Keydown event emitter for custom keyboard handling */
@@ -217,7 +217,7 @@ export class Button implements OnInit, OnDestroy {
   @Output() buttonFocus = new EventEmitter<FocusEvent>();
   /** Blur event emitter */
   @Output() buttonBlur = new EventEmitter<FocusEvent>();
-  
+
   /** Loading state signal */
   protected loading = signal<Required<ButtonLoadingState>>({
     loading: false,
@@ -227,7 +227,7 @@ export class Button implements OnInit, OnDestroy {
 
   /** Signal for custom classes to ensure reactivity */
   private customClassesSignal = signal('');
-  
+
   /** Computed classes for the button - now properly reactive */
   protected computedClasses = computed(() => {
     return cn(
@@ -239,7 +239,7 @@ export class Button implements OnInit, OnDestroy {
       this.customClassesSignal() // Use signal instead of direct property
     );
   });
-  
+
   /** Computed disabled state */
   protected computedDisabled = computed(() => {
     return this.disabled || (this.loading().loading && this.loading().disableOnLoading);
