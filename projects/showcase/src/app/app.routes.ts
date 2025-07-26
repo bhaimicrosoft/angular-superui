@@ -145,6 +145,11 @@ export const routes: Routes = [
     data: { componentName: 'radio-group', category: 'Form', description: 'Radio button groups with full accessibility and form integration' }
   },
   {
+    path: 'components/select',
+    loadComponent: () => import('./demo-components/select-demo.component'),
+    data: { componentName: 'select', category: 'Form', description: 'Dropdown selection component with search, grouping, and accessibility features' }
+  },
+  {
     path: 'components/sidebar',
     loadComponent: () => import('./demo-components/sidebar-demo.component').then(c => c.SidebarDemoComponent),
     data: { componentName: 'sidebar', category: 'Navigation', description: 'Responsive sidebar navigation with multiple modes and full accessibility' }

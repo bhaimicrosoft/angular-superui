@@ -30,5 +30,6 @@ export * from './lib/pagination';
 export * from './lib/popover';
 export * from './lib/progress';
 export * from './lib/radio-group';
+export * from './lib/select';
 export * from './lib/sidebar';
 export * from './lib/theme-switcher';
