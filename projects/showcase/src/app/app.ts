@@ -205,7 +205,7 @@ import { ThemeService } from '@lib/theme-switcher';
                 <div class="grid grid-cols-2 gap-3 text-xs">
                   <div class="flex items-center gap-2">
                     <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span class="text-gray-600 dark:text-gray-400">26 Components</span>
+                    <span class="text-gray-600 dark:text-gray-400">31 Components</span>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-2 h-2 bg-blue-500 rounded-full"></div>

@@ -50,7 +50,7 @@ export const routes: Routes = [
   },
   {
     path: 'components/alert-dialog',
-    loadComponent: () => import('./demo-components/alert-demo.component').then(c => c.AlertDemoComponent),
+    loadComponent: () => import('./demo-components/alert-dialog-demo.component').then(c => c.AlertDialogDemoComponent),
     data: {componentName: 'alert-dialog', category: 'Overlay', description: 'Modal dialogs and overlays'}
   },
   {

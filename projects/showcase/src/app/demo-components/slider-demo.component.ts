@@ -15,38 +15,49 @@ import { Slider } from '@lib/slider';
   ],
   template: `
     <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 py-12 sm:py-20 lg:py-32">
-      <div class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+    <section
+      class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 py-12 sm:py-20 lg:py-32">
+      <div
+        class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-          <h1 class="mx-auto max-w-4xl text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
+          <h1
+            class="mx-auto max-w-4xl text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
             <span class="block">Advanced</span>
             <span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 bg-clip-text text-transparent">
               Slider Component
             </span>
             <span class="block">with CVA Pattern</span>
           </h1>
-          <p class="mx-auto mt-6 max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-300 sm:text-lg lg:text-xl lg:leading-8">
-            Enterprise-grade slider component with Class Variance Authority (CVA) integration, complete accessibility compliance,
+          <p
+            class="mx-auto mt-6 max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-300 sm:text-lg lg:text-xl lg:leading-8">
+            Enterprise-grade slider component with Class Variance Authority (CVA) integration, complete accessibility
+            compliance,
             and comprehensive customization options. Perfect for modern Angular applications requiring range inputs,
             form controls, and interactive data visualization.
           </p>
           <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
             <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
               </svg>
               <span>WCAG 2.1 AA Compliant</span>
             </div>
             <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
               </svg>
               <span>TypeScript Support</span>
             </div>
             <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <svg class="h-5 w-5 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
               </svg>
               <span>CVA Integration</span>
             </div>
@@ -72,7 +83,8 @@ import { Slider } from '@lib/slider';
 
           <div class="grid gap-6 sm:gap-8 lg:grid-cols-2">
             <!-- Single Value Slider -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
               <h3 class="mb-3 text-lg font-semibold text-gray-900 dark:text-white sm:mb-4">Single Value</h3>
               <div class="flex flex-col gap-3 sm:gap-4">
                 <Slider
@@ -90,7 +102,8 @@ import { Slider } from '@lib/slider';
             </div>
 
             <!-- Range Slider -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
               <h3 class="mb-3 text-lg font-semibold text-gray-900 dark:text-white sm:mb-4">Range Values</h3>
               <div class="flex flex-col gap-3 sm:gap-4">
                 <Slider
@@ -103,7 +116,8 @@ import { Slider } from '@lib/slider';
                   class="w-full"
                 />
                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Range: <span class="font-mono font-semibold">{{ basicValues.range()[0] }} - {{ basicValues.range()[1] }}</span>
+                  Range: <span class="font-mono font-semibold">{{ basicValues.range()[0] }}
+                  - {{ basicValues.range()[1] }}</span>
                 </p>
               </div>
             </div>
@@ -122,7 +136,8 @@ import { Slider } from '@lib/slider';
           </div>
 
           <div class="grid gap-8 sm:grid-cols-3">
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Small (16px thumb)</h3>
               <Slider
                 [value]="sizeValues.sm()"
@@ -137,7 +152,8 @@ import { Slider } from '@lib/slider';
               <p class="mt-6 text-sm text-gray-600 dark:text-gray-400">Value: {{ sizeValues.sm() }}</p>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Default (20px thumb)</h3>
               <Slider
                 [value]="sizeValues.default()"
@@ -152,7 +168,8 @@ import { Slider } from '@lib/slider';
               <p class="mt-6 text-sm text-gray-600 dark:text-gray-400">Value: {{ sizeValues.default() }}</p>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Large (24px thumb)</h3>
               <Slider
                 [value]="sizeValues.lg()"
@@ -181,7 +198,8 @@ import { Slider } from '@lib/slider';
           </div>
 
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Default</h3>
               <Slider
                 [value]="colorValues.default()"
@@ -192,7 +210,8 @@ import { Slider } from '@lib/slider';
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Value: {{ colorValues.default() }}</p>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-blue-600 dark:text-blue-400">Primary</h3>
               <Slider
                 [value]="colorValues.primary()"
@@ -203,7 +222,8 @@ import { Slider } from '@lib/slider';
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Value: {{ colorValues.primary() }}</p>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-400">Secondary</h3>
               <Slider
                 [value]="colorValues.secondary()"
@@ -214,7 +234,8 @@ import { Slider } from '@lib/slider';
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Value: {{ colorValues.secondary() }}</p>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-green-600 dark:text-green-400">Success</h3>
               <Slider
                 [value]="colorValues.success()"
@@ -225,7 +246,8 @@ import { Slider } from '@lib/slider';
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Value: {{ colorValues.success() }}</p>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-orange-600 dark:text-orange-400">Warning</h3>
               <Slider
                 [value]="colorValues.warning()"
@@ -236,7 +258,8 @@ import { Slider } from '@lib/slider';
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Value: {{ colorValues.warning() }}</p>
             </div>
 
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-red-600 dark:text-red-400">Destructive</h3>
               <Slider
                 [value]="colorValues.destructive()"
@@ -262,7 +285,8 @@ import { Slider } from '@lib/slider';
 
           <div class="grid gap-8 lg:grid-cols-2">
             <!-- Slider with Ticks and Labels -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">With Ticks & Labels</h3>
               <Slider
                 [value]="advancedValues.ticks()"
@@ -282,7 +306,8 @@ import { Slider } from '@lib/slider';
             </div>
 
             <!-- Custom Tick Marks -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Custom Tick Marks</h3>
               <Slider
                 [value]="advancedValues.customTicks()"
@@ -303,7 +328,8 @@ import { Slider } from '@lib/slider';
             </div>
 
             <!-- Range with Ticks -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Range with Ticks</h3>
               <Slider
                 [value]="advancedValues.rangeTicks()"
@@ -324,7 +350,8 @@ import { Slider } from '@lib/slider';
             </div>
 
             <!-- Fine Step Control -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Fine Step Control</h3>
               <Slider
                 [value]="advancedValues.fineStep()"
@@ -357,7 +384,8 @@ import { Slider } from '@lib/slider';
 
           <div class="grid gap-8 lg:grid-cols-2">
             <!-- Custom Track and Range -->
-            <div class="rounded-2xl border border-purple-200 bg-purple-50 p-6 shadow-sm dark:border-purple-700 dark:bg-purple-900/20">
+            <div
+              class="rounded-2xl border border-purple-200 bg-purple-50 p-6 shadow-sm dark:border-purple-700 dark:bg-purple-900/20">
               <h3 class="mb-4 text-lg font-semibold text-purple-900 dark:text-purple-300">Custom Track & Range</h3>
               <Slider
                 [value]="customValues.styled()"
@@ -374,7 +402,8 @@ import { Slider } from '@lib/slider';
             </div>
 
             <!-- Custom Thumb -->
-            <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm dark:border-emerald-700 dark:bg-emerald-900/20">
+            <div
+              class="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm dark:border-emerald-700 dark:bg-emerald-900/20">
               <h3 class="mb-4 text-lg font-semibold text-emerald-900 dark:text-emerald-300">Custom Thumb</h3>
               <Slider
                 [value]="customValues.thumb()"
@@ -398,13 +427,15 @@ import { Slider } from '@lib/slider';
               Form Integration
             </h2>
             <p class="mx-auto max-w-3xl text-base text-gray-600 dark:text-gray-300 sm:text-lg">
-              Seamless integration with Angular reactive forms, template-driven forms, and comprehensive validation support.
+              Seamless integration with Angular reactive forms, template-driven forms, and comprehensive validation
+              support.
             </p>
           </div>
 
           <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
             <!-- Audio Settings Form -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 lg:p-8">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 lg:p-8">
               <form [formGroup]="settingsForm">
                 <h3 class="mb-6 text-xl font-semibold text-gray-900 dark:text-white">Audio Settings</h3>
 
@@ -412,7 +443,9 @@ import { Slider } from '@lib/slider';
                   <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       Master Volume
-                      <span class="font-mono text-blue-600 dark:text-blue-400 ml-2">({{ settingsForm.get('volume')?.value }}%)</span>
+                      <span
+                        class="font-mono text-blue-600 dark:text-blue-400 ml-2">({{ settingsForm.get('volume')?.value }}
+                        %)</span>
                     </label>
                     <Slider
                       [formControl]="$any(settingsForm.get('volume'))"
@@ -431,7 +464,9 @@ import { Slider } from '@lib/slider';
                   <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       Bass Level
-                      <span class="font-mono text-green-600 dark:text-green-400 ml-2">({{ settingsForm.get('bass')?.value }}/10)</span>
+                      <span
+                        class="font-mono text-green-600 dark:text-green-400 ml-2">({{ settingsForm.get('bass')?.value }}
+                        /10)</span>
                     </label>
                     <Slider
                       [formControl]="$any(settingsForm.get('bass'))"
@@ -450,7 +485,8 @@ import { Slider } from '@lib/slider';
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       Frequency Range
                       <span class="font-mono text-yellow-600 dark:text-yellow-400 ml-2">
-                        ({{ settingsForm.get('frequency')?.value?.[0] }}Hz - {{ settingsForm.get('frequency')?.value?.[1] }}Hz)
+                        ({{ settingsForm.get('frequency')?.value?.[0] }}
+                        Hz - {{ settingsForm.get('frequency')?.value?.[1] }}Hz)
                       </span>
                     </label>
                     <Slider
@@ -474,15 +510,19 @@ import { Slider } from '@lib/slider';
                   <div class="grid grid-cols-1 gap-2 text-xs">
                     <div class="flex justify-between">
                       <span class="text-gray-600 dark:text-gray-400">Volume:</span>
-                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ settingsForm.get('volume')?.value }}%</span>
+                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ settingsForm.get('volume')?.value }}
+                        %</span>
                     </div>
                     <div class="flex justify-between">
                       <span class="text-gray-600 dark:text-gray-400">Bass:</span>
-                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ settingsForm.get('bass')?.value }}/10</span>
+                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ settingsForm.get('bass')?.value }}
+                        /10</span>
                     </div>
                     <div class="flex justify-between">
                       <span class="text-gray-600 dark:text-gray-400">Frequency:</span>
-                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ settingsForm.get('frequency')?.value?.[0] }}-{{ settingsForm.get('frequency')?.value?.[1] }}Hz</span>
+                      <span
+                        class="font-mono text-gray-900 dark:text-gray-100">{{ settingsForm.get('frequency')?.value?.[0] }}
+                        -{{ settingsForm.get('frequency')?.value?.[1] }}Hz</span>
                     </div>
                   </div>
                 </div>
@@ -490,7 +530,8 @@ import { Slider } from '@lib/slider';
             </div>
 
             <!-- Display Settings Form -->
-            <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 lg:p-8">
+            <div
+              class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 lg:p-8">
               <form [formGroup]="displayForm">
                 <h3 class="mb-6 text-xl font-semibold text-gray-900 dark:text-white">Display Settings</h3>
 
@@ -498,7 +539,9 @@ import { Slider } from '@lib/slider';
                   <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       Brightness
-                      <span class="font-mono text-blue-600 dark:text-blue-400 ml-2">({{ displayForm.get('brightness')?.value }}%)</span>
+                      <span
+                        class="font-mono text-blue-600 dark:text-blue-400 ml-2">({{ displayForm.get('brightness')?.value }}
+                        %)</span>
                     </label>
                     <Slider
                       [formControl]="$any(displayForm.get('brightness'))"
@@ -517,7 +560,9 @@ import { Slider } from '@lib/slider';
                   <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       Contrast
-                      <span class="font-mono text-purple-600 dark:text-purple-400 ml-2">({{ displayForm.get('contrast')?.value }}%)</span>
+                      <span
+                        class="font-mono text-purple-600 dark:text-purple-400 ml-2">({{ displayForm.get('contrast')?.value }}
+                        %)</span>
                     </label>
                     <Slider
                       [formControl]="$any(displayForm.get('contrast'))"
@@ -535,7 +580,9 @@ import { Slider } from '@lib/slider';
                   <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       Color Temperature
-                      <span class="font-mono text-orange-600 dark:text-orange-400 ml-2">({{ displayForm.get('colorTemp')?.value }}K)</span>
+                      <span
+                        class="font-mono text-orange-600 dark:text-orange-400 ml-2">({{ displayForm.get('colorTemp')?.value }}
+                        K)</span>
                     </label>
                     <Slider
                       [formControl]="$any(displayForm.get('colorTemp'))"
@@ -555,7 +602,8 @@ import { Slider } from '@lib/slider';
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                       RGB Color Range
                       <span class="font-mono text-red-600 dark:text-red-400 ml-2">
-                        (R:{{ displayForm.get('rgbRange')?.value?.[0] }}, G:{{ displayForm.get('rgbRange')?.value?.[1] }})
+                        (R:{{ displayForm.get('rgbRange')?.value?.[0] }}
+                        , G:{{ displayForm.get('rgbRange')?.value?.[1] }})
                       </span>
                     </label>
                     <Slider
@@ -579,19 +627,25 @@ import { Slider } from '@lib/slider';
                   <div class="grid grid-cols-1 gap-2 text-xs">
                     <div class="flex justify-between">
                       <span class="text-gray-600 dark:text-gray-400">Brightness:</span>
-                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('brightness')?.value }}%</span>
+                      <span
+                        class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('brightness')?.value }}
+                        %</span>
                     </div>
                     <div class="flex justify-between">
                       <span class="text-gray-600 dark:text-gray-400">Contrast:</span>
-                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('contrast')?.value }}%</span>
+                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('contrast')?.value }}
+                        %</span>
                     </div>
                     <div class="flex justify-between">
                       <span class="text-gray-600 dark:text-gray-400">Color Temp:</span>
-                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('colorTemp')?.value }}K</span>
+                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('colorTemp')?.value }}
+                        K</span>
                     </div>
                     <div class="flex justify-between">
                       <span class="text-gray-600 dark:text-gray-400">RGB Range:</span>
-                      <span class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('rgbRange')?.value?.[0] }}-{{ displayForm.get('rgbRange')?.value?.[1] }}</span>
+                      <span
+                        class="font-mono text-gray-900 dark:text-gray-100">{{ displayForm.get('rgbRange')?.value?.[0] }}
+                        -{{ displayForm.get('rgbRange')?.value?.[1] }}</span>
                     </div>
                   </div>
                 </div>
@@ -600,16 +654,19 @@ import { Slider } from '@lib/slider';
           </div>
 
           <!-- Combined Form Data -->
-          <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 shadow-sm dark:border-blue-700 dark:bg-blue-900/20">
+          <div
+            class="rounded-2xl border border-blue-200 bg-blue-50 p-6 shadow-sm dark:border-blue-700 dark:bg-blue-900/20">
             <h3 class="mb-4 text-lg font-semibold text-blue-900 dark:text-blue-300">📊 Combined Form Data (JSON)</h3>
             <div class="grid gap-4 lg:grid-cols-2">
               <div>
                 <h4 class="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">Audio Settings:</h4>
-                <pre class="text-xs text-blue-700 dark:text-blue-300 bg-white dark:bg-gray-800 p-3 rounded border overflow-x-auto">{{ settingsForm.value | json }}</pre>
+                <pre
+                  class="text-xs text-blue-700 dark:text-blue-300 bg-white dark:bg-gray-800 p-3 rounded border overflow-x-auto">{{ settingsForm.value | json }}</pre>
               </div>
               <div>
                 <h4 class="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">Display Settings:</h4>
-                <pre class="text-xs text-blue-700 dark:text-blue-300 bg-white dark:bg-gray-800 p-3 rounded border overflow-x-auto">{{ displayForm.value | json }}</pre>
+                <pre
+                  class="text-xs text-blue-700 dark:text-blue-300 bg-white dark:bg-gray-800 p-3 rounded border overflow-x-auto">{{ displayForm.value | json }}</pre>
               </div>
             </div>
           </div>
@@ -627,7 +684,8 @@ import { Slider } from '@lib/slider';
           </div>
 
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="rounded-2xl border border-green-200 bg-green-50 p-6 shadow-sm dark:border-green-700 dark:bg-green-900/20">
+            <div
+              class="rounded-2xl border border-green-200 bg-green-50 p-6 shadow-sm dark:border-green-700 dark:bg-green-900/20">
               <h3 class="mb-4 text-lg font-semibold text-green-900 dark:text-green-300">✅ Core Features</h3>
               <ul class="space-y-2 text-sm text-green-800 dark:text-green-200">
                 <li>• Single value & range modes</li>
@@ -639,7 +697,8 @@ import { Slider } from '@lib/slider';
               </ul>
             </div>
 
-            <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6 shadow-sm dark:border-blue-700 dark:bg-blue-900/20">
+            <div
+              class="rounded-2xl border border-blue-200 bg-blue-50 p-6 shadow-sm dark:border-blue-700 dark:bg-blue-900/20">
               <h3 class="mb-4 text-lg font-semibold text-blue-900 dark:text-blue-300">🎨 CVA Variants</h3>
               <ul class="space-y-2 text-sm text-blue-800 dark:text-blue-200">
                 <li>• Size: sm, default, lg</li>
@@ -651,7 +710,8 @@ import { Slider } from '@lib/slider';
               </ul>
             </div>
 
-            <div class="rounded-2xl border border-purple-200 bg-purple-50 p-6 shadow-sm dark:border-purple-700 dark:bg-purple-900/20">
+            <div
+              class="rounded-2xl border border-purple-200 bg-purple-50 p-6 shadow-sm dark:border-purple-700 dark:bg-purple-900/20">
               <h3 class="mb-4 text-lg font-semibold text-purple-900 dark:text-purple-300">⚙️ Customization</h3>
               <ul class="space-y-2 text-sm text-purple-800 dark:text-purple-200">
                 <li>• Custom track styling</li>
@@ -666,7 +726,8 @@ import { Slider } from '@lib/slider';
         </section>
 
         <!-- Call to Action & Performance -->
-        <section class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 sm:p-12 lg:p-16">
+        <section
+          class="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-8 sm:p-12 lg:p-16">
           <div class="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-purple-600/90"></div>
           <div class="relative text-center text-white">
             <h2 class="text-2xl font-bold sm:text-3xl lg:text-4xl mb-4">
@@ -697,15 +758,11 @@ import { Slider } from '@lib/slider';
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button class="inline-flex items-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                Get Started Now
-              </button>
-              <a href="#basic-usage" class="inline-flex items-center px-6 py-3 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+              <a href="https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components/slider.md"
+                 class="inline-flex items-center px-6 py-3 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
                 View Examples
               </a>
