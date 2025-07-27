@@ -182,6 +182,15 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'components/slider',
+    loadComponent: () => import('./demo-components/slider-demo.component').then(c => c.SliderDemoComponent),
+    data: {
+      componentName: 'slider',
+      category: 'Form',
+      description: 'Range slider controls with single and dual values, custom styling, and full accessibility'
+    }
+  },
+  {
     path: 'components/sidebar',
     loadComponent: () => import('./demo-components/sidebar-demo.component').then(c => c.SidebarDemoComponent),
     data: {

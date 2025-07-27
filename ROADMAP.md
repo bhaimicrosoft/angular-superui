@@ -55,7 +55,7 @@ Transform Angular SuperUI from a component library into a **comprehensive UI eco
 ### **Technical Implementation**
 - Create new `/blocks` directory in component library
 - Each block as standalone Angular component
-- CLI integration: `angular-superui add block header`
+- CLI integration: `ngsui-cli add block header`
 - Customization through CSS variables and props
 
 ---
@@ -116,9 +116,9 @@ Transform Angular SuperUI from a component library into a **comprehensive UI eco
 ### **CLI Enhancements**
 - **Template Generator**
   ```bash
-  angular-superui generate page dashboard
-  angular-superui generate layout admin
-  angular-superui generate form user-profile
+  ngsui-cli generate page dashboard
+  ngsui-cli generate layout admin
+  ngsui-cli generate form user-profile
   ```
 
 - **Theme Generator**

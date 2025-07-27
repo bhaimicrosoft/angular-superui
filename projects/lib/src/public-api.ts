@@ -33,4 +33,5 @@ export * from './lib/radio-group';
 export * from './lib/select';
 export * from './lib/sidebar';
 export * from './lib/skeleton';
+export * from './lib/slider';
 export * from './lib/theme-switcher';

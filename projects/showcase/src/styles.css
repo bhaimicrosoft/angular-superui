@@ -301,7 +301,7 @@
   --shadow-elegant-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
 
   /* Animation Variables - Clean and Organized */
-  
+
   /* Basic Animations */
   --animate-fade-in: fadeIn 0.3s ease-out;
   --animate-fade-out: fadeOut 0.3s ease-in;
@@ -311,11 +311,11 @@
   --animate-slide-right: slideRight 0.3s ease-out;
   --animate-scale-in: scaleIn 0.3s ease-out;
   --animate-scale-out: scaleOut 0.3s ease-in;
-  
+
   /* Component Specific */
   --animate-accordion-down: accordionDown 0.2s ease-out;
   --animate-accordion-up: accordionUp 0.2s ease-out;
-  
+
   /* Attention Seekers */
   --animate-bounce: bounce 1s infinite;
   --animate-pulse: pulse 2s infinite;
@@ -325,7 +325,7 @@
   --animate-wobble: wobble 1s ease-in-out;
   --animate-heartbeat: heartbeat 1.5s ease-in-out infinite;
   --animate-flash: flash 2s infinite;
-  
+
   /* Advanced Effects */
   --animate-zoom-in: zoomIn 0.6s ease-out;
   --animate-zoom-out: zoomOut 0.6s ease-in;
@@ -334,7 +334,7 @@
   --animate-jello: jello 0.9s ease-in-out;
   --animate-tada: tada 1s ease-in-out;
   --animate-swing: swing 1s ease-in-out;
-  
+
   /* Text Effects */
   --animate-typewriter: typewriter 4s steps(40, end) forwards;
   --animate-typewriter-fast: typewriter 2s steps(30, end) forwards;
@@ -345,7 +345,8 @@
   --animate-typewriter-cursor-only: typewriterCursorOnly 1s steps(2, end) infinite;
   --animate-text-focus: textFocus 1s ease-in-out;
   --animate-neon-glow: neonGlow 2s ease-in-out infinite alternate;
-  
+  --animate-typeletter: typing 2s steps(1, end), blink 0.75s step-end infinite;
+
   /* Utility Animations */
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-caret-blink: caretBlink 1.25s ease-out infinite;
@@ -353,84 +354,105 @@
   --animate-glitch: glitch 0.3s ease-in-out infinite;
 
   /* Keyframes - Clean and Working Animations */
-  
+
   /* Basic Animations */
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  
+
   @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
   }
-  
+
   @keyframes slideUp {
-    from { 
+    from {
       opacity: 0;
-      transform: translateY(20px); 
+      transform: translateY(20px);
     }
-    to { 
+    to {
       opacity: 1;
-      transform: translateY(0); 
+      transform: translateY(0);
     }
   }
-  
+
   @keyframes slideDown {
-    from { 
+    from {
       opacity: 0;
-      transform: translateY(-20px); 
+      transform: translateY(-20px);
     }
-    to { 
+    to {
       opacity: 1;
-      transform: translateY(0); 
+      transform: translateY(0);
     }
   }
-  
+
   @keyframes slideLeft {
-    from { 
+    from {
       opacity: 0;
-      transform: translateX(20px); 
+      transform: translateX(20px);
     }
-    to { 
+    to {
       opacity: 1;
-      transform: translateX(0); 
+      transform: translateX(0);
     }
   }
-  
+
   @keyframes slideRight {
-    from { 
+    from {
       opacity: 0;
-      transform: translateX(-20px); 
+      transform: translateX(-20px);
     }
-    to { 
+    to {
       opacity: 1;
-      transform: translateX(0); 
+      transform: translateX(0);
     }
   }
-  
+
   @keyframes scaleIn {
-    from { 
+    from {
       opacity: 0;
-      transform: scale(0.9); 
+      transform: scale(0.9);
     }
-    to { 
+    to {
       opacity: 1;
-      transform: scale(1); 
+      transform: scale(1);
     }
   }
-  
+
   @keyframes scaleOut {
-    from { 
+    from {
       opacity: 1;
-      transform: scale(1); 
+      transform: scale(1);
     }
-    to { 
+    to {
       opacity: 0;
-      transform: scale(0.9); 
+      transform: scale(0.9);
     }
   }
-  
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: currentColor; /* Or a specific color like 'orange' */
+    }
+  }
+
+
+
   /* Component Specific */
   @keyframes accordionDown {
     from {
@@ -442,7 +464,7 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes accordionUp {
     from {
       height: var(--radix-accordion-content-height);
@@ -453,7 +475,7 @@
       opacity: 0;
     }
   }
-  
+
   /* Attention Seekers */
   @keyframes bounce {
     0%, 100% {
@@ -465,30 +487,30 @@
       animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
   }
-  
+
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
   }
-  
+
   @keyframes ping {
     75%, 100% {
       transform: scale(2);
       opacity: 0;
     }
   }
-  
+
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-  
+
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
     20%, 40%, 60%, 80% { transform: translateX(10px); }
   }
-  
+
   @keyframes wobble {
     0% { transform: translateX(0%); }
     15% { transform: translateX(-25px) rotate(-5deg); }
@@ -498,7 +520,7 @@
     75% { transform: translateX(-5px) rotate(-1deg); }
     100% { transform: translateX(0%); }
   }
-  
+
   @keyframes heartbeat {
     0% { transform: scale(1); }
     14% { transform: scale(1.3); }
@@ -506,12 +528,12 @@
     42% { transform: scale(1.3); }
     70% { transform: scale(1); }
   }
-  
+
   @keyframes flash {
     0%, 50%, 100% { opacity: 1; }
     25%, 75% { opacity: 0; }
   }
-  
+
   /* Advanced Effects */
   @keyframes zoomIn {
     0% {
@@ -525,7 +547,7 @@
       transform: scale3d(1, 1, 1);
     }
   }
-  
+
   @keyframes zoomOut {
     0% {
       opacity: 1;
@@ -538,13 +560,13 @@
       opacity: 0;
     }
   }
-  
+
   @keyframes flip {
     0% { transform: perspective(400px) rotate3d(0, 1, 0, 0deg); }
     50% { transform: perspective(400px) rotate3d(0, 1, 0, 180deg); }
     100% { transform: perspective(400px) rotate3d(0, 1, 0, 360deg); }
   }
-  
+
   @keyframes rubberBand {
     0% { transform: scale3d(1, 1, 1); }
     30% { transform: scale3d(1.25, 0.75, 1); }
@@ -554,7 +576,7 @@
     75% { transform: scale3d(1.05, 0.95, 1); }
     100% { transform: scale3d(1, 1, 1); }
   }
-  
+
   @keyframes jello {
     0%, 11.1%, 100% { transform: translate3d(0, 0, 0); }
     22.2% { transform: skewX(-12.5deg) skewY(-12.5deg); }
@@ -565,7 +587,7 @@
     77.7% { transform: skewX(0.390625deg) skewY(0.390625deg); }
     88.8% { transform: skewX(-0.1953125deg) skewY(-0.1953125deg); }
   }
-  
+
   @keyframes tada {
     0% { transform: scale3d(1, 1, 1); }
     10%, 20% { transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg); }
@@ -573,7 +595,7 @@
     40%, 60%, 80% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg); }
     100% { transform: scale3d(1, 1, 1); }
   }
-  
+
   @keyframes swing {
     20% { transform: rotate3d(0, 0, 1, 15deg); }
     40% { transform: rotate3d(0, 0, 1, -10deg); }
@@ -581,68 +603,68 @@
     80% { transform: rotate3d(0, 0, 1, -5deg); }
     100% { transform: rotate3d(0, 0, 1, 0deg); }
   }
-  
+
   /* Text Effects */
   @keyframes typewriter {
-    0% { 
+    0% {
       width: 0;
       border-right: 2px solid transparent;
     }
     1% {
       border-right: 2px solid currentColor;
     }
-    99% { 
+    99% {
       width: 100%;
       border-right: 2px solid currentColor;
     }
-    100% { 
+    100% {
       width: 100%;
       border-right: 2px solid transparent;
     }
   }
-  
+
   @keyframes typewriterWithCursor {
-    0% { 
+    0% {
       width: 0;
       border-right: 2px solid currentColor;
     }
-    98% { 
+    98% {
       width: 100%;
       border-right: 2px solid currentColor;
     }
-    99% { 
+    99% {
       width: 100%;
       border-right: 2px solid currentColor;
     }
-    100% { 
+    100% {
       width: 100%;
       border-right: 2px solid transparent;
     }
   }
-  
+
   @keyframes typewriterCursorOnly {
-    0% { 
+    0% {
       width: 100%;
       border-right: 2px solid transparent;
     }
-    1% { 
+    1% {
       width: 100%;
       border-right: 2px solid currentColor;
     }
-    50% { 
+    50% {
       width: 100%;
       border-right: 2px solid currentColor;
     }
-    51% { 
+    51% {
       width: 100%;
       border-right: 2px solid transparent;
     }
-    100% { 
+    100% {
       width: 100%;
       border-right: 2px solid transparent;
     }
   }
-  
+
   @keyframes textFocus {
     0% {
       filter: blur(12px);
@@ -653,7 +675,7 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes neonGlow {
     0% {
       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6;
@@ -662,18 +684,18 @@
       text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px #0073e6, 0 0 12px #0073e6, 0 0 16px #0073e6;
     }
   }
-  
+
   /* Utility Animations */
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
   }
-  
+
   @keyframes caretBlink {
     0%, 70%, 100% { opacity: 1; }
     20%, 50% { opacity: 0; }
   }
-  
+
   @keyframes matrix {
     0% {
       background-position: 0 0;
@@ -696,7 +718,7 @@
       color: #00ff00;
     }
   }
-  
+
   @keyframes glitch {
     0% {
       transform: translate(0);
@@ -734,7 +756,7 @@
     -webkit-line-clamp: 1;
     line-clamp: 1;
   }
-  
+
   .line-clamp-2 {
     overflow: hidden;
     display: -webkit-box;
@@ -742,7 +764,7 @@
     -webkit-line-clamp: 2;
     line-clamp: 2;
   }
-  
+
   .line-clamp-3 {
     overflow: hidden;
     display: -webkit-box;
@@ -758,43 +780,43 @@
     border-right: 2px solid transparent;
     width: 0;
   }
-  
+
   .typewriter-cursor {
     overflow: hidden;
     white-space: nowrap;
     border-right: 2px solid currentColor;
     width: 0;
   }
-  
+
   .typewriter-mono {
     font-family: 'Courier New', Courier, monospace;
   }
-  
+
   /* Animated typewriter utilities */
   .animate-typewriter {
     animation: var(--animate-typewriter);
   }
-  
+
   .animate-typewriter-fast {
     animation: var(--animate-typewriter-fast);
   }
-  
+
   .animate-typewriter-slow {
     animation: var(--animate-typewriter-slow);
   }
-  
+
   .animate-typewriter-cursor {
     animation: var(--animate-typewriter-cursor);
   }
-  
+
   .animate-typewriter-cursor-fast {
     animation: var(--animate-typewriter-cursor-fast);
   }
-  
+
   .animate-typewriter-cursor-slow {
     animation: var(--animate-typewriter-cursor-slow);
   }
-  
+
   .animate-typewriter-cursor-only {
     animation: var(--animate-typewriter-cursor-only);
   }
