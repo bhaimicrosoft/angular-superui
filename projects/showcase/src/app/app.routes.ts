@@ -191,6 +191,15 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'components/stepper',
+    loadComponent: () => import('./demo-components/stepper-demo.component').then(c => c.StepperDemoComponent),
+    data: {
+      componentName: 'stepper',
+      category: 'Navigation',
+      description: 'Multi-step form wizard with progress tracking, validation, and accessibility'
+    }
+  },
+  {
     path: 'components/sidebar',
     loadComponent: () => import('./demo-components/sidebar-demo.component').then(c => c.SidebarDemoComponent),
     data: {

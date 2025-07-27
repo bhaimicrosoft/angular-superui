@@ -7,7 +7,6 @@ Interactive slider component for single values and ranges with smooth controls, 
 - 🎯 **Single & Range Values** - Support for both single value and dual-thumb range selection
 - 🎨 **6 Color Variants** - Default, Primary, Secondary, Success, Warning, Destructive
 - 📏 **3 Sizes** - Small, Default, Large
-- 🔄 **Dual Orientation** - Horizontal and vertical slider layouts
 - ⌨️ **Keyboard Navigation** - Full keyboard support with continuous movement
 - ♿ **Accessibility** - ARIA compliant with screen reader support
 - 📱 **Touch Support** - Optimized for mobile and touch interactions
@@ -233,56 +232,6 @@ export class VariantsExample {}
 export class SizesExample {}
 ```
 
-### Vertical Orientation
-
-```typescript
-@Component({
-  template: `
-    <div class="flex justify-around items-center h-48">
-      <div class="flex flex-col items-center gap-2">
-        <Slider
-          [min]="0"
-          [max]="100"
-          [value]="30"
-          orientation="vertical"
-          size="sm"
-          variant="primary"
-          class="h-32"
-        />
-        <span class="text-xs text-gray-500">Small</span>
-      </div>
-
-      <div class="flex flex-col items-center gap-2">
-        <Slider
-          [min]="0"
-          [max]="100"
-          [value]="60"
-          orientation="vertical"
-          size="default"
-          variant="success"
-          class="h-32"
-        />
-        <span class="text-xs text-gray-500">Default</span>
-      </div>
-
-      <div class="flex flex-col items-center gap-2">
-        <Slider
-          [min]="0"
-          [max]="100"
-          [value]="80"
-          orientation="vertical"
-          size="lg"
-          variant="warning"
-          class="h-32"
-        />
-        <span class="text-xs text-gray-500">Large</span>
-      </div>
-    </div>
-  `
-})
-export class VerticalExample {}
-```
-
 ### Form Integration
 
 ```typescript
@@ -429,7 +378,6 @@ export class AdvancedExample {
 | `step` | `number` | `1` | Step increment for value changes |
 | `value` | `number \| number[]` | - | Current value(s) of the slider |
 | `range` | `boolean` | `false` | Enable dual-thumb range selection |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Slider orientation |
 | `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Size variant of the slider |
 | `variant` | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | Color variant |
 | `disabled` | `boolean` | `false` | Disable the slider |
@@ -464,8 +412,7 @@ The slider component provides comprehensive keyboard support:
 | Key | Action |
 |-----|--------|
 | `Tab/Shift+Tab` | Set focus on the slider |
-| `←/→` | Adjust value (horizontal sliders) |
-| `↑/↓` | Adjust value (vertical sliders) |
+| `←/→` | Adjust value |
 | `Page Up/Down` | Large increments (10% of range) |
 | `Home/End` | Jump to minimum/maximum values |
 | `Escape` | Release focus from the slider |
@@ -484,7 +431,6 @@ The slider component is built with accessibility in mind:
 
 - `role="slider"` with proper ARIA attributes
 - `aria-valuemin`, `aria-valuemax`, `aria-valuenow`
-- `aria-orientation` for vertical sliders
 - `aria-label` and `aria-describedby` for context
 - Live regions for value announcements
 
@@ -613,17 +559,92 @@ export class ValidationExample {
 
 ## Styling and Customization
 
+The slider component provides extensive customization options through CSS classes, custom properties, and Tailwind CSS utilities.
+
+### Input Properties for Custom Classes
+
+The component accepts dedicated CSS class inputs for different elements:
+
+```typescript
+<Slider 
+  [value]="50"
+  class="mb-4"                    // Overall container styling
+  trackClass="bg-gray-300"        // Custom track styling
+  thumbClass="border-purple-500"  // Custom thumb styling  
+  rangeClass="bg-purple-500"      // Custom range fill styling
+/>
+```
+
 ### CSS Custom Properties
 
 The slider component supports CSS custom properties for advanced styling:
 
 ```css
 .custom-slider {
-  --slider-track-bg: #f1f5f9;
-  --slider-track-hover-bg: #e2e8f0;
+  /* Track styling */
+  --slider-track-bg: rgb(226 232 240);
+  --slider-track-height: 6px;
+  --slider-track-radius: 3px;
+  
+  /* Thumb styling */
+  --slider-thumb-size: 20px;
+  --slider-thumb-bg: white;
+  --slider-thumb-border: 2px solid #3b82f6;
+  --slider-thumb-radius: 50%;
+  --slider-thumb-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --slider-thumb-shadow-focus: 0 0 0 2px rgb(59 130 246 / 0.5);
+  --slider-thumb-shadow-hover: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  
+  /* Range fill styling */
   --slider-range-bg: #3b82f6;
-  --slider-thumb-bg: #ffffff;
-  --slider-thumb-border: #3b82f6;
+  
+  /* Tick marks styling */
+  --slider-tick-size: 3px;
+  --slider-tick-bg: rgb(148 163 184);
+}
+```
+
+### Comprehensive Customization Guide
+
+For detailed examples and advanced customization techniques, see the [Slider Customization Guide](./slider-customization.md).
+
+### Quick Examples
+
+#### Material Design Style
+
+```html
+<Slider 
+  [value]="60"
+  class="material-slider"
+  variant="primary" />
+```
+
+```css
+.material-slider {
+  --slider-track-height: 2px;
+  --slider-thumb-size: 18px;
+  --slider-thumb-bg: #1976d2;
+  --slider-thumb-border: none;
+  --slider-range-bg: #1976d2;
+}
+```
+
+#### iOS Style
+
+```html
+<Slider 
+  [value]="40"
+  class="ios-slider" />
+```
+
+```css
+.ios-slider {
+  --slider-track-height: 4px;
+  --slider-thumb-size: 28px;
+  --slider-thumb-bg: white;
+  --slider-thumb-border: none;
+  --slider-thumb-shadow: 0 2px 8px 0 rgb(0 0 0 / 0.15);
+  --slider-range-bg: #007aff;
 }
 ```
 
@@ -632,16 +653,8 @@ The slider component supports CSS custom properties for advanced styling:
 ```typescript
 @Component({
   template: `
-    <!-- Custom height for vertical sliders -->
-    <Slider
-      orientation="vertical"
-      class="h-48"
-      variant="primary"
-    />
-
     <!-- Custom width for horizontal sliders -->
     <Slider
-      orientation="horizontal"
       class="w-96"
       variant="success"
     />
@@ -737,9 +750,6 @@ A: Ensure the slider has focus by clicking on it or using Tab navigation.
 
 **Q: Range slider thumbs cross over each other**
 A: This is prevented automatically. The component ensures thumbs maintain proper order.
-
-**Q: Vertical slider not visible**
-A: Make sure to set an explicit height using CSS classes like `h-32`, `h-48`, etc.
 
 **Q: Values not updating in forms**
 A: Verify that you're using proper form binding (`[(ngModel)]` or `formControlName`).
