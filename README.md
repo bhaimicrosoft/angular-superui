@@ -1,14 +1,14 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v1.0.7
+# 🎨 Angular SuperUI v1.0.8
 
 **The Modern Angular UI Component Library That Developers Love**
 
 ### 🌟 **[🚀 LIVE DEMO - See All Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 26 Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
+**✨ Interactive Showcase • 31 Components • Dark Mode • Mobile Responsive • TypeScript • Accessibility ✨**
 
-[![NPM Version](https://img.shields.io/npm/v/angular-superui?style=for-the-badge&logo- ⚡ **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 26 components**npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
+[![NPM Version](https://img.shields.io/npm/v/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
 [![CLI Version](https://img.shields.io/npm/v/ngsui-cli?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ngsui-cli)
 [![Downloads](https://img.shields.io/npm/dt/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
 [![GitHub Stars](https://img.shields.io/github/stars/bhaimicrosoft/angular-superui?style=for-the-badge&logo=github&color=181717)](https://github.com/bhaimicrosoft/angular-superui)
@@ -26,7 +26,7 @@
   <h2>🚀 The Modern Angular UI Component Library</h2>
   <p><strong>Beautiful • Accessible • Type-Safe • Zero External Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/26%2B%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/31%2B%20Components-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
   ![Angular 17+](https://img.shields.io/badge/Angular-17%2B-red?style=flat-square)
@@ -36,7 +36,7 @@
 
 ## ✨ What is Angular SuperUI?
 
-Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI component library that transforms how you build Angular applications. Built with **Tailwind CSS v4**, **TypeScript**, and **Angular 17+ Signals**, it provides **26 production-ready components** with **local-first architecture**.
+Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI component library that transforms how you build Angular applications. Built with **Tailwind CSS v4**, **TypeScript**, and **Angular 17+ Signals**, it provides **31 production-ready components** with **local-first architecture**.
 
 ### 🎯 **Why Angular SuperUI is the Best Choice for Your Project?**
 
@@ -74,7 +74,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 
 [![Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white)](https://angular-superui.vercel.app/)
 
-*See all 26 components in action with dark mode, mobile responsiveness, and interactive examples!*
+*See all 31 components in action with dark mode, mobile responsiveness, and interactive examples!*
 
 </div>
 
@@ -83,7 +83,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui-cli@1.0.7
+npm install -g ngsui-cli
 ```
 
 ### 2️⃣ Initialize Your Project

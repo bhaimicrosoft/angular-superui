@@ -1,12 +1,12 @@
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v1.0.7: 26 Components Ready** 🎯
+## 🛠️ **v1.0.8: 31 Components Ready** 🎯
 
 <div align="center">
 
 ### 🌟 **[🎮 LIVE DEMO - See Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 26 Components • Dark Mode • Mobile Responsive ✨**
+**✨ Interactive Showcase • 31 Components • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 View Live Demo](https://img.shields.io/badge/🚀-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Try on Mobile](https://img.shields.io/badge/📱-Try%20on%20Mobile-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -28,10 +28,10 @@ The **Angular SuperUI CLI** is your gateway to the most beautiful and accessible
 
 ```bash
 # Install globally
-npm install -g ngsui-cli@1.0.7
+npm install -g ngsui-cli
 
 # Or use with npx (no installation required)
-npx ngsui-cli@1.0.7 --help
+npx ngsui-cli --help
 ```
 
 ## 🚀 Quick Start
@@ -53,7 +53,7 @@ ngsui-cli add --all
 ngsui-cli add
 ```
 
-## 📦 Available Components (26 total)
+## 📦 Available Components (31 total)
 
 ### 🎯 Core Components
 
@@ -65,6 +65,7 @@ ngsui-cli add
 - `checkbox` - Toggle controls with full accessibility support
 - `input` - Accessible and customizable input fields with validation
 - `radio-group` - Radio button groups with form integration
+- `select` - Dropdown selection with search and multi-select capabilities
 
 ### 🧭 Navigation Components
 
@@ -72,6 +73,8 @@ ngsui-cli add
 - `dropdown-menu` - Contextual menu dropdowns with keyboard navigation
 - `pagination` - Navigate through large datasets with intelligent controls
 - `drawer` - Slide-out panels from screen edges
+- `sidebar` - Responsive navigation sidebar with animations and keyboard support
+- `stepper` - Multi-step navigation with progress tracking and validation
 
 ### 🖼️ Display Components
 
@@ -79,6 +82,7 @@ ngsui-cli add
 - `carousel` - Image and content sliders with auto-play
 - `data-table` - Feature-rich table for displaying large datasets
 - `progress` - Progress indicators with accessibility
+- `skeleton` - Loading placeholders with smooth animations
 
 ### 💫 Overlay Components
 
@@ -93,10 +97,12 @@ ngsui-cli add
 - `collapsible` - Expandable content sections with animations
 - `combobox` - Advanced dropdown with search and multi-select
 - `input-otp` - Secure one-time password input with validation
+- `slider` - Range input controls with precise value selection
 
 ### ⚙️ Utility Components
 
 - `accordion` - Vertically stacked interactive sections
+- `theme-switcher` - Dark/light mode toggle with smooth transitions
 
 ## 🔧 Usage Examples
 

@@ -1,12 +1,12 @@
 <div align="center">
 
-# 🚀 Installation Guide - Angular SuperUI v1.0.7
+# 🚀 Installation Guide - Angular SuperUI v1.0.8
 
 
 
 ### 🌟 **[🎮 LIVE DEMO - Try All Components!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ 26 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
+**✨ 31 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![⚡ Get Started](https://img.shields.io/badge/⚡-Get%20Started-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -17,7 +17,7 @@
 
 ## 📚 **[🎨 Complete Component Demos & Examples →](./README.md)**
 
-> 🚀 **Step-by-step examples** for all 26 components with **interactive showcases**, **code snippets**, and **best practices**!
+> 🚀 **Step-by-step examples** for all 31 components with **interactive showcases**, **code snippets**, and **best practices**!
 
 ---
 
@@ -49,10 +49,10 @@
 
 ```bash
 # Install globally for easy access
-npm install -g ngsui-cli@1.0.7
+npm install -g ngsui-cli
 
 # Or use with npx (no installation)
-npx ngsui-cli@1.0.7 --help
+npx ngsui-cli --help
 ```
 
 ### Step 2: Initialize Your Project
@@ -268,7 +268,7 @@ import { Badge } from '@components/badge';
       </CardHeader>
       <CardContent>
         <div class="space-y-4">
-          <Badge variant="default">v1.0.7</Badge>
+          <Badge variant="default">v1.0.8</Badge>
           <Button variant="default" (click)="handleClick()">
             Get Started
           </Button>
@@ -400,8 +400,8 @@ ngsui-cli --help
 ngsui-cli add button --force
 
 # Use with npx (no global installation)
-npx ngsui-cli@1.0.7 init
-npx ngsui-cli@1.0.7 add button
+npx ngsui-cli init
+npx ngsui-cli add button
 ```
 
 ---

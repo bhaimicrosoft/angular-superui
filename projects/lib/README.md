@@ -1,17 +1,18 @@
-# Angular SuperUI v1.0.7 🚀
+# Angular SuperUI v1.0.8 🚀
 
 <div align="center">
 
 🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ All 26 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**r SuperUI v1.0.7 🚀
+**✨ All 31 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
+
+</div>
 
 <div align="center">
 
-###### � **Key Features in v1.0.7**
-- **25 Essential Components** - Production-ready UI components including new RadioGroup, InputOTP, and Progress🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
-
-**✨ All 26 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
+###### 🌟 **Key Features in v1.0.8**
+- **31 Essential Components** - Production-ready UI components including new Select, Sidebar, Skeleton, Slider, and Stepper
+- **Zero External Dependencies** - Local-first architecture for maximum control
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Try Now](https://img.shields.io/badge/🎮-Try%20Now-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -28,19 +29,19 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **26 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **31 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 26 components with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 31 components with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v1.0.7: 26 Components Ready**
+## 🛠️ **v1.0.8: 31 Components Ready**
 
 ### 🚀 **CLI Tool (Recommended)**
 Install components directly in your project with our enhanced CLI:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli@1.0.7
+npm install -g ngsui-cli
 
 # Initialize project (sets up Tailwind CSS and TypeScript configs)
 ngsui-cli init
@@ -57,18 +58,63 @@ Install the complete component library:
 
 ```bash
 # Using Angular schematics (recommended)
-ng add angular-superui@1.0.7
+ng add angular-superui@1.0.8
 
 # Or using npm directly
-npm install angular-superui@1.0.7
+npm install angular-superui@1.0.8
 ```
 
-### 🌟 **Key Features in v1.0.7**
-- **26 Essential Components** - Production-ready UI components including new RadioGroup, InputOTP, and Progress
+### 🌟 **Key Features in v1.0.8**
+- **31 Essential Components** - Production-ready UI components including new Select, Sidebar, Skeleton, Slider, and Stepper
 - **Enhanced CLI** - Improved component selection and installation
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach
 - **Angular 18+ Support** - Built for modern Angular applications
+
+## 📦 **All 31 Components Available**
+
+### 🎯 Core Components
+- **Button** - Interactive buttons with multiple variants and loading states
+- **Badge** - Status indicators and labels with color variants
+- **Alert** - Display important messages and notifications
+- **Aspect Ratio** - Responsive aspect ratio containers for media content
+- **Card** - Flexible content containers with header, body, and footer
+- **Checkbox** - Toggle controls with full accessibility support
+- **Input** - Accessible and customizable input fields with validation
+- **Radio Group** - Radio button groups with form integration
+- **Select** - Dropdown selection with search and multi-select capabilities
+
+### 🧭 Navigation Components
+- **Breadcrumb** - Navigation hierarchy with custom separators
+- **Dropdown Menu** - Contextual menu dropdowns with keyboard navigation
+- **Pagination** - Navigate through large datasets with intelligent controls
+- **Drawer** - Slide-out panels from screen edges
+- **Sidebar** - Responsive navigation sidebar with animations and keyboard support
+- **Stepper** - Multi-step navigation with progress tracking and validation
+
+### 🖼️ Display Components
+- **Avatar** - User profile pictures with fallback support
+- **Carousel** - Image and content sliders with auto-play
+- **Data Table** - Feature-rich table for displaying large datasets
+- **Progress** - Progress indicators with accessibility
+- **Skeleton** - Loading placeholders with smooth animations
+
+### 💫 Overlay Components
+- **Alert Dialog** - Modal dialogs with focus management
+- **Context Menu** - Right-click context menus with accessibility
+- **Dialog** - Modal windows and overlays
+- **Popover** - Floating content containers with smart positioning
+
+### 🔧 Form Components
+- **Calendar** - Date picker with full keyboard navigation
+- **Collapsible** - Expandable content sections with animations
+- **Combobox** - Advanced dropdown with search and multi-select
+- **Input OTP** - Secure one-time password input with validation
+- **Slider** - Range input controls with precise value selection
+
+### ⚙️ Utility Components
+- **Accordion** - Vertically stacked interactive sections
+- **Theme Switcher** - Dark/light mode toggle with smooth transitions
 
 ## 📚 **Quick Links**
 - 📚 **[Component Examples →](../../docs/examples.md)** - Real-world usage examples
@@ -78,7 +124,7 @@ npm install angular-superui@1.0.7
 ## ✨ Features
 
 - 🛠️ **CLI Tool** - Selective component installation with ngsui-cli
-- 🎨 **14 Essential Components** - Production-ready UI component library  
+- 🎨 **31 Essential Components** - Production-ready UI component library  
 - 🌈 **Multiple Variants** - Customizable styling options for all components
 - 🔧 **TypeScript First** - Full type safety and excellent IntelliSense support
 - ♿ **Accessible** - Built with accessibility in mind (ARIA compliant)

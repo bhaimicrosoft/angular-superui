@@ -6,6 +6,49 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.0.8] - 2025-01-28
+
+### 🚀 **Complete Component Library Expansion - 31 Components & Infrastructure Improvements**
+
+#### 🆕 New Components Added
+- 🎛️ **Select Component**: Flexible select dropdown component with search and multi-select capabilities
+- 📋 **Sidebar Component**: Responsive navigation sidebar with animations, keyboard navigation, and flexible content projection
+- 💀 **Skeleton Component**: Loading placeholder components with customizable shapes and smooth animations
+- 🎚️ **Slider Component**: Interactive slider component for single values and ranges with full accessibility support
+- 🚶 **Stepper Component**: Multi-step navigation component with progress tracking, validation support, and content projection
+
+#### ✨ CLI Major Infrastructure Enhancements
+- 🎯 **31 Component Coverage**: Updated CLI to include all 31 components with proper descriptions and categorization
+- 📦 **Enhanced Styles.css Management**: Added warning prompt before replacing user's existing styles.css file with backup recommendation
+- 🔧 **Angular Dependencies**: CLI now automatically installs @angular/cdk and @angular/animations packages during initialization
+- ⚙️ **App.config.ts Integration**: Automatic addition of provideAnimationsAsync() import and provider configuration
+- 🌟 **Improved User Experience**: Better confirmation dialogs and status reporting during CLI operations
+
+#### 📚 Documentation & Component Count Updates
+- 📊 **Comprehensive Count Updates**: Updated all documentation files, README files, and interface text to reflect 31 components
+- 🎯 **Route Management**: Added missing component route for theme-switcher (excluded from showcase as utility component)
+- 📝 **CLI Command Cleanup**: Removed version numbers from CLI commands in documentation for better maintenance
+- 🔍 **Footer Accuracy**: Fixed component count inconsistencies in application footer and navigation
+
+#### 🛠️ Version Management
+- 📈 **Version Bump**: Updated to v1.0.8 across all package.json files and documentation
+- 🔄 **Cross-Platform Compatibility**: Improved CLI scripts for better Windows, macOS, and Linux support
+- 📋 **Changelog Updates**: Comprehensive documentation of all changes and improvements
+
+#### 🎨 Demo & Showcase Improvements
+- ✨ **Alert-Dialog Demo**: Created comprehensive demo component with 6 interactive examples showcasing all dialog variants
+- 🎯 **Professional Design**: Implemented stunning responsive design with glass-morphism effects and gradient backgrounds
+- ♿ **Accessibility Features**: Enhanced demo with ARIA labels, focus management, and semantic color coding
+- 📱 **Mobile Optimization**: Responsive grid layouts with hover animations and semantic styling
+
+#### 🔧 Technical Infrastructure
+- 🏗️ **Build System**: Enhanced build processes for library and CLI components
+- 📦 **Package Management**: Improved dependency management and installation processes
+- 🎯 **Type Safety**: Enhanced TypeScript integration and type definitions
+- 🔄 **Hot Reload**: Better development experience with improved change detection
+
+---
+
 ## [1.0.7] - 2025-01-25
 
 ### 🚀 **Complete Component Library - 26 Components Ready & Documentation Overhaul**

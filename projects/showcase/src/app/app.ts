@@ -193,13 +193,13 @@ import { ThemeService } from '@lib/theme-switcher';
                     <span class="text-white font-bold text-sm">⚡</span>
                   </div>
                   <div>
-                    <h5 class="font-semibold text-gray-900 dark:text-white text-sm">v1.0.7</h5>
+                    <h5 class="font-semibold text-gray-900 dark:text-white text-sm">v1.0.8</h5>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Latest Release</p>
                   </div>
                 </div>
 
                 <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  Production-ready Angular component library with 26 accessible components, built with TypeScript and TailwindCSS v4.
+                  Production-ready Angular component library with 31 accessible components, built with TypeScript and TailwindCSS v4.
                 </p>
 
                 <div class="grid grid-cols-2 gap-3 text-xs">

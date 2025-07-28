@@ -1,30 +1,30 @@
-# 🎯 Component Selectors Quick Reference (v1.0.7)
+# 🎯 Component Selectors Quick Reference (v1.0.8)
 
 <div align="center">
 
-**✨ Complete selector guide for all 26 Angular SuperUI components ✨**
+**✨ Complete selector guide for all 31 Angular SuperUI components ✨**
 
 [![🚀 Live Demo](https://img.shields.io/badge/🚀-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white)](https://angular-superui.vercel.app/)
 [![📱 Mobile Friendly](https://img.shields.io/badge/📱-Mobile%20Friendly-45B7D1?style=for-the-badge&logo=mobile&logoColor=white)](https://angular-superui.vercel.app/)
 
 </div>
 
-This document provides a comprehensive reference for all Angular SuperUI component selectors and their correct usage in **v1.0.7**.
+This document provides a comprehensive reference for all Angular SuperUI component selectors and their correct usage in **v1.0.8**.
 
 ## 📊 Overview
 
-Angular SuperUI v1.0.7 includes **26 production-ready components** with consistent PascalCase selectors and full TypeScript support.
+Angular SuperUI v1.0.8 includes **31 production-ready components** with consistent PascalCase selectors and full TypeScript support.
 
 ### 🎨 Component Categories
 
 | Category | Count | Components |
 |----------|-------|------------|
-| **🎯 Core Components** | 8 | Button, InputComponent, Checkbox, RadioGroup/RadioGroupItem, Badge, Alert, Card, AspectRatio |
+| **🎯 Core Components** | 9 | Button, InputComponent, Checkbox, RadioGroup/RadioGroupItem, Select, Badge, Alert, Card, AspectRatio |
 | **🧭 Navigation** | 5 | Breadcrumb (7 selectors), DropdownMenu, Pagination, Drawer |
-| **🖼️ Display** | 4 | Avatar, Carousel, DataTable, ProgressComponent |
+| **🖼️ Display** | 5 | Avatar, Carousel, DataTable, ProgressComponent, Skeleton |
 | **💫 Overlay** | 4 | AlertDialog, ContextMenu, Dialog, Popover |
-| **🔧 Form** | 4 | Calendar, Collapsible, Combobox, InputOTP |
-| **⚙️ Utility** | 2 | Accordion, ThemeSwitcher |
+| **🔧 Form** | 5 | Calendar, Collapsible, Combobox, InputOTP, Slider |
+| **⚙️ Utility** | 3 | Accordion, Stepper, ThemeSwitcher |
 
 ---
 
@@ -327,6 +327,75 @@ import { ProgressComponent } from 'angular-superui';
 **Selector:** `<ProgressComponent>`  
 **Class:** `ProgressComponent`
 
+### 🎚️ Radio Group Component
+
+```typescript
+import { RadioGroup } from 'angular-superui';
+
+// Usage
+<RadioGroup>
+  <!-- Radio options content -->
+</RadioGroup>
+```
+
+**Selector:** `<RadioGroup>`  
+**Class:** `RadioGroup`
+
+### 📋 Select Component
+
+```typescript
+import { Select } from 'angular-superui';
+
+// Usage
+<Select>
+  <!-- Select options content -->
+</Select>
+```
+
+**Selector:** `<Select>`  
+**Class:** `Select`
+
+### 💀 Skeleton Component
+
+```typescript
+import { Skeleton } from 'angular-superui';
+
+// Usage
+<Skeleton class="w-full h-4 rounded">
+</Skeleton>
+```
+
+**Selector:** `<Skeleton>`  
+
+**Class:** `Skeleton`
+
+### 🎯 Slider Component
+
+```typescript
+import { Slider } from 'angular-superui';
+
+// Usage
+<Slider [value]="50" [min]="0" [max]="100">
+</Slider>
+```
+
+**Selector:** `<Slider>`  
+**Class:** `Slider`
+
+### 📈 Stepper Component
+
+```typescript
+import { Stepper } from 'angular-superui';
+
+// Usage
+<Stepper>
+  <!-- Stepper steps content -->
+</Stepper>
+```
+
+**Selector:** `<Stepper>`  
+**Class:** `Stepper`
+
 ---
 
 ## 💫 Overlay Components
@@ -570,6 +639,7 @@ import { ThemeSwitcher } from 'angular-superui';
 | Checkbox | `<Checkbox>` | `Checkbox` |
 | RadioGroup | `<RadioGroup>` | `RadioGroup` |
 | RadioGroupItem | `<RadioGroupItem>` | `RadioGroupItem` |
+| Select | `<Select>` | `Select` |
 | Badge | `<Badge>` | `Badge` |
 | Alert | `<Alert>` | `Alert` |
 | AlertTitle | `<AlertTitle>` | `AlertTitle` |
@@ -605,6 +675,7 @@ import { ThemeSwitcher } from 'angular-superui';
 | Carousel | `<Carousel>` | `Carousel` |
 | DataTable | `<DataTable>` | `DataTable` |
 | Progress | `<ProgressComponent>` | `ProgressComponent` |
+| Skeleton | `<Skeleton>` | `Skeleton` |
 | **Overlay Components** | | |
 | AlertDialog | `<AlertDialog>` | `AlertDialog` |
 | AlertDialogHeader | `<AlertDialogHeader>` | `AlertDialogHeader` |
@@ -640,11 +711,13 @@ import { ThemeSwitcher } from 'angular-superui';
 | InputOTPGroup | `<InputOTPGroup>` | `InputOTPGroup` |
 | InputOTPSlot | `<InputOTPSlot>` | `InputOTPSlot` |
 | InputOTPSeparator | `<InputOTPSeparator>` | `InputOTPSeparator` |
+| Slider | `<Slider>` | `Slider` |
 | **Utility Components** | | |
 | Accordion | `<Accordion>` | `Accordion` |
 | AccordionItem | `<AccordionItem>` | `AccordionItem` |
 | AccordionTrigger | `<AccordionTrigger>` | `AccordionTrigger` |
 | AccordionContent | `<AccordionContent>` | `AccordionContent` |
+| Stepper | `<Stepper>` | `Stepper` |
 | ThemeSwitcher | `<ThemeSwitcher>` | `ThemeSwitcher` |
 
 ## 💡 Usage Examples
@@ -863,4 +936,4 @@ import { CardHeader } from 'angular-superui';
 
 ---
 
-**Last Updated:** v1.0.7 - All selectors verified against actual component implementations ✅
+**Last Updated:** v1.0.8 - All selectors verified against actual component implementations ✅

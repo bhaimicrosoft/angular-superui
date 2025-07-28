@@ -419,7 +419,7 @@ export class HomeComponent implements OnInit {
   }
 
   stats = {
-    components: 23,
+    components: 31,
     examples: 55
   };
 
@@ -685,7 +685,61 @@ export class HomeComponent implements OnInit {
       icon: 'M4 6h16M4 12h8m-8 6h16',
       bgColor: 'bg-gradient-to-br from-slate-100 to-gray-100 dark:from-slate-900/40 dark:to-gray-900/40',
       iconColor: 'text-slate-600 dark:text-slate-400'
-    }
+    },
+    {
+      name: 'Input OTP',
+      route: '/components/input-otp',
+      description: 'One-time password input fields with automatic focus management and validation',
+      category: 'Form',
+      icon: 'M9 12l2 2 4-4m5-2a9 9 0 11-18 0 9 9 0 0118 0z',
+      bgColor: 'bg-gradient-to-br from-indigo-100 to-blue-100 dark:from-indigo-900/40 dark:to-blue-900/40',
+      iconColor: 'text-indigo-600 dark:text-indigo-400'
+    },
+    {
+      name: 'Radio Group',
+      route: '/components/radio-group',
+      description: 'Accessible radio button groups with keyboard navigation and form integration',
+      category: 'Form',
+      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+      bgColor: 'bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40',
+      iconColor: 'text-green-600 dark:text-green-400'
+    },
+    {
+      name: 'Select',
+      route: '/components/select',
+      description: 'Customizable dropdown select components with search and multi-selection options',
+      category: 'Form',
+      icon: 'M8 9l4-4 4 4m0 6l-4 4-4-4',
+      bgColor: 'bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/40 dark:to-cyan-900/40',
+      iconColor: 'text-blue-600 dark:text-blue-400'
+    },
+    {
+      name: 'Skeleton',
+      route: '/components/skeleton',
+      description: 'Loading placeholders with smooth animations for improved perceived performance',
+      category: 'Feedback',
+      icon: 'M4 4h16v16H4V4z',
+      bgColor: 'bg-gradient-to-br from-gray-100 to-slate-100 dark:from-gray-900/40 dark:to-slate-900/40',
+      iconColor: 'text-gray-600 dark:text-gray-400'
+    },
+    {
+      name: 'Slider',
+      route: '/components/slider',
+      description: 'Range input controls with precise value selection and accessibility features',
+      category: 'Form',
+      icon: 'M5 12h14m-7 7V5',
+      bgColor: 'bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/40 dark:to-red-900/40',
+      iconColor: 'text-orange-600 dark:text-orange-400'
+    },
+    {
+      name: 'Stepper',
+      route: '/components/stepper',
+      description: 'Multi-step form navigation with progress indicators and validation states',
+      category: 'Navigation',
+      icon: 'M9 5l7 7-7 7',
+      bgColor: 'bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-pink-900/40',
+      iconColor: 'text-purple-600 dark:text-purple-400'
+    },
   ];
 
   scrollToComponents() {

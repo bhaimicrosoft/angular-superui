@@ -1,7 +1,7 @@
 {
   "name": "angular-superui",
-  "version": "1.0.7",
-  "description": "A comprehensive, modern Angular UI component library with 50+ components including dialogs, forms, navigation, data display, and more. Built with TypeScript, Tailwind CSS, and accessibility in mind.",
+  "version": "1.0.8",
+  "description": "A comprehensive, modern Angular UI component library with 30+ components including dialogs, forms, navigation, data display, and more. Built with TypeScript, Tailwind CSS, and accessibility in mind.",
   "keywords": [
     "angular",
     "angular-components",

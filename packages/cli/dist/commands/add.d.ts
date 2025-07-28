@@ -149,6 +149,36 @@ export declare const COMPONENTS: {
         dependencies: string[];
         files: string[];
     };
+    select: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    sidebar: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    skeleton: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    slider: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
+    stepper: {
+        name: string;
+        description: string;
+        dependencies: string[];
+        files: string[];
+    };
     'theme-switcher': {
         name: string;
         description: string;

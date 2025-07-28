@@ -172,6 +172,36 @@ exports.COMPONENTS = {
         dependencies: ['cn'],
         files: ['index.ts']
     },
+    'select': {
+        name: 'Select',
+        description: 'A flexible select dropdown component with search and multi-select capabilities.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'sidebar': {
+        name: 'Sidebar',
+        description: 'Responsive navigation sidebar with animations, keyboard navigation, and flexible content.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'skeleton': {
+        name: 'Skeleton',
+        description: 'Loading placeholder components with customizable shapes and animations.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'slider': {
+        name: 'Slider',
+        description: 'Interactive slider component for single values and ranges with accessibility support.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'stepper': {
+        name: 'Stepper',
+        description: 'Multi-step navigation component with progress tracking and validation support.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
     'theme-switcher': {
         name: 'Theme Switcher',
         description: 'A component that allows users to switch between light, dark, and system themes.',
