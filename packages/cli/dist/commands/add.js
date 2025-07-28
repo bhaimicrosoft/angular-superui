@@ -208,6 +208,12 @@ exports.COMPONENTS = {
         dependencies: ['cn', 'button'],
         files: ['index.ts']
     },
+    'toggle': {
+        name: 'Toggle',
+        description: 'Advanced toggle/switch component with multiple variants, animations, and form integration.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
     'file-upload': {
         name: 'File Upload',
         description: 'Advanced file upload component with drag-and-drop, progress tracking, and HttpClient integration.',

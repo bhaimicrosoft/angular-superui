@@ -38,3 +38,4 @@ export * from './lib/slider';
 export * from './lib/spinner';
 export * from './lib/stepper';
 export * from './lib/theme-switcher';
+export * from './lib/toggle';

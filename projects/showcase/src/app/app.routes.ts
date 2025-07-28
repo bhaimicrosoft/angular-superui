@@ -151,6 +151,11 @@ export const routes: Routes = [
     data: {componentName: 'file-upload', category: 'Form', description: 'Advanced file upload with drag-and-drop, progress tracking, and validation'}
   },
   {
+    path: 'components/toggle',
+    loadComponent: () => import('./demo-components/toggle-demo.component').then(c => c.ToggleDemoComponent),
+    data: {componentName: 'toggle', category: 'Form', description: 'Advanced toggle/switch component with multiple variants and form integration'}
+  },
+  {
     path: 'components/pagination',
     loadComponent: () => import('./demo-components/pagination-demo.component').then(c => c.PaginationDemoComponent),
     data: {
