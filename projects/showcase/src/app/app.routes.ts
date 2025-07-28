@@ -146,6 +146,11 @@ export const routes: Routes = [
     data: {componentName: 'dropdown-menu', category: 'Navigation', description: 'Contextual menu dropdowns'}
   },
   {
+    path: 'components/file-upload',
+    loadComponent: () => import('./demo-components/file-upload-demo.component').then(c => c.FileUploadDemoComponent),
+    data: {componentName: 'file-upload', category: 'Form', description: 'Advanced file upload with drag-and-drop, progress tracking, and validation'}
+  },
+  {
     path: 'components/pagination',
     loadComponent: () => import('./demo-components/pagination-demo.component').then(c => c.PaginationDemoComponent),
     data: {

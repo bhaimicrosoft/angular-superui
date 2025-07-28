@@ -24,6 +24,7 @@ export * from './lib/data-table';
 export * from './lib/dialog';
 export * from './lib/drawer';
 export * from './lib/dropdown-menu';
+export * from './lib/file-upload';
 export * from './lib/input';
 export * from './lib/input-otp';
 export * from './lib/pagination';

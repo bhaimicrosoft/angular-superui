@@ -208,6 +208,13 @@ exports.COMPONENTS = {
         dependencies: ['cn', 'button'],
         files: ['index.ts']
     },
+    'file-upload': {
+        name: 'File Upload',
+        description: 'Advanced file upload component with drag-and-drop, progress tracking, and HttpClient integration.',
+        dependencies: ['cn', 'progress'],
+        files: ['index.ts'],
+        requiresHttpClient: true
+    },
     // 📅 Featured Component
 };
 async function addCommand(componentNames, options) {
@@ -294,6 +301,18 @@ async function addCommand(componentNames, options) {
                 }
                 // Update component exports
                 await updateComponentExports(componentName, component);
+                // Handle component dependencies
+                if (component.dependencies && component.dependencies.length > 0) {
+                    for (const dep of component.dependencies) {
+                        if (dep !== 'cn' && exports.COMPONENTS[dep]) {
+                            await addDependencyComponent(dep, spinner);
+                        }
+                    }
+                }
+                // Handle HttpClient requirement
+                if (component.requiresHttpClient) {
+                    await ensureHttpClientConfiguration(spinner);
+                }
                 results.push({ name: componentName, component });
             }
             catch (error) {
@@ -359,6 +378,100 @@ async function updateComponentExports(componentName, component) {
     }
     catch (error) {
         // Ignore errors in updating exports
+    }
+}
+async function addDependencyComponent(depName, spinner) {
+    const component = exports.COMPONENTS[depName];
+    if (!component)
+        return;
+    const componentDir = `./src/lib/components/${depName}`;
+    // Check if dependency already exists
+    const componentExists = await fs_extra_1.default.pathExists(path_1.default.join(componentDir, component.files[0]));
+    if (componentExists)
+        return;
+    spinner.text = `Installing dependency: ${component.name}...`;
+    // Create component directory
+    await fs_extra_1.default.ensureDir(componentDir);
+    // Download component files from GitHub repository
+    const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
+    for (const file of component.files) {
+        try {
+            const response = await axios_1.default.get(`${baseUrl}/${depName}/${file}`);
+            let fileContent = response.data;
+            // Fix import paths for cn utility
+            fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+            fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g, "import { cn } from '../../lib/utils/cn';");
+            await fs_extra_1.default.writeFile(path_1.default.join(componentDir, file), fileContent);
+        }
+        catch (error) {
+            console.warn(chalk_1.default.yellow(`Warning: Could not download ${file} for ${depName}`));
+        }
+    }
+    // Update component exports
+    await updateComponentExports(depName, component);
+}
+async function ensureHttpClientConfiguration(spinner) {
+    const configPath = './src/app/app.config.ts';
+    spinner.text = 'Configuring HttpClient...';
+    try {
+        if (await fs_extra_1.default.pathExists(configPath)) {
+            let configContent = await fs_extra_1.default.readFile(configPath, 'utf8');
+            // Check if HttpClient is already configured
+            if (configContent.includes('provideHttpClient')) {
+                return; // Already configured
+            }
+            // Add import for provideHttpClient
+            if (!configContent.includes("import { provideHttpClient }")) {
+                // Find the imports section and add HttpClient import
+                const importRegex = /(import\s+{[^}]*}\s+from\s+['"]@angular\/common\/http['"];?)/;
+                if (importRegex.test(configContent)) {
+                    // HttpClient imports already exist, add provideHttpClient to existing import
+                    configContent = configContent.replace(importRegex, (match) => {
+                        if (match.includes('provideHttpClient'))
+                            return match;
+                        return match.replace(/}\s+from/, ', provideHttpClient } from');
+                    });
+                }
+                else {
+                    // Add new import line
+                    const firstImportMatch = configContent.match(/^import\s+.*$/m);
+                    if (firstImportMatch) {
+                        const insertPos = configContent.indexOf(firstImportMatch[0]);
+                        configContent = configContent.slice(0, insertPos) +
+                            "import { provideHttpClient } from '@angular/common/http';\n" +
+                            configContent.slice(insertPos);
+                    }
+                    else {
+                        // Add at the beginning if no imports found
+                        configContent = "import { provideHttpClient } from '@angular/common/http';\n" + configContent;
+                    }
+                }
+            }
+            // Add provideHttpClient to providers array
+            const providersRegex = /(providers:\s*\[)([\s\S]*?)(\])/;
+            const providersMatch = configContent.match(providersRegex);
+            if (providersMatch) {
+                const [fullMatch, start, content, end] = providersMatch;
+                const providers = content.trim();
+                if (!providers.includes('provideHttpClient')) {
+                    const newProviders = providers ? `${providers},\n    provideHttpClient()` : 'provideHttpClient()';
+                    configContent = configContent.replace(providersRegex, `${start}\n    ${newProviders}\n  ${end}`);
+                }
+            }
+            else {
+                // If no providers array found, we'll need to add one or suggest manual configuration
+                console.log(chalk_1.default.yellow('⚠️  Could not automatically configure HttpClient. Please add provideHttpClient() to your app.config.ts providers array.'));
+                return;
+            }
+            await fs_extra_1.default.writeFile(configPath, configContent);
+            console.log(chalk_1.default.green('✅ HttpClient configured in app.config.ts'));
+        }
+        else {
+            console.log(chalk_1.default.yellow('⚠️  app.config.ts not found. Please manually add provideHttpClient() to your providers.'));
+        }
+    }
+    catch (error) {
+        console.log(chalk_1.default.yellow('⚠️  Could not automatically configure HttpClient. Please add provideHttpClient() to your app.config.ts providers array.'));
     }
 }
 //# sourceMappingURL=add.js.map
