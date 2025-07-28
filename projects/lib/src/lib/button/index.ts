@@ -1,4 +1,4 @@
-import {Component, computed, EventEmitter, HostBinding, HostListener, Input, Output, signal, OnInit, OnDestroy, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, computed, EventEmitter, HostBinding, HostListener, Input, Output, signal, OnInit, OnDestroy, OnChanges, SimpleChanges, input} from '@angular/core';
 import {cva, type VariantProps} from 'class-variance-authority';
 import {cn} from '../utils/cn';
 
@@ -191,11 +191,11 @@ export interface ButtonLoadingState {
   `,
 })
 export class Button implements OnInit, OnDestroy {
-  /** Button variant styling */
-  @Input() variant: ButtonVariant['variant'] = 'default';
+  /** Button variant styling - using signals for reactivity */
+  variant = input<ButtonVariant['variant']>('default');
 
-  /** Button size */
-  @Input() size: ButtonVariant['size'] = 'default';
+  /** Button size - using signals for reactivity */
+  size = input<ButtonVariant['size']>('default');
 
   /** Button type attribute */
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
@@ -232,8 +232,8 @@ export class Button implements OnInit, OnDestroy {
   protected computedClasses = computed(() => {
     return cn(
       buttonVariants({
-        variant: this.variant,
-        size: this.size,
+        variant: this.variant(),
+        size: this.size(),
         loading: this.loading().loading,
       }),
       this.customClassesSignal() // Use signal instead of direct property

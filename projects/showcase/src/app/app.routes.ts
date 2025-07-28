@@ -214,7 +214,26 @@ export const routes: Routes = [
     data: {
       componentName: 'skeleton',
       category: 'Feedback',
-      description: 'Loading placeholders with multiple variants, animations, and layouts for improved user experience'
+      description: 'Placeholder loading states with smooth animations and accessibility'
+    }
+  },
+  {
+    path: 'components/spinner',
+    loadComponent: () => import('./demo-components/spinner-demo.component').then(c => c.SpinnerDemoComponent),
+    data: {
+      componentName: 'spinner',
+      category: 'Feedback',
+      description: 'Beautiful loading indicators with multiple animation types and full accessibility'
+    }
+  },
+
+  {
+    path: 'components/stepper',
+    loadComponent: () => import('./demo-components/stepper-demo.component').then(c => c.StepperDemoComponent),
+    data: {
+      componentName: 'stepper',
+      category: 'Navigation',
+      description: 'Multi-step form wizard with progress tracking, validation, and accessibility'
     }
   },
   {

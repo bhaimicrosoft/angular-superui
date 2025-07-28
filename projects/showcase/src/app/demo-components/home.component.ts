@@ -723,6 +723,15 @@ export class HomeComponent implements OnInit {
       iconColor: 'text-gray-600 dark:text-gray-400'
     },
     {
+      name: 'Spinner',
+      route: '/components/spinner',
+      description: 'Beautiful loading indicators with multiple animation types and accessibility features',
+      category: 'Feedback',
+      icon: 'M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z',
+      bgColor: 'bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-pink-900/40',
+      iconColor: 'text-purple-600 dark:text-purple-400'
+    },
+    {
       name: 'Slider',
       route: '/components/slider',
       description: 'Range input controls with precise value selection and accessibility features',
