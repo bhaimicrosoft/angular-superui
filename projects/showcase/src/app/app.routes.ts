@@ -156,6 +156,20 @@ export const routes: Routes = [
     data: {componentName: 'toggle', category: 'Form', description: 'Advanced toggle/switch component with multiple variants and form integration'}
   },
   {
+    path: 'components/tabs',
+    loadComponent: () => import('./demo-components/tabs-demo.component').then(c => c.TabsDemoComponent),
+    data: {
+      componentName: 'tabs',
+      category: 'Navigation',
+      description: 'Beautiful, accessible, and fully customizable tabs component with multiple variants, smooth animations, and comprehensive form integration',
+      seo: {
+        title: 'Tabs Component - Angular SuperUI | Responsive & Accessible Tab Navigation',
+        description: 'Comprehensive Angular tabs component with multiple variants, smooth animations, and full responsive design. Features accessibility support, form integration, and optimized performance for modern web applications.',
+        keywords: 'Angular tabs, tab component, responsive tabs, accessible tabs, Angular UI, tab navigation, TypeScript tabs, Angular signals, WCAG compliant, mobile tabs'
+      }
+    }
+  },
+  {
     path: 'components/pagination',
     loadComponent: () => import('./demo-components/pagination-demo.component').then(c => c.PaginationDemoComponent),
     data: {

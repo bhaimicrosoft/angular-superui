@@ -228,6 +228,21 @@ export class WelcomeComponent {}
 
 <tr>
 <td>
+  <strong>📑 Tabs</strong>
+</td>
+<td>
+  Advanced tabbed interface with multiple variants, smooth animations, and comprehensive form integration. Supports lazy loading, closable tabs, and WCAG compliance.
+</td>
+<td>
+  <img src="https://img.shields.io/badge/✅-Ready-green?style=flat-square" alt="Ready">
+</td>
+<td>
+  <a href="./components/tabs.md">📖 Docs</a> • <a href="./components/tabs-comprehensive.md">📚 Full Guide</a>
+</td>
+</tr>
+
+<tr>
+<td>
   <strong>🍞 Breadcrumb</strong>
 </td>
 <td>

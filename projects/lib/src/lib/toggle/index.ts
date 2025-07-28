@@ -128,6 +128,13 @@ export type ToggleVariantProps = VariantProps<typeof toggleVariants>;
     },
   ],
   animations: [
+    trigger('thumbMove', [
+      state('unchecked', style({ transform: 'translateX(0)' })),
+      state('checked', style({ transform: 'translateX({{ distance }}px)' }), { params: { distance: 20 } }),
+      transition('unchecked <=> checked', [
+        animate('200ms ease-in-out')
+      ]),
+    ]),
     trigger('backgroundChange', [
       state('unchecked', style({ backgroundColor: 'var(--input)' })),
       state('checked', style({ backgroundColor: 'var(--primary)' })),
@@ -185,7 +192,7 @@ export type ToggleVariantProps = VariantProps<typeof toggleVariants>;
           [name]="name()"
           [value]="value()"
           [checked]="checked()"
-          [disabled]="isDisabled()"
+          [disabled]="disabled()"
           [required]="required()"
           [attr.aria-label]="ariaLabel()"
           [attr.aria-labelledby]="ariaLabelledBy()"
@@ -214,6 +221,7 @@ export type ToggleVariantProps = VariantProps<typeof toggleVariants>;
           <span
             [class]="thumbClasses()"
             [attr.data-state]="checked() ? 'checked' : 'unchecked'"
+            [@thumbMove]="{ value: checked() ? 'checked' : 'unchecked', params: { distance: thumbDistance() } }"
           >
             <!-- Thumb Icon -->
             @if (showIcons()) {
@@ -316,11 +324,8 @@ export class Toggle implements OnInit, OnDestroy, ControlValueAccessor {
 
   // Internal state signals
   readonly isFocused = signal<boolean>(false);
-  private readonly _disabledByForm = signal<boolean>(false);
 
   // Computed signals
-  readonly isDisabled = computed(() => this.disabled() || this._disabledByForm());
-  
   readonly toggleClasses = computed(() => 
     cn(toggleVariants({
       variant: this.variant(),
@@ -339,10 +344,21 @@ export class Toggle implements OnInit, OnDestroy, ControlValueAccessor {
     if (this.error()) {
       return `${baseClasses} text-destructive`;
     }
-    if (this.isDisabled()) {
+    if (this.disabled()) {
       return `${baseClasses} text-muted-foreground`;
     }
     return baseClasses;
+  });
+
+  readonly thumbDistance = computed(() => {
+    const sizeMap: Record<string, number> = {
+      sm: 16,   // w-9 - w-4 - padding = 36px - 16px - 4px = 16px
+      default: 20, // w-11 - w-5 - padding = 44px - 20px - 4px = 20px  
+      lg: 20,   // w-12 - w-6 - padding = 48px - 24px - 4px = 20px
+      xl: 24,   // w-14 - w-7 - padding = 56px - 28px - 4px = 24px
+    };
+    const size = this.size() || 'default';
+    return sizeMap[size] || 20;
   });
 
   // ControlValueAccessor implementation
@@ -362,10 +378,15 @@ export class Toggle implements OnInit, OnDestroy, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this._disabledByForm.set(isDisabled);
+    // The disabled state is handled by the disabled input signal
   }
 
   constructor() {
+    // Effect to emit change events
+    effect(() => {
+      this.onChange(this.checked());
+    });
+
     // Effect to update aria-describedby
     effect(() => {
       const describedBy = [];
@@ -391,14 +412,13 @@ export class Toggle implements OnInit, OnDestroy, ControlValueAccessor {
   }
 
   onToggle(event: Event): void {
-    if (this.isDisabled()) return;
+    if (this.disabled()) return;
 
     const target = event.target as HTMLInputElement;
     const newChecked = target.checked;
     
     this.checked.set(newChecked);
     this.onTouched();
-    this.onChange(newChecked); // Call onChange directly here
 
     const changeEvent: ToggleChangeEvent = {
       checked: newChecked,
@@ -410,7 +430,7 @@ export class Toggle implements OnInit, OnDestroy, ControlValueAccessor {
   }
 
   onToggleClick(event: Event): void {
-    if (this.isDisabled()) return;
+    if (this.disabled()) return;
     
     // Prevent the click from propagating to parent elements
     event.preventDefault();
@@ -445,7 +465,7 @@ export class Toggle implements OnInit, OnDestroy, ControlValueAccessor {
     // Handle keyboard navigation
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
-      if (!this.isDisabled()) {
+      if (!this.disabled()) {
         this.toggle();
       }
     }
@@ -453,16 +473,14 @@ export class Toggle implements OnInit, OnDestroy, ControlValueAccessor {
 
   // Public methods
   toggle(): void {
-    if (this.isDisabled()) return;
+    if (this.disabled()) return;
     
-    const newChecked = !this.checked();
-    this.checked.set(newChecked);
+    this.checked.set(!this.checked());
     this.onTouched();
-    this.onChange(newChecked); // Call onChange directly here
 
     const changeEvent: ToggleChangeEvent = {
-      checked: newChecked,
-      value: newChecked ? this.value() : undefined,
+      checked: this.checked(),
+      value: this.checked() ? this.value() : undefined,
       target: this.inputElement?.nativeElement || ({} as HTMLElement),
     };
 
