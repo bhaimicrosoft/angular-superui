@@ -160,6 +160,15 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'components/toast',
+    loadComponent: () => import('./demo-components/toast-demo.component').then(c => c.ToastDemoComponent),
+    data: {
+      componentName: 'toast',
+      category: 'Feedback',
+      description: 'Smart notifications with progress tracking, positioning, and smooth animations'
+    }
+  },
+  {
     path: 'components/toggle',
     loadComponent: () => import('./demo-components/toggle-demo.component').then(c => c.ToggleDemoComponent),
     data: {componentName: 'toggle', category: 'Form', description: 'Advanced toggle/switch component with multiple variants and form integration'}
