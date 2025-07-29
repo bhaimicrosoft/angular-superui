@@ -37,5 +37,6 @@ export * from './lib/skeleton';
 export * from './lib/slider';
 export * from './lib/spinner';
 export * from './lib/stepper';
+export * from './lib/textarea';
 export * from './lib/theme-switcher';
 export * from './lib/toggle';
