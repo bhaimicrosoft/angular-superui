@@ -169,6 +169,15 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'components/tooltip',
+    loadComponent: () => import('./demo-components/tooltip-demo.component').then(c => c.TooltipDemoComponent),
+    data: {
+      componentName: 'tooltip',
+      category: 'Overlay',
+      description: 'Intelligent tooltip component with smart positioning, multiple triggers, and accessibility'
+    }
+  },
+  {
     path: 'components/toggle',
     loadComponent: () => import('./demo-components/toggle-demo.component').then(c => c.ToggleDemoComponent),
     data: {componentName: 'toggle', category: 'Form', description: 'Advanced toggle/switch component with multiple variants and form integration'}

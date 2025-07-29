@@ -39,5 +39,8 @@ export * from './lib/spinner';
 export * from './lib/stepper';
 export * from './lib/textarea';
 export * from './lib/toast';
+export * from './lib/tooltip';
+export * from './lib/tabs';
 export * from './lib/theme-switcher';
 export * from './lib/toggle';
+export * from './lib/tooltip';
