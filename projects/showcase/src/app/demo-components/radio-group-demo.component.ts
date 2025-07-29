@@ -430,7 +430,7 @@ import {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3e%3cpath d='m0 .5h32v32h-32z'/%3e%3c/svg%3e");
     }
 
-    .dark .bg-grid-slate-700\/25 {
+    .dark .bg-grid-slate-700-25 {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.25)'%3e%3cpath d='m0 .5h32v32h-32z'/%3e%3c/svg%3e");
     }
 
