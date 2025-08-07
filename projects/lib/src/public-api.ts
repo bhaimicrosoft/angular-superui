@@ -6,6 +6,7 @@ export * from './lib/utils/cn';
 
 // Pipes
 export * from './lib/pipes/safe-html.pipe';
+export * from './lib/pipes/icon.pipe';
 
 // Implemented Components
 export * from './lib/accordion';
@@ -48,3 +49,10 @@ export * from './lib/tooltip';
 export * from './lib/tabs';
 export * from './lib/theme-switcher';
 export * from './lib/toggle';
+
+// Block Components
+export * from './lib/header';
+export * from './lib/hero-section';
+export * from './lib/pricing-cards';
+export * from './lib/footer';
+export * from './lib/feature-grid';

@@ -54,6 +54,26 @@ export const routes: Routes = [
     loadComponent: () => import('./demo-components/header-demo.component').then(c => c.HeaderDemoComponent),
     data: {blockName: 'header', category: 'Navigation', description: 'Complete header block with navigation, search, user menu, and mobile support'}
   },
+  {
+    path: 'blocks/hero-section',
+    loadComponent: () => import('./demo-components/hero-section-demo.component').then(c => c.HeroSectionDemoComponent),
+    data: {blockName: 'hero-section', category: 'Content', description: 'Eye-catching landing page heroes with CTAs and background options'}
+  },
+  {
+    path: 'blocks/pricing-cards',
+    loadComponent: () => import('./demo-components/pricing-cards-demo.component').then(c => c.PricingCardsDemoComponent),
+    data: {blockName: 'pricing-cards', category: 'Content', description: 'Professional pricing tables with feature comparison and billing toggles'}
+  },
+  {
+    path: 'blocks/footer',
+    loadComponent: () => import('./demo-components/footer-demo.component').then(c => c.FooterDemoComponent),
+    data: {blockName: 'footer', category: 'Navigation', description: 'Comprehensive footer layouts with links, social icons, and company info'}
+  },
+  {
+    path: 'blocks/feature-grid',
+    loadComponent: () => import('./demo-components/feature-grid-demo.component').then(c => c.FeatureGridDemoComponent),
+    data: {blockName: 'feature-grid', category: 'Content', description: 'Showcase product features with icons, descriptions, and compelling layouts'}
+  },
   // UI Components
   {
     path: 'components/accordion',
