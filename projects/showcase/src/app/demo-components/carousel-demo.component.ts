@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Carousel } from '@lib/carousel';
+import { Carousel } from '@lib/components/carousel';
 import { SEOService } from '../services/seo.service';
 
 @Component({
@@ -25,7 +25,7 @@ import { SEOService } from '../services/seo.service';
             </svg>
             Interactive Image Carousel
           </div>
-          
+
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
             <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
               Carousel
@@ -33,7 +33,7 @@ import { SEOService } from '../services/seo.service';
             <br>
             Component
           </h1>
-          
+
           <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Stunning image carousels with auto-play, touch gestures, responsive design, and full accessibility support
           </p>
@@ -49,7 +49,7 @@ import { SEOService } from '../services/seo.service';
             </div>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Auto-Play</span>
           </div>
-          
+
           <div class="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50">
             <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mx-auto mb-2">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ import { SEOService } from '../services/seo.service';
             </div>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Touch Gestures</span>
           </div>
-          
+
           <div class="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50">
             <div class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg flex items-center justify-center mx-auto mb-2">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ import { SEOService } from '../services/seo.service';
             </div>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Responsive</span>
           </div>
-          
+
           <div class="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50">
             <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center mx-auto mb-2">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,14 +81,14 @@ import { SEOService } from '../services/seo.service';
 
         <!-- Main Demo Section -->
         <div class="space-y-20">
-          
+
           <!-- Basic Carousel Demo -->
           <section class="text-center">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Basic Image Carousel</h2>
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               A simple carousel with auto-play, navigation controls, and smooth transitions
             </p>
-            
+
             <div class="max-w-4xl mx-auto mb-8">
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
                 <Carousel
@@ -101,7 +101,7 @@ import { SEOService } from '../services/seo.service';
                 />
               </div>
             </div>
-            
+
             <div class="bg-gray-900 dark:bg-gray-800 rounded-xl p-6 text-left max-w-3xl mx-auto">
               <div class="flex items-center mb-4">
                 <div class="flex space-x-2">
@@ -132,7 +132,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Adapts perfectly to different screen sizes with configurable aspect ratios
             </p>
-            
+
             <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-8">
               <!-- Mobile Size -->
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
@@ -144,7 +144,7 @@ import { SEOService } from '../services/seo.service';
                   aspectRatio="4:3"
                 />
               </div>
-              
+
               <!-- Desktop Size -->
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Desktop View (Large)</h3>
@@ -164,7 +164,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Add or remove images dynamically and see the carousel adapt in real-time
             </p>
-            
+
             <div class="max-w-4xl mx-auto">
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 mb-8">
                 <!-- Control Buttons -->
@@ -178,7 +178,7 @@ import { SEOService } from '../services/seo.service';
                     </svg>
                     Add Image
                   </button>
-                  
+
                   <button
                     (click)="removeLastImage()"
                     [disabled]="dynamicImages().length <= 1"
@@ -189,7 +189,7 @@ import { SEOService } from '../services/seo.service';
                     </svg>
                     Remove Image
                   </button>
-                  
+
                   <button
                     (click)="resetImages()"
                     class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-gray-500 to-gray-600 text-white font-semibold rounded-xl hover:from-gray-600 hover:to-gray-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
@@ -225,7 +225,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
               Choose from different aspect ratios to fit your design needs perfectly
             </p>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               <!-- 16:9 Video -->
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
@@ -238,7 +238,7 @@ import { SEOService } from '../services/seo.service';
                   aspectRatio="16:9"
                 />
               </div>
-              
+
               <!-- 4:3 Traditional -->
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">4:3 (Traditional)</h3>
@@ -250,7 +250,7 @@ import { SEOService } from '../services/seo.service';
                   aspectRatio="4:3"
                 />
               </div>
-              
+
               <!-- 1:1 Square -->
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">1:1 (Square)</h3>
@@ -271,7 +271,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
               Built with performance and accessibility in mind, ensuring a great experience for everyone
             </p>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 text-center">
                 <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -282,7 +282,7 @@ import { SEOService } from '../services/seo.service';
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Lazy Loading</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">Images load only when needed for better performance</p>
               </div>
-              
+
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 text-center">
                 <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,7 +292,7 @@ import { SEOService } from '../services/seo.service';
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Touch Support</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">Swipe gestures work seamlessly on mobile devices</p>
               </div>
-              
+
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 text-center">
                 <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -303,7 +303,7 @@ import { SEOService } from '../services/seo.service';
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">WCAG Compliant</h3>
                 <p class="text-sm text-gray-600 dark:text-gray-400">Full keyboard navigation and screen reader support</p>
               </div>
-              
+
               <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 text-center">
                 <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -323,7 +323,7 @@ import { SEOService } from '../services/seo.service';
               <p class="text-xl mb-8 text-blue-100 dark:text-slate-200 max-w-2xl mx-auto">
                 Add beautiful, accessible carousels to your Angular application in minutes
               </p>
-              
+
               <div class="bg-gray-900/90 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-6 text-left max-w-2xl mx-auto mb-8 border border-gray-700/50 dark:border-slate-600/30 shadow-lg">
                 <div class="flex items-center mb-4">
                   <div class="flex space-x-2">
@@ -333,9 +333,9 @@ import { SEOService } from '../services/seo.service';
                   </div>
                   <span class="ml-4 text-gray-300 dark:text-slate-300 text-sm">Terminal</span>
                 </div>
-                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui-cli add carousel</code></pre>
+                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui add carousel</code></pre>
               </div>
-              
+
               <a
                 href="https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components/carousel.md"
                 target="_blank"
@@ -356,7 +356,7 @@ import { SEOService } from '../services/seo.service';
   `
 })
 export class CarouselDemoComponent {
-  
+
   // Basic carousel images
   basicImages = signal([
     'https://picsum.photos/800/400?random=1',
@@ -408,7 +408,7 @@ export class CarouselDemoComponent {
   }
 
   removeLastImage(): void {
-    this.dynamicImages.update(images => 
+    this.dynamicImages.update(images =>
       images.length > 1 ? images.slice(0, -1) : images
     );
   }

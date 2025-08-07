@@ -18,7 +18,7 @@ A comprehensive radio group component with full accessibility support, multiple 
 The RadioGroup component is part of the Angular SuperUI library:
 
 ```bash
-npx ngsui-cli add radio-group
+npx ngsui add radio-group
 ```
 
 ## Basic Usage

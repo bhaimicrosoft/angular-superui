@@ -21,7 +21,7 @@ An enterprise-grade floating content container with intelligent positioning usin
 Install the component using our CLI tool:
 
 ```bash
-npx ngsui-cli add popover
+npx ngsui add popover
 ```
 
 This will automatically:
@@ -565,7 +565,7 @@ The component includes CSS animations for smooth transitions:
 
 ### Common Issues
 
-#### Edge case positioning problems (Fixed in v1.0.1)
+#### Edge case positioning problems (Fixed in v2.0.0)
 
 The component now includes enhanced edge case handling with improved viewport margin optimization and corner-specific positioning strategies. If you're experiencing positioning issues:
 

@@ -1,0 +1,93 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Creator & Lead Developer: Indranil Mukherjee
+    Contact: contact [at] angular-superui.com
+    From: India
+
+# THANKS
+
+    Angular Team
+    Tailwind CSS Team
+    TypeScript Team
+    Open Source Community
+    All contributors and users
+
+# TECHNOLOGY COLOPHON
+
+    ## Frontend
+    Angular 17+
+    TypeScript 5+
+    Tailwind CSS 3+
+    Vite
+    HTML5
+    CSS3
+    JavaScript ES2022+
+
+    ## Backend & Infrastructure
+    Vercel (Hosting)
+    GitHub (Version Control)
+    NPM (Package Registry)
+    
+    ## Development Tools
+    VS Code
+    Angular CLI
+    ESLint
+    Prettier
+    Git
+
+    ## Design & Assets
+    Figma
+    Adobe Illustrator
+    Unsplash (Stock Images)
+    Heroicons
+    Lucide Icons
+
+    ## Testing & Quality
+    Jasmine
+    Karma
+    Cypress
+    Lighthouse
+    WebPageTest
+
+# COMPONENTS
+
+    39+ Modern UI Components
+    Headless Architecture
+    Full Accessibility (WCAG 2.1)
+    TypeScript Support
+    Zero Dependencies
+    Tree Shakable
+    Mobile Responsive
+    Dark Mode Support
+
+# STATS
+
+    Lines of Code: 50,000+
+    Components: 39
+    Documentation Pages: 100+
+    Examples: 200+
+    Tests: 500+
+    
+    Last updated: August 7, 2025
+    Version: 2.0.0
+    License: MIT
+
+# MISSION
+
+    To provide the ultimate headless UI component library for Angular developers worldwide.
+    Making beautiful, accessible, and performant interfaces easier to build.
+    Empowering developers to create stunning applications faster.
+
+                               _
+                              | |
+      __ _ _ __   __ _ _   _| | __ _ _ __
+     / _` | '_ \ / _` | | | | |/ _` | '__|
+    | (_| | | | | (_| | |_| | | (_| | |
+     \__,_|_| |_|\__, |\__,_|_|\__,_|_|
+                  __/ |
+                 |___/
+    
+    SuperUI - Building the future of Angular components

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, effect, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {SkeletonAvatar, SkeletonComponent, SkeletonService, SkeletonText} from '@lib/skeleton';
+import {SkeletonAvatar, SkeletonComponent, SkeletonService, SkeletonText} from '@lib/components/skeleton';
 
 @Component({
   selector: 'app-skeleton-demo',

@@ -1,0 +1,70 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Angular SuperUI - Component Library Updates",
+  "description": "Latest updates, new components, and announcements from Angular SuperUI - the ultimate headless UI component library for Angular",
+  "home_page_url": "https://angular-superui.vercel.app",
+  "feed_url": "https://angular-superui.vercel.app/feed.json",
+  "language": "en-US",
+  "icon": "https://angular-superui.vercel.app/assets/logo.png",
+  "favicon": "https://angular-superui.vercel.app/favicon.ico",
+  "authors": [
+    {
+      "name": "Angular SuperUI Team",
+      "url": "https://angular-superui.vercel.app",
+      "avatar": "https://angular-superui.vercel.app/assets/team-avatar.png"
+    }
+  ],
+  "items": [
+    {
+      "id": "https://angular-superui.vercel.app/blog/v2-release",
+      "url": "https://angular-superui.vercel.app/blog/v2-release",
+      "title": "Angular SuperUI 2.0.0 - Major Release with 39+ Components",
+      "content_html": "<p>We're excited to announce Angular SuperUI 2.0.0, our biggest release yet featuring 39+ production-ready components!</p><h3>🎉 What's New</h3><ul><li><strong>39+ Components:</strong> Complete collection of headless UI components</li><li><strong>Enhanced CLI:</strong> New 'ngsui' command for easier installation</li><li><strong>Better TypeScript:</strong> Improved type safety and IntelliSense</li><li><strong>Accessibility:</strong> WCAG 2.1 AA compliance across all components</li><li><strong>Performance:</strong> Tree-shakable, zero dependencies</li></ul><p>Install today: <code>npm install -g ngsui</code></p>",
+      "content_text": "Angular SuperUI 2.0.0 features 39+ production-ready components with enhanced CLI and improved TypeScript support. Install today: npm install -g ngsui",
+      "summary": "Angular SuperUI 2.0.0 features 39+ production-ready components with enhanced CLI and improved TypeScript support",
+      "date_published": "2025-08-07T00:00:00Z",
+      "date_modified": "2025-08-07T00:00:00Z",
+      "authors": [
+        {
+          "name": "Angular SuperUI Team"
+        }
+      ],
+      "tags": ["Release", "Angular", "Components", "TypeScript", "UI Library"],
+      "image": "https://angular-superui.vercel.app/assets/blog/v2-release-cover.png"
+    },
+    {
+      "id": "https://angular-superui.vercel.app/components/calendar",
+      "url": "https://angular-superui.vercel.app/components/calendar", 
+      "title": "New Enhanced Calendar Component with Time Picker",
+      "content_html": "<p>Our Calendar component just got a major upgrade! Now featuring integrated time picker, range selection with drag support, and enhanced accessibility.</p><h3>✨ Features</h3><ul><li>Date range selection with intuitive drag support</li><li>Integrated time picker for complete date-time handling</li><li>Full accessibility compliance (WCAG 2.1)</li><li>Beautiful TailwindCSS styling with custom themes</li><li>Fully responsive design for all screen sizes</li></ul>",
+      "content_text": "Enhanced Calendar component with time picker, range selection, and improved accessibility. Perfect for booking systems and scheduling applications.",
+      "summary": "Enhanced Calendar component with time picker, range selection with drag support, and improved accessibility",
+      "date_published": "2025-08-06T00:00:00Z",
+      "date_modified": "2025-08-06T00:00:00Z",
+      "authors": [
+        {
+          "name": "Angular SuperUI Team"
+        }
+      ],
+      "tags": ["Components", "Calendar", "Date Picker", "Time Picker", "Accessibility"],
+      "image": "https://angular-superui.vercel.app/assets/components/calendar-preview.png"
+    },
+    {
+      "id": "https://angular-superui.vercel.app/components/data-table",
+      "url": "https://angular-superui.vercel.app/components/data-table",
+      "title": "Enterprise Data Table with Advanced Features",
+      "content_html": "<p>Introducing our most powerful component yet - the Enterprise Data Table with sorting, filtering, pagination, and inline editing.</p><h3>🎯 Enterprise Features</h3><ul><li>Advanced sorting and filtering</li><li>Virtual scrolling for large datasets</li><li>Inline editing capabilities</li><li>Column resizing and reordering</li><li>Export functionality (CSV, PDF, Excel)</li><li>Server-side pagination support</li></ul>",
+      "content_text": "Enterprise Data Table with advanced sorting, filtering, pagination, inline editing, and virtual scrolling for large datasets.",
+      "summary": "Enterprise Data Table with advanced features for mission-critical applications",
+      "date_published": "2025-08-05T00:00:00Z",
+      "date_modified": "2025-08-05T00:00:00Z",
+      "authors": [
+        {
+          "name": "Angular SuperUI Team"
+        }
+      ],
+      "tags": ["Components", "Data Table", "Enterprise", "Virtual Scrolling", "Export"],
+      "image": "https://angular-superui.vercel.app/assets/components/data-table-preview.png"
+    }
+  ]
+}

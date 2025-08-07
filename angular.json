@@ -64,6 +64,31 @@
                 "output": "/"
               },
               {
+                "glob": "humans.txt",
+                "input": "projects/showcase/src",
+                "output": "/"
+              },
+              {
+                "glob": "opensearch.xml",
+                "input": "projects/showcase/src",
+                "output": "/"
+              },
+              {
+                "glob": "feed.xml",
+                "input": "projects/showcase/src",
+                "output": "/"
+              },
+              {
+                "glob": "atom.xml",
+                "input": "projects/showcase/src",
+                "output": "/"
+              },
+              {
+                "glob": "feed.json",
+                "input": "projects/showcase/src",
+                "output": "/"
+              },
+              {
                 "glob": ".htaccess",
                 "input": ".",
                 "output": "/"

@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
-import { FooterBlockComponent } from '@lib/footer';
+import { FooterBlockComponent } from '@lib/blocks/footer';
 
 export interface FooterSection {
   title: string;
@@ -64,7 +64,7 @@ export interface CompanyInfo {
 
           <!-- Description -->
           <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed mx-auto max-w-3xl">
-            Professional footer component with comprehensive layouts, navigation links, social media integration, 
+            Professional footer component with comprehensive layouts, navigation links, social media integration,
             and newsletter subscription functionality.
           </p>
 

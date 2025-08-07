@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
+  <channel>
+    <title>Angular SuperUI - Component Library Updates</title>
+    <description>Latest updates, new components, and announcements from Angular SuperUI - the ultimate headless UI component library for Angular</description>
+    <link>https://angular-superui.vercel.app</link>
+    <atom:link href="https://angular-superui.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en-US</language>
+    <managingEditor>contact@angular-superui.com (Angular SuperUI Team)</managingEditor>
+    <webMaster>contact@angular-superui.com (Angular SuperUI Team)</webMaster>
+    <copyright>Copyright 2025 Angular SuperUI Team</copyright>
+    <lastBuildDate>Wed, 07 Aug 2025 00:00:00 GMT</lastBuildDate>
+    <pubDate>Wed, 07 Aug 2025 00:00:00 GMT</pubDate>
+    <ttl>1440</ttl>
+    <sy:updatePeriod>daily</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    <image>
+      <url>https://angular-superui.vercel.app/assets/logo.png</url>
+      <title>Angular SuperUI</title>
+      <link>https://angular-superui.vercel.app</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    
+    <item>
+      <title>Angular SuperUI 2.0.0 - Major Release with 39+ Components</title>
+      <description><![CDATA[
+        <p>We're excited to announce Angular SuperUI 2.0.0, our biggest release yet featuring 39+ production-ready components!</p>
+        
+        <h3>🎉 What's New</h3>
+        <ul>
+          <li><strong>39+ Components:</strong> Complete collection of headless UI components</li>
+          <li><strong>Enhanced CLI:</strong> New 'ngsui' command for easier installation</li>
+          <li><strong>Better TypeScript:</strong> Improved type safety and IntelliSense</li>
+          <li><strong>Accessibility:</strong> WCAG 2.1 AA compliance across all components</li>
+          <li><strong>Performance:</strong> Tree-shakable, zero dependencies</li>
+        </ul>
+        
+        <h3>🚀 New Components</h3>
+        <ul>
+          <li>Rating - Interactive star rating component</li>
+          <li>Spinner - Loading indicators with multiple variants</li>
+          <li>Tabs - Tabbed interface with keyboard navigation</li>
+          <li>Textarea - Multi-line text input with auto-resize</li>
+          <li>Toast - Notification system with positioning</li>
+          <li>Tooltip - Hover and focus-triggered overlays</li>
+        </ul>
+        
+        <p>Install today: <code>npm install -g ngsui</code></p>
+      ]]></description>
+      <link>https://angular-superui.vercel.app/blog/v2-release</link>
+      <guid isPermaLink="true">https://angular-superui.vercel.app/blog/v2-release</guid>
+      <pubDate>Wed, 07 Aug 2025 00:00:00 GMT</pubDate>
+      <dc:creator>Angular SuperUI Team</dc:creator>
+      <category>Release</category>
+      <category>Angular</category>
+      <category>Components</category>
+    </item>
+    
+    <item>
+      <title>New Enhanced Calendar Component with Time Picker</title>
+      <description><![CDATA[
+        <p>Our Calendar component just got a major upgrade! Now featuring integrated time picker, range selection with drag support, and enhanced accessibility.</p>
+        
+        <h3>✨ Features</h3>
+        <ul>
+          <li>Date range selection with intuitive drag support</li>
+          <li>Integrated time picker for complete date-time handling</li>
+          <li>Full accessibility compliance (WCAG 2.1)</li>
+          <li>Beautiful TailwindCSS styling with custom themes</li>
+          <li>Fully responsive design for all screen sizes</li>
+        </ul>
+        
+        <p>Perfect for booking systems, event planning, and scheduling applications.</p>
+      ]]></description>
+      <link>https://angular-superui.vercel.app/components/calendar</link>
+      <guid isPermaLink="true">https://angular-superui.vercel.app/components/calendar</guid>
+      <pubDate>Tue, 06 Aug 2025 00:00:00 GMT</pubDate>
+      <dc:creator>Angular SuperUI Team</dc:creator>
+      <category>Components</category>
+      <category>Calendar</category>
+      <category>Date Picker</category>
+    </item>
+    
+    <item>
+      <title>Enterprise Data Table with Advanced Features</title>
+      <description><![CDATA[
+        <p>Introducing our most powerful component yet - the Enterprise Data Table with sorting, filtering, pagination, and inline editing.</p>
+        
+        <h3>🎯 Enterprise Features</h3>
+        <ul>
+          <li>Advanced sorting and filtering</li>
+          <li>Virtual scrolling for large datasets</li>
+          <li>Inline editing capabilities</li>
+          <li>Column resizing and reordering</li>
+          <li>Export functionality (CSV, PDF, Excel)</li>
+          <li>Server-side pagination support</li>
+        </ul>
+        
+        <p>Built for mission-critical applications with performance in mind.</p>
+      ]]></description>
+      <link>https://angular-superui.vercel.app/components/data-table</link>
+      <guid isPermaLink="true">https://angular-superui.vercel.app/components/data-table</guid>
+      <pubDate>Mon, 05 Aug 2025 00:00:00 GMT</pubDate>
+      <dc:creator>Angular SuperUI Team</dc:creator>
+      <category>Components</category>
+      <category>Data Table</category>
+      <category>Enterprise</category>
+    </item>
+
+    <item>
+      <title>Advanced File Upload with Drag & Drop</title>
+      <description><![CDATA[
+        <p>File uploads made easy with our new File Upload component featuring drag & drop, progress tracking, and multiple file support.</p>
+        
+        <h3>📁 Features</h3>
+        <ul>
+          <li>Drag and drop interface</li>
+          <li>Progress tracking with visual indicators</li>
+          <li>Multiple file selection</li>
+          <li>File type validation</li>
+          <li>Size limit enforcement</li>
+          <li>Preview for images and documents</li>
+        </ul>
+        
+        <p>Integrated with Angular's HttpClient for seamless server communication.</p>
+      ]]></description>
+      <link>https://angular-superui.vercel.app/components/file-upload</link>
+      <guid isPermaLink="true">https://angular-superui.vercel.app/components/file-upload</guid>
+      <pubDate>Sun, 04 Aug 2025 00:00:00 GMT</pubDate>
+      <dc:creator>Angular SuperUI Team</dc:creator>
+      <category>Components</category>
+      <category>File Upload</category>
+      <category>Forms</category>
+    </item>
+  </channel>
+</rss>

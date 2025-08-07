@@ -1,10 +1,10 @@
 import { Component, signal, effect, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent, SelectOption } from '@lib/select';
-import { Button } from '@lib/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@lib/card';
-import { Badge } from '@lib/badge';
+import { SelectComponent, SelectOption } from '@lib/components/select';
+import { Button } from '@lib/components/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@lib/components/card';
+import { Badge } from '@lib/components/badge';
 
 @Component({
   selector: 'app-select-demo',
@@ -24,7 +24,7 @@ import { Badge } from '@lib/badge';
   template: `
     <!-- Hero Section -->
     <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      
+
       <!-- Header -->
       <div class="relative overflow-hidden pt-16 pb-12 sm:pt-20 sm:pb-16">
         <div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-700/25 bg-[size:20px_20px] [mask-image:linear-gradient(0deg,transparent,black)]"></div>
@@ -35,19 +35,19 @@ import { Badge } from '@lib/badge';
               <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
               <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Form Component</span>
             </div>
-            
+
             <!-- Title -->
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               <span class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-100 dark:to-white bg-clip-text text-transparent">
                 Select Component
               </span>
             </h1>
-            
+
             <!-- Description -->
             <p class="max-w-2xl mx-auto text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
               A powerful, accessible, and highly customizable select component with search, grouping, keyboard navigation, and multiple variants for modern Angular applications.
             </p>
-            
+
             <!-- Quick Demo -->
             <div class="max-w-md mx-auto pt-4">
               <SelectComponent
@@ -74,7 +74,7 @@ import { Badge } from '@lib/badge';
               Everything you need for a modern select component experience
             </p>
           </div>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Basic Select -->
             <Card class="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm">
@@ -197,7 +197,7 @@ import { Badge } from '@lib/badge';
                   Rich options with descriptions and custom styling
                 </p>
               </div>
-              
+
               <Card class="border-0 shadow-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                 <CardContent class="p-6">
                   <SelectComponent
@@ -209,7 +209,7 @@ import { Badge } from '@lib/badge';
                     (valueChange)="onPlanChange($event)"
                     class="mb-6"
                   />
-                  
+
                   @if (selectedPlan()) {
                     <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
                       <h4 class="font-semibold text-blue-900 dark:text-blue-100 mb-2">
@@ -234,7 +234,7 @@ import { Badge } from '@lib/badge';
                   Different visual styles for various contexts
                 </p>
               </div>
-              
+
               <Card class="border-0 shadow-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
                 <CardContent class="p-6 space-y-6">
                   <!-- Default Variant -->
@@ -248,7 +248,7 @@ import { Badge } from '@lib/badge';
                       variant="default"
                     />
                   </div>
-                  
+
                   <!-- Success Variant -->
                   <div>
                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -260,7 +260,7 @@ import { Badge } from '@lib/badge';
                       variant="success"
                     />
                   </div>
-                  
+
                   <!-- Destructive Variant -->
                   <div>
                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -306,7 +306,7 @@ import { Badge } from '@lib/badge';
                     size="sm"
                   />
                 </div>
-                
+
                 <div>
                   <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Size
@@ -318,7 +318,7 @@ import { Badge } from '@lib/badge';
                     size="sm"
                   />
                 </div>
-                
+
                 <div class="flex items-center space-x-2 pt-6">
                   <input
                     type="checkbox"
@@ -331,7 +331,7 @@ import { Badge } from '@lib/badge';
                     Searchable
                   </label>
                 </div>
-                
+
                 <div class="flex items-center space-x-2 pt-6">
                   <input
                     type="checkbox"
@@ -456,7 +456,7 @@ import { Badge } from '@lib/badge';
                     Explore our comprehensive documentation with examples, API reference, and best practices.
                   </p>
                 </div>
-                
+
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <a
                     href="https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components/select.md"
@@ -469,7 +469,7 @@ import { Badge } from '@lib/badge';
                     </svg>
                     View Documentation
                   </a>
-                  
+
                   <a
                     href="https://github.com/bhaimicrosoft/angular-superui"
                     target="_blank"
@@ -581,18 +581,18 @@ export default class SelectDemoComponent {
 
   // Computed selected plan for display
   readonly selectedPlan = signal<SelectOption | null>(null);
-  
+
   // Computed display values for badges
   readonly selectedBasicLabel = computed(() => {
     const value = this.basicValue();
     return value ? this.basicOptions().find(o => o.value === value)?.label : null;
   });
-  
+
   readonly selectedSearchableLabel = computed(() => {
     const value = this.searchableValue();
     return value ? this.countryOptions().find(o => o.value === value)?.label : null;
   });
-  
+
   readonly selectedGroupedLabel = computed(() => {
     const value = this.groupedValue();
     return value ? this.groupedOptions().find(o => o.value === value)?.label : null;
@@ -633,11 +633,11 @@ export default class SelectDemoComponent {
     console.log('Playground select changed:', value);
     this.playgroundValue.set(value);
   }
-  
+
   onPlaygroundVariantChange(value: string | null) {
     this.playgroundVariant.set(value as 'default' | 'destructive' | 'success');
   }
-  
+
   onPlaygroundSizeChange(value: string | null) {
     this.playgroundSize.set(value as 'default' | 'sm' | 'lg');
   }

@@ -1,7 +1,7 @@
 import { Component, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastService, ToastContainer, ToastConfig } from '../../../../lib/src/lib/toast';
-import { Button } from '../../../../lib/src/lib/button';
+import { ToastService, ToastContainer, ToastConfig } from '@lib/components/toast';
+import { Button } from '@lib/components/button';
 
 @Component({
   selector: 'app-toast-demo',
@@ -19,7 +19,7 @@ import { Button } from '../../../../lib/src/lib/button';
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <div class="flex items-center justify-center mb-6">
             <svg class="w-16 h-16 text-white mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
             </svg>
             <span class="text-white text-3xl font-bold">Toast Component</span>
@@ -33,7 +33,7 @@ import { Button } from '../../../../lib/src/lib/button';
           </h1>
 
           <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Elegant toast notifications with signal-based architecture, automatic positioning, 
+            Elegant toast notifications with signal-based architecture, automatic positioning,
             progress tracking, and smooth animations. Perfect for user feedback and system alerts.
           </p>
         </div>
@@ -41,12 +41,12 @@ import { Button } from '../../../../lib/src/lib/button';
 
       <!-- Demo Grid -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        
+
         <!-- Basic Toasts -->
         <div class="mb-16">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Basic Toast Types</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
+
             <!-- Success Toast -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
               <div class="flex items-center mb-4">
@@ -137,7 +137,7 @@ import { Button } from '../../../../lib/src/lib/button';
         <div class="mb-16">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Toast Positions</h2>
           <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            
+
             <Button
               (click)="showToastAtPosition('top-left')"
               variant="outline"
@@ -145,7 +145,7 @@ import { Button } from '../../../../lib/src/lib/button';
             >
               📍 Top Left
             </Button>
-            
+
             <Button
               (click)="showToastAtPosition('top-center')"
               variant="outline"
@@ -153,7 +153,7 @@ import { Button } from '../../../../lib/src/lib/button';
             >
               📍 Top Center
             </Button>
-            
+
             <Button
               (click)="showToastAtPosition('top-right')"
               variant="outline"
@@ -161,7 +161,7 @@ import { Button } from '../../../../lib/src/lib/button';
             >
               📍 Top Right
             </Button>
-            
+
             <Button
               (click)="showToastAtPosition('bottom-left')"
               variant="outline"
@@ -169,7 +169,7 @@ import { Button } from '../../../../lib/src/lib/button';
             >
               📍 Bottom Left
             </Button>
-            
+
             <Button
               (click)="showToastAtPosition('bottom-center')"
               variant="outline"
@@ -177,7 +177,7 @@ import { Button } from '../../../../lib/src/lib/button';
             >
               📍 Bottom Center
             </Button>
-            
+
             <Button
               (click)="showToastAtPosition('bottom-right')"
               variant="outline"
@@ -192,7 +192,7 @@ import { Button } from '../../../../lib/src/lib/button';
         <div class="mb-16">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Advanced Features</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+
             <!-- Persistent Toast -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl">
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Persistent Toast</h3>
@@ -297,7 +297,7 @@ import { Button } from '../../../../lib/src/lib/button';
             >
               🗑️ Dismiss All Toasts
             </Button>
-            
+
             <Button
               (click)="showRandomToast()"
               variant="default"
@@ -358,7 +358,7 @@ import { Button } from '../../../../lib/src/lib/button';
 })
 export class ToastDemoComponent {
   private toastService = inject(ToastService);
-  
+
   // Statistics
   readonly toastCounter = signal(0);
   readonly activeToasts = signal(0);
@@ -492,7 +492,7 @@ export class ToastDemoComponent {
 
   showMultiple(): void {
     const variants: Array<'success' | 'error' | 'warning' | 'info'> = ['success', 'error', 'warning', 'info'];
-    
+
     variants.forEach((variant, index) => {
       setTimeout(() => {
         const message = this.getRandomMessage(variant);
@@ -510,11 +510,11 @@ export class ToastDemoComponent {
   showRandomToast(): void {
     const variants = ['success', 'error', 'warning', 'info'] as const;
     const positions = ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'] as const;
-    
+
     const randomVariant = variants[Math.floor(Math.random() * variants.length)];
     const randomPosition = positions[Math.floor(Math.random() * positions.length)];
     const message = this.getRandomMessage(randomVariant);
-    
+
     this.toastService.show({
       title: message.title,
       description: message.description,

@@ -19,10 +19,10 @@ A powerful, fully-featured textarea component built with Angular signals for opt
 
 ## Installation
 
-### Using ngsui-cli (Recommended)
+### Using ngsui (Recommended)
 
 ```bash
-npx ngsui-cli add textarea
+npx ngsui add textarea
 ```
 
 ### Manual Installation
@@ -33,20 +33,20 @@ npm install angular-superui
 
 ## CLI Usage
 
-The `ngsui-cli` provides convenient commands for working with components:
+The `ngsui` provides convenient commands for working with components:
 
 ```bash
 # Add textarea component to your project
-npx ngsui-cli add textarea
+npx ngsui add textarea
 
 # List all available components
-npx ngsui-cli list
+npx ngsui list
 
 # Initialize SuperUI in a new project
-npx ngsui-cli init
+npx ngsui init
 
 # Get help for any command
-npx ngsui-cli --help
+npx ngsui --help
 ```
 
 ## Basic Usage

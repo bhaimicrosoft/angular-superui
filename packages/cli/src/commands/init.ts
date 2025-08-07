@@ -106,7 +106,7 @@ export async function initCommand() {
   console.log(chalk.hex('#8B5CF6')('╔══════════════════════════════════════════════════════════════════════╗'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899').bold('                    🎨 Angular SuperUI CLI v' + version + '                     ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('                                                                      ') + chalk.hex('#8B5CF6')('║'));
-  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('        ✨ 31 Beautiful Components • TypeScript • Local-First ✨       ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('      ✨ 39 Components + 5 Blocks • TypeScript • Local-First ✨       ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#F59E0B')('              🚀 TailwindCSS v4 • Angular 18+ • Zero NPM 🚀              ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('                                                                      ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899')('                ⚡ Enterprise-Grade • Production-Ready ⚡                ') + chalk.hex('#8B5CF6')('║'));
@@ -117,7 +117,7 @@ export async function initCommand() {
   console.log(chalk.hex('#10B981')('│  ') + chalk.hex('#F59E0B')('⚙️  Installing TailwindCSS v4, class-variance-authority, and clsx') + chalk.hex('#10B981')(' │'));
   console.log(chalk.hex('#10B981')('│  ') + chalk.hex('#8B5CF6')('🔧 Configuring Tailwind, CSS variables, and TypeScript paths') + chalk.hex('#10B981')('     │'));
   console.log(chalk.hex('#10B981')('│  ') + chalk.hex('#06B6D4')('📁 Setting up project structure for component installation') + chalk.hex('#10B981')('       │'));
-  console.log(chalk.hex('#10B981')('└─ ') + chalk.hex('#EC4899')('✨ Ready to add beautiful components with ') + chalk.yellow('ngsui-cli add [component]') + chalk.hex('#10B981')(' ─┘'));
+  console.log(chalk.hex('#10B981')('└─ ') + chalk.hex('#EC4899')('✨ Ready to add components with ') + chalk.yellow('ngsui add [component]') + chalk.hex('#EC4899')(' and blocks with ') + chalk.yellow('ngsui add block [block]') + chalk.hex('#10B981')(' ─┘'));
   console.log('');
 
   const spinner = ora(chalk.cyan('🚀 Initializing Angular SuperUI...')).start();
@@ -230,6 +230,17 @@ export function cn(...inputs: ClassValue[]) {
     // Create components directory
     const componentsDirectory = './src/lib/components';
     await fs.ensureDir(componentsDirectory);
+
+    // Create blocks directory
+    const blocksDirectory = './src/lib/blocks';
+    await fs.ensureDir(blocksDirectory);
+
+    // Create pipes directory and install pipes
+    const pipesDirectory = './src/lib/pipes';
+    await fs.ensureDir(pipesDirectory);
+    
+    // Install pipes from the library
+    await installPipes(pipesDirectory);
 
     // Read package.json to update dependencies
     const packageJson = await fs.readJson('./package.json');
@@ -1285,7 +1296,7 @@ export function cn(...inputs: ClassValue[]) {
 
         if (!replaceStyles) {
           console.log(chalk.yellow('⚠️  Initialization cancelled. Your styles.css was not modified.'));
-          console.log(chalk.gray('💡 To complete setup later, backup your styles and run: ngsui-cli init'));
+          console.log(chalk.gray('💡 To complete setup later, backup your styles and run: ngsui init'));
           return;
         }
 
@@ -1308,9 +1319,15 @@ export function cn(...inputs: ClassValue[]) {
 
     console.log('');
     console.log(chalk.hex('#FF6B6B')('┌─ ') + chalk.bold.hex('#4ECDC4')('🚀 NEXT STEPS') + chalk.hex('#FF6B6B')(' ─┐'));
-    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('1. Add your first component: ') + chalk.bold.hex('#A8E6CF')('ngsui-cli add badge') + chalk.hex('#FF6B6B')('   │'));
-    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('2. Add multiple components: ') + chalk.bold.hex('#A8E6CF')('ngsui-cli add accordion alert') + chalk.hex('#FF6B6B')(' │'));
-    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('3. Browse all components:  ') + chalk.bold.hex('#A8E6CF')('ngsui-cli list') + chalk.hex('#FF6B6B')('             │'));
+    console.log(chalk.hex('#FF6B6B')('│                                                                    │'));
+    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('📦 Components:') + chalk.hex('#FF6B6B')('                                               │'));
+    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('1. Add your first component: ') + chalk.bold.hex('#A8E6CF')('ngsui add badge') + chalk.hex('#FF6B6B')('        │'));
+    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('2. Add multiple components: ') + chalk.bold.hex('#A8E6CF')('ngsui add accordion alert') + chalk.hex('#FF6B6B')('  │'));
+    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('3. Browse all components:  ') + chalk.bold.hex('#A8E6CF')('ngsui list') + chalk.hex('#FF6B6B')('                  │'));
+    console.log(chalk.hex('#FF6B6B')('│                                                                    │'));
+    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('🎨 UI Blocks:') + chalk.hex('#FF6B6B')('                                                  │'));
+    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('1. Add hero section:        ') + chalk.bold.hex('#A8E6CF')('ngsui add block hero-section') + chalk.hex('#FF6B6B')(' │'));
+    console.log(chalk.hex('#FF6B6B')('│  ') + chalk.hex('#FFE66D')('2. Add pricing cards:       ') + chalk.bold.hex('#A8E6CF')('ngsui add block pricing-cards') + chalk.hex('#FF6B6B')('│'));
     console.log(chalk.hex('#FF6B6B')('└─ ') + chalk.hex('#C7CEEA')('Start building amazing UIs today!') + chalk.hex('#FF6B6B')(' ─┘'));
 
     console.log('');
@@ -1331,5 +1348,26 @@ export function cn(...inputs: ClassValue[]) {
   } catch (error) {
     spinner.fail('Failed to initialize Angular SuperUI');
     console.error(chalk.red(error));
+  }
+}
+
+async function installPipes(pipesDirectory: string) {
+  try {
+    const pipesToInstall = ['icon.pipe.ts', 'safe-html.pipe.ts', 'index.ts'];
+    const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib/pipes';
+    const axios = require('axios');
+    
+    for (const pipe of pipesToInstall) {
+      try {
+        const response = await axios.get(`${baseUrl}/${pipe}`);
+        let fileContent = response.data as string;
+        
+        await fs.writeFile(path.join(pipesDirectory, pipe), fileContent);
+      } catch (error) {
+        console.warn(chalk.yellow(`Warning: Could not download ${pipe}`));
+      }
+    }
+  } catch (error) {
+    console.warn(chalk.yellow('Warning: Could not install pipes'));
   }
 }

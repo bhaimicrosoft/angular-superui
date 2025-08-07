@@ -2,7 +2,7 @@ import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Rating, type RatingChangeEvent } from '@lib/rating';
+import { Rating, type RatingChangeEvent } from '@lib/components/rating';
 import { SEOService } from '../services/seo.service';
 
 @Component({

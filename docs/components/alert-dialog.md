@@ -7,13 +7,13 @@ A modal dialog that interrupts the user with important content and expects a res
 The AlertDialog component is available as part of Angular SuperUI. If you haven't initialized Angular SuperUI in your project yet, run:
 
 ```bash
-ngsui-cli init
+ngsui init
 ```
 
 Then add the AlertDialog component to your project:
 
 ```bash
-ngsui-cli add alert-dialog
+ngsui add alert-dialog
 ```
 
 ## Usage

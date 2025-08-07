@@ -2,7 +2,7 @@ import { Component, signal, computed, ChangeDetectionStrategy, inject, OnInit } 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
-import { PricingCardsBlockComponent, PricingPlan } from '@lib/pricing-cards';
+import { PricingCardsBlockComponent, PricingPlan } from '@lib/blocks/pricing-cards';
 
 @Component({
   selector: 'app-pricing-cards-demo',
@@ -33,7 +33,7 @@ import { PricingCardsBlockComponent, PricingPlan } from '@lib/pricing-cards';
 
           <!-- Description -->
           <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed mx-auto max-w-3xl">
-            Professional pricing tables with feature comparison, billing toggles, and popular badges. 
+            Professional pricing tables with feature comparison, billing toggles, and popular badges.
             Perfect for SaaS applications and subscription services.
           </p>
 
@@ -72,7 +72,7 @@ import { PricingCardsBlockComponent, PricingPlan } from '@lib/pricing-cards';
     <div id="examples" class="py-16 bg-gray-50 dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
-          
+
           <!-- Example 1: Three-Tier Pricing -->
           <div class="mb-20">
             <div class="text-center mb-8">
@@ -139,13 +139,13 @@ import { PricingCardsBlockComponent, PricingPlan } from '@lib/pricing-cards';
         <div class="max-w-4xl mx-auto">
           <div class="text-center">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Implementation Guide</h3>
-            
+
             <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
               Ready to implement? Check out our comprehensive documentation for detailed usage examples and customization options.
             </p>
-            
-            <a 
-              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/pricing-cards.md" 
+
+            <a
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/pricing-cards.md"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"

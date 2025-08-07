@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Toggle, ToggleChangeEvent } from '../../../../lib/src/lib/toggle';
+import { Toggle, ToggleChangeEvent } from '@lib/components/toggle';
 import {JsonPipe} from '@angular/common';
 
 @Component({

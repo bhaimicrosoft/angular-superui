@@ -19,13 +19,13 @@ A comprehensive header component with navigation, search, user menu, and mobile 
 Initialize Angular SuperUI in your project:
 
 ```bash
-npx ngsui-cli init
+npx ngsui init
 ```
 
 Add the Header Block component:
 
 ```bash
-npx ngsui-cli add block header
+npx ngsui add block header
 ```
 
 ## Usage

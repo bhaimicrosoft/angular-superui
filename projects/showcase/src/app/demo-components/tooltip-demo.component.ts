@@ -8,7 +8,7 @@ import {
   type TooltipTrigger,
   type TooltipVariant,
   type TooltipSize
-} from '@lib/tooltip';
+} from '@lib/components/tooltip';
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 

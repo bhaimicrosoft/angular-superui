@@ -1,7 +1,7 @@
 import { Component, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FileUpload, FileUploadFile, FileUploadConfig, FileUploadError } from '@lib/file-upload';
-import { ProgressComponent } from '@lib/progress';
+import { FileUpload, FileUploadFile, FileUploadConfig, FileUploadError } from '@lib/components/file-upload';
+import { ProgressComponent } from '@lib/components/progress';
 
 @Component({
   selector: 'app-file-upload-demo',

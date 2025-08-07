@@ -7,7 +7,7 @@ import {
   DrawerFooter,
   DrawerTitle,
   DrawerDescription
-} from '@lib/drawer';
+} from '@lib/components/drawer';
 import { SEOService } from '../services/seo.service';
 
 @Component({

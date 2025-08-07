@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContextMenu, IContextMenuItem } from '@lib/context-menu';
+import { ContextMenu, IContextMenuItem } from '@lib/components/context-menu';
 import { SEOService } from '../services/seo.service';
 import {
   LucideAngularModule,

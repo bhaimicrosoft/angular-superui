@@ -1,7 +1,7 @@
 import { Component, computed, signal, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataTable, DataTableColumn } from '@lib/data-table';
-import { Button } from '@lib/button';
+import { DataTable, DataTableColumn } from '@lib/components/data-table';
+import { Button } from '@lib/components/button';
 import { SEOService } from '../services/seo.service';
 
 // Data interfaces for different demo scenarios

@@ -16,7 +16,7 @@ A fully accessible and customizable calendar component for date selection with n
 ## Installation
 
 ```bash
-ngsui-cli add calendar
+ngsui add calendar
 ```
 
 ## Basic Usage

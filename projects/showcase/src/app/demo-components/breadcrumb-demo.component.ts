@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Button } from '@lib/button';
-import { Badge } from '@lib/badge';
+import { Button } from '@lib/components/button';
+import { Badge } from '@lib/components/badge';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,7 +11,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis, breadcrumbLinkVariants
-} from '@lib/breadcrumb';
+} from '@lib/components/breadcrumb';
 import {cn} from '@lib/utils/cn';
 
 interface PathSegment {
@@ -225,14 +225,14 @@ export class BreadcrumbDemoComponent {
    */
   getEllipsisBreadcrumbs(): Array<{type: 'item' | 'separator' | 'ellipsis' | 'page', content: any}> {
     const breadcrumbs = [];
-    
+
     // Home page
     breadcrumbs.push({
       type: 'item' as const,
       content: { name: 'Home Page', routerLink: '/' }
     });
     breadcrumbs.push({ type: 'separator' as const, content: null });
-    
+
     if (!this.isEllipsisExpanded()) {
       // Show ellipsis in collapsed state
       breadcrumbs.push({
@@ -250,7 +250,7 @@ export class BreadcrumbDemoComponent {
         });
         breadcrumbs.push({ type: 'separator' as const, content: null });
       });
-      
+
       // Show collapse ellipsis
       breadcrumbs.push({
         type: 'ellipsis' as const,
@@ -258,20 +258,20 @@ export class BreadcrumbDemoComponent {
       });
       breadcrumbs.push({ type: 'separator' as const, content: null });
     }
-    
+
     // Deep folder
     breadcrumbs.push({
       type: 'item' as const,
       content: { name: 'Deep Folder', routerLink: ['/very', 'deep', 'nested', 'folder'] }
     });
     breadcrumbs.push({ type: 'separator' as const, content: null });
-    
+
     // Current page
     breadcrumbs.push({
       type: 'page' as const,
       content: { name: 'Current Page' }
     });
-    
+
     return breadcrumbs;
   }
 

@@ -39,10 +39,10 @@ async function listCommand() {
     }
     console.log(chalk_1.default.bgBlue.white(' 📖 QUICK START GUIDE '));
     console.log('');
-    console.log(chalk_1.default.cyan('Add single component:    ') + chalk_1.default.yellow('ngsui-cli add button'));
-    console.log(chalk_1.default.cyan('Add multiple components: ') + chalk_1.default.yellow('ngsui-cli add button alert badge'));
-    console.log(chalk_1.default.cyan('Add featured calendar:   ') + chalk_1.default.yellow('ngsui-cli add calendar'));
-    console.log(chalk_1.default.cyan('Add all components:      ') + chalk_1.default.yellow('ngsui-cli add --all'));
+    console.log(chalk_1.default.cyan('Add single component:    ') + chalk_1.default.yellow('ngsui add button'));
+    console.log(chalk_1.default.cyan('Add multiple components: ') + chalk_1.default.yellow('ngsui add button alert badge'));
+    console.log(chalk_1.default.cyan('Add featured calendar:   ') + chalk_1.default.yellow('ngsui add calendar'));
+    console.log(chalk_1.default.cyan('Add all components:      ') + chalk_1.default.yellow('ngsui add --all'));
     console.log('');
     console.log(chalk_1.default.bgMagenta.white(' 🌟 FEATURED SPOTLIGHT '));
     console.log('');

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Avatar, AvatarImage, AvatarFallback } from '@lib/avatar';
+import { Avatar, AvatarImage, AvatarFallback } from '@lib/components/avatar';
 import { SEOService } from '../services/seo.service';
 
 @Component({
@@ -724,7 +724,7 @@ import { SEOService } from '../services/seo.service';
                   </div>
                   <span class="ml-4 text-gray-300 dark:text-slate-300 text-sm">Terminal</span>
                 </div>
-                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui-cli add avatar</code></pre>
+                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui add avatar</code></pre>
               </div>
 
               <a

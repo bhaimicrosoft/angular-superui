@@ -2,7 +2,7 @@ import { Component, signal, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title, Meta } from '@angular/platform-browser';
-import { TextareaComponent } from '@lib/textarea';
+import { TextareaComponent } from '@lib/components/textarea';
 
 @Component({
   selector: 'app-textarea-demo',

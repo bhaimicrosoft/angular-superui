@@ -1,6 +1,6 @@
 import {Component, inject, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@lib/collapsible';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@lib/components/collapsible';
 import { SEOService } from '../services/seo.service';
 import {
   LucideAngularModule,

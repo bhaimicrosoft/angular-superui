@@ -372,13 +372,13 @@ import { SEOService } from '../services/seo.service';
             </div>
             <pre class="text-green-400 font-mono text-2xl overflow-x-auto">
 <span class="text-gray-500"># Initialize Angular SuperUI in your project</span>
-ngsui-cli init
+ngsui init
 
 <span class="text-gray-500"># Add specific components</span>
-ngsui-cli add button card dialog
+ngsui add button card dialog
 
 <span class="text-gray-500"># Or add all available components</span>
-ngsui-cli add --all
+ngsui add --all
 
 <span class="text-gray-500"># Import components in your app and start building!</span>
 ng serve
@@ -419,7 +419,7 @@ export class HomeComponent implements OnInit {
   }
 
   stats = {
-    components: 31,
+    components: 39,
     examples: 55
   };
 
@@ -757,6 +757,69 @@ export class HomeComponent implements OnInit {
       icon: 'M9 5l7 7-7 7',
       bgColor: 'bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-pink-900/40',
       iconColor: 'text-purple-600 dark:text-purple-400'
+    },
+    {
+      name: 'File Upload',
+      route: '/components/file-upload',
+      description: 'Drag-and-drop file upload with progress tracking and validation',
+      category: 'Form',
+      icon: 'M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12',
+      bgColor: 'bg-gradient-to-br from-teal-100 to-green-100 dark:from-teal-900/40 dark:to-green-900/40',
+      iconColor: 'text-teal-600 dark:text-teal-400'
+    },
+    {
+      name: 'Tabs',
+      route: '/components/tabs',
+      description: 'Tabbed content with keyboard navigation and smooth animations',
+      category: 'Navigation',
+      icon: 'M8 4v16M16 4v16M4 8h16m-16 8h16',
+      bgColor: 'bg-gradient-to-br from-violet-100 to-purple-100 dark:from-violet-900/40 dark:to-purple-900/40',
+      iconColor: 'text-violet-600 dark:text-violet-400'
+    },
+    {
+      name: 'Textarea',
+      route: '/components/textarea',
+      description: 'Multi-line text input with auto-resize and character counting',
+      category: 'Form',
+      icon: 'M4 6h16M4 10h16M4 14h16M4 18h16',
+      bgColor: 'bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40',
+      iconColor: 'text-blue-600 dark:text-blue-400'
+    },
+    {
+      name: 'Theme Switcher',
+      route: '/components/theme-switcher',
+      description: 'Dark/light theme toggle with system preference detection',
+      category: 'Utility',
+      icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z',
+      bgColor: 'bg-gradient-to-br from-gray-100 to-slate-100 dark:from-gray-900/40 dark:to-slate-900/40',
+      iconColor: 'text-gray-600 dark:text-gray-400'
+    },
+    {
+      name: 'Toast',
+      route: '/components/toast',
+      description: 'Notification messages with positioning and auto-dismiss',
+      category: 'Feedback',
+      icon: 'M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z',
+      bgColor: 'bg-gradient-to-br from-emerald-100 to-green-100 dark:from-emerald-900/40 dark:to-green-900/40',
+      iconColor: 'text-emerald-600 dark:text-emerald-400'
+    },
+    {
+      name: 'Toggle',
+      route: '/components/toggle',
+      description: 'Switch controls with smooth animations and accessibility',
+      category: 'Form',
+      icon: 'M17 8l4 4-4 4m-6-4h9',
+      bgColor: 'bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/40 dark:to-blue-900/40',
+      iconColor: 'text-cyan-600 dark:text-cyan-400'
+    },
+    {
+      name: 'Tooltip',
+      route: '/components/tooltip',
+      description: 'Contextual help text with smart positioning and accessibility',
+      category: 'Overlay',
+      icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+      bgColor: 'bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/40 dark:to-orange-900/40',
+      iconColor: 'text-yellow-600 dark:text-yellow-400'
     },
   ];
 

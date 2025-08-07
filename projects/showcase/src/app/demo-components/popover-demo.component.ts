@@ -1,7 +1,7 @@
 import { Component, signal, computed, ChangeDetectionStrategy, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Popover } from '../../../../lib/src/lib/popover';
+import { Popover } from '@lib/components/popover';
 
 interface Example {
   title: string;

@@ -1,7 +1,7 @@
 import {Component, DOCUMENT, Inject, OnInit, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Pagination} from '@lib/pagination';
-import {Badge} from '@lib/badge';
+import {Pagination} from '@lib/components/pagination';
+import {Badge} from '@lib/components/badge';
 import {LucideAngularModule,} from 'lucide-angular';
 
 interface DataItem {
@@ -418,7 +418,7 @@ interface DataItem {
             <div
               class="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-950/30 dark:via-indigo-950/30 dark:to-purple-950/30 backdrop-blur-xl rounded-xl lg:rounded-2xl xl:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-blue-200/50 dark:border-blue-800/50 text-center">
               <div class="space-y-4 sm:space-y-6">
-                
+
                 <!-- Icon and Header -->
                 <div class="flex flex-col items-center gap-4">
                   <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
@@ -426,13 +426,13 @@ interface DataItem {
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                     </svg>
                   </div>
-                  
+
                   <div>
                     <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 dark:text-slate-200 mb-2">
                       Complete Documentation
                     </h2>
                     <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                      Explore the comprehensive documentation with detailed API reference, advanced usage examples, 
+                      Explore the comprehensive documentation with detailed API reference, advanced usage examples,
                       accessibility guidelines, and best practices for implementing the Pagination component.
                     </p>
                   </div>

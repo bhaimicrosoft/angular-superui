@@ -10,8 +10,8 @@ import {
   SidebarNavGroup,
   SidebarNavItem,
   SidebarTrigger
-} from '@lib/sidebar';
-import {Alert, AlertDescription, AlertIcon, AlertTitle} from '@lib/alert';
+} from '@lib/components/sidebar';
+import {Alert, AlertDescription, AlertIcon, AlertTitle} from '@lib/components/alert';
 import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
 
 @Component({

@@ -6,7 +6,7 @@ import {
   InputOTPSlot,
   InputOTPGroup,
   InputOTPSeparator
-} from '@lib/input-otp';
+} from '@lib/components/input-otp';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -362,7 +362,7 @@ import { FormsModule } from '@angular/forms';
                       Value: <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded text-xs">{{ copyPasteOnValue }}</code>
                     </div>
                   }
-                  
+
                   <!-- Copy-Paste Instructions -->
                   <div class="mt-3 sm:mt-4 p-2 sm:p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-xs sm:text-sm">
                     <div class="font-medium text-blue-800 dark:text-blue-200 mb-1 sm:mb-2">Try these actions:</div>
@@ -409,7 +409,7 @@ import { FormsModule } from '@angular/forms';
                       Value: <code class="bg-gray-100 dark:bg-gray-700 px-1 rounded text-xs">{{ copyPasteOffValue }}</code>
                     </div>
                   }
-                  
+
                   <!-- Security Note -->
                   <div class="mt-3 sm:mt-4 p-2 sm:p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg text-xs sm:text-sm">
                     <div class="font-medium text-amber-800 dark:text-amber-200 mb-1 sm:mb-2">Security Mode:</div>
@@ -426,7 +426,7 @@ import { FormsModule } from '@angular/forms';
               <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">Quick Test Section</h3>
               <div class="bg-gradient-to-br from-white/90 to-gray-50/90 dark:from-gray-800/90 dark:to-gray-900/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-200/50 dark:border-gray-700/50">
                 <h4 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">Test Copy-Paste Here</h4>
-                
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                   <!-- Quick Test OTP -->
                   <div class="space-y-3 sm:space-y-4">
@@ -560,7 +560,7 @@ export class InputOTPDemoComponent {
 
   // Basic examples
   basicOtpValue = '';
-  
+
   // Simple examples
   pin4Value = '';
   code8Value = '';

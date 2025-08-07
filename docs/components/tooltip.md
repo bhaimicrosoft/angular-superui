@@ -28,7 +28,7 @@ The Tooltip component provides a sophisticated overlay system built on Angular C
 The Tooltip component is part of the Angular SuperUI library. Install it using the CLI:
 
 ```bash
-npx ngsui-cli add tooltip
+npx ngsui add tooltip
 ```
 
 ### Dependencies
@@ -105,7 +105,7 @@ No global container needed! The tooltip system uses Angular CDK overlays for aut
 </button>
 ```
 
-## �️ Architecture & CDK Integration
+## 🏗️ Architecture & CDK Integration
 
 ### Angular CDK Overlay System
 
@@ -156,7 +156,7 @@ Unlike traditional tooltip implementations, this CDK-based system:
 - Change detection: OnPush strategy supported
 ```
 
-## �🎛️ Advanced Configuration
+## 🎛️ Advanced Configuration
 
 ### Position Options
 

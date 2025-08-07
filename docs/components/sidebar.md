@@ -145,7 +145,7 @@ export class ExampleComponent {}
 
 1. **Install the package** (if using npm package):
 ```bash
-npx ngsui-cli add sidebar
+npx ngsui add sidebar
 ```
 
 2. **Import the components** in your module or standalone component:

@@ -1,7 +1,7 @@
 import { Component, signal, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ThemeSwitcher } from '../../../../lib/src/lib/theme-switcher';
+import { ThemeSwitcher } from '@lib/components/theme-switcher';
 import { NavigationService } from '../services/navigation.service';
 
 @Component({
@@ -13,13 +13,13 @@ import { NavigationService } from '../services/navigation.service';
 })
 export class NavigationComponent {
   private navigationService = inject(NavigationService);
-  
+
   isMobileMenuOpen = signal(false);
   isMegaMenuOpen = signal(false);
-  
+
   // Track which mobile menu categories are expanded (start with all collapsed for better UX)
   expandedCategories = signal<Set<string>>(new Set());
-  
+
   // Expose Object to template
   Object = Object;
 

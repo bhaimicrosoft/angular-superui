@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AspectRatio, type AspectRatioPredefined } from '@lib/aspect-ratio';
+import { AspectRatio, type AspectRatioPredefined } from '@lib/components/aspect-ratio';
 import { SEOService } from '../services/seo.service';
 import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, SmartphoneIcon, SparklesIcon, CodeIcon, PaletteIcon } from 'lucide-angular';
 
@@ -11,7 +11,7 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
   template: `
     <!-- Masterpiece Gallery: AspectRatio Component -->
     <div class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-amber-950/10 dark:to-red-950/10 relative overflow-hidden">
-      
+
       <!-- Floating Art Elements -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-20 left-10 w-32 h-32 opacity-10">
@@ -26,7 +26,7 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
       </div>
 
       <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
-        
+
         <!-- Museum Header -->
         <div class="text-center mb-20">
           <div class="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-amber-100/80 to-orange-100/80 dark:from-amber-900/40 dark:to-orange-900/40 border-2 border-amber-200/60 dark:border-amber-700/60 text-amber-800 dark:text-amber-200 text-sm font-medium mb-8 backdrop-blur-sm shadow-lg">
@@ -59,19 +59,19 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
               <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Masterful Ratios</div>
               <div class="w-8 h-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full mt-3 group-hover:w-12 transition-all duration-300"></div>
             </div>
-            
+
             <div class="group bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-orange-200/60 dark:border-orange-700/60 hover:scale-105 hover:shadow-xl transition-all duration-500 cursor-pointer">
               <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2">∞</div>
               <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Custom Proportions</div>
               <div class="w-8 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mt-3 group-hover:w-12 transition-all duration-300"></div>
             </div>
-            
+
             <div class="group bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-red-200/60 dark:border-red-700/60 hover:scale-105 hover:shadow-xl transition-all duration-500 cursor-pointer">
               <div class="text-4xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent mb-2">φ</div>
               <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Golden Ratio</div>
               <div class="w-8 h-1 bg-gradient-to-r from-red-500 to-pink-500 rounded-full mt-3 group-hover:w-12 transition-all duration-300"></div>
             </div>
-            
+
             <div class="group bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-pink-200/60 dark:border-pink-700/60 hover:scale-105 hover:shadow-xl transition-all duration-500 cursor-pointer">
               <div class="text-4xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-2">0kb</div>
               <div class="text-sm text-gray-600 dark:text-gray-400 font-medium">Runtime CSS</div>
@@ -93,7 +93,7 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
 
           <!-- Master Gallery Grid -->
           <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12">
-            
+
             <!-- Video Masterpiece -->
             <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-3xl p-8 border-2 border-indigo-200/60 dark:border-indigo-700/60 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-[1.02] hover:-translate-y-1">
               <div class="flex items-center mb-6">
@@ -107,9 +107,9 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
               </div>
 
               <AspectRatio [ratio]="'video'" [customClasses]="'rounded-2xl overflow-hidden shadow-xl border-4 border-indigo-200/80 dark:border-indigo-700/80 group-hover:border-indigo-300 dark:group-hover:border-indigo-600 transition-all duration-500'">
-                <img 
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop&crop=center" 
-                  alt="Cinematic landscape in perfect 16:9 ratio" 
+                <img
+                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=450&fit=crop&crop=center"
+                  alt="Cinematic landscape in perfect 16:9 ratio"
                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
@@ -143,9 +143,9 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
               </div>
 
               <AspectRatio [ratio]="'square'" [customClasses]="'rounded-2xl overflow-hidden shadow-xl border-4 border-emerald-200/80 dark:border-emerald-700/80 group-hover:border-emerald-300 dark:group-hover:border-emerald-600 transition-all duration-500'">
-                <img 
-                  src="https://images.unsplash.com/photo-1494790108755-2616c0763c65?w=500&h=500&fit=crop&crop=face" 
-                  alt="Perfect square portrait" 
+                <img
+                  src="https://images.unsplash.com/photo-1494790108755-2616c0763c65?w=500&h=500&fit=crop&crop=face"
+                  alt="Perfect square portrait"
                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -179,9 +179,9 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
               </div>
 
               <AspectRatio [customRatio]="'1.618'" [customClasses]="'rounded-2xl overflow-hidden shadow-xl border-4 border-amber-200/80 dark:border-amber-700/80 group-hover:border-amber-300 dark:group-hover:border-amber-600 transition-all duration-500'">
-                <img 
-                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&h=433&fit=crop&crop=center" 
-                  alt="Nature following the golden ratio" 
+                <img
+                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&h=433&fit=crop&crop=center"
+                  alt="Nature following the golden ratio"
                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/30 via-transparent to-yellow-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -218,9 +218,9 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
               </div>
 
               <AspectRatio [ratio]="'photo'" [customClasses]="'rounded-2xl overflow-hidden shadow-xl border-4 border-blue-200/80 dark:border-blue-700/80 group-hover:border-blue-300 dark:group-hover:border-blue-600 transition-all duration-500'">
-                <img 
-                  src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=450&fit=crop&crop=center" 
-                  alt="Classic 4:3 photography composition" 
+                <img
+                  src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=450&fit=crop&crop=center"
+                  alt="Classic 4:3 photography composition"
                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div class="absolute inset-0 bg-gradient-to-bl from-blue-500/20 via-transparent to-indigo-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
@@ -254,9 +254,9 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
               </div>
 
               <AspectRatio [ratio]="'wide'" [customClasses]="'rounded-2xl overflow-hidden shadow-xl border-4 border-purple-200/80 dark:border-purple-700/80 group-hover:border-purple-300 dark:group-hover:border-purple-600 transition-all duration-500'">
-                <img 
-                  src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=900&h=386&fit=crop&crop=center" 
-                  alt="Ultra-wide cinematic landscape" 
+                <img
+                  src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=900&h=386&fit=crop&crop=center"
+                  alt="Ultra-wide cinematic landscape"
                   class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div class="absolute inset-0 bg-gradient-to-r from-purple-500/30 via-transparent to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -291,9 +291,9 @@ import { LucideAngularModule, PlayIcon, SquareIcon, CameraIcon, MonitorIcon, Sma
 
               <div class="max-w-sm mx-auto">
                 <AspectRatio [ratio]="'stories'" [customClasses]="'rounded-2xl overflow-hidden shadow-xl border-4 border-rose-200/80 dark:border-rose-700/80 group-hover:border-rose-300 dark:group-hover:border-rose-600 transition-all duration-500'">
-                  <img 
-                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=450&h=800&fit=crop&crop=center" 
-                    alt="Vertical mobile story format" 
+                  <img
+                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=450&h=800&fit=crop&crop=center"
+                    alt="Vertical mobile story format"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-rose-500/40 via-transparent to-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">

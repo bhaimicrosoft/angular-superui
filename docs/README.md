@@ -4,7 +4,7 @@
 
 ### 🌟 **[🚀 LIVE INTERACTIVE DEMO!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Experience All 31 Components Live • Dark Mode • Mobile Responsive ✨**
+**✨ Experience All 39 Components Live • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Interactive Components](https://img.shields.io/badge/🎮-Interactive%20Components-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -76,7 +76,7 @@ Responsive components that look perfect on any device, from mobile to desktop.
 ### One-Command Installation
 ```bash
 # 🎯 Automatic setup (Recommended)
-ngsui-cli init
+ngsui init
 
 # 📦 Or install manually
 npm install angular-superui
@@ -587,7 +587,7 @@ export class GalleryComponent {
 ### 🚀 **Automatic Setup (Recommended)**
 
 ```bash
-ngsui-cli init
+ngsui init
 ```
 
 This command will:
@@ -623,22 +623,22 @@ Our powerful CLI makes component management effortless:
 
 ```bash
 # 📋 List all available components
-ngsui-cli list
+ngsui list
 
 # ⬇️ Add a single component
-ngsui-cli add button
+ngsui add button
 
 # ⬇️ Add multiple components
-ngsui-cli add button card alert
+ngsui add button card alert
 
 # 🎠 Add the new carousel component
-ngsui-cli add carousel
+ngsui add carousel
 
 # ⬇️ Add all components at once
-ngsui-cli add --all
+ngsui add --all
 
 # 📅 Add the premium calendar
-ngsui-cli add calendar
+ngsui add calendar
 ```
 
 ---

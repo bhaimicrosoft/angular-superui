@@ -7,7 +7,7 @@ A highly customizable, accessible tabs component with smooth animations and mult
 ## Quick Start
 
 ```bash
-ngsui-cli add tabs
+ngsui add tabs
 ```
 
 ```typescript

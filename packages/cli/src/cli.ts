@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import { initCommand } from './commands/init';
-import { addCommand } from './commands/add';
+import { addCommand, addBlockCommand } from './commands/add';
 import { listCommand } from './commands/list';
 import chalk from 'chalk';
 
@@ -13,7 +13,7 @@ const CLI_VERSION = packageJson.version;
 const program = new Command();
 
 program
-  .name('ngsui-cli')
+  .name('ngsui')
   .description('🎨 Angular SuperUI CLI - Local-First Component Library')
   .version(CLI_VERSION);
 
@@ -33,28 +33,50 @@ program
   .action(initCommand);
 
 program
-  .command('add [components...]')
-  .description('Add one or more components to your project')
+  .command('add [items...]')
+  .description('Add components or blocks to your project')
   .option('-f, --force', 'Overwrite existing files without prompting')
   .option('--all', 'Install all available components')
-  .action((components, options) => {
+  .option('--all-blocks', 'Install all available blocks')
+  .action((items, options) => {
     if (options.all) {
       addCommand([], { ...options, all: true });
-    } else if (components && components.length > 0) {
-      addCommand(components, options);
+    } else if (options.allBlocks) {
+      addBlockCommand([], { ...options, all: true });
+    } else if (items && items.length > 0) {
+      // Check if first item is 'block'
+      if (items[0] === 'block') {
+        const blockNames = items.slice(1);
+        if (blockNames.length > 0) {
+          addBlockCommand(blockNames, options);
+        } else {
+          console.log(chalk.red('❌ Please specify block name(s)'));
+          console.log(chalk.cyan('Examples:'));
+          console.log(chalk.white('  ngsui add block hero-section'));
+          console.log(chalk.white('  ngsui add block header footer pricing-cards'));
+          console.log(chalk.white('  ngsui add --all-blocks'));
+          console.log(chalk.gray('\nAvailable blocks: header, footer, hero-section, pricing-cards, feature-grid'));
+        }
+      } else {
+        // Regular component installation
+        addCommand(items, options);
+      }
     } else {
-      console.log(chalk.red('❌ Please specify component name(s) or use --all flag'));
+      console.log(chalk.red('❌ Please specify component/block name(s) or use --all flag'));
       console.log(chalk.cyan('Examples:'));
-      console.log(chalk.white('  angular-superui add button'));
-      console.log(chalk.white('  angular-superui add button alert card'));
-      console.log(chalk.white('  angular-superui add --all'));
-      console.log(chalk.gray('\nUse "angular-superui list" to see available components'));
+      console.log(chalk.white('  ngsui add button'));
+      console.log(chalk.white('  ngsui add button alert card'));
+      console.log(chalk.white('  ngsui add --all'));
+      console.log(chalk.white('  ngsui add block hero-section'));
+      console.log(chalk.white('  ngsui add block header footer'));
+      console.log(chalk.white('  ngsui add --all-blocks'));
+      console.log(chalk.gray('\nUse "ngsui list" to see available components and blocks'));
     }
   });
 
 program
   .command('list')
-  .description('List all available components')
+  .description('List all available components and blocks')
   .action(listCommand);
 
 program.parse();

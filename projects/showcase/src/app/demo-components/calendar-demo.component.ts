@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Calendar, type DateRange, type TimeSelection } from '@lib/calendar';
-import { Button } from '@lib/button';
+import { Calendar, type DateRange, type TimeSelection } from '@lib/components/calendar';
+import { Button } from '@lib/components/button';
 
 @Component({
   selector: 'app-calendar-demo',
@@ -12,20 +12,20 @@ import { Button } from '@lib/button';
     .calendar-hero {
       transform: scale(0.9);
     }
-    
+
     :host ::ng-deep .calendar {
       transition: all 0.3s ease;
     }
-    
+
     :host ::ng-deep .calendar:hover {
       transform: translateY(-2px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
-    
+
     :host ::ng-deep .calendar-day[data-selected="true"] {
       animation: pulse 0.3s ease-in-out;
     }
-    
+
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -159,7 +159,7 @@ export class CalendarDemoComponent {
     const date = this.dateTimeSelectedDate();
     const time = this.selectedTime24h();
     if (!date) return 'No date selected';
-    
+
     const timeString = this.formatTime(time.hours, time.minutes);
     return `${this.formatDate(date)} at ${timeString}`;
   }
@@ -168,7 +168,7 @@ export class CalendarDemoComponent {
     const date = this.dateTimeSelectedDate();
     const time = this.selectedTime12h();
     if (!date) return 'No date selected';
-    
+
     const timeString = this.formatTime(time.hours, time.minutes, '12h');
     return `${this.formatDate(date)} at ${timeString}`;
   }

@@ -20,13 +20,13 @@ A beautiful, responsive, and highly accessible pagination component built with A
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui-cli init
+ngsui init
 ```
 
 Add the Pagination component:
 
 ```bash
-ngsui-cli add pagination
+ngsui add pagination
 ```
 
 ## Basic Usage

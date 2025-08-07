@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Angular SuperUI - Component Library Updates</title>
+  <subtitle>Latest updates, new components, and announcements from Angular SuperUI</subtitle>
+  <link href="https://angular-superui.vercel.app/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://angular-superui.vercel.app" rel="alternate" type="text/html"/>
+  <id>https://angular-superui.vercel.app</id>
+  <updated>2025-08-07T00:00:00Z</updated>
+  <author>
+    <name>Angular SuperUI Team</name>
+    <email>contact@angular-superui.com</email>
+    <uri>https://angular-superui.vercel.app</uri>
+  </author>
+  <generator uri="https://angular-superui.vercel.app" version="2.0.0">Angular SuperUI</generator>
+  <icon>https://angular-superui.vercel.app/favicon.ico</icon>
+  <logo>https://angular-superui.vercel.app/assets/logo.png</logo>
+  <rights>Copyright 2025 Angular SuperUI Team</rights>
+  
+  <entry>
+    <title>Angular SuperUI 2.0.0 - Major Release with 39+ Components</title>
+    <id>https://angular-superui.vercel.app/blog/v2-release</id>
+    <link href="https://angular-superui.vercel.app/blog/v2-release" rel="alternate" type="text/html"/>
+    <updated>2025-08-07T00:00:00Z</updated>
+    <published>2025-08-07T00:00:00Z</published>
+    <author>
+      <name>Angular SuperUI Team</name>
+    </author>
+    <category term="Release"/>
+    <category term="Angular"/>
+    <category term="Components"/>
+    <summary type="text">Angular SuperUI 2.0.0 features 39+ production-ready components with enhanced CLI and improved TypeScript support</summary>
+    <content type="html"><![CDATA[
+      <p>We're excited to announce Angular SuperUI 2.0.0, our biggest release yet featuring 39+ production-ready components!</p>
+      
+      <h3>🎉 What's New</h3>
+      <ul>
+        <li><strong>39+ Components:</strong> Complete collection of headless UI components</li>
+        <li><strong>Enhanced CLI:</strong> New 'ngsui' command for easier installation</li>
+        <li><strong>Better TypeScript:</strong> Improved type safety and IntelliSense</li>
+        <li><strong>Accessibility:</strong> WCAG 2.1 AA compliance across all components</li>
+        <li><strong>Performance:</strong> Tree-shakable, zero dependencies</li>
+      </ul>
+      
+      <p>Install today: <code>npm install -g ngsui</code></p>
+    ]]></content>
+  </entry>
+  
+  <entry>
+    <title>New Enhanced Calendar Component with Time Picker</title>
+    <id>https://angular-superui.vercel.app/components/calendar</id>
+    <link href="https://angular-superui.vercel.app/components/calendar" rel="alternate" type="text/html"/>
+    <updated>2025-08-06T00:00:00Z</updated>
+    <published>2025-08-06T00:00:00Z</published>
+    <author>
+      <name>Angular SuperUI Team</name>
+    </author>
+    <category term="Components"/>
+    <category term="Calendar"/>
+    <summary type="text">Enhanced Calendar component with time picker, range selection, and improved accessibility</summary>
+    <content type="html"><![CDATA[
+      <p>Our Calendar component just got a major upgrade! Now featuring integrated time picker, range selection with drag support, and enhanced accessibility.</p>
+      
+      <h3>✨ Features</h3>
+      <ul>
+        <li>Date range selection with intuitive drag support</li>
+        <li>Integrated time picker for complete date-time handling</li>
+        <li>Full accessibility compliance (WCAG 2.1)</li>
+        <li>Beautiful TailwindCSS styling with custom themes</li>
+        <li>Fully responsive design for all screen sizes</li>
+      </ul>
+    ]]></content>
+  </entry>
+</feed>

@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { DropdownMenu, type DropdownMenuItemData, type DropdownMenuGroupData } from '@lib/dropdown-menu';
+import { DropdownMenu, type DropdownMenuItemData, type DropdownMenuGroupData } from '@lib/components/dropdown-menu';
 
 @Component({
   selector: 'app-dropdown-menu-demo',

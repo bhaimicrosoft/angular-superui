@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal, OnInit, inject } from '@ang
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { Slider } from '@lib/slider';
+import { Slider } from '@lib/components/slider';
 
 @Component({
   selector: 'app-slider-demo',

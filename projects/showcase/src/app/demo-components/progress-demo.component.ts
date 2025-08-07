@@ -1,8 +1,8 @@
 import { Component, signal, computed, OnInit, OnDestroy, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProgressComponent, createProgressAccessibility, formatProgressText } from '@lib/progress';
-import { Button } from '@lib/button';
-import { Badge } from '@lib/badge';
+import { ProgressComponent, createProgressAccessibility, formatProgressText } from '@lib/components/progress';
+import { Button } from '@lib/components/button';
+import { Badge } from '@lib/components/badge';
 
 @Component({
   selector: 'app-progress-demo',

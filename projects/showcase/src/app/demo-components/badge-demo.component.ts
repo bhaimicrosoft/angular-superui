@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Badge } from '@lib/badge';
-import { Button } from '@lib/button';
+import { Badge } from '@lib/components/badge';
+import { Button } from '@lib/components/button';
 
 @Component({
   selector: 'app-badge-demo',
@@ -16,11 +16,11 @@ export class BadgeDemoComponent {
   cartItems = signal(7);
   onlineUsers = signal(1337);
   issueCount = signal(2);
-  
+
   // Status states
   serverStatus = signal<'online' | 'maintenance' | 'offline'>('online');
   buildStatus = signal<'success' | 'pending' | 'failed'>('success');
-  
+
   // Toast notifications
   toastMessage = signal<string | null>(null);
   showToast = signal(false);

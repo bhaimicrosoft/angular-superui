@@ -19,13 +19,13 @@ Interactive slider component for single values and ranges with smooth controls, 
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui-cli init
+ngsui init
 ```
 
 Add the Slider component:
 
 ```bash
-ngsui-cli add slider
+ngsui add slider
 ```
 
 ## Usage

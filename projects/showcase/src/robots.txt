@@ -3,11 +3,48 @@ Allow: /
 
 # XML Sitemap
 Sitemap: https://angular-superui.vercel.app/sitemap.xml
+Sitemap: https://angular-superui.vercel.app/sitemap-images.xml
 
 # Important pages
 Allow: /components
 Allow: /components/*
 Allow: /installation
+Allow: /getting-started
+Allow: /docs
+Allow: /docs/*
+Allow: /examples
+Allow: /tutorials
+Allow: /cli
+
+# Allow crawling of assets
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.json
+Allow: /*.xml
+Allow: /*.txt
+
+# Google-specific settings
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing-specific settings  
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+
+# Prevent crawling of development/build files
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /.angular/
+Disallow: /.git/
+Disallow: /coverage/
+Disallow: /tmp/
+Disallow: /*.map
+
+# Host directive
+Host: https://angular-superui.vercel.app
 Allow: /getting-started
 
 # Disallow admin or development pages (if any)

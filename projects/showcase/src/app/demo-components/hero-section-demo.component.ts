@@ -2,7 +2,7 @@ import { Component, signal, computed, ChangeDetectionStrategy, inject, OnInit } 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
-import { HeroSectionBlockComponent, HeroButton, HeroBackground } from '@lib/hero-section';
+import { HeroSectionBlockComponent, HeroButton, HeroBackground } from '@lib/blocks/hero-section';
 
 @Component({
   selector: 'app-hero-section-demo',
@@ -33,7 +33,7 @@ import { HeroSectionBlockComponent, HeroButton, HeroBackground } from '@lib/hero
 
           <!-- Description -->
           <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed mx-auto max-w-3xl">
-            Eye-catching landing page heroes with multiple layouts, CTAs, and background options. 
+            Eye-catching landing page heroes with multiple layouts, CTAs, and background options.
             Perfect for capturing attention and driving conversions.
           </p>
 
@@ -72,7 +72,7 @@ import { HeroSectionBlockComponent, HeroButton, HeroBackground } from '@lib/hero
     <div id="examples" class="py-16 bg-gray-50 dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
-          
+
           <!-- Example 1: Default Gradient Hero -->
           <div class="mb-20">
             <div class="text-center mb-8">
@@ -169,13 +169,13 @@ import { HeroSectionBlockComponent, HeroButton, HeroBackground } from '@lib/hero
         <div class="max-w-4xl mx-auto">
           <div class="text-center">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Implementation Guide</h3>
-            
+
             <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
               Ready to implement? Check out our comprehensive documentation for detailed usage examples and customization options.
             </p>
-            
-            <a 
-              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/hero-section.md" 
+
+            <a
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/hero-section.md"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
@@ -206,14 +206,14 @@ export class HeroSectionDemoComponent implements OnInit {
 
   // Button configurations
   defaultButtons = signal<HeroButton[]>([
-    { 
-      text: 'Get Started Free', 
+    {
+      text: 'Get Started Free',
       variant: 'primary',
       size: 'lg',
       action: () => console.log('Get Started clicked')
     },
-    { 
-      text: 'View Documentation', 
+    {
+      text: 'View Documentation',
       variant: 'outline',
       size: 'lg',
       href: '/docs'
@@ -221,22 +221,22 @@ export class HeroSectionDemoComponent implements OnInit {
   ]);
 
   minimalButtons = signal<HeroButton[]>([
-    { 
-      text: 'Start Now', 
+    {
+      text: 'Start Now',
       variant: 'primary',
       action: () => console.log('Start Now clicked')
     }
   ]);
 
   darkButtons = signal<HeroButton[]>([
-    { 
-      text: 'Explore Features', 
+    {
+      text: 'Explore Features',
       variant: 'primary',
       size: 'lg',
       action: () => console.log('Explore Features clicked')
     },
-    { 
-      text: 'Contact Sales', 
+    {
+      text: 'Contact Sales',
       variant: 'secondary',
       size: 'lg',
       action: () => console.log('Contact Sales clicked')
@@ -244,8 +244,8 @@ export class HeroSectionDemoComponent implements OnInit {
   ]);
 
   leftAlignedButtons = signal<HeroButton[]>([
-    { 
-      text: 'Quick Start', 
+    {
+      text: 'Quick Start',
       variant: 'primary',
       action: () => console.log('Quick Start clicked')
     }

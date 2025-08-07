@@ -1,12 +1,12 @@
 <div align="center">
 
-# 🚀 Installation Guide - Angular SuperUI v1.0.8
+# 🚀 Installation Guide - Angular SuperUI v2.0.0
 
 
 
-### 🌟 **[🎮 LIVE DEMO - Try All Components!](https://angular-superui.vercel.app/)** 🌟
+### 🌟 **[🎮 LIVE D- - **📊 [Progress](./co- **💬 [Popover](./components/popover.md)** - Floating overlay that displays content relative to a triggerponents/progress.md)** - Progress indicator with customizable appearance and animation*🔢 [InputOTP](./components/input-otp.md)** - One-time password input with multiple slots and validationMO - Try All Components!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ 31 Production-Ready Components • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
+**✨ 39 Production-Ready Components + 5 UI Blocks • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![⚡ Get Started](https://img.shields.io/badge/⚡-Get%20Started-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -17,7 +17,7 @@
 
 ## 📚 **[🎨 Complete Component Demos & Examples →](./README.md)**
 
-> 🚀 **Step-by-step examples** for all 31 components with **interactive showcases**, **code snippets**, and **best practices**!
+> 🚀 **Step-by-step examples** for all 39 components + 5 blocks with **interactive showcases**, **code snippets**, and **best practices**!
 
 ---
 
@@ -49,10 +49,10 @@
 
 ```bash
 # Install globally for easy access
-npm install -g ngsui-cli
+npm install -g ngsui
 
 # Or use with npx (no installation)
-npx ngsui-cli --help
+npx ngsui --help
 ```
 
 ### Step 2: Initialize Your Project
@@ -61,63 +61,85 @@ npx ngsui-cli --help
 # Navigate to your Angular project root
 cd your-angular-project
 
-npx ngsui-cli init
+npx ngsui init
 
 ### Step 3: Add Components
 
 # Add individual components
-npx ngsui-cli add button
-npx ngsui-cli add button card badge alert
+npx ngsui add button
+npx ngsui add button card badge alert
 
 # Add all components at once
-npx ngsui-cli add --all
+npx ngsui add --all
 
 # List available components
-npx ngsui-cli list
+npx ngsui list
 ```
 
 ---
 
-## 🧩 **Available Components (26 Total)**
+## 🧩 **Available Components (39 Total)**
 
 ### 🎯 **Core Components**
+
 - **🔘 [Button](./components/button.md)** - Interactive buttons with 9 variants and loading states
 - **🏷️ [Badge](./components/badge.md)** - Status indicators and labels with 4 variants  
 - **🚨 [Alert](./components/alert.md)** - Contextual feedback messages with 5 variants
 - **👤 [Avatar](./components/avatar.md)** - User profile images with automatic fallback support
-- **🗂️ [Accordion](./components/accordion.md)** - Collapsible content sections with single or multiple modes
+- **🪗 [Accordion](./components/accordion.md)** - Collapsible content sections with single or multiple modes
 - **🃏 [Card](./components/card.md)** - Flexible content containers with header, content, and footer
 - **☑️ [Checkbox](./components/checkbox.md)** - Boolean input control with multiple states and form integration
 - **🔽 [ComboBox](./components/combobox.md)** - Advanced dropdown with search, multi-select, and loading states
 - **📝 [Input](./components/input.md)** - Flexible input component with validation states and accessibility
-- **🔐 [InputOTP](./components/input-otp.md)** - One-time password input with multiple slots and validation
+- **� [InputOTP](./components/input-otp.md)** - One-time password input with multiple slots and validation
 - **🔘 [RadioGroup](./components/radio-group.md)** - Radio button group with accessible selection and validation
-- **📈 [Progress](./components/progress.md)** - Progress indicator with customizable appearance and animation
+- **� [Progress](./components/progress.md)** - Progress indicator with customizable appearance and animation
+- **⭐ [Rating](./components/rating.md)** - Interactive star rating component with hover effects and customizable appearance
+- **🔽 [Select](./components/select.md)** - A flexible select dropdown component with search and multi-select capabilities
+- **🎚️ [Slider](./components/slider.md)** - Interactive slider component for single values and ranges with accessibility support
+- **📄 [Textarea](./components/textarea.md)** - Multi-line text input component with auto-resize and validation states
 
 ### 🧭 **Navigation & Layout**
+
 - **🍞 [Breadcrumb](./components/breadcrumb.md)** - Navigation breadcrumbs with accessibility and custom separators
 - **📐 [AspectRatio](./components/aspect-ratio.md)** - Maintains consistent proportions for responsive content
 - **📄 [Pagination](./components/pagination.md)** - Pagination controls with customizable page size and navigation
+- **🏠 [Sidebar](./components/sidebar.md)** - Responsive navigation sidebar with animations, keyboard navigation, and flexible content
+- **📋 [Stepper](./components/stepper.md)** - Multi-step navigation component with progress tracking and validation support
+- **📑 [Tabs](./components/tabs.md)** - Tabbed interface component with keyboard navigation and accessibility support
 
 ### 💫 **Overlay & Dialog Components**
+
 - **🚨 [AlertDialog](./components/alert-dialog.md)** - Modal dialogs with accessibility and focus management
 - **🖱️ [ContextMenu](./components/context-menu.md)** - Right-click context menus with keyboard shortcuts
 - **🪟 [Dialog](./components/dialog.md)** - Modal dialog windows with accessibility features
 - **📄 [Drawer](./components/drawer.md)** - Flexible drawer component that slides in from any side
 - **⬇️ [DropdownMenu](./components/dropdown-menu.md)** - Beautiful dropdown menus with multiple variants
-- **📋 [Popover](./components/popover.md)** - Floating overlay that displays content relative to a trigger
+- **� [Popover](./components/popover.md)** - Floating overlay that displays content relative to a trigger
+- **📢 [Toast](./components/toast.md)** - Toast notification component with multiple variants and auto-dismiss functionality
+- **💡 [Tooltip](./components/tooltip.md)** - Tooltip component with configurable positioning and hover/focus triggers
 
 ### 🎨 **Media & Display**
+
 - **🎠 [Carousel](./components/carousel.md)** - Content slider with auto-play, navigation, and pagination
 - **🗃️ [Collapsible](./components/collapsible.md)** - Expandable content sections with smooth animations
+- **💀 [Skeleton](./components/skeleton.md)** - Loading placeholder components with customizable shapes and animations
+- **⏳ [Spinner](./components/spinner.md)** - Loading spinner component with multiple variants and animations
 
 ### 📊 **Data & Tables**
+
 - **📊 [DataTable](./components/data-table.md)** - Enterprise-grade data table with sorting, filtering, and pagination
 
+### 📁 **File Management**
+
+- **📁 [FileUpload](./components/file-upload.md)** - Advanced file upload component with drag-and-drop, progress tracking, and validation
+
 ### 📅 **Featured Components**
+
 - **📅 [Calendar](./components/calendar.md)** - Advanced calendar with date range selection and time picker
 
 ### ⚙️ **Utility Components**
+
 - **🌓 [ThemeSwitcher](./components/theme-switcher.md)** - Toggle between light, dark, and system themes
 
 ---
@@ -139,7 +161,7 @@ npx ngsui-cli list
 
 ```bash
 # Install complete library with all components
-npm install angular-superui@1.0.7
+npm install angular-superui@2.0.0
 
 # Install peer dependencies
 npm install class-variance-authority clsx tailwind-merge
@@ -268,7 +290,7 @@ import { Badge } from '@components/badge';
       </CardHeader>
       <CardContent>
         <div class="space-y-4">
-          <Badge variant="default">v1.0.8</Badge>
+          <Badge variant="default">v2.0.0</Badge>
           <Button variant="default" (click)="handleClick()">
             Get Started
           </Button>
@@ -375,33 +397,33 @@ export class DashboardComponent {}
 
 ```bash
 # Initialize project
-ngsui-cli init
+ngsui init
 
 # Add single component
-ngsui-cli add button
+ngsui add button
 
 # Add multiple components
-ngsui-cli add button card badge alert
+ngsui add button card badge alert
 
 # Add all components
-ngsui-cli add --all
+ngsui add --all
 
 # List available components
-ngsui-cli list
+ngsui list
 
 # Get help
-ngsui-cli --help
+ngsui --help
 ```
 
 ### Advanced Options
 
 ```bash
 # Force overwrite existing components
-ngsui-cli add button --force
+ngsui add button --force
 
 # Use with npx (no global installation)
-npx ngsui-cli init
-npx ngsui-cli add button
+npx ngsui init
+npx ngsui add button
 ```
 
 ---
@@ -440,7 +462,7 @@ ng serve
 ls src/lib/components/
 
 # Re-run init if needed
-ngsui-cli init
+ngsui init
 ```
 
 #### **TypeScript Errors**
@@ -453,9 +475,11 @@ npx tsc --version  # Should be 5.0+
 ```
 
 #### **CSS Variables Not Applied**
+
 - ✅ Ensure styles.css has the @import "tailwindcss" at the top
 - ✅ Check that CSS variables are defined in :root and .dark
 - ✅ Restart your development server after changes
+
 ---
 
 ## 🚀 **Next Steps**
@@ -727,15 +751,18 @@ Ensure your `tsconfig.json` includes:
 ### Common Issues
 
 **1. Styles not applying:**
+
 - Ensure Tailwind CSS is properly configured
 - Check that Angular SuperUI is included in your Tailwind content paths
 - Verify CSS variables are defined in your styles.css
 
 **2. Components not found:**
+
 - Make sure you've imported the components in your module/component
 - Check that the package is properly installed with `npm list angular-superui`
 
 **3. Build errors:**
+
 - Ensure peer dependencies are installed
 - Check TypeScript configuration compatibility
 

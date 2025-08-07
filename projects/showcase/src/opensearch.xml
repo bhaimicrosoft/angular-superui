@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Angular SuperUI</ShortName>
+  <Description>Search Angular SuperUI components, documentation, and examples</Description>
+  <Tags>Angular UI components headless typescript tailwind</Tags>
+  <Contact>contact@angular-superui.com</Contact>
+  <Url type="text/html" method="get" template="https://angular-superui.vercel.app/search?q={searchTerms}"/>
+  <Url type="application/x-suggestions+json" method="get" template="https://angular-superui.vercel.app/api/search/suggestions?q={searchTerms}"/>
+  <LongName>Angular SuperUI Component Library Search</LongName>
+  <Image height="64" width="64" type="image/png">https://angular-superui.vercel.app/assets/favicon-64x64.png</Image>
+  <Image height="16" width="16" type="image/x-icon">https://angular-superui.vercel.app/favicon.ico</Image>
+  <Query role="example" searchTerms="button dialog card"/>
+  <Developer>Angular SuperUI Team</Developer>
+  <Attribution>Angular SuperUI Component Library © 2025</Attribution>
+  <SyndicationRight>open</SyndicationRight>
+  <AdultContent>false</AdultContent>
+  <Language>en-us</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <InputEncoding>UTF-8</InputEncoding>
+</OpenSearchDescription>

@@ -7,7 +7,7 @@ import {
   createRadioGroupAccessibility,
   type RadioVariant,
   type RadioGroupVariant
-} from '@lib/radio-group';
+} from '@lib/components/radio-group';
 
 @Component({
   selector: 'app-radio-group-demo',
@@ -444,7 +444,7 @@ import {
         grid-template-columns: 1fr;
         gap: 0.75rem;
       }
-    }   
+    }
   `]
 })
 export class RadioGroupDemoComponent {

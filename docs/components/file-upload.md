@@ -21,7 +21,7 @@ The FileUpload component provides an intuitive and powerful way to handle file u
 ### Using NGSUI CLI (Recommended)
 
 ```bash
-npx ngsui-cli add file-upload
+npx ngsui add file-upload
 ```
 
 The CLI will automatically:

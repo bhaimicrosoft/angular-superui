@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Spinner, SpinnerType} from '@lib/spinner';
-import {Button} from '@lib/button';
+import {Spinner, SpinnerType} from '@lib/components/spinner';
+import {Button} from '@lib/components/button';
 
 @Component({
   selector: 'app-spinner-demo',

@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, HostListener, HostBinding, inject } from 
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './components/navigation.component';
-import {Avatar, AvatarFallback, AvatarImage} from '@lib/avatar';
-import { ThemeService } from '@lib/theme-switcher';
+import {Avatar, AvatarFallback, AvatarImage} from '@lib/components/avatar';
+import { ThemeService } from '@lib/components/theme-switcher';
 
 @Component({
   selector: 'app-root',
@@ -46,7 +46,7 @@ import { ThemeService } from '@lib/theme-switcher';
         <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-75 animate-ping"></div>
       </button>
 
-      <!-- � MICROSOFT-INSPIRED PROFESSIONAL FOOTER � -->
+      <!-- 🚀 MICROSOFT-INSPIRED PROFESSIONAL FOOTER 🚀 -->
       <footer class="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900 border-t border-gray-200/50 dark:border-gray-800/50">
         <!-- Subtle Grid Pattern -->
         <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]">
@@ -193,19 +193,19 @@ import { ThemeService } from '@lib/theme-switcher';
                     <span class="text-white font-bold text-sm">⚡</span>
                   </div>
                   <div>
-                    <h5 class="font-semibold text-gray-900 dark:text-white text-sm">v1.0.8</h5>
+                    <h5 class="font-semibold text-gray-900 dark:text-white text-sm">v2.0.0</h5>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Latest Release</p>
                   </div>
                 </div>
 
                 <p class="text-xs text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                  Production-ready Angular component library with 31 accessible components, built with TypeScript and TailwindCSS v4.
+                  Production-ready Angular component library with 39 accessible components, built with TypeScript and TailwindCSS v4.
                 </p>
 
                 <div class="grid grid-cols-2 gap-3 text-xs">
                   <div class="flex items-center gap-2">
                     <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span class="text-gray-600 dark:text-gray-400">31 Components</span>
+                    <span class="text-gray-600 dark:text-gray-400">39 Components</span>
                   </div>
                   <div class="flex items-center gap-2">
                     <div class="w-2 h-2 bg-blue-500 rounded-full"></div>

@@ -1,18 +1,21 @@
-# Angular SuperUI v1.0.8 🚀
+# Angular SuperUI v2.0.0 🚀
 
 <div align="center">
 
 🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ All 31 Components • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
+**✨ All 39 Components + 5 Blocks • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
 
 </div>
 
 <div align="center">
 
-###### 🌟 **Key Features in v1.0.8**
-- **31 Essential Components** - Production-ready UI components including new Select, Sidebar, Skeleton, Slider, and Stepper
-- **Zero External Dependencies** - Local-first architecture for maximum control
+###### 🌟 **Key Features in v2.0.0**
+
+- **39 Essential Components + 5 UI Blocks** - Production-ready UI components and blocks
+- **Zero ####1. **🔘 Button**17. *19. **📄24. **🖱️ ContextMenu36. **📁 FileUpload** - Advanced file upload component with drag-and-drop, progress tracking, and validation* - Right-click context menus with keyboard shortcutsPagination** - Pagination controls with customizable page size and navigation📄 Textarea** - Multi-line text input component with auto-resize and validation states- Interactive buttons with 9 variants and loading states 🚀 **Core UI Components** 🎯 **Core UI Com17. *19. **📄24. **🖱️ ContextMenu36. **📁 FileUpload** - Advanced file upload component with drag-and-drop, progress tracking, and validation* - Right-click context menus with keyboard shortcutsPagination** - Pagination controls with customizable page size and navigation📄 Textarea** - Multi-line text input component with auto-resize and validation statesonents**
+
+1. **🔘 Button** - Interactive buttons with 9 variants and loading statesernal Dependencies** - Local-first architecture for maximum control
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![🎮 Try Now](https://img.shields.io/badge/🎮-Try%20Now-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -22,58 +25,63 @@
 ---
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
-[![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
+[![CLI version](https://badge.fury.io/js/ngsui.svg)](https://badge.fury.io/js/ngsui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-18%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue.svg)](https://www.typescriptlang.org/)
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support%20This%20Project-orange?style=flat&logo=buy-me-a-coffee)](https://buymeacoffee.com/bhaikaju)
 
-A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **31 essential UI components** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
+A modern, beautiful, and accessible Angular UI component library built with **Tailwind CSS** and **TypeScript**. Angular SuperUI provides a comprehensive set of **39 essential UI components + 5 UI blocks** with **multiple variants**, **CLI-based installation**, and **TypeScript-first development**.
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
-> 🚀 **Step-by-step guides** for all 31 components with **practical examples**, **usage instructions**, and **styling tips**!
+>
+> 🚀 **Step-by-step guides** for all 39 components + 5 blocks with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v1.0.8: 31 Components Ready**
+## 🛠️ **v2.0.0: 39 Components + 5 Blocks Ready**
 
 ### 🚀 **CLI Tool (Recommended)**
+
 Install components directly in your project with our enhanced CLI:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli
+npm install -g ngsui
 
 # Initialize project (sets up Tailwind CSS and TypeScript configs)
-ngsui-cli init
+ngsui init
 
 # Add specific components
-ngsui-cli add button card badge alert checkbox theme-switcher
+ngsui add button card badge alert checkbox theme-switcher
 
 # List all available components
-ngsui-cli list
+ngsui list
 ```
 
 ### 📦 **NPM Package Installation**
+
 Install the complete component library:
 
 ```bash
 # Using Angular schematics (recommended)
-ng add angular-superui@1.0.8
+ng add angular-superui@2.0.0
 
 # Or using npm directly
-npm install angular-superui@1.0.8
+npm install angular-superui@2.0.0
 ```
 
-### 🌟 **Key Features in v1.0.8**
-- **31 Essential Components** - Production-ready UI components including new Select, Sidebar, Skeleton, Slider, and Stepper
-- **Enhanced CLI** - Improved component selection and installation
+### 🌟 **Key Features in v2.0.0**
+
+- **39 Essential Components + 5 UI Blocks** - Production-ready UI components and blocks
+- **Enhanced Block System** - New Hero Section, Feature Grid, Pricing Cards, Header, and Footer blocks
 - **TypeScript First** - Full type safety and IntelliSense support
 - **Tailwind CSS Integration** - Utility-first styling approach
 - **Angular 18+ Support** - Built for modern Angular applications
 
-## 📦 **All 31 Components Available**
+## 📦 **All 39 Components + 5 Blocks Available**
 
 ### 🎯 Core Components
+
 - **Button** - Interactive buttons with multiple variants and loading states
 - **Badge** - Status indicators and labels with color variants
 - **Alert** - Display important messages and notifications
@@ -85,6 +93,7 @@ npm install angular-superui@1.0.8
 - **Select** - Dropdown selection with search and multi-select capabilities
 
 ### 🧭 Navigation Components
+
 - **Breadcrumb** - Navigation hierarchy with custom separators
 - **Dropdown Menu** - Contextual menu dropdowns with keyboard navigation
 - **Pagination** - Navigate through large datasets with intelligent controls
@@ -93,6 +102,7 @@ npm install angular-superui@1.0.8
 - **Stepper** - Multi-step navigation with progress tracking and validation
 
 ### 🖼️ Display Components
+
 - **Avatar** - User profile pictures with fallback support
 - **Carousel** - Image and content sliders with auto-play
 - **Data Table** - Feature-rich table for displaying large datasets
@@ -100,12 +110,14 @@ npm install angular-superui@1.0.8
 - **Skeleton** - Loading placeholders with smooth animations
 
 ### 💫 Overlay Components
+
 - **Alert Dialog** - Modal dialogs with focus management
 - **Context Menu** - Right-click context menus with accessibility
 - **Dialog** - Modal windows and overlays
 - **Popover** - Floating content containers with smart positioning
 
 ### 🔧 Form Components
+
 - **Calendar** - Date picker with full keyboard navigation
 - **Collapsible** - Expandable content sections with animations
 - **Combobox** - Advanced dropdown with search and multi-select
@@ -113,17 +125,19 @@ npm install angular-superui@1.0.8
 - **Slider** - Range input controls with precise value selection
 
 ### ⚙️ Utility Components
+
 - **Accordion** - Vertically stacked interactive sections
 - **Theme Switcher** - Dark/light mode toggle with smooth transitions
 
 ## 📚 **Quick Links**
+
 - 📚 **[Component Examples →](../../docs/examples.md)** - Real-world usage examples
 - 📖 **[Installation Guide →](../../docs/installation.md)** - Detailed setup instructions  
 - 🔧 **[GitHub Repository →](https://github.com/bhaimicrosoft/angular-superui)** - Source code and issues
 
 ## ✨ Features
 
-- 🛠️ **CLI Tool** - Selective component installation with ngsui-cli
+- 🛠️ **CLI Tool** - Selective component installation with ngsui
 - 🎨 **31 Essential Components** - Production-ready UI component library  
 - 🌈 **Multiple Variants** - Customizable styling options for all components
 - 🔧 **TypeScript First** - Full type safety and excellent IntelliSense support
@@ -137,23 +151,25 @@ npm install angular-superui@1.0.8
 ## 📦 Installation
 
 ### Option 1: CLI Tool - Selective Installation (Recommended)
+
 Perfect for new projects or when you want to reduce bundle size:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui-cli
+npm install -g ngsui
 
 # Initialize your Angular project
-ngsui-cli init
+ngsui init
 
 # Add specific components
-ngsui-cli add button card badge alert checkbox
+ngsui add button card badge alert checkbox
 
 # List all available components
-ngsui-cli list
+ngsui list
 ```
 
 ### Option 2: Full Library Installation
+
 Install the complete library:
 
 ```bash
@@ -333,13 +349,15 @@ export class ExampleComponent {
 ## 🎨 Component Variants
 
 ### Theme Switcher
+
 A dark/light theme switcher with system preference detection:
 
 ```html
-<lib-theme-switcher></lib-theme-switcher>
+<ThemeSwitcher />
 ```
 
 ### Button Variants
+
 Each button component supports multiple styling options:
 
 ```typescript
@@ -359,6 +377,7 @@ Each button component supports multiple styling options:
 ```
 
 ### Badge Variants
+
 Status and labeling options:
 
 ```typescript
@@ -369,6 +388,7 @@ Status and labeling options:
 ```
 
 ### Alert Variants
+
 Contextual feedback styling:
 
 ```typescript
@@ -377,6 +397,7 @@ Contextual feedback styling:
 ```
 
 ### Checkbox Variants
+
 Boolean input controls with multiple states:
 
 ```typescript
@@ -397,87 +418,70 @@ Boolean input controls with multiple states:
 <Checkbox [disabled]="true" [(ngModel)]="isDisabled">Disabled state</Checkbox>
 ```
 
-## 🧩 Available Components (18)
+## 🧩 Available Components (39)
 
-### 🎨 **Core UI Components**
+### � **Core UI Components**
 
-1. **🔲 Button** - Versatile button component with multiple variants
-   - Solid, outline, ghost, and link variants
-   - Different sizes: sm, default, lg, icon
-   - Loading states and disabled support
+1. **� Button** - Interactive buttons with 9 variants and loading states
+2. **🏷️ Badge** - Status indicators and labels with 4 variants
+3. **🚨 Alert** - Contextual feedback messages with 5 variants
+4. **👤 Avatar** - User profile images with automatic fallback support
+5. **🪗 Accordion** - Collapsible content sections with single or multiple modes
+6. **📐 AspectRatio** - Maintains consistent proportions for responsive content
+7. **🃏 Card** - Flexible content containers with header, content, and footer
+8. **☑️ Checkbox** - Boolean input control with multiple states and form integration
+9. **🔽 ComboBox** - Advanced dropdown with search, multi-select, and loading states
+10. **📝 Input** - Flexible input component with validation states and accessibility
+11. **🔢 InputOTP** - One-time password input with multiple slots and validation
+12. **🔘 RadioGroup** - Radio button group with accessible selection and validation
+13. **📊 Progress** - Progress indicator with customizable appearance and animation
+14. **⭐ Rating** - Interactive star rating component with hover effects and customizable appearance
+15. **🔽 Select** - A flexible select dropdown component with search and multi-select capabilities
+16. **🎚️ Slider** - Interactive slider component for single values and ranges with accessibility support
+17. **� Textarea** - Multi-line text input component with auto-resize and validation states
 
-2. **📐 AspectRatio** - Maintains consistent proportions for responsive content
-   - Predefined ratios: square, video, 4/3, 16/9, and more
-   - Custom ratio support with CSS aspect-ratio
-   - Perfect for images, videos, and content containers
+### 🧭 **Navigation & Layout Components**
 
-3. **🃏 Card** - Flexible content container
-   - CardHeader, CardTitle, CardContent, CardFooter
-   - Perfect for organizing content sections
-   - Responsive design with customizable padding
+18. **🍞 Breadcrumb** - Navigation breadcrumbs with accessibility and custom separators
+19. **� Pagination** - Pagination controls with customizable page size and navigation
+20. **🏠 Sidebar** - Responsive navigation sidebar with animations, keyboard navigation, and flexible content
+21. **📋 Stepper** - Multi-step navigation component with progress tracking and validation support
+22. **📑 Tabs** - Tabbed interface component with keyboard navigation and accessibility support
 
-4. **🏷️ Badge** - Labels and status indicators
-   - Multiple color variants
-   - Different sizes and styles
-   - Perfect for status, tags, and labels
+### 💫 **Overlay & Dialog Components**
 
-5. **⚠️ Alert** - Contextual feedback messages
-   - Success, warning, error, and info variants
-   - Dismissible alerts with close buttons
-   - Icon support for better visual communication
+23. **🚨 AlertDialog** - Modal dialogs with accessibility and focus management
+24. **�️ ContextMenu** - Right-click context menus with keyboard shortcuts
+25. **🪟 Dialog** - Modal dialog windows with accessibility features
+26. **📄 Drawer** - Flexible drawer component that slides in from any side
+27. **⬇️ DropdownMenu** - Beautiful dropdown menus with multiple variants
+28. **💬 Popover** - Floating overlay that displays content relative to a trigger
+29. **📢 Toast** - Toast notification component with multiple variants and auto-dismiss functionality
+30. **💡 Tooltip** - Tooltip component with configurable positioning and hover/focus triggers
 
-6. **🚪 Alert Dialog** - Modal confirmation dialogs
-   - Accessible modal implementation
-   - Customizable trigger, content, and actions
-   - Escape key and overlay click handling
+### 🎨 **Media & Display Components**
 
-7. **👤 Avatar** - User profile pictures and initials
-   - Image support with fallback handling
-   - Automatic initials generation
-   - Multiple sizes: sm, default, lg, xl
+31. **🎠 Carousel** - Content slider with auto-play, navigation, and pagination
+32. **🗃️ Collapsible** - Expandable content sections with smooth animations
+33. **💀 Skeleton** - Loading placeholder components with customizable shapes and animations
+34. **⏳ Spinner** - Loading spinner component with multiple variants and animations
 
-8. **🗂️ Accordion** - Collapsible content panels
-   - Single or multiple panel expansion
-   - Smooth animations and transitions
-   - Keyboard navigation support
+### 📊 **Data & Tables**
 
-9. **🧭 Breadcrumb** - Navigation path indicators
-   - Hierarchical navigation support
-   - Customizable separators and styling
-   - Link and page elements with accessibility
+35. **📊 DataTable** - Enterprise-grade data table with sorting, filtering, and pagination
 
-10. **📅 Calendar** - Date picker and calendar widget
-    - Month and year navigation
-    - Date selection functionality
-    - Customizable date formatting
+### 📁 **File Management**
 
-11. **☑️ Checkbox** - Boolean input control with multiple states
-    - Checked, unchecked, and indeterminate states
-    - Multiple variants: default, destructive, success, warning
-    - Different sizes: sm, default, lg, xl
-    - Full form integration with ControlValueAccessor
-    - Accessibility compliant with ARIA attributes
+36. **� FileUpload** - Advanced file upload component with drag-and-drop, progress tracking, and validation
 
-12. **🎠 Carousel** - Content slider and carousel component
-    - Smooth sliding animations
-    - Navigation controls and indicators
-    - Responsive design with touch support
+### 📅 **Featured Components**
 
-13. **🌓 Theme Switcher** - Toggle between light, dark, and system themes
-    - Automatic system theme detection
-    - localStorage persistence across sessions
-    - Three variants: default, outline, ghost
-    - Multiple sizes: sm, default, lg, xl
-    - Toggle or cycle modes for theme switching
+37. **📅 Calendar** - Advanced calendar with date range selection and time picker
 
-14. **🔽 ComboBox** - Advanced dropdown selection component
-    - Searchable options with real-time filtering
-    - Multi-select support with chips display
-    - Loading states and error handling
-    - Grouped options with custom labels
-    - Keyboard navigation and accessibility
-    - Rich options with descriptions
-    - Form integration with ControlValueAccessor
+### ⚙️ **Utility Components**
+
+38. **🌓 ThemeSwitcher** - Toggle between light, dark, and system themes
+39. **🗃️ Collapsible** - Expandable content sections with smooth animations and keyboard support
 
 ## 🖼️ Enhanced Avatar Component
 
@@ -505,6 +509,7 @@ The Avatar component now supports full image functionality:
 ```
 
 **Features**:
+
 - `src` property for image URLs
 - `alt` property for accessibility and initials generation
 - `fallback` property for custom fallback text

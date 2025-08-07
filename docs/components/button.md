@@ -16,13 +16,13 @@ Interactive button component with multiple variants, sizes, loading states, and 
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui-cli init
+ngsui init
 ```
 
 Add the Button component:
 
 ```bash
-ngsui-cli add button
+ngsui add button
 ```
 
 ## Usage

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, signal, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Stepper, Step, StepContent, StepConfig} from '@lib/stepper';
+import {Stepper, Step, StepContent, StepConfig} from '@lib/components/stepper';
 
 @Component({
   selector: 'app-stepper-demo',

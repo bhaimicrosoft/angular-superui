@@ -2,7 +2,7 @@ import { Component, signal, computed, ChangeDetectionStrategy, inject, OnInit } 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
-import { FeatureGridBlockComponent } from '@lib/feature-grid';
+import { FeatureGridBlockComponent } from '@lib/blocks/feature-grid';
 
 @Component({
   selector: 'app-feature-grid-demo',
@@ -33,7 +33,7 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
 
           <!-- Description -->
           <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed mx-auto max-w-3xl">
-            Showcase your product features with icons, descriptions, and compelling layouts. 
+            Showcase your product features with icons, descriptions, and compelling layouts.
             Perfect for highlighting key benefits and capabilities.
           </p>
 
@@ -72,7 +72,7 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
     <div id="examples" class="py-16 bg-gray-50 dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
-          
+
           <!-- Example 1: 3-Column Feature Grid -->
           <div class="mb-20">
             <div class="text-center mb-8">
@@ -139,13 +139,13 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
         <div class="max-w-4xl mx-auto">
           <div class="text-center">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Implementation Guide</h3>
-            
+
             <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
               Ready to implement? Check out our comprehensive documentation for detailed usage examples and customization options.
             </p>
-            
-            <a 
-              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/feature-grid.md" 
+
+            <a
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/feature-grid.md"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
@@ -160,7 +160,7 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
       </div>
     </div>
 
-  
+
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

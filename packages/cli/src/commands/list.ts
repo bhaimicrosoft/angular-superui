@@ -1,19 +1,20 @@
 import chalk from 'chalk';
-import { COMPONENTS } from './add';
+import { COMPONENTS, BLOCKS } from './add';
 
 // Get version from package.json
 const packageJson = require('../../package.json');
 const CLI_VERSION = packageJson.version;
 
 export async function listCommand() {
-  // Get total component count from actually implemented components
+  // Get total component and block counts
   const totalComponents = Object.keys(COMPONENTS).length;
+  const totalBlocks = Object.keys(BLOCKS).length;
   
   console.log('');
   console.log(chalk.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899').bold('              📦 Angular SuperUI Component Library v' + CLI_VERSION + '              ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
-  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#F59E0B')('                  🎯 ' + totalComponents + ' Production-Ready Components Available 🎯                   ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#F59E0B')('              🎯 ' + totalComponents + ' Components + ' + totalBlocks + ' UI Blocks Available 🎯               ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('              ⚡ TailwindCSS • 🎨 Customizable • 🔥 TypeScript ⚡               ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('                                                                       ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899')('                    ✨ Enterprise-Grade • Zero Dependencies ✨                     ') + chalk.hex('#8B5CF6')('║'));
@@ -22,12 +23,13 @@ export async function listCommand() {
 
   // Group components by category with actually implemented components only
   const categories = {
-    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input', 'input-otp', 'progress', 'radio-group', 'select'],
-    '🧭 Navigation': ['breadcrumb', 'pagination', 'sidebar', 'stepper'],
-    '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu', 'popover'],
-    '🎨 Media & Display': ['carousel', 'aspect-ratio', 'skeleton'],
+    '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input', 'input-otp', 'progress', 'radio-group', 'select', 'rating'],
+    '🧭 Navigation': ['breadcrumb', 'pagination', 'sidebar', 'stepper', 'tabs'],
+    '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu', 'popover', 'toast', 'tooltip'],
+    '🎨 Media & Display': ['carousel', 'aspect-ratio', 'skeleton', 'spinner'],
     '📊 Data & Tables': ['data-table'],
-    '🎛️ Controls & Inputs': ['slider'],
+    '🎛️ Controls & Inputs': ['slider', 'toggle', 'textarea'],
+    '📁 File Management': ['file-upload'],
     '⚙️ User Interface': ['theme-switcher', 'collapsible'],
     '📅 Featured Component': ['calendar']
   };
@@ -46,12 +48,26 @@ export async function listCommand() {
     console.log(''); // Empty line between categories
   }
 
+  // List UI Blocks
+  console.log(chalk.bold.hex('#8B5CF6')('🏗️ UI Blocks (Complete Page Sections)'));
+  
+  for (const [blockKey, block] of Object.entries(BLOCKS)) {
+    console.log(chalk.green(`  🏗️ ${blockKey}`) + chalk.gray(` - ${block.description}`));
+  }
+  
+  console.log(''); // Empty line before quick start
+
   console.log(chalk.bgBlue.white(' 📖 QUICK START GUIDE '));
   console.log('');
-  console.log(chalk.cyan('Add single component:    ') + chalk.yellow('ngsui-cli add button'));
-  console.log(chalk.cyan('Add multiple components: ') + chalk.yellow('ngsui-cli add button alert badge'));
-  console.log(chalk.cyan('Add featured calendar:   ') + chalk.yellow('ngsui-cli add calendar'));
-  console.log(chalk.cyan('Add all components:      ') + chalk.yellow('ngsui-cli add --all'));
+  console.log(chalk.bold.cyan('📦 Components:'));
+  console.log(chalk.cyan('  Add single component:    ') + chalk.yellow('ngsui add button'));
+  console.log(chalk.cyan('  Add multiple components: ') + chalk.yellow('ngsui add button alert badge'));
+  console.log(chalk.cyan('  Add all components:      ') + chalk.yellow('ngsui add --all'));
+  console.log('');
+  console.log(chalk.bold.cyan('🏗️ UI Blocks:'));
+  console.log(chalk.cyan('  Add single block:        ') + chalk.yellow('ngsui add block hero-section'));
+  console.log(chalk.cyan('  Add multiple blocks:     ') + chalk.yellow('ngsui add block header footer'));
+  console.log(chalk.cyan('  Add all blocks:          ') + chalk.yellow('ngsui add --all-blocks'));
   console.log('');
   
   console.log(chalk.bgMagenta.white(' 🌟 FEATURED SPOTLIGHT '));
@@ -86,7 +102,7 @@ export async function listCommand() {
   console.log('');
   
   console.log(chalk.cyan('╔═══════════════════════════════════════════════════════════════╗'));
-  console.log(chalk.cyan('║') + chalk.bold.green(`               🎉 Total: ${totalComponents} Components Available                `) + chalk.cyan('║'));
+  console.log(chalk.cyan('║') + chalk.bold.green(`         🎉 Total: ${totalComponents} Components + ${totalBlocks} Blocks Available         `) + chalk.cyan('║'));
   console.log(chalk.cyan('║') + chalk.gray('          Zero Dependencies • Tree-Shakable • Angular 18+         ') + chalk.cyan('║'));
   console.log(chalk.cyan('║') + chalk.magenta('               💜 Built with ❤️ for Angular Developers          ') + chalk.cyan('║'));
   console.log(chalk.cyan('╚═══════════════════════════════════════════════════════════════╝'));

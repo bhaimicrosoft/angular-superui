@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Combobox, ComboboxTrigger, ComboboxContent, ComboboxOption } from '@lib/combobox';
+import { Combobox, ComboboxTrigger, ComboboxContent, ComboboxOption } from '@lib/components/combobox';
 import { SEOService } from '../services/seo.service';
 import {
   LucideAngularModule,
@@ -130,10 +130,10 @@ import {
                 </div>
 
                 <div class="space-y-4">
-                  <Combobox 
-                    [options]="frameworkOptions" 
-                    [(ngModel)]="selectedFramework" 
-                    placeholder="Select a framework..." 
+                  <Combobox
+                    [options]="frameworkOptions"
+                    [(ngModel)]="selectedFramework"
+                    placeholder="Select a framework..."
                     (valueChange)="onFrameworkChange($event)"
                     class="w-full"
                   >
@@ -165,10 +165,10 @@ import {
                 </div>
 
                 <div class="space-y-4">
-                  <Combobox 
-                    [options]="languageOptions" 
-                    [(ngModel)]="selectedLanguage" 
-                    placeholder="Search languages..." 
+                  <Combobox
+                    [options]="languageOptions"
+                    [(ngModel)]="selectedLanguage"
+                    placeholder="Search languages..."
                     (valueChange)="onLanguageChange($event)"
                     class="w-full"
                   >
@@ -213,21 +213,21 @@ import {
                 </div>
 
                 <div class="space-y-6">
-                  <Combobox 
-                    [options]="skillOptions" 
-                    [multiple]="true" 
-                    [(ngModel)]="selectedSkills" 
-                    placeholder="Select your skills..." 
+                  <Combobox
+                    [options]="skillOptions"
+                    [multiple]="true"
+                    [(ngModel)]="selectedSkills"
+                    placeholder="Select your skills..."
                     (valueChange)="onSkillsChange($event)"
                     class="w-full"
                   >
-                    <ComboboxTrigger 
-                      [multiple]="true" 
+                    <ComboboxTrigger
+                      [multiple]="true"
                       class="w-full bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30 border-emerald-200 dark:border-emerald-600/50 hover:from-emerald-100 hover:to-teal-100 dark:hover:from-emerald-900/40 dark:hover:to-teal-900/40 transition-all duration-300 min-h-12"
                     ></ComboboxTrigger>
-                    <ComboboxContent 
-                      [multiple]="true" 
-                      searchPlaceholder="Search skills..." 
+                    <ComboboxContent
+                      [multiple]="true"
+                      searchPlaceholder="Search skills..."
                       class="border-emerald-200 dark:border-emerald-600/50"
                     ></ComboboxContent>
                   </Combobox>
@@ -238,8 +238,8 @@ import {
                       Selected Skills ({{ selectedSkills.length }})
                     </h4>
                     <div class="flex flex-wrap gap-2">
-                      <span 
-                        *ngFor="let skill of getSelectedSkillLabels()" 
+                      <span
+                        *ngFor="let skill of getSelectedSkillLabels()"
                         class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 rounded-full text-sm font-medium border border-emerald-200 dark:border-emerald-700/50"
                       >
                         {{ skill }}
@@ -275,17 +275,17 @@ import {
                 </div>
 
                 <div class="space-y-6">
-                  <Combobox 
-                    [options]="groupedTechOptions" 
-                    [(ngModel)]="selectedTech" 
-                    placeholder="Select technology..." 
+                  <Combobox
+                    [options]="groupedTechOptions"
+                    [(ngModel)]="selectedTech"
+                    placeholder="Select technology..."
                     (valueChange)="onTechChange($event)"
                     class="w-full"
                   >
                     <ComboboxTrigger class="w-full bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 border-blue-200 dark:border-blue-600/50 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/40 dark:hover:to-cyan-900/40 transition-all duration-300"></ComboboxTrigger>
-                    <ComboboxContent 
-                      [showGroupLabels]="true" 
-                      searchPlaceholder="Search technologies..." 
+                    <ComboboxContent
+                      [showGroupLabels]="true"
+                      searchPlaceholder="Search technologies..."
                       class="border-blue-200 dark:border-blue-600/50"
                     ></ComboboxContent>
                   </Combobox>
@@ -334,23 +334,23 @@ import {
 
                 <div class="space-y-4">
                   <div class="flex space-x-3">
-                    <Combobox 
-                      [options]="asyncOptions" 
-                      [loadingState]="isLoading()" 
-                      [(ngModel)]="selectedAsync" 
-                      placeholder="Select async option..." 
+                    <Combobox
+                      [options]="asyncOptions"
+                      [loadingState]="isLoading()"
+                      [(ngModel)]="selectedAsync"
+                      placeholder="Select async option..."
                       (valueChange)="onAsyncChange($event)"
                       class="flex-1"
                     >
                       <ComboboxTrigger class="w-full bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 border-amber-200 dark:border-amber-600/50 hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/40 dark:hover:to-orange-900/40 transition-all duration-300"></ComboboxTrigger>
-                      <ComboboxContent 
-                        [loadingMessage]="'Loading data...'" 
+                      <ComboboxContent
+                        [loadingMessage]="'Loading data...'"
                         searchPlaceholder="Search options..."
                         class="border-amber-200 dark:border-amber-600/50"
                       ></ComboboxContent>
                     </Combobox>
 
-                    <button 
+                    <button
                       (click)="simulateLoading()"
                       [disabled]="isLoading()"
                       class="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-lg hover:from-amber-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
@@ -384,22 +384,22 @@ import {
 
                 <div class="space-y-4">
                   <div class="flex space-x-3">
-                    <Combobox 
-                      [options]="errorOptions" 
-                      [error]="errorMessage()" 
-                      [(ngModel)]="selectedError" 
-                      placeholder="Select option..." 
+                    <Combobox
+                      [options]="errorOptions"
+                      [error]="errorMessage()"
+                      [(ngModel)]="selectedError"
+                      placeholder="Select option..."
                       (valueChange)="onErrorChange($event)"
                       class="flex-1"
                     >
                       <ComboboxTrigger class="w-full bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/30 dark:to-rose-900/30 border-red-200 dark:border-red-600/50 hover:from-red-100 hover:to-rose-100 dark:hover:from-red-900/40 dark:hover:to-rose-900/40 transition-all duration-300"></ComboboxTrigger>
-                      <ComboboxContent 
+                      <ComboboxContent
                         searchPlaceholder="Search options..."
                         class="border-red-200 dark:border-red-600/50"
                       ></ComboboxContent>
                     </Combobox>
 
-                    <button 
+                    <button
                       (click)="simulateError()"
                       class="px-4 py-2 bg-gradient-to-r from-red-500 to-rose-600 text-white rounded-lg hover:from-red-600 hover:to-rose-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                     >
@@ -710,7 +710,7 @@ export class ComboboxDemo {
   }
 
   getSelectedSkillLabels(): string[] {
-    return this.selectedSkills.map(skill => 
+    return this.selectedSkills.map(skill =>
       this.skillOptions.find(opt => opt.value === skill)?.label || skill
     );
   }

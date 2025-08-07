@@ -15,7 +15,7 @@ The Collapsible component provides a way to show and hide content with smooth an
 The easiest way to add the collapsible component to your project is using the Angular SuperUI CLI:
 
 ```bash
-ngsui-cli add collapsible
+ngsui add collapsible
 ```
 
 This command will:

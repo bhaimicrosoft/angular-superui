@@ -1,8 +1,60 @@
 # 📋 Changelog
 
-All notable changes to **Angular SuperUI** will be documented in this file.
+All n-- 🚀 **All Blocks Installation**: `ngsui add --all-blocks` for complete block library🔧 **New Block Commands**: `ngsui add block <block-name>` for installing complete UI sectionstable changes to **Angular SuperUI** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
+
+## [2.0.0] - 2025-08-07
+
+### 🎉 **Major Release: UI Blocks System & Complete Architecture Overhaul**
+
+#### 🏗️ **Revolutionary UI Blocks System**
+- 🌟 **5 Premium UI Blocks Added**: Complete page sections ready for production use
+  - **Header Block**: Professional navigation with branding, menu, and user actions
+  - **Footer Block**: Comprehensive footer with navigation, social links, and newsletter signup
+  - **Hero Section Block**: Compelling hero sections with backgrounds, CTAs, and statistics
+  - **Pricing Cards Block**: Professional pricing displays with billing toggles and feature comparison
+  - **Feature Grid Block**: Responsive feature showcases with multiple layouts and variants
+
+#### 📦 **Enhanced CLI with Block Support**
+- 🔧 **New Block Commands**: `ngsui block <block-name>` for installing complete UI sections
+- 🚀 **All Blocks Installation**: `ngsui block --all` for complete block library
+- 📁 **Automatic Directory Structure**: CLI now creates `src/lib/blocks/` directory during initialization
+- 🔌 **Pipes Integration**: Automatic installation of utility pipes (icon.pipe.ts, safe-html.pipe.ts) during init
+- 📚 **Complete Documentation**: Detailed markdown documentation for all blocks with examples
+
+#### 🗂️ **Major Architecture Reorganization**
+- 📂 **Improved Folder Structure**: 
+  - Components moved to `lib/src/lib/components/`
+  - Blocks organized in `lib/src/lib/blocks/`
+  - Utilities consolidated in `lib/src/lib/utils/`
+  - Pipes structured in `lib/src/lib/pipes/`
+
+#### 📊 **Complete Component & Count Updates**
+- 🎯 **39 Production-Ready Components**: All existing components reorganized and counted accurately
+- 📈 **Dynamic Counting**: Navigation automatically reflects correct component and block counts
+- 📝 **Documentation Overhaul**: All README files, installation guides, and documentation updated to v2.0.0
+- 🏷️ **Version Standardization**: Consistent version numbering across all package.json files
+
+#### ⚡ **Enhanced Development Experience**
+- 🔗 **Dependency Management**: CLI automatically installs @angular/cdk and @angular/animations
+- ⚙️ **Configuration Automation**: provideAnimationsAsync() automatically added to app.config.ts
+- 🛠️ **Better Error Handling**: Improved CLI error messages and recovery options
+- 📦 **Zero-Config Setup**: Complete project setup with single `ngsui init` command
+
+#### 🎨 **UI/UX Improvements**
+- 🌈 **Enhanced CLI Banners**: Beautiful colored output with component/block installation progress
+- 📱 **Responsive Block Design**: All blocks are mobile-first and fully responsive
+- ♿ **Accessibility Focus**: WCAG AA compliance across all blocks and components
+- 🎭 **Multiple Variants**: Each block includes multiple design variants (minimal, dark, gradient, etc.)
+
+#### 📚 **Comprehensive Documentation**
+- 📖 **Block Documentation**: Detailed guides for all 5 UI blocks with working examples
+- 🌐 **Live Examples**: Interactive showcases for blocks in the demo application
+- 💡 **Usage Patterns**: Real-world examples for corporate, startup, SaaS, and agency use cases
+- 🔧 **API References**: Complete TypeScript interfaces and configuration options
 
 ---
 
@@ -64,7 +116,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - 🎯 **Complete Component Coverage**: Added all missing components to CLI installation (input-otp, pagination, popover, progress, radio-group)
 - 📦 **26 Total Components**: Updated CLI banners and component count to reflect full library
 - 🔧 **Enhanced Component Discovery**: Improved component categorization and descriptions in CLI interface
-- 🌟 **Production-Ready Installation**: All 26 components now available through ngsui-cli installation
+- 🌟 **Production-Ready Installation**: All 26 components now available through ngsui installation
 
 #### 📚 Documentation Complete Overhaul
 - 🎯 **SELECTOR_REFERENCE.md Rewrite**: Completely rewritten with accurate component selectors extracted from actual implementations
@@ -151,7 +203,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### 🎯 **Component Library Expansion**
 - 📈 **18 Total Components**: Expanded from 16 to 18 production-ready components
-- 🔄 **CLI Component Support**: Added all new components to ngsui-cli installation system
+- 🔄 **CLI Component Support**: Added all new components to ngsui installation system
 - 🎨 **Improved Component Categories**: Enhanced organization with new categories:
   - 🎯 Core Components (8): Button, Badge, Alert, Avatar, Accordion, Card, Checkbox, ComboBox
   - 🧭 Navigation & Layout (2): Breadcrumb, AspectRatio
@@ -275,7 +327,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 #### 🔧 Technical Improvements
 - 🏗️ **Build Process**: Enhanced build pipeline with proper TypeScript type checking
-- 📦 **Package Publishing**: Successfully published both angular-superui and ngsui-cli packages
+- 📦 **Package Publishing**: Successfully published both angular-superui and ngsui packages
 - 🎨 **Code Quality**: Improved TypeScript type safety in CLI tool
 - 🌟 **Production Ready**: All components tested and validated for production use
 
@@ -351,7 +403,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 #### 🚀 Major Features
 - 📦 **8 Production-Ready Components**: Complete component library with beautiful design
 - 🏠 **Local-First Architecture**: Zero NPM dependencies, components live in your project
-- ⚡ **CLI-Powered Installation**: Selective component installation with `ngsui-cli`
+- ⚡ **CLI-Powered Installation**: Selective component installation with `ngsui`
 - 🎨 **TailwindCSS v4**: Modern utility-first styling with full customization
 - 🌙 **Enhanced Dark Mode**: System detection with theme persistence
 - ♿ **Accessibility First**: WCAG 2.1 compliant with full keyboard navigation

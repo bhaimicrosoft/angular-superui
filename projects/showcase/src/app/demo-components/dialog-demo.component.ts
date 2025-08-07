@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogClose,
   DialogService
-} from '@lib/dialog';
+} from '@lib/components/dialog';
 import { SEOService } from '../services/seo.service';
 
 interface FormData {

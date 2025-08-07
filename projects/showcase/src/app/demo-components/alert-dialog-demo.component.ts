@@ -1,6 +1,6 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Button } from '../../../../lib/src/lib/button';
+import { Button } from '@lib/components/button';
 import { SEOService } from '../services/seo.service';
 import {
   AlertDialog,
@@ -10,7 +10,7 @@ import {
   AlertDialogDescription,
   AlertDialogAction,
   AlertDialogCancel
-} from '../../../../lib/src/lib/alert-dialog';
+} from '@lib/components/alert-dialog';
 
 @Component({
   selector: 'app-alert-dialog-demo',

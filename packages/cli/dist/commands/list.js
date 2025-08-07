@@ -10,13 +10,14 @@ const add_1 = require("./add");
 const packageJson = require('../../package.json');
 const CLI_VERSION = packageJson.version;
 async function listCommand() {
-    // Get total component count from actually implemented components
+    // Get total component and block counts
     const totalComponents = Object.keys(add_1.COMPONENTS).length;
+    const totalBlocks = Object.keys(add_1.BLOCKS).length;
     console.log('');
     console.log(chalk_1.default.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('              📦 Angular SuperUI Component Library v' + CLI_VERSION + '              ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
-    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('                  🎯 ' + totalComponents + ' Production-Ready Components Available 🎯                   ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('              🎯 ' + totalComponents + ' Components + ' + totalBlocks + ' UI Blocks Available 🎯               ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('              ⚡ TailwindCSS • 🎨 Customizable • 🔥 TypeScript ⚡               ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899')('                    ✨ Enterprise-Grade • Zero Dependencies ✨                     ') + chalk_1.default.hex('#8B5CF6')('║'));
@@ -24,12 +25,13 @@ async function listCommand() {
     console.log('');
     // Group components by category with actually implemented components only
     const categories = {
-        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input', 'input-otp', 'progress', 'radio-group', 'select'],
-        '🧭 Navigation': ['breadcrumb', 'pagination', 'sidebar', 'stepper'],
-        '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu', 'popover'],
-        '🎨 Media & Display': ['carousel', 'aspect-ratio', 'skeleton'],
+        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input', 'input-otp', 'progress', 'radio-group', 'select', 'rating'],
+        '🧭 Navigation': ['breadcrumb', 'pagination', 'sidebar', 'stepper', 'tabs'],
+        '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu', 'popover', 'toast', 'tooltip'],
+        '🎨 Media & Display': ['carousel', 'aspect-ratio', 'skeleton', 'spinner'],
         '📊 Data & Tables': ['data-table'],
-        '🎛️ Controls & Inputs': ['slider'],
+        '🎛️ Controls & Inputs': ['slider', 'toggle', 'textarea'],
+        '📁 File Management': ['file-upload'],
         '⚙️ User Interface': ['theme-switcher', 'collapsible'],
         '📅 Featured Component': ['calendar']
     };
@@ -44,12 +46,23 @@ async function listCommand() {
         });
         console.log(''); // Empty line between categories
     }
+    // List UI Blocks
+    console.log(chalk_1.default.bold.hex('#8B5CF6')('🏗️ UI Blocks (Complete Page Sections)'));
+    for (const [blockKey, block] of Object.entries(add_1.BLOCKS)) {
+        console.log(chalk_1.default.green(`  🏗️ ${blockKey}`) + chalk_1.default.gray(` - ${block.description}`));
+    }
+    console.log(''); // Empty line before quick start
     console.log(chalk_1.default.bgBlue.white(' 📖 QUICK START GUIDE '));
     console.log('');
-    console.log(chalk_1.default.cyan('Add single component:    ') + chalk_1.default.yellow('ngsui-cli add button'));
-    console.log(chalk_1.default.cyan('Add multiple components: ') + chalk_1.default.yellow('ngsui-cli add button alert badge'));
-    console.log(chalk_1.default.cyan('Add featured calendar:   ') + chalk_1.default.yellow('ngsui-cli add calendar'));
-    console.log(chalk_1.default.cyan('Add all components:      ') + chalk_1.default.yellow('ngsui-cli add --all'));
+    console.log(chalk_1.default.bold.cyan('📦 Components:'));
+    console.log(chalk_1.default.cyan('  Add single component:    ') + chalk_1.default.yellow('ngsui add button'));
+    console.log(chalk_1.default.cyan('  Add multiple components: ') + chalk_1.default.yellow('ngsui add button alert badge'));
+    console.log(chalk_1.default.cyan('  Add all components:      ') + chalk_1.default.yellow('ngsui add --all'));
+    console.log('');
+    console.log(chalk_1.default.bold.cyan('🏗️ UI Blocks:'));
+    console.log(chalk_1.default.cyan('  Add single block:        ') + chalk_1.default.yellow('ngsui add block hero-section'));
+    console.log(chalk_1.default.cyan('  Add multiple blocks:     ') + chalk_1.default.yellow('ngsui add block header footer'));
+    console.log(chalk_1.default.cyan('  Add all blocks:          ') + chalk_1.default.yellow('ngsui add --all-blocks'));
     console.log('');
     console.log(chalk_1.default.bgMagenta.white(' 🌟 FEATURED SPOTLIGHT '));
     console.log('');
@@ -80,7 +93,7 @@ async function listCommand() {
     console.log(chalk_1.default.cyan('  🧪 Comprehensive test coverage'));
     console.log('');
     console.log(chalk_1.default.cyan('╔═══════════════════════════════════════════════════════════════╗'));
-    console.log(chalk_1.default.cyan('║') + chalk_1.default.bold.green(`               🎉 Total: ${totalComponents} Components Available                `) + chalk_1.default.cyan('║'));
+    console.log(chalk_1.default.cyan('║') + chalk_1.default.bold.green(`         🎉 Total: ${totalComponents} Components + ${totalBlocks} Blocks Available         `) + chalk_1.default.cyan('║'));
     console.log(chalk_1.default.cyan('║') + chalk_1.default.gray('          Zero Dependencies • Tree-Shakable • Angular 18+         ') + chalk_1.default.cyan('║'));
     console.log(chalk_1.default.cyan('║') + chalk_1.default.magenta('               💜 Built with ❤️ for Angular Developers          ') + chalk_1.default.cyan('║'));
     console.log(chalk_1.default.cyan('╚═══════════════════════════════════════════════════════════════╝'));

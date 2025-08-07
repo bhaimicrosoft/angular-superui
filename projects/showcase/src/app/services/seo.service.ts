@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { AnalyticsService } from './analytics.service';
 
 export interface SEOData {
   title?: string;
@@ -19,11 +20,12 @@ export interface SEOData {
 export class SEOService {
   private meta = inject(Meta);
   private title = inject(Title);
+  private analytics = inject(AnalyticsService);
 
   private readonly defaultSEO: SEOData = {
-    title: 'Angular SuperUI - Modern Angular Component Library | UI Framework',
-    description: 'Build stunning Angular applications with our comprehensive component library. 50+ components, TypeScript support, Tailwind CSS integration, and full accessibility compliance.',
-    keywords: 'Angular UI, Angular components, Angular library, Angular framework, UI components, TypeScript components, Tailwind CSS, Angular design system, dialog components, form components, navigation, accessibility, modern UI, component library, Angular SuperUI',
+    title: 'Angular SuperUI - Ultimate Headless UI Component Library for Angular',
+    description: 'The ultimate headless UI component library for Angular. 39+ modern, accessible components including dialogs, forms, data tables, navigation, and more. Built with TypeScript, Tailwind CSS, and zero dependencies. Perfect alternative to Shadcn/ui for Angular developers.',
+    keywords: 'headless ui, angular ui, angular components, angular library, angular framework, ui components, component library, angular design system, tailwind css components, typescript components, accessible components, modern ui, angular headless ui, shadcn angular, radix angular, chakra ui angular, material ui alternative, antd angular, angular component kit, ui framework, design tokens, angular ui kit, responsive components, form components, dialog components, navigation components, data table, button components, input components, angular widgets, frontend framework, ui building blocks, component collection, enterprise ui, production ready components, Angular SuperUI, angular-superui, ngsui, zero dependencies, tree shakable, cli installation, mobile responsive, dark mode, drag drop, file upload, calendar picker, accessibility wcag',
     image: 'https://angular-superui.vercel.app/assets/angular-superui-social.png',
     url: 'https://angular-superui.vercel.app',
     type: 'website',
@@ -32,6 +34,9 @@ export class SEOService {
 
   updateSEO(seoData: Partial<SEOData>) {
     const data = { ...this.defaultSEO, ...seoData };
+
+    // Track SEO page view for analytics
+    this.analytics.trackEngagement('view_example', `SEO: ${data.title}`);
 
     // Update title
     if (data.title) {
@@ -104,6 +109,9 @@ export class SEOService {
   getComponentSEO(componentName: string): SEOData {
     const componentTitle = componentName.charAt(0).toUpperCase() + componentName.slice(1);
     
+    // Track component page view for analytics
+    this.analytics.trackComponentView(componentName);
+    
     const componentDescriptions: Record<string, string> = {
       'accordion': 'Collapsible content panels with smooth animations. Perfect for FAQs, navigation menus, and content organization in your Angular applications.',
       'alert': 'Contextual feedback messages with multiple variants. Display success, error, warning, and info messages with beautiful styling and icons.',
@@ -147,6 +155,10 @@ export class SEOService {
 
   getDocumentationSEO(docName: string): SEOData {
     const docTitle = docName.charAt(0).toUpperCase() + docName.slice(1);
+    
+    // Track documentation page view for analytics
+    this.analytics.trackDocumentationView(docName);
+    
     return {
       title: `${docTitle} - Angular SuperUI Documentation | Modern Angular UI Library`,
       description: `Complete ${docTitle} guide for Angular SuperUI. Learn how to install, configure, and use our modern Angular component library effectively.`,
@@ -158,6 +170,9 @@ export class SEOService {
   // Add structured data for components
   addComponentStructuredData(componentName: string) {
     const componentTitle = componentName.charAt(0).toUpperCase() + componentName.slice(1);
+    
+    // Track structured data implementation for analytics
+    this.analytics.trackFeatureUsage('structured_data', componentName);
     
     const structuredData = {
       "@context": "https://schema.org",

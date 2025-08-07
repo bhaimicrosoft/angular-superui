@@ -2,7 +2,7 @@ import { Component, signal, inject, OnInit, ChangeDetectorRef, ViewChild, QueryL
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InputComponent, type MaskConfig, type SanitizationConfig } from '@lib/input';
+import { InputComponent, type MaskConfig, type SanitizationConfig } from '@lib/components/input';
 
 @Component({
   selector: 'app-input-demo',
@@ -374,7 +374,7 @@ import { InputComponent, type MaskConfig, type SanitizationConfig } from '@lib/i
           </div>
         </section>
 
-       
+
 
         <!-- Input Types -->
         <section class="space-y-12 mt-20">
@@ -1062,12 +1062,12 @@ export class InputDemoComponent implements OnInit {
       console.log('Form status changed:', status, 'Valid:', this.enhancedForm.valid);
       this.cdr.detectChanges();
     });
-    
+
     this.enhancedForm.valueChanges.subscribe((value) => {
       console.log('Form value changed:', value);
       this.cdr.detectChanges();
     });
-    
+
     // Initial form state logging
     console.log('Initial form state - Valid:', this.enhancedForm.valid, 'Status:', this.enhancedForm.status);
   }
@@ -1195,10 +1195,10 @@ export class InputDemoComponent implements OnInit {
     this.ssnValue.set('');
     this.currencyValue.set('');
     this.sanitizedValue.set('');
-    
+
     // Reset the reactive form
     this.enhancedForm.reset();
-    
+
     // Clear all Input components directly
     if (this.inputComponents) {
       this.inputComponents.forEach(input => {
@@ -1207,10 +1207,10 @@ export class InputDemoComponent implements OnInit {
         }
       });
     }
-    
+
     // Force change detection
     this.cdr.detectChanges();
-    
+
     console.log('All inputs cleared. Form valid:', this.enhancedForm.valid);
   }
 
@@ -1218,10 +1218,10 @@ export class InputDemoComponent implements OnInit {
     console.log('Form submission attempt - Valid:', this.enhancedForm.valid);
     console.log('Form errors:', this.enhancedForm.errors);
     console.log('Form value:', this.enhancedForm.value);
-    
+
     // Mark all fields as touched to show validation errors
     this.enhancedForm.markAllAsTouched();
-    
+
     if (this.enhancedForm.valid) {
       console.log('Form submitted:', this.enhancedForm.value);
       alert('Form submitted successfully! Check console for data.');

@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@lib/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@lib/components/card';
 import { SEOService } from '../services/seo.service';
 
 @Component({
@@ -25,7 +25,7 @@ import { SEOService } from '../services/seo.service';
             </svg>
             Flexible Content Container
           </div>
-          
+
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
             <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
               Card
@@ -33,7 +33,7 @@ import { SEOService } from '../services/seo.service';
             <br>
             Component
           </h1>
-          
+
           <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Versatile content containers with multiple variants, sizes, and layouts for any use case
           </p>
@@ -49,7 +49,7 @@ import { SEOService } from '../services/seo.service';
             </div>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Multiple Variants</span>
           </div>
-          
+
           <div class="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50">
             <div class="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-2">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ import { SEOService } from '../services/seo.service';
             </div>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Modular Structure</span>
           </div>
-          
+
           <div class="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50">
             <div class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-2">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ import { SEOService } from '../services/seo.service';
             </div>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Responsive</span>
           </div>
-          
+
           <div class="text-center p-4 bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50">
             <div class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center mx-auto mb-2">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,14 +81,14 @@ import { SEOService } from '../services/seo.service';
 
         <!-- Main Demo Sections -->
         <div class="space-y-20">
-          
+
           <!-- Card Variants Section -->
           <section class="text-center">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Card Variants</h2>
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
               Different visual styles for various use cases and design requirements
             </p>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               <!-- Default Card -->
               <Card variant="default" class="transition-all duration-300 hover:scale-105">
@@ -162,7 +162,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
               Perfect for e-commerce layouts, product catalogs, and feature highlighting
             </p>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               <!-- Product Card 1 -->
               <Card variant="default" class="overflow-hidden transition-all duration-300 hover:shadow-xl group">
@@ -301,7 +301,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
               Showcase team members, user profiles, and testimonials with style
             </p>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
               <!-- Profile Card 1 -->
               <Card variant="default" class="text-center transition-all duration-300 hover:shadow-lg group">
@@ -438,7 +438,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
               Different sizes to fit your layout requirements perfectly
             </p>
-            
+
             <div class="flex flex-col md:flex-row items-center justify-center gap-8 max-w-4xl mx-auto">
               <!-- Small Card -->
               <Card variant="default" size="sm" class="w-full md:w-auto transition-all duration-300 hover:scale-105">
@@ -490,7 +490,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
               Try different combinations of variants and see real-time changes
             </p>
-            
+
             <div class="max-w-2xl mx-auto mb-8">
               <div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm p-6 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 mb-8">
                 <!-- Controls -->
@@ -499,9 +499,9 @@ import { SEOService } from '../services/seo.service';
                     <button
                       *ngFor="let variant of cardVariants()"
                       (click)="setSelectedVariant(variant)"
-                      [class]="'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ' + 
-                               (selectedVariant() === variant 
-                                 ? 'bg-emerald-600 text-white shadow-lg' 
+                      [class]="'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ' +
+                               (selectedVariant() === variant
+                                 ? 'bg-emerald-600 text-white shadow-lg'
                                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600')"
                     >
                       {{ variant }}
@@ -541,7 +541,7 @@ import { SEOService } from '../services/seo.service';
             <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Simple and clean code structure with TypeScript support
             </p>
-            
+
             <div class="max-w-4xl mx-auto">
               <div class="bg-gray-900 dark:bg-gray-800 rounded-xl p-6 text-left">
                 <div class="flex items-center mb-4">
@@ -580,7 +580,7 @@ import { SEOService } from '../services/seo.service';
               <p class="text-xl mb-8 text-emerald-100 dark:text-slate-200 max-w-2xl mx-auto">
                 Create flexible, accessible content containers for your Angular applications
               </p>
-              
+
               <div class="bg-gray-900/90 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-6 text-left max-w-2xl mx-auto mb-8 border border-gray-700/50 dark:border-slate-600/30 shadow-lg">
                 <div class="flex items-center mb-4">
                   <div class="flex space-x-2">
@@ -590,9 +590,9 @@ import { SEOService } from '../services/seo.service';
                   </div>
                   <span class="ml-4 text-gray-300 dark:text-slate-300 text-sm">Terminal</span>
                 </div>
-                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui-cli add card</code></pre>
+                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui add card</code></pre>
               </div>
-              
+
               <a
                 href="https://github.com/bhaimicrosoft/angular-superui/tree/main/docs/components/card.md"
                 target="_blank"
@@ -613,10 +613,10 @@ import { SEOService } from '../services/seo.service';
   `
 })
 export class CardDemoComponent {
-  
+
   // Available card variants for interactive demo
   cardVariants = signal<('default' | 'outline' | 'ghost' | 'elevated' | 'filled')[]>(['default', 'outline', 'ghost', 'elevated', 'filled']);
-  
+
   // Selected variant for interactive demo
   selectedVariant = signal<'default' | 'outline' | 'ghost' | 'elevated' | 'filled'>('default');
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Checkbox, CheckboxState } from '@lib/checkbox';
+import { Checkbox, CheckboxState } from '@lib/components/checkbox';
 import { SEOService } from '../services/seo.service';
 
 @Component({

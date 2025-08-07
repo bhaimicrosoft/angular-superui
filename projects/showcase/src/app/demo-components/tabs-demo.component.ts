@@ -1,6 +1,6 @@
 import { Component, signal, computed } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Tabs, TabChangeEvent, TabItem } from '../../../../lib/src/lib/tabs';
+import { Tabs, TabChangeEvent, TabItem } from '@lib/components/tabs';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({

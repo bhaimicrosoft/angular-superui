@@ -21,13 +21,13 @@ A beautiful, accessible dropdown menu for Angular, featuring multiple variants, 
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui-cli init
+ngsui init
 ```
 
 Add the Dropdown Menu component:
 
 ```bash
-ngsui-cli add dropdown-menu
+ngsui add dropdown-menu
 ```
 
 ---

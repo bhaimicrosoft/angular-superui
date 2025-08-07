@@ -20,7 +20,7 @@ The Skeleton component provides an elegant loading experience by showing placeho
 Install the skeleton component using the Angular SuperUI CLI:
 
 ```bash
-npx ngsui-cli add skeleton
+npx ngsui add skeleton
 ```
 
 ## Quick Start

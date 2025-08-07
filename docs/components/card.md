@@ -15,7 +15,7 @@ A flexible card component with multiple variants and sizes for displaying conten
 
 ```bash
 # Using CLI (recommended)
-ngsui-cli add card
+ngsui add card
 
 # Manual installation
 npm install angular-superui

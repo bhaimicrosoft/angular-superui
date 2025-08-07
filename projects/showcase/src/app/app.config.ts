@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import {provideRouter} from '@angular/router';
 import {MENU_STACK, MenuStack} from '@angular/cdk/menu';
-import {ThemeService, ThemeServiceImpl} from '@lib/theme-switcher';
+import {ThemeService, ThemeServiceImpl} from '@lib/components/theme-switcher';
 import {RouteSEOService} from './services/route-seo.service';
 
 import {routes} from './app.routes';

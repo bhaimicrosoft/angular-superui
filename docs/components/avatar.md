@@ -16,7 +16,7 @@ A modern, accessible avatar component system built with **Angular Signals** for 
 ## Installation
 
 ```bash
-ngsui-cli add avatar
+ngsui add avatar
 ```
 
 ## Import

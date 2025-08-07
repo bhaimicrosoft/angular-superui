@@ -45,7 +45,7 @@ The **DataTable Component** isn't just another data grid - it's a complete data 
 
 ```bash
 # Install with our premium CLI
-npx ngsui-cli add data-table
+npx ngsui add data-table
 
 # Or install manually
 npm install @angular-superui/data-table
@@ -213,7 +213,7 @@ export class PremiumTableComponent {
 
 The DataTable component offers a comprehensive feature set organized into three tiers to meet different business needs:
 
-| �️ **Core Features** | 🚀 **Advanced Features** | 💎 **Premium Features** |
+| ⚡️ **Core Features** | 🚀 **Advanced Features** | 💎 **Premium Features** |
 |----------------------|---------------------------|--------------------------|
 | Essential data management | Enhanced productivity tools | Enterprise-grade capabilities |
 | ✅ Always included | ✅ Standard enterprise license | ✅ Premium enterprise license |
@@ -223,7 +223,7 @@ The DataTable component offers a comprehensive feature set organized into three 
 ### 🏗️ **Core Features** 
 *Essential data management capabilities included with every implementation*
 
-#### 1. **� Data Display & Sorting**
+#### 1. **📊 Data Display & Sorting**
 - ✅ **Column Sorting** - Click to sort by any column
 - ✅ **Responsive Design** - Works perfectly on all screen sizes
 - ✅ **Data Formatting** - Built-in formatters for dates, numbers, currency
@@ -329,7 +329,7 @@ Sophisticated filtering with multiple operators and multi-select options.
 - ✅ Number range filtering
 - ✅ Combined filter logic
 
-#### 7. **� Data Export**
+#### 7. **💾 Data Export**
 Export filtered and sorted data in multiple formats.
 
 ```typescript
@@ -1547,7 +1547,7 @@ The **DataTable Enterprise Edition** represents the pinnacle of data management 
 
 ```bash
 # Install the complete enterprise package
-npx ngsui-cli add data-table
+npx ngsui add data-table
 
 # Start building amazing data experiences
 npm run dev
@@ -2054,7 +2054,7 @@ export class ResponsiveTableExample {
 ### CLI Installation
 
 ```bash
-npx ngsui-cli add data-table
+npx ngsui add data-table
 ```
 
 ### Documentation

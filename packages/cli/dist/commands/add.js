@@ -3,8 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.COMPONENTS = void 0;
+exports.BLOCKS = exports.COMPONENTS = void 0;
 exports.addCommand = addCommand;
+exports.addBlockCommand = addBlockCommand;
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
 const chalk_1 = __importDefault(require("chalk"));
@@ -221,10 +222,86 @@ exports.COMPONENTS = {
         files: ['index.ts'],
         requiresHttpClient: true
     },
+    'rating': {
+        name: 'Rating',
+        description: 'Interactive star rating component with hover effects and customizable appearance.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'spinner': {
+        name: 'Spinner',
+        description: 'Loading spinner component with multiple variants and animations.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'tabs': {
+        name: 'Tabs',
+        description: 'Tabbed interface component with keyboard navigation and accessibility support.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'textarea': {
+        name: 'Textarea',
+        description: 'Multi-line text input component with auto-resize and validation states.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'toast': {
+        name: 'Toast',
+        description: 'Toast notification component with multiple variants and auto-dismiss functionality.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'tooltip': {
+        name: 'Tooltip',
+        description: 'Tooltip component with configurable positioning and hover/focus triggers.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    }
     // 📅 Featured Component
+};
+// Define available blocks
+exports.BLOCKS = {
+    'header': {
+        name: 'Header',
+        description: 'Professional header block with navigation, branding, and user actions.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'footer': {
+        name: 'Footer',
+        description: 'Comprehensive footer block with navigation, social links, and newsletter signup.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'hero-section': {
+        name: 'Hero Section',
+        description: 'Compelling hero section block with multiple backgrounds and CTA buttons.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'pricing-cards': {
+        name: 'Pricing Cards',
+        description: 'Professional pricing cards block with billing toggles and feature comparison.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'feature-grid': {
+        name: 'Feature Grid',
+        description: 'Feature showcase block with responsive grid layout and multiple variants.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    }
 };
 async function addCommand(componentNames, options) {
     let componentsToAdd = [];
+    // Check if this is the first component installation
+    const componentsDir = './src/lib/components';
+    const utilsDir = './src/lib/utils';
+    const pipesDir = './src/lib/pipes';
+    const isFirstInstall = !(await fs_extra_1.default.pathExists(componentsDir) &&
+        await fs_extra_1.default.pathExists(path_1.default.join(utilsDir, 'cn.ts')) &&
+        await fs_extra_1.default.pathExists(pipesDir));
     // Handle --all flag
     if (options.all) {
         componentsToAdd = Object.keys(exports.COMPONENTS);
@@ -255,6 +332,11 @@ async function addCommand(componentNames, options) {
     }
     const spinner = (0, ora_1.default)(`Adding ${componentsToAdd.length} component(s)...`).start();
     try {
+        // Install dependencies if this is the first component installation
+        if (isFirstInstall) {
+            spinner.text = 'Setting up dependencies...';
+            await ensureDependencies();
+        }
         const results = [];
         const errors = [];
         for (const componentName of componentsToAdd) {
@@ -296,9 +378,13 @@ async function addCommand(componentNames, options) {
                     try {
                         const response = await axios_1.default.get(`${baseUrl}/${componentName}/${file}`);
                         let fileContent = response.data;
-                        // Fix import paths for cn utility - handle both possible patterns
+                        // Fix import paths for cn utility and pipes - handle all possible patterns
                         fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
-                        fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g, "import { cn } from '../../lib/utils/cn';");
+                        fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+                        fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+                        // Fix pipe imports
+                        fileContent = fileContent.replace(/import\s*{([^}]+)}\s*from\s*['"]\.\.\/pipes\/([^'"]+)['"];?/g, "import { $1 } from '../../pipes/$2';");
+                        fileContent = fileContent.replace(/import\s*{([^}]+)}\s*from\s*['"]\.\.\/\.\.\/pipes\/([^'"]+)['"];?/g, "import { $1 } from '../../pipes/$2';");
                         await fs_extra_1.default.writeFile(path_1.default.join(componentDir, file), fileContent);
                     }
                     catch (error) {
@@ -365,6 +451,124 @@ async function addCommand(componentNames, options) {
         console.error(chalk_1.default.red(error));
     }
 }
+async function addBlockCommand(blockNames, options) {
+    let blocksToAdd = [];
+    // Handle --all flag
+    if (options.all) {
+        blocksToAdd = Object.keys(exports.BLOCKS);
+        // Show banner for all blocks
+        console.log('');
+        console.log(chalk_1.default.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('                🏗️ Installing All Angular SuperUI Blocks 🏗️                 ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('                      ✨ ' + blocksToAdd.length + ' Premium UI Blocks Ready! ✨                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('              🎯 Complete UI Sections • Ready to Use • TypeScript 🎯             ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
+        console.log('');
+    }
+    else {
+        // Handle single block or multiple blocks
+        blocksToAdd = Array.isArray(blockNames) ? blockNames : [blockNames];
+        // Show banner for selective installation
+        console.log('');
+        console.log(chalk_1.default.hex('#8B5CF6')('╔═══════════════════════════════════════════════════════════════════════╗'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('              📦 Adding Angular SuperUI Blocks 📦                          ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('                    ⚡ Installing: ' + blocksToAdd.join(', ') + ' ⚡                        ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('               🏗️ Complete UI Sections • Production-Ready • TypeScript 🏗️             ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('                                                                       ') + chalk_1.default.hex('#8B5CF6')('║'));
+        console.log(chalk_1.default.hex('#8B5CF6')('╚═══════════════════════════════════════════════════════════════════════╝'));
+        console.log('');
+    }
+    const spinner = (0, ora_1.default)(`Adding ${blocksToAdd.length} block(s)...`).start();
+    try {
+        const results = [];
+        const errors = [];
+        for (const blockName of blocksToAdd) {
+            try {
+                // Check if block exists
+                const block = exports.BLOCKS[blockName];
+                if (!block) {
+                    errors.push(`Block "${blockName}" not found.`);
+                    continue;
+                }
+                // Create block directory
+                const blockDir = `./src/lib/blocks/${blockName}`;
+                await fs_extra_1.default.ensureDir(blockDir);
+                // Check if block already exists
+                const blockExists = await fs_extra_1.default.pathExists(path_1.default.join(blockDir, block.files[0]));
+                if (blockExists && !options.force && !options.all) {
+                    spinner.stop();
+                    console.log(''); // Add blank line for better formatting
+                    const { overwrite } = await inquirer_1.default.prompt([
+                        {
+                            type: 'confirm',
+                            name: 'overwrite',
+                            message: `Block "${blockName}" already exists. Overwrite?`,
+                            default: false
+                        }
+                    ]);
+                    if (!overwrite) {
+                        results.push(`${chalk_1.default.yellow('⏭️')} Skipped ${chalk_1.default.cyan(block.name)}`);
+                        spinner.start();
+                        continue;
+                    }
+                    spinner.start();
+                }
+                spinner.text = `Installing ${block.name}...`;
+                // Download block files from GitHub repository
+                const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib/blocks';
+                for (const file of block.files) {
+                    try {
+                        const response = await axios_1.default.get(`${baseUrl}/${blockName}/${file}`);
+                        let fileContent = response.data;
+                        // Fix import paths for cn utility and pipes
+                        fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+                        fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+                        fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+                        // Fix pipe imports  
+                        fileContent = fileContent.replace(/import\s*{([^}]+)}\s*from\s*['"]\.\.\/pipes\/([^'"]+)['"];?/g, "import { $1 } from '../../pipes/$2';");
+                        fileContent = fileContent.replace(/import\s*{([^}]+)}\s*from\s*['"]\.\.\/\.\.\/pipes\/([^'"]+)['"];?/g, "import { $1 } from '../../pipes/$2';");
+                        await fs_extra_1.default.writeFile(path_1.default.join(blockDir, file), fileContent);
+                    }
+                    catch (error) {
+                        console.warn(chalk_1.default.yellow(`Warning: Could not download ${file} for ${blockName}`));
+                    }
+                }
+                // Update block exports
+                await updateBlockExports(blockName, block);
+                results.push(`${chalk_1.default.green('✅')} Added ${chalk_1.default.cyan(block.name)}`);
+            }
+            catch (error) {
+                errors.push(`Failed to add block "${blockName}": ${error}`);
+            }
+        }
+        spinner.stop();
+        // Display results
+        console.log('');
+        if (results.length > 0) {
+            console.log(chalk_1.default.hex('#10B981').bold('📦 Installation Results:'));
+            results.forEach(result => console.log(`  ${result}`));
+            console.log('');
+        }
+        if (errors.length > 0) {
+            console.log(chalk_1.default.red.bold('❌ Errors:'));
+            errors.forEach(error => console.log(`  ${chalk_1.default.red('•')} ${error}`));
+            console.log('');
+        }
+        if (results.length > 0) {
+            console.log(chalk_1.default.hex('#F59E0B').bold('🎉 Success! UI Blocks installed successfully.'));
+            console.log(chalk_1.default.hex('#06B6D4')('📚 Check out the documentation for usage examples:'));
+            console.log(chalk_1.default.hex('#06B6D4')('   https://angular-superui.vercel.app/'));
+            console.log('');
+        }
+    }
+    catch (error) {
+        spinner.fail(`Failed to add blocks`);
+        console.error(chalk_1.default.red(error));
+    }
+}
 async function updateComponentExports(componentName, component) {
     const indexPath = './src/lib/components/index.ts';
     try {
@@ -373,6 +577,27 @@ async function updateComponentExports(componentName, component) {
             indexContent = await fs_extra_1.default.readFile(indexPath, 'utf8');
         }
         const exportLine = `export * from './${componentName}';`;
+        if (!indexContent.includes(exportLine)) {
+            // Add proper newline formatting
+            if (indexContent && !indexContent.endsWith('\n')) {
+                indexContent += '\n';
+            }
+            indexContent += `${exportLine}\n`;
+            await fs_extra_1.default.writeFile(indexPath, indexContent);
+        }
+    }
+    catch (error) {
+        // Ignore errors in updating exports
+    }
+}
+async function updateBlockExports(blockName, block) {
+    const indexPath = './src/lib/blocks/index.ts';
+    try {
+        let indexContent = '';
+        if (await fs_extra_1.default.pathExists(indexPath)) {
+            indexContent = await fs_extra_1.default.readFile(indexPath, 'utf8');
+        }
+        const exportLine = `export * from './${blockName}';`;
         if (!indexContent.includes(exportLine)) {
             // Add proper newline formatting
             if (indexContent && !indexContent.endsWith('\n')) {
@@ -404,9 +629,13 @@ async function addDependencyComponent(depName, spinner) {
         try {
             const response = await axios_1.default.get(`${baseUrl}/${depName}/${file}`);
             let fileContent = response.data;
-            // Fix import paths for cn utility
+            // Fix import paths for cn utility and pipes
             fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
-            fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g, "import { cn } from '../../lib/utils/cn';");
+            fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/lib\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+            fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
+            // Fix pipe imports
+            fileContent = fileContent.replace(/import\s*{([^}]+)}\s*from\s*['"]\.\.\/pipes\/([^'"]+)['"];?/g, "import { $1 } from '../../pipes/$2';");
+            fileContent = fileContent.replace(/import\s*{([^}]+)}\s*from\s*['"]\.\.\/\.\.\/pipes\/([^'"]+)['"];?/g, "import { $1 } from '../../pipes/$2';");
             await fs_extra_1.default.writeFile(path_1.default.join(componentDir, file), fileContent);
         }
         catch (error) {
@@ -478,6 +707,51 @@ async function ensureHttpClientConfiguration(spinner) {
     }
     catch (error) {
         console.log(chalk_1.default.yellow('⚠️  Could not automatically configure HttpClient. Please add provideHttpClient() to your app.config.ts providers array.'));
+    }
+}
+async function ensureDependencies() {
+    // Create directories
+    await fs_extra_1.default.ensureDir('./src/lib/utils');
+    await fs_extra_1.default.ensureDir('./src/lib/pipes');
+    await fs_extra_1.default.ensureDir('./src/lib/components');
+    await fs_extra_1.default.ensureDir('./src/lib/blocks');
+    // Install cn utility if it doesn't exist
+    const cnPath = './src/lib/utils/cn.ts';
+    if (!(await fs_extra_1.default.pathExists(cnPath))) {
+        const cnContent = `import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`;
+        await fs_extra_1.default.writeFile(cnPath, cnContent);
+    }
+    // Install pipes
+    await installPipes('./src/lib/pipes');
+}
+async function installPipes(pipesDirectory) {
+    try {
+        const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib/pipes';
+        // List of pipes to install
+        const pipes = ['truncate.pipe.ts', 'safe-html.pipe.ts', 'currency-format.pipe.ts'];
+        for (const pipe of pipes) {
+            try {
+                const response = await axios_1.default.get(`${baseUrl}/${pipe}`);
+                await fs_extra_1.default.writeFile(path_1.default.join(pipesDirectory, pipe), response.data);
+            }
+            catch (error) {
+                // Continue if individual pipe fails
+            }
+        }
+        // Create pipes index file
+        const indexContent = `export * from './truncate.pipe';
+export * from './safe-html.pipe';
+export * from './currency-format.pipe';
+`;
+        await fs_extra_1.default.writeFile(path_1.default.join(pipesDirectory, 'index.ts'), indexContent);
+    }
+    catch (error) {
+        // Ignore pipe installation errors
     }
 }
 //# sourceMappingURL=add.js.map

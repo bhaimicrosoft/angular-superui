@@ -17,7 +17,7 @@ A flexible drawer component that slides in from any side of the screen. Perfect 
 Install using the Angular SuperUI CLI:
 
 ```bash
-npx ngsui-cli add drawer
+npx ngsui add drawer
 ```
 
 This will:

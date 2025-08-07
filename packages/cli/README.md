@@ -1,12 +1,14 @@
+<div align="center">
+
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v1.0.8: 31 Components Ready** 🎯
-
+## 🛠️ **v2.0.0: 39 Components + 5 Blocks Ready** 🎯
+</div>
 <div align="center">
 
 ### 🌟 **[🎮 LIVE DEMO - See Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 31 Components • Dark Mode • Mobile Responsive ✨**
+**✨ Interactive Showcase • 39 Components • 5 Blocks • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 View Live Demo](https://img.shields.io/badge/🚀-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Try on Mobile](https://img.shields.io/badge/📱-Try%20on%20Mobile-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -28,32 +30,32 @@ The **Angular SuperUI CLI** is your gateway to the most beautiful and accessible
 
 ```bash
 # Install globally
-npm install -g ngsui-cli
+npm install -g ngsui
 
 # Or use with npx (no installation required)
-npx ngsui-cli --help
+npx ngsui --help
 ```
 
 ## 🚀 Quick Start
 
 ```bash
 # List all available components
-ngsui-cli list
+ngsui list
 
 # Install a single component
-ngsui-cli add button
+ngsui add button
 
 # Install multiple components
-ngsui-cli add button badge alert card
+ngsui add button badge alert card
 
 # Install all available components
-ngsui-cli add --all
+ngsui add --all
 
 # Interactive component selection
-ngsui-cli add
+ngsui add
 ```
 
-## 📦 Available Components (31 total)
+## 📦 Available Components (39 total)
 
 ### 🎯 Core Components
 
@@ -64,8 +66,13 @@ ngsui-cli add
 - `card` - Flexible content containers with header, body, and footer
 - `checkbox` - Toggle controls with full accessibility support
 - `input` - Accessible and customizable input fields with validation
+- `input-otp` - One-time password input with multiple slots and validation
+- `progress` - Progress indicator component with customizable appearance and animation
 - `radio-group` - Radio button groups with form integration
+- `rating` - Interactive star rating component with hover effects and customizable appearance
 - `select` - Dropdown selection with search and multi-select capabilities
+- `slider` - Interactive slider component for single values and ranges with accessibility support
+- `textarea` - Multi-line text input component with auto-resize and validation states
 
 ### 🧭 Navigation Components
 
@@ -75,14 +82,15 @@ ngsui-cli add
 - `drawer` - Slide-out panels from screen edges
 - `sidebar` - Responsive navigation sidebar with animations and keyboard support
 - `stepper` - Multi-step navigation with progress tracking and validation
+- `tabs` - Tabbed interface component with keyboard navigation and accessibility support
 
 ### 🖼️ Display Components
 
 - `avatar` - User profile pictures with fallback support
 - `carousel` - Image and content sliders with auto-play
 - `data-table` - Feature-rich table for displaying large datasets
-- `progress` - Progress indicators with accessibility
 - `skeleton` - Loading placeholders with smooth animations
+- `spinner` - Loading spinner component with multiple variants and animations
 
 ### 💫 Overlay Components
 
@@ -90,14 +98,15 @@ ngsui-cli add
 - `context-menu` - Right-click context menus with accessibility
 - `dialog` - Modal windows and overlays
 - `popover` - Floating content containers with smart positioning
+- `toast` - Toast notification component with multiple variants and auto-dismiss functionality
+- `tooltip` - Tooltip component with configurable positioning and hover/focus triggers
 
 ### 🔧 Form Components
 
 - `calendar` - Date picker with full keyboard navigation
 - `collapsible` - Expandable content sections with animations
 - `combobox` - Advanced dropdown with search and multi-select
-- `input-otp` - Secure one-time password input with validation
-- `slider` - Range input controls with precise value selection
+- `file-upload` - Advanced file upload component with drag-and-drop, progress tracking, and validation
 
 ### ⚙️ Utility Components
 
@@ -109,22 +118,22 @@ ngsui-cli add
 ### Basic Usage
 ```bash
 # Install the button component
-ngsui-cli add button
+ngsui add button
 
 # Install multiple components at once
-ngsui-cli add button badge alert avatar card aspect-ratio checkbox collapsible theme-switcher
+ngsui add button badge alert avatar card aspect-ratio checkbox collapsible theme-switcher
 ```
 
 ### Interactive Mode
 ```bash
 # Run without arguments for interactive selection
-ngsui-cli add
+ngsui add
 ```
 
 ### Install All Components
 ```bash
 # Install all available components
-ngsui-cli add --all
+ngsui add --all
 ```
 
 ## 📋 Requirements
@@ -145,7 +154,7 @@ Most components support these beautiful color variants:
 - 🤍 gray
 - 🩵 cyan
 
-## � Documentation
+## 📖 Documentation
 
 - [🚀 Live Demo](https://angular-superui.vercel.app/) - Interactive component showcase
 - [GitHub Repository](https://github.com/bhaimicrosoft/angular-superui)

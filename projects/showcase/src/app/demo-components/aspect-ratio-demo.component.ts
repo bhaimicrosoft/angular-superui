@@ -1,6 +1,6 @@
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AspectRatio, type AspectRatioPredefined } from '@lib/aspect-ratio';
+import { AspectRatio, type AspectRatioPredefined } from '@lib/components/aspect-ratio';
 import { SEOService } from '../services/seo.service';
 import {
   LucideAngularModule,

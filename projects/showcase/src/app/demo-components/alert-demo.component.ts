@@ -1,6 +1,6 @@
 import {Component, signal, OnInit, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Button} from '@lib/button';
+import {Button} from '@lib/components/button';
 import { SEOService } from '../services/seo.service';
 
 interface AlertExample {
