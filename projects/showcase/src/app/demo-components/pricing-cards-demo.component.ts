@@ -145,7 +145,7 @@ import { PricingCardsBlockComponent, PricingPlan } from '@lib/blocks/pricing-car
             </p>
 
             <a
-              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/pricing-cards.md"
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/blocks/pricing-cards.md"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"

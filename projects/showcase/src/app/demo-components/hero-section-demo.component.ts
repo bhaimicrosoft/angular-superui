@@ -175,7 +175,7 @@ import { HeroSectionBlockComponent, HeroButton, HeroBackground } from '@lib/bloc
             </p>
 
             <a
-              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/hero-section.md"
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/blocks/hero-section.md"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"

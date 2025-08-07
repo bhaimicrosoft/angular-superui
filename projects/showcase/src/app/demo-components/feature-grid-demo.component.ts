@@ -145,7 +145,7 @@ import { FeatureGridBlockComponent } from '@lib/blocks/feature-grid';
             </p>
 
             <a
-              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/feature-grid.md"
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/blocks/feature-grid.md"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"

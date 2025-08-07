@@ -214,7 +214,7 @@ export interface CompanyInfo {
             usage examples.
           </p>
           <a
-            href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/footer.md"
+            href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/blocks/footer.md"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"

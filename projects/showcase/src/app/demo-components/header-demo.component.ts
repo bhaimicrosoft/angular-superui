@@ -32,7 +32,7 @@ import { Header, HeaderNavItem, HeaderUser } from '../../../../../projects/lib/s
 
           <!-- Description -->
           <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed mx-auto max-w-3xl">
-            Complete header layouts with navigation, search, user menus, and responsive mobile design. 
+            Complete header layouts with navigation, search, user menus, and responsive mobile design.
             Perfect for any application requiring professional navigation.
           </p>
 
@@ -96,7 +96,7 @@ import { Header, HeaderNavItem, HeaderUser } from '../../../../../projects/lib/s
                   (searchChange)="onSearchChange($event)"
                   (searchSubmit)="onSearchSubmit($event)"
                   (userMenuAction)="onUserMenuAction($event)">
-                  
+
                   <ng-container slot="actions">
                     <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors">
                       Sign In
@@ -122,7 +122,7 @@ import { Header, HeaderNavItem, HeaderUser } from '../../../../../projects/lib/s
                   size="default"
                   (searchChange)="onSearchChange($event)"
                   (userMenuAction)="onUserMenuAction($event)">
-                  
+
                   <ng-container slot="actions">
                     <button class="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-md text-sm font-medium transition-colors backdrop-blur-sm">
                       Get Started
@@ -147,14 +147,14 @@ import { Header, HeaderNavItem, HeaderUser } from '../../../../../projects/lib/s
                   variant="floating"
                   size="lg"
                   (userMenuAction)="onUserMenuAction($event)">
-                  
+
                   <ng-container slot="actions">
                     <button class="px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white rounded-lg text-sm font-medium transition-all">
                       Upgrade Pro
                     </button>
                   </ng-container>
                 </app-header>
-                
+
                 <!-- Demo content -->
                 <div class="mt-8 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-sm">
                   <h4 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Page Content</h4>
@@ -181,7 +181,7 @@ import { Header, HeaderNavItem, HeaderUser } from '../../../../../projects/lib/s
                   size="sm"
                   searchPlaceholder="Quick search..."
                   (searchChange)="onSearchChange($event)">
-                  
+
                   <ng-container slot="actions">
                     <button class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-sm font-medium transition-colors">
                       Login
@@ -203,15 +203,15 @@ import { Header, HeaderNavItem, HeaderUser } from '../../../../../projects/lib/s
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
           <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-12">Implementation Guide</h3>
-          
+
           <div class="prose prose-lg dark:prose-invert max-w-none">
             <p class="text-gray-600 dark:text-gray-400 text-center mb-8">
               Ready to implement? Check out our comprehensive documentation for detailed usage examples and customization options.
             </p>
-            
+
             <div class="text-center">
-              <a 
-                href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/header.md" 
+              <a
+                href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/blocks/header.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
@@ -233,7 +233,7 @@ export class HeaderDemoComponent {
   private userEnabled = signal(true);
   private searchEnabled = signal(true);
   private fullNavigation = signal(true);
-  
+
   // Event logs
   searchLogs = signal<string[]>([]);
   userActionLogs = signal<string[]>([]);
