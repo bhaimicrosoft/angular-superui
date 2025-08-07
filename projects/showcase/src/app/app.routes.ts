@@ -224,6 +224,15 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'components/rating',
+    loadComponent: () => import('./demo-components/rating-demo.component').then(c => c.RatingDemoComponent),
+    data: {
+      componentName: 'rating',
+      category: 'Form',
+      description: 'Interactive star rating component with accessibility, animations, and form integration'
+    }
+  },
+  {
     path: 'components/select',
     loadComponent: () => import('./demo-components/select-demo.component'),
     data: {
