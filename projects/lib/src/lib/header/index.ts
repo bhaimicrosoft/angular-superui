@@ -22,6 +22,8 @@ import {ComponentPortal, TemplatePortal} from '@angular/cdk/portal';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {cva, type VariantProps} from 'class-variance-authority';
 import {cn} from '../utils/cn';
+import {SafeHtmlPipe} from '../pipes/safe-html.pipe';
+import {Subscription} from 'rxjs';
 
 /**
  * Navigation item interface for header menu items
@@ -312,8 +314,33 @@ const dropdownItemVariants = cva(
     RouterLink,
     RouterLinkActive,
     A11yModule,
-    OverlayModule
+    OverlayModule,
+    SafeHtmlPipe
   ],
+  styles: [`
+    :host {
+      position: relative;
+      z-index: 40;
+    }
+    
+    .mobile-menu-panel {
+      z-index: 50 !important;
+    }
+    
+    /* Global CDK overlay styles */
+    .cdk-overlay-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+    }
+    
+    .cdk-overlay-dark-backdrop {
+      background: rgba(0, 0, 0, 0.6);
+    }
+  `],
   animations: [
     trigger('slideDown', [
       state('closed', style({
@@ -352,7 +379,7 @@ const dropdownItemVariants = cva(
               [class]="logoClasses()"
               [attr.aria-label]="logo()!.text + ' - Go to homepage'">
               @if (logo()!.icon) {
-                <span [innerHTML]="logo()!.icon" class="w-6 h-6"></span>
+                <span [innerHTML]="logo()!.icon | safeHtml" class="w-6 h-6"></span>
               }
               @if (logo()!.image) {
                 <img 
@@ -383,7 +410,7 @@ const dropdownItemVariants = cva(
                     (keydown.enter)="toggleNavDropdown(item, navDropdownTrigger)"
                     (keydown.space)="toggleNavDropdown(item, navDropdownTrigger); $event.preventDefault()">
                     @if (item.icon) {
-                      <span [innerHTML]="item.icon" class="w-4 h-4"></span>
+                      <span [innerHTML]="item.icon | safeHtml" class="w-4 h-4"></span>
                     }
                     <span>{{ item.label }}</span>
                     <svg class="w-4 h-4 transition-transform duration-200" 
@@ -404,7 +431,7 @@ const dropdownItemVariants = cva(
                   [routerLinkActiveOptions]="{ exact: false }"
                   [attr.aria-disabled]="item.disabled">
                   @if (item.icon) {
-                    <span [innerHTML]="item.icon" class="w-4 h-4"></span>
+                    <span [innerHTML]="item.icon | safeHtml" class="w-4 h-4"></span>
                   }
                   <span>{{ item.label }}</span>
                   @if (item.external) {
@@ -492,20 +519,17 @@ const dropdownItemVariants = cva(
 
     <!-- Mobile Menu Template -->
     <ng-template #mobileMenuTemplate>
-      <div class="fixed inset-0 z-50 lg:hidden">
-        <!-- Backdrop -->
-        <div class="fixed inset-0 bg-background/80 backdrop-blur-sm" 
-             (click)="closeMobileMenu()"></div>
-        
-        <!-- Mobile Menu Panel -->
-        <div [class]="getMobileMenuClasses(true)"
-             [@slideDown]="mobileMenuOpen() ? 'open' : 'closed'"
-             role="navigation"
-             aria-label="Mobile navigation"
-             class="relative">
+      <!-- Mobile Menu Panel -->
+      <div class="fixed top-0 left-0 right-0 bg-background border-b shadow-lg max-h-screen overflow-y-auto"
+           role="navigation"
+           aria-label="Mobile navigation"
+           style="pointer-events: auto;">
+          <!-- Header Space - to push content below the header -->
+          <div [style.height]="getHeaderHeight()" class="bg-background border-b border-border/30"></div>
+          
           <!-- Mobile Search -->
           @if (showSearch()) {
-            <div class="px-4 py-3 border-b border-border/50">
+            <div class="px-3 sm:px-4 py-3 border-b border-border/50">
               <div class="relative">
                 <div class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2">
                   <svg class="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -514,7 +538,7 @@ const dropdownItemVariants = cva(
                 </div>
                 <input
                   type="search"
-                  [class]="searchInputClasses()"
+                  class="w-full pl-8 pr-3 py-2 text-sm bg-accent/50 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent placeholder:text-muted-foreground"
                   [placeholder]="searchPlaceholder()"
                   [value]="searchValue()"
                   (input)="onSearchInput($event)"
@@ -530,14 +554,16 @@ const dropdownItemVariants = cva(
               <!-- Mobile Dropdown Item -->
               <div>
                 <button
-                  [class]="mobileNavItemClasses()"
+                  class="w-full flex items-center justify-between px-3 sm:px-4 py-3 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-inset border-b border-border/30"
                   [attr.aria-expanded]="activeMobileDropdown() === item.label"
                   (click)="toggleMobileDropdown(item.label)">
-                  @if (item.icon) {
-                    <span [innerHTML]="item.icon" class="w-4 h-4"></span>
-                  }
-                  <span class="flex-1 text-left">{{ item.label }}</span>
-                  <svg class="w-4 h-4 transition-transform duration-200" 
+                  <div class="flex items-center space-x-3">
+                    @if (item.icon) {
+                      <span [innerHTML]="item.icon | safeHtml" class="w-4 h-4 flex-shrink-0"></span>
+                    }
+                    <span class="text-left">{{ item.label }}</span>
+                  </div>
+                  <svg class="w-4 h-4 transition-transform duration-200 flex-shrink-0" 
                        [class.rotate-180]="activeMobileDropdown() === item.label"
                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -545,22 +571,22 @@ const dropdownItemVariants = cva(
                 </button>
                 
                 @if (activeMobileDropdown() === item.label) {
-                  <div class="bg-accent/50">
+                  <div class="bg-accent/30 border-b border-border/30">
                     @for (child of item.children; track child.label) {
                       @if (child.divider) {
-                        <div class="border-t border-border/50 my-1 mx-4"></div>
+                        <div class="border-t border-border/50 my-1 mx-3 sm:mx-4"></div>
                       } @else {
                         <a
                           [href]="child.href || '#'"
                           [routerLink]="child.routerLink"
                           [target]="child.target || '_self'"
-                          class="flex items-center space-x-3 px-8 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                          class="flex items-center space-x-3 px-6 sm:px-8 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-inset"
                           (click)="closeMobileMenu()"
                           [attr.aria-disabled]="child.disabled">
                           @if (child.icon) {
-                            <span [innerHTML]="child.icon" class="w-4 h-4"></span>
+                            <span [innerHTML]="child.icon | safeHtml" class="w-4 h-4 flex-shrink-0"></span>
                           }
-                          <span>{{ child.label }}</span>
+                          <span class="flex-1">{{ child.label }}</span>
                         </a>
                       }
                     }
@@ -573,16 +599,18 @@ const dropdownItemVariants = cva(
                 [href]="item.href || '#'"
                 [routerLink]="item.routerLink"
                 [target]="item.target || '_self'"
-                [class]="mobileNavItemClasses()"
+                class="w-full flex items-center justify-between px-3 sm:px-4 py-3 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-inset border-b border-border/30"
                 routerLinkActive="bg-accent text-accent-foreground"
                 (click)="closeMobileMenu()"
                 [attr.aria-disabled]="item.disabled">
-                @if (item.icon) {
-                  <span [innerHTML]="item.icon" class="w-4 h-4"></span>
-                }
-                <span>{{ item.label }}</span>
+                <div class="flex items-center space-x-3">
+                  @if (item.icon) {
+                    <span [innerHTML]="item.icon | safeHtml" class="w-4 h-4 flex-shrink-0"></span>
+                  }
+                  <span>{{ item.label }}</span>
+                </div>
                 @if (item.external) {
-                  <svg class="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                   </svg>
                 }
@@ -592,26 +620,45 @@ const dropdownItemVariants = cva(
 
           <!-- Mobile User Actions -->
           @if (user() && userMenuActions().length > 0) {
-            <div class="border-t border-border/50 mt-2">
+            <div class="border-t border-border/50 bg-accent/20">
+              <div class="px-3 sm:px-4 py-2">
+                <div class="flex items-center space-x-3 mb-2">
+                  @if (user()!.avatar) {
+                    <img 
+                      [src]="user()!.avatar" 
+                      [alt]="user()!.name"
+                      class="w-8 h-8 rounded-full object-cover">
+                  } @else {
+                    <div class="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-medium">
+                      {{ getUserInitials() }}
+                    </div>
+                  }
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-foreground truncate">{{ user()!.name }}</p>
+                    @if (user()!.email) {
+                      <p class="text-xs text-muted-foreground truncate">{{ user()!.email }}</p>
+                    }
+                  </div>
+                </div>
+              </div>
               @for (action of userMenuActions(); track action.label) {
                 @if (action.divider) {
                   <div class="border-t border-border/50 my-1"></div>
                 } @else {
                   <button
-                    [class]="mobileNavItemClasses()"
+                    class="w-full flex items-center space-x-3 px-3 sm:px-4 py-2.5 text-sm text-foreground hover:bg-accent hover:text-accent-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-inset"
                     (click)="onUserMenuAction(action); closeMobileMenu()"
                     [attr.aria-disabled]="action.disabled">
                     @if (action.icon) {
-                      <span [innerHTML]="action.icon" class="w-4 h-4"></span>
+                      <span [innerHTML]="action.icon | safeHtml" class="w-4 h-4 flex-shrink-0"></span>
                     }
-                    <span>{{ action.label }}</span>
+                    <span class="flex-1 text-left">{{ action.label }}</span>
                   </button>
                 }
               }
             </div>
           }
         </div>
-      </div>
     </ng-template>
 
     <!-- Navigation Dropdown Template -->
@@ -630,7 +677,7 @@ const dropdownItemVariants = cva(
               (click)="closeNavDropdown()"
               [attr.aria-disabled]="child.disabled">
               @if (child.icon) {
-                <span [innerHTML]="child.icon" class="w-4 h-4"></span>
+                <span [innerHTML]="child.icon | safeHtml" class="w-4 h-4"></span>
               }
               <span>{{ child.label }}</span>
               @if (child.external) {
@@ -664,7 +711,7 @@ const dropdownItemVariants = cva(
               (click)="onUserMenuAction(action); closeUserDropdown()"
               [attr.aria-disabled]="action.disabled">
               @if (action.icon) {
-                <span [innerHTML]="action.icon" class="w-4 h-4"></span>
+                <span [innerHTML]="action.icon | safeHtml" class="w-4 h-4"></span>
               }
               <span>{{ action.label }}</span>
             </button>
@@ -682,6 +729,9 @@ export class Header implements OnDestroy {
   private overlay = inject(Overlay);
   private overlayPositionBuilder = inject(OverlayPositionBuilder);
 
+  // Store bound function references for proper cleanup
+  private boundKeyDownHandler = this.handleKeyDown.bind(this);
+
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
   @ViewChild('navDropdownTemplate') navDropdownTemplate!: any;
   @ViewChild('userDropdownTemplate') userDropdownTemplate!: any;
@@ -691,6 +741,9 @@ export class Header implements OnDestroy {
   private navDropdownOverlayRef: OverlayRef | null = null;
   private userDropdownOverlayRef: OverlayRef | null = null;
   private mobileMenuOverlayRef: OverlayRef | null = null;
+  private backdropSubscription: Subscription | null = null;
+  private navDropdownBackdropSubscription: Subscription | null = null;
+  private userDropdownBackdropSubscription: Subscription | null = null;
 
   // Inputs
   logo = input<{
@@ -730,15 +783,13 @@ export class Header implements OnDestroy {
   userMenuAction = output<{ action: string; user: HeaderUser }>();
   navigationClick = output<{ item: HeaderNavItem; event: Event }>();
 
-  // Internal state
+  // Internal state - simplified to use overlay refs as source of truth
   private currentSearch = signal<string>('');
-  private mobileMenuOpenState = signal<boolean>(false);
-  private userMenuOpenState = signal<boolean>(false);
-  private activeDropdownState = signal<string | null>(null);
   private activeMobileDropdownState = signal<string | null>(null);
   private currentDropdownItemsState = signal<HeaderNavItem[]>([]);
+  private activeDropdownLabelState = signal<string | null>(null);
 
-  // Computed properties
+  // Computed properties - derive state from overlay refs
   headerClasses = computed(() => cn(headerVariants({
     variant: this.variant(),
     size: this.size()
@@ -753,12 +804,21 @@ export class Header implements OnDestroy {
   actionsClasses = computed(() => cn(actionsVariants()));
   userMenuClasses = computed(() => cn(userMenuVariants()));
   avatarClasses = computed(() => cn(headerAvatarVariants({ size: this.size() })));
-  dropdownClasses = computed(() => cn(dropdownVariants({ open: false })));
   dropdownItemClasses = computed(() => cn(dropdownItemVariants()));
-  mobileMenuClasses = computed(() => cn(mobileMenuVariants({ open: false })));
+  mobileNavItemClasses = computed(() => cn(mobileNavItemVariants()));
   currentDropdownItems = computed(() => this.currentDropdownItemsState());
 
-  // Helper methods for dynamic classes
+  // State getters - derive from overlay refs for consistency
+  mobileMenuOpen = computed(() => !!this.mobileMenuOverlayRef);
+  userMenuOpen = computed(() => !!this.userDropdownOverlayRef);
+  activeDropdown = computed(() => this.activeDropdownLabelState());
+  activeMobileDropdown = computed(() => this.activeMobileDropdownState());
+
+  // Helper methods for dynamic classes (needed for backward compatibility)
+  getMobileMenuClasses(open: boolean) {
+    return cn(mobileMenuVariants({ open, size: this.size() }));
+  }
+
   getDropdownClasses(open: boolean) {
     return cn(dropdownVariants({ open }));
   }
@@ -767,16 +827,17 @@ export class Header implements OnDestroy {
     return cn(userDropdownVariants({ open }));
   }
 
-  getMobileMenuClasses(open: boolean) {
-    return cn(mobileMenuVariants({ open, size: this.size() }));
+  // Dynamic header height calculation
+  getHeaderHeight(): string {
+    // On small screens (sm), header is typically 3.5rem (56px), on larger screens 4rem (64px)
+    return this.isMediumScreen() ? '3.5rem' : '4rem';
   }
-  mobileNavItemClasses = computed(() => cn(mobileNavItemVariants()));
 
-  // State getters
-  mobileMenuOpen = computed(() => this.mobileMenuOpenState());
-  userMenuOpen = computed(() => this.userMenuOpenState());
-  activeDropdown = computed(() => this.activeDropdownState());
-  activeMobileDropdown = computed(() => this.activeMobileDropdownState());
+  // Check if screen is medium size (to match mobile menu visibility)
+  isMediumScreen(): boolean {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768; // md breakpoint
+  }
 
   constructor() {
     // Update internal search state when input changes
@@ -784,19 +845,18 @@ export class Header implements OnDestroy {
       this.currentSearch.set(this.searchValue());
     });
 
-    // Close menus when clicking outside
+    // Handle keyboard events - CDK overlays handle backdrop clicks
     afterNextRender(() => {
       if (isPlatformBrowser(this.platformId)) {
-        document.addEventListener('click', this.handleOutsideClick.bind(this));
-        document.addEventListener('keydown', this.handleKeyDown.bind(this));
+        document.addEventListener('keydown', this.boundKeyDownHandler);
       }
     });
   }
 
   ngOnDestroy() {
     if (isPlatformBrowser(this.platformId)) {
-      document.removeEventListener('click', this.handleOutsideClick.bind(this));
-      document.removeEventListener('keydown', this.handleKeyDown.bind(this));
+      // Clean up keyboard listener
+      document.removeEventListener('keydown', this.boundKeyDownHandler);
     }
     // Clean up overlays
     this.closeNavDropdown();
@@ -837,51 +897,60 @@ export class Header implements OnDestroy {
   private openMobileMenu() {
     if (this.mobileMenuOverlayRef) return;
 
-    // Create overlay config for mobile menu (full screen)
+    // Create overlay config for mobile menu (positioned strategy instead of global)
     const positionStrategy = this.overlay.position()
       .global()
-      .top('0px')
-      .left('0px');
+      .top('0')
+      .left('0')
+      .right('0');
 
     const overlayConfig = new OverlayConfig({
       positionStrategy,
       hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
+      backdropClass: 'cdk-overlay-dark-backdrop',
       scrollStrategy: this.overlay.scrollStrategies.block(),
-      width: '100%',
-      height: '100%'
+      panelClass: 'mobile-menu-panel',
+      width: '100%'
     });
 
     this.mobileMenuOverlayRef = this.overlay.create(overlayConfig);
 
-    // Handle backdrop clicks to close menu
-    this.mobileMenuOverlayRef.backdropClick().subscribe(() => {
-      this.closeMobileMenu();
+    // Handle backdrop clicks to close menu - store subscription for proper cleanup
+    this.backdropSubscription = this.mobileMenuOverlayRef.backdropClick().subscribe({
+      next: () => {
+        console.log('Backdrop clicked - closing mobile menu');
+        this.closeMobileMenu();
+      }
     });
 
     // Create and attach portal
     const portal = new TemplatePortal(this.mobileMenuTemplate, this.viewContainerRef);
     this.mobileMenuOverlayRef.attach(portal);
-
-    this.mobileMenuOpenState.set(true);
   }
 
   closeMobileMenu() {
+    // Clean up backdrop subscription first
+    if (this.backdropSubscription) {
+      this.backdropSubscription.unsubscribe();
+      this.backdropSubscription = null;
+    }
+    
     if (this.mobileMenuOverlayRef) {
       this.mobileMenuOverlayRef.dispose();
       this.mobileMenuOverlayRef = null;
     }
-    this.mobileMenuOpenState.set(false);
     this.activeMobileDropdownState.set(null);
   }
 
-  // User menu methods
+  // User menu methods - simplified
   toggleUserMenu() {
-    this.userMenuOpenState.update(open => !open);
+    // CDK overlay handles the state, no manual signal updates needed
+    console.log('User menu toggle - overlay managed');
   }
 
   closeUserMenu() {
-    this.userMenuOpenState.set(false);
+    // CDK overlay handles this via closeUserDropdown
+    this.closeUserDropdown();
   }
 
   onUserMenuAction(action: { action: string; disabled?: boolean }) {
@@ -907,15 +976,15 @@ export class Header implements OnDestroy {
       .join('');
   }
 
-  // Dropdown methods
+  // Dropdown methods - simplified
   toggleDropdown(label: string) {
-    this.activeDropdownState.update(current => 
+    this.activeDropdownLabelState.update(current => 
       current === label ? null : label
     );
   }
 
   closeDropdown() {
-    this.activeDropdownState.set(null);
+    this.activeDropdownLabelState.set(null);
   }
 
   // CDK Overlay dropdown methods
@@ -929,7 +998,7 @@ export class Header implements OnDestroy {
 
   private openNavDropdown(item: HeaderNavItem, trigger: HTMLElement) {
     this.currentDropdownItemsState.set(item.children || []);
-    this.activeDropdownState.set(item.label);
+    this.activeDropdownLabelState.set(item.label);
 
     const positionStrategy = this.overlayPositionBuilder
       .flexibleConnectedTo(trigger)
@@ -960,16 +1029,22 @@ export class Header implements OnDestroy {
     const portal = new TemplatePortal(this.navDropdownTemplate, this.viewContainerRef);
     this.navDropdownOverlayRef.attach(portal);
 
-    this.navDropdownOverlayRef.backdropClick().subscribe(() => {
+    this.navDropdownBackdropSubscription = this.navDropdownOverlayRef.backdropClick().subscribe(() => {
       this.closeNavDropdown();
     });
   }
 
   closeNavDropdown() {
+    // Clean up backdrop subscription first
+    if (this.navDropdownBackdropSubscription) {
+      this.navDropdownBackdropSubscription.unsubscribe();
+      this.navDropdownBackdropSubscription = null;
+    }
+    
     if (this.navDropdownOverlayRef) {
       this.navDropdownOverlayRef.dispose();
       this.navDropdownOverlayRef = null;
-      this.activeDropdownState.set(null);
+      this.activeDropdownLabelState.set(null);
       this.currentDropdownItemsState.set([]);
     }
   }
@@ -983,8 +1058,6 @@ export class Header implements OnDestroy {
   }
 
   private openUserDropdown(trigger: HTMLElement) {
-    this.userMenuOpenState.set(true);
-
     const positionStrategy = this.overlayPositionBuilder
       .flexibleConnectedTo(trigger)
       .withPositions([
@@ -1014,16 +1087,21 @@ export class Header implements OnDestroy {
     const portal = new TemplatePortal(this.userDropdownTemplate, this.viewContainerRef);
     this.userDropdownOverlayRef.attach(portal);
 
-    this.userDropdownOverlayRef.backdropClick().subscribe(() => {
+    this.userDropdownBackdropSubscription = this.userDropdownOverlayRef.backdropClick().subscribe(() => {
       this.closeUserDropdown();
     });
   }
 
   closeUserDropdown() {
+    // Clean up backdrop subscription first
+    if (this.userDropdownBackdropSubscription) {
+      this.userDropdownBackdropSubscription.unsubscribe();
+      this.userDropdownBackdropSubscription = null;
+    }
+    
     if (this.userDropdownOverlayRef) {
       this.userDropdownOverlayRef.dispose();
       this.userDropdownOverlayRef = null;
-      this.userMenuOpenState.set(false);
     }
   }
 
@@ -1033,16 +1111,7 @@ export class Header implements OnDestroy {
     );
   }
 
-  // Event handlers
-  private handleOutsideClick(event: Event) {
-    const target = event.target as HTMLElement;
-    if (!this.elementRef.nativeElement.contains(target)) {
-      this.closeUserMenu();
-      this.closeDropdown();
-      this.closeMobileMenu();
-    }
-  }
-
+  // Event handlers - simplified to only handle Escape key
   private handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.closeUserDropdown();

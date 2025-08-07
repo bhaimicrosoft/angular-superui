@@ -4,6 +4,9 @@
 
 export * from './lib/utils/cn';
 
+// Pipes
+export * from './lib/pipes/safe-html.pipe';
+
 // Implemented Components
 export * from './lib/accordion';
 export * from './lib/alert';
