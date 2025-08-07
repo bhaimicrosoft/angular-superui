@@ -37,6 +37,23 @@ export const routes: Routes = [
       }
     }
   },
+  // UI Blocks
+  {
+    path: 'blocks',
+    loadComponent: () => import('./demo-components/blocks.component').then(c => c.BlocksComponent),
+    data: {
+      seo: {
+        title: 'UI Blocks - Angular SuperUI | Complete Layout Solutions',
+        description: 'Pre-built UI blocks and layout solutions for Angular applications. Headers, footers, hero sections, pricing cards, and more. Save weeks of development time with production-ready blocks.',
+        keywords: 'Angular UI blocks, layout blocks, header block, footer block, hero section, pricing cards, Angular components, UI layouts, responsive blocks'
+      }
+    }
+  },
+  {
+    path: 'blocks/header',
+    loadComponent: () => import('./demo-components/header-demo.component').then(c => c.HeaderDemoComponent),
+    data: {blockName: 'header', category: 'Navigation', description: 'Complete header block with navigation, search, user menu, and mobile support'}
+  },
   // UI Components
   {
     path: 'components/accordion',

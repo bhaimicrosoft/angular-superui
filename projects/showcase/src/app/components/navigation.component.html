@@ -143,6 +143,15 @@
           </div>
         </div>
 
+        <!-- Blocks Menu -->
+        <a
+          routerLink="/blocks"
+          routerLinkActive="text-violet-600 dark:text-violet-400"
+          class="text-gray-700 hover:text-violet-600 dark:text-gray-300 dark:hover:text-violet-400 transition-colors font-medium"
+        >
+          Blocks
+        </a>
+
         <!-- Feature Comparison Link - Dark/Light Mode Optimized -->
         <a
           routerLink="/feature-comparison"
@@ -245,6 +254,31 @@
             </div>
             <div class="opacity-60 group-hover:opacity-100 transition-opacity">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Blocks Link -->
+        <div class="pb-4 border-b border-gray-200/60 dark:border-gray-700/60">
+          <a
+            routerLink="/blocks"
+            (click)="closeMobileMenu()"
+            routerLinkActive="ring-2 ring-violet-500/50 dark:ring-violet-400/50"
+            class="flex items-center space-x-3 px-4 py-4 rounded-xl bg-gradient-to-r from-violet-50 to-purple-50 hover:from-violet-100 hover:to-purple-100 dark:from-violet-900/20 dark:to-purple-900/20 dark:hover:from-violet-800/30 dark:hover:to-purple-800/30 text-gray-700 dark:text-gray-300 hover:text-violet-700 dark:hover:text-violet-300 transition-all duration-300 group border border-violet-200/40 dark:border-violet-600/40"
+          >
+            <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="font-bold text-base">UI Blocks</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Complete layout solutions</div>
+            </div>
+            <div class="opacity-60 group-hover:opacity-100 transition-opacity">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
             </div>
