@@ -386,13 +386,14 @@ export class Rating implements ControlValueAccessor, OnInit, OnDestroy {
     const hoverVal = this.hoverValue();
     const focusedVal = this.focusedValue();
     
-    // Priority: hover (if hovering) > current value
-    // Only use focused value for keyboard navigation, not for display after clicking
+    // Priority: hover (if hovering) > focused (if focused via keyboard) > current value
     let displayVal = currentVal;
     if (this.isHovered() && !this.readonly()) {
       displayVal = hoverVal;
+    } else if (this.isFocused() && focusedVal > 0 && !this.readonly() && !this.isHovered()) {
+      // Use focused value only for keyboard navigation when not hovering
+      displayVal = focusedVal;
     }
-    // Remove focused value from display logic to prevent clicked stars from appearing filled
     
     return Array.from({ length: max }, (_, index): Star => {
       const starValue = index + 1; // Star 1, 2, 3, 4, 5
@@ -529,14 +530,9 @@ export class Rating implements ControlValueAccessor, OnInit, OnDestroy {
     this.updateValue(newValue);
     this.onTouched();
     
-    // Remove focus from the clicked star to prevent display issues
-    if (event.currentTarget instanceof HTMLElement) {
-      event.currentTarget.blur();
-    }
-    
-    // Reset focus state
-    this.focusedValue.set(0);
-    this.isFocused.set(false);
+    // Only blur if we're not navigating by keyboard
+    // Reset focused value but keep focus state for keyboard navigation
+    this.focusedValue.set(newValue);
   }
 
   handleStarHover(value: number, event?: MouseEvent): void {
@@ -572,11 +568,9 @@ export class Rating implements ControlValueAccessor, OnInit, OnDestroy {
   handleStarFocus(value: number): void {
     if (this.isDisabled()) return;
     
-    // Only set focused value for keyboard navigation, not when clicking
-    if (!this.isHovered()) {
-      this.focusedValue.set(value);
-      this.isFocused.set(true);
-    }
+    // Set focused value for keyboard navigation
+    this.focusedValue.set(value);
+    this.isFocused.set(true);
     this.focus.emit(value);
   }
 

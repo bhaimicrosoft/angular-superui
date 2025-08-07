@@ -17,21 +17,21 @@ import { SEOService } from '../services/seo.service';
   ],
   styles: [`
     @keyframes sparkle {
-      0%, 100% { 
+      0%, 100% {
         transform: scale(1) rotate(0deg);
         opacity: 1;
       }
-      50% { 
+      50% {
         transform: scale(1.2) rotate(180deg);
         opacity: 0.8;
       }
     }
 
     @keyframes ratingPulse {
-      0%, 100% { 
+      0%, 100% {
         box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
       }
-      50% { 
+      50% {
         box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
       }
     }
@@ -76,12 +76,12 @@ import { SEOService } from '../services/seo.service';
     </div>
 
     <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-amber-900/20">
-      
+
       <!-- Hero Section -->
       <div class="relative overflow-hidden">
         <!-- Background Pattern -->
         <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"></div>
-        
+
         <!-- Hero Content -->
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
           <div class="text-center">
@@ -95,7 +95,7 @@ import { SEOService } from '../services/seo.service';
             <div class="absolute bottom-10 left-20 w-4 h-4 text-amber-300 sparkle-animation opacity-50">
               <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            
+
             <!-- Badge -->
             <div class="inline-flex items-center rounded-full px-3 py-1.5 sm:px-4 text-xs sm:text-sm font-medium bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 ring-1 ring-inset ring-amber-200 dark:ring-amber-800 mb-8">
               <svg class="mr-1.5 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 24 24">
@@ -109,7 +109,7 @@ import { SEOService } from '../services/seo.service';
               <span class="block text-gray-900 dark:text-white mb-2">Rating</span>
               <span class="block gradient-text">Component</span>
             </h1>
-            
+
             <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
               Create engaging star rating experiences with smooth animations, accessibility features, and comprehensive customization options.
             </p>
@@ -118,7 +118,7 @@ import { SEOService } from '../services/seo.service';
             <div class="max-w-2xl mx-auto">
               <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 hero-glow rating-pulse">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">Rate Your Experience</h3>
-                
+
                 <div class="space-y-6">
                   <!-- Hero Rating -->
                   <div class="flex flex-col items-center space-y-4">
@@ -134,7 +134,7 @@ import { SEOService } from '../services/seo.service';
                       [allowClear]="true"
                       ariaLabel="Rate your overall experience"
                     />
-                    
+
                     @if (heroMessage()) {
                       <div class="text-center">
                         <p class="text-lg font-medium text-amber-600 dark:text-amber-400">{{ heroMessage() }}</p>
@@ -559,7 +559,7 @@ import { SEOService } from '../services/seo.service';
                     <span class="text-red-600 dark:text-red-400">⚠ Please complete required fields</span>
                   }
                 </div>
-                
+
                 <div class="space-x-3">
                   <button
                     type="button"
@@ -661,7 +661,7 @@ import { SEOService } from '../services/seo.service';
           <p class="text-xl text-gray-600 dark:text-gray-300 mb-12">
             Add beautiful, accessible rating components to your Angular application today.
           </p>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div class="text-center">
               <div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -672,7 +672,7 @@ import { SEOService } from '../services/seo.service';
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Documentation</h3>
               <p class="text-gray-600 dark:text-gray-400 text-sm">Comprehensive guides and API reference</p>
             </div>
-            
+
             <div class="text-center">
               <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -682,7 +682,7 @@ import { SEOService } from '../services/seo.service';
               <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Examples</h3>
               <p class="text-gray-600 dark:text-gray-400 text-sm">Copy-paste code examples and demos</p>
             </div>
-            
+
             <div class="text-center">
               <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -705,7 +705,7 @@ import { SEOService } from '../services/seo.service';
               View All Components
             </a>
             <a
-              href="https://github.com/bhaimicrosoft/angular-superui"
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/rating.md"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center px-6 py-3 text-base font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-colors duration-200"
@@ -782,7 +782,7 @@ export class RatingDemoComponent implements OnInit {
       { msg: 'Good Experience', sub: 'We\'re glad you had a positive experience with us!' },
       { msg: 'Excellent!', sub: 'Thank you for the amazing rating! We truly appreciate your support.' }
     ];
-    
+
     const message = messages[rating] || messages[0];
     this.heroMessage.set(message.msg);
     this.heroSubMessage.set(message.sub);
