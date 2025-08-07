@@ -9,27 +9,67 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
   standalone: true,
   imports: [CommonModule, RouterModule, FeatureGridBlockComponent],
   template: `
-    <!-- Demo Header -->
-    <div class="bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:to-gray-800 pt-20 pb-8">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Professional Hero Section -->
+    <section class="relative bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm font-medium mb-6">
-            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+          <!-- Breadcrumb Navigation -->
+          <nav class="flex items-center justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-8">
+            <a href="/blocks" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">UI Blocks</a>
+            <span>→</span>
+            <span class="text-gray-900 dark:text-white font-medium">Feature Grid</span>
+          </nav>
+
+          <!-- Category Badge -->
+          <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 text-sm font-medium mb-6">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
             Content Block
           </div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+
+          <!-- Main Heading -->
+          <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
             Feature Grid Block
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-            Showcase your product features with icons, descriptions, and compelling layouts.
+
+          <!-- Description -->
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed mx-auto max-w-3xl">
+            Showcase your product features with icons, descriptions, and compelling layouts. 
             Perfect for highlighting key benefits and capabilities.
           </p>
+
+          <!-- Feature Grid -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center max-w-4xl mx-auto">
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Icon Grid</span>
+            </div>
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Feature Cards</span>
+            </div>
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Testimonials</span>
+            </div>
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Stats Display</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Live Examples -->
-    <div class="py-16">
+    <div id="examples" class="py-16 bg-gray-50 dark:bg-gray-900">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
           
@@ -46,6 +86,7 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
                 [features]="threeColumnFeatures()"
                 [columns]="3"
                 [variant]="'default'"
+                alignment="center"
                 (onFeatureClick)="onFeatureClick($event)"
               />
             </div>
@@ -63,6 +104,7 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
                 [features]="fourColumnFeatures()"
                 [columns]="4"
                 [variant]="'minimal'"
+                alignment="center"
                 (onFeatureClick)="onFeatureClick($event)"
               />
             </div>
@@ -81,6 +123,7 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
                 [features]="cardStyleFeatures()"
                 [columns]="2"
                 [cardVariant]="'gradient'"
+                alignment="center"
                 (onFeatureClick)="onFeatureClick($event)"
               />
             </div>
@@ -90,34 +133,34 @@ import { FeatureGridBlockComponent } from '@lib/feature-grid';
       </div>
     </div>
 
-    <!-- Usage Code Examples -->
-    <div class="bg-gray-50 dark:bg-gray-900 py-16">
+    <!-- Documentation Link -->
+    <div class="bg-white dark:bg-gray-900 py-16 border-t border-gray-200 dark:border-gray-800">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Usage Examples</h2>
-          
-          <div class="space-y-8">
-            <!-- Basic Usage -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Basic Feature Grid</h3>
-              <pre class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm"><code [textContent]="basicUsageCode()"></code></pre>
-            </div>
-
-            <!-- Advanced Usage -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Card Style with Custom Columns</h3>
-              <pre class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm"><code [textContent]="advancedUsageCode()"></code></pre>
-            </div>
-
-            <!-- TypeScript Interface -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">TypeScript Interfaces</h3>
-              <pre class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm"><code [textContent]="interfaceCode()"></code></pre>
-            </div>
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Implementation Guide</h3>
+            
+            <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+              Ready to implement? Check out our comprehensive documentation for detailed usage examples and customization options.
+            </p>
+            
+            <a 
+              href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/components/feature-grid.md" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            >
+              View Documentation
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
     </div>
+
+  
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

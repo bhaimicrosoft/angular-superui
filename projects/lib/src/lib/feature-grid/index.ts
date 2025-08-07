@@ -89,7 +89,7 @@ export interface Feature {
             }
             
             @if (subtitle()) {
-              <p class="text-lg text-muted-foreground max-w-3xl">
+              <p [class]="getSubtitleClasses()">
                 {{ subtitle() }}
               </p>
             }
@@ -257,6 +257,17 @@ export class FeatureGridBlockComponent {
       left: 'text-left mb-16',
       center: 'text-center mb-16',
       right: 'text-right mb-16'
+    };
+    return alignClasses[alignment];
+  }
+
+  getSubtitleClasses(): string {
+    const alignment = this.alignment();
+    const baseClasses = 'text-lg text-muted-foreground max-w-3xl';
+    const alignClasses = {
+      left: baseClasses,
+      center: `${baseClasses} mx-auto`,
+      right: `${baseClasses} ml-auto`
     };
     return alignClasses[alignment];
   }

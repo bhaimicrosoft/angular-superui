@@ -40,111 +40,64 @@ export interface CompanyInfo {
   standalone: true,
   imports: [CommonModule, RouterModule, FooterBlockComponent],
   template: `
-    <!-- Demo Header -->
-    <div
-      class="relative bg-white dark:bg-gray-950 border-b border-gray-200/50 dark:border-gray-800/50"
-    >
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30 dark:from-blue-950/20 dark:via-transparent dark:to-purple-950/20"></div>
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
-      </div>
-
-      <!-- Navigation Breadcrumb -->
-      <div class="relative z-10 pt-6 pb-4">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <nav class="flex items-center space-x-2 text-sm">
-            <span class="text-gray-500 dark:text-gray-400">Components</span>
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-            <span class="text-gray-500 dark:text-gray-400">Navigation</span>
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-            <span class="font-medium text-gray-900 dark:text-white">Footer Block</span>
+    <!-- Professional Hero Section -->
+    <section class="relative bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div class="max-w-4xl mx-auto text-center">
+          <!-- Breadcrumb Navigation -->
+          <nav class="flex items-center justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mb-8">
+            <a href="/blocks" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">UI Blocks</a>
+            <span>→</span>
+            <span class="text-gray-900 dark:text-white font-medium">Footer</span>
           </nav>
-        </div>
-      </div>
 
-      <!-- Main Hero Content -->
-      <div class="relative z-10 pt-8 pb-20">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-4xl mx-auto text-center">
-            
-            <!-- Category Badge -->
-            <div class="inline-flex items-center px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/50 border border-blue-200/50 dark:border-blue-800/50 text-blue-700 dark:text-blue-300 text-xs font-medium mb-6">
-              <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
-              Navigation Component
+          <!-- Category Badge -->
+          <div class="inline-flex items-center px-3 py-1 rounded-full bg-gray-50 dark:bg-gray-900/20 text-gray-700 dark:text-gray-300 text-sm font-medium mb-6">
+            <span class="w-2 h-2 bg-gray-500 rounded-full mr-2"></span>
+            Navigation Block
+          </div>
+
+          <!-- Main Heading -->
+          <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            Footer Block
+          </h1>
+
+          <!-- Description -->
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed mx-auto max-w-3xl">
+            Professional footer component with comprehensive layouts, navigation links, social media integration, 
+            and newsletter subscription functionality.
+          </p>
+
+          <!-- Feature Grid -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 justify-center max-w-4xl mx-auto">
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Link Management</span>
             </div>
-
-            <!-- Main Title -->
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
-              Footer Block
-            </h1>
-
-            <!-- Description -->
-            <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Professional footer component with comprehensive layouts, navigation links, social media integration, and newsletter subscription functionality.
-            </p>
-
-            <!-- Features Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
-              <div class="flex items-center justify-center space-x-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-800/50">
-                <div class="w-8 h-8 bg-green-100 dark:bg-green-950/50 rounded-lg flex items-center justify-center">
-                  <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                  </svg>
-                </div>
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Fully Accessible</span>
-              </div>
-              
-              <div class="flex items-center justify-center space-x-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-800/50">
-                <div class="w-8 h-8 bg-blue-100 dark:bg-blue-950/50 rounded-lg flex items-center justify-center">
-                  <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                  </svg>
-                </div>
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Responsive Design</span>
-              </div>
-              
-              <div class="flex items-center justify-center space-x-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-800/50">
-                <div class="w-8 h-8 bg-purple-100 dark:bg-purple-950/50 rounded-lg flex items-center justify-center">
-                  <svg class="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
-                  </svg>
-                </div>
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Multiple Variants</span>
-              </div>
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h4a1 1 0 011 1v2h4a1 1 0 011 1v3H2V5a1 1 0 011-1h4zM2 9v9a2 2 0 002 2h12a2 2 0 002-2V9H2z"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Social Integration</span>
             </div>
-
-          
-            <!-- Stats -->
-            <div class="mt-16 pt-8 border-t border-gray-200/50 dark:border-gray-800/50">
-              <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-gray-900 dark:text-white">4</div>
-                  <div class="text-sm text-gray-500 dark:text-gray-400">Layout Variants</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-gray-900 dark:text-white">100%</div>
-                  <div class="text-sm text-gray-500 dark:text-gray-400">Accessible</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-gray-900 dark:text-white">TypeScript</div>
-                  <div class="text-sm text-gray-500 dark:text-gray-400">Built with</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-gray-900 dark:text-white">MIT</div>
-                  <div class="text-sm text-gray-500 dark:text-gray-400">Open Source</div>
-                </div>
-              </div>
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Newsletter</span>
             </div>
-
+            <div class="flex flex-col items-center space-y-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="text-sm font-medium text-center">Accessibility</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Live Examples -->
     <div id="examples" class="py-16">
