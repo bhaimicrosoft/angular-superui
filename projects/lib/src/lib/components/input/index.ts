@@ -291,6 +291,7 @@ export class InputComponent implements ControlValueAccessor, InputProps, OnDestr
   @Input() validateOnBlur?: boolean = true;
 
   // Enhanced events with proper types
+  @Output() valueChange = new EventEmitter<string>(); // Required for two-way binding [(value)]
   @Output() inputChange = new EventEmitter<string>();
   @Output() inputBlur = new EventEmitter<FocusEvent>();
   @Output() inputFocus = new EventEmitter<FocusEvent>();
@@ -720,6 +721,7 @@ export class InputComponent implements ControlValueAccessor, InputProps, OnDestr
       this.debounceTimer = window.setTimeout(() => {
         this.onChange(emitValue);
         this.inputChange.emit(emitValue);
+        this.valueChange.emit(emitValue); // For two-way binding
         // Mark as dirty and trigger validation
         if (this.ngControl?.control) {
           this.ngControl.control.markAsDirty();
@@ -729,6 +731,7 @@ export class InputComponent implements ControlValueAccessor, InputProps, OnDestr
     } else {
       this.onChange(emitValue);
       this.inputChange.emit(emitValue);
+      this.valueChange.emit(emitValue); // For two-way binding
       // Mark as dirty and trigger validation
       if (this.ngControl?.control) {
         this.ngControl.control.markAsDirty();
@@ -807,6 +810,7 @@ export class InputComponent implements ControlValueAccessor, InputProps, OnDestr
       const emitValue = this.mask?.stripMask ? rawData : maskedData;
       this.onChange(emitValue);
       this.inputChange.emit(emitValue);
+      this.valueChange.emit(emitValue); // For two-way binding
 
       // Update input element
       const target = event.target as HTMLInputElement;
@@ -870,6 +874,7 @@ export class InputComponent implements ControlValueAccessor, InputProps, OnDestr
     // Emit changes
     this.onChange(emptyValue);
     this.inputChange.emit(emptyValue);
+    this.valueChange.emit(emptyValue); // For two-way binding
 
     // Announce to screen readers
     this.announceToScreenReader('Input cleared');

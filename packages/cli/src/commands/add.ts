@@ -98,6 +98,12 @@ export const COMPONENTS: Record<string, ComponentConfig> = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'chip': {
+    name: 'Chip',
+    description: 'Removable labels, tags, and filter chips with avatars and interactive states.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'collapsible': {
     name: 'Collapsible',
     description: 'Expandable content sections with smooth animations and keyboard support.',

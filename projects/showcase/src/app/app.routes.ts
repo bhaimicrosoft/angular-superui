@@ -273,6 +273,18 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'components/chip',
+    loadComponent: () =>
+      import('./demo-components/chip-demo.component').then(
+        (c) => c.ChipDemoComponent
+      ),
+    data: {
+      componentName: 'chip',
+      category: 'Display',
+      description: 'Removable labels, tags, and filter chips',
+    },
+  },
+  {
     path: 'components/collapsible',
     loadComponent: () =>
       import('./demo-components/collapsible-demo.component').then(

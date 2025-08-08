@@ -413,7 +413,7 @@ export class ThemeSwitcher {
   getThemeButtonClasses(theme: Theme): string {
     const isActive = this.themeService.currentTheme() === theme;
 
-    const baseClasses = [
+    const baseClasses = cn(
       'inline-flex items-center justify-center',
       // Apply size here using cva
       themeSwitcherVariants({ size: this.size }),
@@ -422,7 +422,7 @@ export class ThemeSwitcher {
       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
       'disabled:pointer-events-none disabled:opacity-50',
       'cursor-pointer'
-    ];
+    );
 
     let activeClasses = '';
     let inactiveClasses = 'text-muted-foreground hover:text-foreground hover:bg-accent/50';
@@ -461,9 +461,7 @@ export class ThemeSwitcher {
    * This ensures the outer container also respects the 'class' input.
    */
   getSliderContainerClasses(): string {
-    const baseSliderClasses = [
-      'flex items-center bg-background/50 backdrop-blur-sm rounded-lg p-1 border border-input shadow-sm'
-    ];
+    const baseSliderClasses = 'flex items-center bg-background/50 backdrop-blur-sm rounded-lg p-1 border border-input shadow-sm';
     return cn(baseSliderClasses, this.class);
   }
 

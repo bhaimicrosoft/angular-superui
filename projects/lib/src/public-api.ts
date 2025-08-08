@@ -21,6 +21,7 @@ export * from '@lib/components/calendar';
 export * from '@lib/components/card';
 export * from '@lib/components/carousel';
 export * from '@lib/components/checkbox';
+export * from '@lib/components/chip';
 export * from '@lib/components/collapsible';
 export * from '@lib/components/combobox';
 export * from '@lib/components/context-menu';
