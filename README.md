@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v2.0.0
+# 🎨 Angular SuperUI v2.0.1
 
 **The Modern Angular UI Component Library That Developers Love**
 
@@ -25,7 +25,7 @@
 | **📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |rk Mode • Mobile Responsive • TypeScript • Accessibility ✨**
 
 [![NPM Version](https://img.shields.io/npm/v/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
-[![CLI Version](https://img.shields.io/npm/v/ngsui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ngsui)
+[![CLI Version](https://img.shields.io/npm/v/ngsui-cli?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ngsui-cli)
 [![Downloads](https://img.shields.io/npm/dt/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
 [![GitHub Stars](https://img.shields.io/github/stars/bhaimicrosoft/angular-superui?style=for-the-badge&logo=github&color=181717)](https://github.com/bhaimicrosoft/angular-superui)
 
@@ -99,26 +99,26 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 ### 1️⃣ Install the CLI
 
 ```bash
-npm install -g ngsui
+npm install -g ngsui-cli
 ```
 
 ### 2️⃣ Initialize Your Project
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 ### 3️⃣ Add Components
 
 ```bash
 # Add specific components
-ngsui add accordion alert avatar badge button card carousel checkbox collapsible theme-switcher
+ngsui-cli add accordion alert avatar badge button card carousel checkbox collapsible theme-switcher
 
 # Add all components
-ngsui add --all
+ngsui-cli add --all
 
 # List available components
-ngsui list
+ngsui-cli list
 ```
 
 ### 4️⃣ Start Building
@@ -329,19 +329,19 @@ export class AppComponent {}
 
 ### 📋 List Available Components
 ```bash
-ngsui list
+ngsui-cli list
 ```
 
 ### ➕ Add Components
 ```bash
 # Add specific components
-ngsui add accordion alert card aspect-ratio
+ngsui-cli add accordion alert card aspect-ratio
 ```
 
 ### ⚙️ Initialize Project
 ```bash
 # Initialize with default settings
-ngsui init
+ngsui-cli init
 ```
 
 ---
@@ -471,7 +471,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - 🌐 **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 39 components**
 - 🌐 **[Official Website](https://github.com/bhaimicrosoft/angular-superui)**
 - 📦 **[NPM Package](https://www.npmjs.com/package/angular-superui)**
-- 🛠️ **[CLI Package](https://www.npmjs.com/package/ngsui)**
+- 🛠️ **[CLI Package](https://www.npmjs.com/package/ngsui-cli)**
 - 🐛 **[Issue Tracker](https://github.com/bhaimicrosoft/angular-superui/issues)**
 - 💬 **[Discussions](https://github.com/bhaimicrosoft/angular-superui/discussions)**
 

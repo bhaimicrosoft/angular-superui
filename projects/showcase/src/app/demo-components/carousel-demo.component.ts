@@ -333,7 +333,7 @@ import { SEOService } from '../services/seo.service';
                   </div>
                   <span class="ml-4 text-gray-300 dark:text-slate-300 text-sm">Terminal</span>
                 </div>
-                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui add carousel</code></pre>
+                <pre class="text-green-400 font-mono text-lg"><code>npx ngsui-cli add carousel</code></pre>
               </div>
 
               <a

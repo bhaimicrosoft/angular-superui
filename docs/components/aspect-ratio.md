@@ -22,7 +22,7 @@ The AspectRatio component provides a robust solution for maintaining consistent 
 
 ```bash
 # Using Angular SuperUI CLI (recommended)
-npx ngsui add aspect-ratio
+npx ngsui-cli add aspect-ratio
 
 ```
 

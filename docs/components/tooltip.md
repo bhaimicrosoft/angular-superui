@@ -28,7 +28,7 @@ The Tooltip component provides a sophisticated overlay system built on Angular C
 The Tooltip component is part of the Angular SuperUI library. Install it using the CLI:
 
 ```bash
-npx ngsui add tooltip
+npx ngsui-cli add tooltip
 ```
 
 ### Dependencies

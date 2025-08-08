@@ -76,7 +76,7 @@ Responsive components that look perfect on any device, from mobile to desktop.
 ### One-Command Installation
 ```bash
 # 🎯 Automatic setup (Recommended)
-ngsui init
+ngsui-cli init
 
 # 📦 Or install manually
 npm install angular-superui
@@ -587,7 +587,7 @@ export class GalleryComponent {
 ### 🚀 **Automatic Setup (Recommended)**
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 This command will:
@@ -623,22 +623,22 @@ Our powerful CLI makes component management effortless:
 
 ```bash
 # 📋 List all available components
-ngsui list
+ngsui-cli list
 
 # ⬇️ Add a single component
-ngsui add button
+ngsui-cli add button
 
 # ⬇️ Add multiple components
-ngsui add button card alert
+ngsui-cli add button card alert
 
 # 🎠 Add the new carousel component
-ngsui add carousel
+ngsui-cli add carousel
 
 # ⬇️ Add all components at once
-ngsui add --all
+ngsui-cli add --all
 
 # 📅 Add the premium calendar
-ngsui add calendar
+ngsui-cli add calendar
 ```
 
 ---

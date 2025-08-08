@@ -20,13 +20,13 @@ Eye-catching landing page heroes with multiple layouts, CTAs, and background opt
 Initialize Angular SuperUI in your project:
 
 ```bash
-npx ngsui init
+npx ngsui-cli init
 ```
 
 Add the Hero Section Block component:
 
 ```bash
-npx ngsui add block hero-section
+npx ngsui-cli add block hero-section
 ```
 
 ## Usage

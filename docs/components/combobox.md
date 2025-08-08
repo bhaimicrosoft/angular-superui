@@ -7,13 +7,13 @@ A customizable dropdown component that allows users to select from a list of opt
 The ComboBox component is available as part of Angular SuperUI. If you haven't initialized Angular SuperUI in your project yet, run:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Then add the ComboBox component to your project:
 
 ```bash
-ngsui add combobox
+ngsui-cli add combobox
 ```
 
 ## Usage

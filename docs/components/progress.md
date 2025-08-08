@@ -18,13 +18,13 @@ Beautiful, accessible progress indicators with Material Design animations and co
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Progress component:
 
 ```bash
-ngsui add progress
+ngsui-cli add progress
 ```
 
 ## Usage

@@ -45,7 +45,7 @@ The **DataTable Component** isn't just another data grid - it's a complete data 
 
 ```bash
 # Install with our premium CLI
-npx ngsui add data-table
+npx ngsui-cli add data-table
 
 # Or install manually
 npm install @angular-superui/data-table
@@ -1532,10 +1532,10 @@ export class EnhancedComponent {
 
 | Version | Change | Migration Required |
 |---------|--------|-------------------|
-| v2.0.0  | `config` → `configInput` | ✅ Update input name |
-| v2.0.0  | New signal-based columns | ✅ Wrap in `signal()` |
-| v2.0.0  | Enhanced event types | ✅ Update event handlers |
-| v2.0.0  | New CSS custom properties | ⚠️ Update custom themes |
+| v2.0.1  | `config` → `configInput` | ✅ Update input name |
+| v2.0.1  | New signal-based columns | ✅ Wrap in `signal()` |
+| v2.0.1  | Enhanced event types | ✅ Update event handlers |
+| v2.0.1  | New CSS custom properties | ⚠️ Update custom themes |
 
 ---
 
@@ -1547,7 +1547,7 @@ The **DataTable Enterprise Edition** represents the pinnacle of data management 
 
 ```bash
 # Install the complete enterprise package
-npx ngsui add data-table
+npx ngsui-cli add data-table
 
 # Start building amazing data experiences
 npm run dev
@@ -2054,7 +2054,7 @@ export class ResponsiveTableExample {
 ### CLI Installation
 
 ```bash
-npx ngsui add data-table
+npx ngsui-cli add data-table
 ```
 
 ### Documentation

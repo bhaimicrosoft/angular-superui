@@ -2,10 +2,10 @@
 
 ## Quick Start
 
-### Using ngsui (Recommended)
+### Using ngsui-cli (Recommended)
 
 ```bash
-npx ngsui add textarea
+npx ngsui-cli add textarea
 ```
 
 ### Manual Installation
@@ -18,13 +18,13 @@ npm install angular-superui
 
 ```bash
 # Add textarea component to your project
-npx ngsui add textarea
+npx ngsui-cli add textarea
 
 # List all available components
-npx ngsui list
+npx ngsui-cli list
 
 # Initialize SuperUI in your project
-npx ngsui init
+npx ngsui-cli init
 ```
 
 ```typescript

@@ -17,7 +17,7 @@ A specialized input component for One-Time Password (OTP) entry. Provides an int
 The Input OTP component is part of the Angular SuperUI library:
 
 ```bash
-npx ngsui add input-otp
+npx ngsui-cli add input-otp
 ```
 
 ## Basic Usage

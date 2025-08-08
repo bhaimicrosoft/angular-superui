@@ -2,7 +2,7 @@
 
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v2.0.0: 39 Components + 5 Blocks Ready** 🎯
+## 🛠️ **v2.0.1: 39 Components + 5 Blocks Ready** 🎯
 </div>
 <div align="center">
 
@@ -30,29 +30,29 @@ The **Angular SuperUI CLI** is your gateway to the most beautiful and accessible
 
 ```bash
 # Install globally
-npm install -g ngsui
+npm install -g ngsui-cli
 
 # Or use with npx (no installation required)
-npx ngsui --help
+npx ngsui-cli --help
 ```
 
 ## 🚀 Quick Start
 
 ```bash
 # List all available components
-ngsui list
+ngsui-cli list
 
 # Install a single component
-ngsui add button
+ngsui-cli add button
 
 # Install multiple components
-ngsui add button badge alert card
+ngsui-cli add button badge alert card
 
 # Install all available components
-ngsui add --all
+ngsui-cli add --all
 
 # Interactive component selection
-ngsui add
+ngsui-cli add
 ```
 
 ## 📦 Available Components (39 total)
@@ -118,22 +118,22 @@ ngsui add
 ### Basic Usage
 ```bash
 # Install the button component
-ngsui add button
+ngsui-cli add button
 
 # Install multiple components at once
-ngsui add button badge alert avatar card aspect-ratio checkbox collapsible theme-switcher
+ngsui-cli add button badge alert avatar card aspect-ratio checkbox collapsible theme-switcher
 ```
 
 ### Interactive Mode
 ```bash
 # Run without arguments for interactive selection
-ngsui add
+ngsui-cli add
 ```
 
 ### Install All Components
 ```bash
 # Install all available components
-ngsui add --all
+ngsui-cli add --all
 ```
 
 ## 📋 Requirements

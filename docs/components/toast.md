@@ -24,7 +24,7 @@ The Toast component provides a complete notification system that's perfect for d
 The Toast component is part of the Angular SuperUI library. If you haven't installed the library yet:
 
 ```bash
-npx ngsui add toast
+npx ngsui-cli add toast
 ```
 
 ## 🚀 Basic Usage

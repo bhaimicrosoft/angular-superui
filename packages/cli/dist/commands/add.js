@@ -95,6 +95,12 @@ exports.COMPONENTS = {
         dependencies: ['cn'],
         files: ['index.ts']
     },
+    'chip': {
+        name: 'Chip',
+        description: 'Removable labels, tags, and filter chips with avatars and interactive states.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
     'collapsible': {
         name: 'Collapsible',
         description: 'Expandable content sections with smooth animations and keyboard support.',
@@ -374,9 +380,10 @@ async function addCommand(componentNames, options) {
                 spinner.text = `Downloading ${componentName} files...`;
                 // Download component files from GitHub repository
                 const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
+                let downloadFailures = 0;
                 for (const file of component.files) {
                     try {
-                        const response = await axios_1.default.get(`${baseUrl}/${componentName}/${file}`);
+                        const response = await axios_1.default.get(`${baseUrl}/components/${componentName}/${file}`);
                         let fileContent = response.data;
                         // Fix import paths for cn utility and pipes - handle all possible patterns
                         fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");
@@ -388,8 +395,15 @@ async function addCommand(componentNames, options) {
                         await fs_extra_1.default.writeFile(path_1.default.join(componentDir, file), fileContent);
                     }
                     catch (error) {
-                        console.warn(chalk_1.default.yellow(`Warning: Could not download ${file} for ${componentName}`));
+                        downloadFailures++;
+                        const errorMessage = error instanceof Error ? error.message : String(error);
+                        console.warn(chalk_1.default.yellow(`Warning: Could not download ${file} for ${componentName} - ${errorMessage}`));
                     }
+                }
+                // If all files failed to download, skip this component
+                if (downloadFailures === component.files.length) {
+                    errors.push(`Failed to download any files for ${componentName}`);
+                    continue;
                 }
                 // Update component exports
                 await updateComponentExports(componentName, component);
@@ -627,7 +641,7 @@ async function addDependencyComponent(depName, spinner) {
     const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
     for (const file of component.files) {
         try {
-            const response = await axios_1.default.get(`${baseUrl}/${depName}/${file}`);
+            const response = await axios_1.default.get(`${baseUrl}/components/${depName}/${file}`);
             let fileContent = response.data;
             // Fix import paths for cn utility and pipes
             fileContent = fileContent.replace(/import\s*{\s*cn\s*}\s*from\s*['"]\.\.\/utils\/cn['"];?/g, "import { cn } from '../../utils/cn';");

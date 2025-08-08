@@ -123,7 +123,7 @@ import {
         <!-- Sticky footer -->
         <SidebarFooter slot="sidebar-footer">
           <div class="text-sm text-muted-foreground">
-            v2.0.0 • © 2025 SuperUI
+            v2.0.1 • © 2025 SuperUI
           </div>
         </SidebarFooter>
       </Sidebar>
@@ -145,7 +145,7 @@ export class ExampleComponent {}
 
 1. **Install the package** (if using npm package):
 ```bash
-npx ngsui add sidebar
+npx ngsui-cli add sidebar
 ```
 
 2. **Import the components** in your module or standalone component:

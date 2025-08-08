@@ -14,7 +14,7 @@ const packageJson = require('../package.json');
 const CLI_VERSION = packageJson.version;
 const program = new commander_1.Command();
 program
-    .name('ngsui')
+    .name('ngsui-cli')
     .description('🎨 Angular SuperUI CLI - Local-First Component Library')
     .version(CLI_VERSION);
 // Beautiful ASCII Art Banner
@@ -53,9 +53,9 @@ program
             else {
                 console.log(chalk_1.default.red('❌ Please specify block name(s)'));
                 console.log(chalk_1.default.cyan('Examples:'));
-                console.log(chalk_1.default.white('  ngsui add block hero-section'));
-                console.log(chalk_1.default.white('  ngsui add block header footer pricing-cards'));
-                console.log(chalk_1.default.white('  ngsui add --all-blocks'));
+                console.log(chalk_1.default.white('  ngsui-cli add block hero-section'));
+                console.log(chalk_1.default.white('  ngsui-cli add block header footer pricing-cards'));
+                console.log(chalk_1.default.white('  ngsui-cli add --all-blocks'));
                 console.log(chalk_1.default.gray('\nAvailable blocks: header, footer, hero-section, pricing-cards, feature-grid'));
             }
         }
@@ -67,13 +67,13 @@ program
     else {
         console.log(chalk_1.default.red('❌ Please specify component/block name(s) or use --all flag'));
         console.log(chalk_1.default.cyan('Examples:'));
-        console.log(chalk_1.default.white('  ngsui add button'));
-        console.log(chalk_1.default.white('  ngsui add button alert card'));
-        console.log(chalk_1.default.white('  ngsui add --all'));
-        console.log(chalk_1.default.white('  ngsui add block hero-section'));
-        console.log(chalk_1.default.white('  ngsui add block header footer'));
-        console.log(chalk_1.default.white('  ngsui add --all-blocks'));
-        console.log(chalk_1.default.gray('\nUse "ngsui list" to see available components and blocks'));
+        console.log(chalk_1.default.white('  ngsui-cli add button'));
+        console.log(chalk_1.default.white('  ngsui-cli add button alert card'));
+        console.log(chalk_1.default.white('  ngsui-cli add --all'));
+        console.log(chalk_1.default.white('  ngsui-cli add block hero-section'));
+        console.log(chalk_1.default.white('  ngsui-cli add block header footer'));
+        console.log(chalk_1.default.white('  ngsui-cli add --all-blocks'));
+        console.log(chalk_1.default.gray('\nUse "ngsui-cli list" to see available components and blocks'));
     }
 });
 program

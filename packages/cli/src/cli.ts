@@ -13,7 +13,7 @@ const CLI_VERSION = packageJson.version;
 const program = new Command();
 
 program
-  .name('ngsui')
+  .name('ngsui-cli')
   .description('🎨 Angular SuperUI CLI - Local-First Component Library')
   .version(CLI_VERSION);
 
@@ -52,9 +52,9 @@ program
         } else {
           console.log(chalk.red('❌ Please specify block name(s)'));
           console.log(chalk.cyan('Examples:'));
-          console.log(chalk.white('  ngsui add block hero-section'));
-          console.log(chalk.white('  ngsui add block header footer pricing-cards'));
-          console.log(chalk.white('  ngsui add --all-blocks'));
+          console.log(chalk.white('  ngsui-cli add block hero-section'));
+          console.log(chalk.white('  ngsui-cli add block header footer pricing-cards'));
+          console.log(chalk.white('  ngsui-cli add --all-blocks'));
           console.log(chalk.gray('\nAvailable blocks: header, footer, hero-section, pricing-cards, feature-grid'));
         }
       } else {
@@ -64,13 +64,13 @@ program
     } else {
       console.log(chalk.red('❌ Please specify component/block name(s) or use --all flag'));
       console.log(chalk.cyan('Examples:'));
-      console.log(chalk.white('  ngsui add button'));
-      console.log(chalk.white('  ngsui add button alert card'));
-      console.log(chalk.white('  ngsui add --all'));
-      console.log(chalk.white('  ngsui add block hero-section'));
-      console.log(chalk.white('  ngsui add block header footer'));
-      console.log(chalk.white('  ngsui add --all-blocks'));
-      console.log(chalk.gray('\nUse "ngsui list" to see available components and blocks'));
+      console.log(chalk.white('  ngsui-cli add button'));
+      console.log(chalk.white('  ngsui-cli add button alert card'));
+      console.log(chalk.white('  ngsui-cli add --all'));
+      console.log(chalk.white('  ngsui-cli add block hero-section'));
+      console.log(chalk.white('  ngsui-cli add block header footer'));
+      console.log(chalk.white('  ngsui-cli add --all-blocks'));
+      console.log(chalk.gray('\nUse "ngsui-cli list" to see available components and blocks'));
     }
   });
 

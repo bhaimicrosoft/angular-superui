@@ -5,7 +5,7 @@ A customizable context menu component that appears on right-click with full keyb
 ## Installation
 
 ```bash
-npx ngsui add context-menu
+npx ngsui-cli add context-menu
 ```
 
 ## Usage

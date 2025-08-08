@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Installation Guide - Angular SuperUI v2.0.0
+# 🚀 Installation Guide - Angular SuperUI v2.0.1
 
 
 
@@ -49,10 +49,10 @@
 
 ```bash
 # Install globally for easy access
-npm install -g ngsui
+npm install -g ngsui-cli
 
 # Or use with npx (no installation)
-npx ngsui --help
+npx ngsui-cli --help
 ```
 
 ### Step 2: Initialize Your Project
@@ -61,19 +61,19 @@ npx ngsui --help
 # Navigate to your Angular project root
 cd your-angular-project
 
-npx ngsui init
+npx ngsui-cli init
 
 ### Step 3: Add Components
 
 # Add individual components
-npx ngsui add button
-npx ngsui add button card badge alert
+npx ngsui-cli add button
+npx ngsui-cli add button card badge alert
 
 # Add all components at once
-npx ngsui add --all
+npx ngsui-cli add --all
 
 # List available components
-npx ngsui list
+npx ngsui-cli list
 ```
 
 ---
@@ -161,7 +161,7 @@ npx ngsui list
 
 ```bash
 # Install complete library with all components
-npm install angular-superui@2.0.0
+npm install angular-superui@2.0.1
 
 # Install peer dependencies
 npm install class-variance-authority clsx tailwind-merge
@@ -290,7 +290,7 @@ import { Badge } from '@components/badge';
       </CardHeader>
       <CardContent>
         <div class="space-y-4">
-          <Badge variant="default">v2.0.0</Badge>
+          <Badge variant="default">v2.0.1</Badge>
           <Button variant="default" (click)="handleClick()">
             Get Started
           </Button>
@@ -397,33 +397,33 @@ export class DashboardComponent {}
 
 ```bash
 # Initialize project
-ngsui init
+ngsui-cli init
 
 # Add single component
-ngsui add button
+ngsui-cli add button
 
 # Add multiple components
-ngsui add button card badge alert
+ngsui-cli add button card badge alert
 
 # Add all components
-ngsui add --all
+ngsui-cli add --all
 
 # List available components
-ngsui list
+ngsui-cli list
 
 # Get help
-ngsui --help
+ngsui-cli --help
 ```
 
 ### Advanced Options
 
 ```bash
 # Force overwrite existing components
-ngsui add button --force
+ngsui-cli add button --force
 
 # Use with npx (no global installation)
-npx ngsui init
-npx ngsui add button
+npx ngsui-cli init
+npx ngsui-cli add button
 ```
 
 ---
@@ -462,7 +462,7 @@ ng serve
 ls src/lib/components/
 
 # Re-run init if needed
-ngsui init
+ngsui-cli init
 ```
 
 #### **TypeScript Errors**

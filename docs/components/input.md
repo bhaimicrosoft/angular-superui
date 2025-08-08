@@ -31,13 +31,13 @@ The most comprehensive and powerful input component for Angular applications wit
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Input component:
 
 ```bash
-ngsui add input
+ngsui-cli add input
 ```
 
 ## Usage
@@ -64,13 +64,13 @@ export class ExampleComponent {}
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Input component:
 
 ```bash
-ngsui add input
+ngsui-cli add input
 ```
 
 ## Quick Start

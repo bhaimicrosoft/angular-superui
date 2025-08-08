@@ -16,7 +16,7 @@ A vertically stacked set of interactive headings that each reveal an associated 
 ## Installation
 
 ```bash
-npx ngsui add accordion
+npx ngsui-cli add accordion
 ```
 
 This will install the Accordion component and all its dependencies.

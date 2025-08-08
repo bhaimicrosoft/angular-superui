@@ -25,7 +25,7 @@ async function listCommand() {
     console.log('');
     // Group components by category with actually implemented components only
     const categories = {
-        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'input', 'input-otp', 'progress', 'radio-group', 'select', 'rating'],
+        '🎯 Core Components': ['button', 'badge', 'alert', 'avatar', 'accordion', 'card', 'combobox', 'checkbox', 'chip', 'input', 'input-otp', 'progress', 'radio-group', 'select', 'rating'],
         '🧭 Navigation': ['breadcrumb', 'pagination', 'sidebar', 'stepper', 'tabs'],
         '💫 Overlays & Dialogs': ['alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu', 'popover', 'toast', 'tooltip'],
         '🎨 Media & Display': ['carousel', 'aspect-ratio', 'skeleton', 'spinner'],
@@ -55,14 +55,14 @@ async function listCommand() {
     console.log(chalk_1.default.bgBlue.white(' 📖 QUICK START GUIDE '));
     console.log('');
     console.log(chalk_1.default.bold.cyan('📦 Components:'));
-    console.log(chalk_1.default.cyan('  Add single component:    ') + chalk_1.default.yellow('ngsui add button'));
-    console.log(chalk_1.default.cyan('  Add multiple components: ') + chalk_1.default.yellow('ngsui add button alert badge'));
-    console.log(chalk_1.default.cyan('  Add all components:      ') + chalk_1.default.yellow('ngsui add --all'));
+    console.log(chalk_1.default.cyan('  Add single component:    ') + chalk_1.default.yellow('ngsui-cli add button'));
+    console.log(chalk_1.default.cyan('  Add multiple components: ') + chalk_1.default.yellow('ngsui-cli add button alert badge'));
+    console.log(chalk_1.default.cyan('  Add all components:      ') + chalk_1.default.yellow('ngsui-cli add --all'));
     console.log('');
     console.log(chalk_1.default.bold.cyan('🏗️ UI Blocks:'));
-    console.log(chalk_1.default.cyan('  Add single block:        ') + chalk_1.default.yellow('ngsui add block hero-section'));
-    console.log(chalk_1.default.cyan('  Add multiple blocks:     ') + chalk_1.default.yellow('ngsui add block header footer'));
-    console.log(chalk_1.default.cyan('  Add all blocks:          ') + chalk_1.default.yellow('ngsui add --all-blocks'));
+    console.log(chalk_1.default.cyan('  Add single block:        ') + chalk_1.default.yellow('ngsui-cli add block hero-section'));
+    console.log(chalk_1.default.cyan('  Add multiple blocks:     ') + chalk_1.default.yellow('ngsui-cli add block header footer'));
+    console.log(chalk_1.default.cyan('  Add all blocks:          ') + chalk_1.default.yellow('ngsui-cli add --all-blocks'));
     console.log('');
     console.log(chalk_1.default.bgMagenta.white(' 🌟 FEATURED SPOTLIGHT '));
     console.log('');

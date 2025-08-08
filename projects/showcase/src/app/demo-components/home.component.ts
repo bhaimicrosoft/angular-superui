@@ -372,13 +372,13 @@ import { SEOService } from '../services/seo.service';
             </div>
             <pre class="text-green-400 font-mono text-2xl overflow-x-auto">
 <span class="text-gray-500"># Initialize Angular SuperUI in your project</span>
-ngsui init
+ngsui-cli init
 
 <span class="text-gray-500"># Add specific components</span>
-ngsui add button card dialog
+ngsui-cli add button card dialog
 
 <span class="text-gray-500"># Or add all available components</span>
-ngsui add --all
+ngsui-cli add --all
 
 <span class="text-gray-500"># Import components in your app and start building!</span>
 ng serve

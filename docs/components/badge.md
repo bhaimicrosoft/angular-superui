@@ -17,13 +17,13 @@ Modern, accessible badge component for displaying status indicators, labels, and
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Badge component:
 
 ```bash
-ngsui add badge
+ngsui-cli add badge
 ```
 
 ## Usage

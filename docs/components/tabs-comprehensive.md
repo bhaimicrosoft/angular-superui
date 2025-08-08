@@ -41,7 +41,7 @@ The Angular SuperUI Tabs component is a highly customizable, accessible, and bea
 ## Installation
 
 ```bash
-ngsui add tabs
+ngsui-cli add tabs
 ```
 
 ## Basic Usage

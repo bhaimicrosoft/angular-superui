@@ -17,13 +17,13 @@ Interactive checkbox control with support for checked, unchecked, and indetermin
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Checkbox component:
 
 ```bash
-ngsui add checkbox
+ngsui-cli add checkbox
 ```
 
 ## Usage

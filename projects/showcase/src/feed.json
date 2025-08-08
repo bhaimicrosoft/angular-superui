@@ -18,10 +18,10 @@
     {
       "id": "https://angular-superui.vercel.app/blog/v2-release",
       "url": "https://angular-superui.vercel.app/blog/v2-release",
-      "title": "Angular SuperUI 2.0.0 - Major Release with 39+ Components",
-      "content_html": "<p>We're excited to announce Angular SuperUI 2.0.0, our biggest release yet featuring 39+ production-ready components!</p><h3>🎉 What's New</h3><ul><li><strong>39+ Components:</strong> Complete collection of headless UI components</li><li><strong>Enhanced CLI:</strong> New 'ngsui' command for easier installation</li><li><strong>Better TypeScript:</strong> Improved type safety and IntelliSense</li><li><strong>Accessibility:</strong> WCAG 2.1 AA compliance across all components</li><li><strong>Performance:</strong> Tree-shakable, zero dependencies</li></ul><p>Install today: <code>npm install -g ngsui</code></p>",
-      "content_text": "Angular SuperUI 2.0.0 features 39+ production-ready components with enhanced CLI and improved TypeScript support. Install today: npm install -g ngsui",
-      "summary": "Angular SuperUI 2.0.0 features 39+ production-ready components with enhanced CLI and improved TypeScript support",
+      "title": "Angular SuperUI 2.0.1 - Bug Fix Release with CLI Improvements",
+      "content_html": "<p>We're excited to announce Angular SuperUI 2.0.0, our biggest release yet featuring 39+ production-ready components!</p><h3>🎉 What's New</h3><ul><li><strong>39+ Components:</strong> Complete collection of headless UI components</li><li><strong>Enhanced CLI:</strong> New 'ngsui-cli' command for easier installation</li><li><strong>Better TypeScript:</strong> Improved type safety and IntelliSense</li><li><strong>Accessibility:</strong> WCAG 2.1 AA compliance across all components</li><li><strong>Performance:</strong> Tree-shakable, zero dependencies</li></ul><p>Install today: <code>npm install -g ngsui-cli</code></p>",
+      "content_text": "Angular SuperUI 2.0.1 fixes CLI download issues and improves command consistency. Install today: npm install -g ngsui-cli",
+      "summary": "Angular SuperUI 2.0.1 fixes CLI download issues and improves command consistency",
       "date_published": "2025-08-07T00:00:00Z",
       "date_modified": "2025-08-07T00:00:00Z",
       "authors": [

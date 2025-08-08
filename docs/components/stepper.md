@@ -31,13 +31,13 @@ A sophisticated multi-step navigation component with advanced keyboard accessibi
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Stepper component:
 
 ```bash
-ngsui add stepper
+ngsui-cli add stepper
 ```
 
 ## Basic Usage

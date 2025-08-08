@@ -108,7 +108,7 @@ async function initCommand() {
     console.log(chalk_1.default.hex('#10B981')('│  ') + chalk_1.default.hex('#F59E0B')('⚙️  Installing TailwindCSS v4, class-variance-authority, and clsx') + chalk_1.default.hex('#10B981')(' │'));
     console.log(chalk_1.default.hex('#10B981')('│  ') + chalk_1.default.hex('#8B5CF6')('🔧 Configuring Tailwind, CSS variables, and TypeScript paths') + chalk_1.default.hex('#10B981')('     │'));
     console.log(chalk_1.default.hex('#10B981')('│  ') + chalk_1.default.hex('#06B6D4')('📁 Setting up project structure for component installation') + chalk_1.default.hex('#10B981')('       │'));
-    console.log(chalk_1.default.hex('#10B981')('└─ ') + chalk_1.default.hex('#EC4899')('✨ Ready to add components with ') + chalk_1.default.yellow('ngsui add [component]') + chalk_1.default.hex('#EC4899')(' and blocks with ') + chalk_1.default.yellow('ngsui add block [block]') + chalk_1.default.hex('#10B981')(' ─┘'));
+    console.log(chalk_1.default.hex('#10B981')('└─ ') + chalk_1.default.hex('#EC4899')('✨ Ready to add components with ') + chalk_1.default.yellow('ngsui-cli add [component]') + chalk_1.default.hex('#EC4899')(' and blocks with ') + chalk_1.default.yellow('ngsui-cli add block [block]') + chalk_1.default.hex('#10B981')(' ─┘'));
     console.log('');
     const spinner = (0, ora_1.default)(chalk_1.default.cyan('🚀 Initializing Angular SuperUI...')).start();
     try {
@@ -1236,7 +1236,7 @@ export function cn(...inputs: ClassValue[]) {
                 ]);
                 if (!replaceStyles) {
                     console.log(chalk_1.default.yellow('⚠️  Initialization cancelled. Your styles.css was not modified.'));
-                    console.log(chalk_1.default.gray('💡 To complete setup later, backup your styles and run: ngsui init'));
+                    console.log(chalk_1.default.gray('💡 To complete setup later, backup your styles and run: ngsui-cli init'));
                     return;
                 }
                 spinner.start('Replacing styles.css with Angular SuperUI configuration...');
@@ -1256,13 +1256,13 @@ export function cn(...inputs: ClassValue[]) {
         console.log(chalk_1.default.hex('#FF6B6B')('┌─ ') + chalk_1.default.bold.hex('#4ECDC4')('🚀 NEXT STEPS') + chalk_1.default.hex('#FF6B6B')(' ─┐'));
         console.log(chalk_1.default.hex('#FF6B6B')('│                                                                    │'));
         console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('📦 Components:') + chalk_1.default.hex('#FF6B6B')('                                               │'));
-        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('1. Add your first component: ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui add badge') + chalk_1.default.hex('#FF6B6B')('        │'));
-        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('2. Add multiple components: ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui add accordion alert') + chalk_1.default.hex('#FF6B6B')('  │'));
-        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('3. Browse all components:  ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui list') + chalk_1.default.hex('#FF6B6B')('                  │'));
+        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('1. Add your first component: ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui-cli add badge') + chalk_1.default.hex('#FF6B6B')('        │'));
+        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('2. Add multiple components: ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui-cli add accordion alert') + chalk_1.default.hex('#FF6B6B')('  │'));
+        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('3. Browse all components:  ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui-cli list') + chalk_1.default.hex('#FF6B6B')('                  │'));
         console.log(chalk_1.default.hex('#FF6B6B')('│                                                                    │'));
         console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('🎨 UI Blocks:') + chalk_1.default.hex('#FF6B6B')('                                                  │'));
-        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('1. Add hero section:        ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui add block hero-section') + chalk_1.default.hex('#FF6B6B')(' │'));
-        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('2. Add pricing cards:       ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui add block pricing-cards') + chalk_1.default.hex('#FF6B6B')('│'));
+        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('1. Add hero section:        ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui-cli add block hero-section') + chalk_1.default.hex('#FF6B6B')(' │'));
+        console.log(chalk_1.default.hex('#FF6B6B')('│  ') + chalk_1.default.hex('#FFE66D')('2. Add pricing cards:       ') + chalk_1.default.bold.hex('#A8E6CF')('ngsui-cli add block pricing-cards') + chalk_1.default.hex('#FF6B6B')('│'));
         console.log(chalk_1.default.hex('#FF6B6B')('└─ ') + chalk_1.default.hex('#C7CEEA')('Start building amazing UIs today!') + chalk_1.default.hex('#FF6B6B')(' ─┘'));
         console.log('');
         console.log(chalk_1.default.hex('#A8E6CF')('┌─ ') + chalk_1.default.bold.hex('#FF6B6B')('🎨 FEATURES CONFIGURED') + chalk_1.default.hex('#A8E6CF')(' ─┐'));

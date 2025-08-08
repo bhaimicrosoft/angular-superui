@@ -34,19 +34,19 @@ This component prioritizes security by:
 Initialize Angular SuperUI in your project:
 
 ```bash
-npx ngsui init
+npx ngsui-cli init
 ```
 
 Add the Chip component:
 
 ```bash
-npx ngsui add chip
+npx ngsui-cli add chip
 ```
 
 **Note**: The ChipSet component uses the Tooltip component for overflow indicators. If you haven't added tooltips yet, run:
 
 ```bash
-npx ngsui add tooltip
+npx ngsui-cli add tooltip
 ```
 
 ## Usage
@@ -55,7 +55,7 @@ Import the Chip component in your Angular component:
 
 ```typescript
 import { Component } from '@angular/core';
-import { ChipComponent, ChipSetComponent } from '@lib/components';  // add path to tsconfig.json file, if not there
+import { ChipComponent, ChipSetComponent } from '@components/chip';  // add path to tsconfig.json file, if not there
 
 @Component({
   selector: 'app-example',

@@ -20,13 +20,13 @@ Professional footer component with comprehensive layouts, navigation links, soci
 Initialize Angular SuperUI in your project:
 
 ```bash
-npx ngsui init
+npx ngsui-cli init
 ```
 
 Add the Footer Block component:
 
 ```bash
-npx ngsui add block footer
+npx ngsui-cli add block footer
 ```
 
 ## Usage

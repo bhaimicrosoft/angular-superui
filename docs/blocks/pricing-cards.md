@@ -20,13 +20,13 @@ Professional pricing tables with feature comparison, billing toggles, and popula
 Initialize Angular SuperUI in your project:
 
 ```bash
-npx ngsui init
+npx ngsui-cli init
 ```
 
 Add the Pricing Cards Block component:
 
 ```bash
-npx ngsui add block pricing-cards
+npx ngsui-cli add block pricing-cards
 ```
 
 ## Usage

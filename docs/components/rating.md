@@ -21,13 +21,13 @@ Interactive star rating component with half-star support, animations, keyboard n
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Rating component:
 
 ```bash
-ngsui add rating
+ngsui-cli add rating
 ```
 
 ## Usage

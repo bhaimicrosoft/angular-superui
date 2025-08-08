@@ -19,13 +19,13 @@ Showcase your product features with icons, descriptions, and compelling layouts.
 Initialize Angular SuperUI in your project:
 
 ```bash
-npx ngsui init
+npx ngsui-cli init
 ```
 
 Add the Feature Grid Block component:
 
 ```bash
-npx ngsui add block feature-grid
+npx ngsui-cli add block feature-grid
 ```
 
 ## Usage

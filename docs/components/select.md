@@ -23,7 +23,7 @@ The Select component is built with Angular 20+ signals and provides a comprehens
 ## Installation
 
 ```bash
-npx ngsui add select
+npx ngsui-cli add select
 ```
 
 ## Basic Usage

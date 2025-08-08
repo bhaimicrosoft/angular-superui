@@ -23,7 +23,7 @@ The ThemeSwitcher component supports three different display modes:
 ## Installation
 
 ```bash
-ngsui add theme-switcher
+ngsui-cli add theme-switcher
 ```
 
 This will add the `ThemeSwitcher` component to your project.

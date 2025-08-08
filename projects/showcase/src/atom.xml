@@ -35,13 +35,13 @@
       <h3>🎉 What's New</h3>
       <ul>
         <li><strong>39+ Components:</strong> Complete collection of headless UI components</li>
-        <li><strong>Enhanced CLI:</strong> New 'ngsui' command for easier installation</li>
+        <li><strong>Enhanced CLI:</strong> New 'ngsui-cli' command for easier installation</li>
         <li><strong>Better TypeScript:</strong> Improved type safety and IntelliSense</li>
         <li><strong>Accessibility:</strong> WCAG 2.1 AA compliance across all components</li>
         <li><strong>Performance:</strong> Tree-shakable, zero dependencies</li>
       </ul>
       
-      <p>Install today: <code>npm install -g ngsui</code></p>
+      <p>Install today: <code>npm install -g ngsui-cli</code></p>
     ]]></content>
   </entry>
   

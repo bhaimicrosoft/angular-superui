@@ -17,13 +17,13 @@ Navigation breadcrumb component that shows the current page's location within a 
 Initialize Angular SuperUI in your project:
 
 ```bash
-ngsui init
+ngsui-cli init
 ```
 
 Add the Breadcrumb component:
 
 ```bash
-ngsui add breadcrumb
+ngsui-cli add breadcrumb
 ```
 
 ## Usage

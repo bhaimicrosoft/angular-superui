@@ -60,14 +60,14 @@ export async function listCommand() {
   console.log(chalk.bgBlue.white(' 📖 QUICK START GUIDE '));
   console.log('');
   console.log(chalk.bold.cyan('📦 Components:'));
-  console.log(chalk.cyan('  Add single component:    ') + chalk.yellow('ngsui add button'));
-  console.log(chalk.cyan('  Add multiple components: ') + chalk.yellow('ngsui add button alert badge'));
-  console.log(chalk.cyan('  Add all components:      ') + chalk.yellow('ngsui add --all'));
+  console.log(chalk.cyan('  Add single component:    ') + chalk.yellow('ngsui-cli add button'));
+  console.log(chalk.cyan('  Add multiple components: ') + chalk.yellow('ngsui-cli add button alert badge'));
+  console.log(chalk.cyan('  Add all components:      ') + chalk.yellow('ngsui-cli add --all'));
   console.log('');
   console.log(chalk.bold.cyan('🏗️ UI Blocks:'));
-  console.log(chalk.cyan('  Add single block:        ') + chalk.yellow('ngsui add block hero-section'));
-  console.log(chalk.cyan('  Add multiple blocks:     ') + chalk.yellow('ngsui add block header footer'));
-  console.log(chalk.cyan('  Add all blocks:          ') + chalk.yellow('ngsui add --all-blocks'));
+  console.log(chalk.cyan('  Add single block:        ') + chalk.yellow('ngsui-cli add block hero-section'));
+  console.log(chalk.cyan('  Add multiple blocks:     ') + chalk.yellow('ngsui-cli add block header footer'));
+  console.log(chalk.cyan('  Add all blocks:          ') + chalk.yellow('ngsui-cli add --all-blocks'));
   console.log('');
   
   console.log(chalk.bgMagenta.white(' 🌟 FEATURED SPOTLIGHT '));

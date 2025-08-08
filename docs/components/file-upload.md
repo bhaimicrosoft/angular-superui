@@ -18,10 +18,10 @@ The FileUpload component provides an intuitive and powerful way to handle file u
 
 ## Installation
 
-### Using NGSUI CLI (Recommended)
+### Using NGSUI-CLI (Recommended)
 
 ```bash
-npx ngsui add file-upload
+npx ngsui-cli add file-upload
 ```
 
 The CLI will automatically:
@@ -50,7 +50,7 @@ The FileUpload component requires the following dependencies:
 | `class-variance-authority` | Type-safe variant styling | ✅ |
 | `ProgressComponent` | Enhanced progress bars (from this library) | ✅ |
 
-**Note:** When using the NGSUI CLI, the Progress component will be automatically installed as a dependency, and `provideHttpClient()` will be configured in your `app.config.ts` file.
+**Note:** When using the NGSUI-CLI, the Progress component will be automatically installed as a dependency, and `provideHttpClient()` will be configured in your `app.config.ts` file.
 
 ## Basic Usage
 

@@ -400,10 +400,11 @@ export async function addCommand(componentNames: string | string[], options: { f
 
         // Download component files from GitHub repository
         const baseUrl = 'https://raw.githubusercontent.com/bhaimicrosoft/angular-superui/main/projects/lib/src/lib';
+        let downloadFailures = 0;
         
         for (const file of component.files) {
           try {
-            const response = await axios.get(`${baseUrl}/${componentName}/${file}`);
+            const response = await axios.get(`${baseUrl}/components/${componentName}/${file}`);
             let fileContent = response.data as string;
             
             // Fix import paths for cn utility and pipes - handle all possible patterns
@@ -432,8 +433,16 @@ export async function addCommand(componentNames: string | string[], options: { f
             
             await fs.writeFile(path.join(componentDir, file), fileContent);
           } catch (error) {
-            console.warn(chalk.yellow(`Warning: Could not download ${file} for ${componentName}`));
+            downloadFailures++;
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            console.warn(chalk.yellow(`Warning: Could not download ${file} for ${componentName} - ${errorMessage}`));
           }
+        }
+
+        // If all files failed to download, skip this component
+        if (downloadFailures === component.files.length) {
+          errors.push(`Failed to download any files for ${componentName}`);
+          continue;
         }
 
         // Update component exports
@@ -731,7 +740,7 @@ async function addDependencyComponent(depName: string, spinner: any) {
   
   for (const file of component.files) {
     try {
-      const response = await axios.get(`${baseUrl}/${depName}/${file}`);
+      const response = await axios.get(`${baseUrl}/components/${depName}/${file}`);
       let fileContent = response.data as string;
       
       // Fix import paths for cn utility and pipes

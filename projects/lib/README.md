@@ -1,4 +1,4 @@
-# Angular SuperUI v2.0.0 🚀
+# Angular SuperUI v2.0.1 🚀
 
 <div align="center">
 
@@ -25,7 +25,7 @@
 ---
 
 [![npm version](https://badge.fury.io/js/angular-superui.svg)](https://www.npmjs.com/package/angular-superui)
-[![CLI version](https://badge.fury.io/js/ngsui.svg)](https://badge.fury.io/js/ngsui)
+[![CLI version](https://badge.fury.io/js/ngsui-cli.svg)](https://badge.fury.io/js/ngsui-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Angular](https://img.shields.io/badge/Angular-18%2B-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue.svg)](https://www.typescriptlang.org/)
@@ -46,16 +46,16 @@ Install components directly in your project with our enhanced CLI:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui
+npm install -g ngsui-cli
 
 # Initialize project (sets up Tailwind CSS and TypeScript configs)
-ngsui init
+ngsui-cli init
 
 # Add specific components
-ngsui add button card badge alert checkbox theme-switcher
+ngsui-cli add button card badge alert checkbox theme-switcher
 
 # List all available components
-ngsui list
+ngsui-cli list
 ```
 
 ### 📦 **NPM Package Installation**
@@ -156,16 +156,16 @@ Perfect for new projects or when you want to reduce bundle size:
 
 ```bash
 # Install CLI globally
-npm install -g ngsui
+npm install -g ngsui-cli
 
 # Initialize your Angular project
-ngsui init
+ngsui-cli init
 
 # Add specific components
-ngsui add button card badge alert checkbox
+ngsui-cli add button card badge alert checkbox
 
 # List all available components
-ngsui list
+ngsui-cli list
 ```
 
 ### Option 2: Full Library Installation
