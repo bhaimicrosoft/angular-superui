@@ -32,7 +32,7 @@ Transform Angular SuperUI into the **ultimate, comprehensive UI ecosystem** that
 - [✅] **Toolbar** - Action grouping and shortcuts
 - [ ] **Split Pane** - Resizable layout panels
 - [ ] **Resizable** - Generic resizable container
-- [ ] **Chip/Tag** - Removable labels and filters
+- [✅] **Chip/Tag** - Removable labels and filters
 - [ ] **Timeline** - Event sequence display
 - [ ] **Tree View** - Hierarchical data display
 - [ ] **Transfer List** - Dual list selection

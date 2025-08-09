@@ -1,27 +1,19 @@
-# Hero Section Block 🚀
+# Hero Section Block 🦸
 
-Eye-catching landing page heroes with multiple layouts, CTAs, and background options. Perfect for capturing attention, making a great first impression, and driving conversions.
+Stunning landing page hero sections with flexible layouts and powerful call-to-action designs. Create compelling first impressions that engage visitors and drive conversions.
 
 ## Features
 
-- 🎨 **4 Variants** - Default, Gradient, Minimal, Dark
-- 📏 **4 Sizes** - Small, Default, Large, Extra Large
-- 🎭 **3 Alignments** - Left, Center, Right text alignment
-- 🖼️ **Background Types** - Gradient, Image, Video, Pattern
-- 🔘 **Action Buttons** - Multiple CTA buttons with variants and external links
-- 📊 **Statistics** - Showcase key metrics and achievements
-- 🎪 **Decorations** - Animated background elements and floating shapes
-- 📱 **Fully Responsive** - Mobile-first design with adaptive layouts
-- ♿ **Accessibility** - ARIA compliant with keyboard navigation support
-- 🔧 **TypeScript** - Full type safety with comprehensive interfaces
+- 🎨 **Flexible Layouts** - Centered, split, and custom layout options
+- 📱 **Mobile Optimized** - Responsive design that works on all devices
+- � **Call-to-Action** - Prominent buttons and conversion-focused design
+- � **Multiple Variants** - Different styles for various use cases
+- 🖼️ **Media Support** - Images, videos, and background options
+- � **Easy Customization** - Tailwind CSS classes for styling
+- ♿ **Accessible** - ARIA compliant with semantic markup
+- ⚡ **Performance** - Optimized rendering and fast loading
 
 ## Installation
-
-Initialize Angular SuperUI in your project:
-
-```bash
-npx ngsui-cli init
-```
 
 Add the Hero Section Block component:
 
@@ -31,813 +23,433 @@ npx ngsui-cli add block hero-section
 
 ## Usage
 
-Import the Hero Section Block component in your Angular component:
+Create hero sections with custom layouts:
 
 ```typescript
-import { Component, signal } from '@angular/core';
-import { HeroSectionBlockComponent, HeroButton } from 'angular-superui';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [HeroSectionBlockComponent],
+  imports: [CommonModule, RouterModule],
   template: `
-    <hero-section-block
-      title="Build Amazing Angular Apps"
-      subtitle="Create stunning user interfaces with our modern component library"
-      description="Pre-built components, TypeScript support, and seamless integration with your existing Angular projects."
-      badge="✨ Now Available"
-      [buttons]="buttons()"
-      variant="gradient"
-      size="default"
-      alignment="center"
-      [showDecorations]="true"
-      (onButtonClick)="handleButtonClick($event)"
-    />
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <div class="text-center max-w-4xl mx-auto">
+          <!-- Badge -->
+          <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-8">
+            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+            New Release Available
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            Build Amazing Apps with 
+            <span class="text-blue-600">Angular SuperUI</span>
+          </h1>
+
+          <!-- Description -->
+          <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+            The ultimate Angular component library for creating beautiful, accessible, 
+            and performant user interfaces. Get started in minutes, not hours.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <button class="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg shadow-lg hover:shadow-xl">
+              Get Started Free
+            </button>
+            <button class="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium text-lg">
+              View Documentation
+            </button>
+          </div>
+
+          <!-- Social Proof -->
+          <div class="text-sm text-gray-500">
+            Trusted by 10,000+ developers worldwide
+          </div>
+        </div>
+      </div>
+
+      <!-- Background Decorations -->
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full opacity-20"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-200 rounded-full opacity-20"></div>
+      </div>
+    </section>
   `
 })
-export class ExampleComponent {
-  buttons = signal<HeroButton[]>([
-    {
-      text: 'Get Started',
-      variant: 'primary',
-      size: 'lg',
-      href: '/getting-started'
-    },
-    {
-      text: 'View Demo',
-      variant: 'outline',
-      size: 'lg',
-      href: '/demo',
-      external: true
-    }
-  ]);
-
-  handleButtonClick(button: HeroButton) {
-    console.log('Button clicked:', button);
-  }
-}
+export class ExampleComponent {}
 ```
 
 ## Examples
 
-### Default Gradient Hero
-
-Clean gradient background with animated decorations - perfect for modern landing pages.
+### Centered Hero with Gradient Background
 
 ```typescript
 @Component({
+  imports: [CommonModule],
   template: `
-    <hero-section-block
-      title="Build Amazing Angular Apps"
-      subtitle="Create stunning user interfaces with our modern component library"
-      description="Pre-built components, TypeScript support, and seamless integration with your existing Angular projects."
-      badge="✨ Now Available"
-      [buttons]="defaultButtons()"
-      [stats]="defaultStats()"
-      variant="gradient"
-      size="default"
-      alignment="center"
-      [showDecorations]="true"
-      (onButtonClick)="onButtonClick($event)"
-    />
+    <section class="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      <div class="container mx-auto px-4 py-20 lg:py-32">
+        <div class="text-center max-w-4xl mx-auto">
+          <h1 class="text-5xl lg:text-6xl font-bold mb-6">
+            Welcome to the Future
+          </h1>
+          <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+            Discover innovative solutions that transform the way you work and live.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button class="px-8 py-4 bg-white text-purple-600 rounded-lg hover:bg-gray-100 font-medium">
+              Get Started
+            </button>
+            <button class="px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-purple-600 font-medium">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   `
 })
-export class DefaultHeroExample {
-  defaultButtons = signal<HeroButton[]>([
-    {
-      text: 'Get Started Free',
-      variant: 'primary',
-      size: 'lg',
-      href: '/signup'
-    },
-    {
-      text: 'Watch Demo',
-      variant: 'secondary',
-      size: 'lg',
-      href: '/demo'
-    }
-  ]);
+```
 
-  defaultStats = signal([
-    { label: 'Active Users', value: '10K+' },
-    { label: 'Components', value: '50+' },
-    { label: 'GitHub Stars', value: '2.3K' },
-    { label: 'Success Rate', value: '99.9%' }
-  ]);
+### Split Layout with Image
 
-  onButtonClick(button: HeroButton) {
-    console.log('Button clicked:', button);
-    if (button.href) {
-      // Handle navigation
-    }
-  }
-}
+```typescript
+@Component({
+  imports: [CommonModule],
+  template: `
+    <section class="py-20 lg:py-32">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div>
+            <div class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm mb-6">
+              <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+              Eco-Friendly Solution
+            </div>
+            
+            <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Sustainable Technology for a Better Tomorrow
+            </h1>
+            
+            <p class="text-lg text-gray-600 mb-8">
+              Join the movement towards sustainable technology. Our innovative solutions 
+              help reduce environmental impact while increasing efficiency.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                Start Your Journey
+              </button>
+              <button class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+                Watch Demo
+              </button>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="relative">
+            <img 
+              src="/api/placeholder/600/400" 
+              alt="Sustainable Technology"
+              class="rounded-2xl shadow-2xl w-full"
+            />
+            <div class="absolute inset-0 bg-gradient-to-tr from-green-500/20 to-blue-500/20 rounded-2xl"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `
+})
 ```
 
 ### Minimal Clean Hero
 
-Clean, minimal styling focused on content - ideal for professional and corporate websites.
+```typescript
+@Component({
+  imports: [CommonModule],
+  template: `
+    <section class="py-24 lg:py-32 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto">
+          <h1 class="text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-tight">
+            Simple. Elegant. <span class="font-bold">Powerful.</span>
+          </h1>
+          
+          <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+            Experience the perfect balance of simplicity and functionality 
+            in our modern design system.
+          </p>
+          
+          <button class="px-8 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+            Explore Now
+          </button>
+        </div>
+      </div>
+    </section>
+  `
+})
+```
+
+### Hero with Statistics
+
+```typescript
+@Component({
+  imports: [CommonModule],
+  template: `
+    <section class="bg-gray-50 py-20 lg:py-32">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Trusted by Industry Leaders
+          </h1>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-12">
+            Join thousands of companies that rely on our platform for their success.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <button class="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              Start Free Trial
+            </button>
+            <button class="px-8 py-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-white">
+              Schedule Demo
+            </button>
+          </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-blue-600 mb-2">10K+</div>
+            <div class="text-gray-600">Happy Customers</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-green-600 mb-2">99.9%</div>
+            <div class="text-gray-600">Uptime</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-purple-600 mb-2">24/7</div>
+            <div class="text-gray-600">Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `
+})
+```
+          🎉 Launch Week Special
+        </div>
+        
+        <h1 slot="headline" class="text-6xl font-bold leading-tight">
+          Transform Your
+          <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            Digital Experience
+          </span>
+        </h1>
+        
+        <p slot="description" class="text-xl text-gray-600 leading-relaxed">
+          Build modern applications with our comprehensive suite of tools, 
+          components, and services designed for the next generation of web development.
+        </p>
+        
+        <div slot="actions" class="flex flex-col sm:flex-row gap-4">
+          <button class="px-8 py-4 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
+            Start Free Trial
+          </button>
+          <button class="px-8 py-4 border-2 border-gray-300 rounded-lg hover:border-gray-400 transition-colors">
+            Schedule Demo
+          </button>
+        </div>
+        
+        <div slot="social-proof" class="flex items-center space-x-6 text-sm text-gray-500">
+          <span>Trusted by 50,000+ developers</span>
+          <div class="flex -space-x-2">
+            <img class="w-8 h-8 rounded-full border-2 border-white" src="/avatar1.jpg" alt="User 1">
+            <img class="w-8 h-8 rounded-full border-2 border-white" src="/avatar2.jpg" alt="User 2">
+            <img class="w-8 h-8 rounded-full border-2 border-white" src="/avatar3.jpg" alt="User 3">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Side Content -->
+      <div slot="side-content" class="relative">
+        <div class="relative bg-white rounded-xl shadow-2xl overflow-hidden">
+          <img src="/dashboard-preview.jpg" alt="Dashboard Preview" class="w-full h-auto">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+        <!-- Floating elements -->
+        <div class="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg">
+          <span class="text-2xl">⚡</span>
+        </div>
+      </div>
+    </HeroSection>
+  `
+})
+```
+
+### Video Background Hero
 
 ```typescript
 @Component({
   template: `
-    <hero-section-block
-      title="Professional Business Solutions"
-      subtitle="Streamline your workflow with enterprise-grade tools"
-      description="Designed for teams that demand reliability, security, and performance at scale."
-      [buttons]="minimalButtons()"
-      variant="minimal"
-      size="lg"
-      alignment="center"
-      [showDecorations]="false"
-      (onButtonClick)="onButtonClick($event)"
-    />
+    <HeroSection variant="video" size="full" class="relative">
+      <!-- Background Video -->
+      <video slot="video" autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+        <source src="/hero-video.mp4" type="video/mp4">
+      </video>
+      
+      <!-- Overlay -->
+      <div slot="overlay" class="absolute inset-0 bg-black/50"></div>
+      
+      <!-- Content -->
+      <div class="relative z-10 text-white text-center space-y-8">
+        <h1 slot="headline" class="text-7xl font-bold leading-tight">
+          Experience the
+          <br>
+          <span class="text-yellow-400">Future</span>
+        </h1>
+        
+        <p slot="description" class="text-2xl font-light max-w-3xl mx-auto">
+          Immerse yourself in next-generation technology that redefines possibilities
+        </p>
+        
+        <div slot="actions" class="space-y-4">
+          <button class="px-12 py-4 bg-white text-black rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+            Watch Demo
+          </button>
+          <p class="text-sm text-white/80">No signup required • 2 min demo</p>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div slot="scroll-indicator" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </HeroSection>
   `
 })
-export class MinimalHeroExample {
-  minimalButtons = signal<HeroButton[]>([
-    {
-      text: 'Schedule Demo',
-      variant: 'primary',
-      size: 'lg',
-      action: () => this.scheduleDemo()
-    },
-    {
-      text: 'Learn More',
-      variant: 'outline',
-      size: 'lg',
-      href: '/enterprise'
-    }
-  ]);
-
-  onButtonClick(button: HeroButton) {
-    if (button.action) {
-      button.action();
-    }
-  }
-
-  scheduleDemo() {
-    console.log('Opening demo scheduler');
-    // Handle demo scheduling
-  }
-}
 ```
 
-### Background Image Hero
-
-Hero with custom background image and overlay - perfect for visual storytelling.
-
-```typescript
-@Component({
-  template: `
-    <hero-section-block
-      title="Transform Your Digital Experience"
-      subtitle="Where innovation meets exceptional design"
-      description="Join thousands of companies worldwide who trust our platform to deliver outstanding user experiences."
-      [buttons]="imageButtons()"
-      [background]="heroBackground()"
-      variant="dark"
-      size="xl"
-      alignment="center"
-      [showDecorations]="true"
-      (onButtonClick)="onButtonClick($event)"
-    />
-  `
-})
-export class ImageHeroExample {
-  imageButtons = signal<HeroButton[]>([
-    {
-      text: 'Start Your Journey',
-      variant: 'primary',
-      size: 'lg',
-      href: '/onboarding'
-    },
-    {
-      text: 'Explore Features',
-      variant: 'ghost',
-      size: 'lg',
-      href: '/features'
-    }
-  ]);
-
-  heroBackground = signal({
-    type: 'image' as const,
-    value: '/assets/hero-bg.jpg',
-    overlay: true,
-    opacity: 0.7
-  });
-
-  onButtonClick(button: HeroButton) {
-    console.log('Button clicked:', button);
-  }
-}
-```
-
-### Statistics Showcase Hero
-
-Hero featuring key metrics and achievements - great for building credibility and trust.
-
-```typescript
-@Component({
-  template: `
-    <hero-section-block
-      title="Trusted by Industry Leaders"
-      subtitle="The platform of choice for forward-thinking companies"
-      description="Our proven track record speaks for itself. Join the growing community of successful businesses."
-      badge="🏆 Award Winning"
-      [buttons]="statsButtons()"
-      [stats]="impressiveStats()"
-      variant="default"
-      size="default"
-      alignment="center"
-      [showDecorations]="true"
-      (onButtonClick)="onButtonClick($event)"
-    />
-  `
-})
-export class StatsHeroExample {
-  statsButtons = signal<HeroButton[]>([
-    {
-      text: 'Join Today',
-      variant: 'primary',
-      size: 'lg',
-      href: '/signup'
-    },
-    {
-      text: 'View Case Studies',
-      variant: 'outline',
-      size: 'lg',
-      href: '/case-studies'
-    }
-  ]);
-
-  impressiveStats = signal([
-    { label: 'Companies Served', value: '500+' },
-    { label: 'Revenue Generated', value: '$2.4B' },
-    { label: 'Customer Satisfaction', value: '98%' },
-    { label: 'Global Reach', value: '50+ Countries' }
-  ]);
-
-  onButtonClick(button: HeroButton) {
-    console.log('Button clicked:', button);
-  }
-}
-```
-
-### Left-Aligned Hero with Video
-
-Asymmetric layout with video background - perfect for creative and media-focused websites.
-
-```typescript
-@Component({
-  template: `
-    <hero-section-block
-      title="Create. Inspire. Transform."
-      subtitle="Where creativity meets cutting-edge technology"
-      description="Unleash your creative potential with our comprehensive suite of design tools and collaborative features."
-      [buttons]="creativeButtons()"
-      [background]="videoBackground()"
-      variant="dark"
-      size="lg"
-      alignment="left"
-      [showDecorations]="false"
-      (onButtonClick)="onButtonClick($event)"
-    />
-  `
-})
-export class VideoHeroExample {
-  creativeButtons = signal<HeroButton[]>([
-    {
-      text: 'Start Creating',
-      variant: 'primary',
-      size: 'lg',
-      href: '/studio'
-    },
-    {
-      text: 'View Gallery',
-      variant: 'ghost',
-      size: 'lg',
-      href: '/gallery',
-      external: true
-    }
-  ]);
-
-  videoBackground = signal({
-    type: 'video' as const,
-    value: '/assets/hero-video.mp4',
-    overlay: true,
-    opacity: 0.6
-  });
-
-  onButtonClick(button: HeroButton) {
-    console.log('Button clicked:', button);
-  }
-}
-```
-
-## Variants
-
-### Section Variants
-
-#### Default
-```html
-## Variants
-
-### Default
-
-```html
-<hero-section variant="default">
-```
-
-Clean hero section with subtle background and standard styling.
-
-### Gradient
-
-```html
-<hero-section variant="gradient">
-```
-
-Eye-catching gradient background for modern, vibrant designs.
-
-### Minimal
-
-```html
-<hero-section variant="minimal">
-```
-
-Clean, minimal design with subtle background for professional layouts.
-
-### Dark
-
-```html
-<hero-section variant="dark">
-```
-
-Dark theme with high contrast for modern, tech-focused websites.
-
-## Sizes
-
-### Small
-
-```html
-<hero-section size="sm">
-```
-
-Compact hero section (py-12) perfect for landing pages and focused content.
-
-### Medium
-
-```html
-<hero-section size="default">
-```
-
-Standard hero section height (py-20) suitable for most applications.
-
-### Large
-
-```html
-<hero-section size="lg">
-```
-
-Spacious hero section (py-32) ideal for marketing pages and impact.
-
-### Extra Large
-
-```html
-<hero-section size="xl">
-```
-
-Maximum impact hero section (py-40) for full-screen experiences.
-
-## Alignment Options
-
-### Left Alignment
-
-```html
-<hero-section alignment="left">
-```
-
-Left-aligned content perfect for text-heavy heroes and professional layouts.
-
-### Center Alignment (Default)
-
-```html
-<hero-section alignment="center">
-```
-
-Centered content for balanced, impactful presentation.
-
-### Right Alignment
-
-```html
-<hero-section alignment="right">
-```
-
-Right-aligned content for unique layouts and visual variety.
-
-## Background Types
-
-### Gradient Background
-
-```typescript
-background: {
-  type: 'gradient',
-  gradient: 'from-blue-600 via-purple-600 to-indigo-600'
-}
-```
-
-### Image Background
-
-```typescript
-background: {
-  type: 'image',
-  imageUrl: '/assets/hero-bg.jpg',
-  overlay: 'dark' // Optional overlay
-}
-```
-
-### Video Background
-
-```typescript
-background: {
-  type: 'video',
-  videoUrl: '/assets/hero-video.mp4',
-  posterUrl: '/assets/hero-poster.jpg'
-}
-```
-
-### Pattern Background
-
-```typescript
-background: {
-  type: 'pattern',
-  pattern: 'dots' // 'dots', 'grid', 'diagonal'
-}
-```
-Clean gradient background from slate to white with subtle styling.
-
-#### Gradient
-```html
-<hero-section-block variant="gradient">
-```
-Beautiful multi-color gradient background for visual impact.
-
-#### Minimal
-```html
-<hero-section-block variant="minimal">
-```
-Clean background with focus on content and typography.
-
-#### Dark
-```html
-<hero-section-block variant="dark">
-```
-Dark theme variant perfect for dramatic presentations.
-
-## Sizes
-
-### Small
-```html
-<hero-section-block size="sm">
-```
-Compact hero (py-16 md:py-20) for secondary pages.
-
-### Default
-```html
-<hero-section-block size="default">
-```
-Standard hero height (py-20 md:py-32) for most landing pages.
-
-### Large
-```html
-<hero-section-block size="lg">
-```
-Large hero (py-32 md:py-40) for premium presentations.
-
-### Extra Large
-```html
-<hero-section-block size="xl">
-```
-Maximum impact hero (py-40 md:py-48) for flagship pages.
-
-## Alignment Options
-
-### Left Alignment
-```html
-<hero-section-block alignment="left">
-```
-Left-aligned content for asymmetric layouts and creative designs.
-
-### Center Alignment (Default)
-```html
-<hero-section-block alignment="center">
-```
-Centered content for balanced, traditional layouts.
-
-### Right Alignment
-```html
-<hero-section-block alignment="right">
-```
-Right-aligned content for unique layouts and RTL support.
-
-## Background Types
-
-### Gradient Background
-```typescript
-background: {
-  type: 'gradient',
-  value: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-}
-```
-
-### Image Background
-```typescript
-background: {
-  type: 'image',
-  value: '/path/to/image.jpg',
-  overlay: true,
-  opacity: 0.7
-}
-```
-
-### Video Background
-```typescript
-background: {
-  type: 'video',
-  value: '/path/to/video.mp4',
-  overlay: true,
-  opacity: 0.6
-}
-```
-
-### Pattern Background
-```typescript
-background: {
-  type: 'pattern',
-  value: 'dots', // or 'grid', 'waves'
-  opacity: 0.1
-}
-```
+## Content Slots
+
+The HeroSection component supports multiple content projection slots:
+
+| Slot | Purpose | Usage |
+|------|---------|-------|
+| `slot="background"` | Background elements | `<div slot="background">...</div>` |
+| `slot="video"` | Background video | `<video slot="video">...</video>` |
+| `slot="image"` | Background image | `<img slot="image">...</img>` |
+| `slot="overlay"` | Background overlay | `<div slot="overlay">...</div>` |
+| `slot="badge"` | Announcement badge | `<span slot="badge">...</span>` |
+| `slot="announcement"` | Alternative badge | `<div slot="announcement">...</div>` |
+| `slot="headline"` | Main headline | `<h1 slot="headline">...</h1>` |
+| `slot="title"` | Alternative title | `<h2 slot="title">...</h2>` |
+| `slot="description"` | Main description | `<p slot="description">...</p>` |
+| `slot="subtitle"` | Alternative description | `<p slot="subtitle">...</p>` |
+| `slot="actions"` | Action buttons | `<div slot="actions">...</div>` |
+| `slot="cta"` | Call-to-action | `<button slot="cta">...</button>` |
+| `slot="buttons"` | Button group | `<div slot="buttons">...</div>` |
+| `slot="social-proof"` | Social proof elements | `<div slot="social-proof">...</div>` |
+| `slot="testimonial"` | Testimonial content | `<div slot="testimonial">...</div>` |
+| `slot="logos"` | Company/partner logos | `<div slot="logos">...</div>` |
+| `slot="side-content"` | Side content (split layout) | `<div slot="side-content">...</div>` |
+| `slot="image-content"` | Image content | `<div slot="image-content">...</div>` |
+| `slot="form"` | Form elements | `<form slot="form">...</form>` |
+| `slot="demo"` | Demo content | `<div slot="demo">...</div>` |
+| `slot="bottom"` | Bottom section | `<div slot="bottom">...</div>` |
+| `slot="scroll-indicator"` | Scroll indicator | `<div slot="scroll-indicator">...</div>` |
+| `slot="decorative"` | Decorative elements | `<div slot="decorative">...</div>` |
+| `slot="particles"` | Particle effects | `<div slot="particles">...</div>` |
 
 ## API Reference
 
-### Component Props
+### HeroSection Props
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `variant` | `'default' \| 'gradient' \| 'minimal' \| 'dark'` | `'default'` | Hero section styling variant |
-| `size` | `'sm' \| 'default' \| 'lg' \| 'xl'` | `'default'` | Hero section height |
-| `alignment` | `'left' \| 'center' \| 'right'` | `'center'` | Content text alignment |
-| `title` | `string` | `undefined` | Main heading text |
-| `subtitle` | `string` | `undefined` | Secondary heading text |
-| `description` | `string` | `undefined` | Hero description paragraph |
-| `badge` | `string` | `undefined` | Badge text displayed above title |
-| `buttons` | `HeroButton[]` | `[]` | Array of action buttons |
-| `stats` | `{label: string; value: string}[]` | `[]` | Statistics to display |
-| `background` | `HeroBackground` | `undefined` | Background configuration |
-| `showDecorations` | `boolean` | `false` | Show animated background decorations |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'gradient' \| 'dark' \| 'image' \| 'video' \| 'glass' \| 'minimal' \| 'custom'` | `'default'` | Visual style variant |
+| `size` | `'xs' \| 'sm' \| 'default' \| 'lg' \| 'xl' \| 'full' \| 'auto'` | `'default'` | Section size/height |
+| `spacing` | `'none' \| 'sm' \| 'default' \| 'lg' \| 'custom'` | `'default'` | Container spacing |
+| `maxWidth` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full' \| 'none' \| 'custom'` | `'xl'` | Container max width |
+| `container` | `boolean \| 'custom'` | `true` | Use container classes |
+| `alignment` | `'left' \| 'center' \| 'right' \| 'custom'` | `'center'` | Content alignment |
+| `layout` | `'single' \| 'split' \| 'custom'` | `'single'` | Layout type |
+| `class` | `string` | `''` | Additional CSS classes for section |
+| `containerClass` | `string` | `''` | Additional CSS classes for container |
+| `contentClass` | `string` | `''` | Additional CSS classes for content |
+| `backgroundImage` | `string` | `''` | Background image URL |
+| `backgroundVideo` | `string` | `''` | Background video URL |
+| `overlayOpacity` | `number` | `0.5` | Background overlay opacity |
 
 ### Events
 
 | Event | Type | Description |
 |-------|------|-------------|
-| `onButtonClick` | `EventEmitter<HeroButton>` | Emitted when an action button is clicked |
+| `sectionClick` | `EventEmitter<MouseEvent>` | Emitted when section is clicked |
+| `ctaClick` | `EventEmitter<MouseEvent>` | Emitted when CTA is clicked |
 
-### HeroButton Interface
+## Styling
 
-```typescript
-export interface HeroButton {
-  text: string;                    // Button text
-  href?: string;                   // Link URL
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'; // Button style
-  size?: 'sm' | 'default' | 'lg';  // Button size
-  disabled?: boolean;              // Disabled state
-  external?: boolean;              // Open in new tab
-  action?: () => void;             // Click handler function
-}
-```
-
-### HeroBackground Interface
+### Custom Classes
 
 ```typescript
-export interface HeroBackground {
-  type: 'gradient' | 'image' | 'video' | 'pattern'; // Background type
-  value?: string;                  // Background URL or CSS value
-  overlay?: boolean;               // Show dark overlay
-  opacity?: number;                // Background opacity (0-1)
-}
+@Component({
+  template: `
+    <HeroSection 
+      class="min-h-screen bg-custom"
+      containerClass="max-w-4xl"
+      contentClass="items-start text-left"
+    >
+      <!-- content -->
+    </HeroSection>
+  `
+})
 ```
 
-## Responsive Behavior
-
-The Hero Section Block is fully responsive and adapts to different screen sizes:
-
-- **Mobile (< 768px)**: Stacked layout with smaller text and simplified buttons
-- **Tablet (768px - 1024px)**: Balanced layout with medium text sizes
-- **Desktop (> 1024px)**: Full layout with large text and side-by-side elements
-
-### Responsive Features
-
-- **Adaptive Typography**: Text sizes scale appropriately for each breakpoint
-- **Button Stacking**: Buttons stack vertically on mobile for better usability
-- **Image Optimization**: Background images adjust for mobile viewports
-- **Touch-Friendly**: Larger touch targets on mobile devices
-
-## Accessibility
-
-The Hero Section Block includes comprehensive accessibility features:
-
-- **Semantic HTML**: Proper heading hierarchy and section structure
-- **ARIA Labels**: Descriptive labels for screen readers
-- **Keyboard Navigation**: Full keyboard support for interactive elements
-- **Focus Management**: Visible focus indicators and logical tab order
-- **Screen Reader Support**: Optimized for assistive technologies
-- **High Contrast**: Compatible with high contrast mode
-- **Reduced Motion**: Respects user's motion preferences for animations
-
-### Accessibility Best Practices
+### Responsive Design
 
 ```typescript
-// Ensure proper heading hierarchy
-<hero-section-block
-  title="Main Page Heading"        // This becomes an h1
-  subtitle="Supporting headline"   // This becomes an h2
-  description="Detailed description"
-/>
-
-// Provide meaningful button text
-{
-  text: 'Get started with our free trial', // Descriptive text
-  href: '/signup',
-  variant: 'primary'
-}
-
-// Use external link indicators
-{
-  text: 'View documentation',
-  href: 'https://docs.example.com',
-  external: true                   // Adds external link indicators
-}
+@Component({
+  template: `
+    <HeroSection size="lg" class="py-12 md:py-24 lg:py-32">
+      <h1 slot="headline" class="text-3xl md:text-5xl lg:text-7xl font-bold">
+        Responsive Headline
+      </h1>
+    </HeroSection>
+  `
+})
 ```
 
-## Customization
+## Best Practices
 
-### CSS Variables
+### Performance
 
-The Hero Section Block uses CSS custom properties for theming:
+- Optimize background images/videos for web
+- Use appropriate image formats (WebP, AVIF)
+- Implement lazy loading for non-critical content
 
-```css
-.hero-section-block {
-  --hero-bg: theme(colors.background);
-  --hero-text: theme(colors.foreground);
-  --hero-muted: theme(colors.muted.foreground);
-  --hero-primary: theme(colors.primary);
-  --hero-overlay: rgba(0, 0, 0, 0.4);
-}
-```
+### Accessibility
 
-### Custom Styling
+- Provide alt text for background images
+- Ensure sufficient color contrast
+- Use semantic HTML elements
+- Test with screen readers
 
-Add custom styles by targeting the component classes:
+### SEO
 
-```css
-/* Custom hero styling */
-.custom-hero hero-section-block {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
+- Use proper heading hierarchy (h1, h2, etc.)
+- Include descriptive meta tags
+- Optimize content for search engines
 
-/* Custom button styling */
-.custom-hero .hero-button {
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
+### Mobile Experience
 
-/* Custom decoration styling */
-.custom-hero .hero-decoration {
-  animation: customFloat 6s ease-in-out infinite;
-}
-
-@keyframes customFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
-}
-```
-
-### Tailwind CSS Customization
-
-Extend the component with Tailwind classes:
-
-```html
-<hero-section-block
-  class="bg-gradient-to-r from-purple-500 to-pink-500 text-white"
-  title="Custom Styled Hero"
-  [buttons]="buttons()"
-/>
-```
-
-## Performance Considerations
-
-- **Lazy Loading**: Background images and videos are optimized for loading
-- **Change Detection**: Component uses OnPush strategy for optimal performance
-- **Bundle Size**: Tree-shakeable exports reduce bundle size
-- **Video Optimization**: Videos are automatically muted and optimized
-
-```typescript
-// Optimize background loading
-background: {
-  type: 'image',
-  value: '/hero-bg.webp',        // Use WebP format
-  loading: 'eager'               // For above-the-fold images
-}
-
-// Optimize video backgrounds
-background: {
-  type: 'video',
-  value: '/hero-video.mp4',
-  preload: 'metadata'            // Preload only metadata
-}
-```
-
-## Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## Troubleshooting
-
-### Common Issues
-
-#### Background Images Not Loading
-```typescript
-// ❌ Wrong: Relative path without proper asset handling
-background: {
-  type: 'image',
-  value: './assets/hero.jpg'
-}
-
-// ✅ Correct: Absolute path or proper asset URL
-background: {
-  type: 'image',
-  value: '/assets/hero.jpg'
-}
-```
-
-#### Video Not Playing
-```typescript
-// ❌ Wrong: Missing required video attributes
-background: {
-  type: 'video',
-  value: '/video.mp4'
-}
-
-// ✅ Correct: Proper video configuration
-background: {
-  type: 'video',
-  value: '/video.mp4',
-  autoplay: true,
-  muted: true,
-  loop: true
-}
-```
-
-#### Buttons Not Responding
-```typescript
-// Ensure proper event handling
-onButtonClick(button: HeroButton) {
-  if (button.href) {
-    // Handle navigation
-    this.router.navigate([button.href]);
-  } else if (button.action) {
-    // Handle custom action
-    button.action();
-  }
-}
-```
-
-## Related Components
-
-- [Button Component](../components/button.md) - For custom CTA buttons
-- [Badge Component](../components/badge.md) - For hero badges and indicators
-- [Feature Grid Block](./feature-grid.md) - For complementary feature sections
-- [Pricing Cards Block](./pricing-cards.md) - For pricing sections
-
-## Contributing
-
-Found a bug or want to contribute? Check out our [Contributing Guidelines](../../CONTRIBUTING.md) and submit a pull request on [GitHub](https://github.com/bhaimicrosoft/angular-superui).
-
-## Changelog
-
-### v0.1.0
-- Initial release of Hero Section Block component
-- Support for multiple variants and sizes
-- Background image, video, and pattern support
-- Responsive design with mobile-first approach
-- Full accessibility implementation
-- TypeScript interfaces and type safety
-
----
-
-*For more examples and advanced usage, check out our [Storybook](https://storybook.angular-superui.com) or visit the [live demo](https://angular-superui.com/blocks/hero-section).*
+- Test on various device sizes
+- Ensure touch targets are appropriately sized
+- Consider mobile-specific interactions

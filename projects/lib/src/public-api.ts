@@ -30,7 +30,6 @@ export * from '@lib/components/dialog';
 export * from '@lib/components/drawer';
 export * from '@lib/components/dropdown-menu';
 export * from '@lib/components/file-upload';
-export * from '@lib/blocks/header';
 export * from '@lib/components/input';
 export * from '@lib/components/input-otp';
 export * from '@lib/components/pagination';
@@ -54,9 +53,11 @@ export * from '@lib/components/icon';
 export * from '@lib/components/menubar';
 export * from '@lib/components/toolbar';
 
-// Block Components
-export * from '@lib/blocks/header';
-export * from '@lib/blocks/hero-section';
-export * from '@lib/blocks/pricing-cards';
-export * from '@lib/blocks/footer';
-export * from '@lib/blocks/feature-grid';
+
+// Enhanced Configurable Blocks
+export * from '@lib/blocks/feature-grid-configurable';
+export * from '@lib/blocks/feature-card';
+export * from '@lib/blocks/hero-section-configurable';
+export * from '@lib/blocks/pricing-cards-configurable';
+export * from '@lib/blocks/header-configurable';
+export * from '@lib/blocks/footer-configurable';

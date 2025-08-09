@@ -2,12 +2,31 @@ import { Component, signal, computed, ChangeDetectionStrategy, inject, OnInit } 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
-import { PricingCardsBlockComponent, PricingPlan } from '@lib/blocks/pricing-cards';
+
+// Pricing Plan Interface
+export interface PricingPlan {
+  id: string;
+  name: string;
+  description: string;
+  price: {
+    amount: string;
+    period: string;
+    originalAmount?: number;
+  };
+  badge?: string;
+  features: Array<{
+    text: string;
+    included: boolean;
+  }>;
+  ctaText: string;
+  ctaVariant: 'primary' | 'outline' | 'secondary' | 'ghost';
+  variant: 'default' | 'popular' | 'premium';
+}
 
 @Component({
   selector: 'app-pricing-cards-demo',
   standalone: true,
-  imports: [CommonModule, RouterModule, PricingCardsBlockComponent],
+  imports: [CommonModule, RouterModule],
   template: `
     <!-- Professional Hero Section -->
     <section class="relative bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
@@ -75,56 +94,251 @@ import { PricingCardsBlockComponent, PricingPlan } from '@lib/blocks/pricing-car
 
           <!-- Example 1: Three-Tier Pricing -->
           <div class="mb-20">
-            <div class="text-center mb-8">
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Three-Tier Pricing</h2>
-              <p class="text-gray-600 dark:text-gray-300">Classic pricing layout with popular plan highlighted</p>
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Three-Tier Pricing</h2>
+              <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Choose the perfect plan for your needs and scale as you grow</p>
             </div>
-            <div class="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
-              <pricing-cards-block
-                [title]="'Choose Your Plan'"
-                [subtitle]="'Select the perfect plan for your needs and scale as you grow'"
-                [plans]="threeTierPlans()"
-                [showBillingToggle]="true"
-                [annualDiscount]="20"
-                [additionalInfo]="'All plans include 14-day free trial. No credit card required.'"
-                (onPlanSelect)="onPlanSelect($event)"
-              />
+            
+            <!-- Custom Grid Layout -->
+            <div class="max-w-7xl mx-auto">
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                @for (plan of threeTierPlans(); track plan.id) {
+                  <div [class]="'relative bg-white dark:bg-gray-800 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ' + 
+                               (plan.variant === 'popular' ? 'border-blue-500 shadow-lg scale-105 ring-2 ring-blue-500/20' : 'border-gray-200 dark:border-gray-700 shadow-md')">
+                    
+                    <!-- Popular Badge -->
+                    @if (plan.badge) {
+                      <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-blue-600 text-white shadow-lg">
+                          ⭐ {{ plan.badge }}
+                        </span>
+                      </div>
+                    }
+                    
+                    <!-- Card Content -->
+                    <div class="p-8">
+                      <!-- Plan Header -->
+                      <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ plan.name }}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">{{ plan.description }}</p>
+                        
+                        <!-- Price -->
+                        <div class="mb-6">
+                          <div class="flex items-baseline justify-center">
+                            <span class="text-5xl font-bold text-gray-900 dark:text-white">{{ plan.price.amount }}</span>
+                            <span class="text-xl text-gray-500 dark:text-gray-400 ml-2">{{ plan.price.period }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Features List -->
+                      <div class="mb-8">
+                        <ul class="space-y-4">
+                          @for (feature of plan.features; track feature.text) {
+                            <li class="flex items-start">
+                              <div [class]="'flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 mr-3 ' + 
+                                           (feature.included ? 'bg-green-100 dark:bg-green-900' : 'bg-gray-100 dark:bg-gray-700')">
+                                <span [class]="'text-xs font-bold ' + (feature.included ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-gray-500')">
+                                  {{ feature.included ? '✓' : '×' }}
+                                </span>
+                              </div>
+                              <span [class]="'text-gray-700 dark:text-gray-300 ' + (feature.included ? '' : 'line-through opacity-60')">
+                                {{ feature.text }}
+                              </span>
+                            </li>
+                          }
+                        </ul>
+                      </div>
+                      
+                      <!-- CTA Button -->
+                      <div class="text-center">
+                        <button 
+                          [class]="'w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-105 ' + 
+                                  (plan.ctaVariant === 'primary' ? 
+                                    'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl' : 
+                                    'bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600')"
+                          (click)="onPlanSelect(plan)">
+                          {{ plan.ctaText }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+              
+              <!-- Footer Note -->
+              <div class="text-center mt-12">
+                <p class="text-gray-500 dark:text-gray-400">
+                  All plans include 14-day free trial. No credit card required.
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Example 2: Simple Two-Tier -->
           <div class="mb-20">
-            <div class="text-center mb-8">
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Two-Tier Pricing</h2>
-              <p class="text-gray-600 dark:text-gray-300">Simplified pricing with two options</p>
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Two-Tier Pricing</h2>
+              <p class="text-xl text-gray-600 dark:text-gray-300">Simple choice between Starter and Pro plans</p>
             </div>
-            <div class="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
-              <pricing-cards-block
-                [title]="'Simple Pricing'"
-                [subtitle]="'Choose between our Starter and Pro plans'"
-                [plans]="twoTierPlans()"
-                [showBillingToggle]="false"
-                (onPlanSelect)="onPlanSelect($event)"
-              />
+            
+            <!-- Two Column Grid -->
+            <div class="max-w-4xl mx-auto">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                @for (plan of twoTierPlans(); track plan.id) {
+                  <div [class]="'relative bg-white dark:bg-gray-800 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ' + 
+                               (plan.variant === 'popular' ? 'border-blue-500 shadow-lg ring-2 ring-blue-500/20' : 'border-gray-200 dark:border-gray-700 shadow-md')">
+                    
+                    <!-- Popular Badge -->
+                    @if (plan.badge) {
+                      <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-blue-600 text-white shadow-lg">
+                          ⭐ {{ plan.badge }}
+                        </span>
+                      </div>
+                    }
+                    
+                    <!-- Card Content -->
+                    <div class="p-8">
+                      <!-- Plan Header -->
+                      <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{{ plan.name }}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">{{ plan.description }}</p>
+                        
+                        <!-- Price -->
+                        <div class="mb-6">
+                          <div class="flex items-baseline justify-center">
+                            <span class="text-5xl font-bold text-gray-900 dark:text-white">{{ plan.price.amount }}</span>
+                            <span class="text-xl text-gray-500 dark:text-gray-400 ml-2">{{ plan.price.period }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Features List -->
+                      <div class="mb-8">
+                        <ul class="space-y-4">
+                          @for (feature of plan.features; track feature.text) {
+                            <li class="flex items-start">
+                              <div [class]="'flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 mr-3 ' + 
+                                           (feature.included ? 'bg-green-100 dark:bg-green-900' : 'bg-gray-100 dark:bg-gray-700')">
+                                <span [class]="'text-xs font-bold ' + (feature.included ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-gray-500')">
+                                  {{ feature.included ? '✓' : '×' }}
+                                </span>
+                              </div>
+                              <span [class]="'text-gray-700 dark:text-gray-300 ' + (feature.included ? '' : 'line-through opacity-60')">
+                                {{ feature.text }}
+                              </span>
+                            </li>
+                          }
+                        </ul>
+                      </div>
+                      
+                      <!-- CTA Button -->
+                      <div class="text-center">
+                        <button 
+                          [class]="'w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-105 ' + 
+                                  (plan.ctaVariant === 'primary' ? 
+                                    'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl' : 
+                                    'bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600')"
+                          (click)="onPlanSelect(plan)">
+                          {{ plan.ctaText }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+              
+              <!-- Feature Comparison -->
+              <div class="text-center mt-12">
+                <p class="text-gray-500 dark:text-gray-400">
+                  Not sure which plan? <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Compare features →</a>
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Example 3: Four-Tier Enterprise -->
           <div class="mb-20">
-            <div class="text-center mb-8">
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Enterprise Pricing</h2>
-              <p class="text-gray-600 dark:text-gray-300">Complete pricing structure with enterprise options</p>
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Enterprise Pricing</h2>
+              <p class="text-xl text-gray-600 dark:text-gray-300">Complete solution from startups to enterprise scale</p>
             </div>
-            <div class="border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
-              <pricing-cards-block
-                [title]="'Enterprise Solutions'"
-                [subtitle]="'From startups to enterprise - we have the perfect solution for you'"
-                [plans]="enterprisePlans()"
-                [showBillingToggle]="true"
-                [annualDiscount]="25"
-                [additionalInfo]="'Custom enterprise solutions available. Contact our sales team for more information.'"
-                (onPlanSelect)="onPlanSelect($event)"
-              />
+            
+            <!-- Four Column Grid -->
+            <div class="max-w-7xl mx-auto">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+                @for (plan of enterprisePlans(); track plan.id) {
+                  <div [class]="'relative bg-white dark:bg-gray-800 rounded-xl border-2 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ' + 
+                               (plan.variant === 'popular' ? 'border-blue-500 shadow-lg ring-2 ring-blue-500/20 scale-105' : 'border-gray-200 dark:border-gray-700 shadow-md')">
+                    
+                    <!-- Popular Badge -->
+                    @if (plan.badge) {
+                      <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-600 text-white shadow-lg">
+                          {{ plan.badge }}
+                        </span>
+                      </div>
+                    }
+                    
+                    <!-- Card Content -->
+                    <div class="p-6">
+                      <!-- Plan Header -->
+                      <div class="text-center mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{{ plan.name }}</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">{{ plan.description }}</p>
+                        
+                        <!-- Price -->
+                        <div class="mb-4">
+                          <div class="flex items-baseline justify-center">
+                            <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ plan.price.amount }}</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400 ml-1">{{ plan.price.period }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Features List -->
+                      <div class="mb-6">
+                        <ul class="space-y-2">
+                          @for (feature of plan.features; track feature.text) {
+                            <li class="flex items-start text-sm">
+                              <div [class]="'flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center mt-0.5 mr-2 ' + 
+                                           (feature.included ? 'bg-green-100 dark:bg-green-900' : 'bg-gray-100 dark:bg-gray-700')">
+                                <span [class]="'text-xs ' + (feature.included ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-gray-500')">
+                                  {{ feature.included ? '✓' : '×' }}
+                                </span>
+                              </div>
+                              <span [class]="'text-gray-700 dark:text-gray-300 ' + (feature.included ? '' : 'line-through opacity-50')">
+                                {{ feature.text }}
+                              </span>
+                            </li>
+                          }
+                        </ul>
+                      </div>
+                      
+                      <!-- CTA Button -->
+                      <div class="text-center">
+                        <button 
+                          [class]="'w-full py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 transform hover:scale-105 ' + 
+                                  (plan.ctaVariant === 'primary' ? 
+                                    'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl' : 
+                                    'bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600')"
+                          (click)="onPlanSelect(plan)">
+                          {{ plan.ctaText }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+              
+              <!-- Enterprise Note -->
+              <div class="text-center mt-12">
+                <p class="text-gray-500 dark:text-gray-400 mb-4">
+                  Custom enterprise solutions available with dedicated support and SLA.
+                </p>
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Contact Sales Team →</a>
+              </div>
             </div>
           </div>
 
@@ -247,6 +461,7 @@ export class PricingCardsDemoComponent implements OnInit {
       id: 'basic',
       name: 'Basic',
       description: 'Everything you need to get started',
+      variant: 'default',
       price: {
         amount: '$19',
         period: '/month'
@@ -289,6 +504,7 @@ export class PricingCardsDemoComponent implements OnInit {
       id: 'free',
       name: 'Free',
       description: 'For personal projects and experimentation',
+      variant: 'default',
       price: {
         amount: '$0',
         period: '/forever'
@@ -309,6 +525,7 @@ export class PricingCardsDemoComponent implements OnInit {
       id: 'startup',
       name: 'Startup',
       description: 'Perfect for early-stage companies',
+      variant: 'default',
       price: {
         amount: '$29',
         period: '/month'

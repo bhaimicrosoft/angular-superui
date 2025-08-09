@@ -101,8 +101,8 @@ export const routes: Routes = [
   {
     path: 'blocks/header',
     loadComponent: () =>
-      import('./demo-components/header-demo.component').then(
-        (c) => c.HeaderDemoComponent
+      import('./demo-components/header-new-demo.component').then(
+        (c) => c.HeaderNewDemoComponent
       ),
     data: {
       blockName: 'header',
@@ -114,8 +114,8 @@ export const routes: Routes = [
   {
     path: 'blocks/hero-section',
     loadComponent: () =>
-      import('./demo-components/hero-section-demo.component').then(
-        (c) => c.HeroSectionDemoComponent
+      import('./demo-components/hero-section-new-demo.component').then(
+        (c) => c.HeroSectionNewDemoComponent
       ),
     data: {
       blockName: 'hero-section',
@@ -140,8 +140,8 @@ export const routes: Routes = [
   {
     path: 'blocks/footer',
     loadComponent: () =>
-      import('./demo-components/footer-demo.component').then(
-        (c) => c.FooterDemoComponent
+      import('./demo-components/footer-new-demo.component').then(
+        (c) => c.FooterNewDemoComponent
       ),
     data: {
       blockName: 'footer',
@@ -153,14 +153,27 @@ export const routes: Routes = [
   {
     path: 'blocks/feature-grid',
     loadComponent: () =>
-      import('./demo-components/feature-grid-demo.component').then(
-        (c) => c.FeatureGridDemoComponent
+      import('./demo-components/feature-grid-new-demo.component').then(
+        (c) => c.FeatureGridNewDemoComponent
       ),
     data: {
       blockName: 'feature-grid',
       category: 'Content',
       description:
         'Showcase product features with icons, descriptions, and compelling layouts',
+    },
+  },
+  {
+    path: 'blocks/feature-card',
+    loadComponent: () =>
+      import('./demo-components/feature-card-demo.component').then(
+        (c) => c.FeatureCardDemoComponent
+      ),
+    data: {
+      blockName: 'feature-card',
+      category: 'Content',
+      description:
+        'Individual feature cards with multiple styles and design variants',
     },
   },
   {

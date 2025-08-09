@@ -1,27 +1,19 @@
-# Pricing Cards Block 💳
+# Pricing Cards Block 💰
 
-Professional pricing tables with feature comparison, billing toggles, and popular badges. Perfect for SaaS applications, subscription services, and product pricing pages.
+Professional pricing sections with responsive grid layouts and modern design patterns. Create compelling pricing tables that convert visitors into customers with beautiful cards and clear value propositions.
 
 ## Features
 
-- 🎨 **4 Card Variants** - Default, Popular, Premium, Minimal
-- 📏 **3 Sizes** - Small, Default, Large
-- 🔄 **Billing Toggle** - Monthly/Annual switching with discount display
-- ⭐ **Popular Badges** - Highlight recommended plans
-- ✅ **Feature Comparison** - Rich feature lists with inclusion indicators
-- 💰 **Flexible Pricing** - Support for various currencies and billing periods
-- 🎯 **CTA Integration** - Customizable call-to-action buttons
-- 📱 **Fully Responsive** - Mobile-first design with adaptive layouts
-- ♿ **Accessibility** - ARIA compliant with keyboard navigation support
-- 🔧 **TypeScript** - Full type safety with comprehensive interfaces
+- 💳 **Responsive Cards** - Mobile-first responsive pricing card layouts
+- 🎨 **Professional Design** - Modern card styling with hover effects
+- �️ **Popular Badges** - Highlight recommended plans with badges
+- � **Feature Comparison** - Clear feature lists with checkmarks
+- � **Call-to-Action** - Prominent buttons for conversion
+- � **Flexible Pricing** - Support for monthly, yearly, and custom pricing
+- 🔧 **Easy Customization** - Tailwind CSS classes for styling
+- ♿ **Accessible** - ARIA compliant with semantic markup
 
 ## Installation
-
-Initialize Angular SuperUI in your project:
-
-```bash
-npx ngsui-cli init
-```
 
 Add the Pricing Cards Block component:
 
@@ -31,768 +23,580 @@ npx ngsui-cli add block pricing-cards
 
 ## Usage
 
-Import the Pricing Cards Block component in your Angular component:
+Create pricing sections with custom grid layouts:
 
 ```typescript
-import { Component, signal } from '@angular/core';
-import { PricingCardsBlockComponent, PricingPlan } from 'angular-superui';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [PricingCardsBlockComponent],
+  imports: [CommonModule],
   template: `
-    <pricing-cards-block
-      title="Choose Your Plan"
-      subtitle="Select the perfect plan for your needs and scale as you grow"
-      [plans]="pricingPlans()"
-      [showBillingToggle]="true"
-      [annualDiscount]="20"
-      additionalInfo="All plans include 14-day free trial. No credit card required."
-      (onPlanSelect)="handlePlanSelect($event)"
-    />
+    <!-- Pricing Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Choose the perfect plan for your needs. Upgrade or downgrade at any time.
+          </p>
+        </div>
+
+        <!-- Pricing Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Starter Plan -->
+          <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
+            <div class="text-center">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+              <p class="text-gray-600 mb-6">Perfect for individuals</p>
+              <div class="mb-8">
+                <span class="text-4xl font-bold text-gray-900">$9</span>
+                <span class="text-gray-600">/month</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Up to 5 projects
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Basic support
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                1GB storage
+              </li>
+            </ul>
+            
+            <button class="w-full py-3 px-4 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+              Get Started
+            </button>
+          </div>
+
+          <!-- Pro Plan (Popular) -->
+          <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-blue-500 hover:shadow-2xl transition-shadow relative">
+            <!-- Popular Badge -->
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Most Popular
+              </span>
+            </div>
+            
+            <div class="text-center">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+              <p class="text-gray-600 mb-6">Best for growing teams</p>
+              <div class="mb-8">
+                <span class="text-4xl font-bold text-gray-900">$29</span>
+                <span class="text-gray-600">/month</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Unlimited projects
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Priority support
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                50GB storage
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Advanced analytics
+              </li>
+            </ul>
+            
+            <button class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+              Start Free Trial
+            </button>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow">
+            <div class="text-center">
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+              <p class="text-gray-600 mb-6">For large organizations</p>
+              <div class="mb-8">
+                <span class="text-4xl font-bold text-gray-900">$99</span>
+                <span class="text-gray-600">/month</span>
+              </div>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Everything in Pro
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                24/7 phone support
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Unlimited storage
+              </li>
+              <li class="flex items-center">
+                <span class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <span class="text-green-600 text-sm">✓</span>
+                </span>
+                Custom integrations
+              </li>
+            </ul>
+            
+            <button class="w-full py-3 px-4 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+              Contact Sales
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   `
 })
-export class ExampleComponent {
-  pricingPlans = signal<PricingPlan[]>([
-    {
-      id: 'starter',
-      name: 'Starter',
-      price: {
-        amount: 9,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'Perfect for individuals and small projects',
-      features: [
-        { text: 'Up to 5 projects', included: true },
-        { text: '10GB storage', included: true },
-        { text: 'Basic support', included: true },
-        { text: 'Advanced analytics', included: false },
-        { text: 'Priority support', included: false }
-      ],
-      ctaText: 'Start Free Trial',
-      ctaVariant: 'outline'
-    },
-    {
-      id: 'professional',
-      name: 'Professional',
-      price: {
-        amount: 29,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'Great for growing teams and businesses',
-      features: [
-        { text: 'Unlimited projects', included: true },
-        { text: '100GB storage', included: true },
-        { text: 'Priority support', included: true },
-        { text: 'Advanced analytics', included: true },
-        { text: 'API access', included: true }
-      ],
-      ctaText: 'Get Started',
-      ctaVariant: 'primary',
-      badge: 'Most Popular',
-      variant: 'popular'
-    }
-  ]);
-
-  handlePlanSelect(plan: PricingPlan) {
-    console.log('Plan selected:', plan);
-    // Handle plan selection
-  }
-}
+export class ExampleComponent {}
 ```
 
 ## Examples
 
-### Three-Tier Pricing
-
-Classic pricing layout with popular plan highlighted - perfect for most SaaS applications.
+### Simple 2-Column Pricing
 
 ```typescript
 @Component({
   template: `
-    <pricing-cards-block
-      title="Choose Your Plan"
-      subtitle="Select the perfect plan for your needs and scale as you grow"
-      [plans]="threeTierPlans()"
-      [showBillingToggle]="true"
-      [annualDiscount]="20"
-      additionalInfo="All plans include 14-day free trial. No credit card required."
-      (onPlanSelect)="onPlanSelect($event)"
-    />
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Choose Your Plan</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Basic Plan -->
+          <div class="bg-white rounded-xl shadow-lg p-8 border">
+            <h3 class="text-xl font-bold mb-2">Basic</h3>
+            <p class="text-gray-600 mb-4">Perfect for getting started</p>
+            <div class="text-3xl font-bold mb-6">$19<span class="text-lg text-gray-600">/mo</span></div>
+            
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <span class="text-green-600 mr-2">✓</span>
+                5 Team members
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-600 mr-2">✓</span>
+                10GB Storage
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-600 mr-2">✓</span>
+                Email support
+              </li>
+            </ul>
+            
+            <button class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              Get Started
+            </button>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="bg-blue-50 rounded-xl shadow-lg p-8 border-2 border-blue-500 relative">
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">Recommended</span>
+            </div>
+            
+            <h3 class="text-xl font-bold mb-2">Premium</h3>
+            <p class="text-gray-600 mb-4">Best for growing teams</p>
+            <div class="text-3xl font-bold mb-6">$49<span class="text-lg text-gray-600">/mo</span></div>
+            
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <span class="text-green-600 mr-2">✓</span>
+                Unlimited members
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-600 mr-2">✓</span>
+                100GB Storage
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-600 mr-2">✓</span>
+                Priority support
+              </li>
+              <li class="flex items-center">
+                <span class="text-green-600 mr-2">✓</span>
+                Advanced features
+              </li>
+            </ul>
+            
+            <button class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              Start Free Trial
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   `
 })
-export class ThreeTierExample {
-  threeTierPlans = signal<PricingPlan[]>([
-    {
-      id: 'basic',
-      name: 'Basic',
-      price: {
-        amount: 15,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'Perfect for individuals and small teams',
-      features: [
-        { text: 'Up to 5 team members', included: true },
-        { text: '50GB storage', included: true },
-        { text: 'Basic integrations', included: true },
-        { text: 'Email support', included: true },
-        { text: 'Advanced analytics', included: false },
-        { text: 'Priority support', included: false },
-        { text: 'Custom branding', included: false }
-      ],
-      ctaText: 'Start Free Trial',
-      ctaVariant: 'outline'
-    },
-    {
-      id: 'professional',
-      name: 'Professional',
-      price: {
-        amount: 49,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'Great for growing businesses',
-      features: [
-        { text: 'Up to 25 team members', included: true },
-        { text: '500GB storage', included: true },
-        { text: 'Advanced integrations', included: true },
-        { text: 'Priority email & chat support', included: true },
-        { text: 'Advanced analytics', included: true },
-        { text: 'API access', included: true },
-        { text: 'Custom branding', included: false }
-      ],
-      ctaText: 'Get Started',
-      ctaVariant: 'primary',
-      badge: 'Most Popular',
-      variant: 'popular'
-    },
-    {
-      id: 'enterprise',
-      name: 'Enterprise',
-      price: {
-        amount: 149,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'For large organizations with advanced needs',
-      features: [
-        { text: 'Unlimited team members', included: true },
-        { text: 'Unlimited storage', included: true },
-        { text: 'All integrations', included: true },
-        { text: '24/7 phone & chat support', included: true },
-        { text: 'Advanced analytics', included: true },
-        { text: 'Full API access', included: true },
-        { text: 'Custom branding', included: true }
-      ],
-      ctaText: 'Contact Sales',
-      ctaVariant: 'outline'
-    }
-  ]);
+```
+      </PricingCard>
 
-  onPlanSelect(plan: PricingPlan) {
-    console.log('Plan selected:', plan);
-    if (plan.id === 'enterprise') {
-      // Handle enterprise contact
-      this.contactSales();
-    } else {
-      // Handle subscription signup
-      this.startSubscription(plan);
-    }
-  }
-
-  contactSales() {
-    // Open contact form or redirect
-  }
-
-  startSubscription(plan: PricingPlan) {
-    // Handle subscription flow
-  }
-}
+      <!-- Enterprise Plan -->
+      <PricingCard variant="premium" size="default">
+        <h3 slot="title" class="text-lg font-semibold text-gray-900 mb-2">Enterprise</h3>
+        <div slot="price" class="text-3xl font-bold text-gray-900 mb-4">
+          Custom<span class="text-base font-normal text-gray-500">/month</span>
+        </div>
+        <p slot="description" class="text-gray-600 mb-6">For large organizations with custom needs</p>
+        
+        <ul slot="features" class="space-y-3 mb-8">
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+            </svg>
+            Everything in Pro
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+            </svg>
+            Dedicated support
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+            </svg>
+            Custom integrations
+          </li>
+        </ul>
+        
+        <button slot="action" class="w-full py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50">
+          Contact Sales
+        </button>
+      </PricingCard>
+    </PricingCards>
+  `
+})
+export class ExampleComponent {}
 ```
 
-### Two-Tier Simplified
+## Examples
 
-Simple pricing with two options - perfect for clear, straightforward offerings.
+### Basic Three-Tier Pricing
 
 ```typescript
 @Component({
   template: `
-    <pricing-cards-block
-      title="Simple, Transparent Pricing"
-      subtitle="Choose the plan that fits your needs"
-      [plans]="twoTierPlans()"
-      [showBillingToggle]="false"
-      (onPlanSelect)="onPlanSelect($event)"
-    />
+    <PricingCards layout="grid" spacing="default">
+      <PricingCard variant="default">
+        <h3 slot="title" class="text-xl font-bold mb-2">Basic</h3>
+        <div slot="price" class="text-3xl font-bold mb-4">$10<span class="text-sm">/mo</span></div>
+        <p slot="description" class="text-gray-600 mb-6">Essential features for getting started</p>
+        
+        <div slot="features" class="space-y-2 mb-8">
+          <div class="flex items-center">
+            <span class="text-green-500 mr-2">✓</span>
+            <span>5 Projects</span>
+          </div>
+          <div class="flex items-center">
+            <span class="text-green-500 mr-2">✓</span>
+            <span>10GB Storage</span>
+          </div>
+        </div>
+        
+        <button slot="action" class="w-full btn btn-outline">Choose Plan</button>
+      </PricingCard>
+    </PricingCards>
   `
 })
-export class TwoTierExample {
-  twoTierPlans = signal<PricingPlan[]>([
-    {
-      id: 'personal',
-      name: 'Personal',
-      price: {
-        amount: 19,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'For individual creators and freelancers',
-      features: [
-        { text: '10 projects', included: true },
-        { text: '100GB storage', included: true },
-        { text: 'Basic templates', included: true },
-        { text: 'Email support', included: true },
-        { text: 'Advanced features', included: false },
-        { text: 'Priority support', included: false }
-      ],
-      ctaText: 'Get Started',
-      ctaVariant: 'outline'
-    },
-    {
-      id: 'business',
-      name: 'Business',
-      price: {
-        amount: 59,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'For teams and growing businesses',
-      features: [
-        { text: 'Unlimited projects', included: true },
-        { text: '1TB storage', included: true },
-        { text: 'Premium templates', included: true },
-        { text: 'Priority support', included: true },
-        { text: 'Advanced features', included: true },
-        { text: 'Team collaboration', included: true }
-      ],
-      ctaText: 'Start Free Trial',
-      ctaVariant: 'primary',
-      badge: 'Recommended',
-      variant: 'popular'
-    }
-  ]);
-
-  onPlanSelect(plan: PricingPlan) {
-    console.log('Plan selected:', plan);
-  }
-}
 ```
 
-### Premium Enterprise Plans
-
-High-value plans with custom pricing and premium features.
+### Comparison Layout with Features
 
 ```typescript
 @Component({
   template: `
-    <pricing-cards-block
-      title="Enterprise Solutions"
-      subtitle="Powerful plans for enterprise-scale organizations"
-      [plans]="enterprisePlans()"
-      [showBillingToggle]="true"
-      [annualDiscount]="25"
-      additionalInfo="All enterprise plans include dedicated account management and custom onboarding."
-      (onPlanSelect)="onPlanSelect($event)"
-    />
+    <PricingCards layout="comparison" spacing="lg">
+      <!-- Feature comparison table -->
+      <div slot="comparison-header" class="mb-8">
+        <h2 class="text-2xl font-bold text-center mb-4">Choose Your Plan</h2>
+        <p class="text-center text-gray-600">Compare features across all plans</p>
+      </div>
+      
+      <PricingCard variant="minimal" size="default">
+        <h3 slot="title" class="text-lg font-semibold">Starter</h3>
+        <div slot="price" class="text-2xl font-bold">Free</div>
+        
+        <div slot="features" class="space-y-4">
+          <div class="border-t pt-4">
+            <h4 class="font-medium mb-2">Core Features</h4>
+            <ul class="space-y-2 text-sm">
+              <li class="flex justify-between">
+                <span>Projects</span>
+                <span>3</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Storage</span>
+                <span>1GB</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Support</span>
+                <span>Community</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <button slot="action" class="w-full btn btn-outline">Get Started</button>
+      </PricingCard>
+      
+      <PricingCard variant="highlight" size="default">
+        <span slot="badge" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm">
+          Recommended
+        </span>
+        <h3 slot="title" class="text-lg font-semibold">Professional</h3>
+        <div slot="price" class="text-2xl font-bold">$19<span class="text-sm">/mo</span></div>
+        
+        <div slot="features" class="space-y-4">
+          <div class="border-t pt-4">
+            <h4 class="font-medium mb-2">Everything in Starter, plus:</h4>
+            <ul class="space-y-2 text-sm">
+              <li class="flex justify-between">
+                <span>Projects</span>
+                <span>Unlimited</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Storage</span>
+                <span>100GB</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Support</span>
+                <span>Priority</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Custom Domains</span>
+                <span class="text-green-500">✓</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Analytics</span>
+                <span class="text-green-500">✓</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <button slot="action" class="w-full btn btn-primary">Start Trial</button>
+      </PricingCard>
+    </PricingCards>
   `
 })
-export class EnterpriseExample {
-  enterprisePlans = signal<PricingPlan[]>([
-    {
-      id: 'enterprise',
-      name: 'Enterprise',
-      price: {
-        amount: 299,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'Complete solution for large organizations',
-      features: [
-        { text: 'Unlimited everything', included: true },
-        { text: 'Advanced security & compliance', included: true },
-        { text: 'Dedicated account manager', included: true },
-        { text: '24/7 premium support', included: true },
-        { text: 'Custom integrations', included: true },
-        { text: 'White-label options', included: true }
-      ],
-      ctaText: 'Contact Sales',
-      ctaVariant: 'primary',
-      badge: 'Most Popular',
-      variant: 'premium'
-    },
-    {
-      id: 'custom',
-      name: 'Custom',
-      price: {
-        amount: 'Custom',
-        period: ''
-      },
-      description: 'Tailored solution for unique requirements',
-      features: [
-        { text: 'Everything in Enterprise', included: true },
-        { text: 'Custom development', included: true },
-        { text: 'On-premise deployment', included: true },
-        { text: 'SLA guarantees', included: true },
-        { text: 'Training & onboarding', included: true },
-        { text: 'Dedicated infrastructure', included: true }
-      ],
-      ctaText: 'Get Quote',
-      ctaVariant: 'outline'
-    }
-  ]);
-
-  onPlanSelect(plan: PricingPlan) {
-    console.log('Plan selected:', plan);
-    if (plan.price.amount === 'Custom') {
-      this.requestQuote(plan);
-    } else {
-      this.contactEnterpriseSales(plan);
-    }
-  }
-
-  requestQuote(plan: PricingPlan) {
-    // Handle custom quote request
-  }
-
-  contactEnterpriseSales(plan: PricingPlan) {
-    // Handle enterprise sales contact
-  }
-}
 ```
 
-### Feature-Rich Comparison
-
-Detailed feature comparison with tooltips and comprehensive information.
+### Annual vs Monthly Toggle
 
 ```typescript
 @Component({
   template: `
-    <pricing-cards-block
-      title="Complete Feature Comparison"
-      subtitle="See exactly what's included in each plan"
-      [plans]="featureRichPlans()"
-      [showBillingToggle]="true"
-      [annualDiscount]="30"
-      size="lg"
-      (onPlanSelect)="onPlanSelect($event)"
-    />
+    <PricingCards layout="grid" spacing="lg">
+      <!-- Billing toggle -->
+      <div slot="header" class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
+        <div class="inline-flex items-center bg-gray-100 rounded-lg p-1">
+          <button 
+            class="px-4 py-2 rounded-md transition-colors"
+            [class]="billingPeriod() === 'monthly' ? 'bg-white shadow' : 'text-gray-600'"
+            (click)="setBillingPeriod('monthly')"
+          >
+            Monthly
+          </button>
+          <button 
+            class="px-4 py-2 rounded-md transition-colors"
+            [class]="billingPeriod() === 'annual' ? 'bg-white shadow' : 'text-gray-600'"
+            (click)="setBillingPeriod('annual')"
+          >
+            Annual
+            <span class="ml-1 text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Save 20%</span>
+          </button>
+        </div>
+      </div>
+      
+      <PricingCard variant="default">
+        <h3 slot="title" class="text-xl font-semibold">Starter</h3>
+        <div slot="price" class="text-3xl font-bold">
+          {{ billingPeriod() === 'monthly' ? '$12' : '$10' }}
+          <span class="text-base font-normal">/{{ billingPeriod() === 'monthly' ? 'month' : 'month, billed annually' }}</span>
+        </div>
+        
+        <div slot="savings" *ngIf="billingPeriod() === 'annual'" class="text-green-600 text-sm mb-4">
+          Save $24/year
+        </div>
+        
+        <button slot="action" class="w-full btn btn-outline">
+          Start {{ billingPeriod() === 'monthly' ? 'Monthly' : 'Annual' }} Plan
+        </button>
+      </PricingCard>
+    </PricingCards>
   `
 })
-export class FeatureComparisonExample {
-  featureRichPlans = signal<PricingPlan[]>([
-    {
-      id: 'starter',
-      name: 'Starter',
-      price: {
-        amount: 12,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'Essential features for getting started',
-      features: [
-        { text: '5 active projects', included: true, tooltip: 'Create and manage up to 5 projects simultaneously' },
-        { text: '10GB cloud storage', included: true, tooltip: 'Secure cloud storage for all your files' },
-        { text: 'Basic analytics', included: true, tooltip: 'View basic metrics and usage statistics' },
-        { text: 'Email support', included: true, tooltip: 'Get help via email within 24 hours' },
-        { text: 'API access', included: false, tooltip: 'Programmatic access to platform features' },
-        { text: 'Advanced integrations', included: false, tooltip: 'Connect with third-party tools and services' },
-        { text: 'Custom branding', included: false, tooltip: 'Add your logo and brand colors' },
-        { text: 'Priority support', included: false, tooltip: 'Get help via chat and phone' }
-      ],
-      ctaText: 'Start Free Trial',
-      ctaVariant: 'outline'
-    },
-    {
-      id: 'growth',
-      name: 'Growth',
-      price: {
-        amount: 39,
-        currency: '$',
-        period: 'month'
-      },
-      description: 'Advanced features for scaling businesses',
-      features: [
-        { text: '50 active projects', included: true, tooltip: 'Create and manage up to 50 projects simultaneously' },
-        { text: '500GB cloud storage', included: true, tooltip: 'Ample storage for large teams and files' },
-        { text: 'Advanced analytics', included: true, tooltip: 'Detailed insights and custom reports' },
-        { text: 'Priority email & chat support', included: true, tooltip: 'Get help via email and chat within 4 hours' },
-        { text: 'Full API access', included: true, tooltip: 'Complete programmatic access to all features' },
-        { text: 'Advanced integrations', included: true, tooltip: 'Connect with 100+ third-party tools' },
-        { text: 'Custom branding', included: false, tooltip: 'Add your logo and brand colors' },
-        { text: '24/7 phone support', included: false, tooltip: 'Round-the-clock phone assistance' }
-      ],
-      ctaText: 'Get Started',
-      ctaVariant: 'primary',
-      badge: 'Best Value',
-      variant: 'popular'
-    }
-  ]);
-
-  onPlanSelect(plan: PricingPlan) {
-    console.log('Plan selected:', plan);
+export class PricingToggleExample {
+  billingPeriod = signal<'monthly' | 'annual'>('monthly');
+  
+  setBillingPeriod(period: 'monthly' | 'annual') {
+    this.billingPeriod.set(period);
   }
 }
 ```
 
-## Variants
+## Content Slots
 
-### Card Variants
+### PricingCards Slots
 
-#### Default
+| Slot | Purpose | Usage |
+|------|---------|-------|
+| `slot="header"` | Section header | `<div slot="header">...</div>` |
+| `slot="title"` | Section title | `<h2 slot="title">...</h2>` |
+| `slot="description"` | Section description | `<p slot="description">...</p>` |
+| `slot="toggle"` | Billing toggle | `<div slot="toggle">...</div>` |
+| `slot="comparison-header"` | Comparison table header | `<div slot="comparison-header">...</div>` |
+| `slot="footer"` | Section footer | `<div slot="footer">...</div>` |
+| Default | Pricing cards | `<PricingCard>...</PricingCard>` |
 
-```html
-<pricing-cards-block variant="default">
-```
+### PricingCard Slots
 
-Standard cards with clean borders and subtle shadows.
-
-#### Popular
-
-```html
-<pricing-cards-block variant="popular">
-```
-
-Highlighted cards with gradient background and enhanced styling.
-
-#### Premium
-
-```html
-<pricing-cards-block variant="premium">
-```
-
-Premium styling with gold/orange gradients for high-value plans.
-
-#### Minimal
-
-```html
-<pricing-cards-block variant="minimal">
-```
-
-Clean, minimal styling with subtle borders and hover effects.
-
-## Sizes
-
-### Small
-
-```html
-<pricing-cards-block size="sm">
-```
-
-Compact cards (p-6) for dense layouts.
-
-### Default
-
-```html
-<pricing-cards-block size="default">
-```
-
-Standard card size (p-8) for most use cases.
-
-### Large
-
-```html
-<pricing-cards-block size="lg">
-```
-
-Spacious cards (p-10) for premium presentations.
+| Slot | Purpose | Usage |
+|------|---------|-------|
+| `slot="badge"` | Plan badge/label | `<span slot="badge">...</span>` |
+| `slot="icon"` | Plan icon | `<div slot="icon">...</div>` |
+| `slot="title"` | Plan title | `<h3 slot="title">...</h3>` |
+| `slot="price"` | Price display | `<div slot="price">...</div>` |
+| `slot="period"` | Billing period | `<span slot="period">...</span>` |
+| `slot="description"` | Plan description | `<p slot="description">...</p>` |
+| `slot="savings"` | Savings message | `<div slot="savings">...</div>` |
+| `slot="features"` | Feature list | `<ul slot="features">...</ul>` |
+| `slot="feature-list"` | Alternative features | `<div slot="feature-list">...</div>` |
+| `slot="action"` | Call-to-action button | `<button slot="action">...</button>` |
+| `slot="footer"` | Card footer | `<div slot="footer">...</div>` |
+| `slot="testimonial"` | Customer testimonial | `<div slot="testimonial">...</div>` |
+| `slot="guarantee"` | Money-back guarantee | `<div slot="guarantee">...</div>` |
 
 ## API Reference
 
-### Component Props
+### PricingCards Props
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `title` | `string` | `undefined` | Main heading text |
-| `subtitle` | `string` | `undefined` | Subheading description text |
-| `plans` | `PricingPlan[]` | `required` | Array of pricing plans to display |
-| `showBillingToggle` | `boolean` | `false` | Show monthly/annual billing toggle |
-| `annualDiscount` | `number` | `0` | Percentage discount for annual billing |
-| `additionalInfo` | `string` | `undefined` | Additional information text below cards |
-| `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Card size variant |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `layout` | `'grid' \| 'comparison' \| 'single' \| 'custom'` | `'grid'` | Cards layout type |
+| `spacing` | `'none' \| 'sm' \| 'default' \| 'lg' \| 'custom'` | `'default'` | Cards spacing |
+| `columns` | `number \| 'auto'` | `'auto'` | Number of columns |
+| `maxWidth` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full' \| 'none' \| 'custom'` | `'xl'` | Container max width |
+| `alignment` | `'left' \| 'center' \| 'right' \| 'custom'` | `'center'` | Cards alignment |
+| `class` | `string` | `''` | Additional CSS classes |
+
+### PricingCard Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'highlight' \| 'premium' \| 'minimal' \| 'glass' \| 'gradient' \| 'custom'` | `'default'` | Card style variant |
+| `size` | `'sm' \| 'default' \| 'lg' \| 'full' \| 'custom'` | `'default'` | Card size |
+| `featured` | `boolean` | `false` | Mark as featured plan |
+| `popular` | `boolean` | `false` | Mark as popular plan |
+| `disabled` | `boolean` | `false` | Disable card interactions |
+| `class` | `string` | `''` | Additional CSS classes |
 
 ### Events
 
 | Event | Type | Description |
 |-------|------|-------------|
-| `onPlanSelect` | `EventEmitter<PricingPlan>` | Emitted when a pricing plan is selected |
+| `cardClick` | `EventEmitter<MouseEvent>` | Emitted when card is clicked |
+| `actionClick` | `EventEmitter<MouseEvent>` | Emitted when action button is clicked |
 
-### PricingPlan Interface
+## Styling
 
-```typescript
-export interface PricingPlan {
-  id: string;                      // Unique identifier
-  name: string;                    // Plan name
-  price: {                         // Pricing information
-    amount: number | string;       // Price amount or "Custom"
-    currency?: string;             // Currency symbol (e.g., "$")
-    period?: string;               // Billing period (e.g., "month")
-    originalAmount?: number;       // Original price for discount display
-  };
-  description?: string;            // Plan description
-  features: PricingFeature[];      // Array of features
-  ctaText: string;                 // Call-to-action button text
-  ctaVariant?: 'primary' | 'secondary' | 'outline'; // Button style
-  badge?: string;                  // Badge text (e.g., "Most Popular")
-  variant?: 'default' | 'popular' | 'premium' | 'minimal'; // Card style
-  href?: string;                   // Link URL for the CTA
-  disabled?: boolean;              // Disable the plan
-}
-```
-
-### PricingFeature Interface
+### Custom Classes
 
 ```typescript
-export interface PricingFeature {
-  text: string;                    // Feature description
-  included: boolean;               // Whether feature is included
-  tooltip?: string;                // Optional tooltip text
-}
-```
-
-## Billing Toggle
-
-The billing toggle allows users to switch between monthly and annual pricing:
-
-```typescript
-// Enable billing toggle with discount
-<pricing-cards-block
-  [showBillingToggle]="true"
-  [annualDiscount]="20"    // 20% discount for annual
-  [plans]="plans()"
-/>
-
-// Plans automatically calculate annual pricing
-plans = signal<PricingPlan[]>([
-  {
-    id: 'pro',
-    name: 'Professional',
-    price: {
-      amount: 29,           // Monthly price
-      currency: '$',
-      period: 'month'
-    },
-    // Annual price automatically calculated as: 29 * 12 * (1 - 0.20) = $278.40/year
-    // ...
-  }
-]);
-```
-
-## Responsive Behavior
-
-The Pricing Cards Block is fully responsive and adapts to different screen sizes:
-
-- **Mobile (< 768px)**: Single column layout with stacked cards
-- **Tablet (768px - 1024px)**: 2 cards per row for 3+ plans
-- **Desktop (> 1024px)**: Full row layout based on number of plans
-
-### Responsive Layout
-
-| Number of Plans | Mobile | Tablet | Desktop |
-|-----------------|--------|--------|---------|
-| 2 | 1 | 2 | 2 |
-| 3 | 1 | 2 | 3 |
-| 4+ | 1 | 2 | 4 |
-
-## Accessibility
-
-The Pricing Cards Block includes comprehensive accessibility features:
-
-- **Semantic HTML**: Proper structure with headings and lists
-- **ARIA Labels**: Descriptive labels for screen readers
-- **Keyboard Navigation**: Full keyboard support for interactive elements
-- **Focus Management**: Visible focus indicators and logical tab order
-- **Screen Reader Support**: Optimized for assistive technologies
-- **High Contrast**: Compatible with high contrast mode
-
-### Accessibility Best Practices
-
-```typescript
-// Provide clear plan descriptions
-{
-  name: 'Professional',
-  description: 'Great for growing teams and businesses', // Clear description
-  ctaText: 'Start Professional Plan',                    // Descriptive CTA
-}
-
-// Use meaningful feature descriptions
-features: [
-  { 
-    text: 'Up to 25 team members',                       // Specific limits
-    included: true,
-    tooltip: 'Add up to 25 users to your workspace'     // Additional context
-  }
-]
-```
-
-## Customization
-
-### CSS Variables
-
-The Pricing Cards Block uses CSS custom properties for theming:
-
-```css
-.pricing-cards-block {
-  --pricing-bg: theme(colors.card);
-  --pricing-text: theme(colors.card-foreground);
-  --pricing-muted: theme(colors.muted.foreground);
-  --pricing-border: theme(colors.border);
-  --pricing-primary: theme(colors.primary);
-  --pricing-popular-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-```
-
-### Custom Styling
-
-Add custom styles by targeting the component classes:
-
-```css
-/* Custom card styling */
-.custom-pricing .pricing-card {
-  backdrop-filter: blur(10px);
-  border: 2px solid transparent;
-  background: linear-gradient(white, white) padding-box,
-              linear-gradient(45deg, #667eea, #764ba2) border-box;
-}
-
-/* Custom popular card styling */
-.custom-pricing .pricing-card[data-popular="true"] {
-  transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-}
-
-/* Custom feature list styling */
-.custom-pricing .feature-list {
-  display: grid;
-  gap: 1rem;
-}
-
-.custom-pricing .feature-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0;
-}
-```
-
-### Tailwind CSS Customization
-
-Extend the component with Tailwind classes:
-
-```html
-<pricing-cards-block
-  class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20"
-  title="Custom Styled Pricing"
-  [plans]="plans()"
-/>
-```
-
-## Performance Considerations
-
-- **Change Detection**: Component uses OnPush strategy for optimal performance
-- **Bundle Size**: Tree-shakeable exports reduce bundle size
-- **Memory Management**: Proper cleanup of event listeners and subscriptions
-- **Image Optimization**: Consider lazy loading for plan icons or images
-
-```typescript
-// Optimize plan data structure
-plans = computed(() => {
-  // Memoized calculation of pricing with discounts
-  return this.basePlans().map(plan => ({
-    ...plan,
-    calculatedPrice: this.calculatePrice(plan, this.isAnnual())
-  }));
-});
-
-// Use OnPush strategy in parent components
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // ...
+  template: `
+    <PricingCards 
+      class="bg-gray-50 py-16"
+      spacing="lg"
+      maxWidth="6xl"
+    >
+      <PricingCard 
+        variant="highlight"
+        class="transform hover:scale-105 transition-transform"
+      >
+        <!-- content -->
+      </PricingCard>
+    </PricingCards>
+  `
 })
 ```
 
-## Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## Troubleshooting
-
-### Common Issues
-
-#### Pricing Not Updating with Billing Toggle
+### Responsive Design
 
 ```typescript
-// ❌ Wrong: Static pricing data
-plans = [
-  { name: 'Pro', price: { amount: 29 } }
-];
-
-// ✅ Correct: Reactive pricing calculation
-plans = computed(() => 
-  this.basePlans().map(plan => ({
-    ...plan,
-    price: {
-      ...plan.price,
-      amount: this.calculatePrice(plan.price.amount, this.isAnnual())
-    }
-  }))
-);
+@Component({
+  template: `
+    <PricingCards layout="grid" class="grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <PricingCard class="w-full">
+        <div slot="price" class="text-2xl md:text-3xl lg:text-4xl font-bold">
+          $29<span class="text-sm md:text-base">/month</span>
+        </div>
+      </PricingCard>
+    </PricingCards>
+  `
+})
 ```
 
-#### Cards Not Responsive
+## Best Practices
 
-```css
-/* Ensure proper grid behavior */
-.pricing-grid {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  max-width: 100%;
-}
-```
+### Pricing Strategy
 
-#### Feature Lists Too Long
+- Keep plan differences clear and easy to understand
+- Highlight the most popular or recommended plan
+- Use consistent feature naming across plans
+- Include clear call-to-action buttons
 
-```typescript
-// Use feature categories for better organization
-features: [
-  { text: 'Core Features', included: true, isCategory: true },
-  { text: '• Up to 25 team members', included: true },
-  { text: '• 500GB storage', included: true },
-  { text: 'Advanced Features', included: true, isCategory: true },
-  { text: '• API access', included: true },
-  { text: '• Priority support', included: false }
-]
-```
+### User Experience
 
-## Related Components
+- Enable plan comparison functionality
+- Provide clear billing period options
+- Show savings for annual plans
+- Include money-back guarantees or trial periods
 
-- [Button Component](../components/button.md) - For custom CTA buttons
-- [Badge Component](../components/badge.md) - For plan badges and indicators
-- [Card Component](../components/card.md) - For alternative card layouts
-- [Toggle Component](../components/toggle.md) - For custom billing toggles
+### Accessibility
 
-## Contributing
+- Use semantic markup for pricing information
+- Ensure sufficient color contrast for text and buttons
+- Provide keyboard navigation support
+- Add ARIA labels for screen readers
 
-Found a bug or want to contribute? Check out our [Contributing Guidelines](../../CONTRIBUTING.md) and submit a pull request on [GitHub](https://github.com/bhaimicrosoft/angular-superui).
+### Mobile Experience
 
-## Changelog
-
-### v0.1.0
-- Initial release of Pricing Cards Block component
-- Support for multiple card variants and sizes
-- Billing toggle with automatic discount calculation
-- Feature comparison with inclusion indicators
-- Responsive design with mobile-first approach
-- Full accessibility implementation
-- TypeScript interfaces and type safety
-
----
-
-*For more examples and advanced usage, check out our [Storybook](https://storybook.angular-superui.com) or visit the [live demo](https://angular-superui.com/blocks/pricing-cards).*
+- Stack cards vertically on mobile devices
+- Ensure buttons are touch-friendly
+- Optimize text sizes for readability
+- Consider swipe gestures for plan comparison

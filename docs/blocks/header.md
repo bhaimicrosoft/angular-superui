@@ -1,26 +1,19 @@
-# Header Block 🎯
+# Header Block 🧭
 
-A comprehensive header component with navigation, search, user menu, and mobile support. Perfect for modern web applications requiring responsive navigation and user management.
+Professional navigation headers with responsive design and mobile-friendly hamburger menus. Create beautiful navigation experiences that work perfectly across all devices and screen sizes.
 
 ## Features
 
-- 🎯 **4 Variants** - Default, Ghost, Solid, Floating
-- 📏 **3 Sizes** - Small, Default, Large
-- 📱 **Mobile First** - Responsive design with hamburger menu and touch-friendly navigation
-- 🔍 **Smart Search** - Built-in search functionality with keyboard shortcuts
-- 👤 **User Management** - Complete user menu with avatar, dropdown, and customizable actions
-- 🎨 **CDK Overlay** - Proper z-index layering for all dropdowns and mobile menu
-- ♿ **Accessibility** - ARIA compliant with keyboard navigation and screen reader support
-- 🎭 **Customizable** - Slot-based customization for actions and content
-- 🔧 **TypeScript** - Full type safety with interfaces and computed properties
+- � **Navigation Ready** - Complete navigation structure with mobile menu
+- 📱 **Mobile Optimized** - Responsive design with hamburger menu toggle
+- � **Flexible Styling** - Easy customization with Tailwind CSS
+- � **Logo Support** - Dedicated space for brand logo and text
+- � **Call-to-Action** - Prominent action buttons in navigation
+- � **Easy Integration** - Works with Angular Router and external links
+- ♿ **Accessible** - ARIA compliant with keyboard navigation
+- ⚡ **Performance** - Lightweight and optimized rendering
 
 ## Installation
-
-Initialize Angular SuperUI in your project:
-
-```bash
-npx ngsui-cli init
-```
 
 Add the Header Block component:
 
@@ -30,523 +23,464 @@ npx ngsui-cli add block header
 
 ## Usage
 
-Import the Header component in your Angular component:
+Create navigation headers with custom layouts:
 
 ```typescript
-import { Component, signal } from '@angular/core';
-import { Header, HeaderNavItem, HeaderUser } from 'angular-superui';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [Header],
+  imports: [CommonModule, RouterModule],
   template: `
-    <app-header
-      [logo]="logoConfig"
-      [navigation]="navItems()"
-      [user]="currentUser()"
-      [showSearch]="true"
-      variant="default"
-      size="default"
-      (searchChange)="onSearch($event)"
-      (userMenuAction)="onUserAction($event)">
-      
-      <ng-container slot="actions">
-        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors">
-          Sign In
-        </button>
-      </ng-container>
-    </app-header>
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <div class="flex-shrink-0 flex items-center">
+              <img src="/logo.svg" alt="Company Logo" class="h-8 w-auto">
+              <span class="ml-2 text-xl font-bold text-gray-900">SuperUI</span>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex space-x-8">
+            <a href="/home" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+              Home
+            </a>
+            <a href="/features" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+              Features
+            </a>
+            <a href="/pricing" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+              Pricing
+            </a>
+            <a href="/docs" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+              Documentation
+            </a>
+            <a href="/blog" class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+              Blog
+            </a>
+          </nav>
+
+          <!-- Desktop Actions -->
+          <div class="hidden md:flex items-center space-x-4">
+            <button class="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
+              Sign In
+            </button>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm font-medium transition-colors">
+              Get Started
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button 
+              class="p-2 rounded-lg text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              (click)="mobileMenuOpen = !mobileMenuOpen"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden" [class.hidden]="!mobileMenuOpen">
+          <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
+            <a href="/home" class="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md text-base font-medium">
+              Home
+            </a>
+            <a href="/features" class="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md text-base font-medium">
+              Features
+            </a>
+            <a href="/pricing" class="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md text-base font-medium">
+              Pricing
+            </a>
+            <a href="/docs" class="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md text-base font-medium">
+              Documentation
+            </a>
+            <a href="/blog" class="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md text-base font-medium">
+              Blog
+            </a>
+            <div class="pt-4 border-t border-gray-200">
+              <a href="/signin" class="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md text-base font-medium">
+                Sign In
+              </a>
+              <a href="/signup" class="block px-3 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-md text-base font-medium mt-2">
+                Get Started
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
   `
 })
 export class ExampleComponent {
-  logoConfig = {
-    text: 'MyApp',
-    icon: '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>',
-    href: '/'
-  };
-
-  navItems = signal<HeaderNavItem[]>([
-    { label: 'Home', routerLink: '/' },
-    { label: 'About', routerLink: '/about' },
-    { label: 'Contact', routerLink: '/contact' }
-  ]);
-
-  currentUser = signal<HeaderUser | null>({
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: 'https://example.com/avatar.jpg'
-  });
-
-  onSearch(query: string) {
-    console.log('Search:', query);
-  }
-
-  onUserAction(event: { action: string; user: HeaderUser }) {
-    console.log('User action:', event.action, event.user);
-  }
+  mobileMenuOpen = false;
 }
 ```
 
 ## Examples
 
-### Default Header
-
-The standard header configuration with navigation, search, and user menu.
+### Simple Header with Logo and Navigation
 
 ```typescript
 @Component({
+  imports: [CommonModule, RouterModule],
   template: `
-    <app-header
-      [logo]="defaultLogo"
-      [navigation]="navigationItems()"
-      [user]="currentUser()"
-      [showSearch]="true"
-      variant="default"
-      size="default"
-      (searchChange)="onSearchChange($event)"
-      (searchSubmit)="onSearchSubmit($event)"
-      (userMenuAction)="onUserMenuAction($event)">
-      
-      <ng-container slot="actions">
-        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors">
-          Sign In
-        </button>
-      </ng-container>
-    </app-header>
-  `
-})
-export class DefaultHeaderExample {
-  defaultLogo = {
-    text: 'SuperUI',
-    icon: '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
-    href: '/'
-  };
+    <header class="bg-white shadow">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <span class="text-xl font-bold text-gray-900">Brand</span>
+          </div>
 
-  navigationItems = signal<HeaderNavItem[]>([
-    {
-      label: 'Components',
-      children: [
-        { 
-          label: 'Button', 
-          routerLink: '/components/button', 
-          icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2z"/></svg>' 
-        },
-        { 
-          label: 'Input', 
-          routerLink: '/components/input', 
-          icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/></svg>' 
-        },
-        { divider: true, label: '', routerLink: '', icon: '' },
-        { 
-          label: 'View All', 
-          routerLink: '/', 
-          icon: '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>' 
-        }
-      ]
-    },
-    { label: 'Documentation', routerLink: '/docs' },
-    {
-      label: 'GitHub',
-      href: 'https://github.com/your-org/project',
-      external: true,
-      target: '_blank',
-      icon: '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>'
-    }
-  ]);
+          <!-- Navigation -->
+          <nav class="hidden md:flex space-x-8">
+            <a routerLink="/home" class="text-gray-700 hover:text-gray-900">Home</a>
+            <a routerLink="/about" class="text-gray-700 hover:text-gray-900">About</a>
+            <a routerLink="/contact" class="text-gray-700 hover:text-gray-900">Contact</a>
+          </nav>
 
-  currentUser = signal<HeaderUser | null>({
-    name: 'John Doe',
-    email: 'john@example.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facepad&facepad=2&w=256&h=256&q=80'
-  });
-
-  onSearchChange(value: string) {
-    console.log('Search changed:', value);
-  }
-
-  onSearchSubmit(value: string) {
-    console.log('Search submitted:', value);
-  }
-
-  onUserMenuAction(event: { action: string; user: HeaderUser }) {
-    console.log('User action:', event.action, 'by', event.user.name);
-  }
-}
-```
-
-### Ghost Header
-
-Transparent header perfect for hero sections and gradient backgrounds.
-
-```typescript
-@Component({
-  template: `
-    <div class="bg-gradient-to-r from-blue-500 to-purple-600">
-      <app-header
-        [logo]="ghostLogo"
-        [navigation]="navigationItems()"
-        [user]="currentUser()"
-        [showSearch]="true"
-        variant="ghost"
-        size="default"
-        (searchChange)="onSearchChange($event)"
-        (userMenuAction)="onUserMenuAction($event)">
-        
-        <ng-container slot="actions">
-          <button class="px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded-md text-sm font-medium transition-colors backdrop-blur-sm">
-            Get Started
+          <!-- Mobile Toggle -->
+          <button class="md:hidden p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
           </button>
-        </ng-container>
-      </app-header>
-    </div>
+        </div>
+      </div>
+    </header>
   `
 })
-export class GhostHeaderExample {
-  ghostLogo = {
-    text: 'SuperUI',
-    icon: '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>',
-    href: '/'
-  };
-  // ... rest of the configuration
-}
 ```
 
-### Floating Header
-
-Elevated header with rounded corners and shadow for modern applications.
+### Header with Dropdown Menu
 
 ```typescript
 @Component({
+  imports: [CommonModule],
   template: `
-    <div class="bg-gray-100 dark:bg-gray-800 p-8">
-      <app-header
-        [logo]="defaultLogo"
-        [navigation]="simpleNavigation()"
-        [user]="currentUser()"
-        [showSearch]="false"
-        variant="floating"
-        size="lg"
-        (userMenuAction)="onUserMenuAction($event)">
-        
-        <ng-container slot="actions">
-          <button class="px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white rounded-lg text-sm font-medium transition-all">
-            Upgrade Pro
-          </button>
-        </ng-container>
-      </app-header>
-    </div>
+    <header class="bg-white shadow-lg">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <img src="/logo.svg" alt="Logo" class="h-8 w-auto">
+            <span class="ml-2 text-xl font-bold">Company</span>
+          </div>
+
+          <nav class="hidden lg:flex space-x-8">
+            <a href="/" class="text-gray-700 hover:text-blue-600">Home</a>
+            
+            <!-- Dropdown -->
+            <div class="relative group">
+              <button class="text-gray-700 hover:text-blue-600 flex items-center">
+                Products
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              
+              <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <a href="/product1" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Product 1</a>
+                <a href="/product2" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Product 2</a>
+                <a href="/product3" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Product 3</a>
+              </div>
+            </div>
+            
+            <a href="/pricing" class="text-gray-700 hover:text-blue-600">Pricing</a>
+            <a href="/contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+          </nav>
+
+          <div class="flex items-center space-x-4">
+            <button class="text-gray-700 hover:text-blue-600">Login</button>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
   `
 })
-export class FloatingHeaderExample {
-  simpleNavigation = signal<HeaderNavItem[]>([
-    { label: 'Home', routerLink: '/' },
-    { label: 'About', routerLink: '/about' },
-    { label: 'Contact', routerLink: '/contact' }
-  ]);
-  // ... rest of the configuration
-}
 ```
-
-### Compact Header
-
-Smaller header variant perfect for dashboards and admin interfaces.
-
-```typescript
-@Component({
-  template: `
-    <app-header
-      [logo]="compactLogo"
-      [navigation]="compactNavigation()"
-      [user]="null"
-      [showSearch]="true"
-      variant="solid"
-      size="sm"
-      searchPlaceholder="Quick search..."
-      (searchChange)="onSearchChange($event)">
       
-      <ng-container slot="actions">
-        <button class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-sm font-medium transition-colors">
-          Login
-        </button>
-        <button class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm font-medium transition-colors">
-          Sign Up
-        </button>
-      </ng-container>
-    </app-header>
+      <HeaderNav slot="navigation" class="flex space-x-6">
+        <a href="/about" class="text-gray-600 hover:text-gray-900">About</a>
+        <a href="/services" class="text-gray-600 hover:text-gray-900">Services</a>
+        <a href="/contact" class="text-gray-600 hover:text-gray-900">Contact</a>
+      </HeaderNav>
+      
+      <button slot="actions" class="bg-primary text-primary-foreground px-4 py-2 rounded-lg">
+        Get Quote
+      </button>
+    </HeaderBlock>
   `
 })
-export class CompactHeaderExample {
-  compactLogo = {
-    text: 'UI',
-    icon: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>',
-    href: '/'
-  };
-
-  compactNavigation = signal<HeaderNavItem[]>([
-    { label: 'Docs', routerLink: '/docs' },
-    { label: 'API', routerLink: '/api' }
-  ]);
-
-  onSearchChange(value: string) {
-    console.log('Quick search:', value);
-  }
-}
 ```
 
-## Variants
+### Transparent Header with Glass Effect
 
-### default
+```typescript
+@Component({
+  template: `
+    <HeaderBlock variant="glass" size="lg" class="absolute top-0 left-0 right-0 z-50">
+      <div slot="logo" class="flex items-center">
+        <img src="/logo-white.svg" alt="Logo" class="h-10 w-auto">
+      </div>
+      
+      <HeaderNav slot="navigation" class="hidden lg:flex space-x-8">
+        <a href="/home" class="text-white/90 hover:text-white font-medium transition-colors">Home</a>
+        <a href="/about" class="text-white/90 hover:text-white font-medium transition-colors">About</a>
+        <a href="/portfolio" class="text-white/90 hover:text-white font-medium transition-colors">Portfolio</a>
+        <a href="/services" class="text-white/90 hover:text-white font-medium transition-colors">Services</a>
+        <a href="/contact" class="text-white/90 hover:text-white font-medium transition-colors">Contact</a>
+      </HeaderNav>
+      
+      <div slot="actions" class="flex items-center space-x-4">
+        <button class="text-white/90 hover:text-white font-medium">Login</button>
+        <button class="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-2 rounded-full hover:bg-white/20 transition-colors">
+          Get Started
+        </button>
+      </div>
+      
+      <!-- Mobile menu overlay -->
+      <div slot="mobile-menu" class="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white/10 backdrop-blur-lg h-full w-80 p-6">
+          <nav class="flex flex-col space-y-6 mt-16">
+            <a href="/home" class="text-white text-lg font-medium">Home</a>
+            <a href="/about" class="text-white text-lg font-medium">About</a>
+            <a href="/portfolio" class="text-white text-lg font-medium">Portfolio</a>
+            <a href="/services" class="text-white text-lg font-medium">Services</a>
+            <a href="/contact" class="text-white text-lg font-medium">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </HeaderBlock>
+  `
+})
+```
 
-Standard header with border and subtle background blur.
+### E-commerce Header with Search
 
-### ghost
+```typescript
+@Component({
+  template: `
+    <HeaderBlock variant="default" size="lg" class="border-b">
+      <!-- Top bar -->
+      <div slot="top-bar" class="border-b bg-gray-50 px-6 py-2">
+        <div class="flex justify-between items-center text-sm">
+          <span class="text-gray-600">Free shipping on orders over $50</span>
+          <div class="flex space-x-4">
+            <a href="/support" class="text-gray-600 hover:text-gray-900">Support</a>
+            <a href="/track" class="text-gray-600 hover:text-gray-900">Track Order</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main header -->
+      <div class="flex items-center justify-between px-6 py-4">
+        <div slot="logo" class="flex items-center">
+          <img src="/store-logo.svg" alt="Store" class="h-10 w-auto">
+        </div>
+        
+        <!-- Search -->
+        <div slot="search" class="flex-1 max-w-lg mx-8">
+          <div class="relative">
+            <input 
+              type="text" 
+              placeholder="Search products..." 
+              class="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+            <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- User actions -->
+        <div slot="actions" class="flex items-center space-x-4">
+          <button class="p-2 text-gray-600 hover:text-gray-900">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </button>
+          <button class="p-2 text-gray-600 hover:text-gray-900">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </button>
+          <button class="relative p-2 text-gray-600 hover:text-gray-900">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5-5M7 13l-2.5 5M17 17a2 2 0 11-4 0 2 2 0 014 0zM9 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Navigation bar -->
+      <HeaderNav slot="navigation" class="border-t bg-white px-6 py-3">
+        <div class="flex space-x-8">
+          <a href="/categories/electronics" class="text-gray-700 hover:text-blue-600 font-medium">Electronics</a>
+          <a href="/categories/clothing" class="text-gray-700 hover:text-blue-600 font-medium">Clothing</a>
+          <a href="/categories/home" class="text-gray-700 hover:text-blue-600 font-medium">Home & Garden</a>
+          <a href="/categories/sports" class="text-gray-700 hover:text-blue-600 font-medium">Sports</a>
+          <a href="/categories/books" class="text-gray-700 hover:text-blue-600 font-medium">Books</a>
+          <a href="/sale" class="text-red-600 hover:text-red-700 font-semibold">Sale 🔥</a>
+        </div>
+      </HeaderNav>
+    </HeaderBlock>
+  `
+})
+```
 
-Transparent header perfect for overlay on images or gradients.
+## Content Slots
 
-### solid
+### HeaderBlock Slots
 
-Solid background header with shadow for clear separation.
+| Slot | Purpose | Usage |
+|------|---------|-------|
+| `slot="top-bar"` | Top announcement bar | `<div slot="top-bar">...</div>` |
+| `slot="logo"` | Brand logo/name | `<div slot="logo">...</div>` |
+| `slot="brand"` | Alternative brand area | `<div slot="brand">...</div>` |
+| `slot="navigation"` | Main navigation | `<HeaderNav slot="navigation">...</HeaderNav>` |
+| `slot="search"` | Search functionality | `<div slot="search">...</div>` |
+| `slot="actions"` | Action buttons/user menu | `<div slot="actions">...</div>` |
+| `slot="cta"` | Call-to-action button | `<button slot="cta">...</button>` |
+| `slot="user-menu"` | User dropdown menu | `<div slot="user-menu">...</div>` |
+| `slot="mobile-toggle"` | Mobile menu toggle | `<button slot="mobile-toggle">...</button>` |
+| `slot="mobile-menu"` | Mobile navigation menu | `<div slot="mobile-menu">...</div>` |
+| `slot="bottom-bar"` | Bottom navigation bar | `<div slot="bottom-bar">...</div>` |
+| `slot="breadcrumb"` | Breadcrumb navigation | `<nav slot="breadcrumb">...</nav>` |
 
-### floating
+### HeaderNav Slots
 
-Elevated header with rounded corners, margins, and shadow.
-
-## Sizes
-
-### sm
-
-Compact header (h-12 sm:h-14) ideal for dashboards.
-
-### default-size
-
-Standard header height (h-14 sm:h-16) for most applications.
-
-### lg
-
-Large header (h-16 sm:h-20) for prominent branding.
+| Slot | Purpose | Usage |
+|------|---------|-------|
+| `slot="primary"` | Primary navigation links | `<div slot="primary">...</div>` |
+| `slot="secondary"` | Secondary navigation | `<div slot="secondary">...</div>` |
+| `slot="dropdown"` | Dropdown menus | `<div slot="dropdown">...</div>` |
+| `slot="mega-menu"` | Mega menu content | `<div slot="mega-menu">...</div>` |
+| Default | Navigation items | `<a href="...">...</a>` |
 
 ## API Reference
 
-### Header Props
+### HeaderBlock Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `logo` | `LogoConfig` | `undefined` | Logo configuration with text, icon, image, and links |
-| `navigation` | `HeaderNavItem[]` | `[]` | Navigation menu items with support for dropdowns |
-| `user` | `HeaderUser \| null` | `null` | Current user information for user menu |
-| `variant` | `'default' \| 'ghost' \| 'solid' \| 'floating'` | `'default'` | Header style variant |
-| `size` | `'sm' \| 'default' \| 'lg'` | `'default'` | Header size |
-| `showSearch` | `boolean` | `false` | Enable/disable search functionality |
-| `searchPlaceholder` | `string` | `'Search...'` | Placeholder text for search input |
-| `searchValue` | `string` | `''` | Initial search value |
-| `userMenuActions` | `UserMenuAction[]` | Default actions | Customizable user menu actions |
+| `variant` | `'default' \| 'transparent' \| 'sticky' \| 'glass' \| 'minimal' \| 'custom'` | `'default'` | Header style variant |
+| `size` | `'sm' \| 'default' \| 'lg' \| 'full' \| 'custom'` | `'default'` | Header size/height |
+| `sticky` | `boolean \| 'smart'` | `false` | Enable sticky positioning |
+| `transparent` | `boolean` | `false` | Enable transparent background |
+| `shadow` | `boolean \| 'on-scroll'` | `true` | Show shadow |
+| `border` | `boolean` | `false` | Show bottom border |
+| `maxWidth` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full' \| 'none' \| 'custom'` | `'full'` | Container max width |
+| `container` | `boolean \| 'custom'` | `true` | Use container classes |
+| `class` | `string` | `''` | Additional CSS classes |
 
-### Header Events
+### HeaderNav Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `'horizontal' \| 'vertical' \| 'custom'` | `'horizontal'` | Navigation orientation |
+| `spacing` | `'none' \| 'sm' \| 'default' \| 'lg' \| 'custom'` | `'default'` | Item spacing |
+| `alignment` | `'left' \| 'center' \| 'right' \| 'custom'` | `'left'` | Navigation alignment |
+| `class` | `string` | `''` | Additional CSS classes |
+
+### Events
 
 | Event | Type | Description |
 |-------|------|-------------|
-| `searchChange` | `string` | Emitted when search input changes |
-| `searchSubmit` | `string` | Emitted when search is submitted (Enter key) |
-| `userMenuAction` | `{ action: string; user: HeaderUser }` | Emitted when user menu action is clicked |
-| `navigationClick` | `{ item: HeaderNavItem; event: Event }` | Emitted when navigation item is clicked |
+| `mobileToggle` | `EventEmitter<boolean>` | Emitted when mobile menu is toggled |
+| `navigationClick` | `EventEmitter<MouseEvent>` | Emitted when navigation item is clicked |
+| `logoClick` | `EventEmitter<MouseEvent>` | Emitted when logo is clicked |
+| `actionClick` | `EventEmitter<MouseEvent>` | Emitted when action button is clicked |
 
-### Interfaces
+## Styling
 
-#### `LogoConfig`
-
-```typescript
-interface LogoConfig {
-  text?: string;           // Logo text
-  image?: string;          // Logo image URL
-  icon?: string;           // Logo icon (SVG string)
-  href?: string;           // Logo link URL
-  routerLink?: string | string[]; // Angular router link
-}
-```
-
-#### `HeaderNavItem`
+### Custom Classes
 
 ```typescript
-interface HeaderNavItem {
-  label: string;                    // Display text
-  href?: string;                    // External link URL
-  routerLink?: string | string[];   // Angular router link
-  icon?: string;                    // Icon (SVG string)
-  children?: HeaderNavItem[];       // Dropdown items
-  disabled?: boolean;               // Disable the item
-  external?: boolean;               // Show external link icon
-  target?: '_blank' | '_self' | '_parent' | '_top'; // Link target
-  divider?: boolean;                // Show as divider
-}
+@Component({
+  template: `
+    <HeaderBlock 
+      variant="glass"
+      class="backdrop-blur-lg bg-white/80"
+      sticky="smart"
+    >
+      <HeaderNav 
+        slot="navigation"
+        class="space-x-8"
+        spacing="lg"
+      >
+        <!-- navigation items -->
+      </HeaderNav>
+    </HeaderBlock>
+  `
+})
 ```
 
-#### `HeaderUser`
+### Responsive Design
 
 ```typescript
-interface HeaderUser {
-  name: string;        // User's display name
-  email?: string;      // User's email address
-  avatar?: string;     // Avatar image URL
-  initials?: string;   // Custom initials (auto-generated if not provided)
-}
-```
-
-#### `UserMenuAction`
-
-```typescript
-interface UserMenuAction {
-  label: string;       // Action display text
-  icon?: string;       // Action icon (SVG string)
-  action: string;      // Action identifier
-  disabled?: boolean;  // Disable the action
-  divider?: boolean;   // Show as divider
-}
-```
-
-## Slots
-
-### actions
-
-Custom content slot for additional actions in the header (buttons, links, etc.).
-
-```html
-<ng-container slot="actions">
-  <button class="btn btn-primary">Custom Action</button>
-  <app-theme-toggle />
-  <app-notifications />
-</ng-container>
-```
-
-## Responsive Behavior
-
-The Header Block is designed with mobile-first responsive principles:
-
-- **Mobile (< lg)**:
-  - Shows hamburger menu for navigation
-  - Hides user avatar (user actions available in mobile menu)
-  - Search can be shown/hidden based on design needs
-  - Touch-friendly button sizes and spacing
-
-- **Desktop (≥ lg)**:
-  - Shows full horizontal navigation
-  - Displays user avatar and dropdown
-  - Search input visible if enabled
-  - Hover states and interactions
-
-## Accessibility
-
-- **Keyboard Navigation**: Full support for Tab, Enter, Space, and Escape keys
-- **ARIA Labels**: Proper labeling for screen readers
-- **Focus Management**: Visible focus indicators and logical tab order
-- **Screen Reader Support**: Descriptive text and state announcements
-- **Touch Targets**: Minimum 44px touch targets for mobile devices
-
-## Mobile Menu Features
-
-- **CDK Overlay**: Proper z-index layering above all content
-- **Backdrop Click**: Close menu by clicking outside
-- **Keyboard Support**: Close with Escape key
-- **Smooth Animations**: Slide-down animation with easing
-- **User Actions**: Include user menu actions in mobile menu when user is logged in
-- **Nested Navigation**: Support for dropdown items within mobile menu
-
-## Customization
-
-### Custom User Menu Actions
-
-```typescript
-const customUserActions: UserMenuAction[] = [
-  { 
-    label: 'Dashboard', 
-    icon: '<svg>...</svg>', 
-    action: 'dashboard' 
-  },
-  { 
-    label: 'Settings', 
-    icon: '<svg>...</svg>', 
-    action: 'settings' 
-  },
-  { divider: true, label: '', action: '' },
-  { 
-    label: 'Logout', 
-    icon: '<svg>...</svg>', 
-    action: 'logout' 
-  }
-];
-```
-
-### Custom Styling
-
-The Header Block uses Tailwind CSS classes and can be customized using CSS custom properties or by extending the component's styling:
-
-```css
-/* Custom header styles */
-.custom-header {
-  --header-bg: theme('colors.blue.600');
-  --header-text: theme('colors.white');
-  --header-border: theme('colors.blue.700');
-}
+@Component({
+  template: `
+    <HeaderBlock size="default" class="lg:px-8">
+      <div slot="logo" class="text-lg md:text-xl font-bold">Brand</div>
+      
+      <HeaderNav slot="navigation" class="hidden md:flex space-x-4 lg:space-x-8">
+        <a href="/home" class="text-sm lg:text-base">Home</a>
+        <a href="/about" class="text-sm lg:text-base">About</a>
+      </HeaderNav>
+    </HeaderBlock>
+  `
+})
 ```
 
 ## Best Practices
 
-1. **Logo Configuration**: Always provide either text or icon for accessibility
-2. **Navigation Structure**: Keep navigation items to 5-7 main items for optimal UX
-3. **User Management**: Handle user menu actions appropriately (logout, profile navigation)
-4. **Search Implementation**: Provide feedback for search actions and handle empty states
-5. **Mobile Optimization**: Test touch interactions and ensure proper spacing
-6. **Accessibility**: Use semantic HTML and provide proper ARIA labels
-7. **Performance**: Use OnPush change detection and Angular signals for optimal performance
+### Navigation Structure
 
-## Troubleshooting
+- Keep main navigation items to 5-7 for optimal usability
+- Use clear, descriptive labels for navigation items
+- Implement breadcrumbs for deep navigation hierarchies
+- Consider mega menus for complex site structures
 
-### Mobile Menu Not Appearing Above Content
+### Mobile Experience
 
-Ensure the CDK Overlay is properly imported and the component has access to ViewContainerRef:
+- Always provide a mobile-friendly navigation solution
+- Use hamburger menu for primary navigation on mobile
+- Ensure touch targets are at least 44px for mobile
+- Test navigation on various mobile devices and screen sizes
 
-```typescript
-import { OverlayModule } from '@angular/cdk/overlay';
+### Performance
 
-@Component({
-  imports: [OverlayModule, Header]
-  // ...
-})
-```
+- Implement lazy loading for complex mega menus
+- Optimize logo and icon images for web
+- Use CSS transforms for smooth animations
+- Consider using sticky headers carefully for performance
 
-### Navigation Dropdowns Not Working
+### Accessibility
 
-Check that navigation items with children are properly structured:
+- Provide proper ARIA labels for navigation elements
+- Ensure keyboard navigation works correctly
+- Use semantic HTML elements (nav, ul, li)
+- Test with screen readers and keyboard-only navigation
 
-```typescript
-const navItem: HeaderNavItem = {
-  label: 'Components',
-  children: [
-    { label: 'Button', routerLink: '/button' },
-    { label: 'Input', routerLink: '/input' }
-  ]
-};
-```
+### SEO
 
-### Search Not Emitting Events
-
-Ensure you're handling both `searchChange` and `searchSubmit` events:
-
-```html
-<app-header
-  [showSearch]="true"
-  (searchChange)="onSearchChange($event)"
-  (searchSubmit)="onSearchSubmit($event)">
-</app-header>
-```
-
-## Related Components
-
-- [Button Component](../components/button.md) - For custom action buttons
-- [Input Component](../components/input.md) - For advanced search implementations
-- [Avatar Component](../components/avatar.md) - For user profile customization
-- [Dropdown Component](../components/dropdown-menu.md) - For custom dropdown menus
-
-## Contributing
-
-Found a bug or want to contribute? Check out our [Contributing Guidelines](../../CONTRIBUTING.md) and submit a pull request on [GitHub](https://github.com/bhaimicrosoft/angular-superui).
+- Use semantic HTML structure for navigation
+- Implement proper heading hierarchy
+- Ensure navigation links are crawlable
+- Consider schema markup for navigation

@@ -1,26 +1,19 @@
 # Feature Grid Block 🎯
 
-Showcase your product features with icons, descriptions, and compelling layouts. Perfect for highlighting key benefits, capabilities, and product features in an organized grid format.
+Responsive feature showcase grids with flexible layouts and Font Awesome icon integration. Create stunning feature sections that highlight your product's key capabilities with beautiful icons and professional styling.
 
 ## Features
 
-- 🎯 **4 Section Variants** - Default, Gradient, Dark, Minimal
-- 🎨 **4 Card Variants** - Default, Minimal, Glass, Gradient
-- 📏 **Flexible Columns** - 2, 3, 4, or 6 column layouts
-- 🎭 **3 Alignments** - Left, Center, Right text alignment
-- 🖼️ **Rich Content** - Icons (SVG, Emoji, Image), badges, stats, and CTAs
-- 📱 **Fully Responsive** - Mobile-first design with adaptive layouts
-- ♿ **Accessibility** - ARIA compliant with keyboard navigation support
-- 🎨 **Customizable** - Extensive styling options and theme support
-- 🔧 **TypeScript** - Full type safety with comprehensive interfaces
+- 🎯 **Responsive Grid** - 1-6 columns with mobile-first responsive design
+- � **Beautiful Icons** - Font Awesome integration through Icon component
+- � **Mobile Optimized** - Stacks beautifully on small screens
+- 🔧 **Easy Customization** - Tailwind CSS classes for styling
+- ♿ **Accessible** - ARIA compliant with semantic markup
+- 🎭 **Flexible Layout** - Custom grid arrangements and spacing
+- � **Icon Colors** - Colored icon containers with hover effects
+- ⚡ **Performance** - Optimized rendering with standalone components
 
 ## Installation
-
-Initialize Angular SuperUI in your project:
-
-```bash
-npx ngsui-cli init
-```
 
 Add the Feature Grid Block component:
 
@@ -30,24 +23,315 @@ npx ngsui-cli add block feature-grid
 
 ## Usage
 
-Import the Feature Grid Block component in your Angular component:
+Import the Icon component for feature icons:
 
 ```typescript
-import { Component, signal } from '@angular/core';
-import { FeatureGridBlockComponent, Feature } from 'angular-superui';
+import { Component } from '@angular/core';
+import { Icon } from '@lib/components/icon';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [FeatureGridBlockComponent],
+  imports: [FeatureGrid],
   template: `
-    <feature-grid-block
-      title="Our Amazing Features"
-      subtitle="Everything you need to build incredible applications"
-      [features]="features()"
-      [columns]="3"
-      variant="default"
-      alignment="center"
+    <FeatureGrid variant="gradient" [columns]="3">
+      <!-- Header Section -->
+      <div slot="header" class="text-center space-y-4 mb-16">
+        <h2 class="text-3xl font-bold">Amazing Features</h2>
+        <p class="text-lg text-muted-foreground">Everything you need to succeed</p>
+      </div>
+      
+      <!-- Feature Cards -->
+      <div slot="feature" class="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
+        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-primary"><!-- icon --></svg>
+        </div>
+        <h3 class="text-lg font-semibold mb-2">Fast Performance</h3>
+        <p class="text-muted-foreground">Lightning-fast loading and responsive design.</p>
+      </div>
+      
+      <div slot="feature" class="p-6 rounded-lg bg-card hover:shadow-lg transition-shadow">
+        <!-- More features... -->
+      </div>
+    </FeatureGrid>
+  `
+})
+export class ExampleComponent {}
+```
+
+## Examples
+
+### Basic Feature Grid
+
+```typescript
+@Component({
+  template: `
+    <FeatureGrid [columns]="3" variant="default">
+      <h2 slot="title" class="text-3xl font-bold text-center mb-8">Core Features</h2>
+      
+      <div slot="feature" class="text-center space-y-4">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+          ⚡
+        </div>
+        <h3 class="text-xl font-semibold">Fast Performance</h3>
+        <p class="text-gray-600">Optimized for speed and efficiency</p>
+      </div>
+      
+      <div slot="feature" class="text-center space-y-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+          🔒
+        </div>
+        <h3 class="text-xl font-semibold">Secure</h3>
+        <p class="text-gray-600">Enterprise-grade security built-in</p>
+      </div>
+      
+      <div slot="feature" class="text-center space-y-4">
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
+          �
+        </div>
+        <h3 class="text-xl font-semibold">Responsive</h3>
+        <p class="text-gray-600">Works perfectly on all devices</p>
+      </div>
+    </FeatureGrid>
+  `
+})
+```
+
+### Advanced Layout with Background
+
+```typescript
+@Component({
+  template: `
+    <FeatureGrid variant="glass" [columns]="2" class="relative">
+      <!-- Background -->
+      <div slot="background" class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20"></div>
+      
+      <!-- Header with Badge -->
+      <div slot="header" class="text-center space-y-6 mb-20">
+        <div slot="badge" class="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full">
+          <span class="text-sm font-medium text-primary">✨ New Features</span>
+        </div>
+        <h2 class="text-4xl font-bold">Next Generation Tools</h2>
+        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Discover powerful capabilities that transform how you work
+        </p>
+      </div>
+      
+      <!-- Feature Cards with Rich Content -->
+      <div slot="feature" class="relative p-8 bg-white/80 backdrop-blur-sm rounded-xl border">
+        <div class="flex items-start space-x-4">
+          <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-2">
+              <h3 class="text-xl font-semibold">AI-Powered Analytics</h3>
+              <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Live</span>
+            </div>
+            <p class="text-gray-600">
+              Get intelligent insights powered by machine learning algorithms that adapt to your data patterns.
+            </p>
+            <div class="flex items-center space-x-4 text-sm text-gray-500">
+              <span>📊 Real-time data</span>
+              <span>🤖 ML powered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer with CTA -->
+      <div slot="footer" class="text-center mt-16">
+        <button class="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
+          Explore All Features
+        </button>
+      </div>
+    </FeatureGrid>
+  `
+})
+```
+
+### Grid with Custom Styling
+
+```typescript
+@Component({
+  template: `
+    <FeatureGrid 
+      variant="custom"
+      [columns]="4"
+      class="py-24 bg-gradient-to-br from-slate-900 to-slate-800"
+      containerClass="max-w-6xl"
+      gridClass="gap-8"
+    >
+      <div slot="header" class="text-center text-white mb-20">
+        <h2 class="text-5xl font-bold mb-6">Why Choose Us?</h2>
+        <p class="text-xl text-slate-300">Four pillars of excellence</p>
+      </div>
+      
+      <!-- Compact Feature Cards -->
+      <div slot="feature" class="text-center text-white group">
+        <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/20 transition-colors">
+          <span class="text-3xl">🚀</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-3">Performance</h3>
+        <p class="text-slate-400 text-sm">Blazing fast execution</p>
+      </div>
+      
+      <div slot="feature" class="text-center text-white group">
+        <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/20 transition-colors">
+          <span class="text-3xl">🛡️</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-3">Security</h3>
+        <p class="text-slate-400 text-sm">Bank-level protection</p>
+      </div>
+      
+      <div slot="feature" class="text-center text-white group">
+        <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/20 transition-colors">
+          <span class="text-3xl">⚙️</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-3">Flexibility</h3>
+        <p class="text-slate-400 text-sm">Adapt to any workflow</p>
+      </div>
+      
+      <div slot="feature" class="text-center text-white group">
+        <div class="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/20 transition-colors">
+          <span class="text-3xl">🎯</span>
+        </div>
+        <h3 class="text-lg font-semibold mb-3">Precision</h3>
+        <p class="text-slate-400 text-sm">Accurate results every time</p>
+      </div>
+    </FeatureGrid>
+  `
+})
+```
+
+## Content Slots
+
+The FeatureGrid component supports multiple content projection slots for maximum flexibility:
+
+| Slot | Purpose | Usage |
+|------|---------|-------|
+| `slot="background"` | Background elements, overlays | `<div slot="background">...</div>` |
+| `slot="header"` | Complete header section | `<div slot="header">...</div>` |
+| `slot="badge"` | Header badge/announcement | `<span slot="badge">...</span>` |
+| `slot="title"` | Main title/heading | `<h2 slot="title">...</h2>` |
+| `slot="subtitle"` | Subtitle/description | `<p slot="subtitle">...</p>` |
+| `slot="description"` | Additional description | `<p slot="description">...</p>` |
+| `slot="feature"` | Individual feature items | `<div slot="feature">...</div>` |
+| `slot="item"` | Alternative feature items | `<div slot="item">...</div>` |
+| `slot="footer"` | Footer section | `<div slot="footer">...</div>` |
+| `slot="cta"` | Call-to-action elements | `<button slot="cta">...</button>` |
+| `slot="actions"` | Action buttons | `<div slot="actions">...</div>` |
+| `slot="decorative"` | Decorative elements | `<div slot="decorative">...</div>` |
+| `slot="overlay"` | Overlay elements | `<div slot="overlay">...</div>` |
+
+## API Reference
+
+### FeatureGrid Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'default' \| 'gradient' \| 'dark' \| 'minimal' \| 'glass' \| 'custom'` | `'default'` | Visual style variant |
+| `spacing` | `'none' \| 'sm' \| 'default' \| 'lg' \| 'custom'` | `'default'` | Container spacing |
+| `size` | `'xs' \| 'sm' \| 'default' \| 'lg' \| 'xl' \| 'auto'` | `'default'` | Section size/padding |
+| `maxWidth` | `'sm' \| 'md' \| 'lg' \| 'xl' \| 'full' \| 'none' \| 'custom'` | `'xl'` | Container max width |
+| `container` | `boolean \| 'custom'` | `true` | Use container classes |
+| `columns` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 'auto' \| 'custom'` | `3` | Grid columns |
+| `gap` | `'none' \| 'sm' \| 'default' \| 'lg' \| 'xl' \| 'custom'` | `'default'` | Grid gap spacing |
+| `headerAlignment` | `'left' \| 'center' \| 'right' \| 'custom'` | `'center'` | Header text alignment |
+| `showHeader` | `boolean` | `true` | Show auto header section |
+| `class` | `string` | `''` | Additional CSS classes for section |
+| `containerClass` | `string` | `''` | Additional CSS classes for container |
+| `gridClass` | `string` | `''` | Additional CSS classes for grid |
+| `headerClass` | `string` | `''` | Additional CSS classes for header |
+
+### Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `sectionClick` | `EventEmitter<MouseEvent>` | Emitted when section is clicked |
+| `featureClick` | `EventEmitter<{index: number; event: MouseEvent}>` | Emitted when feature is clicked |
+
+## Styling
+
+### Custom Classes
+
+```typescript
+@Component({
+  template: `
+    <FeatureGrid 
+      class="min-h-screen bg-custom"
+      containerClass="max-w-4xl mx-auto"
+      gridClass="gap-12 lg:gap-16"
+      headerClass="mb-24"
+    >
+      <!-- content -->
+    </FeatureGrid>
+  `
+})
+```
+
+### CSS Variables
+
+```css
+:root {
+  --feature-grid-background: rgb(255 255 255);
+  --feature-grid-text: rgb(15 23 42);
+  --feature-grid-accent: rgb(59 130 246);
+}
+
+.dark {
+  --feature-grid-background: rgb(15 23 42);
+  --feature-grid-text: rgb(248 250 252);
+  --feature-grid-accent: rgb(96 165 250);
+}
+```
+
+## Best Practices
+
+### Content Organization
+- Use semantic HTML elements (`h2`, `h3`, `p`) for better SEO
+- Provide meaningful `alt` text for images and icons
+- Group related features logically
+
+### Responsive Design
+- Test different column counts on various screen sizes
+- Use appropriate spacing for mobile devices
+- Consider content hierarchy on smaller screens
+
+### Performance
+- Optimize images and icons for web
+- Use lazy loading for non-critical content
+- Minimize custom CSS when possible
+
+### Accessibility
+- Include proper ARIA labels
+- Ensure sufficient color contrast
+- Test with keyboard navigation
+- Use semantic markup for screen readers
+
+## Troubleshooting
+
+### Content not appearing
+```typescript
+// Ensure proper slot attribute
+<div slot="feature">Content</div> // ✅ Correct
+<div class="feature">Content</div> // ❌ Wrong
+```
+
+### Grid not responsive
+```typescript
+// Use responsive column values
+[columns]="3" // ✅ Auto-responsive
+gridClass="grid-cols-1 md:grid-cols-3" // ✅ Custom responsive
+```
+
+### Styling conflicts
+```typescript
+// Use variant="custom" for complete control
+<FeatureGrid variant="custom" class="your-custom-styles">
+```
       (onFeatureClick)="handleFeatureClick($event)"
     />
   `
