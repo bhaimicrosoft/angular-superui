@@ -26,6 +26,25 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'components/toolbar',
+    loadComponent: () =>
+      import('./demo-components/toolbar-demo.component').then(
+        (c) => c.ToolbarDemoComponent
+      ),
+    data: {
+      componentName: 'toolbar',
+      category: 'Layout',
+      description: 'Group actions and inputs in a compact, responsive bar',
+      seo: {
+        title: 'Toolbar Component - Angular SuperUI | Action & App Bars',
+        description:
+          'Flexible toolbar component for grouping actions, inputs, and navigation. Supports orientations, variants, sticky mode, and accessibility.',
+        keywords:
+          'Angular toolbar, action bar, app bar, sticky toolbar, vertical toolbar, Angular components, Tailwind toolbar',
+      },
+    },
+  },
+  {
     path: 'components/icon',
     loadComponent: () =>
       import('./demo-components/icon-demo.component').then(

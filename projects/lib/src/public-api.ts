@@ -52,6 +52,7 @@ export * from '@lib/components/theme-switcher';
 export * from '@lib/components/toggle';
 export * from '@lib/components/icon';
 export * from '@lib/components/menubar';
+export * from '@lib/components/toolbar';
 
 // Block Components
 export * from '@lib/blocks/header';
