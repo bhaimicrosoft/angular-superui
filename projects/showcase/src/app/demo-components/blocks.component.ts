@@ -293,6 +293,16 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-orange-100 dark:bg-orange-900/30',
       iconColor: 'text-orange-600 dark:text-orange-400',
       features: ['Member Cards', 'Social Links', 'Skills Display', 'Join CTA']
+    },
+    {
+      name: 'Stats Counter',
+      route: '/blocks/stats-counter',
+      description: 'Animated statistics counters with icons, progress bars, and trend indicators. Perfect for dashboards and landing pages.',
+      category: 'Content',
+      icon: 'fas fa-chart-line',
+      bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
+      iconColor: 'text-emerald-600 dark:text-emerald-400',
+      features: ['Count Animation', 'Progress Bars', 'Trend Indicators', 'Custom Icons']
     }
   ]);
 

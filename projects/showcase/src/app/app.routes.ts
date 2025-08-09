@@ -203,6 +203,19 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/stats-counter',
+    loadComponent: () =>
+      import('./demo-components/stats-counter-demo.component').then(
+        (c) => c.StatsCounterDemoComponent
+      ),
+    data: {
+      blockName: 'stats-counter',
+      category: 'Content',
+      description:
+        'Animated statistics counter with customizable layouts and formatting',
+    },
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(
