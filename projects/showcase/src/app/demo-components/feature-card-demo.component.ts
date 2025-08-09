@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
 import { FeatureCardBlock } from '@lib/blocks/feature-card';
+import { Icon } from '@lib/components/icon';
 
 @Component({
   selector: 'app-feature-card-demo',
   standalone: true,
-  imports: [CommonModule, RouterModule, FeatureCardBlock],
+  imports: [CommonModule, RouterModule, FeatureCardBlock, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- Professional Hero Section -->
@@ -219,8 +220,7 @@ import { FeatureCardBlock } from '@lib/blocks/feature-card';
               @for (feature of minimalFeatures(); track feature.title) {
                 <FeatureCardBlock variant="minimal" size="default" spacing="compact">
                   <div slot="icon" [class]="'w-8 h-8 ' + feature.iconColor + ' rounded-lg flex items-center justify-center mb-3'">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" [innerHTML]="feature.icon">
-                    </svg>
+                    <Icon [icon]="feature.icon" size="sm" variant="default" class="text-white" [ariaLabel]="feature.title + ' icon'" />
                   </div>
                   <h3 slot="title" class="text-lg font-semibold text-gray-900 dark:text-white mb-1">{{ feature.title }}</h3>
                   <p slot="description" class="text-gray-600 dark:text-gray-300 text-sm">{{ feature.description }}</p>
@@ -267,6 +267,28 @@ import { FeatureCardBlock } from '@lib/blocks/feature-card';
         </div>
       </div>
     </section>
+
+    <!-- Documentation Link -->
+    <section class="py-8 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          Need more details? Check out the complete documentation with API reference and advanced examples.
+        </p>
+        <a 
+          href="https://github.com/bhaimicrosoft/angular-superui/blob/main/docs/blocks/feature-card.md"
+          target="_blank"
+          class="inline-flex items-center px-6 py-3 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors font-medium"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6-4h6m-6 8h6m-3-9V3m0 6v12"></path>
+          </svg>
+          View Documentation
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
   `,
 })
 export class FeatureCardDemoComponent implements OnInit {
@@ -277,25 +299,25 @@ export class FeatureCardDemoComponent implements OnInit {
     {
       title: 'Performance',
       description: 'Optimized for speed',
-      icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>',
+      icon: 'fas fa-bolt',
       iconColor: 'bg-red-500'
     },
     {
       title: 'Security',
       description: 'Enterprise-grade protection',
-      icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>',
+      icon: 'fas fa-shield-alt',
       iconColor: 'bg-blue-500'
     },
     {
       title: 'Scalability',
       description: 'Grows with your needs',
-      icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>',
+      icon: 'fas fa-expand-arrows-alt',
       iconColor: 'bg-green-500'
     },
     {
       title: 'Support',
       description: '24/7 expert assistance',
-      icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>',
+      icon: 'fas fa-headset',
       iconColor: 'bg-purple-500'
     }
   ]);

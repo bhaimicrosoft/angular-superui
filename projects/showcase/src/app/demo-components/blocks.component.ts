@@ -2,11 +2,12 @@ import { Component, signal, computed, ChangeDetectionStrategy, inject, OnInit } 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
+import { Icon } from '@lib/components/icon';
 
 @Component({
   selector: 'app-blocks',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, Icon],
   template: `
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -108,9 +109,7 @@ import { SEOService } from '../services/seo.service';
                 <div class="absolute inset-0 flex items-center justify-center">
                   <div class="text-center">
                     <div [class]="block.iconColor" class="mx-auto mb-4">
-                      <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" [attr.d]="block.icon"></path>
-                      </svg>
+                      <Icon [icon]="block.icon" size="3xl" [ariaLabel]="block.name + ' icon'" />
                     </div>
                     <div class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ block.category }}</div>
                   </div>
@@ -197,9 +196,7 @@ import { SEOService } from '../services/seo.service';
           @for (feature of blockFeatures; track feature.title) {
             <div class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
               <div [class]="feature.iconColor" class="mb-4">
-                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" [attr.d]="feature.icon"></path>
-                </svg>
+                <Icon [icon]="feature.icon" size="2xl" [ariaLabel]="feature.title + ' icon'" />
               </div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">{{ feature.title }}</h3>
               <p class="text-gray-600 dark:text-gray-400 leading-relaxed">{{ feature.description }}</p>
@@ -222,7 +219,7 @@ export class BlocksComponent implements OnInit {
       route: '/blocks/header',
       description: 'Complete header layouts with navigation, search, user menus, and responsive mobile design.',
       category: 'Navigation',
-      icon: 'M4 6h16M4 10h16M4 14h16M4 18h16',
+      icon: 'fas fa-bars',
       bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
       iconColor: 'text-indigo-600 dark:text-indigo-400',
       features: ['Navigation', 'Search Bar', 'User Menu', 'Mobile Responsive']
@@ -232,7 +229,7 @@ export class BlocksComponent implements OnInit {
       route: '/blocks/hero-section',
       description: 'Eye-catching landing page heroes with multiple layouts, CTAs, and background options.',
       category: 'Content',
-      icon: 'M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2h3a1 1 0 011 1v1a1 1 0 01-1 1h-1v9a2 2 0 01-2 2H7a2 2 0 01-2-2V7H4a1 1 0 01-1-1V5a1 1 0 011-1h3zM9 4h6V3H9v1zm8 13V7H7v10h10z',
+      icon: 'fas fa-star',
       bgColor: 'bg-blue-100 dark:bg-blue-900/30',
       iconColor: 'text-blue-600 dark:text-blue-400',
       features: ['Multiple Layouts', 'CTA Buttons', 'Background Images', 'Responsive']
@@ -242,7 +239,7 @@ export class BlocksComponent implements OnInit {
       route: '/blocks/pricing-cards',
       description: 'Professional pricing tables with feature comparison, billing toggles, and popular highlights.',
       category: 'Content',
-      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+      icon: 'fas fa-dollar-sign',
       bgColor: 'bg-green-100 dark:bg-green-900/30',
       iconColor: 'text-green-600 dark:text-green-400',
       features: ['Feature Comparison', 'Billing Toggle', 'Popular Badge', 'CTA Integration']
@@ -252,7 +249,7 @@ export class BlocksComponent implements OnInit {
       route: '/blocks/footer',
       description: 'Comprehensive footer layouts with links, social icons, newsletter signup, and company info.',
       category: 'Navigation',
-      icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
+      icon: 'fas fa-layer-group',
       bgColor: 'bg-purple-100 dark:bg-purple-900/30',
       iconColor: 'text-purple-600 dark:text-purple-400',
       features: ['Multi-column', 'Social Links', 'Newsletter', 'Legal Links']
@@ -262,10 +259,20 @@ export class BlocksComponent implements OnInit {
       route: '/blocks/feature-grid',
       description: 'Showcase your product features with icons, descriptions, and compelling layouts.',
       category: 'Content',
-      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+      icon: 'fas fa-th',
       bgColor: 'bg-yellow-100 dark:bg-yellow-900/30',
       iconColor: 'text-yellow-600 dark:text-yellow-400',
       features: ['Icon Grid', 'Feature Cards', 'Testimonials', 'Stats Display']
+    },
+    {
+      name: 'Feature Card',
+      route: '/blocks/feature-card',
+      description: 'Individual feature cards with content projection for unlimited customization and flexible layouts.',
+      category: 'Content',
+      icon: 'fas fa-id-card',
+      bgColor: 'bg-teal-100 dark:bg-teal-900/30',
+      iconColor: 'text-teal-600 dark:text-teal-400',
+      features: ['Content Projection', 'Multiple Variants', 'Responsive Design', 'Event Handling']
     }
   ]);
 
@@ -275,37 +282,37 @@ export class BlocksComponent implements OnInit {
     {
       title: 'Production Ready',
       description: 'Each block is thoroughly tested and ready for production use with comprehensive documentation.',
-      icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+      icon: 'fas fa-check-circle',
       iconColor: 'text-green-600 dark:text-green-400'
     },
     {
       title: 'Fully Responsive',
       description: 'All blocks are mobile-first and work perfectly on desktop, tablet, and mobile devices.',
-      icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
+      icon: 'fas fa-mobile-alt',
       iconColor: 'text-blue-600 dark:text-blue-400'
     },
     {
       title: 'Accessible by Default',
       description: 'Built with accessibility in mind, following WCAG guidelines and best practices.',
-      icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
+      icon: 'fas fa-universal-access',
       iconColor: 'text-purple-600 dark:text-purple-400'
     },
     {
       title: 'Customizable',
       description: 'Easy to customize with Tailwind CSS classes and component props to match your brand.',
-      icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4c2.209 0 4-1.791 4-4V5z',
+      icon: 'fas fa-palette',
       iconColor: 'text-indigo-600 dark:text-indigo-400'
     },
     {
       title: 'TypeScript First',
       description: 'Built with TypeScript for better developer experience and type safety.',
-      icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+      icon: 'fas fa-code',
       iconColor: 'text-orange-600 dark:text-orange-400'
     },
     {
       title: 'Performance Optimized',
       description: 'Optimized for performance with lazy loading, tree shaking, and minimal bundle size.',
-      icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+      icon: 'fas fa-rocket',
       iconColor: 'text-yellow-600 dark:text-yellow-400'
     }
   ];
