@@ -1,5 +1,5 @@
-import {Component, computed, HostListener, inject, OnInit, signal, ViewChild} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {Component, computed, HostListener, inject, OnInit, signal, ViewChild, PLATFORM_ID} from '@angular/core';
+import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {Meta, Title} from '@angular/platform-browser';
 import {
   Sidebar,
@@ -8,11 +8,13 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarNavGroup,
-  SidebarNavItem,
+  SidebarNavItem, SidebarState,
   SidebarTrigger
 } from '@lib/components/sidebar';
 import {Alert, AlertDescription, AlertIcon, AlertTitle} from '@lib/components/alert';
 import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
+import { Checkbox } from "@lib/components/checkbox";
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar-demo',
@@ -32,6 +34,8 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
     AlertIcon,
     AlertTitle,
     AlertDescription,
+    Checkbox,
+    FormsModule
   ],
   template: `
     <!-- Hero Section -->
@@ -109,6 +113,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
         <!-- Main Sidebar -->
         <Sidebar
           [id]="'main-sidebar'"
+          [allowIconOnly]="isChecked"
           #mainSidebar
           [side]="sidebarSide()"
           [mode]="sidebarMode()"
@@ -118,6 +123,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
           customClass=" {{sidebarCustomClass()}}"
           [headerCustomClass]="'bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/50 dark:to-purple-900/50 border-b border-blue-200 dark:border-blue-800'"
           (onExpandedChange)="onSidebarExpandedChange($event)"
+          (onStateChange)="onSidebarStateChange($event)"
         >
           <SidebarHeader slot="sidebar-header">
             <div class="flex items-center gap-3">
@@ -136,14 +142,13 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
             </div>
           </SidebarHeader>
 
-          <SidebarContent slot="sidebar-content" [isIconOnly]="isSidebarIconOnly()">
-            <SidebarNavGroup [title]="'Main Navigation'" [isIconOnly]="isSidebarIconOnly()">
+          <SidebarContent slot="sidebar-content">
+            <SidebarNavGroup [title]="'Main Navigation'">
               <SidebarNavItem
                 [routerLink]="'/dashboard'"
                 [label]="'Dashboard'"
                 [icon]="dashboardIcon"
                 [isActive]="currentPage() === 'dashboard'"
-                [isIconOnly]="isSidebarIconOnly()"
                 (onClick)="setCurrentPage('dashboard')"
               />
               <SidebarNavItem
@@ -151,7 +156,6 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                 [label]="'Analytics'"
                 [icon]="analyticsIcon"
                 [isActive]="currentPage() === 'analytics'"
-                [isIconOnly]="isSidebarIconOnly()"
                 [hasChildren]="true"
                 (onClick)="setCurrentPage('analytics')"
               >
@@ -161,9 +165,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'Reports'"
                   [icon]="reportsIcon"
                   [isActive]="currentPage() === 'reports'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   (onClick)="setCurrentPage('reports')"
                 />
                 <SidebarNavItem
@@ -171,9 +173,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'Metrics'"
                   [icon]="metricsIcon"
                   [isActive]="currentPage() === 'metrics'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   [hasChildren]="true"
                   (onClick)="setCurrentPage('metrics')"
                 >
@@ -183,9 +183,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                     [label]="'Performance'"
                     [icon]="performanceIcon"
                     [isActive]="currentPage() === 'performance'"
-                    [isIconOnly]="isSidebarIconOnly()"
                     [isSubmenuItem]="true"
-                    [customClass]="isSidebarIconOnly() ? '' : 'ml-8'"
                     (onClick)="setCurrentPage('performance')"
                   />
                   <SidebarNavItem
@@ -193,9 +191,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                     [label]="'Usage Stats'"
                     [icon]="usageIcon"
                     [isActive]="currentPage() === 'usage'"
-                    [isIconOnly]="isSidebarIconOnly()"
                     [isSubmenuItem]="true"
-                    [customClass]="isSidebarIconOnly() ? '' : 'ml-8'"
                     (onClick)="setCurrentPage('usage')"
                   />
                 </SidebarNavItem>
@@ -204,19 +200,15 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'Insights'"
                   [icon]="insightsIcon"
                   [isActive]="currentPage() === 'insights'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   (onClick)="setCurrentPage('insights')"
                 />
               </SidebarNavItem>
               <SidebarNavItem
                 [routerLink]="null"
                 [label]="'Users'"
-
                 [icon]="usersIcon"
                 [isActive]="currentPage() === 'users'"
-                [isIconOnly]="isSidebarIconOnly()"
                 [hasChildren]="true"
                 [badge]="'12'"
                 (onClick)="setCurrentPage('users')"
@@ -227,9 +219,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'User List'"
                   [icon]="userListIcon"
                   [isActive]="currentPage() === 'userlist'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   (onClick)="setCurrentPage('userlist')"
                 />
                 <SidebarNavItem
@@ -237,9 +227,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'Roles & Permissions'"
                   [icon]="rolesIcon"
                   [isActive]="currentPage() === 'roles'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   (onClick)="setCurrentPage('roles')"
                 />
                 <SidebarNavItem
@@ -247,21 +235,18 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'User Groups'"
                   [icon]="groupsIcon"
                   [isActive]="currentPage() === 'groups'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   (onClick)="setCurrentPage('groups')"
                 />
               </SidebarNavItem>
             </SidebarNavGroup>
 
-            <SidebarNavGroup [title]="'Projects'" [isIconOnly]="isSidebarIconOnly()">
+            <SidebarNavGroup [title]="'Projects'">
               <SidebarNavItem
                 [routerLink]="null"
                 [label]="'All Projects'"
                 [icon]="projectsIcon"
                 [isActive]="currentPage() === 'projects'"
-                [isIconOnly]="isSidebarIconOnly()"
                 [hasChildren]="true"
                 (onClick)="setCurrentPage('projects')"
               >
@@ -271,9 +256,7 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'Active Projects'"
                   [icon]="activeIcon"
                   [isActive]="currentPage() === 'active'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   [badge]="'5'"
                   (onClick)="setCurrentPage('active')"
                 />
@@ -282,23 +265,20 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                   [label]="'Archived'"
                   [icon]="archiveIcon"
                   [isActive]="currentPage() === 'archived'"
-                  [isIconOnly]="isSidebarIconOnly()"
                   [isSubmenuItem]="true"
-                  [customClass]="isSidebarIconOnly() ? '' : 'ml-4'"
                   [badge]="'12'"
                   (onClick)="setCurrentPage('archived')"
                 />
               </SidebarNavItem>
             </SidebarNavGroup>
 
-            <SidebarNavGroup [title]="'Tools & Settings'" [isIconOnly]="isSidebarIconOnly()">
+            <SidebarNavGroup [title]="'Tools & Settings'">
               <SidebarNavItem
                 [routerLink]="'/notifications'"
                 [label]="'Notifications'"
                 [icon]="notificationsIcon"
                 [badge]="'3'"
                 [isActive]="currentPage() === 'notifications'"
-                [isIconOnly]="isSidebarIconOnly()"
                 (onClick)="setCurrentPage('notifications')"
               />
               <SidebarNavItem
@@ -307,7 +287,6 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                 [icon]="messagesIcon"
                 [badge]="'12'"
                 [isActive]="currentPage() === 'messages'"
-                [isIconOnly]="isSidebarIconOnly()"
                 (onClick)="setCurrentPage('messages')"
               />
               <SidebarNavItem
@@ -315,7 +294,6 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                 [label]="'Help & Support'"
                 [icon]="helpIcon"
                 [isActive]="currentPage() === 'help'"
-                [isIconOnly]="isSidebarIconOnly()"
                 (onClick)="setCurrentPage('help')"
               />
             </SidebarNavGroup>
@@ -418,13 +396,11 @@ import {LucideAngularModule, PanelLeftCloseIcon} from 'lucide-angular';
                         [size]="'md'"
                         [customClass]="'w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-sm'"
                       />
-                      <button
-                        type="button"
-                        class="w-full px-4 py-2 text-sm bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg hover:from-purple-600 hover:to-purple-700 transition-all duration-200 shadow-sm transform hover:scale-105 hidden lg:block"
-                        (click)="toggleIconMode()"
-                      >
-                        {{ isSidebarIconOnly() ? '📱 Exit Icon Mode' : '🎯 Enable Icon Mode' }}
-                      </button>
+
+                      <div class="flex items-center space-x-2">
+                        <Checkbox [(ngModel)]="isChecked" variant="success" size="lg" class="rounded-lg" />
+                        <label class="text-sm font-medium">Icon Only Mode</label>
+                      </div>
                     </div>
                   </div>
 
@@ -812,6 +788,9 @@ export class SidebarDemoComponent implements OnInit {
       category: 'Configuration'
     },
   ];
+
+  isChecked = false;
+
   // Icons (using inline SVG for simplicity)
   readonly dashboardIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5v4M16 5v4"/></svg>`;
   readonly analyticsIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`;
@@ -837,6 +816,8 @@ export class SidebarDemoComponent implements OnInit {
   // Inject services for SEO
   private titleService = inject(Title);
   private metaService = inject(Meta);
+  private platformId = inject(PLATFORM_ID);
+
   // State signals for sidebar configuration
   private readonly _sidebarExpanded = signal<boolean>(true);
   readonly sidebarExpanded = computed(() => this._sidebarExpanded());
@@ -854,19 +835,23 @@ export class SidebarDemoComponent implements OnInit {
   private readonly _sidebarDefaultExpanded = signal<boolean>(true);
   readonly sidebarDefaultExpanded = computed(() => this._sidebarDefaultExpanded());
   // Mobile/tablet detection for push mode restrictions
-  private readonly _screenWidth = signal<number>(typeof window !== 'undefined' ? window.innerWidth : 1920);
+  private readonly _screenWidth = signal<number>(1920);
   readonly isMobileOrTablet = computed(() => {
     return this._screenWidth() <= 1024; // Matches the sidebar's medium breakpoint
   });
 
   ngOnInit() {
     this.updateSEOForCurrentPage();
+    // Initialize screen width safely
+    if (isPlatformBrowser(this.platformId)) {
+      this._screenWidth.set((globalThis as any).innerWidth || 1920);
+    }
   }
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event: Event) {
-    if (typeof window !== 'undefined') {
-      this._screenWidth.set(window.innerWidth);
+    if (isPlatformBrowser(this.platformId)) {
+      this._screenWidth.set((globalThis as any).innerWidth || 1920);
     }
   }
 
@@ -879,7 +864,11 @@ export class SidebarDemoComponent implements OnInit {
 
   onSidebarExpandedChange(expanded: boolean) {
     this._sidebarExpanded.set(expanded);
-    console.log('Sidebar expanded state changed:', expanded);
+  }
+
+  onSidebarStateChange(state: SidebarState) {
+    // Sync demo component's local state with the sidebar's state
+    this._sidebarIconOnly.set(state.isIconOnly);
   }
 
   setCurrentPage(page: string) {
@@ -892,9 +881,7 @@ export class SidebarDemoComponent implements OnInit {
     if (this.mainSidebar) {
       this.mainSidebar.toggleIconOnly();
       // Update our local state to match the sidebar's state
-      setTimeout(() => {
-        this._sidebarIconOnly.set(this.mainSidebar.isIconOnly());
-      }, 0);
+      this._sidebarIconOnly.set(this.mainSidebar.isIconOnly());
     }
   }
 
@@ -941,7 +928,7 @@ export class SidebarDemoComponent implements OnInit {
   }
 
   getPageInfo(page: string): { title: string; description: string } {
-    const pageMap: Record<string, { title: string; description: string }> = {
+    const pageMap: { [key: string]: { title: string; description: string } } = {
       dashboard: {
         title: '📊 Dashboard',
         description: 'Monitor your application metrics and key performance indicators in real-time with comprehensive analytics dashboard.'

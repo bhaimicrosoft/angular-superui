@@ -337,7 +337,7 @@ Individual navigation item with support for icons, badges, and nesting.
 |----------|------|---------|-------------|
 | `routerLink` | `string \| any[] \| null` | `null` | Angular router link |
 | `label` | `string` | `''` | Display text for the item |
-| `icon` | `string` | `''` | SVG icon markup |
+| `icon` | `string \| Type<any> \| TemplateRef<any> \| LucideIconData` | `''` | Universal icon support: SVG markup, Angular component, template, or Lucide icon data |
 | `badge` | `string` | `''` | Badge text or number |
 | `isActive` | `boolean` | `false` | Whether the item is currently active |
 | `hasChildren` | `boolean` | `false` | Whether this item has submenu items |

@@ -14,6 +14,27 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'components/icon',
+    loadComponent: () =>
+      import('./demo-components/icon-demo.component').then(
+        (c) => c.IconDemoComponent
+      ),
+    data: {
+      componentName: 'icon',
+      category: 'Display',
+      description:
+        'Universal icon component supporting SVG/HTML strings, CSS classes, Angular components, templates, and Lucide data',
+      seo: {
+        title:
+          'Icon Component - Angular SuperUI | Universal Icon Rendering',
+        description:
+          'Render icons from HTML/SVG, CSS classes, Angular components, templates, and Lucide data with accessibility and security.',
+        keywords:
+          'Angular icon component, SVG icons, Font Awesome, Lucide Angular, TemplateRef icon, accessible icons, sanitized SVG',
+      },
+    },
+  },
+  {
     path: 'components/input-otp',
     loadComponent: () =>
       import('./demo-components/input-otp-demo.component').then(

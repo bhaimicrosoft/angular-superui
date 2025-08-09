@@ -13,12 +13,21 @@ import {
   NgZone,
   OnDestroy,
   OnInit,
+  AfterViewInit,
   output,
   PLATFORM_ID,
   Renderer2,
   signal,
   ViewChild,
-  WritableSignal
+  WritableSignal,
+  Type,
+  TemplateRef,
+  ViewContainerRef,
+  ComponentRef,
+  createComponent,
+  EnvironmentInjector,
+  Injector,
+  runInInjectionContext
 } from '@angular/core';
 import {CommonModule, isPlatformBrowser} from '@angular/common';
 import {RouterLink} from '@angular/router';
@@ -27,7 +36,8 @@ import {A11yModule} from '@angular/cdk/a11y';
 import {OverlayModule, ConnectedPosition} from '@angular/cdk/overlay';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {cva} from 'class-variance-authority';
-import {cn} from '../../utils/cn';
+import { cn, lucideToSvg } from '@lib/utils/cn';
+import { LucideIconData } from 'lucide-angular';
 
 /**
  * Service to manage sidebar instances and enable triggers to find them by ID
@@ -58,6 +68,24 @@ export class SidebarService {
     const sidebar = this.getSidebar(id);
     if (sidebar) {
       sidebar.toggleExpanded();
+      return true;
+    }
+    return false;
+  }
+
+  cycleSidebarState(id: string): boolean {
+    const sidebar = this.getSidebar(id);
+    if (sidebar) {
+      sidebar.cycleSidebarState();
+      return true;
+    }
+    return false;
+  }
+
+  setIconOnly(id: string): boolean {
+    const sidebar = this.getSidebar(id);
+    if (sidebar) {
+      sidebar.setIconOnly();
       return true;
     }
     return false;
@@ -370,7 +398,7 @@ export class SidebarLayout {
 
   readonly layoutClasses = computed(() => {
     return cn(
-      'flex h-screen bg-background',
+      'h-screen bg-background',
       'transition-all duration-300 ease-in-out',
       this.customClass()
     );
@@ -386,9 +414,23 @@ export interface SidebarContainerContext {
 }
 
 /**
+ * Context for sharing sidebar state between parent and child components
+ */
+export interface SidebarStateContext {
+  isIconOnly: boolean;
+  isExpanded: boolean;
+  mode: 'push' | 'overlay';
+}
+
+/**
  * Injection token for sidebar container context
  */
 export const SIDEBAR_CONTAINER_CONTEXT = new InjectionToken<WritableSignal<SidebarContainerContext>>('SIDEBAR_CONTAINER_CONTEXT');
+
+/**
+ * Injection token for sidebar state context
+ */
+export const SIDEBAR_STATE_CONTEXT = new InjectionToken<WritableSignal<SidebarStateContext>>('SIDEBAR_STATE_CONTEXT');
 
 /**
  * Sidebar Container Component - Main wrapper that handles flexbox layout and positioning
@@ -470,6 +512,16 @@ export class SidebarContainer {
   imports: [CommonModule, A11yModule, OverlayModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: sidebarAnimations,
+  providers: [
+    {
+      provide: SIDEBAR_STATE_CONTEXT,
+      useFactory: () => signal<SidebarStateContext>({ 
+        isIconOnly: false, 
+        isExpanded: true, 
+        mode: 'push' 
+      })
+    }
+  ],
   template: `
     <!-- Backdrop for overlay mode -->
     @if (effectiveMode() === 'overlay') {
@@ -549,8 +601,11 @@ export class Sidebar implements OnInit, OnDestroy {
   readonly onExpandedChange = output<boolean>();
   readonly onStateChange = output<SidebarState>();
   readonly currentState = computed(() => {
+    // If not expanded and not in icon-only mode, it's collapsed
     if (!this.isExpandedComputed() && !this.isIconOnly()) return 'collapsed';
+    // If in icon-only mode, regardless of expansion state, show iconOnly
     if (this.isIconOnly()) return 'iconOnly';
+    // If expanded and not icon-only, it's expanded
     return 'expanded';
   });
   readonly currentSize = computed(() => {
@@ -576,7 +631,11 @@ export class Sidebar implements OnInit, OnDestroy {
 
   // Animation state computations
   readonly widthAnimationState = computed(() => {
+    // If collapsed (not expanded and not icon-only), return collapsed
     if (!this.isExpandedComputed() && !this.isIconOnly()) return 'collapsed';
+    // If in icon-only mode, return icon size
+    if (this.isIconOnly()) return 'icon';
+    // Otherwise return the current size (expanded state)
     return this.currentSize();
   });
 
@@ -660,6 +719,9 @@ export class Sidebar implements OnInit, OnDestroy {
 
   // Optional container context for updating parent layout
   private containerContext = inject(SIDEBAR_CONTAINER_CONTEXT, { optional: true });
+  
+  // State context for sharing with child components
+  private stateContext = inject(SIDEBAR_STATE_CONTEXT);
 
   // Internal state signals
   private readonly _isExpanded = signal<boolean>(true);
@@ -700,6 +762,15 @@ export class Sidebar implements OnInit, OnDestroy {
           mode: this.effectiveMode()
         });
       }
+    });
+
+    // Update state context for child components
+    effect(() => {
+      this.stateContext.set({
+        isIconOnly: this.isIconOnly(),
+        isExpanded: this.isExpandedComputed() ?? false,
+        mode: this.effectiveMode()
+      });
     });
 
     // Initialize default state
@@ -792,9 +863,18 @@ export class Sidebar implements OnInit, OnDestroy {
   }
 
   toggleExpanded() {
-    if (this.isExpandedComputed()) {
-      this.collapse();
+    if (this.isIconOnly()) {
+      // In icon-only mode, toggle between icon-only and fully expanded
+      this.expand();
+    } else if (this.isExpandedComputed()) {
+      // If fully expanded, check if icon-only is allowed
+      if (this.canUseIconOnly()) {
+        this.setIconOnly();
+      } else {
+        this.collapse();
+      }
     } else {
+      // If collapsed, expand to full width
       this.expand();
     }
   }
@@ -812,6 +892,24 @@ export class Sidebar implements OnInit, OnDestroy {
       this.expand();
     } else {
       this.setIconOnly();
+    }
+  }
+
+  // New method for three-state cycling: expanded → icon-only → collapsed → expanded
+  cycleSidebarState() {
+    if (this.isExpandedComputed() && !this.isIconOnly()) {
+      // Currently fully expanded, go to icon-only mode if available
+      if (this.canUseIconOnly()) {
+        this.setIconOnly();
+      } else {
+        this.collapse();
+      }
+    } else if (this.isIconOnly()) {
+      // Currently in icon-only mode, go to collapsed
+      this.collapse();
+    } else {
+      // Currently collapsed, go to fully expanded
+      this.expand();
     }
   }
 
@@ -928,16 +1026,22 @@ export class SidebarHeader {
 })
 export class SidebarContent {
   readonly customClass = input<string>('');
-  readonly isIconOnly = input<boolean>(false); // Add icon mode awareness
+  
+  // Inject sidebar state context
+  private stateContext = inject(SIDEBAR_STATE_CONTEXT, { optional: true });
+  
+  // Computed properties using context
+  readonly isIconOnly = computed(() => this.stateContext?.()?.isIconOnly ?? false);
 
   readonly contentClasses = computed(() => {
     return cn(
-      // Conditional padding: minimal padding and spacing in icon mode, full padding otherwise
+      // Conditional padding and spacing based on icon mode
       this.isIconOnly() ? 'p-1 space-y-0.5' : 'p-4 space-y-2',
+      // Scrollbar styling
       'scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border/30',
       'hover:scrollbar-thumb-border/50',
       'dark:scrollbar-thumb-border/30 dark:hover:scrollbar-thumb-border/50',
-      'transition-colors duration-200',
+      'transition-all duration-200',
       this.customClass()
     );
   });
@@ -970,7 +1074,7 @@ export class SidebarFooter {
 }
 
 /**
- * Sidebar Navigation Item Component
+ * Sidebar Navigation Item Component with Universal Icon Support
  */
 @Component({
   selector: 'SidebarNavItem',
@@ -1020,7 +1124,7 @@ export class SidebarFooter {
     <div [class]="containerClasses()">
       <a
         #triggerElement
-        [class]="isSubmenuItem() && isIconOnly() ? submenuItemClasses() : itemClasses()"
+        [class]="itemClasses()"
         [attr.aria-current]="isActive() ? 'page' : null"
         [attr.aria-expanded]="hasChildren() ? isExpanded() : null"
         [attr.aria-label]="getAriaLabel()"
@@ -1035,56 +1139,63 @@ export class SidebarFooter {
         cdkOverlayOrigin
         #trigger="cdkOverlayOrigin"
       >
-      @if (icon()) {
-        <div class="relative flex-shrink-0 flex items-center gap-2 justify-center w-6 h-6">
+        @if (icon()) {
+          <div class="relative flex-shrink-0 flex items-center gap-2 justify-center w-6 h-6">
+            <!-- Dynamic Icon Container -->
+            <div #iconContainer class="flex items-center justify-center w-full h-full">
+              <!-- Fallback content if dynamic loading fails -->
+              @if (iconType() === 'html' && sanitizedIcon()) {
+                <span [innerHTML]="sanitizedIcon()" aria-hidden="true" class="flex items-center justify-center"></span>
+              }
+              @if (iconType() === 'class') {
+                <i [class]="iconValue()" aria-hidden="true"></i>
+              }
+            </div>
+
+            <!-- Small chevron indicator for submenu in icon mode -->
+            @if (hasChildren() && isIconOnly()) {
+              <svg
+                class="absolute bottom-1 -right-2.5 w-3 h-3 text-foreground bg-background rounded-full p-0.5 border border-foreground/90 shadow-sm"
+                [class.rotate-180]="isExpanded()"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
+              </svg>
+            }
+          </div>
+        }
+
+        @if (showLabel()) {
           <span
-            [innerHTML]="sanitizedIcon()"
-            aria-hidden="true">
-          </span>
+            class="flex-1 truncate text-sm font-medium"
+            [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
+          >{{ label() }}</span>
+        }
 
-          <!-- Small chevron indicator for submenu in icon mode -->
-          @if (hasChildren() && isIconOnly()) {
-            <svg
-              class="absolute bottom-1 -right-2.5 w-3 h-3 text-foreground bg-background rounded-full p-0.5 border border-foreground/90 shadow-sm  {{isExpanded() ? 'rotate-270': 'rotate-90'}}"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
-            </svg>
-          }
-        </div>
-      }
+        @if (showBadge()) {
+          <span
+            [class]="badgeClasses()"
+            [attr.aria-label]="'Badge: ' + badge()"
+            [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
+          >{{ badge() }}</span>
+        }
 
-      @if (showLabel()) {
-        <span
-          class="flex-1 truncate text-sm font-medium"
-          [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
-        >{{ label() }}</span>
-      }
-
-      @if (badge() && showLabel()) {
-        <span
-          [class]="badgeClasses()"
-          [attr.aria-label]="'Badge: ' + badge()"
-          [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
-        >{{ badge() }}</span>
-      }
-
-      @if (hasChildren() && showLabel()) {
-        <svg
-          class="w-4 h-4 flex-shrink-0 transform-gpu transition-transform duration-150 ease-out"
-          [class.rotate-90]="isExpanded()"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-        </svg>
-      }
+        @if (showChevron()) {
+          <svg
+            class="w-4 h-4 flex-shrink-0 transform-gpu transition-transform duration-150 ease-out"
+            [class.rotate-90]="isExpanded()"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            [@labelSlide]="showLabel() ? 'visible' : 'hidden'"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        }
       </a>
 
       <!-- CDK Overlay Tooltip for Icon Mode -->
@@ -1114,30 +1225,105 @@ export class SidebarFooter {
     </div>
   `,
 })
-export class SidebarNavItem {
-  // Input signals
+export class SidebarNavItem implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('iconContainer', { read: ViewContainerRef }) iconContainer!: ViewContainerRef;
+
+
+
+  // Input signals - Universal icon support
   readonly routerLink = input<string | any[] | null>(null);
   readonly label = input<string>('');
-  readonly icon = input<string>('');
+  readonly icon = input<string | Type<any> | TemplateRef<any> | LucideIconData>(''); // Accept string, Angular component, template, or LucideIconData
   readonly badge = input<string>('');
   readonly isActive = input<boolean>(false);
   readonly hasChildren = input<boolean>(false);
-  readonly isIconOnly = input<boolean>(false);
-  readonly isSubmenuItem = input<boolean>(false); // New property to identify submenu items
+  readonly isSubmenuItem = input<boolean>(false);
   readonly customClass = input<string>('');
   readonly badgeCustomClass = input<string>('');
+
   // Output signals
   readonly onClick = output<Event>();
+  
+  // Inject sidebar state context
+  private stateContext = inject(SIDEBAR_STATE_CONTEXT, { optional: true });
+  
+  // Computed properties using context
+  readonly isIconOnly = computed(() => this.stateContext?.()?.isIconOnly ?? false);
   readonly showLabel = computed(() => !this.isIconOnly());
   readonly showTooltip = computed(() => this.isIconOnly() && !!this.label());
+  readonly showBadge = computed(() => !!this.badge() && this.showLabel());
+  readonly showChevron = computed(() => this.hasChildren() && this.showLabel());
+
+  // Injected dependencies
+  private sanitizer = inject(DomSanitizer);
+  private viewContainerRef = inject(ViewContainerRef);
+  private environmentInjector = inject(EnvironmentInjector);
+  private injector = inject(Injector);
+
+  // Dynamic component reference
+  private componentRef: ComponentRef<any> | null = null;
+
+  // Icon type detection and processing
+  readonly iconType = computed(() => {
+    const iconValue = this.icon();
+    if (!iconValue) return 'none';
+
+    if (typeof iconValue === 'string') {
+      // Check if it's HTML/SVG content
+      if (iconValue.trim().startsWith('<') || iconValue.includes('svg')) {
+        return 'html';
+      }
+      // Otherwise treat as CSS class
+      return 'class';
+    }
+
+    if (typeof iconValue === 'function') {
+      return 'component';
+    }
+
+    if (iconValue instanceof TemplateRef) {
+      return 'template';
+    }
+
+    // Check if it's LucideIconData (array structure)
+    if (Array.isArray(iconValue)) {
+      return 'lucide';
+    }
+
+    return 'unknown';
+  });
+
+  readonly iconValue = computed(() => {
+    const iconVal = this.icon();
+    return typeof iconVal === 'string' ? iconVal : '';
+  });
+
+  // Sanitized HTML for HTML/SVG icons
+  readonly sanitizedIcon = computed(() => {
+    const iconVal = this.iconValue();
+    const iconType = this.iconType();
+
+
+    if (iconType === 'html' && iconVal) {
+      return this.sanitizer.bypassSecurityTrustHtml(iconVal);
+    }
+
+    if (iconType === 'lucide') {
+      // Convert LucideIconData to SVG string
+      const lucideData = this.icon() as LucideIconData;
+      const svgString = lucideToSvg(lucideData);
+      return this.sanitizer.bypassSecurityTrustHtml(svgString);
+    }
+
+    return null;
+  });
 
   // CSS classes
   readonly containerClasses = computed(() =>
     cn(
-      'relative w-full', // Ensure full width for proper submenu expansion
+      'relative w-full',
       {
-        'group': this.hasChildren() && this.isIconOnly(), // Enable hover effects for icon mode dropdowns
-        // Use flex column layout for inline submenu expansion
+        'group': this.hasChildren() && this.isIconOnly(),
         'flex flex-col': this.isIconOnly() && this.hasChildren(),
       }
     )
@@ -1146,20 +1332,17 @@ export class SidebarNavItem {
   readonly itemClasses = computed(() =>
     cn(
       'group flex items-center gap-3 px-3 py-2 rounded-lg',
-      // Enhanced hover and focus transitions with better visibility
       'hover:bg-accent hover:text-accent-foreground transition-all duration-200',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2',
+      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1',
       'focus-visible:bg-primary/10 focus-visible:text-primary focus-visible:shadow-sm',
       'focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2',
       'focus:bg-primary/10 focus:text-primary focus:shadow-sm',
       'text-muted-foreground hover:text-foreground',
       'dark:hover:bg-accent/80 dark:hover:text-accent-foreground',
       'dark:focus-visible:bg-primary/20 dark:focus:bg-primary/20',
-      // Optimize active state with GPU acceleration
       'active:scale-[0.98] transform-gpu transition-transform duration-150',
       {
         'bg-accent text-accent-foreground dark:bg-accent/80': this.isActive(),
-        // Icon mode: center content and adjust padding
         'justify-center px-2 w-12 h-12 mx-auto': this.isIconOnly(),
         'cursor-pointer': !this.routerLink() || this.hasChildren(),
       },
@@ -1167,19 +1350,6 @@ export class SidebarNavItem {
     )
   );
 
-  // Special styling for submenu items in icon mode
-  readonly submenuItemClasses = computed(() =>
-     cn(
-      'group flex items-center gap-2 px-2 py-1 rounded text-sm w-full',
-      // Different styling for submenu items - make them full width and prominent
-      'bg-background text-foreground',
-      'hover:bg-primary/10 hover:text-primary transition-colors duration-300',
-      'border border-transparent hover:border-primary/20',
-      {
-        'bg-primary/15 text-primary border-primary/30': this.isActive(),
-      }
-    )
-  );
   readonly badgeClasses = computed(() =>
     cn(
       'inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium rounded-full',
@@ -1192,30 +1362,18 @@ export class SidebarNavItem {
 
   readonly childrenClasses = computed(() =>
     cn(
-      // Conditional spacing: no spacing in icon mode, normal spacing otherwise
       this.isIconOnly() ? 'space-y-0' : 'space-y-1',
       'overflow-visible',
       {
-        // In icon mode, show submenu inline below parent (pushes other items down)
-        // Remove indentation and make it full width with clear visual separation
-        // Reduced padding for better centering
         'mt-2 bg-accent/20 border border-border/50 rounded-lg px-1 py-1 w-full': this.isIconOnly(),
-        // In normal mode, show as nested indented list
         'ml-6 mt-1 overflow-hidden': !this.isIconOnly(),
-        // Animation states for icon mode - show on hover or when manually expanded
         'opacity-0 invisible pointer-events-none max-h-0 transition-all duration-200': this.isIconOnly(),
         'group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto group-hover:max-h-96': this.isIconOnly(),
-        // When manually expanded, override hover states
         'opacity-100 visible pointer-events-auto max-h-96': this.isIconOnly() && this.isExpanded(),
       }
     )
   );
-  private sanitizer = inject(DomSanitizer);
-  // Sanitized icon HTML
-  readonly sanitizedIcon = computed(() => {
-    const iconHtml = this.icon();
-    return iconHtml ? this.sanitizer.bypassSecurityTrustHtml(iconHtml) : '';
-  });
+
   // Internal state
   private readonly _isExpanded = signal<boolean>(false);
   readonly isExpanded = computed(() => this._isExpanded());
@@ -1223,7 +1381,7 @@ export class SidebarNavItem {
   private readonly _isHovered = signal<boolean>(false);
   readonly isHovered = computed(() => this._isHovered());
 
-  // Tooltip positioning for CDK overlay
+  // Tooltip positioning
   readonly tooltipPositions: ConnectedPosition[] = [
     {
       originX: 'end',
@@ -1248,7 +1406,218 @@ export class SidebarNavItem {
     },
   ];
 
-  // Methods
+  constructor() {
+    // Don't render icons in constructor - wait for view to be ready
+  }
+
+  ngOnInit() {
+    // Component initialization
+  }
+
+  ngAfterViewInit() {
+    // Now that the view is initialized, set up icon rendering
+    runInInjectionContext(this.injector, () => {
+      effect(() => {
+        this.renderDynamicIcon();
+      });
+    });
+
+    // Initial render
+    this.renderDynamicIcon();
+  }
+
+  ngOnDestroy() {
+    this.destroyDynamicIcon();
+  }
+
+  private renderDynamicIcon() {
+    // Clear any existing dynamic content
+    this.destroyDynamicIcon();
+
+    const iconValue = this.icon();
+    const iconType = this.iconType();
+
+    console.log('renderDynamicIcon called:', { iconValue, iconType, hasContainer: !!this.iconContainer }); // Debug
+
+    if (!iconValue || !this.iconContainer) return;
+
+    try {
+      switch (iconType) {
+        case 'component':
+          console.log('Rendering component icon'); // Debug
+          this.renderComponent(iconValue as Type<any>);
+          break;
+        case 'template':
+          console.log('Rendering template icon'); // Debug
+          this.renderTemplate(iconValue as TemplateRef<any>);
+          break;
+        case 'lucide':
+          console.log('Rendering lucide icon'); // Debug
+          this.renderLucideIcon(iconValue as LucideIconData);
+          break;
+        case 'class':
+          console.log('Rendering class icon:', iconValue); // Debug
+          this.renderClassIcon(iconValue as string);
+          break;
+        case 'html':
+          console.log('Rendering HTML icon:', iconValue); // Debug
+          this.renderHtmlIcon(iconValue as string);
+          break;
+        // Note: 'html' and 'class' types are also handled directly in the template as fallback
+      }
+    } catch (error) {
+      console.warn('Failed to render dynamic icon:', error);
+    }
+  }
+
+  private renderComponent(component: Type<any>) {
+    if (!this.iconContainer) return;
+
+    try {
+      // Clear the container first
+      this.iconContainer.element.nativeElement.innerHTML = '';
+
+      this.componentRef = createComponent(component, {
+        environmentInjector: this.environmentInjector,
+        hostElement: this.iconContainer.element.nativeElement
+      });
+
+      // Set common properties if the component supports them
+      const instance = this.componentRef.instance;
+      if (instance) {
+        // Try to set size if the component supports it (for Lucide icons)
+        if ('size' in instance) {
+          instance.size = 16;
+        }
+        if ('width' in instance) {
+          instance.width = 16;
+        }
+        if ('height' in instance) {
+          instance.height = 16;
+        }
+        // Try to set color if supported
+        if ('color' in instance) {
+          instance.color = 'currentColor';
+        }
+        if ('strokeWidth' in instance) {
+          instance.strokeWidth = 2;
+        }
+      }
+
+      // Trigger change detection
+      this.componentRef.changeDetectorRef.detectChanges();
+    } catch (error) {
+      console.warn('Failed to create component:', error);
+
+      // Fallback: Try to render as SVG if it's a Lucide component
+      this.tryLucideFallback(component);
+    }
+  }
+
+  private renderTemplate(template: TemplateRef<any>) {
+    if (!this.iconContainer) return;
+
+    try {
+      this.iconContainer.createEmbeddedView(template);
+    } catch (error) {
+      console.warn('Failed to render template:', error);
+    }
+  }
+
+  private renderLucideIcon(lucideData: LucideIconData) {
+    if (!this.iconContainer) return;
+
+    try {
+      const svgString = lucideToSvg(lucideData);
+
+      // Create a wrapper element to hold the SVG
+      const wrapperElement = document.createElement('span');
+      wrapperElement.innerHTML = svgString;
+      wrapperElement.className = 'flex items-center justify-center';
+      wrapperElement.setAttribute('aria-hidden', 'true');
+
+      // Clear container and append the wrapper
+      this.iconContainer.element.nativeElement.innerHTML = '';
+      this.iconContainer.element.nativeElement.appendChild(wrapperElement);
+    } catch (error) {
+      console.warn('Failed to render Lucide icon:', error);
+    }
+  }
+
+  private tryLucideFallback(component: Type<any>) {
+    try {
+      // For Lucide Angular components, try to access their icon data
+      // This is a fallback approach - check if the component has iconData
+      if (component && 'iconData' in component) {
+        this.renderLucideIcon((component as any).iconData);
+        return;
+      }
+
+      // Alternative approach: Create a simple SVG fallback
+      const fallbackSvg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="9" y1="9" x2="15" y2="15"/>
+          <line x1="15" y1="9" x2="9" y2="15"/>
+        </svg>
+      `;
+
+      this.iconContainer.element.nativeElement.innerHTML = fallbackSvg;
+    } catch (error) {
+      console.warn('Lucide fallback failed:', error);
+    }
+  }
+
+  private destroyDynamicIcon() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+      this.componentRef = null;
+    }
+
+    if (this.iconContainer) {
+      this.iconContainer.clear();
+    }
+  }
+
+  private renderClassIcon(cssClass: string) {
+    if (!this.iconContainer) return;
+
+    try {
+      // Create an i element with the CSS class
+      const iconElement = document.createElement('i');
+      iconElement.className = cssClass;
+      iconElement.setAttribute('aria-hidden', 'true');
+      iconElement.style.fontSize = '16px';
+      iconElement.style.lineHeight = '1';
+
+      // Clear container and append the icon
+      this.iconContainer.element.nativeElement.innerHTML = '';
+      this.iconContainer.element.nativeElement.appendChild(iconElement);
+    } catch (error) {
+      console.warn('Failed to render CSS class icon:', error);
+    }
+  }
+
+  private renderHtmlIcon(htmlString: string) {
+    if (!this.iconContainer) return;
+
+    try {
+      // Create a wrapper element to hold the HTML
+      const wrapperElement = document.createElement('span');
+      wrapperElement.innerHTML = htmlString;
+      wrapperElement.className = 'flex items-center justify-center';
+      wrapperElement.setAttribute('aria-hidden', 'true');
+
+      // Clear container and append the wrapper
+      this.iconContainer.element.nativeElement.innerHTML = '';
+      this.iconContainer.element.nativeElement.appendChild(wrapperElement);
+    } catch (error) {
+      console.warn('Failed to render HTML icon:', error);
+    }
+  }
+
+
+  // Event handlers
   onMouseEnter() {
     if (this.isIconOnly()) {
       this._isHovered.set(true);
@@ -1258,6 +1627,7 @@ export class SidebarNavItem {
   onMouseLeave() {
     this._isHovered.set(false);
   }
+
   getAriaLabel(): string {
     let label = this.label();
     if (this.isActive()) {
@@ -1277,7 +1647,6 @@ export class SidebarNavItem {
       event.preventDefault();
       this._isExpanded.update(expanded => !expanded);
     } else if (!this.routerLink()) {
-      // If no routerLink is provided, prevent default navigation
       event.preventDefault();
     }
     this.onClick.emit(event);
@@ -1285,294 +1654,93 @@ export class SidebarNavItem {
 
   onKeyDown(event: KeyboardEvent) {
     const target = event.target as HTMLElement;
-    console.log('⌨️ KeyDown event:', {
-      key: event.key,
-      target: target,
-      targetLabel: target.textContent?.trim(),
-      hasChildren: this.hasChildren(),
-      isExpanded: this.isExpanded()
-    });
 
     switch (event.key) {
       case 'ArrowDown':
-        console.log('⬇️ Arrow Down pressed');
         event.preventDefault();
         this.focusNextVisibleItem(target);
         break;
       case 'ArrowUp':
-        console.log('⬆️ Arrow Up pressed');
         event.preventDefault();
         this.focusPreviousVisibleItem(target);
         break;
       case 'ArrowRight':
-        console.log('➡️ Arrow Right pressed');
         event.preventDefault();
         if (this.hasChildren() && !this.isExpanded()) {
-          console.log('🔓 Expanding submenu');
           this._isExpanded.set(true);
         } else {
-          console.log('➡️ Moving to next item (no submenu or already expanded)');
-          // If already expanded or no children, move to next item
           this.focusNextVisibleItem(target);
         }
         break;
       case 'ArrowLeft':
-        console.log('⬅️ Arrow Left pressed');
         event.preventDefault();
         if (this.hasChildren() && this.isExpanded()) {
-          console.log('🔒 Collapsing submenu');
           this._isExpanded.set(false);
         } else {
-          console.log('⬅️ Moving to previous item (no submenu or already collapsed)');
-          // If already collapsed or no children, move to previous item
           this.focusPreviousVisibleItem(target);
         }
         break;
       case 'Home':
-        console.log('🏠 Home pressed');
         event.preventDefault();
         this.focusFirstItem();
         break;
       case 'End':
-        console.log('🔚 End pressed');
         event.preventDefault();
         this.focusLastItem();
         break;
-      default:
-        console.log('🔍 Other key pressed:', event.key);
-        break;
-    }
-  }
-
-  private focusNextItem(currentElement: HTMLElement) {
-    const sidebarContent = currentElement.closest('[role="navigation"]');
-    if (!sidebarContent) return;
-
-    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
-    const currentIndex = allItems.indexOf(currentElement);
-
-    if (currentIndex >= 0 && currentIndex < allItems.length - 1) {
-      allItems[currentIndex + 1].focus();
     }
   }
 
   private focusNextVisibleItem(currentElement: HTMLElement) {
-    console.log('🔍 focusNextVisibleItem called with:', currentElement);
-
-    const sidebarContent = currentElement.closest('[role="navigation"]');
-    console.log('🎯 Found sidebar content:', sidebarContent);
-
-    if (!sidebarContent) {
-      console.warn('❌ No navigation role found!');
-      return;
-    }
-
-    // Only get visible menu items (not hidden by collapsed parent groups)
-    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]:not([hidden])')) as HTMLElement[];
-    console.log('📋 All menu items found:', allItems.length, allItems);
-
-    const visibleItems = allItems.filter(item => {
-      const rect = item.getBoundingClientRect();
-      const style = window.getComputedStyle(item);
-      const isVisible = rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
-
-      // Check if item is in a collapsed submenu by traversing up the DOM
-      let isInCollapsedSubmenu = false;
-      let parent = item.parentElement;
-
-      while (parent && parent !== sidebarContent) {
-        // Check if parent has collapsed state or hidden styles
-        const parentStyle = window.getComputedStyle(parent);
-        const parentRect = parent.getBoundingClientRect();
-
-        // If parent container is collapsed (height 0 or hidden)
-        if (parentRect.height === 0 || parentStyle.display === 'none' || parentStyle.visibility === 'hidden') {
-          isInCollapsedSubmenu = true;
-          break;
-        }
-
-        // Check for animation states that indicate collapsed
-        if (parent.hasAttribute('data-state') && parent.getAttribute('data-state') === 'collapsed') {
-          isInCollapsedSubmenu = true;
-          break;
-        }
-
-        // Check for Angular animation classes that indicate collapsed state
-        if (parent.style.height === '0px' || parent.classList.contains('ng-animating')) {
-          const computedHeight = parseFloat(parentStyle.height);
-          if (computedHeight <= 1) { // Allow for sub-pixel rendering
-            isInCollapsedSubmenu = true;
-            break;
-          }
-        }
-
-        parent = parent.parentElement;
-      }
-
-      console.log('🔍 Item visibility check:', {
-        element: item,
-        label: item.textContent?.trim(),
-        rect: { height: rect.height, width: rect.width },
-        style: { visibility: style.visibility, display: style.display },
-        isVisible,
-        isInCollapsedSubmenu
-      });
-
-      return isVisible && !isInCollapsedSubmenu;
-    });
-
-    console.log('👁️ Visible items after filtering:', visibleItems.length, visibleItems);
-
-    const currentIndex = visibleItems.indexOf(currentElement);
-    console.log('📍 Current index:', currentIndex, 'Current element:', currentElement);
-
-    if (currentIndex >= 0 && currentIndex < visibleItems.length - 1) {
-      const nextItem = visibleItems[currentIndex + 1];
-      console.log('➡️ Focusing next item:', nextItem, nextItem.textContent?.trim());
-      nextItem.focus();
-    } else {
-      console.log('🚫 No next item to focus');
-    }
-  }
-
-  private focusPreviousItem(currentElement: HTMLElement) {
     const sidebarContent = currentElement.closest('[role="navigation"]');
     if (!sidebarContent) return;
 
     const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
-    const currentIndex = allItems.indexOf(currentElement);
+    const visibleItems = allItems.filter(item => {
+      const rect = item.getBoundingClientRect();
+      return rect.height > 0 && getComputedStyle(item).visibility !== 'hidden';
+    });
 
-    if (currentIndex > 0) {
-      allItems[currentIndex - 1].focus();
+    const currentIndex = visibleItems.indexOf(currentElement);
+    if (currentIndex >= 0 && currentIndex < visibleItems.length - 1) {
+      visibleItems[currentIndex + 1].focus();
     }
   }
 
   private focusPreviousVisibleItem(currentElement: HTMLElement) {
-    console.log('🔍 focusPreviousVisibleItem called with:', currentElement);
-
     const sidebarContent = currentElement.closest('[role="navigation"]');
-    console.log('🎯 Found sidebar content:', sidebarContent);
+    if (!sidebarContent) return;
 
-    if (!sidebarContent) {
-      console.warn('❌ No navigation role found!');
-      return;
-    }
-
-    // Only get visible menu items (not hidden by collapsed parent groups)
-    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]:not([hidden])')) as HTMLElement[];
-    console.log('📋 All menu items found:', allItems.length, allItems);
-
+    const allItems = Array.from(sidebarContent.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
     const visibleItems = allItems.filter(item => {
       const rect = item.getBoundingClientRect();
-      const style = window.getComputedStyle(item);
-      const isVisible = rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none';
-
-      // Check if item is in a collapsed submenu by traversing up the DOM
-      let isInCollapsedSubmenu = false;
-      let parent = item.parentElement;
-
-      while (parent && parent !== sidebarContent) {
-        // Check if parent has collapsed state or hidden styles
-        const parentStyle = window.getComputedStyle(parent);
-        const parentRect = parent.getBoundingClientRect();
-
-        // If parent container is collapsed (height 0 or hidden)
-        if (parentRect.height === 0 || parentStyle.display === 'none' || parentStyle.visibility === 'hidden') {
-          isInCollapsedSubmenu = true;
-          break;
-        }
-
-        // Check for animation states that indicate collapsed
-        if (parent.hasAttribute('data-state') && parent.getAttribute('data-state') === 'collapsed') {
-          isInCollapsedSubmenu = true;
-          break;
-        }
-
-        // Check for Angular animation classes that indicate collapsed state
-        if (parent.style.height === '0px' || parent.classList.contains('ng-animating')) {
-          const computedHeight = parseFloat(parentStyle.height);
-          if (computedHeight <= 1) { // Allow for sub-pixel rendering
-            isInCollapsedSubmenu = true;
-            break;
-          }
-        }
-
-        parent = parent.parentElement;
-      }
-
-      console.log('🔍 Item visibility check:', {
-        element: item,
-        label: item.textContent?.trim(),
-        rect: { height: rect.height, width: rect.width },
-        style: { visibility: style.visibility, display: style.display },
-        isVisible,
-        isInCollapsedSubmenu
-      });
-
-      return isVisible && !isInCollapsedSubmenu;
+      return rect.height > 0 && getComputedStyle(item).visibility !== 'hidden';
     });
 
-    console.log('👁️ Visible items after filtering:', visibleItems.length, visibleItems);
-
     const currentIndex = visibleItems.indexOf(currentElement);
-    console.log('📍 Current index:', currentIndex, 'Current element:', currentElement);
-
     if (currentIndex > 0) {
-      const prevItem = visibleItems[currentIndex - 1];
-      console.log('⬅️ Focusing previous item:', prevItem, prevItem.textContent?.trim());
-      prevItem.focus();
-    } else {
-      console.log('🚫 No previous item to focus');
+      visibleItems[currentIndex - 1].focus();
     }
   }
 
   private focusFirstItem() {
-    console.log('🏠 Focusing first item');
     const sidebarContent = document.querySelector('[role="navigation"]');
-    if (!sidebarContent) {
-      console.log('❌ Navigation element not found');
-      return;
-    }
+    if (!sidebarContent) return;
 
-    console.log('🔍 Navigation element found:', sidebarContent);
     const firstItem = sidebarContent.querySelector('[role="menuitem"]') as HTMLElement;
-    console.log('🔍 First menuitem found:', {
-      element: firstItem,
-      textContent: firstItem?.textContent?.trim()
-    });
-
     if (firstItem) {
-      console.log('🎯 Focusing first item:', firstItem.textContent?.trim());
       firstItem.focus();
-    } else {
-      console.log('❌ No first menuitem found');
     }
   }
 
   private focusLastItem() {
-    console.log('🔚 Focusing last item');
     const sidebarContent = document.querySelector('[role="navigation"]');
-    if (!sidebarContent) {
-      console.log('❌ Navigation element not found');
-      return;
-    }
+    if (!sidebarContent) return;
 
-    console.log('🔍 Navigation element found:', sidebarContent);
     const allItems = sidebarContent.querySelectorAll('[role="menuitem"]');
-    console.log('🔍 All menuitems found:', {
-      count: allItems.length,
-      items: Array.from(allItems).map(item => ({
-        element: item,
-        textContent: item.textContent?.trim()
-      }))
-    });
-
     const lastItem = allItems[allItems.length - 1] as HTMLElement;
     if (lastItem) {
-      console.log('🎯 Focusing last item:', lastItem.textContent?.trim());
       lastItem.focus();
-    } else {
-      console.log('❌ No last menuitem found');
     }
   }
 }
@@ -1614,9 +1782,14 @@ export class SidebarNavItem {
 })
 export class SidebarNavGroup {
   readonly title = input<string>('');
-  readonly isIconOnly = input<boolean>(false);
   readonly customClass = input<string>('');
   readonly titleCustomClass = input<string>('');
+
+  // Inject sidebar state context
+  private stateContext = inject(SIDEBAR_STATE_CONTEXT, { optional: true });
+  
+  // Computed properties using context
+  readonly isIconOnly = computed(() => this.stateContext?.()?.isIconOnly ?? false);
 
   readonly groupId = `sidebar-group-${Math.random().toString(36).substr(2, 9)}`;
 
