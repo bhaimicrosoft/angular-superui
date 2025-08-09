@@ -14,6 +14,18 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'components/menubar',
+    loadComponent: () =>
+      import('./demo-components/menubar-demo.component').then(
+        (c) => c.MenubarDemoComponent
+      ),
+    data: {
+      componentName: 'menubar',
+      category: 'Navigation',
+      description: 'Application menubar with nested submenus and keyboard navigation',
+    },
+  },
+  {
     path: 'components/icon',
     loadComponent: () =>
       import('./demo-components/icon-demo.component').then(
