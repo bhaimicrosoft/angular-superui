@@ -54,11 +54,11 @@ export * from '@lib/components/menubar';
 export * from '@lib/components/toolbar';
 
 
-// Enhanced Configurable Blocks
-export * from '@lib/blocks/feature-grid-configurable';
-export * from '@lib/blocks/feature-card';
-export * from '@lib/blocks/hero-section-configurable';
-export * from '@lib/blocks/pricing-cards-configurable';
-export * from '@lib/blocks/header-configurable';
-export * from '@lib/blocks/footer-configurable';
-export * from '@lib/blocks/testimonial';
+// Blocks
+export * from './lib/blocks/header-configurable';
+export * from './lib/blocks/hero-section-configurable';
+export * from './lib/blocks/footer-configurable';
+export * from './lib/blocks/feature-grid-configurable';
+export * from './lib/blocks/pricing-cards-configurable';
+export * from './lib/blocks/feature-card';
+export * from './lib/blocks/testimonial';

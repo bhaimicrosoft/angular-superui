@@ -48,7 +48,6 @@ Transform Angular SuperUI into the **ultimate, comprehensive UI ecosystem** that
 - [✅] **Feature Card Block** - Individual feature cards *(completed with docs)*
 - [ ] **Feature Section** - Product feature showcase
 - [✅] **Testimonial Block** - Customer testimonials display *(completed with docs)*
-- [ ] **FAQ Section** - Collapsible question answers
 - [ ] **Team Grid** - Team member showcase
 - [ ] **Stats Counter** - Animated statistics display
 - [ ] **Newsletter Signup** - Email collection form
