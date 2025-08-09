@@ -177,6 +177,19 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/testimonial',
+    loadComponent: () =>
+      import('./demo-components/testimonial-demo.component').then(
+        (c) => c.TestimonialDemoComponent
+      ),
+    data: {
+      blockName: 'testimonial',
+      category: 'Content',
+      description:
+        'Customer testimonials and reviews with beautiful layouts and social proof',
+    },
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(

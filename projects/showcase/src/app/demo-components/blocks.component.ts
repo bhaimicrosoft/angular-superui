@@ -273,6 +273,16 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-teal-100 dark:bg-teal-900/30',
       iconColor: 'text-teal-600 dark:text-teal-400',
       features: ['Content Projection', 'Multiple Variants', 'Responsive Design', 'Event Handling']
+    },
+    {
+      name: 'Testimonial Block',
+      route: '/blocks/testimonial',
+      description: 'Customer testimonials and reviews with beautiful layouts. Build trust and credibility with social proof.',
+      category: 'Content',
+      icon: 'fas fa-quote-left',
+      bgColor: 'bg-pink-100 dark:bg-pink-900/30',
+      iconColor: 'text-pink-600 dark:text-pink-400',
+      features: ['Multiple Layouts', 'Rating Support', 'Author Info', 'Responsive Design']
     }
   ]);
 

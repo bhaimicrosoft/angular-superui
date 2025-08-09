@@ -40,8 +40,14 @@ Transform Angular SuperUI into the **ultimate, comprehensive UI ecosystem** that
 
 ### 🧱 UI Blocks & Layout Components
 
+- [✅] **Header Block** - Application navigation headers *(completed with docs)*
+- [✅] **Hero Section Block** - Landing page hero sections *(completed with docs)*
+- [✅] **Footer Block** - Site footer layouts *(completed with docs)*
+- [✅] **Feature Grid Block** - Product feature showcase *(completed with docs)*
+- [✅] **Pricing Cards Block** - Pricing table layouts *(completed with docs)*
+- [✅] **Feature Card Block** - Individual feature cards *(completed with docs)*
 - [ ] **Feature Section** - Product feature showcase
-- [ ] **Testimonial Block** - Customer testimonials display
+- [✅] **Testimonial Block** - Customer testimonials display *(completed with docs)*
 - [ ] **FAQ Section** - Collapsible question answers
 - [ ] **Team Grid** - Team member showcase
 - [ ] **Stats Counter** - Animated statistics display

@@ -61,3 +61,4 @@ export * from '@lib/blocks/hero-section-configurable';
 export * from '@lib/blocks/pricing-cards-configurable';
 export * from '@lib/blocks/header-configurable';
 export * from '@lib/blocks/footer-configurable';
+export * from '@lib/blocks/testimonial';
