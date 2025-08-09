@@ -62,3 +62,4 @@ export * from './lib/blocks/feature-grid-configurable';
 export * from './lib/blocks/pricing-cards-configurable';
 export * from './lib/blocks/feature-card';
 export * from './lib/blocks/testimonial';
+export * from './lib/blocks/team-grid';

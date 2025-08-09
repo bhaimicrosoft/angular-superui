@@ -283,6 +283,16 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-pink-100 dark:bg-pink-900/30',
       iconColor: 'text-pink-600 dark:text-pink-400',
       features: ['Multiple Layouts', 'Rating Support', 'Author Info', 'Responsive Design']
+    },
+    {
+      name: 'Team Grid',
+      route: '/blocks/team-grid',
+      description: 'Showcase team members with beautiful, responsive grid layouts. Perfect for about pages and company profiles.',
+      category: 'Content',
+      icon: 'fas fa-users',
+      bgColor: 'bg-orange-100 dark:bg-orange-900/30',
+      iconColor: 'text-orange-600 dark:text-orange-400',
+      features: ['Member Cards', 'Social Links', 'Skills Display', 'Join CTA']
     }
   ]);
 

@@ -190,6 +190,19 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/team-grid',
+    loadComponent: () =>
+      import('./demo-components/team-grid-demo.component').then(
+        (c) => c.TeamGridDemoComponent
+      ),
+    data: {
+      blockName: 'team-grid',
+      category: 'Content',
+      description:
+        'Showcase team members with beautiful, responsive grid layouts',
+    },
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(
