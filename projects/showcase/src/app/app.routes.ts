@@ -216,6 +216,19 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/auth-forms',
+    loadComponent: () =>
+      import('./demo-components/auth-forms-demo.component').then(
+        (c) => c.AuthFormsDemoComponent
+      ),
+    data: {
+      blockName: 'auth-forms',
+      category: 'Forms',
+      description:
+        'Complete authentication forms with validation, social login, and beautiful designs',
+    },
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(

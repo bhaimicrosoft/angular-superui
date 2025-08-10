@@ -303,6 +303,16 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
       iconColor: 'text-emerald-600 dark:text-emerald-400',
       features: ['Count Animation', 'Progress Bars', 'Trend Indicators', 'Custom Icons']
+    },
+    {
+      name: 'Auth Forms',
+      route: '/blocks/auth-forms',
+      description: 'Complete authentication forms with validation, social login, and beautiful designs. Includes login, register, and password recovery.',
+      category: 'Forms',
+      icon: 'fas fa-user-lock',
+      bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
+      iconColor: 'text-indigo-600 dark:text-indigo-400',
+      features: ['Login Forms', 'Registration', 'Password Recovery', 'Social Auth']
     }
   ]);
 

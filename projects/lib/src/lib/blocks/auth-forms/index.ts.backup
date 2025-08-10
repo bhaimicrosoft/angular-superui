@@ -1,0 +1,2527 @@
+import {
+  Component,
+  input,
+  output,
+  signal,
+  computed,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  forwardRef,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  NgForm,
+  FormGroupDirective,
+} from '@angular/forms';
+import { cva, type VariantProps } from 'class-variance-authority';
+
+// Types and Interfaces
+export type AuthFormType =
+  | 'login'
+  | 'register'
+  | 'forgot-password'
+  | 'reset-password';
+export type AuthFormVariant =
+  | 'default'
+  | 'minimal'
+  | 'card'
+  | 'glass'
+  | 'modern'
+  | 'split'
+  | 'centered';
+export type AuthFieldVariant =
+  | 'default'
+  | 'floating'
+  | 'outlined'
+  | 'filled'
+  | 'underlined';
+export type AuthFormMode = 'reactive' | 'template';
+
+export interface AuthFormField {
+  name: string;
+  type: 'text' | 'email' | 'password' | 'tel' | 'checkbox' | 'select';
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  pattern?: string;
+  options?: { value: any; label: string }[];
+  icon?: string;
+  helpText?: string;
+  showStrength?: boolean; // For password fields
+}
+
+export interface AuthFormConfig {
+  mode?: AuthFormMode; // NEW: Support for both reactive and template-driven
+  type: AuthFormType;
+  title?: string;
+  subtitle?: string;
+  submitText?: string;
+  fields: AuthFormField[];
+  showSocialLogin?: boolean;
+  showRememberMe?: boolean;
+  showForgotPassword?: boolean;
+  showTermsAcceptance?: boolean;
+  logo?: string;
+  brandName?: string;
+}
+
+export interface AuthFormData {
+  [key: string]: any;
+}
+
+export interface AuthFormSubmitEvent {
+  type: AuthFormType;
+  data: AuthFormData;
+  isValid: boolean;
+}
+
+export interface SocialProvider {
+  name: string;
+  icon: string;
+  color: string;
+  action: () => void;
+}
+
+// Validation Functions
+export function emailValidator(control: AbstractControl) {
+  const email = control.value;
+  if (!email) return null;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) ? null : { invalidEmail: true };
+}
+
+export function passwordStrengthValidator(control: AbstractControl) {
+  const password = control.value;
+  if (!password) return null;
+
+  // Enhanced password requirements
+  const hasMinLength = password.length >= 8;
+  const hasMaxLength = password.length <= 128;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumbers = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/.test(
+    password
+  );
+  const noCommonPatterns = !/(.)\1{2,}/.test(password); // No 3+ repeated characters
+  const noSequentialChars =
+    !/(?:abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz|012|123|234|345|456|567|678|789)/i.test(
+      password
+    );
+
+  const score = [
+    hasMinLength,
+    hasMaxLength,
+    hasUpperCase,
+    hasLowerCase,
+    hasNumbers,
+    hasSpecialChar,
+    noCommonPatterns,
+    noSequentialChars,
+  ].filter(Boolean).length;
+
+  // Require at least "Good" strength (6+ criteria met)
+  if (score < 6) {
+    return {
+      weakPassword: {
+        score,
+        requirements: {
+          hasMinLength,
+          hasMaxLength,
+          hasUpperCase,
+          hasLowerCase,
+          hasNumbers,
+          hasSpecialChar,
+          noCommonPatterns,
+          noSequentialChars,
+        },
+      },
+    };
+  }
+
+  return null;
+}
+
+export function confirmPasswordValidator(passwordField: string) {
+  return (control: AbstractControl) => {
+    const password = control.parent?.get(passwordField)?.value;
+    const confirmPassword = control.value;
+    return password === confirmPassword ? null : { passwordMismatch: true };
+  };
+}
+
+// Component Variants
+const authFormVariants = cva(
+  'auth-form relative w-full max-w-md mx-auto transition-all duration-300',
+  {
+    variants: {
+      variant: {
+        default:
+          'bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-8',
+        minimal: 'bg-transparent p-6',
+        card: 'bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 p-10',
+        glass:
+          'bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/30 p-8',
+        modern:
+          'bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-10',
+        split:
+          'bg-white dark:bg-gray-800 rounded-none shadow-2xl h-full flex flex-col justify-center p-12',
+        centered:
+          'bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 text-center',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
+
+const authFieldVariants = cva('form-field w-full transition-all duration-200', {
+  variants: {
+    variant: {
+      default: 'space-y-2',
+      floating: 'relative',
+      outlined: 'relative',
+      filled: 'relative',
+      underlined:
+        'relative border-b-2 border-gray-200 dark:border-gray-600 focus-within:border-blue-500',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
+
+@Component({
+  selector: 'AuthForms',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AuthForms),
+      multi: true,
+    },
+  ],
+  template: `
+    <div [class]="authFormClass()" #authFormRef role="form" [attr.aria-label]="formTitle()">
+      <!-- Logo and Brand -->
+      <div class="auth-header text-center mb-8" *ngIf="config().logo || config().brandName">
+        <div class="logo-container mb-4" *ngIf="config().logo">
+          <img [src]="config().logo" [alt]="config().brandName || 'Logo'" class="h-12 w-auto mx-auto">
+        </div>
+        <div class="brand-name text-xl font-semibold text-gray-900 dark:text-white" *ngIf="config().brandName && !config().logo">
+          {{ config().brandName }}
+        </div>
+      </div>
+
+      <!-- Title and Subtitle -->
+      <div class="auth-title text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2" id="form-title">
+          {{ formTitle() }}
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400" *ngIf="config().subtitle" id="form-subtitle">
+          {{ config().subtitle }}
+        </p>
+      </div>
+
+      <!-- Social Login -->
+      <div class="social-login mb-8" *ngIf="config().showSocialLogin && socialProviders().length > 0" role="group" aria-labelledby="social-login-heading">
+        <h2 id="social-login-heading" class="sr-only">Social Login Options</h2>
+        <div class="social-buttons space-y-3">
+          <button
+            type="button"
+            *ngFor="let provider of socialProviders(); trackBy: trackBySocialProvider"
+            [style.background-color]="provider.color"
+            class="w-full flex items-center justify-center px-4 py-3 rounded-lg text-white font-medium hover:opacity-90 transition-opacity duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+            (click)="provider.action()"
+            [attr.aria-label]="'Sign in with ' + provider.name"
+          >
+            <!-- Safe Icon Rendering using Icon Service -->
+            <span class="mr-3 w-5 h-5 flex items-center justify-center" aria-hidden="true">
+              <ng-container [ngSwitch]="provider.name.toLowerCase()">
+                <svg *ngSwitchCase="'google'" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <svg *ngSwitchCase="'github'" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <svg *ngSwitchDefault class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </ng-container>
+            </span>
+            Continue with {{ provider.name }}
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative my-8" role="separator" aria-label="or continue with email">
+          <div class="absolute inset-0 flex items-center" aria-hidden="true">
+            <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">or continue with email</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reactive Form -->
+      <form 
+            *ngIf="isReactiveMode()"
+            [formGroup]="authForm()"
+            (ngSubmit)="onSubmit()" 
+            class="auth-form-fields space-y-6" 
+            novalidate 
+            [attr.aria-labelledby]="'form-title'"
+            [attr.aria-describedby]="config().subtitle ? 'form-subtitle' : null"
+            role="form">
+        
+        <fieldset class="space-y-6" [attr.aria-label]="'Form fields for ' + config().type">
+          <legend class="sr-only">{{ formTitle() }} Fields</legend>
+          
+          <!-- Dynamic Fields -->
+          <div 
+            *ngFor="let field of config().fields; trackBy: trackByFieldName" 
+            [class]="fieldClass()"
+            role="group"
+            [attr.aria-labelledby]="field.name + '-label'"
+          >
+            <!-- Text/Email/Password/Tel Fields -->
+            <div *ngIf="field.type !== 'checkbox' && field.type !== 'select'" class="relative">
+              <!-- Standard Label (non-floating) -->
+              <label 
+                *ngIf="fieldVariant() !== 'floating'"
+                [for]="field.name" 
+                [id]="field.name + '-label'"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {{ field.label }}
+                <span *ngIf="field.required" class="text-red-500 ml-1" aria-label="required">*</span>
+              </label>
+
+              <!-- Field Icon -->
+              <div 
+                *ngIf="field.icon"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none z-10"
+                aria-hidden="true"
+              >
+                {{ field.icon }}
+              </div>
+
+              <!-- Reactive Input -->
+              <input
+                [id]="field.name"
+                [type]="getFieldType(field)"
+                [placeholder]="getFieldPlaceholder(field)"
+                [class]="getUnifiedInputClass(field)"
+                [attr.aria-required]="field.required"
+                [attr.aria-invalid]="getFieldInvalidState(field)"
+                [attr.aria-describedby]="getAriaDescribedBy(field)"
+                [attr.autocomplete]="getAutocomplete(field)"
+                role="textbox"
+                [formControlName]="field.name"
+                (focus)="onFieldFocus(field.name)"
+                (blur)="onFieldBlur(field.name)"
+              />
+            </div>
+
+            <!-- Select Field -->
+            <div *ngIf="field.type === 'select'" class="relative" role="group" [attr.aria-labelledby]="field.name + '-label'">
+              <label [for]="field.name" 
+                     [id]="field.name + '-label'"
+                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {{ field.label }}
+                <span *ngIf="field.required" class="text-red-500 ml-1" aria-label="required">*</span>
+              </label>
+              <select
+                [id]="field.name"
+                [class]="getUnifiedInputClass(field)"
+                [attr.aria-required]="field.required"
+                [attr.aria-invalid]="getFieldInvalidState(field)"
+                [attr.aria-describedby]="getAriaDescribedBy(field)"
+                [attr.autocomplete]="getAutocomplete(field)"
+                role="combobox"                
+                [formControlName]="field.name"
+              >
+                <option value="">{{ field.placeholder || 'Select ' + field.label }}</option>
+                <option *ngFor="let option of field.options; trackBy: trackByValue" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Checkbox Field -->
+            <div *ngIf="field.type === 'checkbox'" class="flex items-start" role="group" [attr.aria-labelledby]="field.name + '-label'">
+              <div class="flex items-center h-5">
+                <input
+                  [id]="field.name"
+                  type="checkbox"
+                  [class]="getUnifiedInputClass(field)"
+                  [attr.aria-required]="field.required"
+                  [attr.aria-invalid]="getFieldInvalidState(field)"
+                  [attr.aria-describedby]="getAriaDescribedBy(field)"
+                  role="checkbox"
+                  [formControlName]="field.name"
+                >
+              </div>
+              <div class="ml-3 text-sm">
+                <label [for]="field.name" 
+                       [id]="field.name + '-label'"
+                       class="text-gray-700 dark:text-gray-300" 
+                       [innerHTML]="field.label"></label>
+                <p *ngIf="field.helpText" 
+                   [id]="field.name + '-help'"
+                   class="text-gray-500 dark:text-gray-400 text-xs mt-1">{{ field.helpText }}</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Remember Me -->
+          <div *ngIf="config().showRememberMe && config().type === 'login'" class="flex items-center justify-between">
+            <label class="flex items-center" [for]="'remember-me'">
+              <input 
+                id="remember-me"
+                type="checkbox" 
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                [attr.aria-required]="false"
+                [attr.aria-describedby]="'remember-me-help'"
+                role="checkbox"
+                [formControlName]="'rememberMe'"
+             >
+              <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Remember me</span>
+            </label>
+            
+            <div *ngIf="config().showForgotPassword">
+              <button
+                type="button"
+                class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors duration-200"
+                (click)="onForgotPassword()"
+              >
+                Forgot password?
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+      <!-- Template-Driven Form -->
+      <form 
+            *ngIf="isTemplateMode()"
+            #templateForm="ngForm" 
+            (ngSubmit)="onTemplateSubmit(templateForm)" 
+            class="auth-form-fields space-y-6" 
+            novalidate 
+            [attr.aria-labelledby]="'form-title'"
+            [attr.aria-describedby]="config().subtitle ? 'form-subtitle' : null"
+            role="form">
+        
+        <fieldset class="space-y-6" [attr.aria-label]="'Form fields for ' + config().type">
+          <legend class="sr-only">{{ formTitle() }} Fields</legend>
+          
+          <!-- Dynamic Fields -->
+          <div 
+            *ngFor="let field of config().fields; trackBy: trackByFieldName" 
+            [class]="fieldClass()"
+            role="group" 
+            [attr.aria-labelledby]="field.name + '-label'"
+          >
+            <!-- Unified Input Fields -->
+            <div *ngIf="field.type !== 'checkbox' && field.type !== 'select'" class="relative">
+              
+              <!-- Unified Field Label -->
+              <label 
+                [for]="field.name" 
+                [id]="field.name + '-label'"
+                [class]="getUnifiedLabelClass(field)"
+              >
+                {{ field.label }}
+                <span *ngIf="field.required" class="text-red-500 ml-1" aria-label="required">*</span>
+              </label>
+
+              <!-- Icon -->
+              <div 
+                *ngIf="field.icon" 
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none z-10"
+                aria-hidden="true"
+              >
+                {{ field.icon }}
+              </div>
+
+              <!-- Unified Input - Reactive Mode -->
+              <input
+                *ngIf="isReactiveMode()"
+                [id]="field.name"
+                [type]="getFieldType(field)"
+                [placeholder]="getFieldPlaceholder(field)"
+                [class]="getUnifiedInputClass(field)"
+                [attr.aria-required]="field.required"
+                [attr.aria-invalid]="getFieldInvalidState(field)"
+                [attr.aria-describedby]="getAriaDescribedBy(field)"
+                [attr.autocomplete]="getAutocomplete(field)"
+                role="textbox"
+                [formControlName]="field.name"
+                (focus)="onFieldFocus(field.name)"
+                (blur)="onFieldBlur(field.name)"
+              />
+              
+              <!-- Unified Input - Template Mode -->
+              <input
+                *ngIf="isTemplateMode()"
+                [id]="field.name"
+                [type]="getFieldType(field)"
+                [placeholder]="getFieldPlaceholder(field)"
+                [class]="getUnifiedInputClass(field)"
+                [attr.aria-required]="field.required"
+                [attr.aria-invalid]="getFieldInvalidState(field)"
+                [attr.aria-describedby]="getAriaDescribedBy(field)"
+                [attr.autocomplete]="getAutocomplete(field)"
+                role="textbox"
+                [ngModel]="getFieldValue(field.name)"
+                [name]="field.name"
+                [required]="!!field.required"
+                [minlength]="field.minLength || null"
+                [attr.pattern]="field.pattern || null"
+                (ngModelChange)="onFieldValueChange(field.name, $event)"
+                (focus)="onFieldFocus(field.name)"
+                (blur)="onFieldBlur(field.name)"
+              />
+
+              <!-- Password Toggle -->
+              <button
+                *ngIf="field.type === 'password'"
+                type="button"
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none focus:text-blue-500 z-10"
+                (click)="togglePasswordVisibility(field.name)"
+                [attr.aria-label]="passwordVisibility()[field.name] ? 'Hide password' : 'Show password'"
+                tabindex="0"
+              >
+                <span *ngIf="!passwordVisibility()[field.name]">👁️</span>
+                <span *ngIf="passwordVisibility()[field.name]">🙈</span>
+              </button>
+
+              <!-- Unified Password Strength Indicator -->
+              <div *ngIf="field.type === 'password' && field.name === 'password' && getFieldValue(field.name)" class="mt-2">
+                <div class="flex space-x-1 mb-2" 
+                     role="progressbar" 
+                     [attr.aria-valuenow]="getUnifiedPasswordStrengthScore()"
+                     aria-valuemin="0" 
+                     aria-valuemax="8"
+                     [attr.aria-label]="'Password strength indicator'">
+                  <div 
+                    *ngFor="let _ of [1,2,3,4,5,6,7,8]; let i = index"
+                    class="h-1 flex-1 rounded-full transition-colors duration-200"
+                    [class]="getUnifiedPasswordStrengthBarClass(i)"
+                    [attr.aria-hidden]="true"
+                  ></div>
+                </div>
+                <p class="text-xs" [class]="getUnifiedPasswordStrengthTextClass()" [id]="field.name + '-strength'">
+                  {{ getUnifiedPasswordStrengthText() }}
+                </p>
+                <div class="text-xs text-gray-600 dark:text-gray-400 mt-1" 
+                     [id]="field.name + '-requirements'"
+                     role="region"
+                     aria-label="Password requirements">
+                  <p class="mb-2 font-medium">Password must contain:</p>
+                  <ul class="list-none space-y-1" role="list" aria-label="Password requirements list">
+                    <li class="flex items-center space-x-2" role="listitem" [class]="hasMinLength() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                      <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                            [class]="hasMinLength() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                            [attr.aria-label]="hasMinLength() ? 'Minimum length requirement met' : 'Minimum length requirement not met'"
+                            role="img">
+                        <svg *ngIf="hasMinLength()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                      <span>At least 8 characters</span>
+                    </li>
+                    <li class="flex items-center space-x-2" role="listitem" [class]="hasUpperCase() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                      <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                            [class]="hasUpperCase() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                            [attr.aria-label]="hasUpperCase() ? 'Uppercase letter requirement met' : 'Uppercase letter requirement not met'"
+                            role="img">
+                        <svg *ngIf="hasUpperCase()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                      <span>Uppercase letter</span>
+                    </li>
+                    <li class="flex items-center space-x-2" role="listitem" [class]="hasLowerCase() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                      <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                            [class]="hasLowerCase() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                            [attr.aria-label]="hasLowerCase() ? 'Lowercase letter requirement met' : 'Lowercase letter requirement not met'"
+                            role="img">
+                        <svg *ngIf="hasLowerCase()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                      <span>Lowercase letter</span>
+                    </li>
+                    <li class="flex items-center space-x-2" role="listitem" [class]="hasNumbers() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                      <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                            [class]="hasNumbers() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                            [attr.aria-label]="hasNumbers() ? 'Number requirement met' : 'Number requirement not met'"
+                            role="img">
+                        <svg *ngIf="hasNumbers()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                      <span>Number</span>
+                    </li>
+                    <li class="flex items-center space-x-2" role="listitem" [class]="hasSpecialChar() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                      <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                            [class]="hasSpecialChar() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                            [attr.aria-label]="hasSpecialChar() ? 'Special character requirement met' : 'Special character requirement not met'"
+                            role="img">
+                        <svg *ngIf="hasSpecialChar()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                      <span>Special character</span>
+                    </li>
+                    <li class="flex items-center space-x-2" role="listitem" [class]="noCommonPatterns() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                      <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                            [class]="noCommonPatterns() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                            [attr.aria-label]="noCommonPatterns() ? 'No repeated characters requirement met' : 'No repeated characters requirement not met'"
+                            role="img">
+                        <svg *ngIf="noCommonPatterns()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                      </span>
+                      <span>No repeated characters</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Help Text -->
+              <p *ngIf="field.helpText" [id]="field.name + '-help'" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                {{ field.helpText }}
+              </p>
+
+              <!-- Unified Error Messages -->
+              <div *ngIf="getFieldInvalidState(field)" 
+                   class="mt-1" 
+                   role="alert" 
+                   [id]="field.name + '-error'"
+                   aria-live="polite">
+                <p *ngIf="isReactiveMode() && authForm().get(field.name)?.errors?.['required']" class="text-sm text-red-600 dark:text-red-400">
+                  {{ field.label }} is required
+                </p>
+                <p *ngIf="isReactiveMode() && (authForm().get(field.name)?.errors?.['email'] || authForm().get(field.name)?.errors?.['invalidEmail'])" class="text-sm text-red-600 dark:text-red-400">
+                  Please enter a valid email address
+                </p>
+                <p *ngIf="isReactiveMode() && authForm().get(field.name)?.errors?.['minlength']" class="text-sm text-red-600 dark:text-red-400">
+                  {{ field.label }} must be at least {{ field.minLength }} characters
+                </p>
+                <p *ngIf="isReactiveMode() && authForm().get(field.name)?.errors?.['weakPassword']" class="text-sm text-red-600 dark:text-red-400">
+                  Password does not meet security requirements. Please check the requirements above.
+                </p>
+                <p *ngIf="isReactiveMode() && authForm().get(field.name)?.errors?.['passwordMismatch']" class="text-sm text-red-600 dark:text-red-400">
+                  Passwords do not match
+                </p>
+              </div>
+            </div>
+
+            <!-- Select Field -->
+            <div *ngIf="field.type === 'select'" class="relative" role="group" [attr.aria-labelledby]="field.name + '-label'">
+              <label [for]="field.name" 
+                     [id]="field.name + '-label'"
+                     class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {{ field.label }}
+                <span *ngIf="field.required" class="text-red-500 ml-1" aria-label="required">*</span>
+              </label>
+              <!-- Select - Reactive Mode -->
+              <select
+                *ngIf="isReactiveMode()"
+                [id]="field.name"
+                [class]="getUnifiedInputClass(field)"
+                [attr.aria-required]="field.required"
+                [attr.aria-invalid]="getFieldInvalidState(field)"
+                [attr.aria-describedby]="getAriaDescribedBy(field)"
+                [attr.autocomplete]="getAutocomplete(field)"
+                role="combobox"                
+                [formControlName]="field.name"
+              >
+                <option value="">{{ field.placeholder || 'Select ' + field.label }}</option>
+                <option *ngFor="let option of field.options; trackBy: trackByValue" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              
+              <!-- Select - Template Mode -->
+              <select
+                *ngIf="isTemplateMode()"
+                [id]="field.name"
+                [class]="getUnifiedInputClass(field)"
+                [attr.aria-required]="field.required"
+                [attr.aria-invalid]="getFieldInvalidState(field)"
+                [attr.aria-describedby]="getAriaDescribedBy(field)"
+                [attr.autocomplete]="getAutocomplete(field)"
+                role="combobox"                
+                [ngModel]="getFieldValue(field.name)"
+                [name]="field.name"
+                [required]="!!field.required"
+                (ngModelChange)="onFieldValueChange(field.name, $event)"
+              >
+                <option value="">{{ field.placeholder || 'Select ' + field.label }}</option>
+                <option *ngFor="let option of field.options; trackBy: trackByValue" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              
+              <!-- Help Text -->
+              <p *ngIf="field.helpText" [id]="field.name + '-help'" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                {{ field.helpText }}
+              </p>
+
+              <!-- Error Messages -->
+              <div *ngIf="getFieldInvalidState(field)" 
+                   class="mt-1" 
+                   role="alert" 
+                   [id]="field.name + '-error'"
+                   aria-live="polite">
+                <p *ngIf="isReactiveMode() && authForm().get(field.name)?.errors?.['required']" class="text-sm text-red-600 dark:text-red-400">
+                  {{ field.label }} is required
+                </p>
+              </div>
+            </div>
+
+            <!-- Checkbox Field -->
+            <div *ngIf="field.type === 'checkbox'" 
+                 class="flex items-start" 
+                 role="group" 
+                 [attr.aria-labelledby]="field.name + '-label'">
+              <div class="flex items-center h-5">
+                <!-- Checkbox - Reactive Mode -->
+                <input
+                  *ngIf="isReactiveMode()"
+                  [id]="field.name"
+                  type="checkbox"
+                  [class]="getUnifiedInputClass(field)"
+                  [attr.aria-required]="field.required"
+                  [attr.aria-invalid]="getFieldInvalidState(field)"
+                  [attr.aria-describedby]="getAriaDescribedBy(field)"
+                  role="checkbox"
+                  [formControlName]="field.name"
+                >
+                
+                <!-- Checkbox - Template Mode -->
+                <input
+                  *ngIf="isTemplateMode()"
+                  [id]="field.name"
+                  type="checkbox"
+                  [class]="getUnifiedInputClass(field)"
+                  [attr.aria-required]="field.required"
+                  [attr.aria-invalid]="getFieldInvalidState(field)"
+                  [attr.aria-describedby]="getAriaDescribedBy(field)"
+                  role="checkbox"
+                  [ngModel]="getFieldValue(field.name)"
+                  [name]="field.name"
+                  [required]="!!field.required"
+                  (ngModelChange)="onFieldValueChange(field.name, $event)"
+                >
+              </div>
+              <div class="ml-3 text-sm">
+                <label [for]="field.name" 
+                       [id]="field.name + '-label'"
+                       class="text-gray-700 dark:text-gray-300" 
+                       [innerHTML]="field.label"></label>
+                <p *ngIf="field.helpText" 
+                   [id]="field.name + '-help'"
+                   class="text-gray-500 dark:text-gray-400 text-xs mt-1">{{ field.helpText }}</p>
+              </div>
+              
+              <!-- Error Messages -->
+              <div *ngIf="getFieldInvalidState(field)" 
+                   class="mt-1" 
+                   role="alert" 
+                   [id]="field.name + '-error'"
+                   aria-live="polite">
+                <p *ngIf="isReactiveMode() && authForm().get(field.name)?.errors?.['required']" class="text-sm text-red-600 dark:text-red-400">
+                  {{ field.label }} is required
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div *ngIf="config().showRememberMe && config().type === 'login'" class="flex items-center justify-between">
+            <label class="flex items-center" [for]="'remember-me'">
+              <!-- Remember Me - Reactive Mode -->
+              <input 
+                *ngIf="isReactiveMode()"
+                id="remember-me"
+                type="checkbox" 
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                [attr.aria-required]="false"
+                [attr.aria-describedby]="'remember-me-help'"
+                role="checkbox"
+                [formControlName]="'rememberMe'"
+             >
+             
+              <!-- Remember Me - Template Mode -->
+              <input 
+                *ngIf="isTemplateMode()"
+                id="remember-me"
+                type="checkbox" 
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                [attr.aria-required]="false"
+                [attr.aria-describedby]="'remember-me-help'"
+                role="checkbox"
+                [ngModel]="getFieldValue('rememberMe')"
+                [name]="'rememberMe'"
+                (ngModelChange)="onFieldValueChange('rememberMe', $event)"
+             >
+              <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Remember me</span>
+            </label>
+            
+            <div *ngIf="config().showForgotPassword">
+              <button
+                type="button"
+                class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors duration-200"
+                (click)="onForgotPassword()"
+              >
+                Forgot password?
+              </button>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="getFormInvalidState() || isSubmitting()"
+          class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          [class.opacity-50]="getFormInvalidState()"
+          [class.cursor-not-allowed]="getFormInvalidState()"
+        >
+          <span *ngIf="isSubmitting()" class="spinner mr-2"></span>
+          {{ getSubmitText() }}
+        </button>
+
+        <!-- Form Footer Links -->
+        <div class="form-footer text-center text-sm space-y-2">
+          <div *ngIf="config().type === 'login'">
+            <span class="text-gray-600 dark:text-gray-400">Don't have an account?</span>
+            <button
+              type="button"
+              class="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('register')"
+            >
+              Sign up
+            </button>
+          </div>
+          
+          <div *ngIf="config().type === 'register'">
+            <span class="text-gray-600 dark:text-gray-400">Already have an account?</span>
+            <button
+              type="button"
+              class="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('login')"
+            >
+              Sign in
+            </button>
+          </div>
+
+          <div *ngIf="config().type === 'forgot-password'">
+            <button
+              type="button"
+              class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('login')"
+            >
+              Back to login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Social Providers -->
+    <div *ngIf="config().socialProviders && config().socialProviders.length > 0" class="social-providers">
+      <div class="divider flex items-center my-6" role="separator" aria-label="Or continue with social providers">
+        <div class="flex-1 h-px bg-gray-300 dark:bg-gray-600" aria-hidden="true"></div>
+        <span class="px-4 text-sm text-gray-500 dark:text-gray-400">or</span>
+        <div class="flex-1 h-px bg-gray-300 dark:bg-gray-600" aria-hidden="true"></div>
+      </div>
+
+      <div class="space-y-3">
+        <button
+          *ngFor="let provider of config().socialProviders"
+          type="button"
+          class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200"
+          (click)="onSocialLogin(provider)"
+        >
+          <i [class]="provider.icon" class="mr-2" aria-hidden="true"></i>
+          {{ getSocialButtonText(provider) }}
+        </button>
+      </div>
+    </div>
+    
+    <!-- CSS Styles -->
+    <style>
+      .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid transparent;
+        border-top: 2px solid currentColor;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .form-field {
+        position: relative;
+      }
+
+      .floating-label {
+        transition: all 0.2s ease-in-out;
+        transform-origin: left top;
+      }
+
+      .form-field:focus-within .floating-label,
+      .form-field.has-value .floating-label {
+        transform: translateY(-1.5rem) scale(0.875);
+        color: #3b82f6;
+      }
+
+      .dark .form-field:focus-within .floating-label {
+        color: #60a5fa;
+      }
+    </style>
+  `,
+})
+export class AuthForms implements OnInit, ControlValueAccessor {
+          <div 
+            *ngFor="let field of config().fields; trackBy: trackByFieldName" 
+            [class]="fieldClass()"
+            role="group"
+            [attr.aria-labelledby]="field.name + '-label'"
+          >
+            <!-- Text/Email/Password/Tel Fields -->
+            <div *ngIf="field.type !== 'checkbox' && field.type !== 'select'" class="relative">
+              <!-- Standard Label (non-floating) -->
+              <label 
+                *ngIf="fieldVariant() !== 'floating'"
+                [id]="field.name + '-label'"
+                [for]="field.name" 
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
+                {{ field.label }}
+                <span *ngIf="field.required" class="text-red-500 ml-1" aria-label="required">*</span>
+              </label>
+
+              <!-- Input Container -->
+              <div class="relative">
+                <!-- Icon -->
+                <div *ngIf="field.icon" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10" aria-hidden="true">
+                  <span [innerHTML]="field.icon" class="text-gray-400 dark:text-gray-500"></span>
+                </div>
+
+                <!-- Input -->
+                <input
+                  [id]="field.name"
+                  [formControlName]="field.name"
+                  [type]="getFieldType(field)"
+                  [placeholder]="getFieldPlaceholder(field)"
+                  [class]="getInputClass(field)"
+                  [attr.minlength]="field.minLength"
+                  [attr.maxlength]="field.maxLength"
+                  [attr.pattern]="field.pattern"
+                  [attr.aria-describedby]="getAriaDescribedBy(field)"
+                  [attr.aria-invalid]="authForm().get(field.name)?.invalid && authForm().get(field.name)?.touched"
+                  [attr.aria-required]="field.required"
+                  [attr.autocomplete]="getAutocomplete(field)"
+                  (focus)="onFieldFocus(field.name)"
+                  (blur)="onFieldBlur(field.name)"
+                  role="textbox"
+                >
+
+                <!-- Improved Floating Label -->
+                <label 
+                  *ngIf="fieldVariant() === 'floating'"
+                  [id]="field.name + '-label'"
+                  [for]="field.name"
+                  [class]="getFloatingLabelClass(field)"
+                >
+                  {{ field.label }}
+                  <span *ngIf="field.required" class="text-red-500 ml-1" aria-label="required">*</span>
+                </label>
+
+                <!-- Password Toggle -->
+                <button
+                  *ngIf="field.type === 'password'"
+                  type="button"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                  (click)="togglePasswordVisibility(field.name)"
+                  [attr.aria-label]="passwordVisibility()[field.name] ? 'Hide password' : 'Show password'"
+                  [attr.aria-pressed]="passwordVisibility()[field.name]"
+                >
+                  <span [innerHTML]="passwordVisibility()[field.name] ? '👁️‍🗨️' : '👁️'" class="text-gray-400 hover:text-gray-600" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <!-- Password Strength Indicator -->
+              <div *ngIf="field.type === 'password' && field.name === 'password' && authForm().get('password')?.value" 
+                   class="mt-2"
+                   role="status"
+                   [attr.aria-live]="'polite'"
+                   [attr.aria-label]="'Password strength: ' + getPasswordStrengthText()">
+                <div class="password-strength">
+                  <div class="flex space-x-1 mb-2" role="progressbar" 
+                       [attr.aria-valuenow]="getPasswordStrengthScore()" 
+                       aria-valuemin="0" 
+                       aria-valuemax="8"
+                       [attr.aria-label]="'Password strength indicator'">
+                    <div 
+                      *ngFor="let _ of [1,2,3,4,5,6,7,8]; let i = index"
+                      class="h-1 flex-1 rounded-full transition-colors duration-200"
+                      [class]="getPasswordStrengthBarClass(i)"
+                      [attr.aria-hidden]="true"
+                    ></div>
+                  </div>
+                  <p class="text-xs" [class]="getPasswordStrengthTextClass()" [id]="field.name + '-strength'">
+                    {{ getPasswordStrengthText() }}
+                  </p>
+                  <div class="text-xs text-gray-600 dark:text-gray-400 mt-1" 
+                       [id]="field.name + '-requirements'"
+                       role="region"
+                       aria-label="Password requirements">
+                    <p class="mb-2 font-medium">Password must contain:</p>
+                    <ul class="list-none space-y-1" role="list" aria-label="Password requirements list">
+                      <li class="flex items-center space-x-2" role="listitem" [class]="hasMinLength() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                        <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                              [class]="hasMinLength() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                              [attr.aria-label]="hasMinLength() ? 'Minimum length requirement met' : 'Minimum length requirement not met'"
+                              role="img">
+                          <svg *ngIf="hasMinLength()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                          </svg>
+                        </span>
+                        <span>At least 8 characters</span>
+                      </li>
+                      <li class="flex items-center space-x-2" role="listitem" [class]="hasUpperCase() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                        <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                              [class]="hasUpperCase() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                              [attr.aria-label]="hasUpperCase() ? 'Uppercase letter requirement met' : 'Uppercase letter requirement not met'"
+                              role="img">
+                          <svg *ngIf="hasUpperCase()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                          </svg>
+                        </span>
+                        <span>Uppercase letter</span>
+                      </li>
+                      <li class="flex items-center space-x-2" role="listitem" [class]="hasLowerCase() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                        <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                              [class]="hasLowerCase() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                              [attr.aria-label]="hasLowerCase() ? 'Lowercase letter requirement met' : 'Lowercase letter requirement not met'"
+                              role="img">
+                          <svg *ngIf="hasLowerCase()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                          </svg>
+                        </span>
+                        <span>Lowercase letter</span>
+                      </li>
+                      <li class="flex items-center space-x-2" role="listitem" [class]="hasNumbers() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                        <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                              [class]="hasNumbers() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                              [attr.aria-label]="hasNumbers() ? 'Number requirement met' : 'Number requirement not met'"
+                              role="img">
+                          <svg *ngIf="hasNumbers()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                          </svg>
+                        </span>
+                        <span>Number</span>
+                      </li>
+                      <li class="flex items-center space-x-2" role="listitem" [class]="hasSpecialChar() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                        <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                              [class]="hasSpecialChar() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                              [attr.aria-label]="hasSpecialChar() ? 'Special character requirement met' : 'Special character requirement not met'"
+                              role="img">
+                          <svg *ngIf="hasSpecialChar()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                          </svg>
+                        </span>
+                        <span>Special character</span>
+                      </li>
+                      <li class="flex items-center space-x-2" role="listitem" [class]="noCommonPatterns() ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'">
+                        <span class="w-3 h-3 rounded-full border flex items-center justify-center"
+                              [class]="noCommonPatterns() ? 'bg-green-500 border-green-500' : 'border-gray-400'"
+                              [attr.aria-label]="noCommonPatterns() ? 'No repeated characters requirement met' : 'No repeated characters requirement not met'"
+                              role="img">
+                          <svg *ngIf="noCommonPatterns()" class="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                          </svg>
+                        </span>
+                        <span>No repeated characters</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Help Text -->
+              <p *ngIf="field.helpText" [id]="field.name + '-help'" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                {{ field.helpText }}
+              </p>
+
+              <!-- Error Messages -->
+              <div *ngIf="authForm().get(field.name)?.invalid && authForm().get(field.name)?.touched" 
+                   class="mt-1" 
+                   role="alert" 
+                   [id]="field.name + '-error'"
+                   aria-live="polite">
+                <p *ngIf="authForm().get(field.name)?.errors?.['required']" class="text-sm text-red-600 dark:text-red-400">
+                  {{ field.label }} is required
+                </p>
+                <p *ngIf="authForm().get(field.name)?.errors?.['email'] || authForm().get(field.name)?.errors?.['invalidEmail']" class="text-sm text-red-600 dark:text-red-400">
+                  Please enter a valid email address
+                </p>
+                <p *ngIf="authForm().get(field.name)?.errors?.['minlength']" class="text-sm text-red-600 dark:text-red-400">
+                  {{ field.label }} must be at least {{ field.minLength }} characters
+                </p>
+                <p *ngIf="authForm().get(field.name)?.errors?.['weakPassword']" class="text-sm text-red-600 dark:text-red-400">
+                  Password does not meet security requirements. Please check the requirements above.
+                </p>
+                <p *ngIf="authForm().get(field.name)?.errors?.['passwordMismatch']" class="text-sm text-red-600 dark:text-red-400">
+                  Passwords do not match
+                </p>
+              </div>
+            </div>
+
+          <!-- Select Field -->
+          <div *ngIf="field.type === 'select'" class="relative" role="group" [attr.aria-labelledby]="field.name + '-label'">
+            <label [for]="field.name" 
+                   [id]="field.name + '-label'"
+                   class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              {{ field.label }}
+              <span *ngIf="field.required" class="text-red-500 ml-1" aria-label="required">*</span>
+            </label>
+            <select
+              [id]="field.name"
+              [formControlName]="field.name"
+              [attr.aria-required]="field.required"
+              [attr.aria-invalid]="authForm().get(field.name)?.invalid && authForm().get(field.name)?.touched"
+              [attr.aria-describedby]="getAriaDescribedBy(field)"
+              [attr.autocomplete]="getAutocomplete(field)"
+              role="combobox"
+              class="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200"
+            >
+              <option value="">{{ field.placeholder || 'Select ' + field.label }}</option>
+              <option *ngFor="let option of field.options; trackBy: trackByValue" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+            
+            <!-- Help Text -->
+            <p *ngIf="field.helpText" [id]="field.name + '-help'" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              {{ field.helpText }}
+            </p>
+
+            <!-- Error Messages -->
+            <div *ngIf="authForm().get(field.name)?.invalid && authForm().get(field.name)?.touched" 
+                 class="mt-1" 
+                 role="alert" 
+                 [id]="field.name + '-error'"
+                 aria-live="polite">
+              <p *ngIf="authForm().get(field.name)?.errors?.['required']" class="text-sm text-red-600 dark:text-red-400">
+                {{ field.label }} is required
+              </p>
+            </div>
+          </div>
+
+          <!-- Checkbox Field -->
+          <div *ngIf="field.type === 'checkbox'" 
+               class="flex items-start" 
+               role="group" 
+               [attr.aria-labelledby]="field.name + '-label'">
+            <div class="flex items-center h-5">
+              <input
+                [id]="field.name"
+                [formControlName]="field.name"
+                type="checkbox"
+                [attr.aria-required]="field.required"
+                [attr.aria-invalid]="authForm().get(field.name)?.invalid && authForm().get(field.name)?.touched"
+                [attr.aria-describedby]="getAriaDescribedBy(field)"
+                role="checkbox"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              >
+            </div>
+            <div class="ml-3 text-sm">
+              <label [for]="field.name" 
+                     [id]="field.name + '-label'"
+                     class="text-gray-700 dark:text-gray-300" 
+                     [innerHTML]="field.label"></label>
+              <p *ngIf="field.helpText" 
+                 [id]="field.name + '-help'"
+                 class="text-gray-500 dark:text-gray-400 text-xs mt-1">{{ field.helpText }}</p>
+            </div>
+            
+            <!-- Error Messages -->
+            <div *ngIf="authForm().get(field.name)?.invalid && authForm().get(field.name)?.touched" 
+                 class="mt-1" 
+                 role="alert" 
+                 [id]="field.name + '-error'"
+                 aria-live="polite">
+              <p *ngIf="authForm().get(field.name)?.errors?.['required']" class="text-sm text-red-600 dark:text-red-400">
+                {{ field.label }} is required
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remember Me -->
+        <div *ngIf="config().showRememberMe && config().type === 'login'" class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="rememberMe"
+              name="rememberMe"
+              type="checkbox"
+              formControlName="rememberMe"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            >
+            <label for="rememberMe" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+              Remember me
+            </label>
+          </div>
+          
+          <div *ngIf="config().showForgotPassword">
+            <button
+              type="button"
+              class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors duration-200"
+              (click)="onForgotPassword()"
+            >
+              Forgot password?
+            </button>
+          </div>
+        </div>
+        
+        </fieldset>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="authForm().invalid || isSubmitting()"
+          class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          [class.opacity-50]="authForm().invalid"
+          [class.cursor-not-allowed]="authForm().invalid"
+        >
+          <span *ngIf="isSubmitting()" class="spinner mr-2"></span>
+          {{ getSubmitText() }}
+        </button>
+
+        <!-- Form Footer Links -->
+        <div class="form-footer text-center text-sm space-y-2">
+          <div *ngIf="config().type === 'login'">
+            <span class="text-gray-600 dark:text-gray-400">Don't have an account?</span>
+            <button
+              type="button"
+              class="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('register')"
+            >
+              Sign up
+            </button>
+          </div>
+          
+          <div *ngIf="config().type === 'register'">
+            <span class="text-gray-600 dark:text-gray-400">Already have an account?</span>
+            <button
+              type="button"
+              class="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('login')"
+            >
+              Sign in
+            </button>
+          </div>
+
+          <div *ngIf="config().type === 'forgot-password'">
+            <button
+              type="button"
+              class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('login')"
+            >
+              Back to login
+            </button>
+          </div>
+        </div>
+
+      <!-- Form - Template-Driven Mode -->
+      <form *ngIf="isTemplateMode()" #templateForm="ngForm" (ngSubmit)="onTemplateSubmit(templateForm)" class="auth-form-fields space-y-6">
+        <!-- Dynamic Fields -->
+        <div 
+          *ngFor="let field of config().fields; trackBy: trackByFieldName" 
+          [class]="fieldClass()"
+        >
+          <!-- Text/Email/Password/Tel Fields -->
+          <div *ngIf="field.type !== 'checkbox' && field.type !== 'select'" class="relative">
+            <!-- Standard Label (non-floating) -->
+            <label 
+              *ngIf="fieldVariant() !== 'floating'"
+              [for]="field.name" 
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              {{ field.label }}
+              <span *ngIf="field.required" class="text-red-500 ml-1">*</span>
+            </label>
+
+            <!-- Input Container -->
+            <div class="relative">
+              <!-- Icon -->
+              <div *ngIf="field.icon" class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                <span [innerHTML]="field.icon" class="text-gray-400 dark:text-gray-500"></span>
+              </div>
+
+              <!-- Input -->
+              <input
+                [id]="field.name"
+                [name]="field.name"
+                [(ngModel)]="templateFormData[field.name]"
+                [type]="getFieldType(field)"
+                [placeholder]="getFieldPlaceholder(field)"
+                [class]="getTemplateInputClass(field)"
+                [attr.minlength]="field.minLength"
+                [attr.maxlength]="field.maxLength"
+                [attr.pattern]="field.pattern"
+                [required]="field.required || false"
+                [attr.aria-describedby]="field.helpText ? field.name + '-help' : null"
+                #fieldRef="ngModel"
+                (focus)="onFieldFocus(field.name)"
+                (blur)="onFieldBlur(field.name)"
+                (input)="onTemplateInputChange(field.name, $event)"
+              >
+
+              <!-- Improved Floating Label -->
+              <label 
+                *ngIf="fieldVariant() === 'floating'"
+                [for]="field.name"
+                [class]="getTemplateFloatingLabelClass(field, fieldRef)"
+              >
+                {{ field.label }}
+                <span *ngIf="field.required" class="text-red-500 ml-1">*</span>
+              </label>
+
+              <!-- Password Toggle -->
+              <button
+                *ngIf="field.type === 'password'"
+                type="button"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center z-10"
+                (click)="togglePasswordVisibility(field.name)"
+              >
+                <span [innerHTML]="passwordVisibility()[field.name] ? '👁️' : '👁️‍🗨️'" class="text-gray-400 hover:text-gray-600"></span>
+              </button>
+            </div>
+
+            <!-- Password Strength Indicator -->
+            <div *ngIf="field.type === 'password' && field.name === 'password' && templateFormData['password']" class="mt-2">
+              <div class="password-strength">
+                <div class="flex space-x-1 mb-2">
+                  <div 
+                    *ngFor="let _ of [1,2,3,4,5]; let i = index"
+                    class="h-1 flex-1 rounded-full transition-colors duration-200"
+                    [class]="getTemplatePasswordStrengthBarClass(i)"
+                  ></div>
+                </div>
+                <p class="text-xs" [class]="getTemplatePasswordStrengthTextClass()">
+                  {{ getTemplatePasswordStrengthText() }}
+                </p>
+              </div>
+            </div>
+
+            <!-- Help Text -->
+            <p *ngIf="field.helpText" [id]="field.name + '-help'" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              {{ field.helpText }}
+            </p>
+
+            <!-- Error Messages -->
+            <div *ngIf="fieldRef.invalid && fieldRef.touched" class="mt-1">
+              <p *ngIf="fieldRef.errors?.['required']" class="text-sm text-red-600 dark:text-red-400">
+                {{ field.label }} is required
+              </p>
+              <p *ngIf="fieldRef.errors?.['email']" class="text-sm text-red-600 dark:text-red-400">
+                Please enter a valid email address
+              </p>
+              <p *ngIf="fieldRef.errors?.['minlength']" class="text-sm text-red-600 dark:text-red-400">
+                {{ field.label }} must be at least {{ field.minLength }} characters
+              </p>
+              <p *ngIf="fieldRef.errors?.['pattern']" class="text-sm text-red-600 dark:text-red-400">
+                Please enter a valid {{ field.label.toLowerCase() }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Select Field -->
+          <div *ngIf="field.type === 'select'" class="relative">
+            <label [for]="field.name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              {{ field.label }}
+              <span *ngIf="field.required" class="text-red-500 ml-1">*</span>
+            </label>
+            <select
+              [id]="field.name"
+              [name]="field.name"
+              [(ngModel)]="templateFormData[field.name]"
+              [required]="field.required || false"
+              class="w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200"
+            >
+              <option value="">{{ field.placeholder || 'Select ' + field.label }}</option>
+              <option *ngFor="let option of field.options" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Checkbox Field -->
+          <div *ngIf="field.type === 'checkbox'" class="flex items-start">
+            <div class="flex items-center h-5">
+              <input
+                [id]="field.name"
+                [name]="field.name"
+                [(ngModel)]="templateFormData[field.name]"
+                type="checkbox"
+                [required]="field.required || false"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              >
+            </div>
+            <div class="ml-3 text-sm">
+              <label [for]="field.name" class="text-gray-700 dark:text-gray-300" [innerHTML]="field.label"></label>
+              <p *ngIf="field.helpText" class="text-gray-500 dark:text-gray-400 text-xs mt-1">{{ field.helpText }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remember Me -->
+        <div *ngIf="config().showRememberMe && config().type === 'login'" class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="rememberMe"
+              name="rememberMe"
+              [(ngModel)]="templateFormData['rememberMe']"
+              type="checkbox"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            >
+            <label for="rememberMe" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+              Remember me
+            </label>
+          </div>
+          
+          <div *ngIf="config().showForgotPassword">
+            <button
+              type="button"
+              class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors duration-200"
+              (click)="onForgotPassword()"
+            >
+              Forgot password?
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="templateForm.invalid || isSubmitting()"
+          class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          [class.opacity-50]="templateForm.invalid"
+          [class.cursor-not-allowed]="templateForm.invalid"
+        >
+          <span *ngIf="isSubmitting()" class="spinner mr-2"></span>
+          {{ getSubmitText() }}
+        </button>
+
+        <!-- Form Footer Links -->
+        <div class="form-footer text-center text-sm space-y-2">
+          <div *ngIf="config().type === 'login'">
+            <span class="text-gray-600 dark:text-gray-400">Don't have an account?</span>
+            <button
+              type="button"
+              class="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('register')"
+            >
+              Sign up
+            </button>
+          </div>
+          
+          <div *ngIf="config().type === 'register'">
+            <span class="text-gray-600 dark:text-gray-400">Already have an account?</span>
+            <button
+              type="button"
+              class="ml-1 text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('login')"
+            >
+              Sign in
+            </button>
+          </div>
+
+          <div *ngIf="config().type === 'forgot-password'">
+            <button
+              type="button"
+              class="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-medium transition-colors duration-200"
+              (click)="onSwitchForm('login')"
+            >
+              Back to login
+            </button>
+          </div>
+        </div>
+      </form>
+
+    <style>
+      .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid #ffffff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Enhanced Floating Label Styles */
+      .floating-label {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        padding: 0 4px;
+        color: #6b7280;
+        font-size: 16px;
+        font-weight: 400;
+        pointer-events: none;
+        transition: all 0.2s ease-in-out;
+        z-index: 10;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .dark .floating-label {
+        background: rgb(31 41 55);
+        color: #9ca3af;
+      }
+
+      .floating-label.with-icon {
+        left: 44px;
+      }
+
+      .floating-label.focused,
+      .floating-label.has-value {
+        opacity: 1;
+        visibility: visible;
+        top: 0;
+        transform: translateY(-50%);
+        font-size: 12px;
+        font-weight: 500;
+        color: #3b82f6;
+      }
+
+      .dark .floating-label.focused,
+      .dark .floating-label.has-value {
+        color: #60a5fa;
+      }
+
+      .floating-label.error.focused,
+      .floating-label.error.has-value {
+        color: #dc2626;
+      }
+
+      .dark .floating-label.error.focused,
+      .dark .floating-label.error.has-value {
+        color: #f87171;
+      }
+
+      /* Input Focus States for Floating Labels */
+      .floating-input {
+        padding-top: 20px;
+        padding-bottom: 12px;
+      }
+
+      /* Ensure placeholder is always visible when label is not floating */
+      .floating-input::placeholder {
+        color: #9ca3af;
+        opacity: 1;
+      }
+
+      .dark .floating-input::placeholder {
+        color: #6b7280;
+      }
+
+      /* Hide placeholder only when floating label is visible */
+      .floating-input:focus::placeholder {
+        color: transparent;
+      }
+
+      /* When field has value, show placeholder as transparent */
+      .floating-input.has-value::placeholder {
+        color: transparent;
+      }
+
+      /* Animation for form appearance */
+      .auth-form {
+        animation: fadeInUp 0.5s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Password strength indicators */
+      .password-strength-bar {
+        transition: all 0.3s ease;
+      }
+
+      /* Focus states */
+      .form-field:focus-within .floating-label {
+        color: #3b82f6;
+      }
+
+      .dark .form-field:focus-within .floating-label {
+        color: #60a5fa;
+      }
+    </style>
+  `,
+})
+export class AuthForms implements OnInit, ControlValueAccessor {
+  // Inputs
+  config = input.required<AuthFormConfig>();
+  variant = input<AuthFormVariant>('default');
+  fieldVariant = input<AuthFieldVariant>('default');
+  socialProviders = input<SocialProvider[]>([]);
+  showValidation = input<boolean>(true);
+  autoFocus = input<boolean>(false);
+
+  // NEW: Template-driven form support
+  value = input<any>({});
+  valueChange = output<any>();
+
+  // Outputs
+  formSubmit = output<AuthFormSubmitEvent>();
+  formSwitch = output<AuthFormType>();
+  forgotPassword = output<void>();
+  socialLogin = output<string>();
+
+  // Signals
+  authForm = signal<FormGroup>(new FormGroup({}));
+  isSubmitting = signal<boolean>(false);
+  passwordVisibility = signal<{ [key: string]: boolean }>({});
+  fieldFocusState = signal<{ [key: string]: boolean }>({});
+
+  // Template-driven form data
+  templateFormData: { [key: string]: any } = {};
+
+  // ControlValueAccessor implementation
+  private onChange = (value: any) => {};
+  private onTouched = () => {};
+
+  // ViewChild
+  @ViewChild('authFormRef') authFormRef!: ElementRef;
+  @ViewChild('templateForm') templateFormRef!: NgForm;
+
+  // Computed properties
+  authFormClass = computed(() => authFormVariants({ variant: this.variant() }));
+  fieldClass = computed(() =>
+    authFieldVariants({ variant: this.fieldVariant() })
+  );
+
+  formTitle = computed(() => {
+    if (this.config().title) return this.config().title;
+
+    switch (this.config().type) {
+      case 'login':
+        return 'Welcome back';
+      case 'register':
+        return 'Create your account';
+      case 'forgot-password':
+        return 'Reset your password';
+      case 'reset-password':
+        return 'Set new password';
+      default:
+        return 'Authentication';
+    }
+  });
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    if (this.isReactiveMode()) {
+      this.buildForm();
+    } else {
+      this.initializeTemplateForm();
+    }
+
+    if (this.autoFocus()) {
+      setTimeout(() => {
+        const firstInput =
+          this.authFormRef?.nativeElement?.querySelector('input');
+        if (firstInput) {
+          firstInput.focus();
+        }
+      }, 100);
+    }
+  }
+
+  // ControlValueAccessor methods
+  writeValue(value: any): void {
+    if (value) {
+      this.templateFormData = { ...value };
+      this.valueChange.emit(this.templateFormData);
+    }
+  }
+
+  registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  // Mode detection
+  isReactiveMode(): boolean {
+    return this.config().mode !== 'template';
+  }
+
+  isTemplateMode(): boolean {
+    return this.config().mode === 'template';
+  }
+
+  private initializeTemplateForm() {
+    // Initialize template form data with default values
+    this.config().fields.forEach((field) => {
+      if (!(field.name in this.templateFormData)) {
+        this.templateFormData[field.name] =
+          field.type === 'checkbox' ? false : '';
+      }
+    });
+
+    if (this.config().showRememberMe && this.config().type === 'login') {
+      this.templateFormData['rememberMe'] = false;
+    }
+  }
+
+  private buildForm() {
+    const formControls: { [key: string]: any } = {};
+
+    // Add dynamic fields
+    this.config().fields.forEach((field) => {
+      const validators = [];
+
+      if (field.required) {
+        validators.push(Validators.required);
+      }
+
+      if (field.type === 'email') {
+        validators.push(emailValidator);
+      }
+
+      if (field.type === 'password' && field.name === 'password') {
+        validators.push(passwordStrengthValidator);
+      }
+
+      if (field.type === 'password' && field.name === 'confirmPassword') {
+        validators.push(confirmPasswordValidator('password'));
+      }
+
+      if (field.minLength) {
+        validators.push(Validators.minLength(field.minLength));
+      }
+
+      if (field.maxLength) {
+        validators.push(Validators.maxLength(field.maxLength));
+      }
+
+      if (field.pattern) {
+        validators.push(Validators.pattern(field.pattern));
+      }
+
+      formControls[field.name] = ['', validators];
+    });
+
+    // Add remember me for login forms
+    if (this.config().showRememberMe && this.config().type === 'login') {
+      formControls['rememberMe'] = [false];
+    }
+
+    this.authForm.set(this.fb.group(formControls));
+  }
+
+  getFieldType(field: AuthFormField): string {
+    if (field.type === 'password') {
+      return this.passwordVisibility()[field.name] ? 'text' : 'password';
+    }
+    return field.type;
+  }
+
+  getFieldPlaceholder(field: AuthFormField): string {
+    if (this.fieldVariant() === 'floating') {
+      return field.placeholder || field.label; // Show actual placeholder for floating labels
+    }
+    return field.placeholder || field.label;
+  }
+
+  // Enhanced floating label class method for reactive forms
+  getFloatingLabelClass(field: AuthFormField): string {
+    const baseClass =
+      'floating-label absolute text-sm transition-all duration-200 pointer-events-none z-10';
+    const iconClass = field.icon ? 'with-icon' : '';
+
+    const isFieldFocused = this.fieldFocusState()[field.name];
+    const hasValue =
+      this.authForm().get(field.name)?.value &&
+      this.authForm().get(field.name)?.value.toString().trim() !== '';
+    const isInvalid =
+      this.authForm().get(field.name)?.invalid &&
+      this.authForm().get(field.name)?.touched;
+
+    let stateClass = '';
+    // Only show floating label when focused OR has actual value
+    if (isFieldFocused || hasValue) {
+      stateClass = 'focused has-value';
+    }
+    // Error state only applies when the label is visible
+    if (isInvalid && (isFieldFocused || hasValue)) {
+      stateClass += ' error';
+    }
+
+    return `${baseClass} ${iconClass} ${stateClass}`.trim();
+  }
+
+  // Template form floating label class method
+  getTemplateFloatingLabelClass(field: AuthFormField, fieldRef: any): string {
+    const baseClass =
+      'floating-label absolute text-sm transition-all duration-200 pointer-events-none z-10';
+    const iconClass = field.icon ? 'with-icon' : '';
+
+    const isFieldFocused = this.fieldFocusState()[field.name];
+    const hasValue =
+      this.templateFormData[field.name] &&
+      this.templateFormData[field.name].toString().trim() !== '';
+    const isInvalid = fieldRef.invalid && fieldRef.touched;
+
+    let stateClass = '';
+    // Only show floating label when focused OR has actual value
+    if (isFieldFocused || hasValue) {
+      stateClass = 'focused has-value';
+    }
+    // Error state only applies when the label is visible
+    if (isInvalid && (isFieldFocused || hasValue)) {
+      stateClass += ' error';
+    }
+
+    return `${baseClass} ${iconClass} ${stateClass}`.trim();
+  }
+
+  // Field focus/blur handlers
+  onFieldFocus(fieldName: string) {
+    this.fieldFocusState.update((state) => ({ ...state, [fieldName]: true }));
+    this.onTouched();
+  }
+
+  onFieldBlur(fieldName: string) {
+    this.fieldFocusState.update((state) => ({ ...state, [fieldName]: false }));
+  }
+
+  // Template form input change handler
+  onTemplateInputChange(fieldName: string, event: any) {
+    const value = event.target.value;
+    this.templateFormData[fieldName] = value;
+    this.onChange(this.templateFormData);
+    this.valueChange.emit(this.templateFormData);
+  }
+
+  getInputClass(field: AuthFormField): string {
+    const baseClass =
+      'w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200';
+    const iconClass = field.icon ? 'pl-10' : '';
+    const passwordToggleClass = field.type === 'password' ? 'pr-10' : '';
+    const variantClass = this.getInputVariantClass();
+
+    let floatingClass = '';
+    if (this.fieldVariant() === 'floating') {
+      const hasValue =
+        this.authForm().get(field.name)?.value &&
+        this.authForm().get(field.name)?.value.toString().trim() !== '';
+      floatingClass = `floating-input ${hasValue ? 'has-value' : ''}`;
+    }
+
+    const errorClass =
+      this.authForm().get(field.name)?.invalid &&
+      this.authForm().get(field.name)?.touched
+        ? 'border-red-500 dark:border-red-400'
+        : 'border-gray-300 dark:border-gray-600';
+
+    return `${baseClass} ${iconClass} ${passwordToggleClass} ${variantClass} ${floatingClass} ${errorClass}`.trim();
+  }
+
+  // Template form input class method
+  getTemplateInputClass(field: AuthFormField): string {
+    const baseClass =
+      'w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors duration-200';
+    const iconClass = field.icon ? 'pl-10' : '';
+    const passwordToggleClass = field.type === 'password' ? 'pr-10' : '';
+    const variantClass = this.getInputVariantClass();
+
+    let floatingClass = '';
+    if (this.fieldVariant() === 'floating') {
+      const hasValue =
+        this.templateFormData[field.name] &&
+        this.templateFormData[field.name].toString().trim() !== '';
+      floatingClass = `floating-input ${hasValue ? 'has-value' : ''}`;
+    }
+
+    // Template form error styling - check if field is invalid and has been touched
+    const fieldRef = this.templateFormRef?.form?.controls?.[field.name];
+    const errorClass =
+      fieldRef?.invalid && fieldRef?.touched
+        ? 'border-red-500 dark:border-red-400'
+        : 'border-gray-300 dark:border-gray-600';
+
+    return `${baseClass} ${iconClass} ${passwordToggleClass} ${variantClass} ${floatingClass} ${errorClass}`.trim();
+  }
+
+  private getInputVariantClass(): string {
+    switch (this.fieldVariant()) {
+      case 'floating':
+        return 'peer placeholder-transparent';
+      case 'outlined':
+        return 'border-2';
+      case 'filled':
+        return 'bg-gray-50 dark:bg-gray-600 border-transparent focus:bg-white dark:focus:bg-gray-700';
+      case 'underlined':
+        return 'border-0 border-b-2 rounded-none bg-transparent focus:ring-0';
+      default:
+        return '';
+    }
+  }
+
+  togglePasswordVisibility(fieldName: string) {
+    this.passwordVisibility.update((visibility) => ({
+      ...visibility,
+      [fieldName]: !visibility[fieldName],
+    }));
+  }
+
+  getPasswordStrengthScore(): number {
+    const password = this.authForm().get('password')?.value || '';
+    const hasMinLength = password.length >= 8;
+    const hasMaxLength = password.length <= 128;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/.test(
+      password
+    );
+    const noCommonPatterns = !/(.)\1{2,}/.test(password);
+    const noSequentialChars =
+      !/(?:abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz|012|123|234|345|456|567|678|789)/i.test(
+        password
+      );
+
+    return [
+      hasMinLength,
+      hasMaxLength,
+      hasUpperCase,
+      hasLowerCase,
+      hasNumbers,
+      hasSpecialChar,
+      noCommonPatterns,
+      noSequentialChars,
+    ].filter(Boolean).length;
+  }
+
+  getPasswordStrengthBarClass(index: number): string {
+    const score = this.getPasswordStrengthScore();
+    if (index < score) {
+      if (score <= 3) return 'bg-red-500';
+      if (score <= 5) return 'bg-yellow-500';
+      if (score <= 6) return 'bg-blue-500';
+      return 'bg-green-500';
+    }
+    return 'bg-gray-200 dark:bg-gray-600';
+  }
+
+  getPasswordStrengthTextClass(): string {
+    const score = this.getPasswordStrengthScore();
+    if (score <= 3) return 'text-red-600 dark:text-red-400';
+    if (score <= 5) return 'text-yellow-600 dark:text-yellow-400';
+    if (score <= 6) return 'text-blue-600 dark:text-blue-400';
+    return 'text-green-600 dark:text-green-400';
+  }
+
+  getPasswordStrengthText(): string {
+    const score = this.getPasswordStrengthScore();
+    switch (score) {
+      case 0:
+      case 1:
+        return 'Very weak password';
+      case 2:
+      case 3:
+        return 'Weak password';
+      case 4:
+      case 5:
+        return 'Fair password';
+      case 6:
+        return 'Good password';
+      case 7:
+      case 8:
+        return 'Strong password';
+      default:
+        return '';
+    }
+  }
+
+  // Accessibility helper methods
+  getAriaDescribedBy(field: AuthFormField): string {
+    const descriptors = [];
+
+    if (field.helpText) {
+      descriptors.push(field.name + '-help');
+    }
+
+    if (field.type === 'password' && field.name === 'password') {
+      descriptors.push(field.name + '-strength', field.name + '-requirements');
+    }
+
+    if (
+      this.authForm().get(field.name)?.invalid &&
+      this.authForm().get(field.name)?.touched
+    ) {
+      descriptors.push(field.name + '-error');
+    }
+
+    return descriptors.length > 0 ? descriptors.join(' ') : '';
+  }
+
+  getAutocomplete(field: AuthFormField): string {
+    switch (field.type) {
+      case 'email':
+        return 'email';
+      case 'password':
+        if (field.name === 'password') return 'current-password';
+        if (field.name === 'newPassword') return 'new-password';
+        if (field.name === 'confirmPassword') return 'new-password';
+        return 'current-password';
+      case 'tel':
+        return 'tel';
+      case 'text':
+        if (field.name === 'firstName') return 'given-name';
+        if (field.name === 'lastName') return 'family-name';
+        if (field.name === 'username') return 'username';
+        return 'off';
+      default:
+        return 'off';
+    }
+  }
+
+  trackBySocialProvider(index: number, provider: SocialProvider): string {
+    return provider.name;
+  }
+
+  trackByValue(index: number, option: any): any {
+    return option.value;
+  }
+
+  // Template form password strength methods
+  getTemplatePasswordStrengthScore(): number {
+    const password = this.templateFormData['password'] || '';
+    const hasMinLength = password.length >= 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    return [
+      hasMinLength,
+      hasUpperCase,
+      hasLowerCase,
+      hasNumbers,
+      hasSpecialChar,
+    ].filter(Boolean).length;
+  }
+
+  getTemplatePasswordStrengthBarClass(index: number): string {
+    const score = this.getTemplatePasswordStrengthScore();
+    if (index < score) {
+      if (score <= 2) return 'bg-red-500';
+      if (score <= 3) return 'bg-yellow-500';
+      if (score <= 4) return 'bg-blue-500';
+      return 'bg-green-500';
+    }
+    return 'bg-gray-200 dark:bg-gray-600';
+  }
+
+  getTemplatePasswordStrengthTextClass(): string {
+    const score = this.getTemplatePasswordStrengthScore();
+    if (score <= 2) return 'text-red-600 dark:text-red-400';
+    if (score <= 3) return 'text-yellow-600 dark:text-yellow-400';
+    if (score <= 4) return 'text-blue-600 dark:text-blue-400';
+    return 'text-green-600 dark:text-green-400';
+  }
+
+  getTemplatePasswordStrengthText(): string {
+    const score = this.getTemplatePasswordStrengthScore();
+    switch (score) {
+      case 0:
+      case 1:
+        return 'Very weak password';
+      case 2:
+        return 'Weak password';
+      case 3:
+        return 'Fair password';
+      case 4:
+        return 'Good password';
+      case 5:
+        return 'Strong password';
+      default:
+        return '';
+    }
+  }
+
+  getSubmitText(): string {
+    if (this.isSubmitting()) {
+      switch (this.config().type) {
+        case 'login':
+          return 'Signing in...';
+        case 'register':
+          return 'Creating account...';
+        case 'forgot-password':
+          return 'Sending email...';
+        case 'reset-password':
+          return 'Updating password...';
+        default:
+          return 'Processing...';
+      }
+    }
+
+    return this.config().submitText || this.getDefaultSubmitText();
+  }
+
+  private getDefaultSubmitText(): string {
+    switch (this.config().type) {
+      case 'login':
+        return 'Sign in';
+      case 'register':
+        return 'Create account';
+      case 'forgot-password':
+        return 'Send reset email';
+      case 'reset-password':
+        return 'Update password';
+      default:
+        return 'Submit';
+    }
+  }
+
+  // Unified Methods (eliminates code duplication)
+
+  // Get field value regardless of form mode
+  getFieldValue(fieldName: string): any {
+    if (this.isReactiveMode()) {
+      return this.authForm().get(fieldName)?.value || '';
+    } else {
+      return this.templateFormData[fieldName] || '';
+    }
+  }
+
+  // Unified field value change handler
+  onFieldValueChange(fieldName: string, value: any) {
+    if (this.isTemplateMode()) {
+      this.templateFormData[fieldName] = value;
+      this.onChange(this.templateFormData);
+      this.valueChange.emit(this.templateFormData);
+    }
+  }
+
+  // Unified label class method
+  getUnifiedLabelClass(field: AuthFormField): string {
+    const baseClass = 'block text-sm font-medium transition-all duration-200';
+
+    if (this.fieldVariant() === 'floating') {
+      const isFieldFocused = this.fieldFocusState()[field.name];
+      const hasValue =
+        this.getFieldValue(field.name) &&
+        this.getFieldValue(field.name).toString().trim() !== '';
+      const isInvalid = this.getFieldInvalidState(field);
+
+      let stateClass =
+        'floating-label absolute text-sm transition-all duration-200 pointer-events-none z-10';
+
+      if (isFieldFocused || hasValue) {
+        stateClass += ' focused has-value';
+      }
+
+      if (isInvalid) {
+        stateClass += ' text-red-600 dark:text-red-400';
+      } else if (isFieldFocused) {
+        stateClass += ' text-blue-600 dark:text-blue-400';
+      } else {
+        stateClass += ' text-gray-500 dark:text-gray-400';
+      }
+
+      return stateClass;
+    }
+
+    return `${baseClass} text-gray-700 dark:text-gray-300 mb-2`;
+  }
+
+  // Unified input class method
+  getUnifiedInputClass(field: AuthFormField): string {
+    const baseClass =
+      'w-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500';
+    const iconClass = field.icon ? 'pl-10' : 'px-3';
+    const passwordToggleClass = field.type === 'password' ? 'pr-10' : 'pr-3';
+    const isInvalid = this.getFieldInvalidState(field);
+
+    let variantClass = '';
+    let sizeClass = 'py-3';
+
+    switch (this.fieldVariant()) {
+      case 'floating':
+        variantClass =
+          'bg-transparent border-0 border-b-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 rounded-none';
+        if (field.type === 'checkbox') {
+          variantClass =
+            'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600';
+        }
+        break;
+      case 'outlined':
+        variantClass =
+          'bg-transparent border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 rounded-lg';
+        break;
+      case 'filled':
+        variantClass =
+          'bg-gray-100 dark:bg-gray-700 border border-transparent focus:bg-white dark:focus:bg-gray-800 focus:border-blue-500 rounded-lg';
+        break;
+      case 'underlined':
+        variantClass =
+          'bg-transparent border-0 border-b-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 rounded-none';
+        sizeClass = 'py-2';
+        break;
+      default:
+        variantClass =
+          'bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:border-blue-500 rounded-lg';
+        if (field.type === 'checkbox') {
+          variantClass =
+            'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600';
+        }
+        break;
+    }
+
+    const errorClass = isInvalid
+      ? 'border-red-500 dark:border-red-400 focus:border-red-500 focus:ring-red-500'
+      : '';
+    const textClass =
+      'text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400';
+
+    if (field.type === 'checkbox') {
+      return `${variantClass} ${errorClass}`;
+    }
+
+    return `${baseClass} ${variantClass} ${iconClass} ${passwordToggleClass} ${sizeClass} ${errorClass} ${textClass}`;
+  }
+
+  // Unified invalid state checker
+  getFieldInvalidState(field: AuthFormField): boolean {
+    if (this.isReactiveMode()) {
+      const control = this.authForm().get(field.name);
+      return !!(control?.invalid && control?.touched);
+    } else {
+      // For template forms, we need to check the template reference
+      return false; // Will be handled by the template reference in the template
+    }
+  }
+
+  // Unified error state checker
+  getFieldErrorState(field: AuthFormField, templateRef?: any): boolean {
+    if (this.isReactiveMode()) {
+      const control = this.authForm().get(field.name);
+      return !!(control?.invalid && control?.touched);
+    } else {
+      return !!(templateRef?.invalid && templateRef?.touched);
+    }
+  }
+
+  // Unified error checker
+  getFieldError(
+    field: AuthFormField,
+    templateRef: any,
+    errorType: string
+  ): boolean {
+    if (this.isReactiveMode()) {
+      const control = this.authForm().get(field.name);
+      return !!(control?.errors?.[errorType] && control?.touched);
+    } else {
+      return !!(templateRef?.errors?.[errorType] && templateRef?.touched);
+    }
+  }
+
+  // Unified form invalid state
+  getFormInvalidState(): boolean {
+    if (this.isReactiveMode()) {
+      return this.authForm().invalid;
+    } else {
+      return this.templateFormRef?.invalid || false;
+    }
+  }
+
+  // Unified password strength methods (consistent 8-criteria system)
+  private calculatePasswordStrength(password: string): number {
+    if (!password) return 0;
+
+    const hasMinLength = password.length >= 8;
+    const hasMaxLength = password.length <= 128;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/.test(
+      password
+    );
+    const noCommonPatterns = !/(.)\1{2,}/.test(password);
+    const noSequentialChars =
+      !/(?:abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz|012|123|234|345|456|567|678|789)/i.test(
+        password
+      );
+
+    return [
+      hasMinLength,
+      hasMaxLength,
+      hasUpperCase,
+      hasLowerCase,
+      hasNumbers,
+      hasSpecialChar,
+      noCommonPatterns,
+      noSequentialChars,
+    ].filter(Boolean).length;
+  }
+
+  getUnifiedPasswordStrengthScore(): number {
+    const password = this.getFieldValue('password') || '';
+    return this.calculatePasswordStrength(password);
+  }
+
+  getUnifiedPasswordStrengthBarClass(index: number): string {
+    const score = this.getUnifiedPasswordStrengthScore();
+    if (index < score) {
+      if (score <= 3) return 'bg-red-500';
+      if (score <= 5) return 'bg-yellow-500';
+      if (score <= 6) return 'bg-blue-500';
+      return 'bg-green-500';
+    }
+    return 'bg-gray-200 dark:bg-gray-600';
+  }
+
+  getUnifiedPasswordStrengthTextClass(): string {
+    const score = this.getUnifiedPasswordStrengthScore();
+    if (score <= 3) return 'text-red-600 dark:text-red-400';
+    if (score <= 5) return 'text-yellow-600 dark:text-yellow-400';
+    if (score <= 6) return 'text-blue-600 dark:text-blue-400';
+    return 'text-green-600 dark:text-green-400';
+  }
+
+  getUnifiedPasswordStrengthText(): string {
+    const score = this.getUnifiedPasswordStrengthScore();
+    switch (score) {
+      case 0:
+      case 1:
+        return 'Very weak password';
+      case 2:
+      case 3:
+        return 'Weak password';
+      case 4:
+      case 5:
+        return 'Fair password';
+      case 6:
+        return 'Good password';
+      case 7:
+      case 8:
+        return 'Strong password';
+      default:
+        return '';
+    }
+  }
+
+  // Simple wrapper methods for template use (no parameters needed)
+  hasMinLength(): boolean {
+    return this.hasMinLengthCheck(this.getFieldValue('password'));
+  }
+
+  hasUpperCase(): boolean {
+    return this.hasUpperCaseCheck(this.getFieldValue('password'));
+  }
+
+  hasLowerCase(): boolean {
+    return this.hasLowerCaseCheck(this.getFieldValue('password'));
+  }
+
+  hasNumbers(): boolean {
+    return this.hasNumbersCheck(this.getFieldValue('password'));
+  }
+
+  hasSpecialChar(): boolean {
+    return this.hasSpecialCharCheck(this.getFieldValue('password'));
+  }
+
+  noCommonPatterns(): boolean {
+    return this.noCommonPatternsCheck(this.getFieldValue('password'));
+  }
+
+  // Individual password requirement checks (unified for both modes)
+  hasMinLengthCheck(password: string): boolean {
+    return (password || '').length >= 8;
+  }
+
+  hasUpperCaseCheck(password: string): boolean {
+    return /[A-Z]/.test(password || '');
+  }
+
+  hasLowerCaseCheck(password: string): boolean {
+    return /[a-z]/.test(password || '');
+  }
+
+  hasNumbersCheck(password: string): boolean {
+    return /\d/.test(password || '');
+  }
+
+  hasSpecialCharCheck(password: string): boolean {
+    return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/.test(password || '');
+  }
+
+  noCommonPatternsCheck(password: string): boolean {
+    return !/(.)\1{2,}/.test(password || '');
+  }
+
+  // Backward compatibility method
+  onSubmit(): void {
+    this.onUnifiedSubmit();
+  }
+  onUnifiedSubmit(templateForm?: NgForm | FormGroupDirective): void {
+    let isValid = false;
+    let formData: any = {};
+
+    if (this.isReactiveMode()) {
+      // Mark all fields as touched to show validation errors
+      this.markFormGroupTouched();
+      isValid = this.authForm().valid;
+      formData = this.authForm().value;
+    } else {
+      // For template forms
+      if (templateForm && 'valid' in templateForm) {
+        isValid = templateForm.valid || false;
+        formData = this.templateFormData;
+      }
+    }
+
+    if (!isValid) {
+      return;
+    }
+
+    // Check password strength for both modes
+    const passwordField = formData['password'];
+    if (passwordField) {
+      const passwordStrength = this.calculatePasswordStrength(passwordField);
+      if (passwordStrength < 6) {
+        // Minimum "Good" strength required
+        // Add error to the appropriate form
+        if (this.isReactiveMode()) {
+          const control = this.authForm().get('password');
+          control?.setErrors({
+            ...control.errors,
+            weakPassword: true,
+          });
+          this.markFormGroupTouched();
+        }
+        return;
+      }
+    }
+
+    this.isSubmitting.set(true);
+
+    const submitData: AuthFormSubmitEvent = {
+      type: this.config().type,
+      data: formData,
+      isValid: isValid,
+    };
+
+    // Simulate API call delay
+    setTimeout(() => {
+      this.isSubmitting.set(false);
+      this.formSubmit.emit(submitData);
+    }, 1000);
+  }
+
+  // Template form submission
+  onTemplateSubmit(templateForm: any) {
+    if (templateForm.invalid) {
+      this.markTemplateFormTouched(templateForm);
+      return;
+    }
+
+    this.isSubmitting.set(true);
+
+    const submitData: AuthFormSubmitEvent = {
+      type: this.config().type,
+      data: this.templateFormData,
+      isValid: templateForm.valid,
+    };
+
+    // Update parent component if using as ControlValueAccessor
+    this.onChange(this.templateFormData);
+    this.valueChange.emit(this.templateFormData);
+
+    // Simulate API call delay
+    setTimeout(() => {
+      this.isSubmitting.set(false);
+      this.formSubmit.emit(submitData);
+    }, 1000);
+  }
+
+  private markTemplateFormTouched(templateForm: any) {
+    Object.keys(templateForm.controls).forEach((key) => {
+      const control = templateForm.controls[key];
+      control.markAsTouched();
+    });
+  }
+
+  onSwitchForm(type: AuthFormType) {
+    this.formSwitch.emit(type);
+  }
+
+  onForgotPassword() {
+    this.forgotPassword.emit();
+  }
+
+  trackByFieldName(index: number, field: AuthFormField): string {
+    return field.name;
+  }
+
+  private markFormGroupTouched() {
+    Object.keys(this.authForm().controls).forEach((key) => {
+      const control = this.authForm().get(key);
+      control?.markAsTouched();
+    });
+  }
+}

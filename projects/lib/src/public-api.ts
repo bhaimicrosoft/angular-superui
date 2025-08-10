@@ -64,3 +64,4 @@ export * from './lib/blocks/feature-card';
 export * from './lib/blocks/testimonial';
 export * from './lib/blocks/team-grid';
 export * from './lib/blocks/stats-counter';
+export * from './lib/blocks/auth-forms';

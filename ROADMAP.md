@@ -52,7 +52,7 @@ Transform Angular SuperUI into the **ultimate, comprehensive UI ecosystem** that
 - [✅] **Stats Counter** - Animated statistics display *(completed with docs)*
 - [ ] **Newsletter Signup** - Email collection form
 - [ ] **Contact Form** - Contact information form
-- [ ] **Login/Register Forms** - Authentication forms
+- [✅] **Login/Register Forms** - Authentication forms *(completed with docs)*
 - [ ] **Profile Card** - User profile display
 - [ ] **Product Card** - E-commerce product display
 - [ ] **Blog Card** - Article preview card
