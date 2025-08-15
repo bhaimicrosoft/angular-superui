@@ -307,6 +307,24 @@ export const routes: Routes = [
 
   },
   {
+    path: 'blocks/blog-card',
+    loadComponent: () => import('./pages/demo/blog-card/blog-card-demo.component').then(m => m.BlogCardDemoComponent),
+    data: {
+      blockName: 'blog-card',
+      category: 'Content',
+      description:
+        'Blog content cards with multiple layouts, author information, categories, tags, and engagement metrics',
+      seo: {
+        title: 'Blog Card Block - Angular SuperUI | Content Display Components',
+        description:
+          'Professional blog card component with 5 layout variants (card, horizontal, featured, minimal, magazine). Includes author profiles, categorization, reading time, and engagement metrics.',
+        keywords:
+          'Angular blog card, content component, blog post display, article card, author profile, content management, Angular blog, reading time component',
+      },
+    },
+
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(

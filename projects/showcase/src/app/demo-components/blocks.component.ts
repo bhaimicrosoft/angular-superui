@@ -353,6 +353,16 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
       iconColor: 'text-emerald-600 dark:text-emerald-400',
       features: ['Image Gallery', 'Variant Selection', 'Pricing Display', 'Shopping Actions']
+    },
+    {
+      name: 'Blog Card',
+      route: '/blocks/blog-card',
+      description: 'Professional blog content cards with multiple layouts, author information, categories, tags, and engagement metrics. Perfect for content websites and blogs.',
+      category: 'Content',
+      icon: 'fas fa-newspaper',
+      bgColor: 'bg-teal-100 dark:bg-teal-900/30',
+      iconColor: 'text-teal-600 dark:text-teal-400',
+      features: ['5 Layout Variants', 'Author Profiles', 'Category Tags', 'Reading Time']
     }
   ]);
 

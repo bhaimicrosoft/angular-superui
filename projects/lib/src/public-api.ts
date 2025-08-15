@@ -69,3 +69,4 @@ export * from './lib/blocks/contact-form';
 export * from './lib/blocks/newsletter-signup';
 export * from './lib/blocks/profile-card';
 export * from './lib/blocks/product-card';
+export * from './lib/blocks/blog-card';
