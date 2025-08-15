@@ -313,6 +313,16 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
       iconColor: 'text-indigo-600 dark:text-indigo-400',
       features: ['Login Forms', 'Registration', 'Password Recovery', 'Social Auth']
+    },
+    {
+      name: 'Contact Form',
+      route: '/blocks/contact-form',
+      description: 'Professional contact forms with multiple variants, validation, file uploads, and accessibility. Perfect for business inquiries and support requests.',
+      category: 'Forms',
+      icon: 'fas fa-envelope',
+      bgColor: 'bg-cyan-100 dark:bg-cyan-900/30',
+      iconColor: 'text-cyan-600 dark:text-cyan-400',
+      features: ['Multiple Variants', 'File Upload', 'Validation', 'Accessibility']
     }
   ]);
 

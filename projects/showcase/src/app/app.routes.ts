@@ -229,6 +229,26 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/contact-form',
+    loadComponent: () =>
+      import('./demo-components/contact-form-demo.component').then(
+        (c) => c.ContactFormDemoComponent
+      ),
+    data: {
+      blockName: 'contact-form',
+      category: 'Forms',
+      description:
+        'Comprehensive contact forms with multiple variants, validation, and file upload support',
+      seo: {
+        title: 'Contact Form Block - Angular SuperUI | Form Templates & Validation',
+        description:
+          'Professional contact form component with multiple variants, field types, validation, file uploads, and accessibility. Ready-to-use form templates for Angular applications.',
+        keywords:
+          'Angular contact form, form validation, file upload form, contact form template, reactive forms, template-driven forms, form builder Angular',
+      },
+    },
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(
