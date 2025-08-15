@@ -269,6 +269,26 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/profile-card',
+    loadComponent: () =>
+      import('./pages/demo/profile-card/profile-card-demo.component').then(
+        (c) => c.ProfileCardDemoComponent
+      ),
+    data: {
+      blockName: 'profile-card',
+      category: 'User Interface',
+      description:
+        'User profile cards with multiple layouts, social integration, and rich content display',
+      seo: {
+        title: 'Profile Card Block - Angular SuperUI | User Profile Components',
+        description:
+          'Professional profile card component with multiple variants, social links, skills display, contact information, and interactive features. Showcase user profiles with style and functionality.',
+        keywords:
+          'Angular profile card, user profile component, team member card, avatar component, social profile, contact card, user interface Angular',
+      },
+    },
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(

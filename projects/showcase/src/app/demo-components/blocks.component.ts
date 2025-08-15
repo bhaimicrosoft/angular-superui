@@ -333,10 +333,20 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-pink-100 dark:bg-pink-900/30',
       iconColor: 'text-pink-600 dark:text-pink-400',
       features: ['Social Proof', 'GDPR Compliant', 'Multiple Variants', 'Analytics Ready']
+    },
+    {
+      name: 'Profile Card',
+      route: '/blocks/profile-card',
+      description: 'User profile cards with multiple layouts, social integration, skills display, and contact information. Perfect for team pages and user directories.',
+      category: 'User Interface',
+      icon: 'fas fa-user-circle',
+      bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
+      iconColor: 'text-indigo-600 dark:text-indigo-400',
+      features: ['Multiple Variants', 'Social Links', 'Skills Display', 'Interactive Actions']
     }
   ]);
 
-  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms', 'Marketing']);
+  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms', 'Marketing', 'User Interface']);
 
   blockFeatures = [
     {

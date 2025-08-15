@@ -67,3 +67,4 @@ export * from './lib/blocks/stats-counter';
 export * from './lib/blocks/auth-forms';
 export * from './lib/blocks/contact-form';
 export * from './lib/blocks/newsletter-signup';
+export * from './lib/blocks/profile-card';
