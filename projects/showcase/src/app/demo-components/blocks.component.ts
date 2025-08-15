@@ -323,10 +323,20 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-cyan-100 dark:bg-cyan-900/30',
       iconColor: 'text-cyan-600 dark:text-cyan-400',
       features: ['Multiple Variants', 'File Upload', 'Validation', 'Accessibility']
+    },
+    {
+      name: 'Newsletter Signup',
+      route: '/blocks/newsletter-signup',
+      description: 'Email collection forms with social proof, subscriber counts, privacy compliance, and multiple styling options. GDPR-compliant and conversion-optimized.',
+      category: 'Marketing',
+      icon: 'fas fa-paper-plane',
+      bgColor: 'bg-pink-100 dark:bg-pink-900/30',
+      iconColor: 'text-pink-600 dark:text-pink-400',
+      features: ['Social Proof', 'GDPR Compliant', 'Multiple Variants', 'Analytics Ready']
     }
   ]);
 
-  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms']);
+  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms', 'Marketing']);
 
   blockFeatures = [
     {

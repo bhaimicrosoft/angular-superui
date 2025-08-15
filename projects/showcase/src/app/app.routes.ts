@@ -249,6 +249,26 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/newsletter-signup',
+    loadComponent: () =>
+      import('./demo-components/newsletter-signup-demo.component').then(
+        (c) => c.NewsletterSignupDemoComponent
+      ),
+    data: {
+      blockName: 'newsletter-signup',
+      category: 'Marketing',
+      description:
+        'Email collection forms with social proof, privacy compliance, and multiple styling options',
+      seo: {
+        title: 'Newsletter Signup Block - Angular SuperUI | Email Collection Forms',
+        description:
+          'Professional newsletter signup component with social proof, subscriber counts, privacy compliance, and multiple variants. GDPR-compliant email collection forms for Angular applications.',
+        keywords:
+          'Angular newsletter signup, email collection form, GDPR compliant form, newsletter subscription, email marketing form, social proof form, Angular email signup',
+      },
+    },
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(
