@@ -48,7 +48,7 @@ const heroSectionVariants = cva(
   }
 );
 
-export type HeroSectionConfigurableVariant = VariantProps<typeof heroSectionVariants>;
+export type HeroSectionVariant = VariantProps<typeof heroSectionVariants>;
 
 @Component({
   selector: 'HeroSection',
@@ -120,9 +120,9 @@ export type HeroSectionConfigurableVariant = VariantProps<typeof heroSectionVari
 })
 export class HeroSection {
   // Styling inputs
-  variant = input<HeroSectionConfigurableVariant['variant']>('default');
-  size = input<HeroSectionConfigurableVariant['size']>('default');
-  container = input<HeroSectionConfigurableVariant['container']>('default');
+  variant = input<HeroSectionVariant['variant']>('default');
+  size = input<HeroSectionVariant['size']>('default');
+  container = input<HeroSectionVariant['container']>('default');
   
   // Layout inputs
   centered = input<boolean>(false);

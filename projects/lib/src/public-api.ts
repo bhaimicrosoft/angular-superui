@@ -55,11 +55,11 @@ export * from '@lib/components/toolbar';
 
 
 // Blocks
-export * from './lib/blocks/header-configurable';
-export * from './lib/blocks/hero-section-configurable';
-export * from './lib/blocks/footer-configurable';
-export * from './lib/blocks/feature-grid-configurable';
-export * from './lib/blocks/pricing-cards-configurable';
+export * from './lib/blocks/header';
+export * from './lib/blocks/hero-section';
+export * from './lib/blocks/footer';
+export * from './lib/blocks/feature-grid';
+export * from './lib/blocks/pricing-cards';
 export * from './lib/blocks/feature-card';
 export * from './lib/blocks/testimonial';
 export * from './lib/blocks/team-grid';

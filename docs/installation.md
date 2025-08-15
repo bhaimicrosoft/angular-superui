@@ -1,12 +1,8 @@
 <div align="center">
 
-# 🚀 Installation Guide - Angular SuperUI v2.0.1
+# 🚀 Installation Guide - Angular SuperUI v2.0.2
 
-
-
-### 🌟 **[🎮 LIVE D- - **📊 [Progress](./co- **💬 [Popover](./components/popover.md)** - Floating overlay that displays content relative to a triggerponents/progress.md)** - Progress indicator with customizable appearance and animation*🔢 [InputOTP](./components/input-otp.md)** - One-time password input with multiple slots and validationMO - Try All Components!](https://angular-superui.vercel.app/)** 🌟
-
-**✨ 39 Production-Ready Components + 5 UI Blocks • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
+✨ 43 Production-Ready Components + 10 UI Blocks • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![⚡ Get Started](https://img.shields.io/badge/⚡-Get%20Started-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -17,7 +13,7 @@
 
 ## 📚 **[🎨 Complete Component Demos & Examples →](./README.md)**
 
-> 🚀 **Step-by-step examples** for all 39 components + 5 blocks with **interactive showcases**, **code snippets**, and **best practices**!
+> 🚀 **Step-by-step examples** for all 43 components + 10 blocks with **interactive showcases**, **code snippets**, and **best practices**!
 
 ---
 
@@ -78,7 +74,7 @@ npx ngsui-cli list
 
 ---
 
-## 🧩 **Available Components (39 Total)**
+## 🧩 **Available Components (43 Total)**
 
 ### 🎯 **Core Components**
 
@@ -90,23 +86,28 @@ npx ngsui-cli list
 - **🃏 [Card](./components/card.md)** - Flexible content containers with header, content, and footer
 - **☑️ [Checkbox](./components/checkbox.md)** - Boolean input control with multiple states and form integration
 - **🔽 [ComboBox](./components/combobox.md)** - Advanced dropdown with search, multi-select, and loading states
+- **🎭 [Chip](./components/chip.md)** - Interactive chip component with dismissible and clickable variants
 - **📝 [Input](./components/input.md)** - Flexible input component with validation states and accessibility
-- **� [InputOTP](./components/input-otp.md)** - One-time password input with multiple slots and validation
+- **🔢 [InputOTP](./components/input-otp.md)** - One-time password input with multiple slots and validation
 - **🔘 [RadioGroup](./components/radio-group.md)** - Radio button group with accessible selection and validation
-- **� [Progress](./components/progress.md)** - Progress indicator with customizable appearance and animation
+- **📊 [Progress](./components/progress.md)** - Progress indicator with customizable appearance and animation
 - **⭐ [Rating](./components/rating.md)** - Interactive star rating component with hover effects and customizable appearance
 - **🔽 [Select](./components/select.md)** - A flexible select dropdown component with search and multi-select capabilities
 - **🎚️ [Slider](./components/slider.md)** - Interactive slider component for single values and ranges with accessibility support
-- **📄 [Textarea](./components/textarea.md)** - Multi-line text input component with auto-resize and validation states
+- **� [Toggle](./components/toggle.md)** - Toggle switch component with multiple states and accessibility
+- **�📄 [Textarea](./components/textarea.md)** - Multi-line text input component with auto-resize and validation states
 
 ### 🧭 **Navigation & Layout**
 
 - **🍞 [Breadcrumb](./components/breadcrumb.md)** - Navigation breadcrumbs with accessibility and custom separators
 - **📐 [AspectRatio](./components/aspect-ratio.md)** - Maintains consistent proportions for responsive content
+- **🎯 [Icon](./components/icon.md)** - Versatile icon component supporting multiple icon libraries and sizes
+- **🍔 [Menubar](./components/menubar.md)** - Application menubar with nested submenus and keyboard navigation
 - **📄 [Pagination](./components/pagination.md)** - Pagination controls with customizable page size and navigation
 - **🏠 [Sidebar](./components/sidebar.md)** - Responsive navigation sidebar with animations, keyboard navigation, and flexible content
 - **📋 [Stepper](./components/stepper.md)** - Multi-step navigation component with progress tracking and validation support
 - **📑 [Tabs](./components/tabs.md)** - Tabbed interface component with keyboard navigation and accessibility support
+- **🛠️ [Toolbar](./components/toolbar.md)** - Group actions and inputs in a compact, responsive bar
 
 ### 💫 **Overlay & Dialog Components**
 
@@ -115,7 +116,7 @@ npx ngsui-cli list
 - **🪟 [Dialog](./components/dialog.md)** - Modal dialog windows with accessibility features
 - **📄 [Drawer](./components/drawer.md)** - Flexible drawer component that slides in from any side
 - **⬇️ [DropdownMenu](./components/dropdown-menu.md)** - Beautiful dropdown menus with multiple variants
-- **� [Popover](./components/popover.md)** - Floating overlay that displays content relative to a trigger
+- **💬 [Popover](./components/popover.md)** - Floating overlay that displays content relative to a trigger
 - **📢 [Toast](./components/toast.md)** - Toast notification component with multiple variants and auto-dismiss functionality
 - **💡 [Tooltip](./components/tooltip.md)** - Tooltip component with configurable positioning and hover/focus triggers
 
@@ -141,6 +142,34 @@ npx ngsui-cli list
 ### ⚙️ **Utility Components**
 
 - **🌓 [ThemeSwitcher](./components/theme-switcher.md)** - Toggle between light, dark, and system themes
+
+---
+
+## 🧱 **UI Blocks (10 Total)**
+
+Pre-built, customizable UI sections perfect for rapid prototyping and production apps.
+
+### 🏠 **Landing Page Blocks**
+
+- **🦸 [Hero Section](./blocks/hero-section.md)** - Stunning hero sections with CTAs, images, and animations
+- **📊 [Stats Counter](./blocks/stats-counter.md)** - Animated statistics display with countup effects
+- **💎 [Feature Grid](./blocks/feature-grid.md)** - Feature showcase with icons, descriptions, and layouts
+- **🃏 [Feature Card](./blocks/feature-card.md)** - Individual feature cards with icons and descriptions
+- **💬 [Testimonial](./blocks/testimonial.md)** - Customer testimonials with avatars and ratings
+
+### 🏢 **Business Blocks**
+
+- **💰 [Pricing Cards](./blocks/pricing-cards.md)** - Pricing tables with features, CTAs, and highlighting
+- **👥 [Team Grid](./blocks/team-grid.md)** - Team member showcase with social links and roles
+
+### 🔐 **Authentication Blocks**
+
+- **🔑 [Auth Forms](./blocks/auth-forms.md)** - Login, register, and password reset forms
+
+### 🏗️ **Layout Blocks**
+
+- **🎯 [Header](./blocks/header.md)** - Navigation headers with menus, logos, and mobile support
+- **🦶 [Footer](./blocks/footer.md)** - Footer sections with links, social icons, and company info
 
 ---
 
@@ -290,7 +319,7 @@ import { Badge } from '@components/badge';
       </CardHeader>
       <CardContent>
         <div class="space-y-4">
-          <Badge variant="default">v2.0.1</Badge>
+          <Badge variant="default">v2.0.2</Badge>
           <Button variant="default" (click)="handleClick()">
             Get Started
           </Button>
@@ -510,163 +539,6 @@ npx tsc --version  # Should be 5.0+
 ---
 
 *Built with ❤️ by the Angular SuperUI Team*
-  --color-indigo-foreground: var(--indigo-foreground);
-  --color-cyan: var(--cyan);
-  --color-cyan-foreground: var(--cyan-foreground);
-  --color-rose: var(--rose);
-  --color-rose-foreground: var(--rose-foreground);
-  --color-emerald: var(--emerald);
-  --color-emerald-foreground: var(--emerald-foreground);
-  --color-amber: var(--amber);
-  --color-amber-foreground: var(--amber-foreground);
-  --color-lime: var(--lime);
-  --color-lime-foreground: var(--lime-foreground);
-  --color-violet: var(--violet);
-  --color-violet-foreground: var(--violet-foreground);
-  --color-sky: var(--sky);
-  --color-sky-foreground: var(--sky-foreground);
-
-  /* Border Radius */
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  /* Animations */
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-fade-in: fade-in 0.2s ease-out;
-  --animate-fade-out: fade-out 0.2s ease-in;
-  --animate-slide-in-from-top: slide-in-from-top 0.2s ease-out;
-  --animate-slide-out-to-top: slide-out-to-top 0.2s ease-in;
-  --animate-slide-in-from-bottom: slide-in-from-bottom 0.2s ease-out;
-  --animate-slide-out-to-bottom: slide-out-to-bottom 0.2s ease-in;
-  --animate-slide-in-from-left: slide-in-from-left 0.2s ease-out;
-  --animate-slide-out-to-left: slide-out-to-left 0.2s ease-in;
-  --animate-slide-in-from-right: slide-in-from-right 0.2s ease-out;
-  --animate-slide-out-to-right: slide-out-to-right 0.2s ease-in;
-  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
-  --animate-shimmer: shimmer 2s linear infinite;
-
-  /* Box Shadows */
-  --shadow-elegant: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --shadow-elegant-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slide-in-from-top {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-out-to-top {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100%);
-  }
-}
-
-@keyframes slide-in-from-bottom {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-out-to-bottom {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100%);
-  }
-}
-
-@keyframes slide-in-from-left {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-out-to-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slide-in-from-right {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-out-to-right {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes caret-blink {
-  0%, 70%, 100% {
-    opacity: 1;
-  }
-  20%, 50% {
-    opacity: 0;
-  }
-}
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* Modal Popover Styles */
-.cdk-overlay-dark-backdrop {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(2px);
-}
-
-.modal-popover-panel {
-  z-index: 1000;
-}
-```
 
 ## Usage
 

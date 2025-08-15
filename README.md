@@ -1,28 +1,10 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v2.0.1
+# 🎨 Angular SuperUI v2.0.2
 
 **The Modern Angular UI Component Library That Developers Love**
 
 ### 🌟 **[🚀 LIVE DEMO - See All Components in Action!](https://angular-superui.vercel.app/)** 🌟
-
-**✨ Interactive Showcase • 39 Components • 5 Blocks • | **⬇| *| **⬇️ [Drop| **🔽 [S| **📄 [Textarea](./docs/components/textarea.md)** | Multi-line text input component with auto-resize and validation states | ✅ Available |
-| **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
-| **📢 [Toast](./docs/components/toast.md)** | Toast notification component with multiple variants and auto-dismiss functionality | ✅ Available |ct](./docs/components/select.md)** | A flexible select dropdown component with search and multi-select capabilities | ✅ Available |
-| **🔲 [Sidebar](./docs/components/sidebar.md)** | Responsive navigation sidebar with animations, keyboard navigation, and flexible content | ✅ Available |
-| **💀 [Skeleton](./docs/components/skeleton.md)** | Loading placeholder components with customizable shapes and animations | ✅ Available |nMenu](./docs/components/dropdown-menu.md)** | Beautiful, accessible dropdown menu with multiple variants and advanced animations | ✅ Available |
-| **📁 [FileUpload](./docs/components/file-upload.md)** | Advanced file upload component with drag-and-drop, progress tracking, and validation | ✅ Available |
-| **📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |
-| **🔢 [InputOTP](./docs/components/input-otp.md)** | One-time password input component with multiple slots and validation | ✅ Available |[DropdownMenu](./docs/components/dropdown-menu.md)** | Beautiful, accessible dropdown menu with multiple variants and advanced animations | ✅ Available |
-| **📁 [FileUpload](./docs/components/file-upload.md)** | Advanced file upload component with drag-and-drop, progress tracking, and validation | ✅ Available |
-| **📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |
-| **🔢 [InputOTP](./docs/components/input-otp.md)** | One-time password input component with multiple slots and validation | ✅ Available |*📁 [FileUpload](./docs/components/file-upload.md)** | Advanced file upload component with drag-and-drop, progress tracking, and validation | ✅ Available |[Drop| *| **🔲 | **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |Sidebar](./docs/components/sidebar.md)** | Responsive navigation sidebar with animations, keyboard navigation, and flexible content | ✅ Available |🔽 [Select](./docs/components/select.md)** | A flexible select dropdown component with search and multi-select capabilities | ✅ Available |
-| **🏠 [Sidebar](./docs/components/sidebar.md)** | Responsive navigation sidebar with animations, keyboard navigation, and flexible content | ✅ Available |
-| **💀 [Skeleton](./docs/components/skeleton.md)** | Loading placeholder components with customizable shapes and animations | ✅ Available |nMenu](./docs/components/dropdown-menu.md)** | Beautiful, accessible dropdown menu with multiple variants and advanced animations | ✅ Available |
-| **📁 [FileUpload](./docs/components/file-upload.md)** | Advanced file upload component with drag-and-drop, progress tracking, and validation | ✅ Available |
-| **📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |
-| **🔢 [InputOTP](./docs/components/input-otp.md)** | One-time password input component with multiple slots and validation | ✅ Available |📁 [Fi| **🏠 | **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |Sidebar](./docs/components/sidebar.md)** | Responsive navigation sidebar with animations, keyboard navigation, and flexible content | ✅ Available |eUpload](./docs/components/file-upload.md)** | Advanced file upload component with drag-and-drop, progress tracking, and validation | ✅ Available |
-| **📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |rk Mode • Mobile Responsive • TypeScript • Accessibility ✨**
 
 [![NPM Version](https://img.shields.io/npm/v/angular-superui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/angular-superui)
 [![CLI Version](https://img.shields.io/npm/v/ngsui-cli?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ngsui-cli)
@@ -34,6 +16,7 @@
 <div align="center">
 
 ### ☕ Support This Project
+
 [![Buy Me A Coffee](https://img.shields.io/badge/☕-Buy%20Me%20A%20Coffee-orange?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://coff.ee/bhaikaju)
 
 </div>
@@ -42,7 +25,7 @@
   <h2>🚀 The Modern Angular UI Component Library</h2>
   <p><strong>Beautiful • Accessible • Type-Safe • Zero External Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/39%2B%20Components%20%2B%205%20Blocks-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/43%2B%20Components%20%2B%2010%20Blocks-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
   ![Angular 17+](https://img.shields.io/badge/Angular-17%2B-red?style=flat-square)
@@ -52,7 +35,7 @@
 
 ## ✨ What is Angular SuperUI?
 
-Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI component library that transforms how you build Angular applications. Built with **Tailwind CSS v4**, **TypeScript**, and **Angular 17+ Signals**, it provides **39 production-ready components + 5 UI blocks** with **local-first architecture**.
+Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI component library that transforms how you build Angular applications. Built with **Tailwind CSS v4**, **TypeScript**, and **Angular 17+ Signals**, it provides **43 production-ready components + 10 UI blocks** with **local-first architecture**.
 
 ### 🎯 **Why Angular SuperUI is the Best Choice for Your Project?**
 
@@ -70,6 +53,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 📚 **Comprehensive Docs** - Detailed API reference, examples, and best practices
 
 ### 🏆 **Perfect for:**
+
 - ✅ **Enterprise Applications** - Scalable, maintainable component architecture
 - ✅ **Rapid Prototyping** - Quick setup with beautiful defaults
 - ✅ **Design Systems** - Consistent, reusable component patterns
@@ -90,7 +74,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 
 [![Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white)](https://angular-superui.vercel.app/)
 
-*See all 39 components + 5 blocks in action with dark mode, mobile responsiveness, and interactive examples!*
+*See all 43 components + 10 blocks in action with dark mode, mobile responsiveness, and interactive examples!*
 
 </div>
 
@@ -277,6 +261,7 @@ export class AppComponent {}
 | **🃏 [Card](./docs/components/card.md)** | Flexible content container with header, content, and footer | ✅ Available |
 | **🎠 [Carousel](./docs/components/carousel.md)** | Accessible image carousel with auto-play, navigation, and pagination | ✅ Available |
 | **☑️ [Checkbox](./docs/components/checkbox.md)** | A control that allows the user to toggle between checked and not checked | ✅ Available |
+| **🏷️ [Chip](./docs/components/chip.md)** | Compact element with label, avatar, and optional close button | ✅ Available |
 | **🗃️ [Collapsible](./docs/components/collapsible.md)** | Expandable content sections with smooth animations and keyboard support | ✅ Available |
 | **🔽 [ComboBox](./docs/components/combobox.md)** | Dropdown selection with search, multi-select, and loading states | ✅ Available |
 | **🖱️ [ContextMenu](./docs/components/context-menu.md)** | Right-click context menus with keyboard shortcuts and accessibility | ✅ Available |
@@ -285,15 +270,18 @@ export class AppComponent {}
 | **📄 [Drawer](./docs/components/drawer.md)** | Flexible drawer component that slides in from any side of the screen | ✅ Available |
 | **⬇️ [DropdownMenu](./docs/components/dropdown-menu.md)** | Beautiful, accessible dropdown menu with multiple variants and advanced animations | ✅ Available |
 | **📁 [FileUpload](./docs/components/file-upload.md)** | Advanced file upload component with drag-and-drop, progress tracking, and validation | ✅ Available |
-| **📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |
+| **🎯 [Header](./docs/components/header.md)** | Navigation headers with menus, logos, and mobile support | ✅ Available |
+| **🎨 [Icon](./docs/components/icon.md)** | SVG icon component with size variants and accessibility features | ✅ Available |
+| **� [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |
 | **🔢 [InputOTP](./docs/components/input-otp.md)** | One-time password input component with multiple slots and validation | ✅ Available |
+| **� [Menubar](./docs/components/menubar.md)** | Horizontal menu bar with dropdown submenus and keyboard navigation | ✅ Available |
 | **📄 [Pagination](./docs/components/pagination.md)** | Pagination component with customizable page size and navigation controls | ✅ Available |
 | **💬 [Popover](./docs/components/popover.md)** | A floating overlay that displays content relative to a trigger element | ✅ Available |
 | **📊 [Progress](./docs/components/progress.md)** | Progress indicator component with customizable appearance and animation | ✅ Available |
 | **🔘 [RadioGroup](./docs/components/radio-group.md)** | Radio button group component with accessible selection and validation | ✅ Available |
 | **⭐ [Rating](./docs/components/rating.md)** | Interactive star rating component with hover effects and customizable appearance | ✅ Available |
 | **🔽 [Select](./docs/components/select.md)** | A flexible select dropdown component with search and multi-select capabilities | ✅ Available |
-| **🔲 [Sidebar](./docs/components/sidebar.md)** | Responsive navigation sidebar with animations, keyboard navigation, and flexible content | ✅ Available |
+| **📱 [Sidebar](./docs/components/sidebar.md)** | Responsive navigation sidebar with animations, keyboard navigation, and flexible content | ✅ Available |
 | **💀 [Skeleton](./docs/components/skeleton.md)** | Loading placeholder components with customizable shapes and animations | ✅ Available |
 | **🎚️ [Slider](./docs/components/slider.md)** | Interactive slider component for single values and ranges with accessibility support | ✅ Available |
 | **⏳ [Spinner](./docs/components/spinner.md)** | Loading spinner component with multiple variants and animations | ✅ Available |
@@ -302,43 +290,52 @@ export class AppComponent {}
 | **📄 [Textarea](./docs/components/textarea.md)** | Multi-line text input component with auto-resize and validation states | ✅ Available |
 | **🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
 | **📢 [Toast](./docs/components/toast.md)** | Toast notification component with multiple variants and auto-dismiss functionality | ✅ Available |
+| **🔀 [Toggle](./docs/components/toggle.md)** | Switch component for boolean state with accessibility and animations | ✅ Available |
+| **🔧 [Toolbar](./docs/components/toolbar.md)** | Toolbar component with grouped actions and responsive layout | ✅ Available |
 | **💡 [Tooltip](./docs/components/tooltip.md)** | Tooltip component with configurable positioning and hover/focus triggers | ✅ Available |
-| **� [FileUpload](./docs/components/file-upload.md)** | Advanced file upload component with drag-and-drop, progress tracking, and validation | ✅ Available |
-| **�📝 [Input](./docs/components/input.md)** | Flexible input component with multiple variants, validation states, and accessibility | ✅ Available |
-| **🔢 [InputOTP](./docs/components/input-otp.md)** | One-time password input component with multiple slots and validation | ✅ Available |
-| **📄 [Pagination](./docs/components/pagination.md)** | Pagination component with customizable page size and navigation controls | ✅ Available |
-| **💬 [Popover](./docs/components/popover.md)** | A floating overlay that displays content relative to a trigger element | ✅ Available |
-| **📊 [Progress](./docs/components/progress.md)** | Progress indicator component with customizable appearance and animation | ✅ Available |
-| **🔘 [RadioGroup](./docs/components/radio-group.md)** | Radio button group component with accessible selection and validation | ✅ Available |
-| **⭐ [Rating](./docs/components/rating.md)** | Interactive star rating component with hover effects and customizable appearance | ✅ Available |
-| **🔽 [Select](./docs/components/select.md)** | A flexible select dropdown component with search and multi-select capabilities | ✅ Available |
-| **� [Sidebar](./docs/components/sidebar.md)** | Responsive navigation sidebar with animations, keyboard navigation, and flexible content | ✅ Available |
-| **💀 [Skeleton](./docs/components/skeleton.md)** | Loading placeholder components with customizable shapes and animations | ✅ Available |
-| **🎚️ [Slider](./docs/components/slider.md)** | Interactive slider component for single values and ranges with accessibility support | ✅ Available |
-| **⏳ [Spinner](./docs/components/spinner.md)** | Loading spinner component with multiple variants and animations | ✅ Available |
-| **📋 [Stepper](./docs/components/stepper.md)** | Multi-step navigation component with progress tracking and validation support | ✅ Available |
-| **📑 [Tabs](./docs/components/tabs.md)** | Tabbed interface component with keyboard navigation and accessibility support | ✅ Available |
-| **📄 [Textarea](./docs/components/textarea.md)** | Multi-line text input component with auto-resize and validation states | ✅ Available |
-| **�🌓 [ThemeSwitcher](./docs/components/theme-switcher.md)** | Toggle between light, dark, and system themes with localStorage persistence | ✅ Available |
-| **📢 [Toast](./docs/components/toast.md)** | Toast notification component with multiple variants and auto-dismiss functionality | ✅ Available |
-| **💡 [Tooltip](./docs/components/tooltip.md)** | Tooltip component with configurable positioning and hover/focus triggers | ✅ Available |
+
+---
+
+## 🧱 UI Blocks (10 Total)
+
+<div align="center">
+
+### 🧱 **Block Showcase**
+
+</div>
+
+| Block | Description | Status |
+|-------|-------------|--------|
+| **🦸 [Hero Section](./docs/blocks/hero-section.md)** | Stunning hero sections with CTAs, images, and animations | ✅ Available |
+| **📊 [Stats Counter](./docs/blocks/stats-counter.md)** | Animated statistics display with countup effects | ✅ Available |
+| **💎 [Feature Grid](./docs/blocks/feature-grid.md)** | Feature showcase with icons, descriptions, and layouts | ✅ Available |
+| **🃏 [Feature Card](./docs/blocks/feature-card.md)** | Individual feature cards with icons and descriptions | ✅ Available |
+| **💬 [Testimonial](./docs/blocks/testimonial.md)** | Customer testimonials with avatars and ratings | ✅ Available |
+| **💰 [Pricing Cards](./docs/blocks/pricing-cards.md)** | Pricing tables with features, CTAs, and highlighting | ✅ Available |
+| **👥 [Team Grid](./docs/blocks/team-grid.md)** | Team member showcase with social links and roles | ✅ Available |
+| **🔑 [Auth Forms](./docs/blocks/auth-forms.md)** | Login, register, and password reset forms | ✅ Available |
+| **🎯 [Header](./docs/blocks/header.md)** | Navigation headers with menus, logos, and mobile support | ✅ Available |
+| **🦶 [Footer](./docs/blocks/footer.md)** | Footer sections with links, social icons, and company info | ✅ Available |
 
 ---
 
 ## 🎯 CLI Commands
 
 ### 📋 List Available Components
+
 ```bash
 ngsui-cli list
 ```
 
 ### ➕ Add Components
+
 ```bash
 # Add specific components
 ngsui-cli add accordion alert card aspect-ratio
 ```
 
 ### ⚙️ Initialize Project
+
 ```bash
 # Initialize with default settings
 ngsui-cli init
@@ -349,6 +346,7 @@ ngsui-cli init
 ## 💫 Component Features
 
 ### 🪗 **Accordion Component**
+
 - **Multiple Modes**: Single or multiple items open
 - **Accessibility**: Full WAI-ARIA compliance
 - **Keyboard Navigation**: Arrow keys, Home/End, Enter/Space
@@ -356,6 +354,7 @@ ngsui-cli init
 - **Screen Reader Support**: Proper announcements and labeling
 
 ### 🚨 **Alert Component**
+
 - **5 Variants**: Default, Destructive, Warning, Success, Info
 - **Flexible Layout**: Icon + Title + Description structure
 - **ARIA Live Regions**: Automatic screen reader announcements
@@ -363,6 +362,7 @@ ngsui-cli init
 - **Semantic Colors**: Built-in color schemes for each variant
 
 ### 👤 **Avatar Component**
+
 - **5 Sizes**: From sm (32px) to 2xl (80px) with responsive scaling
 - **Smart Fallbacks**: Automatic fallback when images fail to load
 - **Loading Timeout**: 5-second timeout with graceful degradation
@@ -370,6 +370,7 @@ ngsui-cli init
 - **Performance**: Lazy loading and optimized image handling
 
 ### 🏷️ **Badge Component**
+
 - **4 Variants**: Default, Secondary, Destructive, Outline
 - **Smart ARIA Roles**: Automatic role assignment based on variant (alert/status/note)
 - **Interactive Links**: Optional link mode with keyboard accessibility
@@ -378,6 +379,7 @@ ngsui-cli init
 - **TypeScript**: Complete type safety with CVA variants
 
 ### 🔘 **Button Component**
+
 - **9 Variants**: Default, Secondary, Destructive, Outline, Ghost, Link, Success, Warning, Info
 - **8 Size Options**: Including icon-specific sizes (sm to xl)
 - **Loading States**: Built-in spinner with custom loading text support
@@ -468,7 +470,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🔗 Resources
 
-- 🌐 **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 39 components**
+- 🌐 **[🚀 LIVE DEMO](https://angular-superui.vercel.app/)** - **Interactive showcase of all 43 components + 10 blocks**
 - 🌐 **[Official Website](https://github.com/bhaimicrosoft/angular-superui)**
 - 📦 **[NPM Package](https://www.npmjs.com/package/angular-superui)**
 - 🛠️ **[CLI Package](https://www.npmjs.com/package/ngsui-cli)**

@@ -47,7 +47,7 @@ const footerVariants = cva(
   }
 );
 
-export type FooterConfigurableVariant = VariantProps<typeof footerVariants>;
+export type FooterVariant = VariantProps<typeof footerVariants>;
 
 @Component({
   selector: 'FooterBlock',
@@ -151,9 +151,9 @@ export type FooterConfigurableVariant = VariantProps<typeof footerVariants>;
 })
 export class FooterBlock {
   // Styling inputs
-  variant = input<FooterConfigurableVariant['variant']>('default');
-  layout = input<FooterConfigurableVariant['layout']>('standard');
-  columns = input<FooterConfigurableVariant['columns']>('auto');
+  variant = input<FooterVariant['variant']>('default');
+  layout = input<FooterVariant['layout']>('standard');
+  columns = input<FooterVariant['columns']>('auto');
   
   // Container inputs
   containerType = input<'none' | 'default' | 'wide' | 'full' | 'custom'>('default');

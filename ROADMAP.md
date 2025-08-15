@@ -10,7 +10,7 @@ Transform Angular SuperUI into the **ultimate, comprehensive UI ecosystem** that
 
 ## 📋 Current State (v2.0.0)
 
-**✅ 39 Production-Ready Components**
+**✅ 43 Production-Ready Components**
 
 - Core UI: Button, Input, Textarea, Select, Checkbox, Radio Group, Toggle
 - Layout: Card, Accordion, Collapsible, Tabs, Sidebar, Header, Aspect Ratio

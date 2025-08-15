@@ -79,8 +79,8 @@ const pricingCardVariants = cva(
   }
 );
 
-export type PricingCardsConfigurableVariant = VariantProps<typeof pricingCardsVariants>;
-export type PricingCardConfigurableVariant = VariantProps<typeof pricingCardVariants>;
+export type PricingCardsVariant = VariantProps<typeof pricingCardsVariants>;
+export type PricingCardVariant = VariantProps<typeof pricingCardVariants>;
 
 @Component({
   selector: 'PricingCards',
@@ -134,10 +134,10 @@ export type PricingCardConfigurableVariant = VariantProps<typeof pricingCardVari
 })
 export class PricingCards {
   // Styling inputs
-  variant = input<PricingCardsConfigurableVariant['variant']>('default');
-  layout = input<PricingCardsConfigurableVariant['layout']>('grid');
-  columns = input<PricingCardsConfigurableVariant['columns']>('auto');
-  spacing = input<PricingCardsConfigurableVariant['spacing']>('default');
+  variant = input<PricingCardsVariant['variant']>('default');
+  layout = input<PricingCardsVariant['layout']>('grid');
+  columns = input<PricingCardsVariant['columns']>('auto');
+  spacing = input<PricingCardsVariant['spacing']>('default');
   
   // Container inputs
   containerType = input<'none' | 'default' | 'wide' | 'narrow' | 'custom'>('default');
@@ -312,8 +312,8 @@ export class PricingCards {
 })
 export class PricingCard {
   // Styling inputs
-  variant = input<PricingCardConfigurableVariant['variant']>('default');
-  size = input<PricingCardConfigurableVariant['size']>('default');
+  variant = input<PricingCardVariant['variant']>('default');
+  size = input<PricingCardVariant['size']>('default');
   
   // State inputs
   popular = input<boolean>(false);

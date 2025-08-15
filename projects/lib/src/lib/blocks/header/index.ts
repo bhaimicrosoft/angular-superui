@@ -54,7 +54,7 @@ const headerVariants = cva(
   }
 );
 
-export type HeaderConfigurableVariant = VariantProps<typeof headerVariants>;
+export type HeaderVariant = VariantProps<typeof headerVariants>;
 
 @Component({
   selector: 'HeaderBlock',
@@ -126,10 +126,10 @@ export type HeaderConfigurableVariant = VariantProps<typeof headerVariants>;
 })
 export class HeaderBlock {
   // Styling inputs
-  variant = input<HeaderConfigurableVariant['variant']>('default');
-  size = input<HeaderConfigurableVariant['size']>('default');
-  position = input<HeaderConfigurableVariant['position']>('sticky');
-  shadow = input<HeaderConfigurableVariant['shadow']>('sm');
+  variant = input<HeaderVariant['variant']>('default');
+  size = input<HeaderVariant['size']>('default');
+  position = input<HeaderVariant['position']>('sticky');
+  shadow = input<HeaderVariant['shadow']>('sm');
   
   // Container inputs
   containerType = input<'none' | 'default' | 'wide' | 'full' | 'custom'>('default');

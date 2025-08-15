@@ -419,7 +419,7 @@ export class HomeComponent implements OnInit {
   }
 
   stats = {
-    components: 39,
+    components: 43,
     examples: 55
   };
 

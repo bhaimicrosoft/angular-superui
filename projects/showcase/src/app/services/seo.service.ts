@@ -24,7 +24,7 @@ export class SEOService {
 
   private readonly defaultSEO: SEOData = {
     title: 'Angular SuperUI - Ultimate Headless UI Component Library for Angular',
-    description: 'The ultimate headless UI component library for Angular. 39+ modern, accessible components including dialogs, forms, data tables, navigation, and more. Built with TypeScript, Tailwind CSS, and zero dependencies. Perfect alternative to Shadcn/ui for Angular developers.',
+    description: 'The ultimate headless UI component library for Angular. 43+ modern, accessible components including dialogs, forms, data tables, navigation, and more. Built with TypeScript, Tailwind CSS, and zero dependencies. Perfect alternative to Shadcn/ui for Angular developers.',
     keywords: 'headless ui, angular ui, angular components, angular library, angular framework, ui components, component library, angular design system, tailwind css components, typescript components, accessible components, modern ui, angular headless ui, shadcn angular, radix angular, chakra ui angular, material ui alternative, antd angular, angular component kit, ui framework, design tokens, angular ui kit, responsive components, form components, dialog components, navigation components, data table, button components, input components, angular widgets, frontend framework, ui building blocks, component collection, enterprise ui, production ready components, Angular SuperUI, angular-superui, ngsui-cli, zero dependencies, tree shakable, cli installation, mobile responsive, dark mode, drag drop, file upload, calendar picker, accessibility wcag',
     image: 'https://angular-superui.vercel.app/assets/angular-superui-social.png',
     url: 'https://angular-superui.vercel.app',

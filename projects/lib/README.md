@@ -1,10 +1,10 @@
-# Angular SuperUI v2.0.1 🚀
+# Angular SuperUI v2.0.2 🚀
 
 <div align="center">
 
 🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ All 39 Components + 5 Blocks • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
+**✨ All 43 Components + 10 Blocks • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
 
 </div>
 
@@ -36,9 +36,9 @@ A modern, beautiful, and accessible Angular UI component library built with **Ta
 
 ## 🚀 **[📖 Complete Documentation →](../../docs/)**
 >
-> 🚀 **Step-by-step guides** for all 39 components + 5 blocks with **practical examples**, **usage instructions**, and **styling tips**!
+> 🚀 **Step-by-step guides** for all 43 components + 10 blocks with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v2.0.0: 39 Components + 5 Blocks Ready**
+## 🛠️ **v2.0.2: 43 Components + 10 Blocks Ready**
 
 ### 🚀 **CLI Tool (Recommended)**
 
@@ -78,7 +78,7 @@ npm install angular-superui@2.0.0
 - **Tailwind CSS Integration** - Utility-first styling approach
 - **Angular 18+ Support** - Built for modern Angular applications
 
-## 📦 **All 39 Components + 5 Blocks Available**
+## 📦 **All 43 Components + 10 Blocks Available**
 
 ### 🎯 Core Components
 

@@ -106,7 +106,7 @@ export async function initCommand() {
   console.log(chalk.hex('#8B5CF6')('╔══════════════════════════════════════════════════════════════════════╗'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899').bold('                    🎨 Angular SuperUI CLI v' + version + '                     ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('                                                                      ') + chalk.hex('#8B5CF6')('║'));
-  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('      ✨ 39 Components + 5 Blocks • TypeScript • Local-First ✨       ') + chalk.hex('#8B5CF6')('║'));
+  console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#10B981')('      ✨ 43 Components + 10 Blocks • TypeScript • Local-First ✨       ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#F59E0B')('              🚀 TailwindCSS v4 • Angular 18+ • Zero NPM 🚀              ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#06B6D4')('                                                                      ') + chalk.hex('#8B5CF6')('║'));
   console.log(chalk.hex('#8B5CF6')('║') + chalk.hex('#EC4899')('                ⚡ Enterprise-Grade • Production-Ready ⚡                ') + chalk.hex('#8B5CF6')('║'));

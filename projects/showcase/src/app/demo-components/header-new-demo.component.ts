@@ -2,7 +2,7 @@ import { Component, signal, computed, ChangeDetectionStrategy, inject, OnInit } 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
-import { HeaderBlock } from '@lib/blocks/header-configurable';
+import { HeaderBlock } from '@lib/blocks/header';
 
 @Component({
   selector: 'app-header-new-demo',
@@ -34,7 +34,7 @@ import { HeaderBlock } from '@lib/blocks/header-configurable';
 
           <!-- Description -->
           <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-            Create flexible navigation headers with logo, menu items, and actions. 
+            Create flexible navigation headers with logo, menu items, and actions.
             Perfect for websites, dashboards, and applications.
           </p>
 
@@ -150,7 +150,7 @@ import { HeaderBlock } from '@lib/blocks/header-configurable';
                   </svg>
                 </button>
               </HeaderBlock>
-              
+
               <!-- Hero Content Below -->
               <div class="px-6 pb-20 pt-8 text-center">
                 <h1 class="text-4xl font-bold text-white mb-4">Welcome to Our Platform</h1>
@@ -250,7 +250,7 @@ import { HeaderBlock } from '@lib/blocks/header-configurable';
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">Implementation Guide</h2>
-          
+
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Basic Usage</h3>
@@ -260,7 +260,7 @@ import { HeaderBlock } from '@lib/blocks/header-configurable';
   &lt;div slot="actions"&gt;Action Buttons&lt;/div&gt;
 &lt;/HeaderBlock&gt;</code></pre>
             </div>
-            
+
             <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Available Slots</h3>
               <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">

@@ -7,7 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SEOService } from '../services/seo.service';
-import { FooterBlock } from '@lib/blocks/footer-configurable';
+import { FooterBlock } from '@lib/blocks/footer';
 import { Icon } from '@lib/components/icon';
 
 @Component({

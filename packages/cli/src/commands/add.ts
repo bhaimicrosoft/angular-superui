@@ -146,6 +146,12 @@ export const COMPONENTS: Record<string, ComponentConfig> = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'icon': {
+    name: 'Icon',
+    description: 'Versatile icon component supporting multiple icon libraries and sizes.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'input': {
     name: 'Input',
     description: 'Flexible input component with multiple variants, validation states, and accessibility.',
@@ -155,6 +161,12 @@ export const COMPONENTS: Record<string, ComponentConfig> = {
   'input-otp': {
     name: 'Input OTP',
     description: 'One-time password input component with multiple slots and validation.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'menubar': {
+    name: 'Menubar',
+    description: 'Application menubar with nested submenus and keyboard navigation.',
     dependencies: ['cn'],
     files: ['index.ts']
   },
@@ -261,6 +273,12 @@ export const COMPONENTS: Record<string, ComponentConfig> = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
+  'toolbar': {
+    name: 'Toolbar',
+    description: 'Group actions and inputs in a compact, responsive bar.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
   'tooltip': {
     name: 'Tooltip',
     description: 'Tooltip component with configurable positioning and hover/focus triggers.',
@@ -273,15 +291,33 @@ export const COMPONENTS: Record<string, ComponentConfig> = {
 
 // Define available blocks
 export const BLOCKS: Record<string, ComponentConfig> = {
-  'header': {
-    name: 'Header',
-    description: 'Professional header block with navigation, branding, and user actions.',
+  'auth-forms': {
+    name: 'Auth Forms',
+    description: 'Login, register, and password reset forms.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'feature-card': {
+    name: 'Feature Card',
+    description: 'Individual feature cards with icons and descriptions.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'feature-grid': {
+    name: 'Feature Grid',
+    description: 'Feature showcase block with responsive grid layout and multiple variants.',
     dependencies: ['cn'],
     files: ['index.ts']
   },
   'footer': {
     name: 'Footer',
     description: 'Comprehensive footer block with navigation, social links, and newsletter signup.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'header': {
+    name: 'Header',
+    description: 'Professional header block with navigation, branding, and user actions.',
     dependencies: ['cn'],
     files: ['index.ts']
   },
@@ -297,9 +333,21 @@ export const BLOCKS: Record<string, ComponentConfig> = {
     dependencies: ['cn'],
     files: ['index.ts']
   },
-  'feature-grid': {
-    name: 'Feature Grid',
-    description: 'Feature showcase block with responsive grid layout and multiple variants.',
+  'stats-counter': {
+    name: 'Stats Counter',
+    description: 'Animated statistics display with countup effects.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'team-grid': {
+    name: 'Team Grid',
+    description: 'Team member showcase with social links and roles.',
+    dependencies: ['cn'],
+    files: ['index.ts']
+  },
+  'testimonial': {
+    name: 'Testimonial',
+    description: 'Customer testimonials with avatars and ratings.',
     dependencies: ['cn'],
     files: ['index.ts']
   }

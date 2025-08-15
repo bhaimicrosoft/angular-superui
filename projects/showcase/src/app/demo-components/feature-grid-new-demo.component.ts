@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, inject, OnInit, signal} from '@angul
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {SEOService} from '../services/seo.service';
-import {FeatureGrid} from '@lib/blocks/feature-grid-configurable';
+import {FeatureGrid} from '@lib/blocks/feature-grid';
 import {Icon} from '@lib/components/icon';
 
 @Component({

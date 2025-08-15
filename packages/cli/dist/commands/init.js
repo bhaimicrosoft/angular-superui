@@ -98,7 +98,7 @@ async function initCommand() {
     console.log(chalk_1.default.hex('#8B5CF6')('╔══════════════════════════════════════════════════════════════════════╗'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899').bold('                    🎨 Angular SuperUI CLI v' + version + '                     ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('                                                                      ') + chalk_1.default.hex('#8B5CF6')('║'));
-    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('      ✨ 39 Components + 5 Blocks • TypeScript • Local-First ✨       ') + chalk_1.default.hex('#8B5CF6')('║'));
+    console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#10B981')('      ✨ 43 Components + 10 Blocks • TypeScript • Local-First ✨       ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#F59E0B')('              🚀 TailwindCSS v4 • Angular 18+ • Zero NPM 🚀              ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#06B6D4')('                                                                      ') + chalk_1.default.hex('#8B5CF6')('║'));
     console.log(chalk_1.default.hex('#8B5CF6')('║') + chalk_1.default.hex('#EC4899')('                ⚡ Enterprise-Grade • Production-Ready ⚡                ') + chalk_1.default.hex('#8B5CF6')('║'));
