@@ -15,6 +15,8 @@ An enterprise-grade floating content container with intelligent positioning usin
 - 🏹 **Arrow Indicators** - Optional arrow pointing to trigger element
 - ⚙️ **Highly Configurable** - Extensive customization options
 - 🔄 **Enhanced Edge Case Handling** - Improved corner positioning and viewport margin optimization
+- 👀 **Smart Auto-Hide** - Automatically hides when trigger scrolls out of view for better UX
+- 🎯 **Enhanced Scroll Handling** - Immediate repositioning during scroll events with intersection observer support
 
 ## Installation
 
@@ -25,6 +27,7 @@ npx ngsui-cli add popover
 ```
 
 This will automatically:
+
 - Add the Popover component to your project
 - Update your `app.config.ts` with required providers
 - Install necessary dependencies
@@ -245,6 +248,56 @@ export class FormExample {
 }
 ```
 
+### Scroll Behavior and Auto-Hide
+
+```typescript
+@Component({
+  template: `
+    <!-- Auto-hide when trigger scrolls out of view (default behavior) -->
+    <Popover
+      [isOpen]="scrollOpen()"
+      [triggerElement]="scrollTrigger"
+      [hideOnTriggerOutOfView]="true"
+    >
+      <div>
+        <p>This popover will automatically hide when you scroll and the trigger goes out of view.</p>
+      </div>
+    </Popover>
+
+    <!-- Disable auto-hide for persistent popovers -->
+    <Popover
+      [isOpen]="persistentOpen()"
+      [triggerElement]="persistentTrigger"
+      [hideOnTriggerOutOfView]="false"
+    >
+      <div>
+        <p>This popover stays open even when trigger scrolls out of view.</p>
+      </div>
+    </Popover>
+
+    <!-- With manual position updates -->
+    <Popover
+      #myPopover
+      [isOpen]="advancedScrollOpen()"
+      [triggerElement]="advancedTrigger"
+      [hideOnTriggerOutOfView]="true"
+    >
+      <div>
+        <p>Smart repositioning during scroll events.</p>
+        <button (click)="myPopover.updatePosition()">
+          Force Reposition
+        </button>
+      </div>
+    </Popover>
+  `
+})
+export class ScrollBehaviorExample {
+  readonly scrollOpen = signal(false);
+  readonly persistentOpen = signal(false);
+  readonly advancedScrollOpen = signal(false);
+}
+```
+
 ### Custom Styling
 
 ```typescript
@@ -292,6 +345,7 @@ Here's a comprehensive overview of all configuration options for the Popover com
 | `align` | `'start' \| 'center' \| 'end'` | `'center'` | 🟡 Medium | Alignment along the chosen side | `align="start"` |
 | `offset` | `number` | `8` | 🟡 Medium | Distance from trigger in pixels | `[offset]="12"` |
 | `avoidCollisions` | `boolean` | `true` | 🟡 Medium | Enable intelligent repositioning | `[avoidCollisions]="false"` |
+| `hideOnTriggerOutOfView` | `boolean` | `true` | 🟡 Medium | Auto-hide when trigger scrolls out of view | `[hideOnTriggerOutOfView]="false"` |
 
 ### Visual Enhancement (Intermediate)
 
@@ -320,6 +374,12 @@ Here's a comprehensive overview of all configuration options for the Popover com
 | Event | Type | Difficulty | Description | Example |
 |-------|------|------------|-------------|---------|
 | `openChange` | `boolean` | 🟢 Easy | Emitted when open state changes | `(openChange)="handleChange($event)"` |
+
+### Public Methods
+
+| Method | Parameters | Return Type | Description | Example |
+|--------|------------|-------------|-------------|---------|
+| `updatePosition()` | None | `void` | Forces the popover to recalculate and update its position | `myPopover.updatePosition()` |
 
 ### Configuration Difficulty Legend
 

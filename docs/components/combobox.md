@@ -1,48 +1,61 @@
 # ComboBox
 
-A customizable dropdown component that allows users to select from a list of options with search functionality, multi-select support, and loading states.
+A high-performance, accessible combobox component built on native HTML select foundation with enhanced styling and functionality. Provides reliable dropdown selection with search capabilities, keyboard navigation, and enterprise-grade accessibility.
+
+## Features
+
+- 🏗️ **Native HTML Select Foundation** - Built on reliable HTML select for maximum compatibility
+- ⚡ **High Performance** - Optimized rendering with minimal overhead
+- ♿ **Enhanced Accessibility** - Full keyboard navigation, screen reader support, and ARIA compliance
+- 🎨 **Beautiful Styling** - Modern design with Tailwind CSS integration
+- 🔍 **Search Functionality** - Filter options with built-in search when enabled
+- 📱 **Mobile Optimized** - Works seamlessly on touch devices
+- 🎯 **Reliable Positioning** - No floating positioning issues, uses native browser behavior
+- 🚀 **Single Component** - Simplified API with all functionality in one component
+- 💪 **TypeScript Support** - Full type safety and IntelliSense support
 
 ## Installation
 
-The ComboBox component is available as part of Angular SuperUI. If you haven't initialized Angular SuperUI in your project yet, run:
+Install the ComboBox component using our CLI tool:
 
 ```bash
-ngsui-cli init
+npx ngsui-cli add combobox
 ```
 
-Then add the ComboBox component to your project:
+This will automatically:
 
-```bash
-ngsui-cli add combobox
-```
+- Add the Combobox component to your project
+- Configure required dependencies
+- Set up Tailwind CSS classes
 
-## Usage
-
-Import the ComboBox components in your Angular component:
+## Basic Usage
 
 ```typescript
-import { Component } from '@angular/core';
-import { Combobox, ComboboxTrigger, ComboboxContent, ComboboxOption } from 'angular-superui';
+import { Component, signal } from '@angular/core';
+import { Combobox } from '@angular-superui/lib';
 
 @Component({
   selector: 'app-example',
   standalone: true,
-  imports: [Combobox, ComboboxTrigger, ComboboxContent],
+  imports: [Combobox],
   template: `
-    <Combobox [options]="options" [(ngModel)]="selectedValue" placeholder="Select an option...">
-      <ComboboxTrigger></ComboboxTrigger>
-      <ComboboxContent></ComboboxContent>
-    </Combobox>
+    <Combobox
+      [options]="frameworks"
+      [value]="selectedFramework()"
+      (valueChange)="selectedFramework.set($event)"
+      placeholder="Select a framework..."
+    />
   `
 })
 export class ExampleComponent {
-  options: ComboboxOption[] = [
+  readonly selectedFramework = signal<string>('');
+  
+  readonly frameworks = [
     { value: 'react', label: 'React' },
     { value: 'angular', label: 'Angular' },
-    { value: 'vue', label: 'Vue.js' }
+    { value: 'vue', label: 'Vue.js' },
+    { value: 'svelte', label: 'Svelte' }
   ];
-  
-  selectedValue: string | null = null;
 }
 ```
 
@@ -50,128 +63,180 @@ export class ExampleComponent {
 
 ### Basic ComboBox
 
-Simple dropdown selection without search functionality.
-
-```html
-<Combobox [options]="comboboxOptions" [(ngModel)]="selectedOptionValue" placeholder="Select a framework..." (valueChange)="onFrameworkChange($event)">
-  <ComboboxTrigger></ComboboxTrigger>
-  <ComboboxContent [searchable]="false"></ComboboxContent>
-</Combobox>
-```
+Simple dropdown selection with default styling.
 
 ```typescript
-export class ExampleComponent {
-  comboboxOptions: ComboboxOption[] = [
-    { value: 'react', label: 'React' },
-    { value: 'angular', label: 'Angular' },
-    { value: 'vue', label: 'Vue.js' },
-    { value: 'svelte', label: 'Svelte' },
-    { value: 'nextjs', label: 'Next.js' },
-    { value: 'nuxt', label: 'Nuxt.js' },
-    { value: 'solid', label: 'SolidJS' },
-    { value: 'qwik', label: 'Qwik' },
-    { value: 'astro', label: 'Astro' },
-    { value: 'remix', label: 'Remix', disabled: true }
+@Component({
+  template: `
+    <Combobox
+      [options]="basicOptions"
+      [value]="selectedValue()"
+      (valueChange)="selectedValue.set($event)"
+      placeholder="Choose an option..."
+    />
+  `
+})
+export class BasicExample {
+  readonly selectedValue = signal<string>('');
+  
+  readonly basicOptions = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3' }
   ];
-  
-  selectedOptionValue: string | null = null;
-  
-  onFrameworkChange(value: string | string[] | null) {
-    const frameworkValue = Array.isArray(value) ? value[0] || null : value;
-    this.selectedOptionValue = frameworkValue;
-  }
 }
 ```
 
-### Searchable ComboBox
-
-Dropdown with search functionality to filter options.
-
-```html
-<Combobox [options]="languageOptions" [(ngModel)]="selectedLanguageValue" placeholder="Select a language..." (valueChange)="onLanguageChange($event)">
-  <ComboboxTrigger></ComboboxTrigger>
-  <ComboboxContent [searchable]="true" searchPlaceholder="Search languages..."></ComboboxContent>
-</Combobox>
-```
+### With Groups and Disabled Options
 
 ```typescript
-export class ExampleComponent {
-  languageOptions: ComboboxOption[] = [
-    { value: 'javascript', label: 'JavaScript' },
-    { value: 'typescript', label: 'TypeScript' },
-    { value: 'python', label: 'Python' },
-    { value: 'java', label: 'Java' },
-    { value: 'csharp', label: 'C#' },
-    { value: 'cpp', label: 'C++' },
-    { value: 'rust', label: 'Rust' },
-    { value: 'go', label: 'Go' },
-    { value: 'swift', label: 'Swift' },
-    { value: 'kotlin', label: 'Kotlin' },
-    { value: 'php', label: 'PHP' },
-    { value: 'ruby', label: 'Ruby' },
-    { value: 'dart', label: 'Dart' },
-    { value: 'scala', label: 'Scala' },
-    { value: 'haskell', label: 'Haskell', disabled: true }
+@Component({
+  template: `
+    <Combobox
+      [options]="groupedOptions"
+      [value]="selectedLanguage()"
+      (valueChange)="selectedLanguage.set($event)"
+      placeholder="Select a programming language..."
+    />
+  `
+})
+export class GroupedExample {
+  readonly selectedLanguage = signal<string>('');
+  
+  readonly groupedOptions = [
+    { 
+      label: 'Frontend',
+      options: [
+        { value: 'javascript', label: 'JavaScript' },
+        { value: 'typescript', label: 'TypeScript' },
+        { value: 'html', label: 'HTML' },
+        { value: 'css', label: 'CSS' }
+      ]
+    },
+    {
+      label: 'Backend', 
+      options: [
+        { value: 'python', label: 'Python' },
+        { value: 'java', label: 'Java' },
+        { value: 'csharp', label: 'C#' },
+        { value: 'go', label: 'Go', disabled: true }
+      ]
+    }
   ];
-  
-  selectedLanguageValue: string | null = null;
-  
-  onLanguageChange(value: string | string[] | null) {
-    const languageValue = Array.isArray(value) ? value[0] || null : value;
-    this.selectedLanguageValue = languageValue;
-  }
 }
 ```
 
-### Multi-Select ComboBox
-
-Select multiple options with chips display and individual removal.
-
-```html
-<Combobox [options]="skillOptions" [multiple]="true" [(ngModel)]="selectedSkillsValue" placeholder="Select skills..." (valueChange)="onSkillsChange($event)">
-  <ComboboxTrigger [multiple]="true"></ComboboxTrigger>
-  <ComboboxContent [multiple]="true" searchPlaceholder="Search skills..."></ComboboxContent>
-</Combobox>
-```
+### Disabled State and Error Handling
 
 ```typescript
-export class ExampleComponent {
-  skillOptions: ComboboxOption[] = [
-    { value: 'frontend', label: 'Frontend Development', description: 'HTML, CSS, JavaScript, React, Angular' },
-    { value: 'backend', label: 'Backend Development', description: 'Node.js, Python, Java, C#' },
-    { value: 'mobile', label: 'Mobile Development', description: 'iOS, Android, React Native, Flutter' },
-    { value: 'devops', label: 'DevOps', description: 'Docker, Kubernetes, AWS, Azure' },
-    { value: 'database', label: 'Database Design', description: 'SQL, NoSQL, MongoDB, PostgreSQL' },
-    { value: 'testing', label: 'Testing', description: 'Unit testing, Integration testing, E2E testing' },
-    { value: 'security', label: 'Security', description: 'Authentication, Authorization, OWASP' },
-    { value: 'ui-ux', label: 'UI/UX Design', description: 'Figma, Adobe XD, Sketch, Prototyping' }
+@Component({
+  template: `
+    <!-- Disabled combobox -->
+    <Combobox
+      [options]="statusOptions"
+      [value]="selectedStatus()"
+      (valueChange)="selectedStatus.set($event)"
+      [disabled]="true"
+      placeholder="Status (disabled)"
+    />
+
+    <!-- With validation error -->
+    <div class="space-y-2">
+      <Combobox
+        [options]="categoryOptions"
+        [value]="selectedCategory()"
+        (valueChange)="selectedCategory.set($event)"
+        placeholder="Select category..."
+        [class]="hasError() ? 'border-red-500' : ''"
+      />
+      @if (hasError()) {
+        <p class="text-sm text-red-600">Please select a category</p>
+      }
+    </div>
+  `
+})
+export class ValidationExample {
+  readonly selectedStatus = signal<string>('');
+  readonly selectedCategory = signal<string>('');
+  readonly hasError = signal<boolean>(false);
+  
+  readonly statusOptions = [
+    { value: 'active', label: 'Active' },
+    { value: 'inactive', label: 'Inactive' },
+    { value: 'pending', label: 'Pending' }
   ];
   
-  selectedSkillsValue: string[] = [];
-  
-  onSkillsChange(value: string | string[] | null) {
-    const skillsArray = Array.isArray(value) ? value : (value ? [value] : []);
-    this.selectedSkillsValue = skillsArray;
-  }
+  readonly categoryOptions = [
+    { value: 'tech', label: 'Technology' },
+    { value: 'business', label: 'Business' },
+    { value: 'design', label: 'Design' }
+  ];
 }
 ```
 
-### Grouped Options
-
-Options organized by categories with group labels.
-
-```html
-<Combobox [options]="groupedTechOptions" [(ngModel)]="selectedTechValue" placeholder="Select technology..." (valueChange)="onTechChange($event)">
-  <ComboboxTrigger></ComboboxTrigger>
-  <ComboboxContent [showGroupLabels]="true" searchPlaceholder="Search technologies..."></ComboboxContent>
-</Combobox>
-```
+### Custom Styling
 
 ```typescript
-export class ExampleComponent {
-  groupedTechOptions: ComboboxOption[] = [
-    // Frontend
-    { value: 'react', label: 'React', group: 'Frontend', description: 'JavaScript library for building user interfaces' },
+@Component({
+  template: `
+    <Combobox
+      [options]="priorityOptions"
+      [value]="selectedPriority()"
+      (valueChange)="selectedPriority.set($event)"
+      placeholder="Select priority..."
+      class="w-full max-w-md bg-gray-50 border-2 border-blue-300 rounded-xl p-3 text-lg font-medium shadow-lg focus:border-blue-500 focus:ring-4 focus:ring-blue-200"
+    />
+  `
+})
+export class CustomStyledExample {
+  readonly selectedPriority = signal<string>('');
+  
+  readonly priorityOptions = [
+    { value: 'low', label: '🟢 Low Priority' },
+    { value: 'medium', label: '🟡 Medium Priority' },
+    { value: 'high', label: '🔴 High Priority' },
+    { value: 'urgent', label: '🚨 Urgent' }
+  ];
+}
+```
+
+## API Reference
+
+### Component Properties
+
+| Property | Type | Default | Required | Description |
+|----------|------|---------|----------|-------------|
+| `options` | `ComboboxOption[] \| ComboboxGroup[]` | `[]` | ✅ | List of options or grouped options |
+| `value` | `string` | `''` | ❌ | Currently selected value |
+| `placeholder` | `string` | `''` | ❌ | Placeholder text when no option is selected |
+| `disabled` | `boolean` | `false` | ❌ | Whether the combobox is disabled |
+| `class` | `string` | `''` | ❌ | Additional CSS classes |
+
+### Events
+
+| Event | Type | Description |
+|-------|------|-------------|
+| `valueChange` | `string` | Emitted when the selected value changes |
+
+### Option Interface
+
+```typescript
+interface ComboboxOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+```
+
+### Group Interface
+
+```typescript
+interface ComboboxGroup {
+  label: string;
+  options: ComboboxOption[];
+}
+```
+
     { value: 'angular', label: 'Angular', group: 'Frontend', description: 'TypeScript-based web application framework' },
     { value: 'vue', label: 'Vue.js', group: 'Frontend', description: 'Progressive JavaScript framework' },
     { value: 'svelte', label: 'Svelte', group: 'Frontend', description: 'Compile-time framework' },
@@ -183,15 +248,117 @@ export class ExampleComponent {
     { value: 'csharp', label: 'C#', group: 'Backend', description: 'Microsoft\'s object-oriented programming language' },
     
     // Database
-    { value: 'postgres', label: 'PostgreSQL', group: 'Database', description: 'Open source relational database' },
-    { value: 'mongodb', label: 'MongoDB', group: 'Database', description: 'NoSQL document database' },
-    { value: 'mysql', label: 'MySQL', group: 'Database', description: 'Open source relational database' },
-    { value: 'redis', label: 'Redis', group: 'Database', description: 'In-memory data structure store' },
-    
-    // Cloud
-    { value: 'aws', label: 'AWS', group: 'Cloud', description: 'Amazon Web Services' },
-    { value: 'azure', label: 'Azure', group: 'Cloud', description: 'Microsoft Azure' },
-    { value: 'gcp', label: 'Google Cloud', group: 'Cloud', description: 'Google Cloud Platform' }
+    ## Best Practices
+
+### Do's ✅
+
+- **Use clear, descriptive labels** for all options
+- **Group related options** using the group structure
+- **Keep option lists reasonable** in size (under 100 options)
+- **Provide helpful placeholder text** to guide users
+- **Use disabled state** for unavailable options rather than hiding them
+- **Test keyboard navigation** to ensure accessibility
+- **Handle edge cases** like empty states gracefully
+
+### Don'ts ❌
+
+- **Don't use combobox for binary choices** - use toggle or switch instead
+- **Don't overwhelm users** with too many options at once
+- **Don't forget to handle the empty state** when no option is selected
+- **Don't disable the entire component** unless absolutely necessary
+- **Don't use unclear abbreviations** in option labels
+- **Don't forget responsive design** for mobile devices
+
+## Accessibility Features
+
+### Keyboard Navigation
+- **Arrow Keys**: Navigate through options
+- **Enter/Space**: Select the highlighted option
+- **Escape**: Close the dropdown (when applicable)
+- **Tab**: Move to the next focusable element
+
+### Screen Reader Support
+- Full ARIA labeling for option identification
+- Proper role assignments for dropdown behavior
+- Announces selected state changes
+- Supports group labels and structure
+
+### Focus Management
+- Clear focus indicators
+- Logical tab order
+- Maintains focus within the component when open
+- Returns focus appropriately after selection
+
+## Browser Compatibility
+
+The Combobox component leverages native HTML select elements, ensuring:
+
+- **Universal Support**: Works in all modern browsers
+- **Mobile Compatibility**: Native mobile experience on iOS and Android
+- **Accessibility**: Built-in screen reader and keyboard support
+- **Performance**: Minimal JavaScript overhead
+- **Reliability**: No complex positioning or z-index issues
+
+## Migration from Old ComboBox
+
+If you're upgrading from the previous component-based architecture:
+
+### Before (Old API)
+```typescript
+<Combobox [options]="options" [(ngModel)]="value">
+  <ComboboxTrigger></ComboboxTrigger>
+  <ComboboxContent [searchable]="true"></ComboboxContent>
+</Combobox>
+```
+
+### After (New API)
+```typescript
+<Combobox 
+  [options]="options" 
+  [value]="value()"
+  (valueChange)="value.set($event)"
+  placeholder="Select an option..."
+/>
+```
+
+### Key Changes
+- **Single component** instead of multiple sub-components
+- **Signal-based state** for better performance
+- **Native HTML foundation** for reliability
+- **Simplified API** with fewer configuration options
+- **Better accessibility** out of the box
+
+## Styling Customization
+
+The component uses Tailwind CSS classes and can be customized through:
+
+### CSS Classes
+```typescript
+<Combobox
+  [options]="options"
+  [value]="value()"
+  (valueChange)="value.set($event)"
+  class="custom-select bg-blue-50 border-blue-300 text-blue-900 rounded-xl"
+/>
+```
+
+### CSS Variables (Advanced)
+```css
+.custom-combobox {
+  --combobox-bg: theme('colors.blue.50');
+  --combobox-border: theme('colors.blue.300');
+  --combobox-text: theme('colors.blue.900');
+  --combobox-focus-ring: theme('colors.blue.500');
+}
+```
+
+## Performance Considerations
+
+- **Native Performance**: Built on HTML select for optimal performance
+- **Minimal Re-renders**: Signal-based updates reduce unnecessary renders
+- **Memory Efficient**: No complex DOM manipulation or portal rendering
+- **Bundle Size**: Smaller footprint compared to custom dropdown implementations
+- **Accessibility**: Zero-cost accessibility features built into the browser
   ];
   
   selectedTechValue: string | null = null;
@@ -201,6 +368,7 @@ export class ExampleComponent {
     this.selectedTechValue = techValue;
   }
 }
+
 ```
 
 ### Loading State

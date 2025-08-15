@@ -150,6 +150,7 @@ export interface PopoverProps extends VariantProps<typeof popoverVariants> {
   modal?: boolean;
   showBackdrop?: boolean;
   avoidCollisions?: boolean;
+  hideOnTriggerOutOfView?: boolean;
   class?: string;
 }
 
@@ -159,12 +160,21 @@ export interface PopoverProps extends VariantProps<typeof popoverVariants> {
  * A floating content container with intelligent positioning using Angular CDK.
  * Perfect for tooltips, dropdowns, and contextual information.
  *
+ * Features:
+ * - Intelligent positioning with collision detection
+ * - Automatic repositioning during scroll
+ * - Auto-hide when trigger scrolls out of view
+ * - Portal-based rendering for z-index management
+ * - Accessibility support with ARIA attributes
+ * - Multiple variants and sizes
+ *
  * @example
  * ```html
  * <button #trigger (click)="isOpen.set(!isOpen())">Open Popover</button>
  * <Popover
  *   [isOpen]="isOpen()"
  *   [triggerElement]="trigger"
+ *   [hideOnTriggerOutOfView]="true"
  *   (openChange)="isOpen.set($event)"
  * >
  *   <div>Popover content</div>
@@ -271,6 +281,9 @@ export class Popover implements AfterViewInit, OnDestroy {
   private overlayRef?: OverlayRef;
   private portal?: TemplatePortal;
   private positionStrategy?: FlexibleConnectedPositionStrategy;
+  private scrollHandler?: () => void;
+  private intersectionObserver?: IntersectionObserver;
+  private resizeObserver?: ResizeObserver;
 
   // Actual positioning (may differ from preferred due to collision detection)
   readonly actualSide = signal<PopoverSide>('bottom');
@@ -289,6 +302,7 @@ export class Popover implements AfterViewInit, OnDestroy {
   readonly modal = input<boolean>(false);
   readonly showBackdrop = input<boolean>(false);
   readonly avoidCollisions = input<boolean>(true);
+  readonly hideOnTriggerOutOfView = input<boolean>(true);
   readonly class = input<string>('');
   readonly ariaLabelledby = input<string>('');
   readonly ariaDescribedby = input<string>('');
@@ -338,6 +352,8 @@ export class Popover implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.closePopover();
+    this.removeScrollListener();
+    this.removeIntersectionObserver();
     this.overlayRef?.dispose();
   }
 
@@ -388,6 +404,8 @@ export class Popover implements AfterViewInit, OnDestroy {
     if (this.overlayRef?.hasAttached()) {
       this.moveContentBack();
       this.overlayRef.detach();
+      this.removeScrollListener();
+      this.removeIntersectionObserver();
     }
   }
 
@@ -406,11 +424,39 @@ export class Popover implements AfterViewInit, OnDestroy {
       .withGrowAfterOpen(true)
       .withDefaultOffsetX(0)
       .withDefaultOffsetY(0)
-      .withLockedPosition(false);
+      .withLockedPosition(false)
+      .withTransformOriginOn('.popover-panel');
 
-    // Scroll strategy with better repositioning
+    // Subscribe to position changes to update the actual position
+    this.positionStrategy.positionChanges.subscribe((change) => {
+      // Update actual position based on the applied position
+      const appliedPosition = change.connectionPair;
+      if (appliedPosition) {
+        // Determine actual side based on overlay position
+        if (appliedPosition.overlayY === 'bottom') {
+          this.actualSide.set('top');
+        } else if (appliedPosition.overlayY === 'top') {
+          this.actualSide.set('bottom');
+        } else if (appliedPosition.overlayX === 'start') {
+          this.actualSide.set('right');
+        } else if (appliedPosition.overlayX === 'end') {
+          this.actualSide.set('left');
+        }
+
+        // Determine actual alignment
+        if (appliedPosition.overlayX === 'start') {
+          this.actualAlign.set('start');
+        } else if (appliedPosition.overlayX === 'end') {
+          this.actualAlign.set('end');
+        } else if (appliedPosition.overlayX === 'center') {
+          this.actualAlign.set('center');
+        }
+      }
+    });
+
+    // Improved scroll strategy with immediate repositioning and no throttling
     const scrollStrategy = this.overlay.scrollStrategies.reposition({
-      scrollThrottle: 20,
+      scrollThrottle: 0, // Remove throttling for immediate repositioning
       autoClose: false
     });
 
@@ -429,6 +475,168 @@ export class Popover implements AfterViewInit, OnDestroy {
       maxWidth: '90vw',
       maxHeight: '90vh'
     });
+
+    // Add manual scroll listener for better responsiveness
+    this.addScrollListener();
+    
+    // Add intersection observer for reliable visibility detection
+    this.addIntersectionObserver();
+  }
+
+  private addScrollListener(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.overlayRef) return;
+
+    // Enhanced scroll handler with viewport visibility check
+    const scrollHandler = () => {
+      if (this.overlayRef?.hasAttached() && this.positionStrategy) {
+        // Just reposition the popover - visibility is handled by intersection observer
+        this.positionStrategy.reapplyLastPosition();
+        
+        // Backup check using manual detection if intersection observer failed
+        if (this.hideOnTriggerOutOfView()) {
+          const triggerEl = this.getTriggerElement();
+          if (triggerEl) {
+            const isVisible = this.isElementInViewport(triggerEl);
+            if (!isVisible) {
+              console.log('Backup visibility check: Hiding popover - trigger out of view');
+              this.close();
+              return;
+            }
+          }
+        }
+      }
+    };
+
+    // Listen to scroll events on window and all scrollable parents
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    document.addEventListener('scroll', scrollHandler, { passive: true });
+    document.body.addEventListener('scroll', scrollHandler, { passive: true });
+    
+    // Also listen to scroll events on any scrollable parent elements
+    const triggerEl = this.getTriggerElement();
+    if (triggerEl) {
+      let parent = triggerEl.parentElement;
+      while (parent && parent !== document.documentElement) {
+        const computedStyle = window.getComputedStyle(parent);
+        const isScrollable = computedStyle.overflow === 'auto' || 
+                           computedStyle.overflow === 'scroll' ||
+                           computedStyle.overflowY === 'auto' ||
+                           computedStyle.overflowY === 'scroll' ||
+                           computedStyle.overflowX === 'auto' ||
+                           computedStyle.overflowX === 'scroll';
+        
+        if (isScrollable) {
+          parent.addEventListener('scroll', scrollHandler, { passive: true });
+          console.log('Added scroll listener to:', parent.tagName, parent.className);
+        }
+        parent = parent.parentElement;
+      }
+    }
+    
+    // Store the handler for cleanup
+    this.scrollHandler = scrollHandler;
+  }
+
+  private addIntersectionObserver(): void {
+    if (!isPlatformBrowser(this.platformId) || !this.hideOnTriggerOutOfView()) return;
+    
+    const triggerEl = this.getTriggerElement();
+    if (!triggerEl) return;
+
+    // Create intersection observer to detect when trigger goes out of view
+    this.intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry.isIntersecting && this.overlayRef?.hasAttached()) {
+          console.log('Intersection Observer: Trigger out of view, closing popover');
+          this.close();
+        }
+      },
+      {
+        threshold: 0.5, // Trigger when less than 50% visible
+        rootMargin: '0px'
+      }
+    );
+
+    this.intersectionObserver.observe(triggerEl);
+  }
+
+  private removeIntersectionObserver(): void {
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
+      this.intersectionObserver = undefined;
+    }
+  }
+
+  private removeScrollListener(): void {
+    if (this.scrollHandler) {
+      window.removeEventListener('scroll', this.scrollHandler);
+      document.removeEventListener('scroll', this.scrollHandler);
+      document.body.removeEventListener('scroll', this.scrollHandler);
+      
+      // Remove listeners from scrollable parents
+      const triggerEl = this.getTriggerElement();
+      if (triggerEl) {
+        let parent = triggerEl.parentElement;
+        while (parent && parent !== document.documentElement) {
+          const computedStyle = window.getComputedStyle(parent);
+          const isScrollable = computedStyle.overflow === 'auto' || 
+                             computedStyle.overflow === 'scroll' ||
+                             computedStyle.overflowY === 'auto' ||
+                             computedStyle.overflowY === 'scroll' ||
+                             computedStyle.overflowX === 'auto' ||
+                             computedStyle.overflowX === 'scroll';
+          
+          if (isScrollable) {
+            parent.removeEventListener('scroll', this.scrollHandler);
+          }
+          parent = parent.parentElement;
+        }
+      }
+      
+      this.scrollHandler = undefined;
+    }
+  }
+
+  /**
+   * Forces the popover to recalculate and update its position
+   * Useful for manual repositioning when content changes
+   */
+  public updatePosition(): void {
+    if (this.overlayRef && this.positionStrategy) {
+      this.positionStrategy.reapplyLastPosition();
+    }
+  }
+
+  /**
+   * Checks if an element is visible in the viewport
+   * Uses a stricter approach - element must be at least 50% visible
+   */
+  private isElementInViewport(element: HTMLElement): boolean {
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    
+    // Check if element is completely out of viewport
+    if (rect.bottom < 0 || rect.top > windowHeight || rect.right < 0 || rect.left > windowWidth) {
+      return false;
+    }
+    
+    // Calculate visible area
+    const visibleTop = Math.max(rect.top, 0);
+    const visibleBottom = Math.min(rect.bottom, windowHeight);
+    const visibleLeft = Math.max(rect.left, 0);
+    const visibleRight = Math.min(rect.right, windowWidth);
+    
+    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+    const visibleWidth = Math.max(0, visibleRight - visibleLeft);
+    const visibleArea = visibleHeight * visibleWidth;
+    
+    const totalArea = rect.height * rect.width;
+    
+    // Require at least 50% of the element to be visible
+    const visibilityRatio = totalArea > 0 ? visibleArea / totalArea : 0;
+    return visibilityRatio >= 0.5;
   }
 
   private getTriggerElement(): HTMLElement {
