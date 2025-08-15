@@ -289,6 +289,24 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'blocks/product-card',
+    loadComponent: () => import('./pages/demo/product-card/product-card-demo.component').then(m => m.ProductCardDemoComponent),
+    data: {
+      blockName: 'product-card',
+      category: 'E-commerce',
+      description:
+        'E-commerce product cards with image galleries, variant selection, pricing, and shopping features',
+      seo: {
+        title: 'Product Card Block - Angular SuperUI | E-commerce Product Components',
+        description:
+          'Comprehensive product card component with multiple layouts, image galleries, variant selection, pricing display, and shopping cart integration. Perfect for e-commerce applications.',
+        keywords:
+          'Angular product card, e-commerce component, shopping cart, product display, variant selection, image gallery, product pricing, Angular e-commerce',
+      },
+    },
+
+  },
+  {
     path: 'blocks',
     loadComponent: () =>
       import('./demo-components/blocks.component').then(

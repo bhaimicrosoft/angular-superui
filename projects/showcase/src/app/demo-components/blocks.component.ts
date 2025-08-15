@@ -343,10 +343,20 @@ export class BlocksComponent implements OnInit {
       bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
       iconColor: 'text-indigo-600 dark:text-indigo-400',
       features: ['Multiple Variants', 'Social Links', 'Skills Display', 'Interactive Actions']
+    },
+    {
+      name: 'Product Card',
+      route: '/blocks/product-card',
+      description: 'E-commerce product cards with image galleries, variant selection, pricing, and shopping features. Complete product display solution for online stores.',
+      category: 'E-commerce',
+      icon: 'fas fa-shopping-bag',
+      bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
+      iconColor: 'text-emerald-600 dark:text-emerald-400',
+      features: ['Image Gallery', 'Variant Selection', 'Pricing Display', 'Shopping Actions']
     }
   ]);
 
-  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms', 'Marketing', 'User Interface']);
+  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms', 'Marketing', 'User Interface', 'E-commerce']);
 
   blockFeatures = [
     {
