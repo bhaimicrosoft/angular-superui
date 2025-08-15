@@ -78,7 +78,7 @@ export const routes: Routes = [
         'Secure one-time password input with accessibility and validation',
     },
   },
- 
+
   {
     path: 'feature-comparison',
     loadComponent: () =>
@@ -484,18 +484,6 @@ export const routes: Routes = [
       componentName: 'dropdown-menu',
       category: 'Navigation',
       description: 'Contextual menu dropdowns',
-    },
-  },
-  {
-    path: 'components/dropdown-menu/positioning-test',
-    loadComponent: () =>
-      import('./demo-components/positioning-test.component').then(
-        (c) => c.PositioningTestComponent
-      ),
-    data: {
-      componentName: 'dropdown-menu-positioning',
-      category: 'Navigation',
-      description: 'Dropdown menu positioning test',
     },
   },
   {
