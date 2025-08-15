@@ -156,6 +156,14 @@
     display: none;
   }
 
+  /* High z-index for dropdowns and overlays */
+  .combobox-content,
+  [role="listbox"],
+  .dropdown-menu-content,
+  .popover-content {
+    z-index: 9999 !important;
+  }
+
   /* Ensure mobile menus don't overflow viewport */
   @media (max-width: 640px) {
     [role="menu"] {
@@ -902,6 +910,32 @@
   .form-checkbox-text {
     @apply text-sm text-foreground hover:text-primary transition-colors;
   }
+}
+
+/* CDK Overlay Panel Styles */
+.cdk-overlay-container {
+  z-index: 1000 !important;
+}
+
+.cdk-overlay-pane {
+  z-index: 1000 !important;
+}
+
+.combobox-overlay-panel {
+  z-index: 1050 !important;
+}
+
+.popover-overlay-panel {
+  z-index: 1040 !important;
+}
+
+/* Ensure overlays are always on top */
+.cdk-overlay-backdrop {
+  z-index: 999 !important;
+}
+
+.cdk-overlay-transparent-backdrop {
+  background: transparent !important;
 }
 
 

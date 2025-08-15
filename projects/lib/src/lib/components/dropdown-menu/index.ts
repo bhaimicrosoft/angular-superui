@@ -13,11 +13,152 @@ import {
   OnDestroy,
   Output,
   signal,
-  ViewChild
+  ViewChild,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {cva, type VariantProps} from 'class-variance-authority';
 import {cn} from '../../utils/cn';
+import {
+  Overlay,
+  OverlayRef,
+  OverlayPositionBuilder,
+  ConnectedPosition
+} from '@angular/cdk/overlay';
+import {TemplatePortal} from '@angular/cdk/portal';
+
+// Position mapping for CDK overlay - properly handles viewport boundaries
+const DROPDOWN_POSITION_MAP: Record<string, ConnectedPosition[]> = {
+  bottom: [
+    // Primary bottom positions
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetY: 4
+    },
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetY: 4
+    },
+    // Fallback to top if bottom doesn't fit
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'bottom',
+      offsetY: -4
+    },
+    {
+      originX: 'end',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'bottom',
+      offsetY: -4
+    }
+  ],
+  top: [
+    // Primary top positions
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'bottom',
+      offsetY: -4
+    },
+    {
+      originX: 'end',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'bottom',
+      offsetY: -4
+    },
+    // Fallback to bottom if top doesn't fit
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetY: 4
+    },
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetY: 4
+    }
+  ],
+  left: [
+    // Primary left positions
+    {
+      originX: 'start',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: -4
+    },
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'top',
+      offsetX: -4
+    },
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'bottom',
+      offsetX: -4
+    },
+    // Fallback to right if left doesn't fit
+    {
+      originX: 'end',
+      originY: 'center',
+      overlayX: 'start',
+      overlayY: 'center',
+      offsetX: 4
+    }
+  ],
+  right: [
+    // Primary right positions
+    {
+      originX: 'end',
+      originY: 'center',
+      overlayX: 'start',
+      overlayY: 'center',
+      offsetX: 4
+    },
+    {
+      originX: 'end',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'top',
+      offsetX: 4
+    },
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'bottom',
+      offsetX: 4
+    },
+    // Fallback to left if right doesn't fit
+    {
+      originX: 'start',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: -4
+    }
+  ]
+};
 
 // Dropdown Menu variants - Enhanced design inspired by Button and Card components
 const dropdownMenuVariants = cva(
@@ -268,122 +409,134 @@ export interface DropdownMenuGroupData {
 
       <!-- Enhanced Menu with Stunning Design (No Backdrop) -->
       @if (isOpen()) {
-        <div
-          #menu
-          [id]="menuId"
-          role="menu"
-          [attr.aria-labelledby]="trigger.id"
-          [attr.aria-orientation]="'vertical'"
-          [attr.aria-activedescendant]="getActiveDescendant()"
-          [class]="menuClasses()"
-          [style.z-index]="50"
-          [attr.data-state]="isOpen() ? 'open' : 'closed'"
-          [attr.data-side]="placement"
-          [attr.data-testid]="'dropdown-menu'"
-          (keydown)="onMenuKeydown($event)"
-          (focusout)="onMenuFocusOut($event)"
-        >
-          @if (groups().length > 0) {
-            @for (group of groups(); track group.label || $index; let groupIndex = $index) {
-              @if (group.label) {
-                <div
-                  class="px-3 py-2 text-xs font-semibold text-muted-foreground/80 bg-gradient-to-r from-muted/10 to-transparent border-b border-border/5 animate-in slide-in-from-top-1 duration-200"
-                  [style.animation-delay]="(groupIndex * 50) + 'ms'"
-                  role="group"
-                  [attr.aria-label]="group.label"
-                >
-                  {{ group.label }}
-                </div>
-              }
-              @for (item of group.items; track item.value || item.label; let itemIndex = $index) {
-                @if (item.separator) {
-                  <div
-                    class="my-1 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent animate-in fade-in-0 duration-300"
-                    role="separator"
-                    [style.animation-delay]="((groupIndex * group.items.length + itemIndex) * 30) + 'ms'"
-                    [attr.aria-hidden]="'true'"
-                  ></div>
-                } @else {
-                  <button
-                    type="button"
-                    role="menuitem"
-                    [class]="getItemClasses(item)"
-                    [attr.data-disabled]="item.disabled || null"
-                    [attr.data-focused]="focusedIndex() === getItemGlobalIndex(groupIndex, itemIndex) || null"
-                    [attr.id]="menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex)"
-                    [disabled]="item.disabled"
-                    [attr.tabindex]="item.disabled ? -1 : 0"
-                    [attr.aria-describedby]="item.description ? menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex) + '-desc' : null"
-                    [style.animation-delay]="((groupIndex * group.items.length + itemIndex) * 30) + 'ms'"
-                    class="animate-in slide-in-from-top-1 duration-200"
-                    (click)="selectItem(item)"
-                    (keydown)="onItemKeydown($event, item)"
-                    (focus)="setFocusedIndex(getItemGlobalIndex(groupIndex, itemIndex))"
-                    (mouseenter)="setFocusedIndex(getItemGlobalIndex(groupIndex, itemIndex))"
-                    (mouseleave)="clearFocusedIndex()"
-                  >
-                    <div class="flex items-center gap-2 sm:gap-3 w-full">
-                      @if (item.icon) {
-                        <span
-                          class="flex-shrink-0 h-4 w-4 transition-transform duration-200 group-hover:scale-110"
-                          [innerHTML]="item.icon"
-                          aria-hidden="true"
-                        ></span>
-                      }
-                      <div class="flex-1 flex flex-col items-start text-left min-w-0">
-                        <span class="font-medium text-sm truncate w-full">{{ item.label }}</span>
-                        @if (item.description) {
-                          <span
-                            class="text-xs text-muted-foreground/70 truncate w-full hidden sm:block"
-                            [id]="menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex) + '-desc'"
-                          >
-                            {{ item.description }}
-                          </span>
-                        }
-                      </div>
-                      <div class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-                        @if (item.shortcut) {
-                          <span
-                            class="text-xs tracking-widest text-muted-foreground/70 bg-muted/30 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md font-mono transition-all duration-200 group-hover:bg-muted/50 group-hover:scale-105 hidden sm:inline-block"
-                            [attr.aria-label]="'Keyboard shortcut: ' + item.shortcut"
-                          >
-                            {{ item.shortcut }}
-                          </span>
-                        }
-                        @if (item.badge) {
-                          <span
-                            class="inline-flex items-center rounded-full bg-gradient-to-r from-primary/10 to-primary/20 px-1.5 sm:px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 animate-pulse"
-                            [attr.aria-label]="'Badge: ' + item.badge"
-                          >
-                            {{ item.badge }}
-                          </span>
-                        }
-                      </div>
-                    </div>
-                  </button>
-                }
-              }
-              @if (!$last && group.items.length > 0) {
-                <div
-                  class="my-1 h-px bg-gradient-to-r from-transparent via-border/30 to-transparent animate-in fade-in-0 duration-300"
-                  role="separator"
-                  [attr.aria-hidden]="'true'"
-                ></div>
-              }
-            }
-          } @else {
-            <div class="animate-in slide-in-from-top-2 duration-300">
-              <ng-content></ng-content>
-            </div>
-          }
-        </div>
+        <!-- Menu is now rendered via CDK overlay -->
       }
     </div>
-  `
+
+    <!-- Menu Template (rendered in CDK overlay) -->
+    <ng-template #menuTemplate>
+      <div
+        #menu
+        [id]="menuId"
+        role="menu"
+        [attr.aria-labelledby]="triggerElement?.nativeElement?.id"
+        [attr.aria-orientation]="'vertical'"
+        [attr.aria-activedescendant]="getActiveDescendant()"
+        [class]="menuClasses()"
+        [attr.data-state]="isOpen() ? 'open' : 'closed'"
+        [attr.data-side]="placement"
+        [attr.data-testid]="'dropdown-menu'"
+        (keydown)="onMenuKeydown($event)"
+        (focusout)="onMenuFocusOut($event)"
+      >
+        @if (groups().length > 0) {
+          @for (group of groups(); track group.label || $index; let groupIndex = $index) {
+            @if (group.label) {
+              <div
+                class="px-3 py-2 text-xs font-semibold text-muted-foreground/80 bg-gradient-to-r from-muted/10 to-transparent border-b border-border/5 animate-in slide-in-from-top-1 duration-200"
+                [style.animation-delay]="(groupIndex * 50) + 'ms'"
+                role="group"
+                [attr.aria-label]="group.label"
+              >
+                {{ group.label }}
+              </div>
+            }
+            @for (item of group.items; track item.value || item.label; let itemIndex = $index) {
+              @if (item.separator) {
+                <div
+                  class="my-1 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent animate-in fade-in-0 duration-300"
+                  role="separator"
+                  [style.animation-delay]="((groupIndex * group.items.length + itemIndex) * 30) + 'ms'"
+                  [attr.aria-hidden]="'true'"
+                ></div>
+              } @else {
+                <button
+                  type="button"
+                  role="menuitem"
+                  [class]="getItemClasses(item)"
+                  [attr.data-disabled]="item.disabled || null"
+                  [attr.data-focused]="focusedIndex() === getItemGlobalIndex(groupIndex, itemIndex) || null"
+                  [attr.id]="menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex)"
+                  [disabled]="item.disabled"
+                  [attr.tabindex]="item.disabled ? -1 : 0"
+                  [attr.aria-describedby]="item.description ? menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex) + '-desc' : null"
+                  [style.animation-delay]="((groupIndex * group.items.length + itemIndex) * 30) + 'ms'"
+                  class="animate-in slide-in-from-top-1 duration-200"
+                  (click)="selectItem(item)"
+                  (keydown)="onItemKeydown($event, item)"
+                  (focus)="setFocusedIndex(getItemGlobalIndex(groupIndex, itemIndex))"
+                  (mouseenter)="setFocusedIndex(getItemGlobalIndex(groupIndex, itemIndex))"
+                  (mouseleave)="clearFocusedIndex()"
+                >
+                  <div class="flex items-center gap-2 sm:gap-3 w-full">
+                    @if (item.icon) {
+                      <span
+                        class="flex-shrink-0 h-4 w-4 transition-transform duration-200 group-hover:scale-110"
+                        [innerHTML]="item.icon"
+                        aria-hidden="true"
+                      ></span>
+                    }
+                    <div class="flex-1 flex flex-col items-start text-left min-w-0">
+                      <span class="font-medium text-sm truncate w-full">{{ item.label }}</span>
+                      @if (item.description) {
+                        <span
+                          class="text-xs text-muted-foreground/70 truncate w-full hidden sm:block"
+                          [id]="menuId + '-item-' + getItemGlobalIndex(groupIndex, itemIndex) + '-desc'"
+                        >
+                          {{ item.description }}
+                        </span>
+                      }
+                    </div>
+                    <div class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                      @if (item.shortcut) {
+                        <span
+                          class="text-xs tracking-widest text-muted-foreground/70 bg-muted/30 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md font-mono transition-all duration-200 group-hover:bg-muted/50 group-hover:scale-105 hidden sm:inline-block"
+                          [attr.aria-label]="'Keyboard shortcut: ' + item.shortcut"
+                        >
+                          {{ item.shortcut }}
+                        </span>
+                      }
+                      @if (item.badge) {
+                        <span
+                          class="inline-flex items-center rounded-full bg-gradient-to-r from-primary/10 to-primary/20 px-1.5 sm:px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 animate-pulse"
+                          [attr.aria-label]="'Badge: ' + item.badge"
+                        >
+                          {{ item.badge }}
+                        </span>
+                      }
+                    </div>
+                  </div>
+                </button>
+              }
+            }
+            @if (!$last && group.items.length > 0) {
+              <div
+                class="my-1 h-px bg-gradient-to-r from-transparent via-border/30 to-transparent animate-in fade-in-0 duration-300"
+                role="separator"
+                [attr.aria-hidden]="'true'"
+              ></div>
+            }
+          }
+        } @else {
+          <div class="animate-in slide-in-from-top-2 duration-300">
+            <ng-content></ng-content>
+          </div>
+        }
+      </div>
+    </ng-template>
+  `,
 })
 export class DropdownMenu implements AfterViewInit, OnDestroy {
   @ViewChild('menu', {static: false}) menuElement?: ElementRef<HTMLElement>;
   @ViewChild('trigger', {static: false}) triggerElement?: ElementRef<HTMLElement>;
+  @ViewChild('menuTemplate', {static: true}) menuTemplate!: TemplateRef<any>;
+  
+  // CDK overlay services
+  private overlay = inject(Overlay);
+  private positionBuilder = inject(OverlayPositionBuilder);
+  private viewContainerRef = inject(ViewContainerRef);
+  private overlayRef?: OverlayRef;
+  private portal?: TemplatePortal;
   @Input() variant: DropdownMenuVariant['variant'] = 'default';
   @Input() size: DropdownMenuVariant['size'] = 'default';
   @Input() triggerVariant: DropdownMenuTriggerVariant['variant'] = 'default';
@@ -409,28 +562,14 @@ export class DropdownMenu implements AfterViewInit, OnDestroy {
     }))
   );
   menuClasses = computed(() => {
-    const position = this.placement;
-    const positionClasses = {
-      bottom: 'absolute top-full mt-1 max-w-[calc(100vw-2rem)] sm:max-w-none',
-      top: 'absolute bottom-full mb-1 max-w-[calc(100vw-2rem)] sm:max-w-none',
-      left: 'absolute top-0 right-full mr-1 max-w-[calc(100vw-2rem)] sm:max-w-none',
-      right: 'absolute top-0 left-full ml-1 max-w-[calc(100vw-2rem)] sm:max-w-none'
-    };
-
+    // CDK overlay handles positioning, so we only need styling classes
     return cn(
       dropdownMenuVariants({
         variant: this.variant,
         size: this.size
       }),
-      positionClasses[position],
-      // Mobile responsive positioning with smart right-edge detection
+      // Remove absolute positioning classes since CDK handles it
       'max-h-[60vh] overflow-y-auto',
-      // Smart mobile positioning - align to right edge when close to screen boundary
-      'left-0 right-auto sm:left-auto sm:right-auto',
-      // For dropdowns that would overflow on mobile, align to right edge
-      '[&[data-side=bottom]]:left-auto [&[data-side=bottom]]:right-0 sm:[&[data-side=bottom]]:left-0 sm:[&[data-side=bottom]]:right-auto',
-      '[&[data-side=top]]:left-auto [&[data-side=top]]:right-0 sm:[&[data-side=top]]:left-0 sm:[&[data-side=top]]:right-auto',
-      // Additional mobile constraints
       'min-w-[200px] max-w-[calc(100vw-1rem)]'
     );
   });
@@ -483,6 +622,11 @@ export class DropdownMenu implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.removeOutsideClickListener();
+    
+    // Clean up CDK overlay
+    if (this.overlayRef) {
+      this.overlayRef.dispose();
+    }
   }
 
   @HostListener('document:keydown.escape')
@@ -503,17 +647,38 @@ export class DropdownMenu implements AfterViewInit, OnDestroy {
   }
 
   open() {
-    if (this.disabled) return;    this.isOpen.set(true);
+    if (this.disabled) return;
+    
+    if (this.overlayRef?.hasAttached()) {
+      return; // Already open
+    }
+
+    // Create overlay if it doesn't exist
+    if (!this.overlayRef) {
+      this.createOverlay();
+    }
+
+    // Create portal and attach to overlay
+    if (!this.portal) {
+      this.portal = new TemplatePortal(this.menuTemplate, this.viewContainerRef);
+    }
+
+    this.overlayRef!.attach(this.portal);
+    this.isOpen.set(true);
     this.focusedIndex.set(-1);
     this.openChange.emit(true);
 
     // Focus first item after menu opens
     setTimeout(() => {
       this.focusFirstItem();
-    }, 0);
+    }, 50); // Slight delay to ensure overlay is rendered
   }
 
   close() {
+    if (this.overlayRef?.hasAttached()) {
+      this.overlayRef.detach();
+    }
+    
     this.isOpen.set(false);
     this.focusedIndex.set(-1);
     this.openChange.emit(false);
@@ -522,6 +687,30 @@ export class DropdownMenu implements AfterViewInit, OnDestroy {
     if (this.triggerElement) {
       this.triggerElement.nativeElement.focus();
     }
+  }
+
+  private createOverlay() {
+    if (!this.triggerElement) return;
+
+    const positionStrategy = this.positionBuilder
+      .flexibleConnectedTo(this.triggerElement)
+      .withPositions(DROPDOWN_POSITION_MAP[this.placement])
+      .withViewportMargin(8)
+      .withPush(false);
+
+    this.overlayRef = this.overlay.create({
+      positionStrategy,
+      scrollStrategy: this.overlay.scrollStrategies.reposition(),
+      hasBackdrop: false, // We handle clicks outside differently
+      disposeOnNavigation: true
+    });
+
+    // Close on backdrop click (outside click)
+    this.overlayRef.outsidePointerEvents().subscribe((event) => {
+      if (!this.triggerElement?.nativeElement.contains(event.target as Node)) {
+        this.close();
+      }
+    });
   }
 
   selectItem(item: DropdownMenuItemData) {

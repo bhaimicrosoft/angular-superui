@@ -487,6 +487,18 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'components/dropdown-menu/positioning-test',
+    loadComponent: () =>
+      import('./demo-components/positioning-test.component').then(
+        (c) => c.PositioningTestComponent
+      ),
+    data: {
+      componentName: 'dropdown-menu-positioning',
+      category: 'Navigation',
+      description: 'Dropdown menu positioning test',
+    },
+  },
+  {
     path: 'components/file-upload',
     loadComponent: () =>
       import('./demo-components/file-upload-demo.component').then(

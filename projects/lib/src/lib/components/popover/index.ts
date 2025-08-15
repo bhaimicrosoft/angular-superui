@@ -420,7 +420,7 @@ export class Popover implements AfterViewInit, OnDestroy {
       scrollStrategy,
       hasBackdrop: this.showBackdrop() || this.modal(),
       backdropClass: this.showBackdrop() || this.modal() ? 'cdk-overlay-dark-backdrop' : '',
-      panelClass: ['popover-panel'],
+      panelClass: ['popover-panel', 'popover-overlay-panel'],
       disposeOnNavigation: true,
       width: 'auto',
       height: 'auto',
@@ -489,33 +489,40 @@ export class Popover implements AfterViewInit, OnDestroy {
 
     // Enhanced fallback positions for better edge case handling
     if (this.avoidCollisions()) {
-      // Add opposite side with same alignment
-      const oppositeSide = this.getOppositeSide(side);
-      this.addPositionForSide(positions, oppositeSide, align, offset);
-
-      // Add alternative alignments for the primary side
-      const alternativeAligns: PopoverAlign[] = align === 'start' ? ['center', 'end'] :
-                                                align === 'end' ? ['center', 'start'] :
-                                                ['start', 'end'];
-
-      for (const altAlign of alternativeAligns) {
-        this.addPositionForSide(positions, side, altAlign, offset);
+      // Add opposite side with same alignment (only if not left/right)
+      if (side === 'top' || side === 'bottom') {
+        const oppositeSide = this.getOppositeSide(side);
+        this.addPositionForSide(positions, oppositeSide, align, offset);
       }
 
-      // Add all remaining combinations for comprehensive fallback
-      const allSides: PopoverSide[] = ['top', 'bottom', 'left', 'right'];
-      const allAligns: PopoverAlign[] = ['start', 'center', 'end'];
+      // For left/right, be more conservative with fallbacks
+      if (side === 'left' || side === 'right') {
+        // Only add the opposite side as fallback
+        const oppositeSide = this.getOppositeSide(side);
+        this.addPositionForSide(positions, oppositeSide, align, offset);
+        
+        // Add top/bottom only if there's really no space
+        this.addPositionForSide(positions, 'bottom', 'center', offset);
+        this.addPositionForSide(positions, 'top', 'center', offset);
+      } else {
+        // For top/bottom, add left/right as fallbacks
+        this.addPositionForSide(positions, 'left', align, offset);
+        this.addPositionForSide(positions, 'right', align, offset);
+        
+        // Add alternative alignments for the primary side
+        const alternativeAligns: PopoverAlign[] = align === 'start' ? ['center', 'end'] :
+                                                  align === 'end' ? ['center', 'start'] :
+                                                  ['start', 'end'];
 
-      for (const fallbackSide of allSides) {
-        if (fallbackSide === side || fallbackSide === oppositeSide) continue;
-
-        for (const fallbackAlign of allAligns) {
-          this.addPositionForSide(positions, fallbackSide, fallbackAlign, offset);
+        for (const altAlign of alternativeAligns) {
+          this.addPositionForSide(positions, side, altAlign, offset);
         }
       }
 
-      // Add corner-specific positions for edge cases
-      this.addCornerPositions(positions, offset);
+      // Add corner-specific positions for edge cases (only for top/bottom)
+      if (side === 'top' || side === 'bottom') {
+        this.addCornerPositions(positions, offset);
+      }
     }
 
     return positions;

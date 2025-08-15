@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Combobox, ComboboxTrigger, ComboboxContent, ComboboxOption } from '@lib/components/combobox';
+import { Combobox, ComboboxOption } from '@lib/components/combobox';
 import { SEOService } from '../services/seo.service';
 import {
   LucideAngularModule,
@@ -26,7 +26,7 @@ import {
 @Component({
   selector: 'app-combobox-demo',
   standalone: true,
-  imports: [CommonModule, FormsModule, Combobox, ComboboxTrigger, ComboboxContent, LucideAngularModule],
+  imports: [CommonModule, FormsModule, Combobox, LucideAngularModule],
   template: `
     <!-- Elegant Combobox Gallery -->
     <div class="min-h-screen w-full bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-purple-950 relative overflow-hidden">
@@ -109,10 +109,10 @@ import {
           <section>
             <div class="text-center mb-12">
               <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6 font-serif">
-                🚀 Getting Started
+                🎯 Content Categories
               </h2>
               <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto font-light">
-                Simple, elegant dropdown selection for any use case
+                Discover your interests and explore content that matters to you
               </p>
             </div>
 
@@ -124,8 +124,8 @@ import {
                     <lucide-angular [img]="CodeIcon" class="w-6 h-6 text-white"></lucide-angular>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Framework Selection</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Choose your preferred framework</p>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Interest Categories</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Choose your content preferences</p>
                   </div>
                 </div>
 
@@ -133,13 +133,11 @@ import {
                   <Combobox
                     [options]="frameworkOptions"
                     [(ngModel)]="selectedFramework"
-                    placeholder="Select a framework..."
+                    placeholder="Select your interests..."
                     (valueChange)="onFrameworkChange($event)"
-                    class="w-full"
-                  >
-                    <ComboboxTrigger class="w-full bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 border-indigo-200 dark:border-indigo-600/50 hover:from-indigo-100 hover:to-purple-100 dark:hover:from-indigo-900/40 dark:hover:to-purple-900/40 transition-all duration-300"></ComboboxTrigger>
-                    <ComboboxContent [searchable]="false" class="border-indigo-200 dark:border-indigo-600/50"></ComboboxContent>
-                  </Combobox>
+                    [searchable]="false"
+                    class="w-full bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 border-indigo-200 dark:border-indigo-600/50 hover:from-indigo-100 hover:to-purple-100 dark:hover:from-indigo-900/40 dark:hover:to-purple-900/40 transition-all duration-300"
+                  ></Combobox>
 
                   <div *ngIf="selectedFramework" class="mt-4 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl border border-indigo-200/50 dark:border-indigo-600/30">
                     <div class="flex items-center space-x-3">
@@ -159,8 +157,8 @@ import {
                     <lucide-angular [img]="SearchIcon" class="w-6 h-6 text-white"></lucide-angular>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Language Search</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Search and filter programming languages</p>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Coffee Selection</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Search and filter coffee types and brewing methods</p>
                   </div>
                 </div>
 
@@ -168,13 +166,12 @@ import {
                   <Combobox
                     [options]="languageOptions"
                     [(ngModel)]="selectedLanguage"
-                    placeholder="Search languages..."
+                    placeholder="Search coffee types..."
                     (valueChange)="onLanguageChange($event)"
-                    class="w-full"
-                  >
-                    <ComboboxTrigger class="w-full bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 border-purple-200 dark:border-purple-600/50 hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/40 dark:hover:to-pink-900/40 transition-all duration-300"></ComboboxTrigger>
-                    <ComboboxContent [searchable]="true" searchPlaceholder="Type to search languages..." class="border-purple-200 dark:border-purple-600/50"></ComboboxContent>
-                  </Combobox>
+                    [searchable]="true"
+                    searchPlaceholder="Type to search coffee..."
+                    class="w-full bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 border-purple-200 dark:border-purple-600/50 hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/40 dark:hover:to-pink-900/40 transition-all duration-300"
+                  ></Combobox>
 
                   <div *ngIf="selectedLanguage" class="mt-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-200/50 dark:border-purple-600/30">
                     <div class="flex items-center space-x-3">
@@ -207,8 +204,8 @@ import {
                     <lucide-angular [img]="UsersIcon" class="w-8 h-8 text-white"></lucide-angular>
                   </div>
                   <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Skills Selection</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Choose multiple skills from various categories</p>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Creative Skills</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Choose multiple creative and personal skills</p>
                   </div>
                 </div>
 
@@ -217,25 +214,16 @@ import {
                     [options]="skillOptions"
                     [multiple]="true"
                     [(ngModel)]="selectedSkills"
-                    placeholder="Select your skills..."
+                    placeholder="Select your creative skills..."
                     (valueChange)="onSkillsChange($event)"
-                    class="w-full"
-                  >
-                    <ComboboxTrigger
-                      [multiple]="true"
-                      class="w-full bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30 border-emerald-200 dark:border-emerald-600/50 hover:from-emerald-100 hover:to-teal-100 dark:hover:from-emerald-900/40 dark:hover:to-teal-900/40 transition-all duration-300 min-h-12"
-                    ></ComboboxTrigger>
-                    <ComboboxContent
-                      [multiple]="true"
-                      searchPlaceholder="Search skills..."
-                      class="border-emerald-200 dark:border-emerald-600/50"
-                    ></ComboboxContent>
-                  </Combobox>
+                    searchPlaceholder="Search creative skills..."
+                    class="w-full bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30 border-emerald-200 dark:border-emerald-600/50 hover:from-emerald-100 hover:to-teal-100 dark:hover:from-emerald-900/40 dark:hover:to-teal-900/40 transition-all duration-300 min-h-12"
+                  ></Combobox>
 
                   <div *ngIf="selectedSkills.length > 0" class="mt-6 p-6 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl border border-emerald-200/50 dark:border-emerald-600/30">
                     <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                       <lucide-angular [img]="CheckIcon" class="w-5 h-5 text-emerald-600 dark:text-emerald-400 mr-2"></lucide-angular>
-                      Selected Skills ({{ selectedSkills.length }})
+                      Selected Creative Skills ({{ selectedSkills.length }})
                     </h4>
                     <div class="flex flex-wrap gap-2">
                       <span
@@ -255,10 +243,10 @@ import {
           <section>
             <div class="text-center mb-12">
               <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6 font-serif">
-                🏗️ Organized Selection
+                � Dream Destinations
               </h2>
               <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto font-light">
-                Browse options organized by categories and groups
+                Explore amazing cities and plan your next adventure by continent
               </p>
             </div>
 
@@ -269,8 +257,8 @@ import {
                     <lucide-angular [img]="LayersIcon" class="w-8 h-8 text-white"></lucide-angular>
                   </div>
                   <div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Technology Stack</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Explore technologies organized by category</p>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Travel Destinations</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Explore destinations organized by continent</p>
                   </div>
                 </div>
 
@@ -278,17 +266,12 @@ import {
                   <Combobox
                     [options]="groupedTechOptions"
                     [(ngModel)]="selectedTech"
-                    placeholder="Select technology..."
+                    placeholder="Select destination..."
                     (valueChange)="onTechChange($event)"
-                    class="w-full"
-                  >
-                    <ComboboxTrigger class="w-full bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 border-blue-200 dark:border-blue-600/50 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/40 dark:hover:to-cyan-900/40 transition-all duration-300"></ComboboxTrigger>
-                    <ComboboxContent
-                      [showGroupLabels]="true"
-                      searchPlaceholder="Search technologies..."
-                      class="border-blue-200 dark:border-blue-600/50"
-                    ></ComboboxContent>
-                  </Combobox>
+                    [showGroupLabels]="true"
+                    searchPlaceholder="Search destinations..."
+                    class="w-full bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 border-blue-200 dark:border-blue-600/50 hover:from-blue-100 hover:to-cyan-100 dark:hover:from-blue-900/40 dark:hover:to-cyan-900/40 transition-all duration-300"
+                  ></Combobox>
 
                   <div *ngIf="selectedTech" class="mt-6 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl border border-blue-200/50 dark:border-blue-600/30">
                     <div class="flex items-start space-x-4">
@@ -340,15 +323,10 @@ import {
                       [(ngModel)]="selectedAsync"
                       placeholder="Select async option..."
                       (valueChange)="onAsyncChange($event)"
-                      class="flex-1"
-                    >
-                      <ComboboxTrigger class="w-full bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 border-amber-200 dark:border-amber-600/50 hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/40 dark:hover:to-orange-900/40 transition-all duration-300"></ComboboxTrigger>
-                      <ComboboxContent
-                        [loadingMessage]="'Loading data...'"
-                        searchPlaceholder="Search options..."
-                        class="border-amber-200 dark:border-amber-600/50"
-                      ></ComboboxContent>
-                    </Combobox>
+                      loadingMessage="Loading data..."
+                      searchPlaceholder="Search options..."
+                      class="flex-1 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 border-amber-200 dark:border-amber-600/50 hover:from-amber-100 hover:to-orange-100 dark:hover:from-amber-900/40 dark:hover:to-orange-900/40 transition-all duration-300"
+                    ></Combobox>
 
                     <button
                       (click)="simulateLoading()"
@@ -390,14 +368,9 @@ import {
                       [(ngModel)]="selectedError"
                       placeholder="Select option..."
                       (valueChange)="onErrorChange($event)"
-                      class="flex-1"
-                    >
-                      <ComboboxTrigger class="w-full bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/30 dark:to-rose-900/30 border-red-200 dark:border-red-600/50 hover:from-red-100 hover:to-rose-100 dark:hover:from-red-900/40 dark:hover:to-rose-900/40 transition-all duration-300"></ComboboxTrigger>
-                      <ComboboxContent
-                        searchPlaceholder="Search options..."
-                        class="border-red-200 dark:border-red-600/50"
-                      ></ComboboxContent>
-                    </Combobox>
+                      searchPlaceholder="Search options..."
+                      class="flex-1 bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/30 dark:to-rose-900/30 border-red-200 dark:border-red-600/50 hover:from-red-100 hover:to-rose-100 dark:hover:from-red-900/40 dark:hover:to-rose-900/40 transition-all duration-300"
+                    ></Combobox>
 
                     <button
                       (click)="simulateError()"
@@ -577,73 +550,73 @@ export class ComboboxDemo {
 
   // Options arrays
   frameworkOptions: ComboboxOption[] = [
-    { value: 'react', label: 'React', description: 'JavaScript library for building user interfaces' },
-    { value: 'angular', label: 'Angular', description: 'TypeScript-based web application framework' },
-    { value: 'vue', label: 'Vue.js', description: 'Progressive JavaScript framework' },
-    { value: 'svelte', label: 'Svelte', description: 'Compile-time framework' },
-    { value: 'nextjs', label: 'Next.js', description: 'React framework for production' },
-    { value: 'nuxt', label: 'Nuxt.js', description: 'Vue.js framework' },
-    { value: 'solid', label: 'SolidJS', description: 'Simple and performant reactivity' },
-    { value: 'qwik', label: 'Qwik', description: 'Resumable framework' },
-    { value: 'astro', label: 'Astro', description: 'Build faster websites' },
-    { value: 'remix', label: 'Remix', description: 'Full stack web framework', disabled: true }
+    { value: 'foodie', label: 'Food & Dining', description: 'Restaurants, recipes, and culinary experiences' },
+    { value: 'travel', label: 'Travel & Adventure', description: 'Destinations, tips, and travel guides' },
+    { value: 'fitness', label: 'Health & Fitness', description: 'Workouts, nutrition, and wellness tips' },
+    { value: 'books', label: 'Books & Literature', description: 'Reading recommendations and reviews' },
+    { value: 'music', label: 'Music & Arts', description: 'Concerts, albums, and creative content' },
+    { value: 'gaming', label: 'Gaming', description: 'Video games, reviews, and gaming culture' },
+    { value: 'photography', label: 'Photography', description: 'Tips, gear, and stunning visuals' },
+    { value: 'diy', label: 'DIY & Crafts', description: 'Home projects and creative tutorials' },
+    { value: 'pets', label: 'Pets & Animals', description: 'Pet care, wildlife, and animal stories' },
+    { value: 'sustainability', label: 'Sustainability', description: 'Eco-friendly living and green initiatives', disabled: true }
   ];
 
   languageOptions: ComboboxOption[] = [
-    { value: 'javascript', label: 'JavaScript', description: 'Dynamic programming language' },
-    { value: 'typescript', label: 'TypeScript', description: 'Typed superset of JavaScript' },
-    { value: 'python', label: 'Python', description: 'High-level programming language' },
-    { value: 'java', label: 'Java', description: 'Object-oriented programming language' },
-    { value: 'csharp', label: 'C#', description: 'Microsoft\'s object-oriented language' },
-    { value: 'cpp', label: 'C++', description: 'General-purpose programming language' },
-    { value: 'rust', label: 'Rust', description: 'Systems programming language' },
-    { value: 'go', label: 'Go', description: 'Open source programming language' },
-    { value: 'swift', label: 'Swift', description: 'Apple\'s programming language' },
-    { value: 'kotlin', label: 'Kotlin', description: 'Modern programming language' },
-    { value: 'php', label: 'PHP', description: 'Server-side scripting language' },
-    { value: 'ruby', label: 'Ruby', description: 'Dynamic programming language' },
-    { value: 'dart', label: 'Dart', description: 'Client-optimized language' },
-    { value: 'scala', label: 'Scala', description: 'JVM-based language' },
-    { value: 'haskell', label: 'Haskell', description: 'Functional programming language', disabled: true }
+    { value: 'espresso', label: 'Espresso', description: 'Rich, concentrated coffee shot' },
+    { value: 'cappuccino', label: 'Cappuccino', description: 'Espresso with steamed milk and foam' },
+    { value: 'latte', label: 'Caffè Latte', description: 'Espresso with steamed milk' },
+    { value: 'americano', label: 'Americano', description: 'Espresso diluted with hot water' },
+    { value: 'macchiato', label: 'Macchiato', description: 'Espresso "marked" with milk foam' },
+    { value: 'mocha', label: 'Caffè Mocha', description: 'Espresso with chocolate and steamed milk' },
+    { value: 'frappuccino', label: 'Frappuccino', description: 'Blended coffee with ice and milk' },
+    { value: 'coldBrew', label: 'Cold Brew', description: 'Coffee brewed with cold water over time' },
+    { value: 'turkish', label: 'Turkish Coffee', description: 'Finely ground coffee brewed in a cezve' },
+    { value: 'pourOver', label: 'Pour Over', description: 'Manual brewing method with filtered water' },
+    { value: 'frenchPress', label: 'French Press', description: 'Full immersion brewing with metal filter' },
+    { value: 'aeropress', label: 'AeroPress', description: 'Pressure brewing system' },
+    { value: 'chemex', label: 'Chemex', description: 'Pour-over brewing with thick paper filter' },
+    { value: 'v60', label: 'Hario V60', description: 'Cone-shaped dripper for pour-over coffee' },
+    { value: 'nitro', label: 'Nitro Coffee', description: 'Cold brew infused with nitrogen gas', disabled: true }
   ];
 
   skillOptions: ComboboxOption[] = [
-    { value: 'frontend', label: 'Frontend Development', description: 'HTML, CSS, JavaScript, React, Angular' },
-    { value: 'backend', label: 'Backend Development', description: 'Node.js, Python, Java, C#' },
-    { value: 'mobile', label: 'Mobile Development', description: 'iOS, Android, React Native, Flutter' },
-    { value: 'devops', label: 'DevOps', description: 'Docker, Kubernetes, AWS, Azure' },
-    { value: 'database', label: 'Database Design', description: 'SQL, NoSQL, MongoDB, PostgreSQL' },
-    { value: 'testing', label: 'Testing', description: 'Unit testing, Integration testing, E2E testing' },
-    { value: 'security', label: 'Security', description: 'Authentication, Authorization, OWASP' },
-    { value: 'ui-ux', label: 'UI/UX Design', description: 'Figma, Adobe XD, Sketch, Prototyping' },
-    { value: 'cloud', label: 'Cloud Computing', description: 'AWS, Azure, GCP, Serverless' },
-    { value: 'ai-ml', label: 'AI/ML', description: 'Machine Learning, Neural Networks, TensorFlow' }
+    { value: 'painting', label: 'Painting & Drawing', description: 'Watercolor, acrylic, oil, digital art, sketching' },
+    { value: 'music', label: 'Musical Instruments', description: 'Piano, guitar, violin, drums, singing' },
+    { value: 'cooking', label: 'Culinary Arts', description: 'Baking, international cuisine, food presentation' },
+    { value: 'languages', label: 'Foreign Languages', description: 'Spanish, French, Mandarin, Japanese, Italian' },
+    { value: 'sports', label: 'Athletic Skills', description: 'Swimming, cycling, yoga, martial arts, dancing' },
+    { value: 'crafts', label: 'Hand Crafts', description: 'Knitting, woodworking, pottery, jewelry making' },
+    { value: 'gardening', label: 'Gardening & Plants', description: 'Indoor plants, vegetable growing, landscaping' },
+    { value: 'photography', label: 'Photography', description: 'Portrait, landscape, macro, street photography' },
+    { value: 'writing', label: 'Creative Writing', description: 'Poetry, fiction, blogging, screenwriting' },
+    { value: 'meditation', label: 'Mindfulness & Meditation', description: 'Stress relief, breathing techniques, wellness' }
   ];
 
   groupedTechOptions: ComboboxOption[] = [
-    // Frontend
-    { value: 'react', label: 'React', group: 'Frontend', description: 'JavaScript library for building user interfaces' },
-    { value: 'angular', label: 'Angular', group: 'Frontend', description: 'TypeScript-based web application framework' },
-    { value: 'vue', label: 'Vue.js', group: 'Frontend', description: 'Progressive JavaScript framework' },
-    { value: 'svelte', label: 'Svelte', group: 'Frontend', description: 'Compile-time framework' },
+    // European Destinations
+    { value: 'paris', label: 'Paris, France', group: 'Europe', description: 'City of Light with iconic landmarks and cuisine' },
+    { value: 'rome', label: 'Rome, Italy', group: 'Europe', description: 'Eternal City with ancient history and architecture' },
+    { value: 'barcelona', label: 'Barcelona, Spain', group: 'Europe', description: 'Vibrant city with unique Gaudí architecture' },
+    { value: 'amsterdam', label: 'Amsterdam, Netherlands', group: 'Europe', description: 'Charming canals and rich cultural heritage' },
 
-    // Backend
-    { value: 'nodejs', label: 'Node.js', group: 'Backend', description: 'JavaScript runtime built on Chrome\'s V8 engine' },
-    { value: 'python', label: 'Python', group: 'Backend', description: 'High-level programming language' },
-    { value: 'java', label: 'Java', group: 'Backend', description: 'Object-oriented programming language' },
-    { value: 'csharp', label: 'C#', group: 'Backend', description: 'Microsoft\'s object-oriented programming language' },
+    // Asian Destinations
+    { value: 'tokyo', label: 'Tokyo, Japan', group: 'Asia', description: 'Modern metropolis blending tradition and innovation' },
+    { value: 'bangkok', label: 'Bangkok, Thailand', group: 'Asia', description: 'Bustling city with temples and street food culture' },
+    { value: 'singapore', label: 'Singapore', group: 'Asia', description: 'Garden city with diverse food and modern attractions' },
+    { value: 'seoul', label: 'Seoul, South Korea', group: 'Asia', description: 'Dynamic city with K-culture and technology' },
 
-    // Database
-    { value: 'postgres', label: 'PostgreSQL', group: 'Database', description: 'Open source relational database' },
-    { value: 'mongodb', label: 'MongoDB', group: 'Database', description: 'NoSQL document database' },
-    { value: 'mysql', label: 'MySQL', group: 'Database', description: 'Open source relational database' },
-    { value: 'redis', label: 'Redis', group: 'Database', description: 'In-memory data structure store' },
+    // American Destinations
+    { value: 'newyork', label: 'New York City, USA', group: 'Americas', description: 'The city that never sleeps with iconic skyline' },
+    { value: 'rio', label: 'Rio de Janeiro, Brazil', group: 'Americas', description: 'Carnival city with beautiful beaches and mountains' },
+    { value: 'vancouver', label: 'Vancouver, Canada', group: 'Americas', description: 'Coastal city surrounded by mountains and forests' },
+    { value: 'buenosaires', label: 'Buenos Aires, Argentina', group: 'Americas', description: 'Tango capital with European charm and culture' },
 
-    // Cloud
-    { value: 'aws', label: 'AWS', group: 'Cloud', description: 'Amazon Web Services' },
-    { value: 'azure', label: 'Azure', group: 'Cloud', description: 'Microsoft Azure' },
-    { value: 'gcp', label: 'Google Cloud', group: 'Cloud', description: 'Google Cloud Platform' },
-    { value: 'vercel', label: 'Vercel', group: 'Cloud', description: 'Frontend deployment platform' }
+    // African & Oceanic Destinations
+    { value: 'capetown', label: 'Cape Town, South Africa', group: 'Africa & Oceania', description: 'Stunning coastal city with Table Mountain views' },
+    { value: 'sydney', label: 'Sydney, Australia', group: 'Africa & Oceania', description: 'Harbor city with iconic Opera House and beaches' },
+    { value: 'marrakech', label: 'Marrakech, Morocco', group: 'Africa & Oceania', description: 'Imperial city with vibrant souks and palaces' },
+    { value: 'auckland', label: 'Auckland, New Zealand', group: 'Africa & Oceania', description: 'Adventure capital with stunning natural landscapes' }
   ];
 
   asyncOptions: ComboboxOption[] = [];
@@ -740,18 +713,18 @@ export class ComboboxDemo {
     // Simulate async data loading
     setTimeout(() => {
       this.asyncOptions = [
-        { value: 'async1', label: 'Async Option 1', description: 'Loaded from server' },
-        { value: 'async2', label: 'Async Option 2', description: 'Loaded from server' },
-        { value: 'async3', label: 'Async Option 3', description: 'Loaded from server' },
-        { value: 'async4', label: 'Async Option 4', description: 'Loaded from server' },
-        { value: 'async5', label: 'Async Option 5', description: 'Loaded from server' }
+        { value: 'hotel1', label: 'Grand Palace Hotel', description: 'Luxury 5-star hotel in city center' },
+        { value: 'hotel2', label: 'Beachfront Resort', description: 'Oceanview resort with spa facilities' },
+        { value: 'hotel3', label: 'Mountain Lodge', description: 'Cozy retreat in the mountains' },
+        { value: 'hotel4', label: 'Boutique Inn', description: 'Charming historical hotel' },
+        { value: 'hotel5', label: 'Business Hotel', description: 'Modern hotel with conference facilities' }
       ];
       this.isLoading.set(false);
     }, 2000);
   }
 
   simulateError() {
-    this.errorMessage.set('Failed to load options. Please try again.');
+    this.errorMessage.set('Failed to load hotel options. Please check your connection.');
     this.errorOptions = [];
     this.selectedError = null;
 
@@ -759,9 +732,9 @@ export class ComboboxDemo {
     setTimeout(() => {
       this.errorMessage.set('');
       this.errorOptions = [
-        { value: 'error1', label: 'Error Option 1', description: 'Successfully recovered' },
-        { value: 'error2', label: 'Error Option 2', description: 'Successfully recovered' },
-        { value: 'error3', label: 'Error Option 3', description: 'Successfully recovered' }
+        { value: 'restaurant1', label: 'Local Bistro', description: 'Successfully found nearby restaurants' },
+        { value: 'restaurant2', label: 'Fine Dining', description: 'Premium restaurant with city views' },
+        { value: 'restaurant3', label: 'Street Food Market', description: 'Authentic local cuisine experience' }
       ];
     }, 3000);
   }
