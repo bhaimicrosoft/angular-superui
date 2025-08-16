@@ -2,7 +2,22 @@
  * Public API Surface of lib
  */
 
-export * from './lib/utils/cn';
+// Blocks
+export * from './lib/blocks/header';
+export * from './lib/blocks/hero-section';
+export * from './lib/blocks/pricing-cards';
+export * from './lib/blocks/footer';
+export * from './lib/blocks/feature-grid';
+export * from './lib/blocks/feature-card';
+export * from './lib/blocks/testimonial';
+export * from './lib/blocks/team-grid';
+export * from './lib/blocks/stats-counter';
+export * from './lib/blocks/auth-forms';
+export * from './lib/blocks/contact-form';
+export * from './lib/blocks/newsletter-signup';
+export * from './lib/blocks/profile-card';
+export * from './lib/blocks/product-card';
+export * from './lib/blocks/blog-card';
 
 // Pipes
 export * from '@lib/pipes/safe-html.pipe';
@@ -52,21 +67,3 @@ export * from '@lib/components/toggle';
 export * from '@lib/components/icon';
 export * from '@lib/components/menubar';
 export * from '@lib/components/toolbar';
-
-
-// Blocks
-export * from './lib/blocks/header';
-export * from './lib/blocks/hero-section';
-export * from './lib/blocks/footer';
-export * from './lib/blocks/feature-grid';
-export * from './lib/blocks/pricing-cards';
-export * from './lib/blocks/feature-card';
-export * from './lib/blocks/testimonial';
-export * from './lib/blocks/team-grid';
-export * from './lib/blocks/stats-counter';
-export * from './lib/blocks/auth-forms';
-export * from './lib/blocks/contact-form';
-export * from './lib/blocks/newsletter-signup';
-export * from './lib/blocks/profile-card';
-export * from './lib/blocks/product-card';
-export * from './lib/blocks/blog-card';

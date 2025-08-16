@@ -366,7 +366,7 @@ export class BlocksComponent implements OnInit {
     }
   ]);
 
-  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms', 'Marketing', 'User Interface', 'E-commerce']);
+  categories = signal(['All', 'Navigation', 'Content', 'Layout', 'Forms', 'Marketing', 'User Interface', 'E-commerce', 'Media']);
 
   blockFeatures = [
     {

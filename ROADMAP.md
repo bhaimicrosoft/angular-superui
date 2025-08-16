@@ -54,15 +54,9 @@ Transform Angular SuperUI into the **ultimate, comprehensive UI ecosystem** that
 - [✅] **Login/Register Forms** - Authentication forms *(completed with docs)*
 - [✅] **Profile Card** - User profile display *(completed with docs)*
 - [✅] **Product Card** - E-commerce product display *(completed with docs)*
-- [ ] **Blog Card** - Article preview card
-- [ ] **Gallery Grid** - Image gallery layout
-- [ ] **Video Header** - Background video sections
-- [ ] **Call to Action (CTA)** - Action buttons sections
-- [ ] **Social Media Links** - Social platform links
-- [ ] **Search Bar** - Global search interface
-- [ ] **Filter Panel** - Advanced filtering interface
+- [✅] **Blog Card** - Article preview card *(completed with docs)*
+- [✅] **Gallery Grid** - Image gallery layout *(completed with docs)*
 - [ ] **Comparison Table** - Product/feature comparison
-- [ ] **Weather Widget** - Weather information display
 - [ ] **Event Card** - Event information display
 - [ ] **Notification Banner** - Site-wide announcements
 - [ ] **Cookie Consent** - GDPR compliance banner
