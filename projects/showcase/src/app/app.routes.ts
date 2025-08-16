@@ -819,7 +819,7 @@ export const routes: Routes = [
         title:
           'Angular SuperUI - Modern Angular Component Library | UI Framework',
         description:
-          'Build stunning Angular applications with our comprehensive component library. 50+ components, TypeScript support, Tailwind CSS integration, and full accessibility compliance.',
+          'Build stunning Angular applications with our comprehensive component library. 43+ components, TypeScript support, Tailwind CSS integration, and full accessibility compliance.',
         keywords:
           'Angular UI, Angular components, Angular library, Angular framework, UI components, TypeScript components, Tailwind CSS, modern UI, component library, Angular UI library',
       },

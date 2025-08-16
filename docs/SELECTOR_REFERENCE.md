@@ -1,4 +1,4 @@
-# 🎯 Component Selectors Quick Reference (v2.0.2)
+# 🎯 Component Selectors Quick Reference (v2.0.3)
 
 <div align="center">
 
@@ -9,11 +9,11 @@
 
 </div>
 
-This document provides a comprehensive reference for all Angular SuperUI component selectors and their correct usage in **v2.0.2**.
+This document provides a comprehensive reference for all Angular SuperUI component selectors and their correct usage in **v2.0.3**.
 
 ## 📊 Overview
 
-Angular SuperUI v2.0.2 includes **43 production-ready components + 10 UI blocks** with consistent PascalCase selectors and full TypeScript support.
+Angular SuperUI v2.0.3 includes **43 production-ready components + 15 UI blocks** with consistent PascalCase selectors and full TypeScript support.
 
 ### 🎨 Component Categories
 
@@ -905,7 +905,7 @@ import { CardHeader } from 'angular-superui';
 
 ## 🔄 Migration Notes
 
-### Key Selector Changes in v2.0.2
+### Key Selector Changes in v2.0.3
 
 - **Button**: `<Button>` (not `<ButtonComponent>`)
 - **Input**: `<InputComponent>` (has "Component" suffix)
@@ -936,4 +936,4 @@ import { CardHeader } from 'angular-superui';
 
 ---
 
-**Last Updated:** v2.0.2 - All selectors verified against actual component implementations ✅
+**Last Updated:** v2.0.3 - All selectors verified against actual component implementations ✅

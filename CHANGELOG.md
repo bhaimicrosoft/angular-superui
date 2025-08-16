@@ -6,6 +6,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [2.0.3] - 2025-08-16
+
+### ✨ **New Features & Component Additions**
+
+- **Component Library Expansion**: Added 5 new UI blocks to the library
+  - `blog-card` - Professional blog content cards with multiple layouts and author information
+  - `contact-form` - Professional contact forms with validation and multiple layout variants
+  - `newsletter-signup` - Newsletter subscription forms with multiple styles and validation
+  - `product-card` - E-commerce product cards with pricing, ratings, and cart functionality
+  - `profile-card` - User profile cards with social links and status information
+
+### 🔧 **CLI Enhancements**
+
+- **Block Support**: Enhanced CLI with support for all 15 UI blocks
+- **Component Dependencies**: Improved dependency resolution for components that depend on other components
+- **Installation Improvements**: Enhanced init command with better Angular CDK and animations setup
+
+### 📊 **Updated Component Counts**
+
+- **Total Components**: 43 production-ready components (unchanged)
+- **Total UI Blocks**: 15 comprehensive UI blocks (increased from 10)
+- **CLI Commands**: Full support for `ngsui-cli add block <block-name>` syntax
+
+### 🗑️ **Cleanup & Refactoring**
+
+- **Removed Gallery Grid**: Deprecated and removed gallery-grid block and all related files
+  - Removed from library exports
+  - Removed from showcase routes
+  - Cleaned up navigation references
+- **Documentation Updates**: Updated all documentation to reflect v2.0.3 and correct component/block counts
+
+### 📚 **Documentation**
+
+- **Version Updates**: Updated version numbers across all package.json, README, and documentation files
+- **Block Documentation**: Added documentation for new UI blocks
+- **Component Count Fixes**: Corrected component and block counts in all documentation and demo pages
+
+---
+
 ## [2.0.1] - 2025-08-08
 
 ### 🐛 **Bug Fixes**

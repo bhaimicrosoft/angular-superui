@@ -345,6 +345,36 @@ exports.BLOCKS = {
         description: 'Customer testimonials with avatars and ratings.',
         dependencies: ['cn'],
         files: ['index.ts']
+    },
+    'blog-card': {
+        name: 'Blog Card',
+        description: 'Professional blog content cards with multiple layouts and author information.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'contact-form': {
+        name: 'Contact Form',
+        description: 'Professional contact forms with validation and multiple layout variants.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'newsletter-signup': {
+        name: 'Newsletter Signup',
+        description: 'Newsletter subscription forms with multiple styles and validation.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'product-card': {
+        name: 'Product Card',
+        description: 'E-commerce product cards with pricing, ratings, and cart functionality.',
+        dependencies: ['cn'],
+        files: ['index.ts']
+    },
+    'profile-card': {
+        name: 'Profile Card',
+        description: 'User profile cards with social links and status information.',
+        dependencies: ['cn'],
+        files: ['index.ts']
     }
 };
 async function addCommand(componentNames, options) {

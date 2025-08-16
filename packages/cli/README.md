@@ -2,13 +2,13 @@
 
 # 🚀 Angular SuperUI CLI
 
-## 🛠️ **v2.0.2: 43 Components + 10 Blocks Ready** 🎯
+## 🛠️ **v2.0.3: 43 Components + 15 Blocks Ready** 🎯
 </div>
 <div align="center">
 
 ### 🌟 **[🎮 LIVE DEMO - See Components in Action!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ Interactive Showcase • 43 Components • 10 Blocks • Dark Mode • Mobile Responsive ✨**
+**✨ Interactive Showcase • 43 Components • 15 Blocks • Dark Mode • Mobile Responsive ✨**
 
 [![🚀 View Live Demo](https://img.shields.io/badge/🚀-View%20Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![📱 Try on Mobile](https://img.shields.io/badge/📱-Try%20on%20Mobile-45B7D1?style=for-the-badge&logo=mobile&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)

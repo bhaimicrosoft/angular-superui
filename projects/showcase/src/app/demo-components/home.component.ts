@@ -821,6 +821,60 @@ export class HomeComponent implements OnInit {
       bgColor: 'bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/40 dark:to-orange-900/40',
       iconColor: 'text-yellow-600 dark:text-yellow-400'
     },
+    {
+      name: 'Chip',
+      route: '/components/chip',
+      description: 'Compact interactive elements for tags, filters, and selections',
+      category: 'Display',
+      icon: 'M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z',
+      bgColor: 'bg-gradient-to-br from-pink-100 to-rose-100 dark:from-pink-900/40 dark:to-rose-900/40',
+      iconColor: 'text-pink-600 dark:text-pink-400'
+    },
+    {
+      name: 'Data Table',
+      route: '/components/data-table',
+      description: 'Advanced data tables with sorting, filtering, and pagination',
+      category: 'Data',
+      icon: 'M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z',
+      bgColor: 'bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-teal-900/40 dark:to-cyan-900/40',
+      iconColor: 'text-teal-600 dark:text-teal-400'
+    },
+    {
+      name: 'Drawer',
+      route: '/components/drawer',
+      description: 'Sliding panels for navigation and additional content',
+      category: 'Overlay',
+      icon: 'M4 6h16M4 12h16M4 18h7',
+      bgColor: 'bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40',
+      iconColor: 'text-indigo-600 dark:text-indigo-400'
+    },
+    {
+      name: 'Icon',
+      route: '/components/icon',
+      description: 'Universal icon component supporting SVG, HTML, and icon libraries',
+      category: 'Display',
+      icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+      bgColor: 'bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/40 dark:to-red-900/40',
+      iconColor: 'text-orange-600 dark:text-orange-400'
+    },
+    {
+      name: 'Menubar',
+      route: '/components/menubar',
+      description: 'Horizontal navigation bars with dropdown menus',
+      category: 'Navigation',
+      icon: 'M4 6h16M4 12h16M4 18h16',
+      bgColor: 'bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/40 dark:to-teal-900/40',
+      iconColor: 'text-emerald-600 dark:text-emerald-400'
+    },
+    {
+      name: 'Toolbar',
+      route: '/components/toolbar',
+      description: 'Action toolbars with buttons and controls',
+      category: 'Navigation',
+      icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+      bgColor: 'bg-gradient-to-br from-slate-100 to-gray-100 dark:from-slate-900/40 dark:to-gray-900/40',
+      iconColor: 'text-slate-600 dark:text-slate-400'
+    },
   ];
 
   scrollToComponents() {

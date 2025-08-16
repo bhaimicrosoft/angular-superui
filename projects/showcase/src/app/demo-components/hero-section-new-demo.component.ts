@@ -110,7 +110,7 @@ import { SEOService } from '../services/seo.service';
                   <!-- Stats -->
                   <div class="flex flex-wrap justify-center gap-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                     <div class="text-center">
-                      <div class="text-3xl font-bold text-gray-900 dark:text-white">50+</div>
+                      <div class="text-3xl font-bold text-gray-900 dark:text-white">43+</div>
                       <div class="text-gray-600 dark:text-gray-400">Components</div>
                     </div>
                     <div class="text-center">

@@ -311,7 +311,7 @@ import {
                       </div>
                     </div>
                     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                      Modern Angular component library with 50+ components and full TypeScript support.
+                      Modern Angular component library with 43+ components and full TypeScript support.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
                       <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-lg text-xs">Angular</span>

@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🚀 Installation Guide - Angular SuperUI v2.0.2
+# 🚀 Installation Guide - Angular SuperUI v2.0.3
 
-✨ 43 Production-Ready Components + 10 UI Blocks • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
+✨ 43 Production-Ready Components + 15 UI Blocks • TailwindCSS v4 • TypeScript • Zero Dependencies ✨**
 
 [![🎯 Live Demo](https://img.shields.io/badge/🎯-Live%20Demo-FF6B6B?style=for-the-badge&logo=vercel&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
 [![⚡ Get Started](https://img.shields.io/badge/⚡-Get%20Started-4ECDC4?style=for-the-badge&logo=angular&logoColor=white&labelColor=000000)](https://angular-superui.vercel.app/)
@@ -13,7 +13,7 @@
 
 ## 📚 **[🎨 Complete Component Demos & Examples →](./README.md)**
 
-> 🚀 **Step-by-step examples** for all 43 components + 10 blocks with **interactive showcases**, **code snippets**, and **best practices**!
+> 🚀 **Step-by-step examples** for all 43 components + 15 blocks with **interactive showcases**, **code snippets**, and **best practices**!
 
 ---
 
@@ -190,7 +190,7 @@ Pre-built, customizable UI sections perfect for rapid prototyping and production
 
 ```bash
 # Install complete library with all components
-npm install angular-superui@2.0.1
+npm install angular-superui@2.0.3
 
 # Install peer dependencies
 npm install class-variance-authority clsx tailwind-merge
@@ -319,7 +319,7 @@ import { Badge } from '@components/badge';
       </CardHeader>
       <CardContent>
         <div class="space-y-4">
-          <Badge variant="default">v2.0.2</Badge>
+          <Badge variant="default">v2.0.3</Badge>
           <Button variant="default" (click)="handleClick()">
             Get Started
           </Button>

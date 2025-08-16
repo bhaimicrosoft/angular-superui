@@ -1,18 +1,18 @@
-# Angular SuperUI v2.0.2 🚀
+# Angular SuperUI v2.0.3 🚀
 
 <div align="center">
 
 🌟 **[🚀 LIVE DEMO - Interactive Component Showcase!](https://angular-superui.vercel.app/)** 🌟
 
-**✨ All 43 Components + 10 Blocks • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
+**✨ All 43 Components + 15 Blocks • Dark Mode • Mobile Responsive • TypeScript Ready ✨**
 
 </div>
 
 <div align="center">
 
-###### 🌟 **Key Features in v2.0.0**
+###### 🌟 **Key Features in v2.0.3**
 
-- **39 Essential Components + 5 UI Blocks** - Production-ready UI components and blocks
+- **43 Essential Components + 15 UI Blocks** - Production-ready UI components and blocks
 - **Zero ####1. **🔘 Button**17. *19. **📄24. **🖱️ ContextMenu36. **📁 FileUpload** - Advanced file upload component with drag-and-drop, progress tracking, and validation* - Right-click context menus with keyboard shortcutsPagination** - Pagination controls with customizable page size and navigation📄 Textarea** - Multi-line text input component with auto-resize and validation states- Interactive buttons with 9 variants and loading states 🚀 **Core UI Components** 🎯 **Core UI Com17. *19. **📄24. **🖱️ ContextMenu36. **📁 FileUpload** - Advanced file upload component with drag-and-drop, progress tracking, and validation* - Right-click context menus with keyboard shortcutsPagination** - Pagination controls with customizable page size and navigation📄 Textarea** - Multi-line text input component with auto-resize and validation statesonents**
 
 1. **🔘 Button** - Interactive buttons with 9 variants and loading statesernal Dependencies** - Local-first architecture for maximum control
@@ -38,7 +38,7 @@ A modern, beautiful, and accessible Angular UI component library built with **Ta
 >
 > 🚀 **Step-by-step guides** for all 43 components + 10 blocks with **practical examples**, **usage instructions**, and **styling tips**!
 
-## 🛠️ **v2.0.2: 43 Components + 10 Blocks Ready**
+## 🛠️ **v2.0.3: 43 Components + 15 Blocks Ready**
 
 ### 🚀 **CLI Tool (Recommended)**
 
@@ -63,14 +63,14 @@ ngsui-cli list
 Install the complete component library:
 
 ```bash
-# Using Angular schematics (recommended)
-ng add angular-superui@2.0.0
-
-# Or using npm directly
-npm install angular-superui@2.0.0
+```bash
+ng add angular-superui@2.0.3
+# or
+npm install angular-superui@2.0.3
+```
 ```
 
-### 🌟 **Key Features in v2.0.0**
+### 🌟 **Key Features in v2.0.3**
 
 - **39 Essential Components + 5 UI Blocks** - Production-ready UI components and blocks
 - **Enhanced Block System** - New Hero Section, Feature Grid, Pricing Cards, Header, and Footer blocks

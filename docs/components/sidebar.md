@@ -123,7 +123,7 @@ import {
         <!-- Sticky footer -->
         <SidebarFooter slot="sidebar-footer">
           <div class="text-sm text-muted-foreground">
-            v2.0.1 • © 2025 SuperUI
+            v2.0.3 • © 2025 SuperUI
           </div>
         </SidebarFooter>
       </Sidebar>

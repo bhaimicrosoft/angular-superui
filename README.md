@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Angular SuperUI v2.0.2
+# 🎨 Angular SuperUI v2.0.3
 
 **The Modern Angular UI Component Library That Developers Love**
 
@@ -25,7 +25,7 @@
   <h2>🚀 The Modern Angular UI Component Library</h2>
   <p><strong>Beautiful • Accessible • Type-Safe • Zero External Dependencies</strong></p>
   
-  ![Angular SuperUI](https://img.shields.io/badge/43%2B%20Components%20%2B%2010%20Blocks-Ready%20to%20Use-brightgreen?style=flat-square)
+  ![Angular SuperUI](https://img.shields.io/badge/43%2B%20Components%20%2B%2015%20Blocks-Ready%20to%20Use-brightgreen?style=flat-square)
   ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square)
   ![TypeScript](https://img.shields.io/badge/100%25-TypeScript-blue?style=flat-square)
   ![Angular 17+](https://img.shields.io/badge/Angular-17%2B-red?style=flat-square)
@@ -35,7 +35,7 @@
 
 ## ✨ What is Angular SuperUI?
 
-Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI component library that transforms how you build Angular applications. Built with **Tailwind CSS v4**, **TypeScript**, and **Angular 17+ Signals**, it provides **43 production-ready components + 10 UI blocks** with **local-first architecture**.
+Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI component library that transforms how you build Angular applications. Built with **Tailwind CSS v4**, **TypeScript**, and **Angular 17+ Signals**, it provides **43 production-ready components + 15 UI blocks** with **local-first architecture**.
 
 ### 🎯 **Why Angular SuperUI is the Best Choice for Your Project?**
 
@@ -49,7 +49,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 🚀 **Modern Angular** - Built for Angular 17+ with signals, standalone components, and modern APIs  
 🔒 **Type-Safe Everything** - Full TypeScript support with comprehensive IntelliSense  
 ⚙️ **Zero Config Setup** - Works out of the box with sensible defaults  
-🎪 **Interactive Playground** - Live demo with 50+ component examples  
+🎪 **Interactive Playground** - Live demo with 43+ component examples  
 📚 **Comprehensive Docs** - Detailed API reference, examples, and best practices
 
 ### 🏆 **Perfect for:**
@@ -74,7 +74,7 @@ Angular SuperUI is a **comprehensive, modern, and accessible** Angular UI compon
 
 [![Live Demo](https://img.shields.io/badge/🚀-LIVE%20DEMO-FF6B6B?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white)](https://angular-superui.vercel.app/)
 
-*See all 43 components + 10 blocks in action with dark mode, mobile responsiveness, and interactive examples!*
+*See all 43 components + 15 blocks in action with dark mode, mobile responsiveness, and interactive examples!*
 
 </div>
 

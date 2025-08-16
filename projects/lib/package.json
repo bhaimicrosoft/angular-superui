@@ -1,7 +1,6 @@
 {
-  "name": "angular-superui",
-  "version": "2.0.2",
-  "description": "A modern Angular UI component library with 43+ components and 10 UI blocks, built with Tailwind CSS",
+  "version": "2.0.3",
+  "description": "A modern Angular UI component library with 43+ components and 15 UI blocks, built with Tailwind CSS","name": "angular-superui",
   "keywords": [
     "angular",
     "ui",
